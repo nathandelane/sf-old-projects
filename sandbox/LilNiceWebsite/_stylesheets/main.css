@@ -1,0 +1,38 @@
+body {
+	background-color: #000000;
+	color: #ffffff;
+	text-align: left;
+	font-size: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 10px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.pageContainer {
+	width: 800px;
+	margin: 0px auto;
+	background-color: #00ef38;
+}
+
+.headerBar {
+	width: 790px;
+	height: 16px;
+	background-color: #000000;/*#00c92f;*/
+	background-image: url('../_images/greengradient02.png');
+	background-position: top left;
+	/*background-repeat: x-repeat;*/
+	color: #000000;
+	line-height: 16px;
+	padding-left: 10px;
+}
+
+.imageBar {
+	width: 796px;
+	height: 150px;
+	background-color: #222222;
+	background-image: url('../_images/saltlakecityskyline.png');
+	background-position: -20px -150px;
+	margin-left: 2px;
+	margin-right: 2px;
+}
