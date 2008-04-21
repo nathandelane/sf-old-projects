@@ -8,10 +8,10 @@
 		<div id="titlebarContainer" class="titlebarContainer backgroundLightGray foregroundLightBrown">
 			<div id="titlebarTop" class="titlebarTop backgroundLightBrown"></div>
 			<div id="titlebarText" class="titlebarText">
-				<span id="titlebarTitle" class="titleBarTitle">The Lil' Nice Website</span>
-				<span id="linksBar" class="linksBar">
-					<a href="#">Log In</a>&nbsp;|&nbsp;Datetime
-				</span>
+				<div id="titlebarTitle" class="titleBarTitle">The Lil' Nice Website</div>
+				<div id="linksBar" class="linksBar foregroundLightBrown">
+					<a href="index.php">Log In</a>&nbsp;|&nbsp;Datetime
+				</div>
 			</div>
 			<div id="titlebarBottom" class="titlebarBottom backgroundLightBrown"></div>
 		</div>
