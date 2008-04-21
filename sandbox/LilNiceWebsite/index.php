@@ -9,6 +9,9 @@
 			<div id="titlebarTop" class="titlebarTop backgroundLightBrown"></div>
 			<div id="titlebarText" class="titlebarText">
 				<span id="titlebarTitle" class="titleBarTitle">The Lil' Nice Website</span>
+				<span id="linksBar" class="linksBar">
+					<a href="#">Log In</a>&nbsp;|&nbsp;Datetime
+				</span>
 			</div>
 			<div id="titlebarBottom" class="titlebarBottom backgroundLightBrown"></div>
 		</div>
