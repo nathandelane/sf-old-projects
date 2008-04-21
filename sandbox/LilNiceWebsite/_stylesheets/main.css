@@ -1,6 +1,6 @@
 body {
-	background-color: #000000;
-	color: #ffffff;
+	background-color: #ffffff;
+	color: #000000;
 	text-align: left;
 	font-size: 10px;
 	font-family: Arial, Helvetica, sans-serif;
@@ -9,30 +9,122 @@ body {
 	padding: 0px;
 }
 
-.pageContainer {
-	width: 800px;
+.titlebarContainer {
+	width: 100%;
+	height: 26px;
+	overflow: hidden;
+	margin: 10px auto;
+	float: none;
+}
+
+.titlebarTop {
+	width: 100%;
+	height: 3px;
+	overflow: hidden;
+	float: left;
+}
+
+.titlebarText {
+	width: 100%;
+	height: 20px;
+	overflow: hidden;
+	float: left;
+}
+
+.titleBarTitle {
+	width: 150px;
+	height: 20px;
+	overflow: hidden;
+	margin-left: 4px;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 20px;
+	float: left;
+}
+
+.titlebarBottom {
+	width: 100%;
+	height: 3px;
+	overflow: hidden;
+	float: left;
+}
+
+.contentContainer {
+	width: 700px;
 	margin: 0px auto;
-	background-color: #00ef38;
+	float: none;
 }
 
-.headerBar {
-	width: 790px;
-	height: 16px;
-	background-color: #000000;/*#00c92f;*/
-	background-image: url('../_images/greengradient02.png');
-	background-position: top left;
-	/*background-repeat: x-repeat;*/
-	color: #000000;
-	line-height: 16px;
-	padding-left: 10px;
+.lilNiceWebsiteBannerContainer {
+	width: 700px;
+	height: 200px;
+	overflow: hidden;
+	margin: 0px auto;
+	float: none;
 }
 
-.imageBar {
-	width: 796px;
-	height: 150px;
-	background-color: #222222;
-	background-image: url('../_images/saltlakecityskyline.png');
-	background-position: -20px -150px;
-	margin-left: 2px;
-	margin-right: 2px;
+.lilNiceWebsiteBannerOverlay {
+	width: 700px;
+	height: 200px;
+	overflow: hidden;
+	margin: 0px auto;
+	float: none;
+	background-image: url('../_images/lnlbannercontainer.png');
+}
+
+.actualContentContainer {
+	width: 700px;
+	margin: 0px;
+}
+
+.footer {
+	width: 700px;
+	height: 12px;
+	line-height: 12px;
+	margin: 0px;
+	overflow: hidden;
+}
+
+.leftColumn {
+	width: 228px;
+	background-color: #ffffff;
+	float: left;
+	padding-right: 4px;
+	padding-bottom: 10px;
+}
+
+.rightColumn {
+	width: 468px;
+	background-color: #916f6f;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.rightColumnInner {
+	width: 460px;
+	background-color: #ffffff;
+	float: right;
+	padding-left: 4px;
+}
+
+/* Colors */
+
+.backgroundDarkRed {
+	background-color: #800000;
+}
+
+.foregroundDarkRed {
+	color: #800000;
+}
+
+.backgroundLightGray {
+	background-color: #eeeeee;
+}
+
+.backgroundLightBrown {
+	background-color: #916f6f;
+}
+
+.foregroundLightBrown {
+	color: #916f6f;
 }
