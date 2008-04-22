@@ -1,0 +1,66 @@
+body {
+	background-color: #ffffff;
+	color: #000000;
+	text-align: left;
+	font-size: 14px;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 14px;
+	margin: 0px;
+	padding: 0px;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 18px;
+	margin-bottom: 18px;
+}
+
+h3 {
+	margin-top: 4px;
+	margin-bottom: 4px;
+	font-size: 14px;
+}
+
+p {
+	margin-top: 0px;
+}
+
+.loginPanelContainer {
+	width: 580px;
+	height: 400px;
+	overflow: hidden;
+	background-image: url('../_images/loginbackground.png');
+	background-repeat: no-repeat;
+	background-position: top left;
+	margin: 20px auto;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.hr {
+	width: 580px;
+	height: 2px;
+	overflow: hidden;
+	background-color: #cccccc;
+	margin-bottom: 10px;
+}
+
+.submitButton {
+	margin-top: 10px;
+	margin-left: 150px;
+	width: 150px;
+	float: left;
+}
+
+.resetButton {
+	margin-top: 10px;
+	margin-right: 100px;
+	width: 150px;
+	float: left;
+}
+
+.credentials {
+}
+
+.information {
+}
