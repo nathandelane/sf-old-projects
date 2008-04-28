@@ -1,3 +1,9 @@
+/*
+ * Author: Nathan Lane
+ * Notes:
+ *  z-index is not applicable unless we use absolut or relative positioning. If we use automatic positioning like we are right now, then it doesn't do anything to include it.
+ */
+
 body {
 	font-family: Arial,sans-serif;
 	font-size: 10px;
@@ -10,7 +16,7 @@ body {
 	margin: 0px;
 	padding: 0px;
 	color: #ffffff;
-	background: #191919 url('../_images/fullbackground.png') repeat-y scroll center top;*/
+	background: #191919 url('../_images/fullbackground.png') repeat-y scroll center top;
 }
 
 .pageContainer {
@@ -131,7 +137,7 @@ body {
 }
 */
 .buttonAndHeaderContainer {
-	width: 920px;
+	width: 929px;
 	height: 38px;
 	overflow: hidden;
 	float: left;
@@ -162,7 +168,7 @@ body {
 
 .leftColumn {
 	width: 195px;
-	height: 666px;
+	height: 634px;
 	overflow: hidden;
 	margin-right: 18px;
 	float: left;
@@ -216,7 +222,7 @@ body {
 
 .rightColumn {
 	width: 686px;
-	height: 666px;
+	height: 634px;
 	overflow: hidden;
 	padding: 0px 0px 0px 0px;
 	float: left;
@@ -225,6 +231,14 @@ body {
 .bottomRectAdSpace {
 	width: 320px;
 	height: 128px;
+	overflow: hidden;
+}
+
+.communityLinks {
+	width: 686px;
+	height: 224px;
+	margin: 0px 0px 0px 0px;
+	float: left;
 	overflow: hidden;
 }
 
@@ -239,7 +253,128 @@ body {
 .smallContainerInner {
 	width: 154px;
 	height: 152px;
-	margin: 12px 29px 0px 29px;
+	margin: 12px auto 0px auto;
+}
+
+.smallContainerButton {
+	width: 194px;
+	height: 22px;
+	margin: 0px auto 12px auto;
+	padding-top: 11px;
+	text-align: center;
+}
+
+.selectedProfiles {
+	width: 686px;
+	height: 232px;
+	overflow: hidden;
+	float: left;
+	margin: 0px 0px 0px 0px;
+}
+
+.selectedProfileOuter {
+	width: 328px;
+	height: 200px;
+	margin: 16px 0px 16px 0px;
+	overflow: hidden;
+	float: left;
+}
+
+.selectedProfileHeader {
+	width: 328px;
+	height: 26px;
+	overflow: hidden;
+	float: left;
+	padding-top: 14px;
+	text-align: center;
+}
+
+.selectedProfilePicture {
+	width: 120px;
+	height: 146px;
+	overflow: hidden;
+	float: left;
+	margin: 7px 0px 0px 12px;
+}
+
+.selectedProfileInfo {
+	width: 181px;
+	height: 118px;
+	overflow: hidden;
+	float: left;
+	margin: 25px 0px 0px 14px;
+}
+
+.selectedProfileName {
+	width: 181px;
+	height: 12px;
+	overflow: hidden;
+	float: left;
+	margin: 0px 0px 12px 0px;
+	text-align: center;
+}
+
+.selectedProfileBio {
+	width: 156px;
+	height: 70px;
+	overflow: hidden;
+	float: left;
+	font-size: 11px;
+	text-align: justify;
+	margin: 0px 0px 12px 0px;
+}
+
+.selectedProfileMoreLink {
+	width: 161px;
+	height: 12px;
+	overflow: hidden;
+	float: left;
+	text-align: right;
+	margin: 0px 20px 0px 0px;
+	text-decoration: underline;
+}
+
+.bottomAd {
+	width: 686px;
+	height: 136px;
+	margin: 16px 0px 16px 0px;
+	overflow: hidden;
+	float: left;
+}
+
+.dottedHorizontalSeparator {
+	width: 929px;
+	height: 2px;
+	background:  #191919 url('../_images/dothoriz.png') repeat-x scroll center top;
+	overflow: hidden;
+	float: left;
+}
+
+.dottedVerticalSeparator {
+	width: 3px;
+	height: 360px;
+	background:  #191919 url('../_images/dotvert.png') repeat-y scroll center top;
+	overflow: hidden;
+	float: left;
+	margin: 0px 10px 0px 10px;
+}
+
+.bottomBar {
+	width: 922px;
+	height: 68px;
+	overflow: hidden;
+	float: left;
+	margin: 10px 0px 0px 0px;
+}
+
+.copyrightBar {
+	width: 922px;
+	height: 12px;
+	line-height: 12px;
+	overflow: hidden;
+	float: left;
+	text-align: center;
+	margin: 0px 0px 0px 0px;
 }
 
 .headingMajor {
@@ -295,10 +430,18 @@ body {
 	background-color: #fefefe;
 }
 
+.backgroundBlueZamDarkGray {
+	background-color: #272727;
+}
+
 .backgroundRed {
 	background-color: #800000;
 }
 
 .backgroundOrange {
 	background-color: #ff5400;
+}
+
+.backgroundGreen {
+	background-color: #308100;
 }

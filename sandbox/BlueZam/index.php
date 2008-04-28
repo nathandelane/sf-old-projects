@@ -13,7 +13,7 @@
 	<body>
 		<div class="pageContainer" id="pageContainer">
 			<div class="innerContainer" id="innerContainer">
-				<div class="banner" id="banner">
+				<div class="banner backgroundOrange" id="banner">
 					<div class="siteMapBar backgroundRed" id="siteMapBar">
 						<div id="siteMap" class="siteMap">
 							<ul>
@@ -71,16 +71,62 @@
 					</div>
 				</div>
 				<div id="rightColumn" class="rightColumn backgroundRed">
-					<div id="artisticCommunity" class="smallContainer">
-						<div id="artisticCommunityInner" class="smallContainerInner backgroundRed"></div>
+					<div id="communityLinks" class="communityLinks">
+						<div id="artisticCommunity" class="smallContainer">
+							<div id="artisticCommunityInner" class="smallContainerInner backgroundRed"></div>
+							<div id="artisticCommunityButton" class="smallContainerButton backgroundGreen">
+								<div id="artisticCommunityButtonText" class="headingMinor">- ARTISTIC COMMUNITY -</div>
+							</div>
+						</div>
+						<div id="zamBattleground" class="smallContainer">
+							<div id="zamBattlegroundInner" class="smallContainerInner backgroundRed"></div>
+							<div id="zamBattlegroundButton" class="smallContainerButton backgroundGreen">
+								<div id="artisticCommunityButtonText" class="headingMinor">- ZAM BATTLEGROUND -</div>
+							</div>
+						</div>
+						<div id="publishing" class="smallContainer">
+							<div id="publishingInner" class="smallContainerInner backgroundRed"></div>
+							<div id="publishingButton" class="smallContainerButton backgroundGreen">
+								<div id="artisticCommunityButtonText" class="headingMinor">- PUBLISHING -</div>
+							</div>
+						</div>
 					</div>
-					<div id="artisticCommunity" class="smallContainer">
-						<div id="artisticCommunityInner" class="smallContainerInner backgroundRed"></div>
+					<div id="separator1" class="dottedHorizontalSeparator"></div>
+					<div id="selectedProfiles" class="selectedProfiles">
+						<div id="selectedProfile1" class="selectedProfileOuter backgroundBlueZamDarkGray">
+							<div id="selectedProfile1Header" class="selectedProfileHeader backgroundBlueZamBlue">
+								<div id="selectedProfileHeaderText" class="headingMinor">- BLUE ZAM PUBLISHING FEATURED AUTHOR -</div>
+							</div>
+							<div id="selectedProfile1Picture" class="selectedProfilePicture backgroundRed"></div>
+							<div id="selectedProfile1Info" class="selectedProfileInfo backgroundBlueZamDarkGray">
+								<div id="selectedProfile1Name" class="selectedProfileName headingMinor">PHILLIP E. JONES</div>
+								<div id="selectedProfile1Bio" class="selectedProfileBio">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque convallis. Maecenas vestibulum enim at odio. Integer non risus nec metus porttitor ornare. Fusce condimentum ipsum quis mauris. Etiam tempus ante non nibh. Vivamus congue, pede ac fermentum facilisis, metus arcu vulputate quam, at vulputate massa nibh et massa. Donec augue. Cras pede. Suspendisse potenti. Quisque porttitor ornare elit. Integer interdum dapibus eros. Aenean vitae orci sed nunc sollicitudin suscipit. Nulla pellentesque. Integer blandit ornare tellus. Morbi ac dui.
+								</div>
+								<div id="selectedProfile1MoreLink" class="selectedProfileMoreLink">MORE</div>
+							</div>
+						</div>
+						<div id="separator2" class="dottedVerticalSeparator"></div>
+						<div id="selectedProfile1" class="selectedProfileOuter backgroundBlueZamDarkGray">
+							<div id="selectedProfile1Header" class="selectedProfileHeader backgroundBlueZamBlue">
+								<div id="selectedProfileHeaderText" class="headingMinor">- BLUE ZAM PUBLISHING FEATURED AUTHOR -</div>
+							</div>
+							<div id="selectedProfile1Picture" class="selectedProfilePicture backgroundRed"></div>
+							<div id="selectedProfile1Info" class="selectedProfileInfo backgroundBlueZamDarkGray">
+								<div id="selectedProfile1Name" class="selectedProfileName headingMinor">PHILLIP E. JONES</div>
+								<div id="selectedProfile1Bio" class="selectedProfileBio">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque convallis. Maecenas vestibulum enim at odio. Integer non risus nec metus porttitor ornare. Fusce condimentum ipsum quis mauris. Etiam tempus ante non nibh. Vivamus congue, pede ac fermentum facilisis, metus arcu vulputate quam, at vulputate massa nibh et massa. Donec augue. Cras pede. Suspendisse potenti. Quisque porttitor ornare elit. Integer interdum dapibus eros. Aenean vitae orci sed nunc sollicitudin suscipit. Nulla pellentesque. Integer blandit ornare tellus. Morbi ac dui.
+								</div>
+								<div id="selectedProfile1MoreLink" class="selectedProfileMoreLink">MORE</div>
+							</div>
+						</div>
 					</div>
-					<div id="artisticCommunity" class="smallContainer">
-						<div id="artisticCommunityInner" class="smallContainerInner backgroundRed"></div>
-					</div>
+					<div id="separator1" class="dottedHorizontalSeparator"></div>
+					<div id="bottomAd" class="bottomAd backgroundBlueZamBlue"></div>
+					<div id="separator1" class="dottedHorizontalSeparator"></div>
 				</div>
+				<div id="bottomBar" class="bottomBar backgroundBlueZamGray"></div>
+				<div id="copyrightBar" class="copyrightBar copyright">Copyright (C) 2008 BlueZam. All Rights Reserved.</div>
 			</div>
 		</div>
 	</body>
