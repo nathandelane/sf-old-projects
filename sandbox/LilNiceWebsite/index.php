@@ -1,10 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php
+	header("Location: " . $homepage);
+	session_start();
+?>
 <html>
 	<head>
+		<title>Log In | Lil' Nice Website</title>
+		<link rel="stylesheet" type="text/css" href="_stylesheets/login.css"/>
+	</head>
+	<body>
 		<?php
-			session_start();
 			$sessionId = session_id();
-			/*
+			
 			if($_POST["sessionId"] != "")
 			{
 				require_once("_application/authentication/UserAuthentication.php");
@@ -14,22 +21,17 @@
 				if($userSession->isUserAuthenticated())
 				{
 					$sessionId = $userSession->getSessionId();
-					//echo "<meta http-equiv='refresh' content='1;url=/home.php'>";
 				}
 				else
 				{
 					$sessionId = session_id();
 				}
-			}*/
+			}
 		?>
-		<title>Log In | Lil' Nice Website</title>
-		<link rel="stylesheet" type="text/css" href="_stylesheets/login.css"/>
-	</head>
-	<body>
 		<div id="loginPanelContainer" class="loginPanelContainer">
 			<h1>Log Into Lil' Nice Website</h1>
 			<div class="hr"></div>
-			<form id="loginForm" name="loginForm" method="post" action="home.php">
+			<form id="loginForm" name="loginForm" method="post" action="index.php">
 				<input name="sessionId" type="hidden" id="sessionId" value="<?php echo $sessionId; ?>"/>
 				<fieldset class="credentials">
 					<legend>User Credentials</legend>
