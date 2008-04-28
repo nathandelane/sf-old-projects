@@ -66,6 +66,16 @@ body {
 	letter-spacing: 2px;
 }
 
+.siteMap ul li a, a:link, a:active, a:visited {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.siteMap ul li a:hover {
+	text-decoration: underline;
+	color: #ffffff;
+}
+
 .createYourAccountButton {
 	width: 183px;
 	height: 26px;
@@ -113,13 +123,13 @@ body {
 	background-image: url('../_images/us.png');
 	background-repeat: no-repeat;
 }
-
+/*
 .logoBar {
-	width: 920px;/*922*/
+	width: 920px;/*922
 	height: 132px;
 	float: left;
 }
-
+*/
 .buttonAndHeaderContainer {
 	width: 920px;
 	height: 38px;

@@ -17,15 +17,25 @@
 					<div class="siteMapBar backgroundRed" id="siteMapBar">
 						<div id="siteMap" class="siteMap">
 							<ul>
-								<li>OVERVIEW</li>
+								<li>
+									<a id="overviewLink" href="">OVERVIEW</a>
+								</li>
 								<li>|</li>
-								<li>COMMUNITY</li>
+								<li>
+									<a id="communityLink" href="">COMMUNITY</a>
+								</li>
 								<li>|</li>
-								<li>WEBLOG</li>
+								<li>
+									<a id="weblogLink" href="">WEBLOG</a>
+								</li>
 								<li>|</li>
-								<li>ONLINE STORE</li>
+								<li>
+									<a id="onlineStoreLink" href="">ONLINE STORE</a>
+								</li>
 								<li>|</li>
-								<li>LOGIN</li>
+								<li>
+									<a id="loginLink" href="">LOGIN</a>
+								</li>
 							</ul>
 							<div id="createYourAccountButton" class="createYourAccountButton backgroundBlueZamBlue">
 								<div class="headingMajor" id="createYourAccountButtonHeading">CREATE YOUR ACCOUNT!</div>
@@ -37,7 +47,7 @@
 							<div id="flagContainer" class="flagContainer" style="background-position: 0px 0px;"></div>
 						</div>
 					</div>
-					<div class="logoBar backgroundOrange" id="logoBar">logo bar</div>
+					<!--<div class="logoBar backgroundOrange" id="logoBar">logo bar</div>-->
 				</div>
 				<div id="buttonAndHeaderContainer" class="buttonAndHeaderContainer backgroundRed">
 					<div id="chooseYourArtButton" class="chooseYourArtButton backgroundBlueZamBlue">
