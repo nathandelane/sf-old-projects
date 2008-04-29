@@ -43,7 +43,7 @@
 							</div>
 							<div id="languageSelectorButton" class="languageSelectorButton" onclick="activateMenu('language-text');">
 								<div id="arrowImage" class="arrowImage"></div>
-								<div id="languageSetting" class="languageSetting">EN</div>
+								<div id="languageSetting" class="languageSetting" style="background-position: 0px 0px;"></div>
 							</div>
 							<div id="flagContainer" class="flagContainer" style="background-position: 0px 0px;"></div>
 						</div>
@@ -129,11 +129,19 @@
 				<div id="bottomBar" class="bottomBar backgroundBlueZamGray"></div>
 				<div id="copyrightBar" class="copyrightBar copyright">Copyright (C) 2008 BlueZam. All Rights Reserved.</div>
 				<div id="languageTextMenu" class="languageTextMenu hidden">
-					<ul>
+					<div id="usLanguage" class="languageText" onclick="selectLanguage('en');">EN</div>
+					<div id="spLanguage" class="languageText" onclick="selectLanguage('sp');">SP</div>
+					<div id="deLanguage" class="languageText" onclick="selectLanguage('de');">DE</div>
+					<div id="daLanguage" class="languageText" onclick="selectLanguage('da');">DA</div>
+					<div id="nlLanguage" class="languageText" onclick="selectLanguage('nl');">NL</div>
+					<div id="frLanguage" class="languageText" onclick="selectLanguage('fr');">FR</div>
+					<div id="huLanguage" class="languageText" onclick="selectLanguage('hu');">HU</div>
+					<div id="jaLanguage" class="languageText" onclick="selectLanguage('ja');">JA</div>
+				<!--	<ul>
 						<li>
 							<a href="" onclick="select_language('us');">US
 						</li>
-					</ul>
+					</ul>	-->
 				</div>
 			</div>
 		</div>

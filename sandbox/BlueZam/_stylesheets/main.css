@@ -100,6 +100,7 @@ body {
 	margin-right: 8px;
 	overflow: hidden;
 	float: left;
+	cursor: pointer;
 }
 
 .arrowImage {
@@ -109,6 +110,7 @@ body {
 	margin: 0px;
 	padding: 0px;
 	float: left;
+	background-image: url('../_images/arrow.png');
 }
 
 .languageSetting {
@@ -118,6 +120,7 @@ body {
 	font-size: 9px;
 	font-weight: normal;
 	float: left;
+	background-image: url('../_images/languagelist.png');
 }
 
 .flagContainer {
@@ -379,12 +382,20 @@ body {
 
 .languageTextMenu {
 	position: relative;
-	left: 855px;
-	top: 45px;
-	width: 23px;
+	left: 834px;
+	top: -962px;
+	width: 39px;
 	height: 50px;
 	overflow: scroll;
 	float: left;
+	background-color: #1d87ff;
+	color: #ffffff;
+	padding-left: 7px;
+	border: 1px solid #000000;
+}
+
+.languageText {
+	cursor: pointer;
 }
 
 .headingMajor {

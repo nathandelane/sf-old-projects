@@ -10,10 +10,12 @@ function activateMenu(menuName)
 
 function selectLanguage(language)
 {
-	if(language == "us")
+	if(language == "en")
 	{
 		
 	}
+	
+	document.getElementById("languageTextMenu").className = "languageTextMenu hidden";
 	
 	return;
 }
