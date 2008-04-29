@@ -13,8 +13,8 @@
 	<body>
 		<div class="pageContainer" id="pageContainer">
 			<div class="innerContainer" id="innerContainer">
-				<div class="banner backgroundOrange" id="banner">
-					<div class="siteMapBar backgroundRed" id="siteMapBar">
+				<div class="banner" id="banner">
+					<div class="siteMapBar" id="siteMapBar">
 						<div id="siteMap" class="siteMap">
 							<ul>
 								<li>
@@ -37,7 +37,7 @@
 									<a id="loginLink" href="">LOGIN</a>
 								</li>
 							</ul>
-							<div id="createYourAccountButton" class="createYourAccountButton backgroundBlueZamBlue">
+							<div id="createYourAccountButton" class="createYourAccountButton" onmouseover="this.style.backgroundPosition='top left'" onmouseout="this.style.backgroundPosition='top right'">
 								<div class="headingMajor" id="createYourAccountButtonHeading">CREATE YOUR ACCOUNT!</div>
 							</div>
 							<div id="languageSelectorButton" class="languageSelectorButton">
@@ -125,7 +125,7 @@
 					<div id="bottomAd" class="bottomAd backgroundBlueZamBlue"></div>
 					<div id="separator1" class="dottedHorizontalSeparator"></div>
 				</div>
-				<div id="bottomBar" class="bottomBar backgroundBlueZamGray"></div>
+				<div id="bottomBar" class="bottomBar"></div>
 				<div id="copyrightBar" class="copyrightBar copyright">Copyright (C) 2008 BlueZam. All Rights Reserved.</div>
 			</div>
 		</div>
