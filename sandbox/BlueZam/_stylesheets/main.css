@@ -16,7 +16,7 @@ body {
 	margin: 0px;
 	padding: 0px;
 	color: #ffffff;
-	background: #191919 url('../_images/repeatablebackground.png') repeat-y center top;
+	background: #191919 url('../_images/fullbackground.png') repeat-y scroll center top;
 }
 
 .pageContainer {
@@ -34,11 +34,10 @@ body {
 }
 
 .banner {
-	width: 921px;
-	height: 116px;
+	width: 922px;
+	height: 210px;
 	margin: 0px;
 	overflow: hidden;
-	background-image: url('../_images/headerbar.png');
 }
 
 .siteMapBar {
@@ -92,7 +91,6 @@ body {
 	padding-top: 12px;
 	text-align: center;
 	float: left;
-	background-image: url('../_images/bluebuttontop.png');
 }
 
 .languageSelectorButton {
@@ -362,12 +360,11 @@ body {
 }
 
 .bottomBar {
-	width: 921px;
-	height: 63px;
+	width: 922px;
+	height: 68px;
 	overflow: hidden;
 	float: left;
 	margin: 10px 0px 0px 0px;
-	background-image: url('../_images/footerbar.png');
 }
 
 .copyrightBar {
@@ -378,6 +375,16 @@ body {
 	float: left;
 	text-align: center;
 	margin: 0px 0px 0px 0px;
+}
+
+.languageTextMenu {
+	position: relative;
+	left: 855px;
+	top: 45px;
+	width: 23px;
+	height: 50px;
+	overflow: scroll;
+	float: left;
 }
 
 .headingMajor {
@@ -447,4 +454,12 @@ body {
 
 .backgroundGreen {
 	background-color: #308100;
+}
+
+.hidden {
+	display: none;
+}
+
+.visible {
+	display: block;
 }

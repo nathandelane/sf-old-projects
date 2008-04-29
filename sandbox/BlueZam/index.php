@@ -9,12 +9,13 @@
 	<head>
 		<title>Project</title>
 		<link rel="stylesheet" type="text/css" href="_stylesheets/main.css"/>
+		<script src="_scripts/menu.js" type="text/javascript"></script>
 	</head>
 	<body>
 		<div class="pageContainer" id="pageContainer">
 			<div class="innerContainer" id="innerContainer">
-				<div class="banner" id="banner">
-					<div class="siteMapBar" id="siteMapBar">
+				<div class="banner backgroundOrange" id="banner">
+					<div class="siteMapBar backgroundRed" id="siteMapBar">
 						<div id="siteMap" class="siteMap">
 							<ul>
 								<li>
@@ -37,10 +38,10 @@
 									<a id="loginLink" href="">LOGIN</a>
 								</li>
 							</ul>
-							<div id="createYourAccountButton" class="createYourAccountButton" onmouseover="this.style.backgroundPosition='top left'" onmouseout="this.style.backgroundPosition='top right'">
+							<div id="createYourAccountButton" class="createYourAccountButton backgroundBlueZamBlue">
 								<div class="headingMajor" id="createYourAccountButtonHeading">CREATE YOUR ACCOUNT!</div>
 							</div>
-							<div id="languageSelectorButton" class="languageSelectorButton">
+							<div id="languageSelectorButton" class="languageSelectorButton" onclick="activateMenu('language-text');">
 								<div id="arrowImage" class="arrowImage"></div>
 								<div id="languageSetting" class="languageSetting">EN</div>
 							</div>
@@ -125,8 +126,15 @@
 					<div id="bottomAd" class="bottomAd backgroundBlueZamBlue"></div>
 					<div id="separator1" class="dottedHorizontalSeparator"></div>
 				</div>
-				<div id="bottomBar" class="bottomBar"></div>
+				<div id="bottomBar" class="bottomBar backgroundBlueZamGray"></div>
 				<div id="copyrightBar" class="copyrightBar copyright">Copyright (C) 2008 BlueZam. All Rights Reserved.</div>
+				<div id="languageTextMenu" class="languageTextMenu hidden">
+					<ul>
+						<li>
+							<a href="" onclick="select_language('us');">US
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</body>
