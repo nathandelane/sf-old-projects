@@ -87,7 +87,7 @@
 					</div>
 					<div id="zamTones" class="zamTones backgroundBlueZamDarkGray"></div>
 					<div id="verticalAdleft" class="verticalAdleft backgroundWhite">
-						<iframe id="verticalAdLeftIFrame" class="verticalAdLeftIFrame" frameborder="0" src="_ads/exampleAd.html"></iframe>
+						<iframe id="verticalAdLeftIFrame" class="verticalAdLeftIFrame" frameborder="0" src="advertising/exampleAd.html"></iframe>
 					</div>
 				</div>
 				<div id="rightColumn" class="rightColumn">
@@ -118,7 +118,7 @@
 								<div id="selectedProfileHeaderText" class="headingMinor">- BLUE ZAM PUBLISHING FEATURED AUTHOR -</div>
 							</div>
 							<div id="selectedProfile1Picture" class="selectedProfilePicture">
-								<img id="featuredPublisher" src="_profileimages/phillipejones.jpeg"/>
+								<img id="featuredPublisher" src="_images/profileimages/phillipejones.jpeg"/>
 							</div>
 							<div id="selectedProfile1Info" class="selectedProfileInfo backgroundBlueZamDarkGray">
 								<div id="selectedProfile1Name" class="selectedProfileName headingMinor">PHILLIP E. JONES</div>
@@ -136,7 +136,7 @@
 								<div id="selectedProfileHeaderText" class="headingMinor">- ARTISTIC COMMUNITY FEATURED ARTIST -</div>
 							</div>
 							<div id="selectedProfile1Picture" class="selectedProfilePicture">
-								<img id="featuredArtist" src="_profileimages/melodyjmainero.jpeg"/>
+								<img id="featuredArtist" src="_images/profileimages/melodyjmainero.jpeg"/>
 							</div>
 							<div id="selectedProfile1Info" class="selectedProfileInfo backgroundBlueZamDarkGray">
 								<div id="selectedProfile1Name" class="selectedProfileName headingMinor">MELODY J. MAINERO</div>
@@ -151,7 +151,7 @@
 					</div>
 					<div id="separator1" class="dottedHorizontalSeparator"></div>
 					<div id="bottomAd" class="bottomAd">
-						<iframe id="bottomAdIFrame" class="bottomAdIFrame" frameborder="0" src="_ads/exampleBottomAd.html"></iframe>
+						<iframe id="bottomAdIFrame" class="bottomAdIFrame" frameborder="0" src="advertising/exampleBottomAd.html"></iframe>
 					</div>
 					<div id="separator1" class="dottedHorizontalSeparator"></div>
 				</div>
