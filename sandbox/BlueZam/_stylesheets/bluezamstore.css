@@ -125,22 +125,57 @@ table.storePageTable {
 	table-layout: fixed;
 	border-width: 0px;
 	width: 760px;
-/*
-	margin: 0px;
-	padding: 0px;
-	border-width: 1px;
-	border-color: #fefefe;
-	border-style: dotted;*/
+	margin: 1px 0px 0px 1px;
 }
 
 table.storePageTable td {
-	width: 189px;
+	width: 190px;
 	height: 270px;
 	margin: 0px;
 	padding: 0px;
 	border-width: 1px;
 	border-color: #fefefe;
 	border-style: dotted;
+}
+
+.itemContainer {
+	width: 170px;
+	height: 240px;
+	overflow: hidden;
+	border: 0px;
+	float: left;
+	margin: 15px 10px 15px 10px;
+}
+
+.itemImage {
+	width: 170px;
+	height: 180px;
+	overflow: hidden;
+	float: left;
+	margin: 0px 0px 0px 0px;
+}
+
+.itemDetails {
+	font-size: 12px;
+	line-height: 12px;
+	width: 170px;
+	height: 50px;
+	overflow: hidden;
+	float: left;
+	margin: 10px 0px 0px 0px;
+}
+
+.description {
+	font-weight: bold;
+	margin: 0px 0px 2px 0px;
+}
+
+.originalPrice {
+	font-weight: normal;
+}
+
+.salePrice {
+	color: #ff0000;
 }
 
 /*

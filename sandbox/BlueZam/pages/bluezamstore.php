@@ -38,34 +38,158 @@
 							<div id="storePage" class="storePage">
 								<div id="storePageInner" class="storePageInner">
 									<table id="storePageTable" class="storePageTable" name="storePageTable">
+										<?php
+											// This would contain some code base on the inventory we have.
+											// - Nathan Lane
+										?>
 										<tr>
 											<td>
+												<div id="itemContainer1" class="itemContainer">
+													<div id="itemImage1" class="itemImage">
+														<img id="item9" src="_images/inventoryimages/bluezamapparrellshirtblack.jpeg"/>
+													</div>
+													<div id="itemDetails1" class="itemDetails">
+														<div id="description1" class="description">Blue Zam original apparell shirt Black.</div>
+														<div id="originalPrice1" class="originalPrice">orig. $20.00</div>
+														<div id="salePrice1" class="salePrice">sale $15.99</div>
+													</div>
+												</div>
 											</td>
 											<td>
+												<div id="itemContainer2" class="itemContainer">
+													<div id="itemImage2" class="itemImage">
+														<img id="item9" src="_images/inventoryimages/bluezamapparrellshirtwhite.jpeg"/>
+													</div>
+													<div id="itemDetails2" class="itemDetails">
+														<div id="description2" class="description">Blue Zam original apparell shirt White.</div>
+														<div id="originalPrice2" class="originalPrice">orig. $20.00</div>
+														<div id="salePrice2" class="salePrice">sale $15.99</div>
+													</div>
+												</div>
 											</td>
 											<td>
+												<div id="itemContainer3" class="itemContainer">
+													<div id="itemImage3" class="itemImage">
+														<img id="item9" src="_images/inventoryimages/bluezamapparrellhoodieblack.jpeg"/>
+													</div>
+													<div id="itemDetails3" class="itemDetails">
+														<div id="description3" class="description">Blue Zam original apparell hoodie Black.</div>
+														<div id="originalPrice3" class="originalPrice">orig. $20.00</div>
+														<div id="salePrice3" class="salePrice">sale $15.99</div>
+													</div>
+												</div>
 											</td>
 											<td>
+												<div id="itemContainer4" class="itemContainer">
+													<div id="itemImage4" class="itemImage">
+														<img id="item9" src="_images/inventoryimages/bluezamapparrellshirtblack.jpeg"/>
+													</div>
+													<div id="itemDetails4" class="itemDetails">
+														<div id="description4" class="description">Blue Zam original apparell shirt Black.</div>
+														<div id="originalPrice4" class="originalPrice">orig. $20.00</div>
+														<div id="salePrice4" class="salePrice">sale $15.99</div>
+													</div>
+												</div>
 											</td>
 										</tr>
 										<tr>
 											<td>
+												<div id="itemContainer5" class="itemContainer">
+													<div id="itemImage5" class="itemImage">
+														<img id="item9" src="_images/inventoryimages/bluezamapparrellshirtwhite.jpeg"/>
+													</div>
+													<div id="itemDetails5" class="itemDetails">
+														<div id="description5" class="description">Blue Zam original apparell shirt White.</div>
+														<div id="originalPrice5" class="originalPrice">orig. $20.00</div>
+														<div id="salePrice5" class="salePrice">sale $15.99</div>
+													</div>
+												</div>
 											</td>
 											<td>
+												<div id="itemContainer6" class="itemContainer">
+													<div id="itemImage6" class="itemImage">
+														<img id="item9" src="_images/inventoryimages/bluezamapparrellhoodieblack.jpeg"/>
+													</div>
+													<div id="itemDetails6" class="itemDetails">
+														<div id="description6" class="description">Blue Zam original apparell hoodie Black.</div>
+														<div id="originalPrice6" class="originalPrice">orig. $20.00</div>
+														<div id="salePrice6" class="salePrice">sale $15.99</div>
+													</div>
+												</div>
 											</td>
 											<td>
+												<div id="itemContainer7" class="itemContainer">
+													<div id="itemImage7" class="itemImage">
+														<img id="item9" src="_images/inventoryimages/bluezamapparrellshirtblack.jpeg"/>
+													</div>
+													<div id="itemDetails7" class="itemDetails">
+														<div id="description7" class="description">Blue Zam original apparell shirt Black.</div>
+														<div id="originalPrice7" class="originalPrice">orig. $20.00</div>
+														<div id="salePrice7" class="salePrice">sale $15.99</div>
+													</div>
+												</div>
 											</td>
 											<td>
+												<div id="itemContainer8" class="itemContainer">
+													<div id="itemImage8" class="itemImage">
+														<img id="item9" src="_images/inventoryimages/bluezamapparrellshirtwhite.jpeg"/>
+													</div>
+													<div id="itemDetails8" class="itemDetails">
+														<div id="description8" class="description">Blue Zam original apparell shirt White.</div>
+														<div id="originalPrice8" class="originalPrice">orig. $20.00</div>
+														<div id="salePrice8" class="salePrice">sale $15.99</div>
+													</div>
+												</div>
 											</td>
 										</tr>
 										<tr>
 											<td>
+												<div id="itemContainer9" class="itemContainer">
+													<div id="itemImage9" class="itemImage">
+														<img id="item9" src="_images/inventoryimages/bluezamapparrellhoodieblack.jpeg"/>
+													</div>
+													<div id="itemDetails9" class="itemDetails">
+														<div id="description9" class="description">Blue Zam original apparell hoodie Black.</div>
+														<div id="originalPrice9" class="originalPrice">orig. $20.00</div>
+														<div id="salePrice9" class="salePrice">sale $15.99</div>
+													</div>
+												</div>
 											</td>
 											<td>
+												<div id="itemContainer10" class="itemContainer">
+													<div id="itemImage10" class="itemImage">
+														<img id="item9" src="_images/inventoryimages/bluezamapparrellshirtblack.jpeg"/>
+													</div>
+													<div id="itemDetails10" class="itemDetails">
+														<div id="description10" class="description">Blue Zam original apparell shirt Black.</div>
+														<div id="originalPrice10" class="originalPrice">orig. $20.00</div>
+														<div id="salePrice10" class="salePrice">sale $15.99</div>
+													</div>
+												</div>
 											</td>
 											<td>
+												<div id="itemContainer11" class="itemContainer">
+													<div id="itemImage11" class="itemImage">
+														<img id="item9" src="_images/inventoryimages/bluezamapparrellshirtwhite.jpeg"/>
+													</div>
+													<div id="itemDetails11" class="itemDetails">
+														<div id="description11" class="description">Blue Zam original apparell shirt White.</div>
+														<div id="originalPrice11" class="originalPrice">orig. $20.00</div>
+														<div id="salePrice11" class="salePrice">sale $15.99</div>
+													</div>
+												</div>
 											</td>
 											<td>
+												<div id="itemContainer12" class="itemContainer">
+													<div id="itemImage12" class="itemImage">
+														<img id="item9" src="_images/inventoryimages/bluezamapparrellhoodieblack.jpeg"/>
+													</div>
+													<div id="itemDetails12" class="itemDetails">
+														<div id="description12" class="description">Blue Zam original apparell hoodie Black.</div>
+														<div id="originalPrice12" class="originalPrice">orig. $20.00</div>
+														<div id="salePrice12" class="salePrice">sale $15.99</div>
+													</div>
+												</div>
 											</td>
 										</tr>
 									</table>
