@@ -67,6 +67,61 @@
 	margin: 0px;
 }
 
+.currentProfilePhoto img {
+	width: 204px;
+	height: 213px;
+}
+
+.otherPhotosPanel {
+	width: 204px;
+	height: 136px;
+	overflow: hidden;
+	float: left;
+	margin: 0px;
+	padding: 24px 0px 10px 0px;
+}
+
+.otherPhoto {
+	width: 43px;
+	height: 43px;
+	overflow: hidden;
+	float: left;
+	margin: 0px 0px 20px 20px;
+}
+
+.morePhotosLink {
+	width: 204px;
+	height: 14px;
+	font-size: 10px;
+	text-align: right;
+	float: left;
+}
+
+.morePhotosLink a, a:link, a:visited, a:active {
+	display: block;
+	width: 190px;
+	height: 14px;
+	text-decoration: underline;
+	color: #ffffff;
+	padding: 0px 14px 0px 0px;
+	float: left;
+}
+
+.morePhotosLink a:hover {
+	display: block;
+	width: 190px;
+	height: 14px;
+	text-decoration: none;
+	color: #ffffff;
+	padding: 0px 14px 0px 0px;
+	float: left;
+}
+
+.otherPhoto img {
+	width: 43px;
+	height: 43px;
+}
+
 .rightColumn {
 	width: 550px;
 	height: 504px;
