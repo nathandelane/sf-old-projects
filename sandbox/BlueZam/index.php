@@ -49,7 +49,7 @@
 						</div>
 					</div>
 					<!--<div class="logoBar backgroundOrange" id="logoBar">logo bar</div>-->
-					<div id="languageTextMenu" class="languageTextMenu visible">
+					<div id="languageTextMenu" class="languageTextMenu hidden">
 						<div id="usLanguage" class="languageText" onclick="selectLanguage('en');">EN</div>
 						<div id="spLanguage" class="languageText" onclick="selectLanguage('sp');">SP</div>
 						<div id="deLanguage" class="languageText" onclick="selectLanguage('de');">DE</div>
