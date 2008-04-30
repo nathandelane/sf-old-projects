@@ -1,0 +1,38 @@
+/*
+ * Author: Nathan Lane
+ * Notes:
+ *  z-index is not applicable unless we use absolut or relative positioning. If we use automatic positioning like we are right now, then it doesn't do anything to include it.
+ */
+
+ .backgroundBlueZamBlue {
+	background-color: #1d87ff;
+}
+
+.foregroundBlueZamBlue {
+	color: #1d87ff;
+}
+
+.backgroundBlueZamGray {
+	background-color: #fefefe;
+}
+
+.backgroundBlueZamDarkGray {
+	background-color: #272727;
+}
+
+.backgroundRed {
+	background-color: #800000;
+}
+
+.backgroundOrange {
+	background-color: #ff5400;
+}
+
+.backgroundGreen {
+	background-color: #308100;
+}
+
+.backgroundWhite {
+	background-color: #ffffff;
+}
+
