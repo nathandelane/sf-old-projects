@@ -371,6 +371,16 @@ a, a:link, a:active, a:hover, a:visited {
 	text-decoration: underline;
 }
 
+.selectedProfileMoreLink a, a:link, a:visited, a:active {
+	text-decoration: underline;
+	color: #ffffff;
+}
+
+.selectedProfileMoreLink a:hover {
+	text-decoration: none;
+	color: #ffffff;
+}
+
 .bottomAd {
 	width: 682px;
 	height: 136px;

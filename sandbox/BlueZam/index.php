@@ -121,7 +121,9 @@
 								<div id="selectedProfile1Bio" class="selectedProfileBio">
 									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque convallis. Maecenas vestibulum enim at odio. Integer non risus nec metus porttitor ornare. Fusce condimentum ipsum quis mauris. Etiam tempus ante non nibh. Vivamus congue, pede ac fermentum facilisis, metus arcu vulputate quam, at vulputate massa nibh et massa. Donec augue. Cras pede. Suspendisse potenti. Quisque porttitor ornare elit. Integer interdum dapibus eros. Aenean vitae orci sed nunc sollicitudin suscipit. Nulla pellentesque. Integer blandit ornare tellus. Morbi ac dui.
 								</div>
-								<div id="selectedProfile1MoreLink" class="selectedProfileMoreLink">MORE</div>
+								<div id="selectedProfile1MoreLink" class="selectedProfileMoreLink">
+									<a href="">MORE</a>
+								</div>
 							</div>
 						</div>
 						<div id="separator2" class="dottedVerticalSeparator"></div>
@@ -137,7 +139,9 @@
 								<div id="selectedProfile1Bio" class="selectedProfileBio">
 									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Pellentesque convallis. Maecenas vestibulum enim at odio. Integer non risus nec metus porttitor ornare. Fusce condimentum ipsum quis mauris. Etiam tempus ante non nibh. Vivamus congue, pede ac fermentum facilisis, metus arcu vulputate quam, at vulputate massa nibh et massa. Donec augue. Cras pede. Suspendisse potenti. Quisque porttitor ornare elit. Integer interdum dapibus eros. Aenean vitae orci sed nunc sollicitudin suscipit. Nulla pellentesque. Integer blandit ornare tellus. Morbi ac dui.
 								</div>
-								<div id="selectedProfile1MoreLink" class="selectedProfileMoreLink">MORE</div>
+								<div id="selectedProfile1MoreLink" class="selectedProfileMoreLink">
+									<a href="">MORE</a>
+								</div>
 							</div>
 						</div>
 					</div>
