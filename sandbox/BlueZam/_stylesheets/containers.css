@@ -74,6 +74,14 @@ a, a:link, a:active, a:hover, a:visited {
 	cursor: pointer;
 }
 
+.createYourAccountButtonGone {
+	width: 183px;
+	height: 39px;
+	overflow: hidden;
+	text-align: center;
+	float: left;
+}
+
 .languageSelectorButton {
 	width: 23px;
 	height: 10px;
