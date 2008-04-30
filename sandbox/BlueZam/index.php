@@ -7,7 +7,7 @@
 ?>
 <html>
 	<head>
-		<title>Project</title>
+		<title>Blue Zam</title>
 		<link rel="stylesheet" type="text/css" href="_stylesheets/main.css"/>
 		<script src="_scripts/menu.js" type="text/javascript"></script>
 	</head>
