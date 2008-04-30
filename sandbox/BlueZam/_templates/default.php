@@ -11,7 +11,18 @@
 ?>
 <html>
 	<head>
-		<title>Store | Blue Zam</title>
+		<title>
+			<?php 
+				if(isset($title))
+				{
+					echo $title;
+				}
+				else
+				{
+					echo "Untitled Page | Blue Zam";
+				}
+			?>
+		</title>
 		<link rel="stylesheet" type="text/css" href="_stylesheets/main.css"/>
 		<link rel="stylesheet" type="text/css" href="_stylesheets/containers.css"/>
 		<link rel="stylesheet" type="text/css" href="_stylesheets/colors.css"/>
