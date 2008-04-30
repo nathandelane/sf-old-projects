@@ -72,6 +72,14 @@
 					</div>
 				</div>
 				<?php
+					if(isset($page))
+					{
+						require_once("pages/".$page.".php");
+					}
+					else
+					{
+						echo "Error Occurred. Could not retrieve ".$page.".php";
+					}
 				?>
 				<div id="footerBar" class="footerBar">
 					<div id="siteMap2" class="siteMap2">
