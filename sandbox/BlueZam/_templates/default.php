@@ -6,8 +6,6 @@
 	{
 		$userSession = new PhpSession();
 	}
-	
-	$userSession->setCurrentPage("store.php");
 ?>
 <html>
 	<head>
@@ -26,6 +24,14 @@
 		<link rel="stylesheet" type="text/css" href="_stylesheets/main.css"/>
 		<link rel="stylesheet" type="text/css" href="_stylesheets/containers.css"/>
 		<link rel="stylesheet" type="text/css" href="_stylesheets/colors.css"/>
+		<?php
+			if($requirePageStylesheet)
+			{
+		?>
+		<link rel="stylesheet" type="text/css" href="_stylesheets/<?php echo $page; ?>.css"/>
+		<?php
+			}
+		?>
 		<script src="_scripts/menu.js" type="text/javascript"></script>
 	</head>
 	<body>
