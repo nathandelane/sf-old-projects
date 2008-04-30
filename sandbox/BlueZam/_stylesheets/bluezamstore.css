@@ -21,3 +21,12 @@
 	float: left;
 	text-align: center;
 }
+
+.storePanelContainer {
+	width: 852px;
+	height: 643px;
+	overflow: hidden;
+	float: left;
+	margin: 0px 35px 0px 35px;
+	background-image: url('../_images/storepanelbackground.png');
+}

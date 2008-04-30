@@ -42,7 +42,7 @@
 						<div id="siteMap" class="siteMap">
 							<ul>
 								<li>
-									<a id="overviewLink" href="">OVERVIEW</a>
+									<a id="overviewLink" href="./">OVERVIEW</a>
 								</li>
 								<li>|</li>
 								<li>
@@ -54,7 +54,7 @@
 								</li>
 								<li>|</li>
 								<li>
-									<a id="onlineStoreLink" href="">ONLINE STORE</a>
+									<a id="onlineStoreLink" href="./store.php">ONLINE STORE</a>
 								</li>
 								<li>|</li>
 								<li>
