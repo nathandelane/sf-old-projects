@@ -102,7 +102,7 @@
 					<div id="siteMap2" class="siteMap2">
 						<ul>
 							<li>
-								<a id="overviewLink2" href="">OVERVIEW</a>
+								<a id="overviewLink2" href="./">OVERVIEW</a>
 							</li>
 							<li>|</li>
 							<li>
@@ -114,7 +114,7 @@
 							</li>
 							<li>|</li>
 							<li>
-								<a id="onlineStoreLink2" href="">ONLINE STORE</a>
+								<a id="onlineStoreLink2" href="./store.php">ONLINE STORE</a>
 							</li>
 							<li>|</li>
 							<li>

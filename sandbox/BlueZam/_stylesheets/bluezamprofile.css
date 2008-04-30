@@ -1,0 +1,77 @@
+/*
+ * Author: Nathan Lane
+ * Notes:
+ *  z-index is not applicable unless we use absolut or relative positioning. If we use automatic positioning like we are right now, then it doesn't do anything to include it.
+ */
+
+.profileContainer {
+	width: 922px;
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+}
+
+.profileTopBarContainer {
+	width: 922px;
+	height: 26px;
+	padding: 14px 0px 0px 0px;
+	overflow: hidden;
+	background-image: url('../_images/longtopbarbackground.png');
+	text-align: center;
+}
+
+.profilePanelContainer {
+	width: 872px;
+	height: 532px;
+	overflow: hidden;
+	margin: 0px auto 0px auto;
+	background-image: url('../_images/mediumpanelbackground.png');
+}
+
+.profilePanelInner {
+	width: 792px;
+	height: 504px;
+	overflow: hidden;
+	margin: 20px auto 8px auto;
+}
+
+.bottomAdContainer {
+	width: 520px;
+	height: 110px;
+	overflow: hidden;
+	margin: 12px auto 0px auto;
+}
+
+.bottomAdIFrame {
+	width: 520px;
+	height: 110px;
+	overflow: hidden;
+	float: left;
+	margin: 0px;
+	border: 0px;
+}
+
+.leftColumn {
+	width: 204px;
+	height: 504px;
+	overflow: hidden;
+	float: left;
+	margin: 0px;
+}
+
+.currentProfilePhoto {
+	width: 204px;
+	height: 213px;
+	overflow: hidden;
+	float: left;
+	margin: 0px;
+}
+
+.rightColumn {
+	width: 550px;
+	height: 504px;
+	margin: 0px 0px 0px 32px;
+	overflow: hidden;
+	float: left;
+}
+
