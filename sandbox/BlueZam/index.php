@@ -83,7 +83,7 @@
 					</div>
 					<div id="zamTones" class="zamTones backgroundBlueZamDarkGray"></div>
 					<div id="verticalAdleft" class="verticalAdleft backgroundWhite">
-						<iframe id="verticalAdLeftIFrame" class="verticalAdLeftIFrame" frameborder="0" src="advertising/exampleAd.html"></iframe>
+						<iframe id="verticalAdLeftIFrame" class="verticalAdLeftIFrame" frameborder="0" src="advertising/exampleAd.html" scrolling=no></iframe>
 					</div>
 				</div>
 				<div id="rightColumn" class="rightColumn">
@@ -147,7 +147,7 @@
 					</div>
 					<div id="separator1" class="dottedHorizontalSeparator"></div>
 					<div id="bottomAd" class="bottomAd">
-						<iframe id="bottomAdIFrame" class="bottomAdIFrame" frameborder="0" src="advertising/exampleBottomAd.html"></iframe>
+						<iframe id="bottomAdIFrame" class="bottomAdIFrame" frameborder="0" src="advertising/exampleBottomAd.html" scrolling=no></iframe>
 					</div>
 					<div id="separator1" class="dottedHorizontalSeparator"></div>
 				</div>
