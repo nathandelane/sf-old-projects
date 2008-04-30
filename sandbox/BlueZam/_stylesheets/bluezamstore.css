@@ -1,0 +1,23 @@
+/*
+ * Author: Nathan Lane
+ * Notes:
+ *  z-index is not applicable unless we use absolut or relative positioning. If we use automatic positioning like we are right now, then it doesn't do anything to include it.
+ */
+
+.storeContainer {
+	width: 922px;
+	height: 677px;
+	overflow: hidden;
+	margin: 0px;
+	padding: 0px;
+}
+
+.storeTopBarContainer {
+	width: 922px;
+	height: 26px;
+	padding: 14px 0px 0px 0px;
+	overflow: hidden;
+	background-image: url('../_images/longtopbarbackground.png');
+	float: left;
+	text-align: center;
+}

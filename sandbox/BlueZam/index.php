@@ -2,7 +2,7 @@
 	$page = "homepage";
 	$title = "Blue Zam";
 	$createAccountOption = true;
-	$requirePageStylesheet = false;
+	$requirePageStylesheet = true;
 	
 	require_once("_templates/default.php");
 	
