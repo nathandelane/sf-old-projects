@@ -27,6 +27,7 @@ a, a:link, a:active, a:hover, a:visited {
 	border: 0px;
 	text-decoration: none;
 }
+
 .pageContainer {
 	width: 958px;
 	/*height: 985px;*/
@@ -36,7 +37,7 @@ a, a:link, a:active, a:hover, a:visited {
 
 .innerContainer {
 	width: 922px;
-	height: 985px;
+	/*height: 985px;*/
 	margin: 0px 18px 0px 18px;
 	overflow: hidden;
 }
@@ -134,7 +135,7 @@ a, a:link, a:active, a:hover, a:visited {
 }
 
 .siteMap2 {
-	width: 512px;
+	width: 692px;
 	height: 55px;
 	padding-left: 228px;
 	letter-spacing: 1.5px;
@@ -159,7 +160,7 @@ a, a:link, a:active, a:hover, a:visited {
 	height: 50px;
 	overflow: scroll;
 	float: left;
-	background-color: #1d87ff;
+	background-color: #272727;
 	color: #ffffff;
 	padding-left: 7px;
 	border: 1px solid #000000;
@@ -175,6 +176,18 @@ a, a:link, a:active, a:hover, a:visited {
 
 .visible {
 	display: block;
+}
+
+.floatLeft {
+	float: left;
+}
+
+.floatRight {
+	float: right;
+}
+
+.floatNone {
+	float: none;
 }
 
 .headingMajor {

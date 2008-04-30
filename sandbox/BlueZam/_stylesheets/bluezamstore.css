@@ -23,10 +23,132 @@
 }
 
 .storePanelContainer {
-	width: 852px;
+	width: 872px;
 	height: 643px;
 	overflow: hidden;
 	float: left;
-	margin: 0px 35px 0px 35px;
+	margin: 0px 25px 0px 25px;
 	background-image: url('../_images/storepanelbackground.png');
 }
+
+.storeControlPanel {
+	width: 832px;
+	height: 60px;
+	overflow: hidden;
+	float: left;
+	margin: 0px 0px 0px 0px;
+	padding: 10px 20px 0px 20px;
+}
+
+.controlPanelRow {
+	width: 832px;
+	height: 20px;
+	overflow: hidden;
+	float: left;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 10px 10px 0px;
+}
+
+.controlPanelColumn {
+	height: 20px;
+	overflow: hidden;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.controlPanelLabel {
+	display: block;
+	height: 17px;
+	font-size: 12px;
+	line-height: 12px;
+	text-align: right;
+	margin: 0px 10px 0px 0px;
+	padding: 3px 0px 0px 0px;
+	overflow: hidden;
+	float: left;
+}
+
+.controlSelector {
+	border-color: #828282;
+	border-style: solid;
+	border-width: 1px;
+	background-color: #272727;
+	color: #ffffff;
+}
+
+.pagingControls {
+	height: 17px;
+	font-size: 12px;
+	line-height: 12px;
+	text-align: right;
+	margin: 0px 0px 0px 0px;
+	padding: 3px 0px 0px 0px;
+	overflow: hidden;
+}
+
+.pagingControls a, a:link, a:visited, a:active {
+	margin: 0px 0px 0px 5px;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+.pagingControls a:hover {
+	text-decoration: underline;
+	color: #ffffff;
+}
+
+.pagingControls a, a:link, a:visited, a:active, a:hover .pagingLink {
+	font-weight: bold;
+}
+
+.storePage {
+	width: 852px;
+	height: 540px;
+	overflow: hidden;
+	float: left;
+	margin: 0px 0px 0px 0px;
+	padding: 10px 10px 0px 10px;
+}
+
+.storePageInner {
+	width: 790px;
+	height: 540px;
+	overflow: auto;
+	float: left;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+table.storePageTable {
+	border-collapse: collapse;
+	empty-cells: show;
+	table-layout: fixed;
+	border-width: 0px;
+	width: 760px;
+/*
+	margin: 0px;
+	padding: 0px;
+	border-width: 1px;
+	border-color: #fefefe;
+	border-style: dotted;*/
+}
+
+table.storePageTable td {
+	width: 189px;
+	height: 270px;
+	margin: 0px;
+	padding: 0px;
+	border-width: 1px;
+	border-color: #fefefe;
+	border-style: dotted;
+}
+
+/*
+select {
+	border-color: #828282;
+	border-style: solid;
+	border-width: 1px;
+	background-color: #272727;
+	color: #ffffff;
+}
+*/

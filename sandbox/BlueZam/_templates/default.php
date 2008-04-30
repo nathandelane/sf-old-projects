@@ -34,7 +34,7 @@
 		?>
 		<script src="_scripts/menu.js" type="text/javascript"></script>
 	</head>
-	<body>
+	<body onload="init();">
 		<div class="pageContainer" id="pageContainer">
 			<div class="innerContainer" id="innerContainer">
 				<div class="banner" id="banner">
