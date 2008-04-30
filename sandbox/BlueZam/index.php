@@ -66,8 +66,12 @@
 					</div>
 				</div>
 				<div id="buttonAndHeaderContainer" class="buttonAndHeaderContainer">
+					<div id="chooseYourArtMenuContainer" class="chooseYourArtMenuContainer hidden">
+					</div>
 					<div id="chooseYourArtButton" class="chooseYourArtButton">
 						<div class="headingMajor" id="chooseYourArtButtonHeading"><!--- CHOOSE YOUR ART ---></div>
+					</div>
+					<div id="chooseYourArtMenuContainer" class="chooseYourArtMenuContainer">
 					</div>
 					<div id="blueZamGives" class="blueZamGives">
 						<div class="headingMajor" id="blueZamGivesHeading"><!--- BLUE ZAM GIVES ALL ARTISTS A HOME IN WHICH TO DISPLAY THEIR ART ---></div>
