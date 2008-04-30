@@ -38,7 +38,7 @@
 									<a id="loginLink" href="">LOGIN</a>
 								</li>
 							</ul>
-							<div id="createYourAccountButton" class="createYourAccountButton">
+							<div id="createYourAccountButton" class="createYourAccountButton visible">
 								<div class="headingMajor" id="createYourAccountButtonHeading"><!--CREATE YOUR ACCOUNT!--></div>
 							</div>
 							<div id="languageSelectorButton" class="languageSelectorButton" onclick="activateMenu('language-text');">
