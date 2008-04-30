@@ -41,6 +41,17 @@ function activateMenu(menuName)
 	{
 		document.getElementById("languageTextMenu").className = "languageTextMenu visible";
 	}
+	else if(menuName == "choose-your-art")
+	{
+		if(document.getElementById("chooseYourArtMenuContainer").className == "chooseYourArtMenuContainer hidden")
+		{
+			document.getElementById("chooseYourArtMenuContainer").className = "chooseYourArtMenuContainer visible";
+		}
+		else if(document.getElementById("chooseYourArtMenuContainer").className == "chooseYourArtMenuContainer visible")
+		{
+			document.getElementById("chooseYourArtMenuContainer").className = "chooseYourArtMenuContainer hidden";
+		}
+	}
 	
 	return;
 }

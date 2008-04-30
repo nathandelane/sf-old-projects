@@ -66,12 +66,8 @@
 					</div>
 				</div>
 				<div id="buttonAndHeaderContainer" class="buttonAndHeaderContainer">
-					<div id="chooseYourArtMenuContainer" class="chooseYourArtMenuContainer hidden">
-					</div>
-					<div id="chooseYourArtButton" class="chooseYourArtButton">
+					<div id="chooseYourArtButton" class="chooseYourArtButton" onclick="activateMenu('choose-your-art');">
 						<div class="headingMajor" id="chooseYourArtButtonHeading"><!--- CHOOSE YOUR ART ---></div>
-					</div>
-					<div id="chooseYourArtMenuContainer" class="chooseYourArtMenuContainer">
 					</div>
 					<div id="blueZamGives" class="blueZamGives">
 						<div class="headingMajor" id="blueZamGivesHeading"><!--- BLUE ZAM GIVES ALL ARTISTS A HOME IN WHICH TO DISPLAY THEIR ART ---></div>
@@ -154,6 +150,88 @@
 						<iframe id="bottomAdIFrame" class="bottomAdIFrame" frameborder="0" src="advertising/exampleBottomAd.html"></iframe>
 					</div>
 					<div id="separator1" class="dottedHorizontalSeparator"></div>
+				</div>
+				<div id="chooseYourArtMenuContainer" class="chooseYourArtMenuContainer hidden">
+					<ul>
+						<li class="link">
+							<a id="illustrationLink" href=""><span></span>Illustration</a>
+						</li>
+						<li class="separator">
+							<div class="menuItemSeparator"></div>
+						</li>
+						<li class="link">
+							<a id="illustrationLink" href=""><span></span>CG Art &amp; Design</a>
+						</li>
+						<li class="separator">
+							<div class="menuItemSeparator"></div>
+						</li>
+						<li class="link">
+							<a id="illustrationLink" href=""><span></span>Authors</a>
+						</li>
+						<li class="separator">
+							<div class="menuItemSeparator"></div>
+						</li>
+						<li class="link">
+							<a id="illustrationLink" href=""><span></span>Musicians</a>
+						</li>
+						<li class="separator">
+							<div class="menuItemSeparator"></div>
+						</li>
+						<li class="link">
+							<a id="illustrationLink" href=""><span></span>Dancing (videos)</a>
+						</li>
+						<li class="separator">
+							<div class="menuItemSeparator"></div>
+						</li>
+						<li class="link">
+							<a id="illustrationLink" href=""><span></span>Woodworkers</a>
+						</li>
+						<li class="separator">
+							<div class="menuItemSeparator"></div>
+						</li>
+						<li class="link">
+							<a id="illustrationLink" href=""><span></span>Film Makers</a>
+						</li>
+						<li class="separator">
+							<div class="menuItemSeparator"></div>
+						</li>
+						<li class="link">
+							<a id="illustrationLink" href=""><span></span>Photgraphers</a>
+						</li>
+						<li class="separator">
+							<div class="menuItemSeparator"></div>
+						</li>
+						<li class="link">
+							<a id="illustrationLink" href=""><span></span>Sculptors</a>
+						</li>
+						<li class="separator">
+							<div class="menuItemSeparator"></div>
+						</li>
+						<li class="link">
+							<a id="illustrationLink" href=""><span></span>Pottery</a>
+						</li>
+						<li class="separator">
+							<div class="menuItemSeparator"></div>
+						</li>
+						<li class="link">
+							<a id="illustrationLink" href=""><span></span>Painters</a>
+						</li>
+						<li class="separator">
+							<div class="menuItemSeparator"></div>
+						</li>
+						<li class="link">
+							<a id="illustrationLink" href=""><span></span>Singers</a>
+						</li>
+						<li class="separator">
+							<div class="menuItemSeparator"></div>
+						</li>
+						<li class="link">
+							<a id="illustrationLink" href=""><span></span>Other Artists</a>
+						</li>
+						<li class="separator">
+							<div class="menuItemSeparator"></div>
+						</li>
+					</ul>
 				</div>
 				<div id="footerBar" class="footerBar">
 					<div id="siteMap2" class="siteMap2">

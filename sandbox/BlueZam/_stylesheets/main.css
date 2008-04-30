@@ -62,7 +62,8 @@ a, a:link, a:active, a:hover, a:visited {
 	letter-spacing: 1.5px;
 }
 
-.siteMap ul {
+div .siteMap ul {
+	display: inline;
 	margin: 0px;
 	padding: 0px;
 	list-style-image: none;
@@ -73,7 +74,7 @@ a, a:link, a:active, a:hover, a:visited {
 	float: left;
 }
 
-.siteMap ul li {
+div .siteMap ul li {
 	display: inline;
 	margin-right: 2px;
 	font-size: 12px;
@@ -81,12 +82,14 @@ a, a:link, a:active, a:hover, a:visited {
 	letter-spacing: 2px;
 }
 
-.siteMap ul li a, a:link, a:active, a:visited {
+div .siteMap ul li a, a:link, a:active, a:visited {
+	display: inline;
 	text-decoration: none;
 	color: #ffffff;
 }
 
-.siteMap ul li a:hover {
+div .siteMap ul li a:hover {
+	display: inline;
 	text-decoration: underline;
 	color: #ffffff;
 }
@@ -158,8 +161,75 @@ a, a:link, a:active, a:hover, a:visited {
 	padding: 0px;
 }
 
-.chooseYourArtMenuContainer {
+div .chooseYourArtMenuContainer {
+	position: relative;
+	left: -928px;
+	top: 38px;
+	width: 155px;
+	height: 346px;
+	overflow: hidden;
+	padding: 0px 20px 0px 20px;
+	background-image: url('../_images/chooseyourartmenubackground.png');
+}
 
+div .chooseYourArtMenuContainer ul {
+	margin: 0px;
+	padding: 0px;
+	list-style-image: url('../_images/doublearrows.png');
+	margin-top: 7px;
+	margin-right: 44px;
+	float: left;
+}
+
+div .chooseYourArtMenuContainer ul li.link {
+	display: block;
+	margin: 0px 2px 0px 0px;
+	padding: 7px 0px 7px 0px;
+	list-style-image: url('../_images/doublearrows.png');
+	font-size: 12px;
+	font-weight: normal;
+}
+
+div .chooseYourArtMenuContainer ul li.separator {
+	list-style-image: none;
+	list-style-type: none;
+	list-style-position: inside;
+	display: block;
+	margin: 0px;
+	padding: 0px;
+}
+
+div .menuItemSeparator {
+	width: 155px;
+	height: 1px;
+	background-image: url('../_images/dotmenuseparator.png');
+	background-repeat: repeat-x;
+	overflow: hidden;
+}
+
+div .chooseYourArtMenuContainer ul li a, a:link, a:active, a:visited {
+	display: block;
+	width: 155px;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+div .chooseYourArtMenuContainer ul li a:hover {
+	display: block;
+	width: 155px;
+	text-decoration: underline;
+	color: #ffffff;
+}
+
+div .chooseYourArtMenuContainer ul li a span {
+	display: block;
+	width: 13px;
+	height: 10px;
+	overflow: hidden;
+	float: left;
+	background-image: url('../_images/doublearrows.png');
+	background-repeat: no-repeat;
+	margin: 0px 7px 0px 0px;
 }
 
 .chooseYourArtButton {
@@ -436,6 +506,7 @@ a, a:link, a:active, a:hover, a:visited {
 }
 
 .siteMap2 ul {
+	display: inline;
 	margin: 0px;
 	padding: 0px;
 	list-style-image: none;
@@ -455,11 +526,13 @@ a, a:link, a:active, a:hover, a:visited {
 }
 
 .siteMap2 ul li a, a:link, a:active, a:visited {
+	display: inline;
 	text-decoration: none;
 	color: #ffffff;
 }
 
 .siteMap2 ul li a:hover {
+	display: inline;
 	text-decoration: underline;
 	color: #ffffff;
 }
