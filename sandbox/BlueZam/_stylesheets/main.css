@@ -337,7 +337,7 @@ div .chooseYourArtMenuContainer ul li a span {
 .smallContainer {
 	width: 213px;
 	height: 212px;
-	margin: 0px 0px 0px 12px;
+	margin: 0px 0px 0px 7px;
 	background-color: #272727;
 	float: left;
 	background-image: url('../_images/smallcontainerbackground.png');
@@ -389,6 +389,8 @@ div .chooseYourArtMenuContainer ul li a span {
 	margin: 16px 0px 16px 0px;
 	overflow: hidden;
 	float: left;
+	background-image: url('../_images/profilebackground.png');
+	background-position: 0px 40px;
 }
 
 .selectedProfileHeader {
@@ -490,7 +492,7 @@ div .chooseYourArtMenuContainer ul li a span {
 }
 
 .footerBar {
-	width: 923px;
+	width: 922px;
 	height: 65px;
 	overflow: hidden;
 	float: left;
@@ -499,10 +501,11 @@ div .chooseYourArtMenuContainer ul li a span {
 }
 
 .siteMap2 {
-	width: 792px;
+	width: 512px;
 	height: 55px;
 	padding-left: 228px;
 	letter-spacing: 1.5px;
+	float: left;
 }
 
 .siteMap2 ul {
