@@ -1,5 +1,5 @@
 <!--
-	PageHeaderBar.php contains the header bar for every page using the default page template.
+	PageFooterBar.php contains the footer bar for every page using the default page template.
 	Author: Nathan Lane
 	Date: 01.05.2008
 -->
