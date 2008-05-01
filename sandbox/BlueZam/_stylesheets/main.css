@@ -4,7 +4,7 @@
  *  z-index is not applicable unless we use absolut or relative positioning. If we use automatic positioning like we are right now, then it doesn't do anything to include it.
  */
 
-div .siteMap ul {
+div.siteMap ul {
 	display: inline;
 	margin: 0px;
 	padding: 0px;
@@ -16,7 +16,7 @@ div .siteMap ul {
 	float: left;
 }
 
-div .siteMap ul li {
+div.siteMap ul li {
 	display: inline;
 	margin-right: 2px;
 	font-size: 12px;
@@ -24,19 +24,21 @@ div .siteMap ul li {
 	letter-spacing: 2px;
 }
 
-div .siteMap ul li a, a:link, a:active, a:visited {
+div.siteMap ul li a, a:link, a:active, a:visited {
+	font-weight: normal;
 	display: inline;
 	text-decoration: none;
 	color: #ffffff;
 }
 
-div .siteMap ul li a:hover {
+div.siteMap ul li a:hover {
+	font-weight: normal;
 	display: inline;
 	text-decoration: underline;
 	color: #ffffff;
 }
 
-div .chooseYourArtMenuContainer ul {
+div.chooseYourArtMenuContainer ul {
 	margin: 0px;
 	padding: 0px;
 	list-style-image: url('../_images/doublearrows.png');
@@ -45,7 +47,7 @@ div .chooseYourArtMenuContainer ul {
 	float: left;
 }
 
-div .chooseYourArtMenuContainer ul li.link {
+div.chooseYourArtMenuContainer ul li.link {
 	display: block;
 	margin: 0px 2px 0px 0px;
 	padding: 7px 0px 7px 0px;
@@ -54,7 +56,7 @@ div .chooseYourArtMenuContainer ul li.link {
 	font-weight: normal;
 }
 
-div .chooseYourArtMenuContainer ul li.separator {
+div.chooseYourArtMenuContainer ul li.separator {
 	list-style-image: none;
 	list-style-type: none;
 	list-style-position: inside;
@@ -63,21 +65,21 @@ div .chooseYourArtMenuContainer ul li.separator {
 	padding: 0px;
 }
 
-div .chooseYourArtMenuContainer ul li a, a:link, a:active, a:visited {
+div.chooseYourArtMenuContainer ul li a, a:link, a:active, a:visited {
 	display: block;
 	width: 155px;
 	text-decoration: none;
 	color: #ffffff;
 }
 
-div .chooseYourArtMenuContainer ul li a:hover {
+div.chooseYourArtMenuContainer ul li a:hover {
 	display: block;
 	width: 155px;
 	text-decoration: underline;
 	color: #ffffff;
 }
 
-div .chooseYourArtMenuContainer ul li a span {
+div.chooseYourArtMenuContainer ul li a span {
 	display: block;
 	width: 13px;
 	height: 10px;
@@ -119,12 +121,14 @@ div .chooseYourArtMenuContainer ul li a span {
 }
 
 .siteMap2 ul li a, a:link, a:active, a:visited {
+	font-weight: normal;
 	display: inline;
 	text-decoration: none;
 	color: #ffffff;
 }
 
 .siteMap2 ul li a:hover {
+	font-weight: normal;
 	display: inline;
 	text-decoration: underline;
 	color: #ffffff;

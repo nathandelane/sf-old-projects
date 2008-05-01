@@ -1,5 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
+	$userSession;
+	
 	include_once("lib/PhpSession.php");
 	
 	if(!isset($userSession))
@@ -21,8 +23,8 @@
 				}
 			?>
 		</title>
-		<link rel="stylesheet" type="text/css" href="_stylesheets/main.css"/>
 		<link rel="stylesheet" type="text/css" href="_stylesheets/containers.css"/>
+		<link rel="stylesheet" type="text/css" href="_stylesheets/main.css"/>
 		<link rel="stylesheet" type="text/css" href="_stylesheets/colors.css"/>
 		<?php
 			if($requirePageStylesheet)
@@ -42,23 +44,23 @@
 						<div id="siteMap" class="siteMap">
 							<ul>
 								<li>
-									<a id="overviewLink" href="./">OVERVIEW</a>
+									<a id="overviewLink" class="sitemapLink" href="./index.php">OVERVIEW</a>
 								</li>
 								<li>|</li>
 								<li>
-									<a id="communityLink" href="">COMMUNITY</a>
+									<a id="communityLink" class="sitemapLink" href="">COMMUNITY</a>
 								</li>
 								<li>|</li>
 								<li>
-									<a id="weblogLink" href="">WEBLOG</a>
+									<a id="weblogLink" class="sitemapLink" href="">WEBLOG</a>
 								</li>
 								<li>|</li>
 								<li>
-									<a id="onlineStoreLink" href="./store.php">ONLINE STORE</a>
+									<a id="onlineStoreLink" class="sitemapLink" href="./store.php">ONLINE STORE</a>
 								</li>
 								<li>|</li>
 								<li>
-									<a id="loginLink" href="">LOGIN</a>
+									<a id="loginLink" class="sitemapLink" href="">LOGIN</a>
 								</li>
 							</ul>
 							<div id="createYourAccountButton" class="<?php if($createAccountOption) { echo "createYourAccountButton"; } else { echo "createYourAccountButtonGone"; } ?>">
@@ -102,23 +104,23 @@
 					<div id="siteMap2" class="siteMap2">
 						<ul>
 							<li>
-								<a id="overviewLink2" href="./">OVERVIEW</a>
+								<a id="overviewLink2" class="sitemapLink" href="./index.php">OVERVIEW</a>
 							</li>
 							<li>|</li>
 							<li>
-								<a id="communityLink2" href="">COMMUNITY</a>
+								<a id="communityLink2" class="sitemapLink" href="">COMMUNITY</a>
 							</li>
 							<li>|</li>
 							<li>
-								<a id="weblogLink2" href="">WEBLOG</a>
+								<a id="weblogLink2" class="sitemapLink" href="">WEBLOG</a>
 							</li>
 							<li>|</li>
 							<li>
-								<a id="onlineStoreLink2" href="./store.php">ONLINE STORE</a>
+								<a id="onlineStoreLink2" class="sitemapLink" href="./store.php">ONLINE STORE</a>
 							</li>
 							<li>|</li>
 							<li>
-								<a id="loginLink2" href="">LOGIN</a>
+								<a id="loginLink2" class="sitemapLink" href="">LOGIN</a>
 							</li>
 						</ul>
 					</div>

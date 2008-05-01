@@ -76,7 +76,7 @@
 	color: #ffffff;
 }
 
-.pagingControls {
+div.pagingControls {
 	height: 17px;
 	font-size: 12px;
 	line-height: 12px;
@@ -86,18 +86,18 @@
 	overflow: hidden;
 }
 
-.pagingControls a, a:link, a:visited, a:active {
+div.pagingControls a, a:link, a:visited, a:active {
 	margin: 0px 0px 0px 5px;
 	text-decoration: none;
 	color: #ffffff;
 }
 
-.pagingControls a:hover {
+div.pagingControls a:hover {
 	text-decoration: underline;
 	color: #ffffff;
 }
 
-.pagingControls a, a:link, a:visited, a:active, a:hover .pagingLink {
+div.pagingControls a, a:link, a:visited, a:active, a:hover .pagingLink {
 	font-weight: bold;
 }
 
