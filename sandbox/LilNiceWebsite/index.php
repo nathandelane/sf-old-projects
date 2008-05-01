@@ -1,7 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php
-	header("Location: " . $homepage);
-	session_start();
+//	if(!isset($sessionId))
+//	{
+		session_start();
+//	}
+	
+	var $userSession;
+	var $sessionId;
 ?>
 <html>
 	<head>
@@ -20,7 +25,7 @@
 				
 				if($userSession->isUserAuthenticated())
 				{
-					$sessionId = $userSession->getSessionId();
+					//header("Location: home.php");
 				}
 				else
 				{
@@ -31,7 +36,7 @@
 		<div id="loginPanelContainer" class="loginPanelContainer">
 			<h1>Log Into Lil' Nice Website</h1>
 			<div class="hr"></div>
-			<form id="loginForm" name="loginForm" method="post" action="index.php">
+			<form id="loginForm" name="loginForm" method="post" action="home.php">
 				<input name="sessionId" type="hidden" id="sessionId" value="<?php echo $sessionId; ?>"/>
 				<fieldset class="credentials">
 					<legend>User Credentials</legend>

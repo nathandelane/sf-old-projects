@@ -1,4 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php 
+	if($userSession->isUserAuthenticated())
+	{
+		header("Location: index.php");
+	}
+?>
 <html>
 	<head>
 		<title>Home | Lil' Nice Website</title>
@@ -10,7 +16,7 @@
 			<div id="titlebarText" class="titlebarText">
 				<div id="titlebarTitle" class="titleBarTitle">The Lil' Nice Website</div>
 				<div id="linksBar" class="linksBar foregroundLightBrown">
-					<a href="index.php">Log In</a>&nbsp;|&nbsp;Datetime
+					<a href="index.php"><?php $userSession->userName(); ?></a>&nbsp;|&nbsp;Datetime
 				</div>
 			</div>
 			<div id="titlebarBottom" class="titlebarBottom backgroundLightBrown"></div>
