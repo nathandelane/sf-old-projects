@@ -7,7 +7,7 @@
 	padding: 0px;
 }
 
-div .chooseYourArtMenuContainer {
+div.chooseYourArtMenuContainer {
 	position: relative;
 	left: -928px;
 	top: 38px;
@@ -18,7 +18,7 @@ div .chooseYourArtMenuContainer {
 	background-image: url('../_images/chooseyourartmenubackground.png');
 }
 
-div .menuItemSeparator {
+div.menuItemSeparator {
 	width: 155px;
 	height: 1px;
 	background-image: url('../_images/dotmenuseparator.png');

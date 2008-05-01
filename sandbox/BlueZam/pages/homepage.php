@@ -15,7 +15,7 @@
 						<div id="zamTonesHeaderText" class="headingMinor"><!--ZAM TONES--></div>
 					</div>
 					<div id="zamTones" class="zamTones backgroundBlueZamDarkGray"></div>
-					<div id="verticalAdleft" class="verticalAdleft backgroundWhite">
+					<div id="verticalAdleft" class="verticalAdleft">
 						<iframe id="verticalAdLeftIFrame" class="verticalAdLeftIFrame" frameborder="0" src="advertising/exampleAd.html" scrolling=no></iframe>
 					</div>
 				</div>
