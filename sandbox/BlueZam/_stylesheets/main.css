@@ -14,7 +14,7 @@ div.siteMap ul {
 	list-style-position: outside;
 	list-style-type: none;
 	margin-top: 21px;
-	margin-right: 44px;
+	margin-right: 18px;
 	float: left;
 }
 
@@ -108,7 +108,7 @@ div.chooseYourArtMenuContainer ul li a span {
 
 /* Site map - Footer bar */
 
-.siteMap2 ul {
+div.siteMap2 ul {
 	display: inline;
 	margin: 0px;
 	padding: 0px;
@@ -120,7 +120,7 @@ div.chooseYourArtMenuContainer ul li a span {
 	float: left;
 }
 
-.siteMap2 ul li {
+div.siteMap2 ul li {
 	display: inline;
 	margin-right: 2px;
 	font-size: 12px;
@@ -128,14 +128,14 @@ div.chooseYourArtMenuContainer ul li a span {
 	letter-spacing: 2px;
 }
 
-.siteMap2 ul li a, a:link, a:active, a:visited {
+div.siteMap2 ul li a, a:link, a:active, a:visited {
 	font-weight: normal;
 	display: inline;
 	text-decoration: none;
 	color: #ffffff;
 }
 
-.siteMap2 ul li a:hover {
+div.siteMap2 ul li a:hover {
 	font-weight: normal;
 	display: inline;
 	text-decoration: underline;
@@ -183,7 +183,7 @@ div.chooseYourArtMenuContainer ul li a span {
 	background-color: #ffffff;
 }
 
-/* Containers and layout properties */
+/* Containers and layout properties found in the template named default.php */
 
 body {
 	font-family: Arial,sans-serif;
@@ -209,35 +209,33 @@ a, a:link, a:active, a:hover, a:visited {
 	text-decoration: none;
 }
 
-.pageContainer {
+div.pageContainer {
 	width: 958px;
-	/*height: 985px;*/
 	margin: 23px auto 0px auto;
 	background-color: #191919;
 }
 
-.innerContainer {
+div.innerContainer {
 	width: 922px;
-	/*height: 985px;*/
 	margin: 0px 18px 0px 18px;
 	overflow: hidden;
 }
 
-.banner {
+div.banner {
 	width: 922px;
-	height: 198px; /*116px;*/
+	height: 198px;
 	margin: 0px;
 	overflow: hidden;
 	background-image: url('../_images/headerbar.png');
 }
 
-.siteMapBar {
+div.siteMapBar {
 	width: 922px;
 	height: 55px;
 	float: left;
 }
 
-.siteMap {
+div.siteMap {
 	width: 792px;
 	height: 55px;
 	padding-left: 128px;
@@ -380,7 +378,6 @@ a, a:link, a:active, a:hover, a:visited {
 .headingMinor {
 	font-size: 11px;
 	font-weight: bold;
-	/*letter-spacing: 1.5px;*/
 }
 
 /* Blue Zam Profile page */
@@ -432,7 +429,7 @@ a, a:link, a:active, a:hover, a:visited {
 	border: 0px;
 }
 
-.leftColumn {
+.profileLeftColumn {
 	width: 204px;
 	height: 504px;
 	overflow: hidden;
@@ -470,45 +467,35 @@ a, a:link, a:active, a:hover, a:visited {
 	margin: 0px 0px 20px 20px;
 }
 
-.morePhotosLink {
-	width: 204px;
-	height: 14px;
-	font-size: 10px;
-	text-align: right;
-	float: left;
-}
-
-.morePhotosLink a, a:link, a:visited, a:active {
-	display: block;
-	width: 190px;
-	height: 14px;
-	text-decoration: underline;
-	color: #ffffff;
-	padding: 0px 14px 0px 0px;
-	float: left;
-}
-
-.morePhotosLink a:hover {
-	display: block;
-	width: 190px;
-	height: 14px;
-	text-decoration: none;
-	color: #ffffff;
-	padding: 0px 14px 0px 0px;
-	float: left;
-}
-
-.otherPhoto img {
+.otherPhoto a img {
 	width: 43px;
 	height: 43px;
 }
 
-.rightColumn {
+.profileRightColumn {
 	width: 550px;
 	height: 504px;
 	margin: 0px 0px 0px 32px;
 	overflow: hidden;
 	float: left;
+}
+
+a.morePhotos {
+	display: block;
+	width: 204px;
+	height: 14px;
+	text-align: right;
+	float: left;
+}
+
+a:link.morePhotos, a:active.morePhotos, a:visited.morePhotos {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+a:hover.morePhotos {
+	text-decoration: underline;
+	color: #ffffff;
 }
 
 /* Blue Zam Store */
@@ -797,7 +784,7 @@ div.menuItemSeparator {
 	border: 0px;
 }
 
-.rightColumn {
+.homepageRightColumn {
 	width: 690px;
 	height: 634px;
 	overflow: hidden;
