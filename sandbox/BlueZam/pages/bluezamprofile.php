@@ -46,6 +46,76 @@
 									</div>
 								</div>
 								<div id="profileRightColumn" class="profileRightColumn">
+									<div id="profileRightColumnInner" class="profileRightColumnInner">
+										<div id="profileRightColumnName" class="profileRightColumnHeader backgroundBlueZamBlue">
+											<span class="profileUserName">Eduardo Mainero</span>
+											<span class="profileExternalBlogLink">
+												<a class="profileBlogLink" href="">My Blog</a>
+											</span>
+										</div>
+										<div id="profileBasicInfo" class="profileInfo">
+											<div id="profileBasicInfoInner" class="profileInfoInner">
+												<div id="gender" class="profileInfoRow">
+													<span id="genderLabel" class="profileLabel">Sex:</span>
+													<span id="genderType" class="profileData">Male</span>
+												</div>
+												<div id="interest" class="profileInfoRow">
+													<span id="interestLabel" class="profileLabel">Interested In:</span>
+													<span id="interestType" class="profileData">Women</span>
+												</div>
+												<div id="relationshipStatus" class="profileInfoRow">
+													<span id="relationshipStatusLabel" class="profileLabel">Relationship Status:</span>
+													<span id="relationshipStatusType" class="profileData">Married</span>
+												</div>
+												<div id="relationshipStatus" class="profileInfoRow">
+													<span id="relationshipStatusLabel" class="profileLabel">Birthday:</span>
+													<span id="relationshipStatusType" class="profileData">February 3, 1984</span>
+												</div>
+												<div id="relationshipStatus" class="profileInfoRow">
+													<span id="relationshipStatusLabel" class="profileLabel">Hometown:</span>
+													<span id="relationshipStatusType" class="profileData">Calgary, AB</span>
+												</div>
+												<div id="relationshipStatus" class="profileInfoRow">
+													<span id="relationshipStatusLabel" class="profileLabel">Political Views:</span>
+													<span id="relationshipStatusType" class="profileData">Other</span>
+												</div>
+											</div>
+										</div>
+										<div id="profileRightColumnInformation" class="profileRightColumnHeader backgroundBlueZamBlue">
+											<span class="profileUserName">Information</span>
+										</div>
+										<div id="profileInformation" class="profileInfo">
+											<div id="profileInformationInner" class="profileInfoInner">
+												<div id="contactInfoHeader" class="profileInfoRow">
+													<h4>Contact Info</h4>
+												</div>
+												<div id="gender" class="profileInfoRow">
+													<span id="genderLabel" class="profileLabel">Sex:</span>
+													<span id="genderType" class="profileData">Male</span>
+												</div>
+												<div id="interest" class="profileInfoRow">
+													<span id="interestLabel" class="profileLabel">Interested In:</span>
+													<span id="interestType" class="profileData">Women</span>
+												</div>
+												<div id="relationshipStatus" class="profileInfoRow">
+													<span id="relationshipStatusLabel" class="profileLabel">Relationship Status:</span>
+													<span id="relationshipStatusType" class="profileData">Married</span>
+												</div>
+												<div id="relationshipStatus" class="profileInfoRow">
+													<span id="relationshipStatusLabel" class="profileLabel">Birthday:</span>
+													<span id="relationshipStatusType" class="profileData">February 3, 1984</span>
+												</div>
+												<div id="relationshipStatus" class="profileInfoRow">
+													<span id="relationshipStatusLabel" class="profileLabel">Hometown:</span>
+													<span id="relationshipStatusType" class="profileData">Calgary, AB</span>
+												</div>
+												<div id="relationshipStatus" class="profileInfoRow">
+													<span id="relationshipStatusLabel" class="profileLabel">Political Views:</span>
+													<span id="relationshipStatusType" class="profileData">Other</span>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>

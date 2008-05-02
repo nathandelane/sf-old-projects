@@ -4,6 +4,11 @@
  *  z-index is not applicable unless we use absolut or relative positioning. If we use automatic positioning like we are right now, then it doesn't do anything to include it.
  */
 
+h4 {
+	margin: 0px;
+	padding: 0px;
+}
+ 
 /* User Control - Header Bar */
 
 div.siteMap ul {
@@ -476,8 +481,99 @@ div.siteMap {
 	width: 550px;
 	height: 504px;
 	margin: 0px 0px 0px 32px;
+	overflow: auto;
+	float: left;
+}
+
+.profileRightColumnInner {
+	width: 500px;
+	height: 1000px;
+	margin: 0px 30px 0px 0px;
 	overflow: hidden;
 	float: left;
+	border-left: 1px dotted #fefefe;
+	border-right: 1px dotted #fefefe;
+}
+
+.profileRightColumnHeader {
+	width: 430px;
+	height: 18px;
+	font-size: 12px;
+	line-height: 12px;
+	margin: 16px 20px 16px 20px;
+	border: 0px;
+	overflow: hidden;
+	color: #ffffff;
+	padding: 5px 15px 0px 15px;
+	font-weight: bold;
+	float: left;
+}
+
+.profileUserName {
+	height: 18px;
+	margin: 0px;
+	padding: 0px;
+	float: left;
+	overflow: hidden;
+	font-weight: bold;
+}
+
+.profileExternalBlogLink {
+	height: 18px;
+	margin: 0px;
+	padding: 0px;
+	float: right;
+	overflow: hidden;
+	font-weight: bold;
+}
+
+.profileInfo {
+	width: 460px;
+	margin: 0px 5px;
+	padding: 0px;
+	font-size: 11px;
+	line-height: 11px;
+	float: left;
+}
+
+.profileInfoInner {
+	width: 460px;
+	margin: 0px 0px 0px 16px;
+	padding: 0px;
+	float: left;
+}
+
+.profileInfoRow {
+	float: left;
+	padding: 0px 0px 3px 0px;
+}
+
+.profileLabel {
+	display: block;
+	width: 120px;
+	text-align: left;
+	color: #a1a1a1;
+	float: left;
+}
+
+.profileData {
+	display: block;
+	width: 340px;
+	text-align: left;
+	color: #ffffff;
+	float: left;
+}
+
+a.profileBlogLink, a:link.profileBlogLink, a:active.profileBlogLink, a:visited.profileBlogLink {
+	font-weight: bold;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+a:hover.profileBlogLink {
+	font-weight: bold;
+	text-decoration: underline;
+	conolr: #ffffff;
 }
 
 a.morePhotos {
