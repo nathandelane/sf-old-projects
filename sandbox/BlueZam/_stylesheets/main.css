@@ -486,16 +486,30 @@ a.morePhotos {
 	height: 14px;
 	text-align: right;
 	float: left;
+	margin: 0px 0px 0px 0px;
+	font-weight: normal;
 }
 
 a:link.morePhotos, a:active.morePhotos, a:visited.morePhotos {
+	display: block;
+	width: 204px;
+	height: 14px;
+	font-weight: normal;
 	text-decoration: none;
 	color: #ffffff;
+	margin: 0px 0px 0px 0px;
+	text-align: right;
 }
 
 a:hover.morePhotos {
+	display: block;
+	width: 204px;
+	height: 14px;
+	font-weight: normal;
 	text-decoration: underline;
 	color: #ffffff;
+	margin: 0px 0px 0px 0px;
+	text-align: right;
 }
 
 /* Blue Zam Store */
@@ -582,19 +596,33 @@ div.pagingControls {
 	overflow: hidden;
 }
 
-div.pagingControls a, a:link, a:visited, a:active {
+div.pagingControls a.viewAllLink, a:link.viewAllLink, a:visited.viewAllLink, a:active.viewAllLink {
+	font-weight: normal;
 	margin: 0px 0px 0px 5px;
 	text-decoration: none;
 	color: #ffffff;
 }
 
-div.pagingControls a:hover {
+div.pagingControls a:hover.viewAllLink {
+	font-weight: normal;
 	text-decoration: underline;
 	color: #ffffff;
 }
 
-div.pagingControls a, a:link, a:visited, a:active, a:hover .pagingLink {
+div.pagingControls a.pagingLink, a:link .pagingLink, a:visited .pagingLink, a:active .pagingLink, a:hover .pagingLink {
 	font-weight: bold;
+	margin: 0px 0px 0px 5px;
+	text-decoration: none;
+	color: #ffffff;
+}
+
+div.pagingControls a:hover.pagingLink {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #ffffff;
+	margin: 0px 0px 0px 5px;
+	text-decoration: none;
+	color: #ffffff;
 }
 
 .storePage {
