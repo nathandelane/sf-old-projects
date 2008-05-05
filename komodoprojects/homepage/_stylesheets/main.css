@@ -1,0 +1,11 @@
+/* main.css
+ * Description: main stylesheet. Import all other stylesheets into this one
+ * using @import url('...');
+ * Author: Nathan Lane
+ * Copyright: Copyright (c) 2008, Nathan Lane
+ */
+
+body {
+    margin: 0px;
+    padding: 0px;
+}
