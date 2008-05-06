@@ -4,7 +4,13 @@
 <html>
 	<head>
 		<title>HTTP 401: Access Denied</title>
+		<?php
+			if(file_exists("../_stylesheets/main.css")) {
+		?>
 		<link rel="stylesheet" type="text/css" href="../_stylesheets/main.css"/>
+		<?php
+			}
+		?>
 	</head>
 	<body class="error">
 		<div id="errorPageContainer" class="errorPageContainer">
