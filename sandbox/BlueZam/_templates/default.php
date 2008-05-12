@@ -6,7 +6,7 @@
 	
 	if(!isset($userSession))
 	{
-		$userSession = new PhpSession();
+		$userSession = new BlueZam_PhpSession();
 	}
 ?>
 <html>
@@ -23,7 +23,26 @@
 				}
 			?>
 		</title>
+		<link rel="stylesheet" type="text/css" href="_stylesheets/containers.css"/>
 		<link rel="stylesheet" type="text/css" href="_stylesheets/main.css"/>
+		<link rel="stylesheet" type="text/css" href="_stylesheets/colors.css"/>
+		<?php
+			if($requirePageStylesheet)
+			{
+				$file = "_stylesheets/".$page.".css";
+				if(file_exists($file))
+				{
+		?>
+		<link rel="stylesheet" type="text/css" href="_stylesheets/<?php echo $page; ?>.css"/>
+		<?php
+				}
+				else
+				{
+					header("HTTP/1.0 404 Not Found");
+					header("File-not-found: ".$file);
+				}
+			}
+		?>
 		<script src="_scripts/menu.js" type="text/javascript"></script>
 	</head>
 	<body onload="init();">

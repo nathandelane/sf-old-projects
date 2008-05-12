@@ -1,5 +1,14 @@
 <?php
-	class PhpSession
+	/**
+	 * Package: BlueZam
+	 * Class: PhpSession
+	 * Description: This class takes care of basic user session recording and user path logging.
+	 * Author: Nathan Lane
+	 * Date: 02.05.2008
+	 * @package BlueZam
+	 */
+	
+	class BlueZam_PhpSession
 	{
 		private $_sessionId;
 		private $_currentPage;
@@ -8,24 +17,24 @@
 		public function __construct()
 		{
 			session_start();
-			$_sessionId = session_id();
-			$_sessionPageSequence = array();
+			$this->_sessionId = session_id();
+			$this->_sessionPageSequence = array();
 		}
 		
 		public function getSessionId()
 		{
-			return $_sessionId;
+			return $this->_sessionId;
 		}
 		
 		public function setCurrentPage($currentPage)
 		{
-			$_currentPage = $currentPage;
-			array_push($_sessionPageSequence, $currentPage);
+			$this->_currentPage = $currentPage;
+			array_push($this->_sessionPageSequence, $currentPage);
 		}
 		
 		public function getCurrentPage()
 		{
-			return $_currentPage;
+			return $this->_currentPage;
 		}
 	}
 ?>

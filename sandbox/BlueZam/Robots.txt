@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /_flash/
+Disallow: /_images/
+Disallow: /_scripts/
+Disallow: /_sitemaps/
+Disallow: /_styleSheets/
+Disallow: /_templates/
+Disallow: /_userControls/
+Disallow: /_video/
+Disallow: /_xml/

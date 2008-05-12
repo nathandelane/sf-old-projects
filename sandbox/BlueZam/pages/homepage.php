@@ -24,7 +24,7 @@
 						<iframe id="verticalAdLeftIFrame" class="verticalAdLeftIFrame" frameborder="0" src="advertising/exampleAd.html" scrolling=no></iframe>
 					</div>
 				</div>
-				<div id="homepageRightColumn" class="homepageRightColumn">
+				<div id="rightColumn" class="rightColumn">
 					<div id="communityLinks" class="communityLinks">
 						<div id="artisticCommunity" class="smallContainer">
 							<div id="artisticCommunityInner" class="smallContainerInner artisticCommunity"></div>
