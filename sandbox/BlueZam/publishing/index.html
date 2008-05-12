@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<title></title>
+		<script>
+			function showLanguageMenu() {
+				return true;
+			}
+		</script>
+		<style type="text/css">
+			body {
+				margin: 0px;
+				padding: 0px;
+			}
+			
+			img {
+				border: 0px;
+			}
+			
+			.bodyDefault {
+				background-color: #191919;
+				background-image: url('../_images/backgroundtile.png');
+				background-repeat: repeat;
+				color: #ffffff;
+				font-family: sans-serif,Arial;
+				font-size: 12px;
+			}
+			
+			.pageContainer {
+				background-color: #191919;
+				height: auto;
+				margin: 0px auto 0px auto;
+				padding: 20px 0px 0px 0px;
+				width: 960px;
+			}
+			
+			.pageInnerContainer {
+				background-color: #191919;
+				height: auto;
+				margin: 0px 22px 0px 22px;
+				padding: 0px;
+				width: 916px;
+			}
+			
+			.pageHeaderContainer {
+				height: 200px;
+				margin: 0px;
+				overflow: hidden;
+				width: 916px;
+			}
+			
+			.navigation {
+				float: left;
+				height: 200px;
+				margin: 21px 0px 0px 0px;
+				text-transform: uppercase;
+				letter-spacing: -0.1px;
+				width: 636px;
+			}
+			
+			.navigation ul {
+				display: inline;
+			}
+			
+			.navigation ul li {
+				display: inline;
+			}
+			
+			.navigation ul li a, a:link {
+				text-decoration: none;
+				color: #ffffff;
+			}
+			
+			.navigation ul li a:active, a:visited {
+				text-decoration: none;
+				color: #ffffff;
+			}
+			
+			.navigation ul li a:hover {
+				text-decoration: underline;
+				color: #ffffff;
+			}
+			
+			.memberButton {
+				float: left;
+				height: 200px;
+				margin: 9px 0px 0px 0px;
+				width: 182px;
+			}
+			
+			.memberButtonContainer {
+				height: 25px;
+				padding: 10px 0px 0px 0px;
+				overflow: hidden;
+				text-align: center;
+				width: 182px;
+			}
+			
+			.memberButtonText {
+				text-transform: uppercase;
+			}
+			
+			.languageDropDown {
+				float: left;
+				height: 200px;
+				width: 42px;
+			}
+			
+			.languageSelectionButton {
+				background-image: url('../_images/languagebutton.png');
+				background-position: 6px 0px;
+				background-repeat: no-repeat;
+				font-size: 10px;
+				height: 171px;
+				margin: 24px 0px 0px 0px;
+				width: 42px;
+			}
+			
+			.languageSelectionMenu {
+			}
+			
+			.languageFlag {
+				float: left;
+				height: 200px;
+				width: 56px;
+			}
+			
+			.pageContentContainer {
+				float: left;
+				width: 916px;
+				margin: 0px;
+			}
+			
+			.pageContentInnerContainer {
+				float: left;
+				margin: 0px;
+				width: 916px;
+			}
+			
+			.contentLeftColumn {
+				float: left;
+				margin: 0px;
+				width: 702px;
+			}
+			
+			.contentRightColumn {
+				float: left;
+				margin: 0px;
+				width: 214px;
+			}
+			
+			.publishingHeader {
+				height: 260px;
+				margin: 0px 15px 20px 0px;
+				overflow: hidden;
+				width: 685px;
+			}
+			
+			.profileContainer1 {
+				float: left;
+				height: 200px;
+				width: 330px;
+				overflow: hidden;
+				margin: 0px 12px 20px 0px;
+			}
+			
+			.profileContainer2 {
+				float: left;
+				height: 200px;
+				width: 330px;
+				overflow: hidden;
+				margin: 0px 0px 20px 12px;
+			}
+			
+			.selfPromotionContainer {
+				clear: left;
+				height: 200px;
+				width: 685px;
+				overflow: hidden;
+				margin: 20px 15px 20px 0px;
+			}
+			
+			.servicesMenuContainer {
+				height: 422px;
+				margin: 0px 0px 20px 0px;
+				overflow: hidden;
+				width: 204px;
+			}
+			
+			.newsletterSignupContainer {
+				height: 210px;
+				margin: 20px 0px 20px 0px;
+				overflow: hidden;
+				width: 204px;
+			}
+			
+			.pageFooterContainer {
+				clear: left;
+				height: 60px;
+				overflow: hidden;
+				width: 916px;
+			}
+			
+			.pageFooterContent {
+				margin: 24px 0px 0px 50px;
+				padding: 0px 236px 0px 0px;
+				text-align: center;
+				width: 630px;
+				text-transform: uppercase;
+				letter-spacing: -0.1px;
+			}
+			
+			.tollFreeNumber {
+				display: block;
+				float: left;
+				text-transform: none;
+			}
+			
+			.footerMenu ul {
+				display: inline;
+			}
+			
+			.footerMenu ul li {
+				display: inline;
+			}
+			
+			.footerMenu ul li a, a:link {
+				text-decoration: none;
+				color: #ffffff;
+			}
+			
+			.footerMenu ul li a:active, a:visited {
+				text-decoration: none;
+				color: #ffffff;
+			}
+			
+			.footerMenu ul li a:hover {
+				text-decoration: underline;
+				color: #ffffff;
+			}
+			
+			.copyrightBar {
+				color: #454545;
+				font-size: 10px;
+				height: 20px;
+				line-height: 20px;
+				text-align: center;
+				width: 916px;
+			}
+		</style>
+	</head>
+	<body class="bodyDefault">
+		<div id="pageContainer" class="pageContainer">
+			<div id="pageInnerContainer" class="pageInnerContainer">
+				<div id="pageHeaderContainer" class="pageHeaderContainer" style="background-color:#3e76ff;">
+					<div id="navigation" class="navigation">
+						<ul>
+							<li>
+								<a href="">Contact Us</a>
+							</li>
+							<li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+							<li>
+								<a href="">Login</a>
+							</li>
+							<li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+							<li>
+								<a href="">Featured&nbsp;&nbsp;Author</a>
+							</li>
+						</ul>
+					</div>
+					<div id="memberButton" class="memberButton">
+						<div id="memberButtonContainer" class="memberButtonContainer" style="background-color:#F45D0A;">
+							<span id="memberButtonText" class="memberButtonText">Become a Member</span>
+						</div>
+					</div>
+					<div id="languageDropDown" class="languageDropDown">
+						<div id="languageSelectionButton" class="languageSelectionButton" onclick="showLanguageMenu();">
+							<div id="languageSelectionMenu" class="languageSelectionMenu" style="display: visible;"></div>
+						</div>
+					</div>
+					<div id="languageFlag" class="languageFlag"></div>
+				</div>
+				<div id="pageContentContainer" class="pageContentContainer" style="background-color:#575757;">
+					<div id="pageContentInnerContainer" class="pageContentInnerContainer">
+						<div id="contentLeftColumn" class="contentLeftColumn">
+							<div id="publishingHeader" class="publishingHeader" style="background-color:#365a26">
+							</div>
+							<div id="profile1" class="profileContainer1" style="background-color:#365a26"></div>
+							<div id="profile2" class="profileContainer2" style="background-color:#365a26"></div>
+							<div id="selfPromotionContainer" class="selfPromotionContainer" style="background-color:#365a26"></div>
+						</div>
+						<div id="contentRightColumn" class="contentRightColumn">
+							<div id="servicesMenuContainer" class="servicesMenuContainer" style="background-color:#365a26">
+							</div>
+							<div id="newsletterSignupContainer" class="newsletterSignupContainer" style="background-color:#365a26">
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="pageFooterContainer" class="pageFooterContainer" style="background-color:#404040;">
+					<div id="pageFooterContent" class="pageFooterContent">
+						<span id="tollFreeNumber" class="tollFreeNumber">Call Toll Free: 1-800-555-1234</span>
+						<span id="footerMenu" class="footerMenu">
+							<ul>
+								<li>
+									<a href="">Contact Us</a>
+								</li>
+								<li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+								<li>
+									<a href="">Login</a>
+								</li>
+								<li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+								<li>
+									<a href="">Featured&nbsp;&nbsp;Author</a>
+								</li>
+							</ul>
+						</span>
+					</div>
+				</div>
+				<div id="copyrightBar" class="copyrightBar">
+					Copyright (c) 2008
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
