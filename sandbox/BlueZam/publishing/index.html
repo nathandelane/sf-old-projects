@@ -17,6 +17,75 @@
 				border: 0px;
 			}
 			
+			h1 {
+				font-size: 22px;
+				font-weight: normal;
+				margin: 6px 0px 10px 0px;
+				padding: 0px;
+				letter-spacing: 2px;
+				text-align: center;
+				text-transform: none;
+			}
+			
+			h2 {
+				font-size: 14px;
+				font-weight: bold;
+				margin: 10px 0px 0px 0px;
+				padding: 0px;
+				text-align: center;
+				text-transform: uppercase;
+			}
+			
+			h3 {
+				font-size: 12px;
+				font-weight: bold;
+				margin: 30px 0px 0px 0px;
+				padding: 0px;
+				text-align: center;
+				text-transform: uppercase;
+			}
+			
+			p.paragraphIndented {
+				font-size: 11px;
+				margin: 0px 30px 0px 30px;
+				text-align: justify;
+				text-indent: 30px;;
+			}
+			
+			p.newletterSignupMsg {
+				font-size: 12px;
+				margin: 10px 20px 10px 20px;
+				text-align: justify;
+			}
+			
+			p.profileDescription {
+				font-size: 11px;
+				height: 68px;
+				line-height: 11px;
+				margin: 10px 10px 10px 0px;
+				overflow: hidden;
+				text-align: justify;
+			}
+			
+			input.newletterEmailTextField {
+				width: 140px;
+				margin: 10px 32px 0px 32px;
+			}
+			
+			button.newsletterSubscribeButton {
+				background-color: #f6bb1d;
+				border: 0px;
+				color: #ffffff;
+				font-size: 12px;
+				font-weight: bold;
+				height: 30px;
+				margin: 20px 42px 0px 42px;
+				overflow: hidden;
+				text-align: center;
+				text-transform: uppercase;
+				width: 120px;
+			}
+			
 			.bodyDefault {
 				background-color: #191919;
 				background-image: url('../_images/backgroundtile.png');
@@ -90,13 +159,15 @@
 			
 			.memberButtonContainer {
 				height: 25px;
-				padding: 10px 0px 0px 0px;
+				padding: 8px 0px 0px 0px;
 				overflow: hidden;
 				text-align: center;
 				width: 182px;
 			}
 			
 			.memberButtonText {
+				font-size: 16px;
+				font-weight: bold;
 				text-transform: uppercase;
 			}
 			
@@ -156,12 +227,19 @@
 				width: 685px;
 			}
 			
+			.publishingHeaderBar {
+				height: 38px;
+				margin: 0px;
+				overflow: hidden;
+				width: 685px;
+			}
+			
 			.profileContainer1 {
 				float: left;
 				height: 200px;
 				width: 330px;
 				overflow: hidden;
-				margin: 0px 12px 20px 0px;
+				margin: 0px 12px 42px 0px;
 			}
 			
 			.profileContainer2 {
@@ -169,12 +247,27 @@
 				height: 200px;
 				width: 330px;
 				overflow: hidden;
-				margin: 0px 0px 20px 12px;
+				margin: 0px 0px 42px 12px;
+			}
+			
+			.profileHeaderBar {
+				height: 38px;
+				margin: 0px;
+				overflow: hidden;
+				width: 330px;
+			}
+			
+			.profile1PhotoContainer {
+				float: left;
+				height: 142px;
+				margin: 9px 15px 0px 10px;
+				overflow: hidden;
+				width: 116px;
 			}
 			
 			.selfPromotionContainer {
 				clear: left;
-				height: 200px;
+				height: 128px;
 				width: 685px;
 				overflow: hidden;
 				margin: 20px 15px 20px 0px;
@@ -187,9 +280,65 @@
 				width: 204px;
 			}
 			
+			.menuHeaderBar {
+				height: 38px;
+				margin: 0px;
+				overflow: hidden;
+				width: 204px;
+			}
+			
+			ul.professionalServicesMenu {
+				display: block;
+				margin: 10px 0px 0px 0px;
+				padding: 0px;
+			}
+			
+			ul.professionalServicesMenu li {
+				font-size: 12px;
+				line-height: 12px;
+				list-style-image: none;
+				list-style-type: none;
+				margin: 0px 20px 0px 20px;
+				padding: 5px 0px 5px 0px;
+				border-bottom: dotted #ffffff 1px;
+			}
+			
+			ul.professionalServicesMenu li span {
+				display: block;
+				width: 13px;
+				height: 10px;
+				overflow: hidden;
+				float: left;
+				background-image: url('../_images/doublearrows.png');
+				background-repeat: no-repeat;
+				margin: 2px 7px 0px 4px;
+			}
+			
+			ul.professionalServicesMenu li a, a:link, a:visited {
+				color: #ffffff;
+				text-decoration: none;
+			}
+			
+			ul.professionalServicesMenu li a:active {
+				color: #1d83f6;
+				text-decoration: none;
+			}
+			
+			ul.professionalServicesMenu li a:hover {
+				color: #ffffff;
+				text-decoration: underline;
+			}
+			
 			.newsletterSignupContainer {
 				height: 210px;
 				margin: 20px 0px 20px 0px;
+				overflow: hidden;
+				width: 204px;
+			}
+			
+			.newsletterSignupHeaderBar {
+				height: 38px;
+				margin: 0px;
 				overflow: hidden;
 				width: 204px;
 			}
@@ -280,19 +429,124 @@
 					</div>
 					<div id="languageFlag" class="languageFlag"></div>
 				</div>
-				<div id="pageContentContainer" class="pageContentContainer" style="background-color:#575757;">
+				<div id="pageContentContainer" class="pageContentContainer" style="background-color:#191919;">
 					<div id="pageContentInnerContainer" class="pageContentInnerContainer">
 						<div id="contentLeftColumn" class="contentLeftColumn">
-							<div id="publishingHeader" class="publishingHeader" style="background-color:#365a26">
+							<div id="publishingHeader" class="publishingHeader" style="background-color:#272727;">
+								<div id="publishingHeaderBar" class="publishingHeaderBar" style="background-color:#3e7680;"></div>
+								<h1>Welcome to BLUEZAM Publishing.</h1>
+								<p class="paragraphIndented">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam hendrerit sem a sapien. Ut justo diam, volutpat id, ultrices vitae, vehicula sit amet, dui. Nulla non odio. Sed faucibus. Aliquam lacinia felis ac libero. Praesent in mauris eget nibh interdum aliquam. Nunc eget quam eget lectus malesuada malesuada. Suspendisse ac ligula nec neque ultrices hendrerit. Curabitur justo nisl, commodo ac, laoreet at, sodales sed, mauris. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur tempus aliquam sem. Suspendisse lacus dolor, venenatis et, commodo vitae, pulvinar vel, pede. Quisque vitae tellus. Aenean volutpat. Proin eros massa, ullamcorper ut, tincidunt nec, sodales et, mauris. Sed quam enim, egestas condimentum, lacinia ut, tincidunt et, est. Nam sagittis risus at augue.
+								</p>
+								<p class="paragraphIndented">
+									Maecenas fermentum. Pellentesque augue risus, rutrum in, placerat et, congue non, lorem. Ut lacinia viverra lorem. Curabitur pharetra massa. Nullam ultrices sollicitudin augue. Sed tempor bibendum mi. Pellentesque commodo, dui ut aliquam varius, ligula lacus facilisis magna, ut elementum turpis lacus eu nibh. Ut neque nisi, euismod non, sagittis eu, cursus quis, nisi. Duis eu erat. Nulla consectetuer vehicula lacus. Nam viverra pharetra risus. Aliquam erat lorem, laoreet non, eleifend a, accumsan ac, dolor. 
+								</p>
 							</div>
-							<div id="profile1" class="profileContainer1" style="background-color:#365a26"></div>
-							<div id="profile2" class="profileContainer2" style="background-color:#365a26"></div>
-							<div id="selfPromotionContainer" class="selfPromotionContainer" style="background-color:#365a26"></div>
+							<div id="profile1" class="profileContainer1" style="background-color:#272727">
+								<div id="profile1HeaderBar" class="profileHeaderBar" style="background-color:#3e7680;">
+									<h2>Featured Author of the Month</h2>
+								</div>
+								<div id="profile1PhotoContainer" class="profile1PhotoContainer">
+									<img id="profile1Photo" alt="Picture of Phillip E. Jones" class="profilePhoto" src="../_images/profileimages/phillipejones.jpeg"/>
+								</div>
+								<h3>Phillip E. Jones</h3>
+								<p class="profileDescription">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam hendrerit sem a sapien. Ut justo diam, volutpat id, ultrices vitae, vehicula sit amet, dui. Nulla non odio. Sed faucibus. Aliquam lacinia felis ac libero. Praesent in mauris eget nibh interdum aliquam.
+								</p>
+							</div>
+							<div id="profile2" class="profileContainer2" style="background-color:#272727">
+								<div id="profile1HeaderBar" class="profileHeaderBar" style="background-color:#3e7680;">
+									<h2>Featured Book of the Month</h2>
+								</div>
+								<div id="profile1PhotoContainer" class="profile1PhotoContainer">
+									<img id="profile1Photo" alt="Picture of Melody J. Mainero" class="profilePhoto" src="../_images/profileimages/melodyjmainero.jpeg"/>
+								</div>
+								<h3>Crystal Moon</h3>
+								<p class="profileDescription">
+									Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam hendrerit sem a sapien. Ut justo diam, volutpat id, ultrices vitae, vehicula sit amet, dui. Nulla non odio. Sed faucibus. Aliquam lacinia felis ac libero. Praesent in mauris eget nibh interdum aliquam.
+								</p>
+							</div>
+							<div id="selfPromotionContainer" class="selfPromotionContainer" style="background-color:#dcc500"></div>
 						</div>
 						<div id="contentRightColumn" class="contentRightColumn">
-							<div id="servicesMenuContainer" class="servicesMenuContainer" style="background-color:#365a26">
+							<div id="servicesMenuContainer" class="servicesMenuContainer" style="background-color:#272727">
+								<div id="menuHeaderBar" class="menuHeaderBar" style="background-color:#3e7680;">
+									<h2>Professional Services</h2>
+								</div>
+								<ul class="professionalServicesMenu">
+									<li>
+										<span></span>
+										<a id="publishingPackagesLink" href="">Publishing Packages</a>
+									</li>
+									<li>
+										<span></span>
+										<a id="critiqueLink" href="">Critique</a>
+									</li>
+									<li>
+										<span></span>
+										<a id="editingLink" href="">Editing</a>
+									</li>
+									<li>
+										<span></span>
+										<a id="proofingLink" href="">Proofing</a>
+									</li>
+									<li>
+										<span></span>
+										<a id="isbnBarCodeLink" href="">ISBN / Bar Code</a>
+									</li>
+									<li>
+										<span></span>
+										<a id="copyrightLink" href="">Copyright</a>
+									</li>
+									<li>
+										<span></span>
+										<a id="artCoverDesignLink" href="">Art / Cover Design</a>
+									</li>
+									<li>
+										<span></span>
+										<a id="webDesignLink" href="">Web Design</a>
+									</li>
+									<li>
+										<span></span>
+										<a id="agentRepresentationLink" href="">Agent Representation</a>
+									</li>
+									<li>
+										<span></span>
+										<a id="ghostWriterLink" href="">Ghost Writer</a>
+									</li>
+									<li>
+										<span></span>
+										<a id="marketingOnAuthorLink" href="">Marketing on Author</a>
+									</li>
+									<li>
+										<span></span>
+										<a id="pressReleasePrep" href="">Press Release Prep.</a>
+									</li>
+									<li>
+										<span></span>
+										<a id="authorStorefront" href="">Author Storefront</a>
+									</li>
+									<li>
+										<span></span>
+										<a id="communityLink" href="">Community</a>
+									</li>
+									<li>
+										<span></span>
+										<a id="publicImagePhotoLink" href="">Public Image Photo</a>
+									</li>
+								</ul>
 							</div>
-							<div id="newsletterSignupContainer" class="newsletterSignupContainer" style="background-color:#365a26">
+							<div id="newsletterSignupContainer" class="newsletterSignupContainer" style="background-color:#272727">
+								<div id="newsletterSignupHeaderBar" class="newsletterSignupHeaderBar" style="background-color:#3e7680;">
+									<h2>Newsletter</h2>
+								</div>
+								<p class="newletterSignupMsg">
+									Sign up to receive our weekly newsletter. Just enter your e-mail and press "Subscribe"
+								</p>
+								<form id="newsletterSignupForm" name="newsletterSignupForm" action="index.html" method="post">
+									<input id="emailTextField" name="emailTextField" alt="Enter your e-mail address here" class="newletterEmailTextField" type="text" value="e-mail:" onfocus="this.value=''" onblur="if(this.value == '') this.value='e-mail:';"/>
+									<button id="subscribeButton" name="subscribeButton" type="submit" value="Subscribe" class="newsletterSubscribeButton">Subscribe</button>
+								</form>
 							</div>
 						</div>
 					</div>
