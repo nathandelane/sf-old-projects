@@ -1,11 +1,9 @@
 body {
 	font-size: 12px;
 	font-family: arial, 'lucida console', sans-serif;
-	/*background-image: url('../_images/bg011.png');*/
-	background-image: url('../_images/background2.png');
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position: top left;
+	background-image: url('../_images/bg02.png');
+	/*background-image: url('../_images/background2.png');*/
+	background-repeat: repeat;
 	color: #ffffff;
 	margin: 0px;
 	padding: 0px;
