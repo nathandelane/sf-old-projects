@@ -1,9 +1,10 @@
 body {
 	font-size: 12px;
 	font-family: arial, 'lucida console', sans-serif;
-	background-image: url('../_images/bg02.png');
+	/*background-image: url('../_images/bg02.png');*/
 	/*background-image: url('../_images/background2.png');*/
-	background-repeat: repeat;
+	/*background-repeat: repeat;*/
+	background-color: #000000;
 	color: #ffffff;
 	margin: 0px;
 	padding: 0px;
