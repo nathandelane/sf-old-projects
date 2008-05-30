@@ -9,6 +9,8 @@
 	<head>
 		<title><?php echo "$pageName"; ?> &lt; Nathandelane, software architect and programmer</title>
 		<link type="text/css" href="/_stylesheets/nathandelanemain.css" title="default" media="screen" rel="stylesheet"/>
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	</head>
 	<body>
 		<div id="navigationBar" class="navigationBar">
