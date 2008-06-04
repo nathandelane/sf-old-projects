@@ -7,14 +7,11 @@ namespace Nathandelane.Net.Irc
 {
 	public class IrcLogger
 	{
-		private IrcSettings _settings;
 		private StreamWriter _logFileWriter;
 
-		public IrcLogger()
+		public IrcLogger(string logFilePath, string logFileName)
 		{
-			_settings = new IrcSettings();
-
-			string path = String.Format("{0}/{1}", _settings["LogFilePath"], _settings["LogFileName"]);
+			string path = String.Format("{0}/{1}", logFilePath, logFileName);
 			_logFileWriter = new StreamWriter(new FileStream(path, FileMode.OpenOrCreate | FileMode.Append));
 		}
 

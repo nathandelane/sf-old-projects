@@ -7,6 +7,8 @@ namespace Nathandelane.Net.Irc
 {
 	public class Program
 	{
+		private IrcConnection _ircConnection;
+		private IrcEventHandler _eventHandler;
 		private IrcSettings _settings;
 		private IrcUser _user;
 		private IrcLogger _logger;
@@ -15,39 +17,15 @@ namespace Nathandelane.Net.Irc
 		{
 			_settings = new IrcSettings();
 			_user = new IrcUser(_settings["Nick"], _settings["RealName"], true);
-			_logger = new IrcLogger();
-			
-			IrcConnection ircConnection = new IrcConnection(_user);
-			ircConnection.Channel = "#null";
-			string contents = "";
-			string input = "";
+			_logger = new IrcLogger(_settings["LogFilePath"], _settings["LogFileName"]);
+			_ircConnection = new IrcConnection(_settings["Server"], Convert.ToInt32(_settings["Port"]), _user);
+			_eventHandler = new IrcEventHandler(_ircConnection, _logger);
 
-			ircConnection.Connect();
+			_ircConnection.Connect();
 
-			if (ircConnection.Connected)
+			if (_ircConnection.Connected)
 			{
-				// Get all of the response info
-				while (!String.IsNullOrEmpty(contents = ircConnection.Read()))
-				{
-					Console.WriteLine("{0}", contents);
-					_logger.WriteLine(contents);
-					Thread.Sleep(250);
-				}
-
-				Console.WriteLine("Status: Connected = {0}.", Convert.ToString(ircConnection.Connected));
-
-				while (!String.IsNullOrEmpty((input = Console.ReadLine())))
-				{
-					ircConnection.Write(input);
-
-					while (!String.IsNullOrEmpty(contents = ircConnection.Read()))
-					{
-						Console.WriteLine("{0}", contents);
-						Thread.Sleep(250);
-					}
-				}
-
-				ircConnection.Close();
+				_ircConnection.Run();
 				_logger.Close();
 			}
 		}

@@ -5,7 +5,7 @@
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E7ACE6F8-076F-4C0B-B452-7CC0E31487C0}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nathandelane.Net.Irc</RootNamespace>
     <AssemblyName>Nathandelane.Net.Irc</AssemblyName>
@@ -40,12 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IrcClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IrcClientForm.Designer.cs">
+      <DependentUpon>IrcClientForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="IrcConnection.cs" />
+    <Compile Include="IrcEventHandler.cs" />
     <Compile Include="IrcLogger.cs" />
     <Compile Include="IrcSettings.cs" />
     <Compile Include="IrcUser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="IrcClientForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>IrcClientForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
