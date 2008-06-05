@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C# Express 2005
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vehix.Net.Irc", "Vehix.Net.Irc\Vehix.Net.Irc.csproj", "{3921AF75-79A4-4AFF-9A11-3FD18DF51EDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3921AF75-79A4-4AFF-9A11-3FD18DF51EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3921AF75-79A4-4AFF-9A11-3FD18DF51EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3921AF75-79A4-4AFF-9A11-3FD18DF51EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3921AF75-79A4-4AFF-9A11-3FD18DF51EDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
