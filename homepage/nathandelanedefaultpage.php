@@ -119,7 +119,7 @@
 			</div>
 			<div id="pageBodyContainer" class="pageBodyContainer">
 				<div id="introductionTextContainer" class="innerContainer">
-					These pages outline some of the features and status of my latest programming projects. I have also linked to my blog posts from here. I reserve thes pages as part of an online portfolio. Currently the projects are hosted by different public project hosting domains. All projects are licensed under the <a id="gplLinkIntro" class="nathandelaneLink" href="http://www.gnu.org/licenses/gpl-3.0.html">GNU GPL Version 3.0</a> unless otherwise specified.
+					These pages outline some of the features and status of my latest programming projects. I have also linked to my blog posts from here. I reserve these pages as part of an online portfolio. Currently the projects are hosted by different public project hosting domains. All projects are licensed under the <a id="gplLinkIntro" class="nathandelaneLink" href="http://www.gnu.org/licenses/gpl-3.0.html">GNU GPL Version 3.0</a> unless otherwise specified.
 				</div>
 				<div class="hrDiv"></div>
 				<div id="personalCalculatorOuterContainer" class="innerContainer">
