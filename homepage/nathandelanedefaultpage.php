@@ -130,7 +130,7 @@
 					<h1>Personal Calculator</h1>
 					Personal Calculator or "PC" was developed in the tradition of other text-mode calculator programs. As of yet it doesn't include a full set of features that perhaps bc includes, but the direction is similar. One of the major differences in this calculator is that it is developed in Java.
 					<br/><br/>
-					PC utilizes Polish Postscript to perform calculations, as is described on the homepage for it. In some cases I hack the usage of Polish Postscript in order to allow non-arithmetic operations such as creating matrices or running functions.
+					PC utilizes Polish Postfix Notation to perform calculations, as is described on the homepage for it. In some cases I hack the usage of Polish Postfix Notation in order to allow non-arithmetic operations such as creating matrices or running functions.
 					<br/><br/>
 					Check out more about PC <a id="linkToPcOnJavaDotNet" class="nathandelaneLink" href="https://personalcalculator.dev.java.net/">here</a>.
 				</div>
