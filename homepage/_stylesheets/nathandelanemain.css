@@ -1,0 +1,105 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #ffffff;
+	color: #003e66;
+	font-family: Arial,sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 16px;
+}
+
+img {
+	border: 0px;
+}
+
+h1 {
+	padding: 0px;
+	margin: 0px 0px 10px 0px;
+	font-size: 20px;
+}
+
+.pageContainer {
+	width: 740px;
+	margin: 0px auto;
+}
+
+.pageHeader {
+	width: 740px;
+	margin: 0px;
+	float: left;
+}
+
+.pageBodyContainer {
+	width: 740px;
+	float: left;
+}
+
+.innerContainer {
+	width: 740px;
+	float: left;
+	margin: 5px;
+}
+
+a.nathandelaneLink, a:link.nathandelaneLink, a:active.nathandelaneLink, a:visited.nathandelaneLink {
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #3696bb;
+}
+
+a:hover.nathandelaneLink {
+	font-size: 16px;
+	font-weight: bold;
+	text-decoration: underline;
+	color: #3696bb;
+}
+
+.hrDiv {
+	width: 100%;
+	height: 2px;
+	background-color: #003e66;
+	overflow: hidden;
+	float: left;
+	margin: 5px 0px 5px 0px;
+}
+
+.hrSeparator {
+	width: 100%;
+	height: 20px;
+	overflow: hidden;
+	float: left;
+}
+
+.footer {
+	width: 100%;
+	float: left;
+	text-align: center;
+	margin: 0px 0px 10px 0px;
+}
+
+/* Image classes */
+
+.pageHeaderImage {
+	height: 20px;
+	width: 200px;
+	display: block;
+	float: left;
+	margin: 10px 0px 10px 0px;
+	overflow: hidden;
+}
+
+.projectLogo {
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+	display: block;
+	float: left;
+	margin: 0px 10px 0px 0px;
+}
+
+.projectContentContainer {
+	width: 580px;
+	float: left;
+	margin: 0px 0px 0px 10px;
+}
