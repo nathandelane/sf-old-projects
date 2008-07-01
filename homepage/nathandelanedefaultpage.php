@@ -1,5 +1,5 @@
 <?php
-	$pageContent = $_GET["page"];
+	$pageContent = "main.php";
 	
 	require_once("_templates/nathandelanedefaulttemplate.php");
 ?>
