@@ -19,6 +19,33 @@ h1 {
 	font-size: 20px;
 }
 
+label {
+	display: block;
+	width: 210px;
+	float: left;
+	text-align: right;
+}
+
+input {
+	display: block;
+	width: 300px;
+	float: left;
+	text-align: left;
+}
+
+textarea {
+	display: block;
+	width: 640px;
+	height: 200px;
+	float: left;
+	text-align: left;
+}
+
+button {
+	display: block;
+	float: right;
+}
+
 .pageContainer {
 	width: 740px;
 	margin: 0px auto;
@@ -28,6 +55,57 @@ h1 {
 	width: 740px;
 	margin: 0px;
 	float: left;
+	padding: 10px 0px 10px 0px;
+}
+
+.pageNavigationContainer {
+	width: 740px;
+	margin: 0px;
+	float: left;
+}
+
+.navigationMenu {
+	width: 740px;
+	height: 20px;
+	margin: 0px;
+	float: left;
+	background-color: #003e66;
+	font-size: 16px;
+	overflow: hidden;
+}
+
+.navigationMenu ul {
+	list-style-type: inline;
+	margin: 0px;
+	padding: 0px;
+}
+
+.navigationMenu ul li {
+	display: block;
+	float: left;
+	list-style-type: inline;
+	padding: 0px;
+	margin: 0px;
+	height: 20px;
+	width: 80px;
+}
+
+a.navigationLink, a:link.navigationLink, a:active.navigationLink, a:visited.navigationLink {
+	height: 20px;
+	width: 80px;
+	float: left;
+	text-decoration: none;
+	color: #ffffff;
+	margin: 2px;
+}
+
+a:hover.navigationLink {
+	text-decoration: none;
+	height: 20px;
+	width: 80px;
+	float: left;
+	color: #fa7200;
+	margin: 2px;
 }
 
 .pageBodyContainer {
@@ -71,6 +149,18 @@ a:hover.nathandelaneLink {
 	float: left;
 }
 
+.formItemSeparator {
+	width: 100%;
+	height: 10px;
+	overflow: hidden;
+	float: left;
+}
+
+.contactFormContainer {
+	width: 640px;
+	margin: 10px 50px 10px 50px;
+}
+
 .footer {
 	width: 100%;
 	float: left;
@@ -85,7 +175,6 @@ a:hover.nathandelaneLink {
 	width: 200px;
 	display: block;
 	float: left;
-	margin: 10px 0px 10px 0px;
 	overflow: hidden;
 }
 

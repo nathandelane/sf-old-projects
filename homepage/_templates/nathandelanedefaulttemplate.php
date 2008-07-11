@@ -11,9 +11,14 @@
 			<div id="pageHeader" class="pageHeader">
 				<img id="pageHeaderImage" class="pageHeaderImage" alt="Nathan de lane logo" src="_images/nathandelanewithlogo20.png"/>
 			</div>
+			<div id="pageNavigationContainer" class="pageNavigationContainer">
+				<?php
+					require_once("_usercontrols/userNavigationControl.php");
+				?>
+			</div>
 			<div id="pageBodyContainer" class="pageBodyContainer">
 				<?php
-					require_once("_content/" . $pageContent);
+					require_once("_content/" . $pageContent . ".php");
 				?>
 				<div class="hrDiv"></div>
 				<div id="footer" class="footer">
