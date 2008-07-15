@@ -31,7 +31,7 @@
 		$fullPath = $pathToMailFolder . "\\" . $fileName;
 
 		$fp = fopen($fullPath, "w");
-		fwrite($fp, "$" $ip . "; " . $_POST["nameField"] . "; " . $_POST["emailField"] . "; " . $_POST["commentsTextArea"] . "$");
+		fwrite($fp, "$" . $ip . "; " . $_POST["nameField"] . "; " . $_POST["emailField"] . "; " . $_POST["commentsTextArea"] . "$");
 		fclose($fp);
 	}
 	else
