@@ -22,6 +22,12 @@
 			"}", "[", "]", ";", ":", "\"", "'", ",", "<", ">", ".", "/", "?"
 		);
 		$numberOfBytes = intval($_POST["numberOfBytes"]);
+		
+		if($numberOfBytes > PHP_INT_MAX)
+		{
+			$numberOfBytes = PHP_INT_MAX;
+		}
+		
 		$bytes = "";
 		
 		for($i = 0; $i < $numberOfBytes; $i++)
@@ -56,7 +62,7 @@
 <div class="hrDiv"></div>
 <div id="junkGeneratorFormContainer" class="junkGeneratorFormContainer">
 	<form id="junkGeneratorForm" name="junkGeneratorForm" action="/?page=junkgenerator" method="post">
-		<div>Please enter the number of bytes you would like to generate. Discover something interesting about this form. :-></div>
+		<div>Please enter the number of bytes you would like to generate. Discover something interesting about this form. :-> (limit is <?php echo PHP_INT_MAX; ?>.)</div>
 		<div class="hrSeparator"></div>
 		<div>
 			<label for="numberOfBytes">Number of Bytes&nbsp;</label>
