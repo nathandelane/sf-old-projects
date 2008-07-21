@@ -1,4 +1,6 @@
 <?php
+	set_time_limit(180);
+	
 	if($_POST["numberOfBytes"] && $_POST["numberOfBytes"] != "")
 	{
 ?>
