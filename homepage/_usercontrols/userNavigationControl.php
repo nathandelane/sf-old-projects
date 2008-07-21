@@ -6,5 +6,8 @@
 		<li>
 			<a id="contactMeLink" class="navigationLink" href="/?page=kontaktieren">Contact Me</a>
 		</li>
+		<li>
+			<a id="junkGeneratorLink" class="navigationLink" href="/?page=junkgenerator">Junk-Generator</a>
+		</li>
 	</ul>
 </div>

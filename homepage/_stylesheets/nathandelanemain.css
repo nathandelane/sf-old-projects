@@ -85,14 +85,12 @@ button {
 	float: left;
 	list-style-type: inline;
 	padding: 0px;
-	margin: 0px;
+	margin: 0px 10px 0px 0px;
 	height: 20px;
-	width: 80px;
 }
 
 a.navigationLink, a:link.navigationLink, a:active.navigationLink, a:visited.navigationLink {
 	height: 20px;
-	width: 80px;
 	float: left;
 	text-decoration: none;
 	color: #ffffff;
@@ -161,11 +159,29 @@ a:hover.nathandelaneLink {
 	margin: 10px 50px 10px 50px;
 }
 
+.junkGeneratorFormContainer {
+	width: 640px;
+	margin: 10px 50px 10px 50px;
+}
+
+.contentJunk {
+	width: 640px;
+	height: 440px;
+	margin: 0px;
+	overflow: auto;
+	float: left;
+}
+
 .footer {
 	width: 100%;
 	float: left;
 	text-align: center;
 	margin: 0px 0px 10px 0px;
+}
+
+/* Test Color Classes */
+.textRed {
+	color: #900000;
 }
 
 /* Image classes */
