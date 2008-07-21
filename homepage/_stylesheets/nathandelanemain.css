@@ -100,7 +100,6 @@ a.navigationLink, a:link.navigationLink, a:active.navigationLink, a:visited.navi
 a:hover.navigationLink {
 	text-decoration: none;
 	height: 20px;
-	width: 80px;
 	float: left;
 	color: #fa7200;
 	margin: 2px;
