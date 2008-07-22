@@ -9,5 +9,8 @@
 		<li>
 			<a id="junkGeneratorLink" class="navigationLink" href="/?page=junkgenerator">Junk-Generator</a>
 		</li>
+		<li>
+			<a id="resourcesLink" class="navigationLink" href="/?page=resources">Resources</a>
+		</li>
 	</ul>
 </div>

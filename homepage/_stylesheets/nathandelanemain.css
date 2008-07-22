@@ -171,6 +171,29 @@ a:hover.nathandelaneLink {
 	float: left;
 }
 
+.resourcesContentsContainer {
+	width: 740px;
+	margin: 5px;
+	float: left;
+}
+
+ul.linkList {
+	list-style-type: none;
+	width: 100%;
+	display: block;
+	margin: 0px;
+	padding: 0px;
+}
+
+ul.linkList li {
+	list-style-type: none;
+	width: 100%;
+	display: block;
+	margin: 5px 0px 5px 0px;
+	padding: 0px;
+	float: left;
+}
+
 .footer {
 	width: 100%;
 	float: left;
