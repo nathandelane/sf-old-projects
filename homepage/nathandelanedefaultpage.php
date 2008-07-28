@@ -3,7 +3,8 @@
 		"main" => "Home | Nathandelane, software architect, programmer, designer", 
 		"kontaktieren" => "Contact Me | Nathandelane", 
 		"junkgenerator" => "Junk Generator | Nathandelane", 
-		"tvgproject" => "The TVG Project | Nathandelane"
+		"tvgproject" => "The TVG Project | Nathandelane",
+		"resources" => "Resources | Nathandelane"
 	);
 	
 	$pageContent = "main";
