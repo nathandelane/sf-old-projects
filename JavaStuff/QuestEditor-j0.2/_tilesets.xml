@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tilesets>
+	<tileset name="Default" type="png" tilewidth="16" tileheight="16" tilesx="3" tilesy="3" path="_tilesets/default.png"/>
+</tilesets>
