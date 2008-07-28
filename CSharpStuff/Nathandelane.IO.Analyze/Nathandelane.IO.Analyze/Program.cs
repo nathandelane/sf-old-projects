@@ -49,7 +49,7 @@ namespace Nathandelane.IO.Analyze
 				}
 			}
 
-			if ((String.IsNullOrEmpty(characterClass) && String.IsNullOrEmpty(characterSet)) || String.IsNullOrEmpty(fileName))
+			if ((String.IsNullOrEmpty(characterClass) && String.IsNullOrEmpty(characterSet) && String.IsNullOrEmpty(pattern)) || String.IsNullOrEmpty(fileName))
 			{
 				throw new ArgumentException();
 			}
@@ -149,7 +149,7 @@ namespace Nathandelane.IO.Analyze
 			}
 			else if (args.Length >= 2)
 			{
-				if ((argument.Contains("-f") && (argument.Contains("-s") || argument.Contains("-c"))) || (argument.Contains("--file") && (argument.Contains("--set") || argument.Contains("--class"))))
+				if ((argument.Contains("-f") && (argument.Contains("-s") || argument.Contains("-c") || argument.Contains("-p"))) || (argument.Contains("--file") && (argument.Contains("--set") || argument.Contains("--class") || argument.Contains("--pattern"))))
 				{
 					try
 					{
@@ -171,13 +171,13 @@ namespace Nathandelane.IO.Analyze
 		{
 			Usage();
 
-			Console.WriteLine("\n-c, --class		characterclass	Class of characters to analyze against.");
+			Console.WriteLine("\n-c, --class    characterclass  Class of characters to analyze against.");
 			Console.WriteLine("                 Valid class names include alpha, numeric, alphanumeric, alphalower");
 			Console.WriteLine("                     alphaupper, alphanumericlower, alphanumericupper.");
-			Console.WriteLine("-f, --file		filename		Name of file to analyze.");
-			Console.WriteLine("-h, --help		help			Show help file.");
-			Console.WriteLine("-s, --set		characterset	Set of character to analyze against.");
-			Console.WriteLine("-t, --stream		streamformat	Print results in stream format.");
+			Console.WriteLine("-f, --file       filename        Name of file to analyze.");
+			Console.WriteLine("-h, --help       help            Show help file.");
+			Console.WriteLine("-s, --set        characterset    Set of character to analyze against.");
+			Console.WriteLine("-t, --stream     streamformat    Print results in stream format.");
 			Console.WriteLine("-r, --restrict   restrictoutput  Restricts the output to only characters used.");
 			Console.WriteLine("-p, --pattern    matchpattern    Searches text for a pattern.");
 		}
