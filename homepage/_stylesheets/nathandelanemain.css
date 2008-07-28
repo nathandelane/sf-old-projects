@@ -163,6 +163,12 @@ a:hover.nathandelaneLink {
 	margin: 10px 50px 10px 50px;
 }
 
+.tvgProjectContainer {
+	width: 740px;
+	margin: 5px;
+	float: left;
+}
+
 .contentJunk {
 	width: 640px;
 	height: 440px;
