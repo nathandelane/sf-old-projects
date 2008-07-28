@@ -3,10 +3,6 @@
 </div>
 <div class="hrDiv"></div>
 <div id="personalCalculatorOuterContainer" class="innerContainer">
-	<a id="personalCalculatorLogoLink" href="https://personalcalculator.dev.java.net/">
-		<img id="personalCalculatorLogo" class="projectLogo" alt="Personal Calculator logo" src="_images/personalcalculatorlogo.png"/>
-	</a>
-	<?php //https://personalcalculator.dev.java.net/ ?>
 	<h1>Personal Calculator</h1>
 	Personal Calculator or "PC" was developed in the tradition of other text-mode calculator programs. As of yet it doesn't include a full set of features that perhaps bc includes, but the direction is similar. One of the major differences in this calculator is that it is developed in Java.
 	<br/><br/>
@@ -16,9 +12,6 @@
 </div>
 <div class="hrSeparator"></div>
 <div id="adannaOuterContainer" class="innerContainer">
-	<a id="adannaLogoLink" href="http://code.google.com/p/adanna-scheduler/">
-		<img id="adannaLogo" class="projectLogo" alt="ADAnna - The Agent Database Agent Test Scheduler logo" src="_images/adannascheduler.png" style="background-image: url('_images/stripe_diagonalrightgray.png');"/>
-	</a>
 	<h1>Adanna</h1>
 	Adanna is a framework written in Ruby for running Watir tests written in Ruby. The framework includes three components, namely an interface to a database (both MySQL and MSSQL are currently supported), a server agent, and a client agent.
 	<br/><br/>
@@ -28,9 +21,6 @@
 </div>
 <div class="hrSeparator"></div>
 <div id="ufooarOuterContainer" class="innerContainer">
-	<a id="adannaCalculatorLogoLink" href="http://code.google.com/p/adanna-scheduler/">
-		<img id="adannaLogo" class="projectLogo" alt="U.F.O.O.A.R. - Uno For OpenOffice And Ruby" src="_images/ufooar.png"/>
-	</a>
 	<h1>Ufooar</h1>
 	U.F.O.O.A.R. stands for Uno For OpenOffice And Ruby. It is essentially an Uno-Ruby bridge for OpenOffice.org. This project stemmed out of my endeavors as a Software Automation Architect. Ufooar came as a result of some fellow testers wanting a way to use OpenOffice.org's Spreadsheet program as a data source for some of their tests. Ufooar has since grown into much more, and has become its own automation project.
 	<br/><br/>
