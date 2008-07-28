@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Nathandelane.IO.Analyze
 {
@@ -12,7 +13,9 @@ namespace Nathandelane.IO.Analyze
 			string fileName = "";
 			string characterClass = "";
 			string characterSet = "";
+			string pattern = "";
 			char token = '\n';
+			bool restrict = false;
 
 			for (int i = 0; i < args.Length; i++)
 			{
@@ -26,14 +29,23 @@ namespace Nathandelane.IO.Analyze
 					i++;
 					characterClass = args[i];
 				}
-				if (args[i].Equals("-s") || args[i].Equals("--set"))
+				else if (args[i].Equals("-s") || args[i].Equals("--set"))
 				{
 					i++;
 					characterSet = args[i];
 				}
-				if (args[i].Equals("-t") || args[i].Equals("--stream"))
+				else if (args[i].Equals("-p") || args[i].Equals("--pattern"))
+				{
+					i++;
+					pattern = args[i];
+				}
+				else if (args[i].Equals("-t") || args[i].Equals("--stream"))
 				{
 					token = ';';
+				}
+				else if (args[i].Equals("-r") || args[i].Equals("--restrict"))
+				{
+					restrict = true;
 				}
 			}
 
@@ -71,7 +83,7 @@ namespace Nathandelane.IO.Analyze
 								case "alphanumericlower":
 									characters = "abcdefghijklmnopqrstuvwxyz0123456789".ToCharArray();
 									break;
-								case "alphanumericuppoer":
+								case "alphanumericupper":
 									characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".ToCharArray();
 									break;
 							}
@@ -81,21 +93,38 @@ namespace Nathandelane.IO.Analyze
 							characters = characterSet.ToCharArray();
 						}
 
-						char[] fileContents = reader.ReadToEnd().ToCharArray();
-
-						foreach (char c in characters)
+						if (!String.IsNullOrEmpty(characterClass) || !String.IsNullOrEmpty(characterSet))
 						{
-							int count = 0;
+							char[] fileContents = reader.ReadToEnd().ToCharArray();
 
-							for (int i = 0; i < fileContents.Length; i++)
+							foreach (char c in characters)
 							{
-								if (fileContents[i] == c)
+								int count = 0;
+
+								for (int i = 0; i < fileContents.Length; i++)
 								{
-									count++;
+									if (fileContents[i] == c)
+									{
+										count++;
+									}
+								}
+
+								if (!restrict)
+								{
+									Console.Write("{0}:{1}{2}", c, count, token);
+								}
+								else if (restrict && count > 0)
+								{
+									Console.Write("{0}:{1}{2}", c, count, token);
 								}
 							}
+						}
+						else if (!String.IsNullOrEmpty(pattern))
+						{
+							Regex regex = new Regex(pattern);
+							string fileContents = reader.ReadToEnd();
 
-							Console.Write("{0}:{1}{2}", c, count, token);
+							Console.WriteLine("Pattern occurs {0} times.", regex.Matches(fileContents).Count);
 						}
 					}
 				}
@@ -143,15 +172,19 @@ namespace Nathandelane.IO.Analyze
 			Usage();
 
 			Console.WriteLine("\n-c, --class		characterclass	Class of characters to analyze against.");
+			Console.WriteLine("                 Valid class names include alpha, numeric, alphanumeric, alphalower");
+			Console.WriteLine("                     alphaupper, alphanumericlower, alphanumericupper.");
 			Console.WriteLine("-f, --file		filename		Name of file to analyze.");
 			Console.WriteLine("-h, --help		help			Show help file.");
 			Console.WriteLine("-s, --set		characterset	Set of character to analyze against.");
 			Console.WriteLine("-t, --stream		streamformat	Print results in stream format.");
+			Console.WriteLine("-r, --restrict   restrictoutput  Restricts the output to only characters used.");
+			Console.WriteLine("-p, --pattern    matchpattern    Searches text for a pattern.");
 		}
 
 		private static void Usage()
 		{
-			Console.WriteLine("\nUsage: Analyze -f fileName (-s characterSet|-c characterClass) [-h] [-t]");
+			Console.WriteLine("\nUsage: Analyze -f fileName (-s characterSet|-c characterClass|-p matchpattern) [-h] [-t] [-r]");
 		}
 	}
 }
