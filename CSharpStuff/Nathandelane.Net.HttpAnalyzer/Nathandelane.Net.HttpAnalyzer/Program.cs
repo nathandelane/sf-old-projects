@@ -26,6 +26,24 @@ namespace Nathandelane.Net.HttpAnalyzer
 			MakeRequest(request);
 		}
 
+		public Program(string url, string[] headers)
+		{
+			_rssFeedAddress = url;
+
+			// Create request
+			HttpWebRequest request = WebRequest.Create(_rssFeedAddress) as HttpWebRequest;
+			WebHeaderCollection headerCollection = new WebHeaderCollection();
+			foreach (string s in headers)
+			{
+				string[] hKeyValue = s.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+				headerCollection.Add(String.Format("{0}:{1}", hKeyValue[0], hKeyValue[1]));
+			}
+			request.Headers = headerCollection;
+
+			// Make request
+			MakeRequest(request);
+		}
+
 		public Program(string url, string user, string password)
 		{
 			_rssFeedAddress = url;
@@ -88,6 +106,82 @@ namespace Nathandelane.Net.HttpAnalyzer
 			MakeRequest(request);
 		}
 
+		public Program(string url, string user, string password, string[] headers)
+		{
+			_rssFeedAddress = url;
+			if (user.Contains("\\"))
+			{
+				_domainName = user.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[0];
+				_userAccount = user.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[1];
+			}
+			else
+			{
+				_domainName = url.Split(new string[] { "/" }, StringSplitOptions.RemoveEmptyEntries)[1];
+				_userAccount = user;
+			}
+			_password = password;
+
+			// Create request
+			HttpWebRequest request = WebRequest.Create(_rssFeedAddress) as HttpWebRequest;
+			if (String.IsNullOrEmpty(_domainName))
+			{
+				request.Credentials = new NetworkCredential(_userAccount, _password);
+			}
+			else
+			{
+				request.Credentials = new NetworkCredential(_userAccount, _password, _domainName);
+			}
+			WebHeaderCollection headerCollection = new WebHeaderCollection();
+			foreach (string s in headers)
+			{
+				string[] hKeyValue = s.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+				headerCollection.Add(String.Format("{0}:{1}", hKeyValue[0], hKeyValue[1]));
+			}
+			request.Headers = headerCollection;
+
+			// Make request
+			MakeRequest(request);
+		}
+
+		public Program(string url, string user, string password, string proxy, string[] headers)
+		{
+			_rssFeedAddress = url;
+			if (user.Contains("\\"))
+			{
+				_domainName = user.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[0];
+				_userAccount = user.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[1];
+			}
+			else
+			{
+				_domainName = "";
+				_userAccount = user;
+			}
+			_password = password;
+			_proxyServer = proxy;
+
+			// Create request
+			HttpWebRequest request = WebRequest.Create(_rssFeedAddress) as HttpWebRequest;
+			if (String.IsNullOrEmpty(_domainName))
+			{
+				request.Credentials = new NetworkCredential(_userAccount, _password);
+			}
+			else
+			{
+				request.Credentials = new NetworkCredential(_userAccount, _password, _domainName);
+			}
+			request.Proxy = new WebProxy(_proxyServer);
+			WebHeaderCollection headerCollection = new WebHeaderCollection();
+			foreach (string s in headers)
+			{
+				string[] hKeyValue = s.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+				headerCollection.Add(String.Format("{0}:{1}", hKeyValue[0], hKeyValue[1]));
+			}
+			request.Headers = headerCollection;
+
+			// Make request
+			MakeRequest(request);
+		}
+
 		public void MakeRequest(HttpWebRequest request)
 		{
 			request.Timeout = 30000;
@@ -125,7 +219,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 			string user = "";
 			string password = "";
 			string proxy = "";
-			bool[] settings = new bool[] { true, false };
+			string[] headers = new string[0];
 
 			if (arguments.Contains("-h") || arguments.Contains("--help"))
 			{
@@ -155,10 +249,10 @@ namespace Nathandelane.Net.HttpAnalyzer
 						i++;
 						proxy = args[i];
 					}
-					else if (args[i].Equals("-a"))
+					else if (args[i].Equals("-e") || args[i].Equals("--headers"))
 					{
-						//settings[0] = true;
-						//settings[1] = true;
+						i++;
+						headers = args[i].Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
 					}
 				}
 			}
@@ -195,15 +289,36 @@ namespace Nathandelane.Net.HttpAnalyzer
 				}
 				else if (String.IsNullOrEmpty(user) && String.IsNullOrEmpty(password) && String.IsNullOrEmpty(proxy))
 				{
-					new Program(uri);
+					if (headers.Length > 0)
+					{
+						new Program(uri, headers);
+					}
+					else
+					{
+						new Program(uri);
+					}
 				}
 				else if (String.IsNullOrEmpty(proxy))
 				{
-					new Program(uri, user, password);
+					if (headers.Length > 0)
+					{
+						new Program(uri, user, password, headers);
+					}
+					else
+					{
+						new Program(uri, user, password);
+					}
 				}
 				else
 				{
-					new Program(uri, user, password, proxy);
+					if (headers.Length > 0)
+					{
+						new Program(uri, user, password, proxy, headers);
+					}
+					else
+					{
+						new Program(uri, user, password, proxy);
+					}
 				}
 			}
 			catch (UriFormatException)
@@ -225,7 +340,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 		public static void Usage()
 		{
-			Console.WriteLine("Usage: HttpAnalyzer [-i] url [[-u] [domain\\]userAccount [-p] password] [[-x] proxy] [-h]");
+			Console.WriteLine("Usage: HttpAnalyzer [-i] url [[-u] [domain\\]userAccount [-p] password] [[-x] proxy] [-e headers (header=value;...)] [-h]");
 		}
 	}
 }

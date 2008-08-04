@@ -171,14 +171,16 @@ namespace Nathandelane.IO.Analyze
 		{
 			Usage();
 
-			Console.WriteLine("\n-c, --class    characterclass  Class of characters to analyze against.");
-			Console.WriteLine("                 Valid class names include alpha, numeric, alphanumeric, alphalower");
+			Console.WriteLine("\n-c, --class      characterclass  Class of characters to analyze against.");
+			Console.WriteLine("                     Valid class names include alpha, numeric, alphanumeric");
+			Console.WriteLine("                     or alphalower.");
 			Console.WriteLine("                     alphaupper, alphanumericlower, alphanumericupper.");
 			Console.WriteLine("-f, --file       filename        Name of file to analyze.");
 			Console.WriteLine("-h, --help       help            Show help file.");
 			Console.WriteLine("-s, --set        characterset    Set of character to analyze against.");
 			Console.WriteLine("-t, --stream     streamformat    Print results in stream format.");
-			Console.WriteLine("-r, --restrict   restrictoutput  Restricts the output to only characters used.");
+			Console.WriteLine("-r, --restrict   restrictoutput  Restricts the output to only characters ");
+			Console.WriteLine("                   used.");
 			Console.WriteLine("-p, --pattern    matchpattern    Searches text for a pattern.");
 		}
 
