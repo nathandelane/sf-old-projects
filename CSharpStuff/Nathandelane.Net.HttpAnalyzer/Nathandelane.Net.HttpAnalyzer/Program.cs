@@ -9,182 +9,83 @@ namespace Nathandelane.Net.HttpAnalyzer
 {
 	class Program
 	{
-		private string _rssFeedAddress;
-		private string _domainName;
-		private string _userAccount;
-		private string _password;
-		private string _proxyServer;
+		private static Dictionary<string, object> _parameters;
 
-		public Program(string url)
+		public Program()
 		{
-			_rssFeedAddress = url;
-			
-			// Create request
-			HttpWebRequest request = WebRequest.Create(_rssFeedAddress) as HttpWebRequest;
+			string domainName = "";
+			string userAccount = "";
+			string password = "";
+			string proxyServer = "";
+			int portNumber = 80;
 
-			// Make request
-			MakeRequest(request);
-		}
-
-		public Program(string url, string[] headers)
-		{
-			_rssFeedAddress = url;
-
-			// Create request
-			HttpWebRequest request = WebRequest.Create(_rssFeedAddress) as HttpWebRequest;
-			WebHeaderCollection headerCollection = new WebHeaderCollection();
-			foreach (string s in headers)
+			if (_parameters.ContainsKey("user"))
 			{
-				string[] hKeyValue = s.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
-				headerCollection.Add(String.Format("{0}:{1}", hKeyValue[0], hKeyValue[1]));
+				if ((_parameters["user"] as String).Contains("\\"))
+				{
+					domainName = (_parameters["user"] as String).Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[0];
+					userAccount = (_parameters["user"] as String).Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[1];
+				}
+				else
+				{
+					domainName = "";
+					userAccount = (_parameters["user"] as String);
+				}
 			}
-			request.Headers = headerCollection;
 
-			// Make request
-			MakeRequest(request);
-		}
+			if (_parameters.ContainsKey("password"))
+			{
+				password = _parameters["password"] as String;
+			}
 
-		public Program(string url, string user, string password)
-		{
-			_rssFeedAddress = url;
-			if(user.Contains("\\"))
+			if (_parameters.ContainsKey("proxy"))
 			{
-				_domainName = user.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[0];
-				_userAccount = user.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[1];
+				proxyServer = (_parameters["proxy"] as String).Split(new string[] { ":"}, StringSplitOptions.RemoveEmptyEntries)[0];
+
+				if ((_parameters["proxy"] as String).Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries).Length > 1)
+				{
+					portNumber = int.Parse((_parameters["proxy"] as String).Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries)[1]);
+				}
 			}
-			else
-			{
-				_domainName = url.Split(new string[] { "/"}, StringSplitOptions.RemoveEmptyEntries)[1];
-				_userAccount = user;
-			}
-			_password = password;
 
 			// Create request
-			HttpWebRequest request = WebRequest.Create(_rssFeedAddress) as HttpWebRequest;
-			if(String.IsNullOrEmpty(_domainName))
+			if (_parameters.ContainsKey("url"))
 			{
-				request.Credentials = new NetworkCredential(_userAccount, _password);
+				HttpWebRequest request = WebRequest.Create(_parameters["url"] as String) as HttpWebRequest;
+				if (String.IsNullOrEmpty(domainName))
+				{
+					request.Credentials = new NetworkCredential(userAccount, password);
+				}
+				else
+				{
+					request.Credentials = new NetworkCredential(userAccount, password, domainName);
+				}
+
+				if (!String.IsNullOrEmpty(proxyServer))
+				{
+					request.Proxy = new WebProxy(proxyServer, portNumber);
+				}
+
+				WebHeaderCollection headerCollection = new WebHeaderCollection();
+				foreach (string s in (_parameters["headers"] as string[]))
+				{
+					string[] hKeyValue = s.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+					headerCollection.Add(String.Format("{0}:{1}", hKeyValue[0], hKeyValue[1]));
+				}
+				request.Headers = headerCollection;
+
+				// Make request
+				MakeRequest(request);
 			}
 			else
 			{
-				request.Credentials = new NetworkCredential(_userAccount, _password, _domainName);
+				throw new WebException();
 			}
-
-			// Make request
-			MakeRequest(request);
-		}
-
-		public Program(string url, string user, string password, string proxy)
-		{
-			_rssFeedAddress = url;
-			if (user.Contains("\\"))
-			{
-				_domainName = user.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[0];
-				_userAccount = user.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[1];
-			}
-			else
-			{
-				_domainName = "";
-				_userAccount = user;
-			}
-			_password = password;
-			_proxyServer = proxy;
-
-			// Create request
-			HttpWebRequest request = WebRequest.Create(_rssFeedAddress) as HttpWebRequest;
-			if (String.IsNullOrEmpty(_domainName))
-			{
-				request.Credentials = new NetworkCredential(_userAccount, _password);
-			}
-			else
-			{
-				request.Credentials = new NetworkCredential(_userAccount, _password, _domainName);
-			}
-			request.Proxy = new WebProxy(_proxyServer);
-
-			// Make request
-			MakeRequest(request);
-		}
-
-		public Program(string url, string user, string password, string[] headers)
-		{
-			_rssFeedAddress = url;
-			if (user.Contains("\\"))
-			{
-				_domainName = user.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[0];
-				_userAccount = user.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[1];
-			}
-			else
-			{
-				_domainName = url.Split(new string[] { "/" }, StringSplitOptions.RemoveEmptyEntries)[1];
-				_userAccount = user;
-			}
-			_password = password;
-
-			// Create request
-			HttpWebRequest request = WebRequest.Create(_rssFeedAddress) as HttpWebRequest;
-			if (String.IsNullOrEmpty(_domainName))
-			{
-				request.Credentials = new NetworkCredential(_userAccount, _password);
-			}
-			else
-			{
-				request.Credentials = new NetworkCredential(_userAccount, _password, _domainName);
-			}
-			WebHeaderCollection headerCollection = new WebHeaderCollection();
-			foreach (string s in headers)
-			{
-				string[] hKeyValue = s.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
-				headerCollection.Add(String.Format("{0}:{1}", hKeyValue[0], hKeyValue[1]));
-			}
-			request.Headers = headerCollection;
-
-			// Make request
-			MakeRequest(request);
-		}
-
-		public Program(string url, string user, string password, string proxy, string[] headers)
-		{
-			_rssFeedAddress = url;
-			if (user.Contains("\\"))
-			{
-				_domainName = user.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[0];
-				_userAccount = user.Split(new string[] { "\\" }, StringSplitOptions.RemoveEmptyEntries)[1];
-			}
-			else
-			{
-				_domainName = "";
-				_userAccount = user;
-			}
-			_password = password;
-			_proxyServer = proxy;
-
-			// Create request
-			HttpWebRequest request = WebRequest.Create(_rssFeedAddress) as HttpWebRequest;
-			if (String.IsNullOrEmpty(_domainName))
-			{
-				request.Credentials = new NetworkCredential(_userAccount, _password);
-			}
-			else
-			{
-				request.Credentials = new NetworkCredential(_userAccount, _password, _domainName);
-			}
-			request.Proxy = new WebProxy(_proxyServer);
-			WebHeaderCollection headerCollection = new WebHeaderCollection();
-			foreach (string s in headers)
-			{
-				string[] hKeyValue = s.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
-				headerCollection.Add(String.Format("{0}:{1}", hKeyValue[0], hKeyValue[1]));
-			}
-			request.Headers = headerCollection;
-
-			// Make request
-			MakeRequest(request);
 		}
 
 		public void MakeRequest(HttpWebRequest request)
 		{
-			request.Timeout = 30000;
+			request.Timeout = (int)_parameters["timeout"];
 			request.AuthenticationLevel = System.Net.Security.AuthenticationLevel.MutualAuthRequested;
 			request.ImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Impersonation;
 
@@ -214,111 +115,60 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 		static void Main(string[] args)
 		{
-			string arguments = String.Join(" ", args);
-			string uri = "";
-			string user = "";
-			string password = "";
-			string proxy = "";
-			string[] headers = new string[0];
+			_parameters = new Dictionary<string, object>();
 
-			if (arguments.Contains("-h") || arguments.Contains("--help"))
-			{
-				Help();
-			}
-			else if (arguments.Contains("-i") || arguments.Contains("-u") || arguments.Contains("-p") || arguments.Contains("-x") || arguments.Contains("-a"))
-			{
-				for (int i = 0; i < args.Length; i++)
-				{
-					if (args[i].Equals("-i") || args[i].Equals("--uri"))
-					{
-						i++;
-						uri = args[i];
-					}
-					else if (args[i].Equals("-u") || args[i].Equals("--user"))
-					{
-						i++;
-						user = args[i];
-					}
-					else if (args[i].Equals("-p") || args[i].Equals("--password"))
-					{
-						i++;
-						password = args[i];
-					}
-					else if (args[i].Equals("-x") || args[i].Equals("--proxy"))
-					{
-						i++;
-						proxy = args[i];
-					}
-					else if (args[i].Equals("-e") || args[i].Equals("--headers"))
-					{
-						i++;
-						headers = args[i].Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-					}
-				}
-			}
-			else
-			{
-				if (args.Length == 1)
-				{
-					uri = args[0];
-				}
-				else if (args.Length == 3)
-				{
-					uri = args[0];
-					user = args[1];
-					password = args[2];
-				}
-				else if (args.Length == 4)
-				{
-					uri = args[0];
-					user = args[1];
-					password = args[2];
-					proxy = args[3];
-				}
-				else
-				{
-					Console.WriteLine("Invalid number of arguments.");
-				}
-			}
+			string arguments = String.Join(" ", args);
+
+			_parameters.Add("timeout", 30000);
+			_parameters.Add("headers", new string[0]);
 
 			try
 			{
-				if (String.IsNullOrEmpty(uri) || ((String.IsNullOrEmpty(user) && !String.IsNullOrEmpty(password)) || (!String.IsNullOrEmpty(user) && String.IsNullOrEmpty(password))))
+				if (args.Length == 0)
 				{
-					Usage();
+					Help();
 				}
-				else if (String.IsNullOrEmpty(user) && String.IsNullOrEmpty(password) && String.IsNullOrEmpty(proxy))
+				else if (arguments.Contains("-h") || arguments.Contains("--help"))
 				{
-					if (headers.Length > 0)
-					{
-						new Program(uri, headers);
-					}
-					else
-					{
-						new Program(uri);
-					}
+					Help();
 				}
-				else if (String.IsNullOrEmpty(proxy))
+				else if (arguments.Contains("-i") || arguments.Contains("-u") || arguments.Contains("-p") || arguments.Contains("-x") || arguments.Contains("-a"))
 				{
-					if (headers.Length > 0)
+					for (int i = 0; i < args.Length; i++)
 					{
-						new Program(uri, user, password, headers);
+						if (args[i].Equals("-i") || args[i].Equals("--uri"))
+						{
+							i++;
+							_parameters.Add("url", args[i]);
+						}
+						else if (args[i].Equals("-u") || args[i].Equals("--user"))
+						{
+							i++;
+							_parameters.Add("user", args[i]);
+						}
+						else if (args[i].Equals("-p") || args[i].Equals("--password"))
+						{
+							i++;
+							_parameters.Add("password", args[i]);
+						}
+						else if (args[i].Equals("-x") || args[i].Equals("--proxy"))
+						{
+							i++;
+							_parameters.Add("proxy", args[i]);
+						}
+						else if (args[i].Equals("-e") || args[i].Equals("--headers"))
+						{
+							i++;
+							_parameters["headers"] = args[i].Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+						}
+						else if (args[i].Equals("-t") || args[i].Equals("--timeout"))
+						{
+							i++;
+							_parameters["timeout"] = int.Parse(args[i]);
+						}
 					}
-					else
-					{
-						new Program(uri, user, password);
-					}
-				}
-				else
-				{
-					if (headers.Length > 0)
-					{
-						new Program(uri, user, password, proxy, headers);
-					}
-					else
-					{
-						new Program(uri, user, password, proxy);
-					}
+
+					new Program();
 				}
 			}
 			catch (UriFormatException)
@@ -340,7 +190,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 		public static void Usage()
 		{
-			Console.WriteLine("Usage: HttpAnalyzer [-i] url [[-u] [domain\\]userAccount [-p] password] [[-x] proxy] [-e headers (header=value;...)] [-h]");
+			Console.WriteLine("Usage: HttpAnalyzer -i url [-u [domain\\]userAccount -p password] [-x proxy:port] [-e headers (header=value;...)] [-t timeoutInMillis] [-h]");
 		}
 	}
 }
