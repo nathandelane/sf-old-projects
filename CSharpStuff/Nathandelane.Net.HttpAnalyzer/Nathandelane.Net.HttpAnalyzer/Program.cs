@@ -91,7 +91,37 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 			WebResponse response = request.GetResponse();
 
-			ShowHeaders(response);
+			if (!_parameters.ContainsKey("return"))
+			{
+				ShowHeaders(response);
+			}
+			else if (_parameters.ContainsKey("return"))
+			{
+				foreach (string r in (_parameters["return"] as string[]))
+				{
+					switch (r)
+					{
+						case "request":
+							ShowHeaders(request);
+							break;
+						case "response":
+							ShowHeaders(response);
+							break;
+						case "data":
+							ShowContent(response);
+							break;
+					}
+				}
+			}
+		}
+
+		public void ShowHeaders(WebRequest request)
+		{
+			Console.WriteLine("Headers\n-------");
+			foreach (string header in request.Headers.AllKeys)
+			{
+				Console.WriteLine("{0}: {1}", header, request.Headers[header]);
+			}
 		}
 
 		public void ShowHeaders(WebResponse response)
@@ -165,6 +195,11 @@ namespace Nathandelane.Net.HttpAnalyzer
 						{
 							i++;
 							_parameters["timeout"] = int.Parse(args[i]);
+						}
+						else if (args[i].Equals("-r") || args[i].Equals("--return"))
+						{
+							i++;
+							_parameters.Add("return", args[i].Split(new string[] {";"}, StringSplitOptions.RemoveEmptyEntries));
 						}
 					}
 
