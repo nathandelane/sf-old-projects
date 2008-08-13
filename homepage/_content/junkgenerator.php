@@ -14,6 +14,7 @@
 		//if(preg_match($engineeringNotationRegex, $_POST["numberOfBytes"])
 		//{
 		//}
+		/*
 		$allowedBytes = array(
 			"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
 			"n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
@@ -21,8 +22,9 @@
 			"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
 			"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "`", "~", "!",
 			"#", "$", "%", "^", "&", "8", "(", ")", "-", "_", "=", "+", "{",
-			"}", "[", "]", ";", ":", "\"", "'", ",", "<", ">", ".", "/", "?"
-		);
+			"}", "[", "]", ";", ":", "\"", "'", ",", "<", ">", ".", "/", "?",
+			"\\", " ", "\n", "|"
+		);*/
 		$numberOfBytes = intval($_POST["numberOfBytes"]);
 		
 		if($numberOfBytes > PHP_INT_MAX)
@@ -31,13 +33,27 @@
 		}
 		
 		$bytes = "";
+		$lastByte = '';
+		$iCounter = 0;
 		
 		for($i = 0; $i < $numberOfBytes; $i++)
 		{
-			$bytes = $bytes . $allowedBytes[rand(0, (sizeof($allowedBytes)))];
+			$thisByte = (char)rand(32, 126);//$allowedBytes[rand(0, 94)];
+			
+			if($thisByte != $lastByte)
+			{
+				$bytes .=  $thisByte;
+				$lastByte = $thisByte;
+			}
+			else
+			{
+				$i--;
+			}
+			
+			$iCounter++;
 		}
 ?>
-	Generated text is <?php echo $numberOfBytes; ?> bytes long.
+	Generated text is <?php echo $iCounter; ?> bytes long.
 </div>
 <div class="hrDiv"></div>
 <div id="junkGeneratorFormContainer" class="junkGeneratorFormContainer">
