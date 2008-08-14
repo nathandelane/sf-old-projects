@@ -95,27 +95,52 @@ namespace Nathandelane.IO.Analyze
 
 						if (!String.IsNullOrEmpty(characterClass) || !String.IsNullOrEmpty(characterSet))
 						{
-							char[] fileContents = reader.ReadToEnd().ToCharArray();
-
-							foreach (char c in characters)
+							if (characterClass.ToLower().Equals("ascii"))
 							{
-								int count = 0;
+								SortedDictionary<char, int> charactersFound = new SortedDictionary<char, int>();
+								char[] fileContents = reader.ReadToEnd().ToCharArray();
 
 								for (int i = 0; i < fileContents.Length; i++)
 								{
-									if (fileContents[i] == c)
+									if (!charactersFound.ContainsKey(fileContents[i]))
 									{
-										count++;
+										charactersFound.Add(fileContents[i], 1);
 									}
-								}
+									else
+									{
+										charactersFound[fileContents[i]]++;
+									}
+								}					
 
-								if (!restrict)
+								foreach (char c in charactersFound.Keys)
 								{
-									Console.Write("{0}:{1}{2}", c, count, token);
+									Console.WriteLine("{0}({1}):{2}", c, (int)c, charactersFound[c]);
 								}
-								else if (restrict && count > 0)
+							}
+							else
+							{
+								char[] fileContents = reader.ReadToEnd().ToCharArray();
+
+								foreach (char c in characters)
 								{
-									Console.Write("{0}:{1}{2}", c, count, token);
+									int count = 0;
+
+									for (int i = 0; i < fileContents.Length; i++)
+									{
+										if (fileContents[i] == c)
+										{
+											count++;
+										}
+									}
+
+									if (!restrict)
+									{
+										Console.Write("{0}:{1}{2}", c, count, token);
+									}
+									else if (restrict && count > 0)
+									{
+										Console.Write("{0}:{1}{2}", c, count, token);
+									}
 								}
 							}
 						}
@@ -174,7 +199,7 @@ namespace Nathandelane.IO.Analyze
 			Console.WriteLine("\n-c, --class      characterclass  Class of characters to analyze against.");
 			Console.WriteLine("                     Valid class names include alpha, numeric, alphanumeric");
 			Console.WriteLine("                     or alphalower.");
-			Console.WriteLine("                     alphaupper, alphanumericlower, alphanumericupper.");
+			Console.WriteLine("                     alphaupper, alphanumericlower, alphanumericupper, ascii.");
 			Console.WriteLine("-f, --file       filename        Name of file to analyze.");
 			Console.WriteLine("-h, --help       help            Show help file.");
 			Console.WriteLine("-s, --set        characterset    Set of character to analyze against.");
