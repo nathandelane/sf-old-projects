@@ -162,7 +162,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 		public void MakeRequest(HttpWebRequest request)
 		{
-			request.Timeout = int.Parse(_parameters["timeout"] as String);
+			request.Timeout = (int)_parameters["timeout"];
 			request.AuthenticationLevel = System.Net.Security.AuthenticationLevel.MutualAuthRequested;
 			request.ImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Impersonation;
 
