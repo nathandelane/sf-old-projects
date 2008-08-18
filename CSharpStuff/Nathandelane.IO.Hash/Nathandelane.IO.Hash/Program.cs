@@ -45,34 +45,60 @@ namespace Nathandelane.IO.Hash
 					if (File.Exists(fileName))
 					{
 						FileStream fs = new FileStream(fileName, FileMode.Open);
+						HashAlgorithm algorithm = null;
 
 						switch (hashMethod)
 						{
+							case "hmac":
+								algorithm = HMAC.Create();
+								break;
+							case "hmacmd5":
+								algorithm = HMACMD5.Create();
+								break;
+							case "hmacripemd160":
+								algorithm = HMACRIPEMD160.Create();
+								break;
+							case "hmacsha1":
+								algorithm = HMACSHA1.Create();
+								break;
+							case "hmacsha256":
+								algorithm = HMACSHA256.Create();
+								break;
+							case "hmacsha384":
+								algorithm = HMACSHA384.Create();
+								break;
+							case "hmacsha512":
+								algorithm = HMACSHA512.Create();
+								break;
 							case "md5":
-								MD5 md5 = MD5.Create();
-
-								foreach (byte b in md5.ComputeHash(fs))
-								{
-									result += ByteToHex(b);
-								}
-
-								Console.WriteLine("Result: {0}", result);
+								algorithm = MD5.Create();
 								break;
 							case "sha1":
-								SHA1 sha1 = SHA1.Create();
-
-								foreach (byte b in sha1.ComputeHash(fs))
-								{
-									result += ByteToHex(b);
-								}
-
-								Console.WriteLine("Result: {0}", result);
+								algorithm = SHA1Managed.Create();
+								break;
+							case "sha256":
+								algorithm = SHA256Managed.Create();
+								break;
+							case "sha384":
+								algorithm = SHA384Managed.Create();
+								break;
+							case "sha512":
+								algorithm = SHA512Managed.Create();
 								break;
 							case "simple":
-								int res = fs.GetHashCode();
-								Console.WriteLine("Result: {0}", res);
+								result = String.Format("{0}", fs.GetHashCode());
 								break;
 						}
+
+						if (algorithm != null)
+						{
+							foreach (byte b in algorithm.ComputeHash(fs))
+							{
+								result += ByteToHex(b);
+							}
+						}
+
+						Console.WriteLine("Result: {0}", result);
 					}
 					else
 					{
@@ -82,34 +108,60 @@ namespace Nathandelane.IO.Hash
 				else if (!String.IsNullOrEmpty(stringToBeHashed))
 				{
 					ASCIIEncoding enc = new ASCIIEncoding();
+					HashAlgorithm algorithm = null;
 
 					switch (hashMethod)
 					{
+						case "hmac":
+							algorithm = HMAC.Create();
+							break;
+						case "hmacmd5":
+							algorithm = HMACMD5.Create();
+							break;
+						case "hmacripemd160":
+							algorithm = HMACRIPEMD160.Create();
+							break;
+						case "hmacsha1":
+							algorithm = HMACSHA1.Create();
+							break;
+						case "hmacsha256":
+							algorithm = HMACSHA256.Create();
+							break;
+						case "hmacsha384":
+							algorithm = HMACSHA384.Create();
+							break;
+						case "hmacsha512":
+							algorithm = HMACSHA512.Create();
+							break;
 						case "md5":
-							MD5 md5 = MD5.Create();
-
-							foreach (byte b in md5.ComputeHash(enc.GetBytes(stringToBeHashed)))
-							{
-								result += ByteToHex(b);
-							}
-
-							Console.WriteLine("Result: {0}", result);
+							algorithm = MD5.Create();
 							break;
 						case "sha1":
-							SHA1 sha1 = SHA1.Create();
-
-							foreach (byte b in sha1.ComputeHash(enc.GetBytes(stringToBeHashed)))
-							{
-								result += ByteToHex(b);
-							}
-
-							Console.WriteLine("Result: {0}", result);
+							algorithm = SHA1Managed.Create();
+							break;
+						case "sha256":
+							algorithm = SHA256Managed.Create();
+							break;
+						case "sha384":
+							algorithm = SHA384Managed.Create();
+							break;
+						case "sha512":
+							algorithm = SHA512Managed.Create();
 							break;
 						case "simple":
-							int res = stringToBeHashed.GetHashCode();
-							Console.WriteLine("Result: {0}", res);
+							result = String.Format("{0}", stringToBeHashed.GetHashCode());
 							break;
 					}
+
+					if (algorithm != null)
+					{
+						foreach (byte b in algorithm.ComputeHash(ASCIIEncoding.ASCII.GetBytes(stringToBeHashed)))
+						{
+							result += ByteToHex(b);
+						}
+					}
+
+					Console.WriteLine("Result: {0}", result);
 				}
 			}
 		}
