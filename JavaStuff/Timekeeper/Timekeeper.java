@@ -5,18 +5,22 @@ import java.util.*;
 public class Timekeeper extends JFrame
 {
 	private int _numScreens;
+	private int _width;
+	private int _height;
 
 	public Timekeeper(int numScreens)
 	{
 		_numScreens = numScreens;
+		_width = 250;
+		_height = 20;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(210, 20);
+		setSize(_width, _height);
 		setUndecorated(true);
 
 		Rectangle screen = getGraphicsConfiguration().getBounds();
 
-		setLocation(screen.width * _numScreens - 210, screen.height - 20);
+		setLocation(screen.width * _numScreens - _width, screen.height - _height);
 		setLayout(new BorderLayout());
 
 		JLabel timeLabel = new JLabel("00:00");
@@ -32,7 +36,8 @@ public class Timekeeper extends JFrame
 			int hour = cal.get(Calendar.HOUR_OF_DAY);
 			int minute = cal.get(Calendar.MINUTE);
 			int second = cal.get(Calendar.SECOND);
-			timeLabel.setText("" + timeToBool(hour) + ":" + timeToBool(minute) + ":" + timeToBool(second));
+			int date = cal.get(Calendar.DAY_OF_MONTH);
+			timeLabel.setText("" + timeToBool(hour) + ":" + timeToBool(minute) + ":" + timeToBool(second) + " [" + timeToBool(date) + "]");
 
 			try {
 				Thread.sleep(250);
