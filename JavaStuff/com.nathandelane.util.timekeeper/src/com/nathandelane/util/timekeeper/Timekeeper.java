@@ -1,3 +1,5 @@
+package com.nathandelane.util.timekeeper;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
@@ -18,29 +20,7 @@ public class Timekeeper extends JFrame
 		_height = 20;
 		_events = new Hashtable<String, String>();
 		
-		int length = 0;
-		
-		try {
-			FileInputStream fis = new FileInputStream("Timekeeper.events");
-			BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
-			String line = "0";
-			
-			while((line = reader.readLine()) != null) {
-				String parts[] = line.split("~=");
-				
-				if(parts.length == 2) {
-					_events.put(parts[0], parts[1]);
-				}
-			}
-			
-			length = _events.size();
-			
-			System.out.println(length);
-			
-			reader.close();
-			fis.close();
-		} catch(IOException e) {
-		}
+		int length = getEvents("Timekeeper.events");
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(_width, _height);
@@ -58,6 +38,13 @@ public class Timekeeper extends JFrame
 		
 		setVisible(true);
 		
+		String eventsMD5Sum = "";
+		
+		try {
+			eventsMD5Sum = getMD5Checksum("Timekeeper.events");
+		} catch(Exception e) {
+		}
+		
 		while(true)
 		{
 			Calendar cal = Calendar.getInstance();
@@ -71,14 +58,20 @@ public class Timekeeper extends JFrame
 			for(int i = 0; i < length; i++) {
 				System.out.print(timestamp + " == ");
 				System.out.println(_events.get(timestamp));
-				if(_events.containsKey(timestamp)) {
+				if(_events.containsKey(timestamp) || _events.containsKey(timestamp + " [" + timeToBool(date) + "]")) {
 					JOptionPane.showMessageDialog(null, _events.get(timestamp));
 				}
 			}
 			
 			try {
+				if(!getMD5Checksum("Timekeeper.events").equals(eventsMD5Sum)) {
+					length = getEvents("Timekeeper.events");
+					eventsMD5Sum = getMD5Checksum("Timekeeper.events");
+				}
+				
 				Thread.sleep(250);
 			} catch(InterruptedException e) {
+			} catch(Exception e) {
 			}
 		}
 	}
@@ -123,6 +116,45 @@ public class Timekeeper extends JFrame
 		fis.close();
 		
 		return md.digest();
+	}
+	
+	private String getMD5Checksum(String filename) throws IOException, NoSuchAlgorithmException {
+		String retVal = "";
+		byte[] bytes = createChecksum(filename);
+		
+		for(int i = 0; i < bytes.length; i++) {
+			retVal += Integer.toString(bytes[i], 16);
+		}
+		
+		return retVal;
+	}
+	
+	private int getEvents(String filename) {
+		int length = 0;
+		
+		try {
+			FileInputStream fis = new FileInputStream("Timekeeper.events");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+			String line = "0";
+			
+			while((line = reader.readLine()) != null) {
+				String parts[] = line.split("~=");
+				
+				if(parts.length == 2) {
+					_events.put(parts[0], parts[1]);
+				}
+			}
+			
+			length = _events.size();
+			
+			System.out.println(length);
+			
+			reader.close();
+			fis.close();
+		} catch(IOException e) {
+		}
+		
+		return length;
 	}
 
 	public static void main(String[] args)
