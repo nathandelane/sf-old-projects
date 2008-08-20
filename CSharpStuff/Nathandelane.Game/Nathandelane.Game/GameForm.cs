@@ -35,9 +35,6 @@ namespace Nathandelane.Game
 			LoadHeightDataFromFile();
 			InitializeDevice();
 			CameraPositioning();
-			//VertexDeclaration();
-			//IndicesDeclaration();
-			//LoadHeightData();
 			HeightVertexDeclaration();
 			HeightIndicesDeclaration();
 
@@ -150,58 +147,5 @@ namespace Nathandelane.Game
 			_device.RenderState.CullMode = Cull.None;
 		}
 
-		private void VertexDeclaration()
-		{
-			_vertexBuffer = new VertexBuffer(typeof(CustomVertex.PositionColored), 5, _device, Usage.Dynamic | Usage.WriteOnly, CustomVertex.PositionColored.Format, Pool.Default);
-
-			_vertices = new CustomVertex.PositionColored[5];
-			_vertices[0].Position = new Vector3(0f, 0f, 0f);
-			_vertices[0].Color = Color.White.ToArgb();
-			_vertices[1].Position = new Vector3(5f, 0f, 0f);
-			_vertices[1].Color = Color.White.ToArgb();
-			_vertices[2].Position = new Vector3(10f, 0f, 0f);
-			_vertices[2].Color = Color.White.ToArgb();
-			_vertices[3].Position = new Vector3(5f, 5f, 0f);
-			_vertices[3].Color = Color.White.ToArgb();
-			_vertices[4].Position = new Vector3(10f, 5f, 0f);
-			_vertices[4].Color = Color.White.ToArgb();
-
-			_vertexBuffer.SetData(_vertices, 0, LockFlags.None);
-		}
-
-		private void IndicesDeclaration()
-		{
-			_indexBuffer = new IndexBuffer(typeof(int), 6, _device, Usage.WriteOnly, Pool.Default);
-			_indices = new int[6];
-
-			_indices[0] = 3;
-			_indices[1] = 1;
-			_indices[2] = 0;
-			_indices[3] = 4;
-			_indices[4] = 2;
-			_indices[5] = 1;
-
-			_indexBuffer.SetData(_indices, 0, LockFlags.None);
-		}
-
-		private void LoadHeightData()
-		{
-			_heightData = new int[_width, _height];
-
-			_heightData[0, 0] = 0;
-			_heightData[1, 0] = 0;
-			_heightData[2, 0] = 0;
-			_heightData[3, 0] = 0;
-
-			_heightData[0, 1] = 1;
-			_heightData[1, 1] = 0;
-			_heightData[2, 1] = 2;
-			_heightData[3, 1] = 2;
-
-			_heightData[0, 2] = 2;
-			_heightData[1, 2] = 2;
-			_heightData[2, 2] = 4;
-			_heightData[3, 2] = 3;
-		}
 	}
 }
