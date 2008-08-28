@@ -1,0 +1,15 @@
+What: Flux (working title)
+Genre: "Space" simulator
+Platform: PC
+
+Introduction:
+Flux is going to be a mmorpg that takes place in an (alternative) future. The world as we know it has collapsed, leaving nothing but a few survivors still clinging on to the harsh lives they now live.
+The planet is no longer green and lush, or even a planet. All that remains are floating islands, that circle arround the old planet core. The few survivors live on these islands and use various kinds of transport to travel from one island to another.
+Two completely diffrent factions are to be found living on these islands, The church and the Trade Federation.
+
+Technology:
+The technology the survivors have can be put in two diffrent classes; Ancient and combined. Ancient technology is the technology that uncoverd by the earthshocks that went along with the disaster. The origin of this technology is unknown. Rumours go that this technology is that of an ancient race that has long left this world. This ancient technology is combined aswell, but with technology that was left after the disaster. Therfore it is "pure" technology.
+Combined technology is mostly former technology combined with what is now called "Magic". After the disaster, strange occurences started; People gaining all kinds of powers and strange mutations. These talents have been combined with what technology was still left the combined technology was born. 
+
+The world:
+As mentioned before, the world is not an actual world anymore. All that remains are groups small (and some larger) flying islands. Ontop of these islands groups and (in case of the larger islands) villages have emerged. The flying machines that are vital to the economy of the "world" are constructed. The islands themselves are constantly on the move.

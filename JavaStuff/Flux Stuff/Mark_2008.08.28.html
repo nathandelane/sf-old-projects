@@ -1,0 +1,75 @@
+<html>
+<head><title>mark_schrijver@hotmail.com</title></head>
+<body><h1>Conversation with mark_schrijver@hotmail.com</h1>
+<font color="#cc0000"><font size="2">(12:01:40 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">hohoi</font></font></font><br>
+<font size="2"><font color="#204a87">(12:01:49 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> hello</font><br>
+<font color="#cc0000"><font size="2">(12:11:24 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">btw. I did some research into the jme Gamestate</font></font></font><br>
+<font color="#cc0000"><font size="2">(12:11:46 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">and as far as I can tell, you need to extend BasicGamestate and just add Nodes to the rootnode</font></font></font><br>
+<font color="#cc0000"><font size="2">(12:12:05 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">then you create a StandardGame and add your extended gamestate</font></font></font><br>
+<font size="2"><font color="#204a87">(12:12:17 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> Ok thanks. I hadn't gotten that deep yet</font><br>
+<font color="#cc0000"><font size="2">(12:12:48 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">np</font></font></font><br>
+<font color="#cc0000"><font size="2">(12:13:00 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">oh, I also gave you msn to the other member of our team, Jaime</font></font></font><br>
+<font color="#cc0000"><font size="2">(12:14:27 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">he might contact you later as well</font></font></font><br>
+<font size="2"><font color="#204a87">(12:14:40 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> No problem.</font><br>
+<font color="#cc0000"><font size="2">(2:34:07 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">there, enough WoW for the night...</font></font></font><br>
+<font size="2"><font color="#204a87">(2:34:26 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> ha ha I'll talk o you later then</font><br>
+<font color="#cc0000"><font size="2">(2:34:43 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">nah, not logging just yet</font></font></font><br>
+<font color="#cc0000"><font size="2">(2:34:47 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">just done wth WoW for now</font></font></font><br>
+<font color="#cc0000"><font size="2">(2:34:56 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">died 4 times in 5 minutes...</font></font></font><br>
+<font size="2"><font color="#204a87">(2:35:23 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> I haven't ever played WoW -- I've played other mmorpg games</font><br>
+<font color="#cc0000"><font size="2">(2:38:28 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">btw. this should work as a test gamestate:</font></font></font><br>
+<font color="#cc0000"><font size="2">(2:38:29 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">import com.jme.scene.Spatial;</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">import com.jmex.game.state.BasicGameState;</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial"><br>public class MyState extends BasicGameState {</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">public class MyState extends BasicGameState {</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial"><br>    public MapperState(final String name) {</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">    public MapperState(final String name) {</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">        super(name);</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">        initState(configXml);</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">    }</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial"><br>    private void initState() {</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">    private void initState() {</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">        </font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">	for (String mapItemName : mapItemNames) {</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">            final Spatial spatial = new Sphere(this.getName() + &quot; sphere&quot;, 10, 10, 25);</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">            // attach node to scene graph</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">            spatial.updateRenderState();</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">            rootNode.attachChild(spatial);</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">        }</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">    }</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial"><br>}</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">}</font></font></font><br>
+<font color="#cc0000"><font size="2">(2:38:56 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">*you need to fix the constructor I see...</font></font></font><br>
+<font color="#cc0000"><font size="2">(2:39:05 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">I've been fiddling around with it at work today</font></font></font><br>
+<font color="#cc0000"><font size="2">(2:39:58 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">and this is the main method to create the game:</font></font></font><br>
+<font color="#cc0000"><font size="2">(2:39:59 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">public static void main(final String[] args) {</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">        // Create our StandardGame with default settings</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">        final StandardGame game = new StandardGame(&quot;TestMapperState&quot;);</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">        game.start();</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial"><br>        // Lets add a game state behind with some content</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">        // Lets add a game state behind with some content</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">        MapperState mapperState;</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">        try {</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">            mapperState = new MapperState(&quot;BasicGameState&quot;);</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">            GameStateManager.getInstance().attachChild(mapperState);</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">            mapperState.setActive(true);</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">        } catch (MapperException e) {</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">            e.printStackTrace();</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">        }</font></font></font><br>
+<font size="3"><font color="#000000"><font face="Arial">    }</font></font></font><br>
+<font color="#cc0000"><font size="2">(2:40:24 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">that's roughly the way to go with the gamestate</font></font></font><br>
+<font size="2"><font color="#204a87">(2:40:40 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> ok</font><br>
+<font color="#cc0000"><font size="2">(2:41:04 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">you could use the gamestate interface instead of the BasicGameState, but for now this should be enough</font></font></font><br>
+<font color="#cc0000"><font size="2">(2:43:14 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">you get the MapStorage working OK btw?</font></font></font><br>
+<font size="2"><font color="#204a87">(3:01:04 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> yeah mapstorage works well</font><br>
+<font color="#cc0000"><font size="2">(3:10:44 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">cool</font></font></font><br>
+<font color="#cc0000"><font size="2">(3:11:11 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">I was thinking on doing some work on the controller tommorrow and during the weekend, but I have no idea how much free time I'll have</font></font></font><br>
+<font color="#cc0000"><font size="2">(3:11:31 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">got a birthday on saterday and still have a shitload to do before I can go camping for 3 weeks</font></font></font><br>
+<font size="2"><font color="#204a87">(3:11:52 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> wow</font><br>
+<font color="#cc0000"><font size="2">(3:22:21 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">so I won't be availlable for a while</font></font></font><br>
+<font color="#cc0000"><font size="2">(3:22:41 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">the svn wills till be there though, so by all means keep up the good work</font></font></font><br>
+<font color="#cc0000"><font size="2">(3:23:07 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">I'l prod jaime to continue and finish the design document while I'm away so we can get really started when I get back</font></font></font><br>
+<font color="#cc0000"><font size="2">(3:25:38 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">but I'm off to bed now...</font></font></font><br>
+<font color="#cc0000"><font size="2">(3:25:43 PM) </font><b><font size="3">Mark:</font></b></font><font size="3"></font><font size="3"> <font color="#000000"><font face="Arial">talk more tomorrow</font></font></font>
+</body>
+</html>
