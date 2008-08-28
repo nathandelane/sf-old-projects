@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 
 namespace Vehix.QA.SetHostFile
 {
@@ -16,6 +17,10 @@ namespace Vehix.QA.SetHostFile
 
 		public Program(string serverName)
 		{
+			StatusForm statusForm = new StatusForm(serverName);
+			statusForm.Show(null);
+			statusForm.Update();
+
 			_settings = new Settings();
 			//_logger = new Logger(String.Format("{0}\\SetHostFile_{1}.log", Environment.CurrentDirectory, DateTime.Now.Ticks));
 
@@ -77,6 +82,9 @@ namespace Vehix.QA.SetHostFile
 				//_logger.Log(String.Format("Server is not known: {0}", serverName));
 				Console.WriteLine("Server named {0} is invalid. Please check your server name as well as configuration.", serverName);
 			}
+
+			Thread.Sleep(5000);
+			statusForm.Hide();
 		}
 
 		public string[] GetSubdomainsForServerName(string serverName)

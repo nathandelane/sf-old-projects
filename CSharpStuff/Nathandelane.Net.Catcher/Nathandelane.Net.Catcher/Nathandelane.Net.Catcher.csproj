@@ -4,13 +4,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D98BCFAB-3FFC-46EC-993F-037B6E5E5FAB}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{6019409D-B0FE-4778-8158-7DFC6D1CF934}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Vehix.QA.SetHostFile</RootNamespace>
-    <AssemblyName>SetHostFile</AssemblyName>
-    <StartupObject>
-    </StartupObject>
+    <RootNamespace>Nathandelane.Net.Catcher</RootNamespace>
+    <AssemblyName>Nathandelane.Net.Catcher</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,32 +29,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Settings.cs" />
-    <Compile Include="StatusForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="StatusForm.Designer.cs">
-      <DependentUpon>StatusForm.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="StatusForm.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>StatusForm.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

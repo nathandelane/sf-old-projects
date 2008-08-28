@@ -207,6 +207,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 			{
 				Console.WriteLine("{0}: {1}", header, request.Headers[header]);
 			}
+			Console.WriteLine();
 		}
 
 		public void ShowHeaders(WebResponse response)
@@ -217,6 +218,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 			{
 				Console.WriteLine("{0}: {1}", header, response.Headers[header]);
 			}
+			Console.WriteLine();
 		}
 
 		public void ShowContent(WebResponse response)
@@ -231,6 +233,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 					Console.WriteLine(data);
 				}
 			}
+			Console.WriteLine();
 		}
 
 		public void ShowXPathedContent(WebResponse response)
@@ -242,27 +245,41 @@ namespace Nathandelane.Net.HttpAnalyzer
 					string data = reader.ReadToEnd();
 					HtmlDocument doc = new HtmlDocument();
 					doc.LoadHtml(data);
-					HtmlAgilityPack.HtmlNodeCollection nodes = doc.DocumentNode.SelectNodes(_parameters["xpath"] as String);
 
-					int i = 0;
-					foreach (HtmlAgilityPack.HtmlNode node in nodes)
+					try
 					{
-						Console.WriteLine("{0}:", i);
+						HtmlAgilityPack.HtmlNodeCollection nodes = doc.DocumentNode.SelectNodes(_parameters["xpath"] as String);
 
-						foreach (HtmlAttribute attr in node.Attributes)
+						int i = 0;
+						foreach (HtmlAgilityPack.HtmlNode node in nodes)
 						{
-							Console.WriteLine("{0}: {1}", attr.Name, attr.Value);
-						}
+							Console.WriteLine("{0}:", i);
 
-						if (!String.IsNullOrEmpty(node.InnerHtml))
-						{
-							Console.WriteLine("InnerHtml: {0}", node.InnerHtml);
-						}
+							foreach (HtmlAttribute attr in node.Attributes)
+							{
+								Console.WriteLine("{0}: {1}", attr.Name, attr.Value);
+							}
 
-						i++;
+							if (!String.IsNullOrEmpty(node.InnerHtml))
+							{
+								Console.WriteLine("InnerHtml: {0}", node.InnerHtml);
+							}
+
+							if (!String.IsNullOrEmpty(node.InnerText))
+							{
+								Console.WriteLine("InnterText: {0}", node.InnerText);
+							}
+
+							i++;
+						}
+					}
+					catch (NullReferenceException)
+					{
+						Console.WriteLine("Unable to retrieve object.");
 					}
 				}
 			}
+			Console.WriteLine();
 		}
 
 		static void Main(string[] args)
