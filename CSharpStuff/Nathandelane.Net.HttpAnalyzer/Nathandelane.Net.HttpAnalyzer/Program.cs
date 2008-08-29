@@ -146,9 +146,42 @@ namespace Nathandelane.Net.HttpAnalyzer
 					}
 					else if (s.StartsWith("cookie"))
 					{
-						int indexE = s.IndexOf("=");
-						string cookies = s.Substring(indexE);
-						request.Headers.Add("cookies", cookies);
+						int startIndex = s.IndexOf("=") + 1;
+						string cookieString = s.Substring(startIndex);
+						string[] cookieStringCollection = cookieString.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+						Dictionary<string, string> cookieElements = new Dictionary<string, string>();
+
+						foreach (string cookieElement in cookieStringCollection)
+						{
+							string[] keyValuePair = cookieElement.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+
+							if (keyValuePair.Length == 2)
+							{
+								if(keyValuePair[0].ToLower().Contains("path"))
+								{
+									cookieElements.Add("path", keyValuePair[1]);
+								}
+								else
+								{
+									cookieElements.Add("cookie", String.Join("=", keyValuePair));
+								}
+							}
+						}
+
+						request.CookieContainer = new CookieContainer();
+						if (cookieElements.ContainsKey("cookie"))
+						{
+							string[] keyValuePair = cookieElements["cookie"].Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+
+							if (cookieElements.ContainsKey("path"))
+							{
+								request.CookieContainer.Add(new Cookie(keyValuePair[0], keyValuePair[1], cookieElements["path"], request.RequestUri.DnsSafeHost));
+							}
+							else
+							{
+								request.CookieContainer.Add(new Cookie(keyValuePair[0], keyValuePair[1]));
+							}
+						}
 					}
 					else
 					{
