@@ -144,6 +144,12 @@ namespace Nathandelane.Net.HttpAnalyzer
 					{
 						request.TransferEncoding = s.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries)[1];
 					}
+					else if (s.StartsWith("cookie"))
+					{
+						int indexE = s.IndexOf("=");
+						string cookies = s.Substring(indexE);
+						request.Headers.Add("cookies", cookies);
+					}
 					else
 					{
 						string[] hKeyValue = s.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
@@ -267,7 +273,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 							if (!String.IsNullOrEmpty(node.InnerText))
 							{
-								Console.WriteLine("InnterText: {0}", node.InnerText);
+								Console.WriteLine("InnerText: {0}", node.InnerText);
 							}
 
 							i++;
