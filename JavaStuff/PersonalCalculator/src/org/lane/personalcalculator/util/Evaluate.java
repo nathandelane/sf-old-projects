@@ -13,7 +13,7 @@ public class Evaluate {
 	}
 	
 	public static String evaluateExpression(TokenList postfixatedTokens) {
-		double result = 0.0;
+		String result = "0.0";
 		
 		if(postfixatedTokens.size() > 1) {
 			for(int i = 0; i < postfixatedTokens.size(); i++) {
@@ -26,7 +26,7 @@ public class Evaluate {
 				
 				switch(token.getTokenType()) {
 				case ExpressionToken.AddOperator:
-					result = Evaluate.add(Double.parseDouble(postfixatedTokens.get(i - 2).getToken()), Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
+					result = "" + Evaluate.add(Double.parseDouble(postfixatedTokens.get(i - 2).getToken()), Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
 					postfixatedTokens.set(i, new ExpressionToken("" + result, ExpressionToken.Number));
 					postfixatedTokens.remove(i - 2);
 					postfixatedTokens.remove(i - 2);
@@ -34,7 +34,7 @@ public class Evaluate {
 					i = -1;
 					break;
 				case ExpressionToken.DivisionOperator:
-					result = Evaluate.divide(Double.parseDouble(postfixatedTokens.get(i - 2).getToken()), Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
+					result = "" + Evaluate.divide(Double.parseDouble(postfixatedTokens.get(i - 2).getToken()), Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
 					postfixatedTokens.set(i, new ExpressionToken("" + result, ExpressionToken.Number));
 					postfixatedTokens.remove(i - 2);
 					postfixatedTokens.remove(i - 2);
@@ -42,7 +42,7 @@ public class Evaluate {
 					i = -1;
 					break;
 				case ExpressionToken.MultiplicationOperator:
-					result = Evaluate.multiply(Double.parseDouble(postfixatedTokens.get(i - 2).getToken()), Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
+					result = "" + Evaluate.multiply(Double.parseDouble(postfixatedTokens.get(i - 2).getToken()), Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
 					postfixatedTokens.set(i, new ExpressionToken("" + result, ExpressionToken.Number));
 					postfixatedTokens.remove(i - 2);
 					postfixatedTokens.remove(i - 2);
@@ -51,11 +51,11 @@ public class Evaluate {
 					break;
 				case ExpressionToken.NegationOperator:
 					if((i - 2) < 0) {
-						result = Evaluate.negate(Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
+						result = "" + Evaluate.negate(Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
 						postfixatedTokens.set(i, new ExpressionToken("" + result, ExpressionToken.Number));
 						postfixatedTokens.remove(i - 1);
 					} else {
-						result = Evaluate.subtract(Double.parseDouble(postfixatedTokens.get(i - 2).getToken()), Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
+						result = "" + Evaluate.subtract(Double.parseDouble(postfixatedTokens.get(i - 2).getToken()), Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
 						postfixatedTokens.set(i, new ExpressionToken("" + result, ExpressionToken.Number));
 						postfixatedTokens.remove(i - 2);
 						postfixatedTokens.remove(i - 2);
@@ -65,29 +65,31 @@ public class Evaluate {
 					break;
 				case ExpressionToken.Function:
 					if(postfixatedTokens.get(i).getToken().equalsIgnoreCase("cos")) {
-						result = Evaluate.cos(Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
+						result = "" + Evaluate.cos(Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
 					} else if(postfixatedTokens.get(i).getToken().equalsIgnoreCase("sin")) {
-						result = Evaluate.sin(Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
+						result = "" + Evaluate.sin(Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
 					} else if(postfixatedTokens.get(i).getToken().equalsIgnoreCase("tan")) {
-						result = Evaluate.tan(Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
+						result = "" + Evaluate.tan(Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
 					} else if(postfixatedTokens.get(i).getToken().equalsIgnoreCase("log") || postfixatedTokens.get(i).getToken().equalsIgnoreCase("log10")) {
-						result = Evaluate.log(Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
+						result = "" + Evaluate.log(Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
 					} else if(postfixatedTokens.get(i).getToken().equalsIgnoreCase("ln") || postfixatedTokens.get(i).getToken().equalsIgnoreCase("loge")) {
-						result = Evaluate.ln(Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
+						result = "" + Evaluate.ln(Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
 					} else if(postfixatedTokens.get(i).getToken().equalsIgnoreCase("sqrt")) {
-						result = Evaluate.sqrt(Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
+						result = "" + Evaluate.sqrt(Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
+					} else if(postfixatedTokens.get(i).getToken().equalsIgnoreCase("tohex")) {
+					        result = Evaluate.tohex(Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
 					} else if(postfixatedTokens.get(i).getToken().equalsIgnoreCase("sha1")) {
 						try {
-							result = Double.parseDouble(Evaluate.sha1(postfixatedTokens.get(i - 1).getToken()));
-						} catch(Exception e) { result = -1.0; }
+							result = "" + Double.parseDouble(Evaluate.sha1(postfixatedTokens.get(i - 1).getToken()));
+						} catch(Exception e) { result = "" + -1.0; }
 					} else if(postfixatedTokens.get(i).getToken().equalsIgnoreCase("md5")) {
 						try {
-							result = Double.parseDouble(Evaluate.md5(postfixatedTokens.get(i - 1).getToken()));
-						} catch(Exception e) { result = -1.0; }
+							result = "" + Double.parseDouble(Evaluate.md5(postfixatedTokens.get(i - 1).getToken()));
+						} catch(Exception e) { result = "" + -1.0; }
 					} else if(postfixatedTokens.get(i).getToken().equalsIgnoreCase("md2")) {
 						try {
-							result = Double.parseDouble(Evaluate.md2(postfixatedTokens.get(i - 1).getToken()));
-						} catch(Exception e) { result = -1.0; }
+							result = "" + Double.parseDouble(Evaluate.md2(postfixatedTokens.get(i - 1).getToken()));
+						} catch(Exception e) { result = "" + -1.0; }
 					} else {
 						System.out.println(postfixatedTokens.get(i).getToken() + " is not an implemented function.");
 					}
@@ -97,7 +99,7 @@ public class Evaluate {
 					i = -1;
 					break;
 				case ExpressionToken.PowerOperator:
-					result = Evaluate.pow(Double.parseDouble(postfixatedTokens.get(i - 2).getToken()), Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
+					result = "" + Evaluate.pow(Double.parseDouble(postfixatedTokens.get(i - 2).getToken()), Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
 					postfixatedTokens.set(i, new ExpressionToken("" + result, ExpressionToken.Number));
 					postfixatedTokens.remove(i - 2);
 					postfixatedTokens.remove(i - 2);
@@ -105,19 +107,19 @@ public class Evaluate {
 					i = -1;
 					break;
 				case ExpressionToken.Factorial:
-					result = Evaluate.factorial((int)Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
+					result = "" + Evaluate.factorial((int)Double.parseDouble(postfixatedTokens.get(i - 1).getToken()));
 					postfixatedTokens.set(i, new ExpressionToken("" + result, ExpressionToken.Number));
 					postfixatedTokens.remove(i - 1);
 					break;
 				}
 			}
 		} else {
-			result = Double.parseDouble(postfixatedTokens.get(0).getToken());
+			result = "" + Double.parseDouble(postfixatedTokens.get(0).getToken());
 		}
 		
 		String strResult = "";
-		if((double)(result - Math.floor(result)) == 0.0) {
-			strResult = "" + (int)Math.floor(result);
+		if((double)(Double.parseDouble(result) - Math.floor(Double.parseDouble(result))) == 0.0) {
+			strResult = "" + (int)Math.floor(Double.parseDouble(result));
 		} else {
 			strResult = "" + result;
 		}
@@ -216,6 +218,20 @@ public class Evaluate {
 		}
 		
 		return result;
+	}
+	
+	private static String tohex(double right) {
+	    return Double.toHexString(right);
+	}
+	
+	private static String tobin(double right) {
+	    String result = "tobin function not implemented";
+	    /*
+	    while(right != 0.0) {
+	        
+	    }
+	    */
+	    return result;
 	}
 
 }
