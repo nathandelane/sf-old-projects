@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
 <jardesc>
-    <jar path="U:/workspace3/PersonalCalculator/pc.jar"/>
+    <jar path="PersonalCalculator/pc.jar"/>
     <options buildIfNeeded="true" compress="true" descriptionLocation="/PersonalCalculator/pc.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
     <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
     <selectedProjects/>
@@ -14,4 +14,5 @@
         <folder path="/PersonalCalculator/www"/>
         <javaElement handleIdentifier="=PersonalCalculator/src"/>
     </selectedElements>
+    <fatjar builder="org.eclipse.jdt.ui.plain_jar_builder" launchConfig=""/>
 </jardesc>
