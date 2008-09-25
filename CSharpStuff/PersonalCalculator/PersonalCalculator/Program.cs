@@ -11,7 +11,7 @@ namespace Nathandelane.Math.PersonalCalculator
 
 		static void Version()
 		{
-			Console.WriteLine("This version of pcdotnet is: ");
+			Console.WriteLine("This version of pcdotnet is: {0}", this.GetType().Assembly.ToString());
 		}
 
 		static void Help()
