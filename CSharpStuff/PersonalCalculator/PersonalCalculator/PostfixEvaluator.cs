@@ -69,53 +69,62 @@ namespace Nathandelane.Math.PersonalCalculator
 					case TokenType.ArithmeticOperator:
 						if (_postfixator.PostfixEquation.Peek().Type == TokenType.Number)
 						{
-							if (_postfixator.PostfixEquation.Count > 1)
-							{
-								right = _postfixator.PostfixEquation.Pop().Value;
-								left = _postfixator.PostfixEquation.Pop().Value;
-							}
-							else
-							{
-								right = _postfixator.PostfixEquation.Pop().Value;
-								left = String.Empty;
-							}
-							//***
-							if (nextToken.Value.Equals("+"))
-							{
-								if (!String.IsNullOrEmpty(left))
-								{
-									_result = Utility.Add(left, right);
-								}
-								else
-								{
-									_result = String.Format("{0}", right);
-								}
-							}
-							else if (nextToken.Value.Equals("-"))
-							{
-								if (!String.IsNullOrEmpty(left))
-								{
-									_result = Utility.Sub(left, right);
-								}
-								else
-								{
-									_result = String.Format("{0}", ((-1) * double.Parse(right)));
-								}
-							}
-							else if (nextToken.Value.Equals("*"))
-							{
-								_result = Utility.Mul(left, right);
-							}
-							else if (nextToken.Value.Equals("/"))
-							{
-								_result = Utility.Div(left, right);
-							}
-							else
-							{
-								evalStack.Push(nextToken);
-							}
+							right = _postfixator.PostfixEquation.Pop().Value;
 
-							evalStack.Push(new Token(TokenType.Number, _result));
+							if (_postfixator.PostfixEquation.Count >= 1)
+							{
+								if (_postfixator.PostfixEquation.Peek().Type == TokenType.Number)
+								{
+									left = _postfixator.PostfixEquation.Pop().Value;
+
+									if (nextToken.Value.Equals("+"))
+									{
+										if (!String.IsNullOrEmpty(left))
+										{
+											_result = Utility.Add(left, right);
+										}
+										else
+										{
+											_result = String.Format("{0}", right);
+										}
+									}
+									else if (nextToken.Value.Equals("-"))
+									{
+										if (!String.IsNullOrEmpty(left))
+										{
+											_result = Utility.Sub(left, right);
+										}
+										else
+										{
+											_result = String.Format("{0}", ((-1) * double.Parse(right)));
+										}
+									}
+									else if (nextToken.Value.Equals("*"))
+									{
+										_result = Utility.Mul(left, right);
+									}
+									else if (nextToken.Value.Equals("/"))
+									{
+										_result = Utility.Div(left, right);
+									}
+									else
+									{
+										evalStack.Push(nextToken);
+									}
+
+									evalStack.Push(new Token(TokenType.Number, _result));
+								}
+								else
+								{
+									evalStack.Push(nextToken);
+									evalStack.Push(new Token(TokenType.Number, right));
+								}
+							}
+							else if(nextToken.Value.Equals("-"))
+							{
+								_result = String.Format("{0}", ((-1) * double.Parse(right)));
+								evalStack.Push(new Token(TokenType.Number, _result));
+							}
 						}
 						else
 						{

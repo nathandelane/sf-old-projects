@@ -93,7 +93,35 @@ namespace Nathandelane.Math.PersonalCalculator
 						}
 						else if (t.Value.Equals("*") || t.Value.Equals("/"))
 						{
-							_operatorStack.Push(t);
+							if (_operatorStack.Count > 0)
+							{
+								if ((_operatorStack.Peek() as Token).Equals(Token.AdditionOperator))
+								{
+									_operatorStack.Push(t);
+								}
+								else if ((_operatorStack.Peek() as Token).Equals(Token.SubtractionOperator))
+								{
+									_operatorStack.Push(t);
+								}
+								else if ((_operatorStack.Peek() as Token).Equals(Token.MultiplicationOperator))
+								{
+									_postfixEquation.Push(_operatorStack.Pop());
+									_operatorStack.Push(t);
+								}
+								else if ((_operatorStack.Peek() as Token).Equals(Token.DivisionOperator))
+								{
+									_postfixEquation.Push(_operatorStack.Pop());
+									_operatorStack.Push(t);
+								}
+								else if ((_operatorStack.Peek() as Token).Equals(Token.OpenPerenthesis))
+								{
+									_operatorStack.Push(t);
+								}
+							}
+							else
+							{
+								_operatorStack.Push(t);
+							}
 						}
 						break;
 					case TokenType.Perentheses:
@@ -119,6 +147,8 @@ namespace Nathandelane.Math.PersonalCalculator
 			{
 				_postfixEquation.Push(_operatorStack.Pop());
 			}
+
+			
 		}
 
 		#region IDisposable Members
