@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Text;
+using System.Reflection;
 
 namespace Nathandelane.Math.PersonalCalculator
 {
@@ -11,7 +12,7 @@ namespace Nathandelane.Math.PersonalCalculator
 
 		static void Version()
 		{
-			Console.WriteLine("This version of pcdotnet is: {0}", this.GetType().Assembly.ToString());
+			Console.WriteLine("This version of pcdotnet is: {0}", 262);
 		}
 
 		static void Help()
