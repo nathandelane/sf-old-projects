@@ -126,6 +126,7 @@ namespace Nathandelane.Math.PersonalCalculator
 
 				totalTokens = _postfixator.PostfixEquation.Count + evalStack.Count;
 				right = String.Empty;
+				left = String.Empty;
 			}
 			while (totalTokens > 1);
 
