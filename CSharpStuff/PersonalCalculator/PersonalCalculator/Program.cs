@@ -6,6 +6,16 @@ namespace Nathandelane.Math.PersonalCalculator
 {
 	class Program
 	{
+		static void Version()
+		{
+			Console.WriteLine("This version of pcdotnet is: ");
+		}
+
+		static void Help()
+		{
+			Console.WriteLine("The help you asked for: ");
+		}
+
 		static void Main(string[] args)
 		{
 			if (args.Length > 0)
@@ -27,11 +37,27 @@ namespace Nathandelane.Math.PersonalCalculator
 
 					userInput = Console.ReadLine();
 
-					string equation = String.Join(String.Empty, userInput.Split(new string[] { " ", "\t" }, StringSplitOptions.RemoveEmptyEntries));
-					using (Postfixator postfixator = Postfixator.CreateInstance(equation))
+					switch(userInput)
 					{
-						PostfixEvaluator evaluator = PostfixEvaluator.CreateInstance(postfixator);
-						Console.WriteLine("{0}", evaluator.Result);
+						case "q":
+							break;
+						case "?":
+							Help();
+							break;
+						case "h":
+							Help();
+							break;
+						case "v":
+							Version();
+							break;
+						default:
+							string equation = String.Join(String.Empty, userInput.Split(new string[] { " ", "\t" }, StringSplitOptions.RemoveEmptyEntries));
+							using (Postfixator postfixator = Postfixator.CreateInstance(equation))
+							{
+								PostfixEvaluator evaluator = PostfixEvaluator.CreateInstance(postfixator);
+								Console.WriteLine("{0}", evaluator.Result);
+							}
+							break;
 					}
 				}
 			}
