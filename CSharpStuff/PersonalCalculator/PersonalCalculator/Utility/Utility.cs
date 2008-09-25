@@ -16,7 +16,7 @@ namespace Nathandelane.Math.PersonalCalculator
 
 		public static bool IsNumeric(string element)
 		{
-			Regex regex = new Regex("[\\d]+\\.{0,1}[\\d]*");
+			Regex regex = new Regex("[\\d\\.]+[\\d]*");
 
 			return regex.IsMatch(element);
 		}
