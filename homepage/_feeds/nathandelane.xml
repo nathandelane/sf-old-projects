@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom='http://www.w3.org/2005/Atom'>
+	<channel>
+		<title>Nathandelane</title>
+		<link>http://localhost/webdesign/</link>
+		<description>This web site is about me and what I do, who I am, and where I am headed in life. Feel free to peruse my portfolio and subscribe to my RSS feed, as I am always updating it with new projects that I am working on.</description>
+		<language>en-us</language>
+		<item>
+			<title>New Face</title>
+			<link>http://localhost/webdesign/</link>
+			<description>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed tempor. Ut massa tellus, faucibus et, ultricies eu, volutpat ac, nisi. Maecenas sed lorem sit amet diam adipiscing eleifend. Pellentesque velit. Nunc eu lacus quis leo lacinia commodo. Quisque eleifend justo in augue. Integer convallis cursus justo. In ac metus. Vestibulum massa tortor, dictum consectetuer, ullamcorper blandit, egestas ut, mi. Nam ac neque non tellus tristique faucibus. Curabitur hendrerit odio et sem. Curabitur vel turpis ac augue semper gravida. Nullam pharetra tellus vel risus. Donec pretium. Mauris ultricies, quam vitae malesuada tempus, dui est sagittis leo, vitae tempor est lectus et enim. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</description>
+		</item>
+	</channel>
+</rss>
