@@ -11,4 +11,7 @@
 	<item name="Ufooar" link="http://rubyforge.org/projects/ufooar/">
 		U.F.O.O.A.R. stands for Uno For OpenOffice And Ruby. It is essentially an Uno-Ruby bridge for OpenOffice.org. This project stemmed out of my endeavors as a Software Automation Architect. Ufooar came as a result of some fellow testers wanting a way to use OpenOffice.org's Spreadsheet program as a data source for some of their tests. Ufooar has since grown into much more, and has become its own automation project.
 	</item>
+	<item name="Personal Calculator .NET" link="http://sourceforge.net/projects/pcdotnet/">
+		Personal Calculator.NET is a text mode calculator written in the C#.NET programming language, the primary goals of this project being, to create a useful text mode calculator that is robust, extensible, and programmable.
+	</item>
 </applications>

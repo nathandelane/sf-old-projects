@@ -11,5 +11,25 @@
 			<link>http://www.nathandelane.com/</link>
 			<description>I have decided once again that it is time to show off my web design abilities using my simple web site.</description>
 		</item>
+		<item>
+			<title>Application Portfolio - Personal Calculator</title>
+			<link>http://www.nathandelane.com/?page=appPortfolio</link>
+			<description>Text-mode calculator written in Java.</description>
+		</item>
+		<item>
+			<title>Application Portfolio - Adanna</title>
+			<link>http://www.nathandelane.com/?page=appPortfolio</link>
+			<description>Watir automation framework +1</description>
+		</item>
+		<item>
+			<title>Application Portfolio - Ufooar</title>
+			<link>http://www.nathandelane.com/?page=appPortfolio</link>
+			<description>Ruby-UNO bridge written for OpenOffice.org.</description>
+		</item>
+		<item>
+			<title>Application Portfolio - Personal Calculator .NET</title>
+			<link>http://www.nathandelane.com/?page=appPortfolio</link>
+			<description>Update to Personal Calculator and now it's in .NET (C# to be exact).</description>
+		</item>
 	</channel>
 </rss>
