@@ -40,7 +40,7 @@
 			</div>
 			<div class="separator"></div>
 			<div id="footer" class="footer">
-				<span>Nathandelane &copy; 2007-<?php echo date('Y'); ?> by Nathan Lane, Nathandelane.com, All Rights Reserved.</span>
+				<span>Nathandelane &copy; 2007-<?php echo date('Y'); ?> by Nathan Lane, Nathandelane.com, All Rights Reserved. <a id="helpLink" href="<?php echo $sitePath; ?>?page=helpmeplease">Help!</a></span>
 			</div>
 		</div>
 	</body>

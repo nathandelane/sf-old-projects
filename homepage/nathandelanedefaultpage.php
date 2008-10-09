@@ -1,11 +1,15 @@
 <?php
 	$defaultStylesheetName = "default.css";
-	$sitePath = "/webdesign/";
+	$sitePath = "/";
 	$xml = null;
 	$pageTitle = null;
 	$contents = null;
 	
 	if(!isset($_GET['page']))
+	{
+		$contents = "main";
+	}
+	elseif(strcmp($_GET['page'], '') == 0)
 	{
 		$contents = "main";
 	}
@@ -18,21 +22,25 @@
 	
 	if(file_exists($contentsFile))
 	{
-		if(strcmp($page, "main"))
+		if(strcmp($contents, "main") == 0)
 		{
 			$pageTitle = "Nathan Lane's Homepage";
 		}
-		elseif(strcmp($page, "appPortfolio"))
+		elseif(strcmp($contents, "appPortfolio") == 0)
 		{
 			$pageTitle = "Applications Portfolio";
 		}
-		elseif(strcmp($page, "webPortfolio"))
+		elseif(strcmp($contents, "webPortfolio") == 0)
 		{
 			$pageTitle = "Web Apps Portfolio";
 		}
-		elseif(strcmp($page, "kontaktieren"))
+		elseif(strcmp($contents, "kontaktieren") == 0)
 		{
 			$pageTitle = "Contact Me";
+		}
+		elseif(strcmp($contents, "helpmeplease") == 0)
+		{
+			$pageTitle = "Help";
 		}
 		else
 		{

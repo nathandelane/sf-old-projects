@@ -191,7 +191,10 @@ div.stamp span.itemTitle
 
 div.footer span
 {
+	width: 722px;
 	display: block;
+	margin: 0px;
+	padding: 0px;
 	text-align: center;
 	color: #ff6633;
 	font-size: 12px;
@@ -202,6 +205,7 @@ div.dashedSeparator
 	height: 2px;
 	background-image: url('../_images/horizontaldash.gif');
 	background-position: top left;
+	overflow: hidden;
 }
 
 div.hrSeparator
@@ -210,6 +214,7 @@ div.hrSeparator
 	height: 20px;
 	overflow: hidden hidden;
 	width: 100%;
+	overflow: hidden;
 }
 
 span#nathandelaneBannerLink
@@ -218,6 +223,30 @@ span#nathandelaneBannerLink
 	padding-top: 4px;
 	padding-left: 10px;
 	float: left;
+}
+
+a:link#helpLink
+{
+	color: #636363;
+	text-decoration: none;
+}
+
+a:visited#helpLink
+{
+	color: #636363;
+	text-decoration: none;
+}
+
+a:active#helpLink
+{
+	color: #636363;
+	text-decoration: none;
+}
+
+a:hover#helpLink
+{
+	color: #636363;
+	text-decoration: underline;
 }
 
 .textRed
