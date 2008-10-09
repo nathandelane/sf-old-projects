@@ -3,6 +3,7 @@
 	<head>
 		<title><?php echo $pageTitle; ?></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="_feeds/nathandelane.xml" title="Nathandelane.com RSS Feed" type="application/rss+xml" rel="alternate"/>
 		<link media="screen" type="text/css" href="_stylesheets/<?php echo $defaultStylesheetName; ?>" rel="stylesheet" />
 		<?php
 			if(isset($otherStylesheets))
