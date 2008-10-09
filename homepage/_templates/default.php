@@ -21,7 +21,7 @@
 				<span id="nathandelaneBannerLink">
 					<a id="homepageLink" href="<?php echo $sitePath; ?>">Nathandelane.com</a>
 					<div id="explanation" class="explanation">
-						<span>This web site is about me and what I do, who I am, and where I am headed in life. Feel free to peruse my portfolio and subscribe to my RSS feed, as I am always updating it with new projects that I am working on.</span>
+						<span>This web site is about me and what I do, who I am, and where I am headed in life. Feel free to peruse my portfolio and subscribe to my <a id="rssFeedLink" href="<?php echo $sitePath; ?>_xml/nathandelane.xml">RSS feed</a>, as I am always updating it with new projects that I am working on.</span>
 					</div>
 				</span>
 			</div>
