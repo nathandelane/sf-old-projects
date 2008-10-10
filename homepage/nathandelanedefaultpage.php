@@ -1,6 +1,6 @@
 <?php
-	$errorNumber;
-	$errorMessage;
+	session_start();
+	
 	$defaultStylesheetName = "default.css";
 	$sitePath = "/";
 	
@@ -43,8 +43,8 @@
 		}
 		elseif(strcmp($contents, "error") == 0)
 		{
-			header("http/1.0 " . $errorNumber . " " . $errorMessage);
-			$pageTitle = "Error Occurred";
+			header("http/1.0 " . $_SESSION['errorNumber'] . " " . $_SESSION['errorMessage']);
+			$pageTitle = "HTTP " . $_SESSION['errorNumber'] . " " . $_SESSION['errorMessage'];
 		}
 		else
 		{
@@ -54,9 +54,10 @@
 	else
 	{
 		$contents = "error";
-		$errorNumber = 404;
-		$errorMessage = "Not Found";
+		$_SESSION['errorNumber'] = 404;
+		$_SESSION['errorMessage'] = "Not Found";
 		header("http/1.0 " . $errorNumber . " " . $errorMessage);
+		$pageTitle = "HTTP " . $_SESSION['errorNumber'] . " " . $_SESSION['errorMessage'];
 	}
 	
 	require_once('_templates/default.php');	

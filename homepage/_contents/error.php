@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <div id="innerPageBody" class="innerPageBody">
 	<h1>Error</h1>
 	<p>
@@ -5,10 +8,10 @@
 	</p>
 	<h2>
 		<?php
-		if(isset($errorNumber) && isset($errorMessage))
+		if(isset($_SESSION['errorNumber']) && isset($_SESSION['errorMessage']))
 			{
 		?>
-		HTTP <?php echo $errorNumber; ?> Error: <?php echo $errorMessage; ?>
+		HTTP <?php echo $_SESSION['errorNumber']; ?> Error: <?php echo $_SESSION['errorMessage']; ?>
 		<?php
 			}
 			else
