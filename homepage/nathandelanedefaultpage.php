@@ -1,9 +1,8 @@
 <?php
+	$errorNumber;
+	$errorMessage;
 	$defaultStylesheetName = "default.css";
 	$sitePath = "/";
-	$xml = null;
-	$pageTitle = null;
-	$contents = null;
 	
 	if(!isset($_GET['page']))
 	{
@@ -42,6 +41,11 @@
 		{
 			$pageTitle = "Help";
 		}
+		elseif(strcmp($contents, "error") == 0)
+		{
+			header("http/1.0 " . $errorNumber . " " . $errorMessage);
+			$pageTitle = "Error Occurred";
+		}
 		else
 		{
 			$pageTitle = "Untitled Page";
@@ -50,7 +54,9 @@
 	else
 	{
 		$contents = "error";
-		header("http/1.0 404 Not Found");
+		$errorNumber = 404;
+		$errorMessage = "Not Found";
+		header("http/1.0 " . $errorNumber . " " . $errorMessage);
 	}
 	
 	require_once('_templates/default.php');	
