@@ -16,7 +16,10 @@
    inkscape:version="0.46"
    version="1.0"
    sodipodi:docname="Phylebox001.svg"
-   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="C:\Subversion\Nathandelane\trunk\Web Stuff\Phylebox001.png"
+   inkscape:export-xdpi="123.7"
+   inkscape:export-ydpi="123.7">
   <defs
      id="defs4">
     <inkscape:perspective
@@ -2308,20 +2311,23 @@
        d="M 25.57432,92.552973 C 25.57432,92.552973 140.06391,92.66396 140.06391,92.552973 L 140.06391,423.70019 L 25.57432,423.70019 C 20.051012,423.70019 15.60445,419.08332 15.60445,413.04991 L 15.60445,103.44361 C 15.60445,97.410196 20.051012,92.552973 25.57432,92.552973 z"
        id="rect6690"
        sodipodi:nodetypes="ccccccc" />
-    <path
-       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:0.77906979"
-       d="M 24.824385,100.39859 L 140.29539,100.39859 L 140.29539,124.47072 L 24.824385,124.47072 L 24.824385,100.39859 z"
-       id="rect6693" />
+    <rect
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:0.77906979"
+       id="rect6693"
+       width="115.471"
+       height="24.07213"
+       x="24.824385"
+       y="100.39859" />
     <text
        xml:space="preserve"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Arial;-inkscape-font-specification:Arial Bold"
-       x="82.530586"
-       y="119.47567"
+       x="76.35379"
+       y="118.82882"
        id="text6695"
        sodipodi:linespacing="100%"><tspan
          sodipodi:role="line"
          id="tspan6697"
-         x="82.530586"
-         y="119.47567">Main</tspan></text>
+         x="76.35379"
+         y="118.82882">Main</tspan></text>
   </g>
 </svg>
