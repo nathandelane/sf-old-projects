@@ -1,0 +1,308 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<title>Welcome to PhyleBox</title>
+		<script type="text/css">
+		</script>
+		<style>
+			body {
+				margin: 0px;
+				padding: 0px;
+				font-size: 12px;
+				font-family: sans-serif,Arial;
+				font-weight: normal;
+				color: #ffffff;
+				background-color: #ffffff;
+				background-image: url('phylebox002_bgi_637ba2.gif');
+				background-position: top left;
+				background-repeat: repeat-y;
+			}
+
+			h1 {
+				font-size: 16px;
+				font-weight: bold;
+				margin: 0px;
+				padding: 0px;
+				text-align: center;
+			}
+
+			div.pageContainer {
+				width: 100%;
+			}
+
+			div.topBar {
+				width: 100%;
+				height: 95px;
+				float: left;
+				background-color: #637ba2;
+				background-image: url('topleftcornerblue.png');
+				background-position: top left;
+				background-repeat: no-repeat;
+			}
+/*
+			div.phyleBoxLogo {
+				width: 99px;
+				height: 115px;
+				position: absolute;
+				left: 12px;
+				top: 12px;
+				float: none;
+				background-image: url('Phlyeboxlogo001_78x91.png');
+				background-position: top left;
+				background-repeat: no-repeat;
+				overflow: hidden;
+			}
+			*/
+
+			div.phyleBoxLogo {
+				width: 120px;
+				height: 13px;
+				position: absolute;
+				left: 12px;
+				top: 12px;
+				float: none;
+				background-image: url('newlogo.png');
+				background-position: top left;
+				background-repeat: no-repeat;
+				overflow: hidden;
+				font-size: 9px;
+				font-weight: bold;
+				text-align: center;
+				padding: 29px 0px 0px 0px;
+			}
+			div.insideCurve {
+				background-image: url('innertopleftcornerwhite.png');
+				background-repeat: no-repeat;
+				background-position: top left;
+				width: 100%;
+				height: 20px;
+				float: left;
+			}
+
+			div.innerPageArea {
+				width: 100%;
+				height: 600px;
+				overflow: hidden;
+				float: left;
+			}
+
+			div.menuDialog {
+				width: 212px;
+				height: 600px;
+				float: left;
+				margin-left: 28px;
+			}
+
+			div.menuDialogTop {
+				background-color: #919fb7;
+				width: 212px;
+				height: 10px;
+				float: left;
+				margin: 0px;
+				background-image: url('menudialogtop.png');
+				background-repeat: no-repeat;
+				background-position: top left;
+			}
+
+			div.menuDialogBottom {
+				background-color: #919fb7;
+				width: 212px;
+				height: 10px;
+				float: left;
+				margin: 0px;
+				background-image: url('menudialogbottom.png');
+				background-repeat: no-repeat;
+				background-position: top left;
+			}
+
+			div.menuDialogContent {
+				width: 212px;
+				float: left;
+				margin: 0px;
+				background-color: #919fb7;
+			}
+
+			div.menuItem {
+				width: 202px;
+				height: 40px;
+				float: right;
+				color: #ffffff;
+			}
+
+			div.menuItem span {
+				display: block;
+				width: 197px;
+				height: 30px;
+				line-height: 30px;
+				float: left;
+				font-size: 30px;
+				text-align: right;
+				padding-right: 5px;
+				font-weight: bold;
+				cursor: pointer;
+				margin: 5px 0px 5px 0px;
+				text-transform: uppercase;
+			}
+			
+			div.selected {
+				background-image: url('menuItemSelected.png');
+				background-position: top left;
+				background-repeat: no-repeat;
+				background-color: #ffffff;
+				color: #000000;
+			}
+
+			div.highlighted {
+				background-image: url('menuItemHighlighted.png');
+				background-position: top left;
+				background-repeat: no-repeat;
+				background-color: #637ba2;
+			}
+
+			div.contentArea {
+				width: 700px;
+				height: 600px;
+				float: left;
+				color: #000000;
+				margin: 0px 20px 0px 20px;
+			}
+
+			div.informationBox {
+				width: 700px;
+				height: 220px;
+				float: left;
+				margin: 0px;
+				overflow: hidden;
+				background-color: #ffffff;
+			}
+
+			div.messageCenter {
+				width: 230px;
+				height: 220px;
+				float: left;
+				margin: 0px;
+			}
+
+			div.widgetPanel {
+				width: 460px;
+				height: 220px;
+				float: right;
+				margin: 0px;
+			}
+
+			div.contentBox {
+				width: 700px;
+				height: 300px;
+				margin: 0px;
+				overflow: auto;
+				background-color: #919fb7;
+				float: left;
+			}
+
+			div.footer {
+				width: 700px;
+				height: 20px;
+				font-size: 10px;
+				text-align: center;
+				float: left;
+				color: #000000;
+			}
+
+			div.buttonPanel {
+				width: 700px;
+				margin: 10px 0px 10px 0px;
+				float: left;
+			}
+
+			span.newItems {
+				color: #637bd1;
+			}
+
+			div.newsMessageList {
+				width: 230px;
+				height: 86px;
+			}
+
+			div.newsMessageList ul {
+				list-style-type: none;
+				padding: 0px;
+				margin: 4px 0px 0px 0px;
+			}
+
+			div.newsMessageList ul li {
+				font-size: 14px;
+				background-image: url('bluebullet.png');
+				background-repeat: no-repeat;
+				background-position: 1px 4px;
+				text-indent: 12px;
+				font-weight: bold;
+				padding: 0px 0px 2px 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="pageContainer">
+			<div id="topBar" class="topBar">
+				<div id="logo" class="phyleBoxLogo">
+					Management "SQUARED"
+				</div>
+			</div>
+			<div class="insideCurve"></div>
+			<div class="innerPageArea">
+				<div id="navigationMenu" class="menuDialog">
+					<div class="menuDialogTop"></div>
+					<div id="menuDialogContent" class="menuDialogContent">
+						<div id="main" class="menuItem selected">
+							<span>Main</span>
+						</div>
+						<div id="messages" class="menuItem" onmouseover="this.className='menuItem highlighted'" onmouseout="this.className='menuItem'">
+							<span>Messages</span>
+						</div>
+						<div id="forum" class="menuItem" onmouseover="this.className='menuItem highlighted'" onmouseout="this.className='menuItem'">
+							<span>Forum</span>
+						</div>
+						<div id="settings" class="menuItem" onmouseover="this.className='menuItem highlighted'" onmouseout="this.className='menuItem'">
+							<span>Settings</span>
+						</div>
+					</div>
+					<div class="menuDialogBottom"></div>
+				</div>
+				<div id="content" class="contentArea">
+					<div class="informationBox">
+						<div id="messageCenter" class="messageCenter">
+							<h1>NEWS FEED [<span class="newItems">13</span> NEW/ 0 OLD]</h1>
+							<div id="newsMessageList" class="newsMessageList">
+								<ul>
+									<li>Test Message #06</li>
+									<li>Test Message #05</li>
+									<li>Test Message #04</li>
+								</ul>
+								<div>
+									<span class="newItems" style="font-weight:bold;">More</span>
+								</div>
+							</div>
+							<h1>ALERTS [<span class="newItems">1</span> NEW/ 0 OLD]</h1>
+							<div id="alertsMessageList" class="newsMessageList">
+								<ul>
+									<li>Alert #1</li>
+								</ul>
+								<div>
+									<span class="newItems" style="font-weight:bold;">More</span>
+								</div>
+							</div>
+						</div>
+						<div id="widgetPanel" class="widgetPanel">
+						</div>	
+					</div>
+					<div class="contentBox">
+					</div>
+					<div class="buttonPanel">
+					</div>
+					<div class="footer">
+						<span>Phylebox &copy; 2008, PhyerNet Task Group. All rights reserved.</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
