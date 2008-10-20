@@ -2,7 +2,14 @@
 <html>
 	<head>
 		<title>Welcome to PhyleBox</title>
-		<script type="text/css">
+		<script>
+			function setupEventHandlers() {
+				return true;
+			}
+
+			function parseClick(clickedObject) {
+				alert(clickedObject.tagName + ";" + clickedObject.id);
+			}
 		</script>
 		<style>
 			body {
@@ -505,49 +512,49 @@
 								<caption class="oddRow">Your Local Drive</caption>
 								<tbody>
 									<tr>
-										<td class="checkBoxField evenRow" style="text-decoration:underline;font-weight:bold;">Check</td>
-										<td class="fileNameField evenRow" style="text-decoration:underline;font-weight:bold;">Filename</td>
-										<td class="sizeField evenRow" style="text-decoration:underline;font-weight:bold;">Size</td>
-										<td class="attributesField evenRow" style="text-decoration:underline;font-weight:bold;">Attributes</td>
-										<td class="statusField evenRow" style="text-decoration:underline;font-weight:bold;">Status</td>
+										<td id="checkBoxColumnHeader" class="checkBoxField evenRow" style="cursor:pointer;text-decoration:underline;font-weight:bold;" onclick="parseClick(this);">Check</td>
+										<td id="fileNameColumnHeader" class="fileNameField evenRow" style="cursor:pointer;text-decoration:underline;font-weight:bold;" onclick="parseClick(this);">Filename</td>
+										<td id="sizeColumnHeader" class="sizeField evenRow" style="cursor:pointer;text-decoration:underline;font-weight:bold;" onclick="parseClick(this);">Size</td>
+										<td id="attributesColumnHeader" class="attributesField evenRow" style="cursor:pointer;text-decoration:underline;font-weight:bold;" onclick="parseClick(this);">Attributes</td>
+										<td id="statusColumnHeader" class="statusField evenRow" style="cursor:pointer;text-decoration:underline;font-weight:bold;" onclick="parseClick(this);">Status</td>
 									</tr>
-									<tr>
+									<tr id="001" onclick="parseClick(this);">
 										<td class="checkBoxField oddRow"><input type="checkbox" name="checkField001" id="checkField001"/></td>
 										<td class="fileNameField oddRow">[Folder] ..</td>
 										<td class="sizeField oddRow"></td>
 										<td class="attributesField oddRow"></td>
 										<td class="statusField oddRow"></td>
 									</tr>
-									<tr>
+									<tr id="002" onclick="parseClick(this);">
 										<td class="checkBoxField evenRow"><input type="checkbox" name="checkField002" id="checkField002"/></td>
 										<td class="fileNameField evenRow">[Folder] Images</td>
 										<td class="sizeField evenRow"></td>
 										<td class="attributesField evenRow"></td>
 										<td class="statusField evenRow"></td>
 									</tr>
-									<tr>
+									<tr id="003" onclick="parseClick(this);">
 										<td class="checkBoxField oddRow"><input type="checkbox" name="checkField003" id="checkField003"/></td>
 										<td class="fileNameField oddRow">[Folder] Sources</td>
 										<td class="sizeField oddRow"></td>
 										<td class="attributesField oddRow"></td>
 										<td class="statusField oddRow"></td>
 									</tr>
-									<tr>
-										<td class="checkBoxField evenRow"><input type="checkbox" name="checkField002" id="checkField002"/></td>
+									<tr id="004" onclick="parseClick(this);">
+										<td class="checkBoxField evenRow"><input type="checkbox" name="checkField004" id="checkField004"/></td>
 										<td class="fileNameField evenRow">[JPEG image] Image1.jpg</td>
 										<td class="sizeField evenRow"></td>
 										<td class="attributesField evenRow"></td>
 										<td class="statusField evenRow"></td>
 									</tr>
-									<tr>
-										<td class="checkBoxField oddRow"><input type="checkbox" name="checkField003" id="checkField003"/></td>
+									<tr id="005" onclick="parseClick(this);">
+										<td class="checkBoxField oddRow"><input type="checkbox" name="checkField005" id="checkField005"/></td>
 										<td class="fileNameField oddRow">[PNG image] icon.png</td>
 										<td class="sizeField oddRow"></td>
 										<td class="attributesField oddRow"></td>
 										<td class="statusField oddRow"></td>
 									</tr>
-									<tr>
-										<td class="checkBoxField evenRow"><input type="checkbox" name="checkField002" id="checkField002"/></td>
+									<tr id="006" onclick="parseClick(this);">
+										<td class="checkBoxField evenRow"><input type="checkbox" name="checkField006" id="checkField006"/></td>
 										<td class="fileNameField evenRow">[Text file] Test.txt</td>
 										<td class="sizeField evenRow"></td>
 										<td class="attributesField evenRow"></td>
