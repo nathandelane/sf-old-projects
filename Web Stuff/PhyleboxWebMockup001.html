@@ -77,16 +77,16 @@
 				height: 13px;
 				position: absolute;
 				left: 12px;
-				top: 12px;
+				top: 8px;
 				float: none;
-				background-image: url('newlogo.png');
+				background-image: url('phyleboxofficiallogo.png');
 				background-position: top center;
 				background-repeat: no-repeat;
 				overflow: hidden;
 				font-size: 9px;
 				font-weight: bold;
 				text-align: center;
-				padding: 29px 0px 0px 0px;
+				padding: 32px 0px 0px 0px;
 			}
 
 			div.userControls {
@@ -406,7 +406,22 @@
 				background-color: #637BA2;
 				float: left;
 				margin: 0px 10px;
-				padding: 6px 8px;
+			}
+
+			div#uploadButton {
+				width: 72px;
+				height: 30px;
+				overflow: hidden;
+				background-image: url('UploadButton.png');
+				background-repeat: no-repeat;
+			}
+
+			div#downloadButton {
+				width: 95px;
+				height: 30px;
+				overflow: hidden;
+				background-image: url('DownloadButton.png');
+				background-repeat: no-repeat;
 			}
 		</style>
 	</head>
@@ -565,8 +580,8 @@
 						</div>
 					</div>
 					<div class="buttonPanel">
-						<div id="uploadButton" class="button">Upload</div>
-						<div id="downloadButton" class="button">Download</div>
+						<div id="uploadButton" class="button" style="background-position:0px 0px;" onmouseover="this.style.backgroundPosition='-72px 0px';" onmouseout="this.style.backgroundPosition='0px 0px';"></div>
+						<div id="downloadButton" class="button" style="background-position:0px 0px;" onmouseover="this.style.backgroundPosition='-95px 0px';" onmouseout="this.style.backgroundPosition='0px 0px';"></div>
 						<div id="copyMoveButton" class="button">Copy/Move</div>
 						<div id="archiveButton" class="button">Archive</div>
 						<div id="deleteButton" class="button">Delete</div>
