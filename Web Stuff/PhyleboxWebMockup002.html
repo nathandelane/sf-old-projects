@@ -414,6 +414,7 @@
 			}
 
 			div.button {
+				height: 24px;
 				text-align: center;
 				font-size: 18px;
 				line-height: 18px;
@@ -421,11 +422,11 @@
 				background-color: #637BA2;
 				float: left;
 				margin: 0px 10px;
+				cursor: pointer;
 			}
 
 			div#uploadButton {
 				width: 72px;
-				height: 30px;
 				overflow: hidden;
 				background-image: url('UploadButton.png');
 				background-repeat: no-repeat;
@@ -433,7 +434,6 @@
 
 			div#downloadButton {
 				width: 95px;
-				height: 30px;
 				overflow: hidden;
 				background-image: url('DownloadButton.png');
 				background-repeat: no-repeat;
@@ -595,8 +595,8 @@
 						</div>
 					</div>
 					<div class="buttonPanel">
-						<div id="uploadButton" class="button" style="background-position:0px 0px;" onmouseover="this.style.backgroundPosition='-72px 0px';" onmouseout="this.style.backgroundPosition='0px 0px';"></div>
-						<div id="downloadButton" class="button" style="background-position:0px 0px;" onmouseover="this.style.backgroundPosition='-95px 0px';" onmouseout="this.style.backgroundPosition='0px 0px';"></div>
+						<div id="uploadButton" class="button" style="padding-top:6px;background-position:0px 0px;" onmouseover="this.style.backgroundPosition='-72px 0px';" onmouseout="this.style.backgroundPosition='0px 0px';">Upload</div>
+						<div id="downloadButton" class="button" style="padding-top:6px;background-position:0px 0px;" onmouseover="this.style.backgroundPosition='-95px 0px';" onmouseout="this.style.backgroundPosition='0px 0px';">Download</div>
 						<div id="copyMoveButton" class="button">Copy/Move</div>
 						<div id="archiveButton" class="button">Archive</div>
 						<div id="deleteButton" class="button">Delete</div>
