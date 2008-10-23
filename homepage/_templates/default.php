@@ -4,6 +4,9 @@
 		<title><?php echo $pageTitle; ?></title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link href="_feeds/nathandelane.xml" title="Nathandelane.com RSS Feed" type="application/rss+xml" rel="alternate"/>
+		<link href="http://nathandelane.blogspot.com/feeds/posts/default?alt=rss" title="Nathan de lane, Software Engineer" type="application/rss" rel="alternate"/>
+		<link href="http://blog.nathandelane.com/feeds/posts/default?alt=rss" title="Nathan in Real Life" type="application/rss" rel="alternate"/>
+		<link href="http://politicalpooh.blogspot.com/feeds/posts/default?alt=rss" title="Political Pooh" type="application/rss" rel="alternate"/>
 		<link media="screen" type="text/css" href="_stylesheets/<?php echo $defaultStylesheetName; ?>" rel="stylesheet" />
 		<?php
 			if(isset($otherStylesheets))
