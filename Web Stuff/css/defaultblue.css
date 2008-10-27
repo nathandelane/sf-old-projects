@@ -1,0 +1,113 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+	font-family: sans-serif,Arial;
+	font-weight: normal;
+	color: #ffffff;
+	background-color: #ffffff;
+	background-image: url('../images/phylebox002_bgi_637ba2.gif');
+	background-position: top left;
+	background-repeat: repeat-y;
+}
+
+div.menuDialogContent {
+	width: 130px;
+	float: left;
+	margin: 0px;
+	background-color: #919fb7;
+}
+
+div.topBar {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 72px;
+	background-color: #637ba2;
+	background-image: url('../images/topleftcornerblue.png');
+	background-position: top left;
+	background-repeat: no-repeat;
+}
+
+div.phyleBoxLogo {
+	width: 120px;
+	height: 13px;
+	position: absolute;
+	left: 12px;
+	top: 8px;
+	float: none;
+	background-image: url('../images/phyleboxofficiallogo.png');
+	background-position: top center;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	font-size: 9px;
+	font-weight: bold;
+	text-align: center;
+	padding: 32px 0px 0px 0px;
+}
+
+div.insideCurve {
+	position: absolute;
+	left: 0px;
+	top: 72px;
+	background-image: url('../images/innertopleftcornerwhite.png');
+	background-repeat: no-repeat;
+	background-position: top left;
+	width: 100%;
+	height: 20px;
+	float: left;
+}
+
+div.menuDialogTop {
+	background-color: #919fb7;
+	width: 130px;
+	height: 10px;
+	float: left;
+	margin: 0px;
+	background-image: url('../images/menudialogtop.png');
+	background-repeat: no-repeat;
+	background-position: top left;
+}
+
+div.menuDialogBottom {
+	background-color: #919fb7;
+	width: 130px;
+	height: 10px;
+	float: left;
+	margin: 0px;
+	background-image: url('../images/menudialogbottom.png');
+	background-repeat: no-repeat;
+	background-position: top left;
+}
+
+div.highlighted {
+	background-image: url('../images/menuItemHighlighted.png');
+	background-position: top left;
+	background-repeat: no-repeat;
+	background-color: #637ba2;
+}
+
+div.newsMessageList ul li {
+	font-size: 14px;
+	background-image: url('../images/bluebullet.png');
+	background-repeat: no-repeat;
+	background-position: 1px 4px;
+	text-indent: 12px;
+	font-weight: bold;
+	padding: 0px 0px 2px 0px;
+}
+
+div.contentBox {
+	width: 800px;
+	height: 400px;
+	margin: 0px;
+	overflow: auto;
+	background-color: #919fb7;
+	float: left;
+}
+
+td.evenRow {
+	background-color: #dbdee3;
+}
+
