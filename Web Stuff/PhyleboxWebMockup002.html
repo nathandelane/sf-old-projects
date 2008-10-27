@@ -319,8 +319,8 @@
 
 			div.buttonPanel {
 				width: 800px;
-				margin: 10px 0px 10px 0px;
-				padding: 0px 60px;
+				margin: 10px auto;
+				padding: 0px auto;
 				float: left;
 			}
 
@@ -421,7 +421,7 @@
 				color: #ffffff;
 				background-color: #637BA2;
 				float: left;
-				margin: 0px 10px;
+				margin: 0px 0px 10px 10px;
 				cursor: pointer;
 			}
 
@@ -436,6 +436,41 @@
 				width: 95px;
 				overflow: hidden;
 				background-image: url('DownloadButton.png');
+				background-repeat: no-repeat;
+			}
+
+			div#copyMoveButton {
+				width: 106px;
+				overflow: hidden;
+				background-image: url('CopyMoveButton.png');
+				background-repeat: no-repeat;
+			}
+
+			div#archiveButton {
+				width: 72px;
+				overflow: hidden;
+				background-image: url('UploadButton.png');
+				background-repeat: no-repeat;
+			}
+
+			div#deleteButton {
+				width: 72px;
+				overflow: hidden;
+				background-image: url('UploadButton.png');
+				background-repeat: no-repeat;
+			}
+
+			div#sendButton {
+				width: 72px;
+				overflow: hidden;
+				background-image: url('UploadButton.png');
+				background-repeat: no-repeat;
+			}
+
+			div#secureButton {
+				width: 72px;
+				overflow: hidden;
+				background-image: url('UploadButton.png');
 				background-repeat: no-repeat;
 			}
 		</style>
@@ -597,11 +632,11 @@
 					<div class="buttonPanel">
 						<div id="uploadButton" class="button" style="padding-top:6px;background-position:0px 0px;" onmouseover="this.style.backgroundPosition='-72px 0px';" onmouseout="this.style.backgroundPosition='0px 0px';">Upload</div>
 						<div id="downloadButton" class="button" style="padding-top:6px;background-position:0px 0px;" onmouseover="this.style.backgroundPosition='-95px 0px';" onmouseout="this.style.backgroundPosition='0px 0px';">Download</div>
-						<div id="copyMoveButton" class="button">Copy/Move</div>
-						<div id="archiveButton" class="button">Archive</div>
-						<div id="deleteButton" class="button">Delete</div>
-						<div id="sendButton" class="button">Send</div>
-						<div id="secureButton" class="button">Secure</div>
+						<div id="copyMoveButton" class="button" style="padding-top:6px;background-position:0px 0px;" onmouseover="this.style.backgroundPosition='-106px 0px';" onmouseout="this.style.backgroundPosition='0px 0px';">Copy/Move</div>
+						<div id="archiveButton" class="button" style="padding-top:6px;background-position:0px 0px;" onmouseover="this.style.backgroundPosition='-72px 0px';" onmouseout="this.style.backgroundPosition='0px 0px';">Archive</div>
+						<div id="deleteButton" class="button" style="padding-top:6px;background-position:0px 0px;" onmouseover="this.style.backgroundPosition='-72px 0px';" onmouseout="this.style.backgroundPosition='0px 0px';">Delete</div>
+						<div id="sendButton" class="button" style="padding-top:6px;background-position:0px 0px;" onmouseover="this.style.backgroundPosition='-72px 0px';" onmouseout="this.style.backgroundPosition='0px 0px';">Send</div>
+						<div id="secureButton" class="button" style="padding-top:6px;background-position:0px 0px;" onmouseover="this.style.backgroundPosition='-72px 0px';" onmouseout="this.style.backgroundPosition='0px 0px';">Secure</div>
 					</div>
 					<div class="footer">
 						<span>Phylebox &copy; 2008, PhyerNet Task Group. All rights reserved.</span>
