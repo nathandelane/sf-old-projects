@@ -20,16 +20,34 @@ function parseClick(clickedObject, event) {
 		document.getElementById('phyleboxContextMenu').style.display = "none"
 	} else if(clickedObject.nodeName == "TR") {
 		if(button == 1 && ctrlKey == true || button > 1) {
-			var fi = document.getElementById('fileItem');
-			//alert("children:" + clickedObject.childNodes[nodeIndex].childNodes[3] + ";" + clickedObject.childNodes[nodeIndex].childNodes[3].innerHTML);
-			if(fi.childNodes.length > 0) {
-				fi.removeChild(fi.firstChild);
+			try {
+				var fi = document.getElementById('fileItem');
+				//alert("children:" + clickedObject.childNodes[nodeIndex].childNodes[3] + ";" + clickedObject.childNodes[nodeIndex].childNodes[3].innerHTML);
+				if(fi.childNodes.length > 0) {
+					fi.removeChild(fi.firstChild);
+				}
+				
+				if(clickedObject.childNodes[nodeIndex].childNodes[3].innerHTML != null) {
+					newTextNode = document.createTextNode(clickedObject.childNodes[nodeIndex].childNodes[3].innerHTML);
+					fi.appendChild(newTextNode);
+				}
+			} catch(err) {
+				alert("Exception occurred trying to get file name.");
 			}
 			
-			newTextNode = document.createTextNode(clickedObject.childNodes[nodeIndex].childNodes[3].innerHTML);
-			fi.appendChild(newTextNode);
-			document.getElementById('phyleboxContextMenu').style.left = (event.pageX - 160) + "px";
-			document.getElementById('phyleboxContextMenu').style.top = (event.pageY - 100) + "px";
+			var xLoc = "0px";
+			var yLoc = "0px";
+			
+			if(window.event) {
+				xLoc = (event.clientX - 160) + "px";
+				yLoc = (event.clientY - 100) + "px";
+			} else {
+				xLoc = (event.pageX - 160) + "px";
+				yLoc = (event.pageY - 100) + "px";
+			}
+			
+			document.getElementById('phyleboxContextMenu').style.left = xLoc;
+			document.getElementById('phyleboxContextMenu').style.top = yLoc;
 			document.getElementById('phyleboxContextMenu').style.display = "block";
 		} else if(button == 1 && ctrlKey == false) {
 			if(clickedObject.childNodes[1].firstChild.checked) {
