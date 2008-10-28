@@ -6,15 +6,19 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using Microsoft.DirectX.Direct3D;
 using Microsoft.DirectX;
+using Microsoft.DirectX.Direct3D;
+using Direct3D = Microsoft.DirectX.Direct3D;
+using Microsoft.DirectX.DirectInput;
+using DirectInput = Microsoft.DirectX.DirectInput;
 
 namespace Nathandelane.Game
 {
 	public partial class GameForm : Form
 	{
-		private Device _device;
-		private DeviceType _deviceType;
+		private Direct3D.Device _graphicsDevice;
+		private DirectInput.Device _inputDevice;
+		private Direct3D.DeviceType _deviceType;
 		private CustomVertex.PositionColored[] _vertices;
 		private VertexBuffer _vertexBuffer;
 		private IndexBuffer _indexBuffer;
@@ -27,7 +31,7 @@ namespace Nathandelane.Game
 		public GameForm()
 		{
 			_angle = 0f;
-			_deviceType = DeviceType.Reference;//DeviceType.Hardware;
+			_deviceType = Direct3D.DeviceType.Reference;//DeviceType.Hardware;
 			_width = 64;
 			_height = 64;
 
@@ -62,7 +66,7 @@ namespace Nathandelane.Game
 
 		private void HeightIndicesDeclaration()
 		{
-			_indexBuffer = new IndexBuffer(typeof(int), (_width - 1) * (_height - 1) * 6, _device, Usage.WriteOnly, Pool.Default);
+			_indexBuffer = new IndexBuffer(typeof(int), (_width - 1) * (_height - 1) * 6, _graphicsDevice, Usage.WriteOnly, Pool.Default);
 			_indices = new int[(_width - 1) * (_height - 1) * 6];
 
 			for (int x = 0; x < _width - 1; x++)
@@ -84,7 +88,7 @@ namespace Nathandelane.Game
 
 		private void HeightVertexDeclaration()
 		{
-			_vertexBuffer = new VertexBuffer(typeof(CustomVertex.PositionColored), _width * _height, _device, Usage.Dynamic | Usage.WriteOnly, CustomVertex.PositionColored.Format, Pool.Default);
+			_vertexBuffer = new VertexBuffer(typeof(CustomVertex.PositionColored), _width * _height, _graphicsDevice, Usage.Dynamic | Usage.WriteOnly, CustomVertex.PositionColored.Format, Pool.Default);
 			_vertices = new CustomVertex.PositionColored[_width * _height];
 
 			for (int x = 0; x < _width; x++)
@@ -111,28 +115,28 @@ namespace Nathandelane.Game
 			presentationParameters.Windowed = true;
 			presentationParameters.SwapEffect = SwapEffect.Discard;
 
-			_device = new Device(0, _deviceType, this, CreateFlags.SoftwareVertexProcessing, presentationParameters);
-			_device.RenderState.FillMode = FillMode.WireFrame;
+			_graphicsDevice = new Direct3D.Device(0, _deviceType, this, CreateFlags.SoftwareVertexProcessing, presentationParameters);
+			_graphicsDevice.RenderState.FillMode = FillMode.WireFrame;
 		}
 
 		protected override void OnPaint(PaintEventArgs e)
 		{
 			// Lights definition
-			_device.RenderState.Lighting = false;
+			_graphicsDevice.RenderState.Lighting = false;
 
-			_device.Clear(ClearFlags.Target, Color.DarkSlateBlue, 1.0f, 0); // Clear the viewport
+			_graphicsDevice.Clear(ClearFlags.Target, Color.DarkSlateBlue, 1.0f, 0); // Clear the viewport
 
-			_device.BeginScene(); // Beginning of scene rendering
-			_device.VertexFormat = CustomVertex.PositionColored.Format;
+			_graphicsDevice.BeginScene(); // Beginning of scene rendering
+			_graphicsDevice.VertexFormat = CustomVertex.PositionColored.Format;
 
-			_device.SetStreamSource(0, _vertexBuffer, 0);
-			_device.Indices = _indexBuffer;
+			_graphicsDevice.SetStreamSource(0, _vertexBuffer, 0);
+			_graphicsDevice.Indices = _indexBuffer;
 
-			_device.Transform.World = Matrix.Translation(-_height / 2, -_width / 2, 0);
-			_device.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, _width * _height/*5*/, 0, _indices.Length / 3/*2*/);
-			_device.EndScene(); // Ending of scene rendering
+			_graphicsDevice.Transform.World = Matrix.Translation(-_height / 2, -_width / 2, 0);
+			_graphicsDevice.DrawIndexedPrimitives(PrimitiveType.TriangleList, 0, 0, _width * _height/*5*/, 0, _indices.Length / 3/*2*/);
+			_graphicsDevice.EndScene(); // Ending of scene rendering
 
-			_device.Present(); // Present or paint the viewport content
+			_graphicsDevice.Present(); // Present or paint the viewport content
 
 			this.Invalidate(); // Forget any automatic event validation calls
 
@@ -141,10 +145,10 @@ namespace Nathandelane.Game
 
 		private void CameraPositioning()
 		{
-			_device.Transform.Projection = Matrix.PerspectiveFovLH((float)Math.PI / 4, this.Width / this.Height, 1f, 150f);
-			_device.Transform.View = Matrix.LookAtLH(new Vector3(0, -40, 50), new Vector3(0, -5, 0), new Vector3(0, 1, 0));
-			_device.RenderState.Lighting = false;
-			_device.RenderState.CullMode = Cull.None;
+			_graphicsDevice.Transform.Projection = Matrix.PerspectiveFovLH((float)Math.PI / 4, this.Width / this.Height, 1f, 150f);
+			_graphicsDevice.Transform.View = Matrix.LookAtLH(new Vector3(0, -40, 50), new Vector3(0, -5, 0), new Vector3(0, 1, 0));
+			_graphicsDevice.RenderState.Lighting = false;
+			_graphicsDevice.RenderState.CullMode = Cull.None;
 		}
 
 	}

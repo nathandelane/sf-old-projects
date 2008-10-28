@@ -10,10 +10,11 @@ namespace Nathandelane.IO.Hash
 	{
 		public Program(string[] args)
 		{
-			string fileName = "";
-			string hashMethod = "";
-			string stringToBeHashed = "";
-			string result = "";
+			string fileName = String.Empty;
+			string hashMethod = String.Empty;
+			string stringToBeHashed = String.Empty;
+			string result = String.Empty;
+			string salt = String.Empty;
 
 			for (int i = 0; i < args.Length; i++)
 			{
@@ -31,6 +32,16 @@ namespace Nathandelane.IO.Hash
 				{
 					i++;
 					stringToBeHashed = args[i];
+				}
+				else if (args[i].Equals("-a") || args[i].Equals("--addsalt"))
+				{
+					i++;
+					salt = args[i];
+				}
+				else
+				{
+					Environment.ExitCode = 1;
+					throw new ArgumentException(args[i]);
 				}
 			}
 
@@ -92,16 +103,32 @@ namespace Nathandelane.IO.Hash
 
 						if (algorithm != null)
 						{
-							foreach (byte b in algorithm.ComputeHash(fs))
+							long bufferSize = fs.Length + (String.IsNullOrEmpty(salt) ? 0 : salt.Length);
+							byte[] buffer = new byte[bufferSize];
+							using (StreamReader reader = new StreamReader(fs))
+							{
+								buffer = ASCIIEncoding.ASCII.GetBytes(reader.ReadToEnd().ToCharArray());
+
+								if (!String.IsNullOrEmpty(salt))
+								{
+									for (int s = 0; s < salt.Length; s++)
+									{
+										buffer[fs.Length + s] = ASCIIEncoding.ASCII.GetBytes(salt.ToCharArray())[s];
+									}
+								}
+							}
+
+							foreach (byte b in algorithm.ComputeHash(buffer))
 							{
 								result += ByteToHex(b);
 							}
 						}
 
-						Console.WriteLine("Result: {0}", result);
+						Console.WriteLine("{0}", result);
 					}
 					else
 					{
+						Environment.ExitCode = 1;
 						Console.WriteLine("Cannot find file or directory named '{0}'", fileName);
 					}
 				}
@@ -155,20 +182,31 @@ namespace Nathandelane.IO.Hash
 
 					if (algorithm != null)
 					{
-						foreach (byte b in algorithm.ComputeHash(ASCIIEncoding.ASCII.GetBytes(stringToBeHashed)))
+						int bufferSize = stringToBeHashed.Length + (String.IsNullOrEmpty(salt) ? 0 : salt.Length);
+						byte[] buffer = new byte[bufferSize];
+
+						if (!String.IsNullOrEmpty(salt))
+						{
+							for (int s = 0; s < salt.Length; s++)
+							{
+								buffer[stringToBeHashed.Length + s] = ASCIIEncoding.ASCII.GetBytes(salt.ToCharArray())[s];
+							}
+						}
+
+						foreach (byte b in algorithm.ComputeHash(buffer))
 						{
 							result += ByteToHex(b);
 						}
 					}
 
-					Console.WriteLine("Result: {0}", result);
+					Console.WriteLine("{0}", result);
 				}
 			}
 		}
 
 		private string ByteToHex(byte next)
 		{
-			string retVal = "";
+			string retVal = String.Empty;
 
 			retVal = Convert.ToString(next, 16);
 
@@ -189,7 +227,7 @@ namespace Nathandelane.IO.Hash
 			}
 			else if (args.Length >= 2)
 			{
-				if ((argument.Contains("-m") && (argument.Contains("-s") || argument.Contains("-f"))) || (argument.Contains("--method") && (argument.Contains("--string") || argument.Contains("--file"))))
+				if ((argument.Contains("-m") && (argument.Contains("-s") || argument.Contains("-f") || argument.Contains("-a"))) || (argument.Contains("--method") && (argument.Contains("--string") || argument.Contains("--file") || argument.Contains("--addsalt"))))
 				{
 					try
 					{
@@ -197,14 +235,18 @@ namespace Nathandelane.IO.Hash
 					}
 					catch (Exception)
 					{
+						Environment.ExitCode = 1;
 						Console.WriteLine("Missing arguments");
 					}
 				}
 				else
 				{
+					Environment.ExitCode = 1;
 					Console.WriteLine("Missing arguments");
 				}
 			}
+
+			Environment.ExitCode = 0;
 		}
 
 		public static void Help()
@@ -214,12 +256,13 @@ namespace Nathandelane.IO.Hash
 			Console.WriteLine("-s, --string     hashstring      Hashes the string you supply.");
 			Console.WriteLine("-f, --file       hashfile        Hashes the file you supply.");
 			Console.WriteLine("-m, --method     hashmethod      Hashes using the supplied method.");
-			Console.WriteLine("                   Valid methods include simple, md5, sha1");
+			Console.WriteLine("                   Valid methods include simple, md5, sha1, sha256, etc.");
+			Console.WriteLine("-a, --addsalt	salt			Adds salt to the string or file before hashing it.");
 		}
 
 		public static void Usage()
 		{
-			Console.WriteLine("\nUsage: Hash (-f fileName|-s string) -m hashingMethod");
+			Console.WriteLine("\nUsage: Hash (-f fileName|-s string) -m hashingMethod -a additionalSaltString");
 		}
 	}
 }

@@ -88,7 +88,7 @@ namespace Nathandelane.Net.PortScanner
 			this.Controls.Add(this.linkLabel1);
 			this.Controls.Add(this._outputTextBox);
 			this.Controls.Add(this._commandTextBox);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 			this.Name = "DefaultForm";
 			this.Text = "Text Container";
 			this.ResumeLayout(false);

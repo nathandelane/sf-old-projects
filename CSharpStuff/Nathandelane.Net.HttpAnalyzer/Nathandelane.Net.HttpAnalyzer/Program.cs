@@ -149,7 +149,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 						int startIndex = s.IndexOf("=") + 1;
 						string cookieString = s.Substring(startIndex);
 						string[] cookieStringCollection = cookieString.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
-						Dictionary<string, string> cookieElements = new Dictionary<string, string>();
+						Cookie newCookie = new Cookie();
 
 						foreach (string cookieElement in cookieStringCollection)
 						{
@@ -159,29 +159,31 @@ namespace Nathandelane.Net.HttpAnalyzer
 							{
 								if(keyValuePair[0].ToLower().Contains("path"))
 								{
-									cookieElements.Add("path", keyValuePair[1]);
+									newCookie.Path = keyValuePair[1];
+								}
+								else if (keyValuePair[0].ToLower().Contains("domain"))
+								{
+									newCookie.Domain = keyValuePair[1];
+								}
+								else if (keyValuePair[0].ToLower().Contains("expires"))
+								{
+									newCookie.Expires = DateTime.Parse(keyValuePair[1]);
 								}
 								else
 								{
-									cookieElements.Add("cookie", String.Join("=", keyValuePair));
+									newCookie.Name = keyValuePair[0];
+									newCookie.Value = keyValuePair[1];
 								}
 							}
 						}
 
-						request.CookieContainer = new CookieContainer();
-						if (cookieElements.ContainsKey("cookie"))
+						if (String.IsNullOrEmpty(newCookie.Domain))
 						{
-							string[] keyValuePair = cookieElements["cookie"].Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
-
-							if (cookieElements.ContainsKey("path"))
-							{
-								request.CookieContainer.Add(new Cookie(keyValuePair[0], keyValuePair[1], cookieElements["path"], request.RequestUri.DnsSafeHost));
-							}
-							else
-							{
-								request.CookieContainer.Add(new Cookie(keyValuePair[0], keyValuePair[1]));
-							}
+							newCookie.Domain = request.RequestUri.DnsSafeHost;
 						}
+
+						request.CookieContainer = new CookieContainer();
+						request.CookieContainer.Add(newCookie);
 					}
 					else
 					{
@@ -235,50 +237,60 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 			if (_parameters.ContainsKey("xpath"))
 			{
-				ShowXPathedContent(response);
+				ShowXPathedContent(response, _parameters["attributes"] as string);
 			}
+
+			if (_parameters.ContainsKey("downloadimages"))
+			{
+				DownloadImages(response, _parameters["downloadimages"] as string);
+			}
+		}
+
+		public void ShowResponseUri(WebResponse  response)
+		{
+			Console.Write("; Response Uri: {0}", response.ResponseUri.AbsoluteUri);
 		}
 
 		public void ShowHeaders(WebRequest request)
 		{
-			Console.WriteLine("Headers\n-------");
+			Console.Write("; |");
 			foreach (string header in request.Headers.AllKeys)
 			{
-				Console.WriteLine("{0}: {1}", header, request.Headers[header]);
+				Console.Write("{0}: {1}; ", header, request.Headers[header]);
 			}
-			Console.WriteLine();
 		}
 
 		public void ShowHeaders(WebResponse response)
 		{
-			Console.WriteLine("Headers\n-------");
-			Console.WriteLine("Response Uri: {0}", response.ResponseUri.AbsoluteUri);
+			ShowResponseUri(response);
+			Console.Write("; |");
 			foreach (string header in response.Headers.AllKeys)
 			{
-				Console.WriteLine("{0}: {1}", header, response.Headers[header]);
+				Console.Write("{0}: {1}; ", header, response.Headers[header]);
 			}
-			Console.WriteLine();
 		}
 
 		public void ShowContent(WebResponse response)
 		{
-			Console.WriteLine("\nContent\n-------");
 			using (Stream stream = response.GetResponseStream())
 			{
 				using (StreamReader reader = new StreamReader(stream))
 				{
 					string data = reader.ReadToEnd();
 
-					Console.WriteLine(data);
+					Console.WriteLine("; {0}", data);
 				}
 			}
 			Console.WriteLine();
 		}
 
-		public void ShowXPathedContent(WebResponse response)
+		public void ShowXPathedContent(WebResponse response, string requestedAttributes)
 		{
+			string[] attributes = requestedAttributes.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+
 			using (Stream stream = response.GetResponseStream())
 			{
+				Console.Write("; ");
 				using (StreamReader reader = new StreamReader(stream))
 				{
 					string data = reader.ReadToEnd();
@@ -292,21 +304,41 @@ namespace Nathandelane.Net.HttpAnalyzer
 						int i = 0;
 						foreach (HtmlAgilityPack.HtmlNode node in nodes)
 						{
-							Console.WriteLine("{0}:", i);
+							Console.Write("; {0}:", i);
 
-							foreach (HtmlAttribute attr in node.Attributes)
+							if (requestedAttributes.Length > 0)
 							{
-								Console.WriteLine("{0}: {1}", attr.Name, attr.Value);
+								foreach (string attr in attributes)
+								{
+									if (!attr.ToLower().Equals("innerhtml") && !attr.ToLower().Equals("innertext") && !String.IsNullOrEmpty(node.Attributes[attr].Value))
+									{
+										Console.Write("{0}: {1}, ", attr, node.Attributes[attr].Value);
+									}
+									else if (attr.ToLower().Equals("innerhtml"))
+									{
+										Console.Write("InnerHtml: {0}, ", node.InnerHtml);
+									}
+									else if (attr.ToLower().Equals("innertext"))
+									{
+										Console.Write("InnerHtml: {0}, ", node.InnerText);
+									}
+								}
 							}
-
-							if (!String.IsNullOrEmpty(node.InnerHtml))
+							else
 							{
-								Console.WriteLine("InnerHtml: {0}", node.InnerHtml);
-							}
+								foreach (HtmlAttribute attr in node.Attributes)
+								{
+									Console.Write("{0}: {1}, ", attr.Name, attr.Value);
+								}
+								if (!String.IsNullOrEmpty(node.InnerHtml))
+								{
+									Console.Write("InnerHtml: {0}, ", node.InnerHtml);
+								}
 
-							if (!String.IsNullOrEmpty(node.InnerText))
-							{
-								Console.WriteLine("InnerText: {0}", node.InnerText);
+								if (!String.IsNullOrEmpty(node.InnerText))
+								{
+									Console.Write("InnerText: {0}, ", node.InnerText);
+								}
 							}
 
 							i++;
@@ -321,6 +353,60 @@ namespace Nathandelane.Net.HttpAnalyzer
 			Console.WriteLine();
 		}
 
+		public void DownloadImages(WebResponse response, string xpath)
+		{
+			using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+			{
+				string data = reader.ReadToEnd();
+				HtmlDocument doc = new HtmlDocument();
+				doc.LoadHtml(data);
+
+				try
+				{
+					HtmlAgilityPack.HtmlNodeCollection nodes = doc.DocumentNode.SelectNodes(xpath);
+					string imageFolder = String.Format("{0}\\images", Environment.CurrentDirectory);
+
+					if (!Directory.Exists(imageFolder))
+					{
+						Directory.CreateDirectory(imageFolder);
+					}
+
+					foreach (HtmlAgilityPack.HtmlNode node in nodes)
+					{
+						string imgPath = node.Attributes["src"].Value;
+
+						if (!imgPath.StartsWith("http"))
+						{
+							// Need to add the url to the beginning
+
+						}
+
+						HttpWebRequest innerRequest = WebRequest.Create(imgPath) as HttpWebRequest;
+						HttpWebResponse innerResponse = innerRequest.GetResponse() as HttpWebResponse;
+						using (StreamReader imgReader = new StreamReader(innerResponse.GetResponseStream()))
+						{
+							byte[] bytes = ASCIIEncoding.ASCII.GetBytes(imgReader.ReadToEnd());
+							int lastIndexOfSlash = imgPath.LastIndexOf('/');
+							string fileName = imgPath.Substring(lastIndexOfSlash);
+
+							using (FileStream fstream = new FileStream(String.Format("{0}/{1}", imageFolder, fileName), FileMode.CreateNew))
+							{
+								foreach (byte b in bytes)
+								{
+									fstream.WriteByte(b);
+								}
+							}
+						}
+					}
+				}
+				catch (NullReferenceException)
+				{
+					Console.WriteLine("Unable to retrieve object.");
+				}
+			}
+
+		}
+
 		static void Main(string[] args)
 		{
 			_parameters = new Dictionary<string, object>();
@@ -330,6 +416,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 			_parameters.Add("timeout", 30000);
 			_parameters.Add("headers", new string[0]);
 			_parameters.Add("accept-cookies", false);
+			_parameters.Add("attributes", String.Empty);
 
 			try
 			{
@@ -398,6 +485,16 @@ namespace Nathandelane.Net.HttpAnalyzer
 						{
 							_parameters["accept-cookies"] = true;
 						}
+						else if (args[i].Equals("-a") || args[i].Equals("--attributes"))
+						{
+							i++;
+							_parameters["attributes"] = args[i];
+						}
+						else if (args[i].Equals("-d") || args[i].Equals("--downloadimages"))
+						{
+							i++;
+							_parameters.Add("downloadimages", args[i]);
+						}
 					}
 
 					new Program();
@@ -422,7 +519,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 		public static void Usage()
 		{
-			Console.WriteLine("Usage: HttpAnalyzer -i url [-u [domain\\]userAccount -p password] [-x proxy:port] [-e headers (header=value;...)] [-t timeoutInMillis] [-r request,data,response] [-f findXpath] [-o (postkey=value&...)] [-c] [-h]");
+			Console.WriteLine("Usage: HttpAnalyzer -i url [-u [domain\\]userAccount -p password] [-x proxy:port] [-e headers (header=value;...)] [-t timeoutInMillis] [-r request,data,response] [-f findXpath [-a nodeAttributes (attr1,attr2,...)]] [-o (postkey=value&...)] [-c] [-h]");
 		}
 	}
 }

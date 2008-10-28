@@ -8,6 +8,7 @@ namespace Vehix.Net.Irc
 	{
 		public static readonly string Channel = "channel";
 		public static readonly string Server = "server";
+		public static readonly string Port = "port";
 		public static readonly string RealName = "realname";
 		public static readonly string NickName = "nickname";
 		public static readonly string Password = "password";
@@ -23,6 +24,7 @@ namespace Vehix.Net.Irc
 
 			_settings[UserSettings.Channel] = "vehix";
 			_settings[UserSettings.Server] = "irc.freenode.net";
+			_settings[UserSettings.Port] = "6667";
 		}
 
 		public string this[string key]

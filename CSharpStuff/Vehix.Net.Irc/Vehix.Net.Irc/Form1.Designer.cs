@@ -33,6 +33,7 @@ namespace Vehix.Net.Irc
 			this.messageViewingTextBox = new System.Windows.Forms.TextBox();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.sendButton = new System.Windows.Forms.Button();
+			this.userListBox = new System.Windows.Forms.ListBox();
 			this.tabPage1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.SuspendLayout();
@@ -42,7 +43,8 @@ namespace Vehix.Net.Irc
 			this.messageEntryTextBox.Location = new System.Drawing.Point(4, 376);
 			this.messageEntryTextBox.Name = "messageEntryTextBox";
 			this.messageEntryTextBox.Size = new System.Drawing.Size(505, 20);
-			this.messageEntryTextBox.TabIndex = 2;
+			this.messageEntryTextBox.TabIndex = 0;
+			this.messageEntryTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnKeyPress);
 			// 
 			// tabPage1
 			// 
@@ -85,11 +87,20 @@ namespace Vehix.Net.Irc
 			this.sendButton.UseVisualStyleBackColor = true;
 			this.sendButton.Click += new System.EventHandler(this.SendMessage);
 			// 
+			// userListBox
+			// 
+			this.userListBox.FormattingEnabled = true;
+			this.userListBox.Location = new System.Drawing.Point(596, 12);
+			this.userListBox.Name = "userListBox";
+			this.userListBox.Size = new System.Drawing.Size(184, 381);
+			this.userListBox.TabIndex = 4;
+			// 
 			// ircForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(590, 401);
+			this.ClientSize = new System.Drawing.Size(784, 401);
+			this.Controls.Add(this.userListBox);
 			this.Controls.Add(this.sendButton);
 			this.Controls.Add(this.messageEntryTextBox);
 			this.Controls.Add(this.tabControl1);
@@ -111,6 +122,7 @@ namespace Vehix.Net.Irc
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TextBox messageViewingTextBox;
 		private System.Windows.Forms.Button sendButton;
+		private System.Windows.Forms.ListBox userListBox;
 	}
 }
 

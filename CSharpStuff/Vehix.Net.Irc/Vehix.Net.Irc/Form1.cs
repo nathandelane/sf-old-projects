@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Vehix.Net.Irc
@@ -20,13 +21,14 @@ namespace Vehix.Net.Irc
 	{
 		private Status _formStatus;
 		private UserSettings _settings;
+		private IrcAgent _agent;
 
 		public ircForm()
 		{
 			InitializeComponent();
 
 			_settings = new UserSettings();
-			_formStatus = Status.GetNickName;
+			_formStatus = Status.GetRealName;
 		}
 
 		private void SendMessage(object sender, EventArgs e)
@@ -52,11 +54,57 @@ namespace Vehix.Net.Irc
 				_settings[UserSettings.Password] = messageEntryTextBox.Text.Split(' ')[0];
 				_formStatus = Status.Continue;
 
-				PostMessage();
+				PostMessage("");
+
+				Cursor = Cursors.WaitCursor;
+				messageEntryTextBox.Enabled = false;
+				sendButton.Enabled = false;
+
+				_agent = new IrcAgent();
+				_agent.Initialize();
+
+				messageViewingTextBox.Clear();
+				PostMessage("Message Of The Day (MOTD):");
+				PostMessage(_agent.MOTD);
+
+				ThreadStart threadStart0 = new ThreadStart(_agent.GetCommandResult);
+				Thread thread = new Thread(threadStart0);
+				thread.Start();
+
+				Cursor = Cursors.Default;
+				messageEntryTextBox.Enabled = true;
+				sendButton.Enabled = true;
+				messageEntryTextBox.Focus();
 			}
 			else
 			{
-				PostMessage();
+				string commandMsg = messageEntryTextBox.Text;
+				if (commandMsg.StartsWith("/"))
+				{
+					_agent.SendCommand(messageEntryTextBox.Text);
+
+					//PostMessage(_agent.CommandResult);
+
+					messageEntryTextBox.Clear();
+
+					if (commandMsg.ToUpper().Contains("JOIN"))
+					{
+						userListBox.Items.Clear();
+						foreach (string user in _agent.UserList)
+						{
+							userListBox.Items.Add(user);
+						}
+
+						PostMessage(_agent.ChannelMode);
+						PostMessage(_settings[UserSettings.Channel]);
+					}
+				}
+				else
+				{
+					_agent.SendCommand(messageEntryTextBox.Text);
+
+					PostMessage();
+				}
 			}
 		}
 
@@ -80,6 +128,28 @@ namespace Vehix.Net.Irc
 		{
 			messageViewingTextBox.AppendText(String.Format("{0}{1}", messageEntryTextBox.Text, Environment.NewLine));
 			messageEntryTextBox.Clear();
+		}
+
+		private void PostMessage(string message)
+		{
+			messageViewingTextBox.AppendText(String.Format("{0}{1}", message, Environment.NewLine));
+		}
+
+		private void RequestFocus(object sender, EventArgs e)
+		{
+			messageEntryTextBox.Focus();
+		}
+
+		private void OnKeyPress(object sender, KeyPressEventArgs e)
+		{
+			if (e.KeyChar == (char)13)
+			{
+				SendMessage(sender, e);
+			}
+			else
+			{
+				base.OnKeyPress(e);
+			}
 		}
 	}
 }
