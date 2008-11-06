@@ -1,0 +1,69 @@
+<html>
+<head><title>phyerboss@phyer.net/Psi</title></head>
+<body><h1>Conversation with phyerboss@phyer.net/Psi</h1>
+<font color="#cc0000"><font size="2">(2:20:30 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> wb</font><br>
+<font size="2"><font color="#204a87">(2:21:26 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> Thanks -- I just rebuilt my computer, so I might be sort of up and down for a couple of days</font><br>
+<font color="#cc0000"><font size="2">(2:21:48 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> oh?</font><br>
+<font color="#cc0000"><font size="2">(2:21:55 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> whats in there now?</font><br>
+<font size="2"><font color="#204a87">(2:22:16 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> basically nothing</font><br>
+<font color="#cc0000"><font size="2">(2:22:50 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> heheh</font><br>
+<font size="2"><font color="#204a87">(2:26:19 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> Not really -- I've got MS Office 2003, VLC, Pidgin, Firefox, Ruby, and a couple of other programs I use often -- still installing my developer tools though</font><br>
+<font color="#cc0000"><font size="2">(2:33:48 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> whats your hardware specs in it?</font><br>
+<font size="2"><font color="#204a87">(2:36:13 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> Oh they're still the same, sorry, I meant just the software -- I reinstalled the OS and everything, so it would be much cleaner and I wouldn't have so much junk on it anymore</font><br>
+<font color="#cc0000"><font size="2">(2:37:21 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> heh, sounds like me^^</font><br>
+<font color="#cc0000"><font size="2">(2:38:10 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> speaking of which, i'll be redoing the server as well after phylebox is ready for its 1st actual deployment</font><br>
+<font size="2"><font color="#204a87">(2:38:21 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> cool</font><br>
+<font size="2"><font color="#204a87">(2:38:40 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> So what kind of stuff do we need to worry about in the case of user migration?</font><br>
+<font color="#cc0000"><font size="2">(2:40:20 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> for right now since we're still under 50 or so users(which will be cut down a bit thanks to being able to allow users to access any other directories they need to besides their own*) i have the current user's access info on a text file here</font><br>
+<font color="#cc0000"><font size="2">(2:40:52 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> but what i'll probably do is just send out a broadcast and mass PM to have them respond with more updated info</font><br>
+<font color="#cc0000"><font size="2">(2:41:35 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> as i really would'nt want to even bother monkeying with the flat file for efm</font><br>
+<font size="2"><font color="#204a87">(2:41:47 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> I mean what about the files of theirs that we host?</font><br>
+<font color="#cc0000"><font size="2">(2:42:07 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> oh, thats no problem either</font><br>
+<font color="#cc0000"><font size="2">(2:42:42 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> every day at 6am and 9pm i run a scheduled backup of the web drive</font><br>
+<font color="#cc0000"><font size="2">(2:42:46 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> and phyerdrive</font><br>
+<font color="#cc0000"><font size="2">(2:43:03 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> and they save on other hard drives</font><br>
+<font color="#cc0000"><font size="2">(2:43:21 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> now that i have the new external, i can have them go there again</font><br>
+<font color="#cc0000"><font size="2">(2:43:38 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> but when i redo everything</font><br>
+<font color="#cc0000"><font size="2">(2:43:54 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> i just pull those files off the drives they were saved to</font><br>
+<font color="#cc0000"><font size="2">(2:44:02 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> and place them back as they were</font><br>
+<font color="#cc0000"><font size="2">(2:44:18 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> copy/paste</font><br>
+<font color="#cc0000"><font size="2">(2:45:00 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> the server has 6 hard drives...only 3 are actually in use</font><br>
+<font color="#cc0000"><font size="2">(2:45:58 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> 1 drive was intended to act as a storage for emails for axim and messages for open fire</font><br>
+<font color="#cc0000"><font size="2">(2:46:16 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> but some reason, i could'nt get it to work that way^^</font><br>
+<font color="#cc0000"><font size="2">(2:46:31 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> so, its just a blank 100gb drive</font><br>
+<font color="#cc0000"><font size="2">(2:47:14 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> i was'nt sure how fast space would get used up, so i try keeping each drive reserved for various things</font><br>
+<font color="#cc0000"><font size="2">(2:47:25 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> i knda got into a habit of spreading things out</font><br>
+<font color="#cc0000"><font size="2">(2:47:36 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> and not shoving things all in 1 disk</font><br>
+<font size="2"><font color="#204a87">(2:47:56 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> That's a good idea</font><br>
+<font color="#cc0000"><font size="2">(2:47:56 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> as thats how i lost alot of previous user data years back</font><br>
+<font color="#cc0000"><font size="2">(2:49:02 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> so, theres 2 250gb drives that will be for the web hosting</font><br>
+<font color="#cc0000"><font size="2">(2:49:18 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> 1 120gb drive is our's(phyerdrive)</font><br>
+<font color="#cc0000"><font size="2">(2:49:53 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> the 20gb is where home and / are</font><br>
+<font color="#cc0000"><font size="2">(2:50:29 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> so it leaves 3 other drives open</font><br>
+<font color="#cc0000"><font size="2">(2:51:03 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> i considered offering a service that &quot;leases&quot; large amounts of space out to dev teams like our's</font><br>
+<font color="#cc0000"><font size="2">(2:51:11 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> like how we have phyerdrive</font><br>
+<font color="#cc0000"><font size="2">(2:51:35 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> other teams that sign up might be interested in something like that as well</font><br>
+<font color="#cc0000"><font size="2">(2:52:46 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> a drive..rather, partitian totally seperate from their accounts which is on one of the web drives</font><br>
+<font size="2"><font color="#204a87">(2:53:29 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> Yeah that might be cool for other teams</font><br>
+<font color="#cc0000"><font size="2">(2:59:09 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> until im able to get my hands on a few more drives, space may be limited...whats a fair size to offer up? Note that I WILL be charging for this service</font><br>
+<font color="#cc0000"><font size="2">(2:59:49 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> could offer space 20gb and up?</font><br>
+<font color="#cc0000"><font size="2">(2:59:55 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> im open to suggestions</font><br>
+<font size="2"><font color="#204a87">(3:00:27 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> 20gb is really good -- but you could shop around and see what others are offering</font><br>
+<font color="#cc0000"><font size="2">(3:01:06 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> yeah, good idea...thats something i haven't done in awhile too</font><br>
+<font color="#cc0000"><font size="2">(3:07:26 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> Oh and heres some ideas on other color swaps: cinnamon(red) &amp; fruity(orange)</font><br>
+<font size="2"><font color="#204a87">(3:08:19 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> ok I couldn't remember other ones</font><br>
+<font color="#cc0000"><font size="2">(3:29:46 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> heh, come to think of it</font><br>
+<font color="#cc0000"><font size="2">(3:30:07 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> any other little color swaps we make up can just be named after foods</font><br>
+<font color="#cc0000"><font size="2">(3:30:32 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> cheesy but cuts down on the thinking process on naming them</font><br>
+<font color="#cc0000"><font size="2">(3:30:34 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> heh</font><br>
+<font color="#cc0000"><font size="2">(3:40:46 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> how much longer you're on for?</font><br>
+<font size="2"><font color="#204a87">(3:42:23 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> for about 40 more minutes</font><br>
+<font size="2"><font color="#204a87">(3:42:37 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> I can't think of any other color schemes I think would be good</font><br>
+<font color="#cc0000"><font size="2">(3:45:21 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> mocha(light brown), lemonade(yellow), pink(bubblegum), deep red(raspberry), purple(grape)...</font><br>
+<font color="#cc0000"><font size="2">(3:46:54 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> theres a few^^</font><br>
+<font color="#cc0000"><font size="2">(3:47:01 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> uh, brb</font><br>
+<font color="#cc0000"><font size="2">(4:00:50 PM) </font><b><font size="3">Mike:</font></b></font><font size="3"></font><font size="3"> ok, back</font><br>
+<font size="2"><font color="#204a87">(4:01:10 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> k</font><br>
+<font size="2"><font color="#204a87">(4:13:01 PM) </font></font><font color="#204a87"><b><font size="3">Nathan:</font></b></font><font size="3"></font><font size="3"> I am taking off -- have to leave a little earlier than expected so ttyl</font>
+</body>
+</html>
