@@ -428,3 +428,9 @@ div.avatarFrame
 	background-repeat: no-repeat;
 	background-position: top left;
 }
+
+span.centerText
+{
+	display: block;
+	text-align: center;
+}

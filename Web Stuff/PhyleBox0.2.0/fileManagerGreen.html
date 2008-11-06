@@ -4,6 +4,14 @@
 		<title>Welcome to PhyleBox</title>
 		<script src="_scripts/fileManager.js"></script>
 		<link type="text/css" rel="stylesheet" href="_stylesheets/fileManagerGreen.css"/>
+		<style>
+		div.userAvatar
+		{
+			background-image: url('_images/noavatarimg.png');
+			background-repeat: no-repeat;
+			background-position: top center;
+		}
+		</style>
 	</head>
 	<body onload="javascript:initializeEventHandlers();">
 		<div id="pageContainer" class="pageContainer">
@@ -28,7 +36,12 @@
 				<div id="userPanel" class="userPanel">
 					<div>
 						<span>You are currently logged in as,&nbsp;</span>
-						<span id="userName">Nathan Lane</span>
+						<div>
+							<div id="avatarContainer" class="avatarContainer userAvatar">
+								<div class="avatarFrame"></div>
+							</div>
+							<span id="userName" class="centerText">Nathan Lane</span>
+						</div>
 					</div>
 					<ul id="userItems" class="userItems">
 						<li class="collapsed" id="permissionsItem">
