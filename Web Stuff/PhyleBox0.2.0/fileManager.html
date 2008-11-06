@@ -1,0 +1,822 @@
+<html>
+	<head>
+		<title>Welcome to PhyleBox</title>
+		<script>
+			var windowWidth = 0;
+			var windowHeight = 0;
+			var currentlySelectedView = "details";
+
+			function initializeEventHandlers() {
+				//window.onresize = scaleScalableElements;
+				//setWidthHeight();
+				//document.getElementById('rightPanel').style.width = (windowWidth - 150) + "px";
+
+				selectCurrentlySelectedView();
+
+				if(document.attachEvent) {
+					document.getElementById('permissionsItem').attachEvent('onclick', expandOrCollapseUserItem);
+					document.getElementById('logoutItem').attachEvent('onclick', expandOrCollapseUserItem);
+					document.getElementById('profileItem').attachEvent('onclick', expandOrCollapseUserItem);
+					document.getElementById('servicesItem').attachEvent('onclick', expandOrCollapseUserItem);
+					document.getElementById('iconsViewRadioButton').attachEvent('onclick', selectRadioButton);
+					document.getElementById('detailsViewRadioButton').attachEvent('onclick', selectRadioButton);
+					document.getElementById('thumbsViewRadioButton').attachEvent('onclick', selectRadioButton);
+					document.getElementById('treeViewRadioButton').attachEvent('onclick', selectRadioButton);
+					document.getElementById('yesLogoutButton').attachEvent('onmouseover', activatePseudoButton);
+					document.getElementById('noDontLogoutButton').attachEvent('onmouseover', activatePseudoButton);
+					document.getElementById('yesLogoutButton').attachEvent('onmouseout', deactivatePseudoButton);
+					document.getElementById('noDontLogoutButton').attachEvent('onmouseout', deactivatePseudoButton);
+					document.getElementById('helpButton').attachEvent('onmouseover', activatePseudoButton);
+					document.getElementById('uploadFilesButton').attachEvent('onmouseover', activatePseudoButton);
+					document.getElementById('helpButton').attachEvent('onmouseout', deactivatePseudoButton);
+					document.getElementById('uploadFilesButton').attachEvent('onmouseout', deactivatePseudoButton);
+					document.getElementById('editProfileButton').attachEvent('onmouseover', activatePseudoButton);
+					document.getElementById('editProfileButton').attachEvent('onmouseout', deactivatePseudoButton);
+					document.getElementById('settingsButton').attachEvent('onmouseover', activatePseudoButton);
+					document.getElementById('settingsButton').attachEvent('onmouseout', deactivatePseudoButton);
+				} else {
+					document.getElementById('permissionsItem').addEventListener('click', expandOrCollapseUserItem, false);
+					document.getElementById('logoutItem').addEventListener('click', expandOrCollapseUserItem, false);
+					document.getElementById('servicesItem').addEventListener('click', expandOrCollapseUserItem, false);
+					document.getElementById('profileItem').addEventListener('click', expandOrCollapseUserItem, false);
+					document.getElementById('iconsViewRadioButton').addEventListener('click', selectRadioButton, false);
+					document.getElementById('detailsViewRadioButton').addEventListener('click', selectRadioButton, false);
+					document.getElementById('thumbsViewRadioButton').addEventListener('click', selectRadioButton, false);
+					document.getElementById('treeViewRadioButton').addEventListener('click', selectRadioButton, false);
+					document.getElementById('yesLogoutButton').addEventListener('mouseover', activatePseudoButton, false);
+					document.getElementById('noDontLogoutButton').addEventListener('mouseover', activatePseudoButton, false);
+					document.getElementById('yesLogoutButton').addEventListener('mouseout', deactivatePseudoButton, false);
+					document.getElementById('noDontLogoutButton').addEventListener('mouseout', deactivatePseudoButton, false);
+					document.getElementById('helpButton').addEventListener('mouseover', activatePseudoButton, false);
+					document.getElementById('uploadFilesButton').addEventListener('mouseover', activatePseudoButton, false);
+					document.getElementById('helpButton').addEventListener('mouseout', deactivatePseudoButton, false);
+					document.getElementById('uploadFilesButton').addEventListener('mouseout', deactivatePseudoButton, false);
+					document.getElementById('editProfileButton').addEventListener('mouseover', activatePseudoButton, false);
+					document.getElementById('editProfileButton').addEventListener('mouseout', deactivatePseudoButton, false);
+					document.getElementById('settingsButton').addEventListener('mouseover', activatePseudoButton, false);
+					document.getElementById('settingsButton').addEventListener('mouseout', deactivatePseudoButton, false);
+				}
+			}
+
+			function activatePseudoButton(e) {
+				var target;
+
+				if(!e) var e = window.event;
+				if(e.target) {
+					target = e.target;
+				} else if(e.srcElement) {
+					target = e.srcElement;
+				}
+
+				target.style.color = "#ffffff";
+			}
+
+			function deactivatePseudoButton(e) {
+				var target;
+
+				if(!e) var e = window.event;
+				if(e.target) {
+					target = e.target;
+				} else if(e.srcElement) {
+					target = e.srcElement;
+				}
+
+				target.style.color = "#9fcbf8";
+			}
+
+			function selectCurrentlySelectedView() {
+				document.getElementById('iconsViewRadioButton').className = "radioButtonDeselected";
+				document.getElementById('detailsViewRadioButton').className = "radioButtonDeselected";
+				document.getElementById('thumbsViewRadioButton').className = "radioButtonDeselected";
+				document.getElementById('treeViewRadioButton').className = "radioButtonDeselected";
+
+				if(currentlySelectedView == "icons") {
+					document.getElementById('iconsViewRadioButton').className = "radioButtonSelected";
+				} else if(currentlySelectedView == "details") {
+					document.getElementById('detailsViewRadioButton').className = "radioButtonSelected";
+				} else if(currentlySelectedView == "thumbs") {
+					document.getElementById('thumbsViewRadioButton').className = "radioButtonSelected";
+				} else if(currentlySelectedView == "tree") {
+					document.getElementById('treeViewRadioButton').className = "radioButtonSelected";
+				}
+			}
+
+			function setWidthHeight() {
+				if(window.innerWidth) {
+					if(window.innerWidth > minimumWidth) {
+						windowWidth = window.innerWidth;
+					} else {
+						widowWidth = minimumWidth;
+					}
+					windowHeight = window.innerHeight;
+				} else if(document.body.offsetWidth) {
+					if(document.body.offsetWidth > minimumWidth) {
+						windowWidth = document.body.offsetWidth;
+					} else {
+						widowWidth = minimumWidth;
+					}
+					windowHeight = document.body.offsetHeight;
+				}
+			}
+
+			function scaleScalableElements(e) {
+				var target;
+
+				if(!e) var e = window.event;
+				if(e.target) {
+					target = e.target;
+				} else if(e.srcElement) {
+					target = e.srcElement;
+				}
+
+				setWidthHeight();
+
+				document.getElementById('rightPanel').style.width = (windowWidth - 150) + "px";
+				document.getElementById('rightPanel').style.height = (windowHeight - 40) + "px";
+			}
+
+			function expandOrCollapseUserItem(e) {
+				var target;
+
+				if(!e) var e = window.event;
+				if(e.target) {
+					target = e.target;
+				} else if(e.srcElement) {
+					target = e.srcElement;
+				}
+
+				if(target.className == "collapsed") {
+					target.className = "expanded";
+				} else if(target.className == "expanded") {
+					target.className = "collapsed";
+				}
+			}
+
+			function selectRadioButton(e) {
+				var target;
+
+				if(!e) var e = window.event;
+				if(e.target) {
+					target = e.target;
+				} else if(e.srcElement) {
+					target = e.srcElement;
+				}
+
+				if(target.id == "iconsViewRadioButton") {
+					document.getElementById('detailsViewRadioButton').className = "radioButtonDeselected";
+					document.getElementById('thumbsViewRadioButton').className = "radioButtonDeselected";
+					document.getElementById('treeViewRadioButton').className = "radioButtonDeselected";
+					target.className = "radioButtonSelected";
+					currentlySelectedView = "icons";
+					document.getElementById('iconsView').style.display = "block";
+					document.getElementById('detailsView').style.display = "none";
+					document.getElementById('thumbnailsView').style.display = "none";
+					document.getElementById('treeView').style.display = "none";
+				} else if(target.id == "detailsViewRadioButton") {
+					document.getElementById('iconsViewRadioButton').className = "radioButtonDeselected";
+					document.getElementById('thumbsViewRadioButton').className = "radioButtonDeselected";
+					document.getElementById('treeViewRadioButton').className = "radioButtonDeselected";
+					target.className = "radioButtonSelected";
+					currentlySelectedView = "details";
+					document.getElementById('detailsView').style.display = "block";
+					document.getElementById('iconsView').style.display = "none";
+					document.getElementById('thumbnailsView').style.display = "none";
+					document.getElementById('treeView').style.display = "none";
+				} else if(target.id == "thumbsViewRadioButton") {
+					document.getElementById('iconsViewRadioButton').className = "radioButtonDeselected";
+					document.getElementById('detailsViewRadioButton').className = "radioButtonDeselected";
+					document.getElementById('treeViewRadioButton').className = "radioButtonDeselected";
+					target.className = "radioButtonSelected";
+					currentlySelectedView = "thumbs";
+					document.getElementById('thumbnailsView').style.display = "block";
+					document.getElementById('detailsView').style.display = "none";
+					document.getElementById('iconsView').style.display = "none";
+					document.getElementById('treeView').style.display = "none";
+				} else if(target.id == "treeViewRadioButton") {
+					document.getElementById('iconsViewRadioButton').className = "radioButtonDeselected";
+					document.getElementById('thumbsViewRadioButton').className = "radioButtonDeselected";
+					document.getElementById('detailsViewRadioButton').className = "radioButtonDeselected";
+					target.className = "radioButtonSelected";
+					currentlySelectedView = "tree";
+					document.getElementById('treeView').style.display = "block";
+					document.getElementById('detailsView').style.display = "none";
+					document.getElementById('thumbnailsView').style.display = "none";
+					document.getElementById('iconsView').style.display = "none";
+				}
+			}
+		</script>
+		<style>
+			body
+			{
+				margin: 0px;
+				padding: 0px;
+				font-family: Arial,Verdana,sans-serif;
+				font-size: 12px;
+				background-color: #6795c2;
+			}
+
+			img
+			{
+				border: 0px;
+				display: block;
+			}
+
+			div.pageContainer
+			{
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				width: 100%;
+			}
+
+			div.tabBar
+			{
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				width: 100%;
+				height: 40px;
+				overflow: hidden;
+			}
+
+			div.leftPanel
+			{
+				position: absolute;
+				left: 0px;
+				top: 40px;
+				width: 150px;
+			}
+
+			div.tabBarBlue
+			{
+				background-image: url('_images/tabBarBackground.png');
+				background-repeat: repeat-x;
+				background-position: top left;
+			}
+
+			body.backgroundBlue
+			{
+				background-image: url('_images/leftPanelBackground.png');
+				background-repeat: repeat-y;
+				background-position: top left;
+			}
+
+			img.officialLogo
+			{
+				margin: 3px;
+				float: left;
+			}
+
+			div.userPanel
+			{
+				color: #9fcbf8;
+				margin: 6px 5px;
+				border-bottom: 1px solid #9fcbf8;
+			}
+
+			ul.userItems
+			{
+				margin: 2px 0px 0px 0px;
+				padding: 0px;
+				list-style-type: none;
+			}
+
+			ul.userItems li
+			{
+				line-height: 12px;
+				display: block;
+				background-image: url('_images/blueBullet.png');
+				background-repeat: no-repeat;
+				background-position: top left;
+				font-size: 9px;
+				text-transform: uppercase;
+				padding-left: 14px;
+				padding-bottom: 1px;
+				margin-bottom: 4px;
+				cursor: pointer;
+			}
+
+			ul.userItems li.collapsed
+			{
+				color: #6b86b1;
+				height: 9px;
+				overflow: hidden;
+			}
+
+			ul.userItems li.expanded
+			{
+				height: auto;
+			}
+
+			div.controlsPanel
+			{
+				color: #9fcbf8;
+				margin: 6px 5px;
+				border-bottom: 1px solid #9fcbf8;
+			}
+
+			ul.viewItems
+			{
+				margin: 2px 0px 0px 0px;
+				padding: 0px;
+				list-style-type: none;
+			}
+
+			ul.viewItems li
+			{
+				line-height: 12px;
+				display: block;
+				font-size: 9px;
+				text-transform: uppercase;
+				padding-left: 14px;
+				margin-bottom: 4px;
+				cursor: pointer;
+			}
+
+			ul.viewItems li.radioButtonSelected
+			{
+				background-image: url('_images/blueRadioButtonOn.png');
+				background-repeat: no-repeat;
+				background-position: left center;
+			}
+
+			ul.viewItems li.radioButtonDeselected
+			{
+				background-image: url('_images/blueRadioButtonOff.png');
+				background-repeat: no-repeat;
+				background-position: left center;
+			}
+
+			div.rightPanel
+		       	{
+				width: 850px;
+				position: absolute;
+				left: 150px;
+				top: 40px;
+				overflow: auto;
+			}
+
+			div.breadcrumbContainer
+			{
+				width: 100%;
+				height: 20px;
+				background-color: #6b86b1;
+				overflow: hidden;
+			}
+
+			div.breadcrumb
+			{
+				height: 16px;
+				background-color: #9fcbf8;
+				padding: 0px 5px;
+				margin: 2px 2px;
+				text-align: center;
+				font-size: 14px;
+				font-weight: bold;
+				color: #000000;
+				float: left;
+				cursor: pointer;
+			}
+
+			div.tabCollection
+			{
+				height: 28px;
+				float: right;
+				margin-top: 12px;
+				margin-right: 4px;
+			}
+
+			div.tab
+			{
+				width: 110px;
+				height: 28px;
+				float: right;
+				overflow: hidden;
+				background-image: url('_images/largeTab.png');
+				background-repeat: no-repeat;
+				background-position: top left;
+				font-size: 14px;
+				text-align: center;
+				color: #ffffff;
+				font-weight: bold;
+				padding-top: 7px;
+				cursor: pointer;
+			}
+
+			div.fileSystemContainer
+			{
+				width: 850px;
+			}
+
+			div.columnHeaderContainer
+			{
+				height: 20px;
+				overflow: hidden;
+				background-color: #ffffff;
+			}
+
+			ul.columnHeaders
+			{
+				margin: 0px;
+				padding: 0px;
+				list-style-type: none;
+			}
+
+			ul.columnHeaders li
+			{
+				display: block;
+				float: left;
+				height: 17px;
+				text-align: center;
+				background-color: #9fcbf8;
+				color: #ffffff;
+				font-size: 12px;
+				font-weight: bold;
+				padding-top: 3px;
+				margin-right: 1px;
+			}
+
+			ul.columnHeaders li#checkHeader
+			{
+				width: 49px;
+			}
+
+			ul.columnHeaders li#ownerHeader
+			{
+				width: 40px;
+			}
+
+			ul.columnHeaders li#groupHeader
+			{
+				width: 40px;
+			}
+			
+			ul.columnHeaders li#otherHeader
+			{
+				width: 40px;
+			}
+			
+			ul.columnHeaders li#filenameHeader
+			{
+				width: 300px;
+			}
+			
+			ul.columnHeaders li#sizeHeader
+			{
+				width: 60px;
+			}
+			
+			ul.columnHeaders li#dateHeader
+			{
+				width: 85px;
+			}
+			
+			ul.columnHeaders li#timeHeader
+			{
+				width: 65px;
+			}
+			
+			ul.columnHeaders li#statusHeader
+			{
+				width: 162px;
+			}
+
+			div.detailViewRow
+			{
+				width: 850px;
+				height: 20px;
+			}
+
+			div.userItemContent
+			{
+				cursor: default;
+				text-transform: none;
+				font-size: 10px;
+			}
+
+			span.pseudoButton
+			{
+				cursor: pointer;
+			}
+
+			ul.columns
+			{
+				margin: 0px;
+				padding: 0px;
+				list-style-type: none;
+			}
+
+			ul.columns li
+			{
+				display: block;
+				float: left;
+				height: 17px;
+				text-align: left;
+				color: #000000;
+				font-size: 12px;
+				font-weight: normal;
+				padding-top: 3px;
+				margin-right: 1px;
+				text-indent: 4px;
+			}
+
+			ul.columns li.check
+			{
+				width: 49px;
+			}
+
+			ul.columns li.owner
+			{
+				width: 40px;
+			}
+
+			ul.columns li.group
+			{
+				width: 40px;
+			}
+			
+			ul.columns li.other
+			{
+				width: 40px;
+			}
+			
+			ul.columns li.filename
+			{
+				width: 300px;
+			}
+			
+			ul.columns li.size
+			{
+				width: 60px;
+			}
+			
+			ul.columns li.date
+			{
+				width: 85px;
+			}
+			
+			ul.columns li.time
+			{
+				width: 65px;
+			}
+			
+			ul.columns li.status
+			{
+				width: 162px;
+			}
+
+			div.icon
+			{
+				width: 16px;
+				height: 16px;
+				float: left;
+				overflow: hidden;
+				background-image: url('_images/iconsbyshaw.gif');
+				background-repeat: no-repeat;
+				margin: 0px 10px 0px 2px;
+			}
+
+			div.openFolder
+			{
+				background-position: -16px -16px;
+				margin-right: 10px;
+			}
+
+			div.folder
+			{
+				background-position: -16px 0px;
+				margin-right: 10px;
+			}
+
+			div.oddRow
+			{
+				background-color: #c8e1f2;
+			}
+
+			div.even
+			{
+				background-color: #ffffff;
+			}
+
+			div.image
+			{
+				background-position: -48px -64px;
+				margin-right: 10px;
+			}
+
+			div.textFile
+			{
+				background-position: -16px -112px;
+				margin-right: 10px;
+			}
+
+			div.downloadAllButton
+			{
+				width: 110px;
+				height: 28px;
+				float: right;
+				background-image: url('_images/downloadButton.png');
+				background-repeat: no-repeat;
+				margin: 5px 0px;
+			}
+		</style>
+	</head>
+	<body class="backgroundBlue" onload="javascript:initializeEventHandlers();">
+		<div id="pageContainer" class="pageContainer">
+			<div id="tabBar" class="tabBar tabBarBlue">
+				<img alt="PhylBox logo" id="logo" class="officialLogo" src="_images/phyleboxofficiallogo.png"/>
+				<div id="tabCollection" class="tabCollection">
+					<div id="fileManagerTab" class="tab">
+						<span>File Manager</span>
+					</div>
+					<div id="messagesTab" class="tab">
+						<span>Messages</span>
+					</div>
+					<div id="forumTab" class="tab">
+						<span>Forum</span>
+					</div>
+					<div id="calendarTab" class="tab">
+						<span>Calendar</span>
+					</div>
+				</div>
+			</div>
+			<div id="leftPanel" class="leftPanel leftPanelBlue">
+				<div id="userPanel" class="userPanel">
+					<div>
+						<span>You are currently logged in as,&nbsp;</span>
+						<span id="userName">Nathan Lane</span>
+					</div>
+					<ul id="userItems" class="userItems">
+						<li class="collapsed" id="permissionsItem">
+							Permissions
+							<div class="userItemContent">
+								<div><span>Username: nathanlane</span></div>
+								<div><span>Groups: users, developers</span></div>
+							</div>
+						</li>
+						<li class="collapsed" id="logoutItem">
+							Logout
+							<div class="userItemContent">
+								<div><span>Are you sure you want to log out?</span></div>
+								<div>
+									<span id="yesLogoutButton" class="pseudoButton">[Yes]</span>&nbsp;<span id="noDontLogoutButton" class="pseudoButton">[No]</span>
+								</div>
+							</div>
+						</li>
+						<li class="collapsed" id="profileItem">
+							Profile
+							<div class="userItemContent">
+								<div>Display Name:</div><div>&nbsp;&nbsp;Nathan Lane</div>
+								<div>Email Address:</div><div>&nbsp;&nbsp;nathamberlane@gmail.com</div>
+								<div>
+									<span id="editProfileButton" class="pseudoButton">[Edit]</span>
+								</div>
+							</div>
+						</li>
+						<li class="collapsed" id="servicesItem">
+							Services
+							<div class="userItemContent">
+								<div><span id="helpButton" class="pseudoButton">Help</span></div>
+								<div><span id="uploadFilesButton" class="pseudoButton">Upload Files</span></div>
+								<div><span id="settingsButton" class="pseudoButton">Settings</span></div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div id="controlsPanel" class="controlsPanel">
+					<div>
+						<span>Views</span>
+					</div>
+					<ul id="viewItems" class="viewItems">
+						<li id="iconsViewRadioButton" class="radioButtonDeselected">Icons</li>
+						<li id="detailsViewRadioButton" class="radioButtonSelected">Details</li>
+						<li id="thumbsViewRadioButton" class="radioButtonDeselected">Thumbnails</li>
+						<li id="treeViewRadioButton" class="radioButtonDeselected">Tree</li>
+					</ul>
+				</div>
+			</div>
+			<div id="rightPanel" class="rightPanel">
+				<div id="breadcrumbContainer" class="breadcrumbContainer">
+					<div id="rootBreadcrumb" class="breadcrumb">
+						<span>/</span>
+					</div>
+				</div>
+				<div class="fileSystemContainer" id="iconsView" style="display:none;"></div>
+				<div class="fileSystemContainer" id="detailsView" style="display:block;">
+					<div id="columnHeaderContainer" class="columnHeaderContainer">
+						<ul id="columnHeaders" class="columnHeaders">
+							<li id="checkHeader">
+								<span>Check</span>
+							</li>
+							<li id="ownerHeader">
+								<span>Own</span>
+							</li>
+							<li id="groupHeader">
+								<span>Grp</span>
+							</li>
+							<li id="otherHeader">
+								<span>Oth</span>
+							</li>
+							<li id="filenameHeader">
+								<span>Filename</span>
+							</li>
+							<li id="sizeHeader">
+								<span>Size</span>
+							</li>
+							<li id="dateHeader">
+								<span>Date</span>
+							</li>
+							<li id="timeHeader">
+								<span>Time</span>
+							</li>
+							<li id="statusHeader">
+								<span>Status</span>
+							</li>
+						</ul>
+					</div>
+					<div id="row000" class="detailViewRow even" style="display:none;" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#ffffff'">
+						<ul id="row000Info" class="columns">
+							<li class="check"><input id="row000CheckBox" type="checkbox"/></li>
+							<li class="owner"><span>&nbsp;</span></li>
+							<li class="group"><span>&nbsp;</span></li>
+							<li class="other"><span>&nbsp;</span></li>
+							<li class="filename"><div class="icon openFolder"></div><span>..</span></li>
+							<li class="size"><span>0.00 kb</span></li>
+							<li class="date"><span>10/27/2008</span></li>
+							<li class="time"><span>3:15 pm</span></li>
+							<li class="status"><span>open</span></li>
+						</ul>
+					</div>
+					<div id="row001" class="detailViewRow oddRow" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#c8e1f2'">
+						<ul id="row001Info" class="columns">
+							<li class="check"><input id="row001CheckBox" type="checkbox"/></li>
+							<li class="owner"><span>&nbsp;</span></li>
+							<li class="group"><span>&nbsp;</span></li>
+							<li class="other"><span>&nbsp;</span></li>
+							<li class="filename"><div class="icon folder"></div><span>Images</span></li>
+							<li class="size"><span>0.00 kb</span></li>
+							<li class="date"><span>10/27/2008</span></li>
+							<li class="time"><span>3:15 pm</span></li>
+							<li class="status"><span>open</span></li>
+						</ul>
+					</div>
+					<div id="row002" class="detailViewRow even" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#ffffff'">
+						<ul id="row002Info" class="columns">
+							<li class="check"><input id="row002CheckBox" type="checkbox"/></li>
+							<li class="owner"><span>&nbsp;</span></li>
+							<li class="group"><span>&nbsp;</span></li>
+							<li class="other"><span>&nbsp;</span></li>
+							<li class="filename"><div class="icon folder"></div><span>Sources</span></li>
+							<li class="size"><span>0.00 kb</span></li>
+							<li class="date"><span>10/27/2008</span></li>
+							<li class="time"><span>3:15 pm</span></li>
+							<li class="status"><span>open</span></li>
+						</ul>
+					</div>
+					<div id="row003" class="detailViewRow oddRow" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#c8e1f2'">
+						<ul id="row003Info" class="columns">
+							<li class="check"><input id="row003CheckBox" type="checkbox"/></li>
+							<li class="owner"><span>&nbsp;</span></li>
+							<li class="group"><span>&nbsp;</span></li>
+							<li class="other"><span>&nbsp;</span></li>
+							<li class="filename"><div class="icon image"></div><span>Image1.jpg</span></li>
+							<li class="size"><span>5.00 kb</span></li>
+							<li class="date"><span>10/27/2008</span></li>
+							<li class="time"><span>3:15 pm</span></li>
+							<li class="status"><span>open</span></li>
+						</ul>
+					</div>
+					<div id="row004" class="detailViewRow even" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#ffffff'">
+						<ul id="row004Info" class="columns">
+							<li class="check"><input id="row004CheckBox" type="checkbox"/></li>
+							<li class="owner"><span>&nbsp;</span></li>
+							<li class="group"><span>&nbsp;</span></li>
+							<li class="other"><span>&nbsp;</span></li>
+							<li class="filename"><div class="icon image"></div><span>icon.png</span></li>
+							<li class="size"><span>3.14 kb</span></li>
+							<li class="date"><span>10/27/2008</span></li>
+							<li class="time"><span>3:15 pm</span></li>
+							<li class="status"><span>open</span></li>
+						</ul>
+					</div>
+					<div id="row005" class="detailViewRow oddRow" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#c8e1f2'">
+						<ul id="row005Info" class="columns">
+							<li class="check"><input id="row005CheckBox" type="checkbox"/></li>
+							<li class="owner"><span>&nbsp;</span></li>
+							<li class="group"><span>&nbsp;</span></li>
+							<li class="other"><span>&nbsp;</span></li>
+							<li class="filename"><div class="icon textFile"></div><span>Test.txt</span></li>
+							<li class="size"><span>19.2 kb</span></li>
+							<li class="date"><span>10/27/2008</span></li>
+							<li class="time"><span>3:15 pm</span></li>
+							<li class="status"><span>open</span></li>
+						</ul>
+					</div>
+				</div>
+				<div class="fileSystemContainer" id="thumbnailsView" style="display:none;"></div>
+				<div class="fileSystemContainer" id="treeView" style="display:none;"></div>
+				<div id="downloadAllButton" class="downloadAllButton" style="background-position: top right;"></div>
+			</div>
+		</div>
+	</body>
+</html>

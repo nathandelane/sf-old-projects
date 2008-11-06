@@ -1,0 +1,206 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+		<title>Welcome to PhyleBox</title>
+		<script src="_scripts/fileManager.js"></script>
+		<link type="text/css" rel="stylesheet" href="_stylesheets/fileManagerBlue.css"/>
+	</head>
+	<body class="backgroundBlue" onload="javascript:initializeEventHandlers();">
+		<div id="pageContainer" class="pageContainer">
+			<div id="tabBar" class="tabBar tabBarBlue">
+				<img alt="PhylBox logo" id="logo" class="officialLogo" src="_images/phyleboxofficiallogo.png">
+				<div id="tabCollection" class="tabCollection">
+					<div id="fileManagerTab" class="tab">
+						<span>File Manager</span>
+					</div>
+					<div id="messagesTab" class="tab">
+						<span>Messages</span>
+					</div>
+					<div id="forumTab" class="tab">
+						<span>Forum</span>
+					</div>
+					<div id="calendarTab" class="tab">
+						<span>Calendar</span>
+					</div>
+				</div>
+			</div>
+			<div id="leftPanel" class="leftPanel leftPanelBlue">
+				<div id="userPanel" class="userPanel">
+					<div>
+						<span>You are currently logged in as,&nbsp;</span>
+						<span id="userName">Nathan Lane</span>
+					</div>
+					<ul id="userItems" class="userItems">
+						<li class="collapsed" id="permissionsItem">
+							Permissions
+							<div class="userItemContent">
+								<div><span>Username: nathanlane</span></div>
+								<div><span>Groups: users, developers</span></div>
+							</div>
+						</li>
+						<li class="collapsed" id="logoutItem">
+							Logout
+							<div class="userItemContent">
+								<div><span>Are you sure you want to log out?</span></div>
+								<div>
+									<span id="yesLogoutButton" class="pseudoButton">[Yes]</span>&nbsp;<span id="noDontLogoutButton" class="pseudoButton">[No]</span>
+								</div>
+							</div>
+						</li>
+						<li class="collapsed" id="profileItem">
+							Profile
+							<div class="userItemContent">
+								<div>Display Name:</div><div>&nbsp;&nbsp;Nathan Lane</div>
+								<div>Email Address:</div><div>&nbsp;&nbsp;nathamberlane@gmail.com</div>
+								<div>
+									<span id="editProfileButton" class="pseudoButton">[Edit]</span>
+								</div>
+							</div>
+						</li>
+						<li class="collapsed" id="servicesItem">
+							Services
+							<div class="userItemContent">
+								<div><span id="helpButton" class="pseudoButton">Help</span></div>
+								<div><span id="uploadFilesButton" class="pseudoButton">Upload Files</span></div>
+								<div><span id="settingsButton" class="pseudoButton">Settings</span></div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div id="controlsPanel" class="controlsPanel">
+					<div>
+						<span>Views</span>
+					</div>
+					<ul id="viewItems" class="viewItems">
+						<li id="iconsViewRadioButton" class="radioButtonDeselected">Icons</li>
+						<li id="detailsViewRadioButton" class="radioButtonSelected">Details</li>
+						<li id="thumbsViewRadioButton" class="radioButtonDeselected">Thumbnails</li>
+						<li id="treeViewRadioButton" class="radioButtonDeselected">Tree</li>
+					</ul>
+				</div>
+			</div>
+			<div id="rightPanel" class="rightPanel">
+				<div id="breadcrumbContainer" class="breadcrumbContainer">
+					<div id="rootBreadcrumb" class="breadcrumb">
+						<span>/</span>
+					</div>
+				</div>
+				<div class="fileSystemContainer" id="iconsView" style="display: none;"></div>
+				<div class="fileSystemContainer" id="detailsView" style="display: block;">
+					<div id="columnHeaderContainer" class="columnHeaderContainer">
+						<ul id="columnHeaders" class="columnHeaders">
+							<li id="checkHeader">
+								<span>Check</span>
+							</li>
+							<li id="ownerHeader">
+								<span>Own</span>
+							</li>
+							<li id="groupHeader">
+								<span>Grp</span>
+							</li>
+							<li id="otherHeader">
+								<span>Oth</span>
+							</li>
+							<li id="filenameHeader">
+								<span>Filename</span>
+							</li>
+							<li id="sizeHeader">
+								<span>Size</span>
+							</li>
+							<li id="dateHeader">
+								<span>Date</span>
+							</li>
+							<li id="timeHeader">
+								<span>Time</span>
+							</li>
+							<li id="statusHeader">
+								<span>Status</span>
+							</li>
+						</ul>
+					</div>
+					<div id="row000" class="detailViewRow even" style="display: none;" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#ffffff'">
+						<ul id="row000Info" class="columns">
+							<li class="check"><input id="row000CheckBox" type="checkbox"></li>
+							<li class="owner"><span>&nbsp;</span></li>
+							<li class="group"><span>&nbsp;</span></li>
+							<li class="other"><span>&nbsp;</span></li>
+							<li class="filename"><div class="icon openFolder"></div><span>..</span></li>
+							<li class="size"><span>0.00 kb</span></li>
+							<li class="date"><span>10/27/2008</span></li>
+							<li class="time"><span>3:15 pm</span></li>
+							<li class="status"><span>open</span></li>
+						</ul>
+					</div>
+					<div id="row001" class="detailViewRow oddRow" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#c8e1f2'">
+						<ul id="row001Info" class="columns">
+							<li class="check"><input id="row001CheckBox" type="checkbox"></li>
+							<li class="owner"><span>&nbsp;</span></li>
+							<li class="group"><span>&nbsp;</span></li>
+							<li class="other"><span>&nbsp;</span></li>
+							<li class="filename"><div class="icon folder"></div><span>Images</span></li>
+							<li class="size"><span>0.00 kb</span></li>
+							<li class="date"><span>10/27/2008</span></li>
+							<li class="time"><span>3:15 pm</span></li>
+							<li class="status"><span>open</span></li>
+						</ul>
+					</div>
+					<div id="row002" class="detailViewRow even" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#ffffff'">
+						<ul id="row002Info" class="columns">
+							<li class="check"><input id="row002CheckBox" type="checkbox"></li>
+							<li class="owner"><span>&nbsp;</span></li>
+							<li class="group"><span>&nbsp;</span></li>
+							<li class="other"><span>&nbsp;</span></li>
+							<li class="filename"><div class="icon folder"></div><span>Sources</span></li>
+							<li class="size"><span>0.00 kb</span></li>
+							<li class="date"><span>10/27/2008</span></li>
+							<li class="time"><span>3:15 pm</span></li>
+							<li class="status"><span>open</span></li>
+						</ul>
+					</div>
+					<div id="row003" class="detailViewRow oddRow" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#c8e1f2'">
+						<ul id="row003Info" class="columns">
+							<li class="check"><input id="row003CheckBox" type="checkbox"></li>
+							<li class="owner"><span>&nbsp;</span></li>
+							<li class="group"><span>&nbsp;</span></li>
+							<li class="other"><span>&nbsp;</span></li>
+							<li class="filename"><div class="icon image"></div><span>Image1.jpg</span></li>
+							<li class="size"><span>5.00 kb</span></li>
+							<li class="date"><span>10/27/2008</span></li>
+							<li class="time"><span>3:15 pm</span></li>
+							<li class="status"><span>open</span></li>
+						</ul>
+					</div>
+					<div id="row004" class="detailViewRow even" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#ffffff'">
+						<ul id="row004Info" class="columns">
+							<li class="check"><input id="row004CheckBox" type="checkbox"></li>
+							<li class="owner"><span>&nbsp;</span></li>
+							<li class="group"><span>&nbsp;</span></li>
+							<li class="other"><span>&nbsp;</span></li>
+							<li class="filename"><div class="icon image"></div><span>icon.png</span></li>
+							<li class="size"><span>3.14 kb</span></li>
+							<li class="date"><span>10/27/2008</span></li>
+							<li class="time"><span>3:15 pm</span></li>
+							<li class="status"><span>open</span></li>
+						</ul>
+					</div>
+					<div id="row005" class="detailViewRow oddRow" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#c8e1f2'">
+						<ul id="row005Info" class="columns">
+							<li class="check"><input id="row005CheckBox" type="checkbox"></li>
+							<li class="owner"><span>&nbsp;</span></li>
+							<li class="group"><span>&nbsp;</span></li>
+							<li class="other"><span>&nbsp;</span></li>
+							<li class="filename"><div class="icon textFile"></div><span>Test.txt</span></li>
+							<li class="size"><span>19.2 kb</span></li>
+							<li class="date"><span>10/27/2008</span></li>
+							<li class="time"><span>3:15 pm</span></li>
+							<li class="status"><span>open</span></li>
+						</ul>
+					</div>
+				</div>
+				<div class="fileSystemContainer" id="thumbnailsView" style="display: none;"></div>
+				<div class="fileSystemContainer" id="treeView" style="display: none;"></div>
+				<div id="downloadAllButton" class="downloadAllButton" style="background-position: right top;"></div>
+			</div>
+		</div>
+	</body>
+</html>
