@@ -37,19 +37,15 @@ div.leftPanel
 	left: 0px;
 	top: 40px;
 	width: 150px;
+	background-image: url('../_images/leftPanelBackgroundBlue.png');
+	background-repeat: repeat-y;
+	background-position: top left;
 }
 
 div.tabBarBlue
 {
 	background-image: url('../_images/tabBarBackgroundBlue.png');
 	background-repeat: repeat-x;
-	background-position: top left;
-}
-
-body.backgroundBlue
-{
-	background-image: url('../_images/leftPanelBackgroundBlue.png');
-	background-repeat: repeat-y;
 	background-position: top left;
 }
 
@@ -410,4 +406,25 @@ div.downloadAllButton
 	background-image: url('../_images/downloadButtonBlue.png');
 	background-repeat: no-repeat;
 	margin: 5px 0px;
+}
+
+div.avatarContainer
+{
+	width: 50px;
+	height: 50px;
+	float: none;
+	overflow: hidden;
+	margin: 0px auto;
+}
+
+div.avatarFrame
+{
+	width: 50px;
+	height: 50px;
+	float: none;
+	overflow: hidden;
+	margin: 0px;
+	background-image: url('../_images/avatarFrame.png');
+	background-repeat: no-repeat;
+	background-position: top left;
 }
