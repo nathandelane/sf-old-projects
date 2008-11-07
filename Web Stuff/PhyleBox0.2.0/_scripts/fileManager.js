@@ -2,10 +2,33 @@ var windowWidth = 0;
 var windowHeight = 0;
 var currentlySelectedView = "details";
 
+function padRowNumber(number) {
+	rowNumber = "" + number;
+	
+	while(rowNumber.length < 3)
+	{
+		rowNumber = '0' + rowNumber;
+	}
+	
+	return rowNumber;
+}
+
 function initializeEventHandlers() {
 	//window.onresize = scaleScalableElements;
 	//setWidthHeight();
 	//document.getElementById('rightPanel').style.width = (windowWidth - 150) + "px";
+	
+	if(totalRows) {
+		for(i = 0; i < totalRows; i++) {
+			rowName = "row" + padRowNumber(i);
+			
+			if(document.attachEvent) {
+				document.getElementById(rowName).attachEvent('onclick', checkOrUncheck);
+			} else {
+				document.getElementById(rowName).addEventListener('click', checkOrUncheck, false);
+			}
+		}
+	}
 
 	selectCurrentlySelectedView();
 
@@ -51,6 +74,29 @@ function initializeEventHandlers() {
 		document.getElementById('editProfileButton').addEventListener('mouseout', deactivatePseudoButton, false);
 		document.getElementById('settingsButton').addEventListener('mouseover', activatePseudoButton, false);
 		document.getElementById('settingsButton').addEventListener('mouseout', deactivatePseudoButton, false);
+	}
+}
+
+function checkOrUncheck(e) {
+	var target;
+
+	if(!e) var e = window.event;
+	if(e.target) {
+		target = e.target;
+	} else if(e.srcElement) {
+		target = e.srcElement;
+	}
+	
+	if(target.nodeName !== "INPUT")
+	{
+		checkBoxId = target.parentNode.parentNode.id + "CheckBox";
+		objCheckBox = document.getElementById(checkBoxId);
+		
+		if(objCheckBox.checked) {
+			objCheckBox.checked = false;
+		} else {
+			objCheckBox.checked = true;
+		}
 	}
 }
 

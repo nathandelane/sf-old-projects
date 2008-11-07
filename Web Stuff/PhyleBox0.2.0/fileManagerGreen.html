@@ -2,7 +2,11 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
 		<title>Welcome to PhyleBox</title>
+		<script>
+		var totalRows = 6;		
+		</script>
 		<script src="_scripts/fileManager.js"></script>
+		<link type="text/css" rel="stylesheet" href="_stylesheets/fileManagerGlobal.css"/>
 		<link type="text/css" rel="stylesheet" href="_stylesheets/fileManagerGreen.css"/>
 		<style>
 		div.userAvatar
@@ -90,6 +94,14 @@
 						<li id="thumbsViewRadioButton" class="radioButtonDeselected">Thumbnails</li>
 						<li id="treeViewRadioButton" class="radioButtonDeselected">Tree</li>
 					</ul>
+				</div>
+				<div id="userHUD" class="userHUD">
+					<div class="topOfUserDialog"></div>
+					<div id="driveUsage" class="hudItem">100% Free</div>
+					<div id="privateMessages" class="hudItem"></div>
+					<div id="recycleBin" class="hudItem"></div>
+					<div id="merits" class="hudItem"></div>
+					<div class="bottomOfUserDialog"></div>
 				</div>
 			</div>
 			<div id="rightPanel" class="rightPanel">

@@ -1,0 +1,305 @@
+body
+{
+	margin: 0px;
+	padding: 0px;
+	font-family: Arial,Verdana,sans-serif;
+	font-size: 12px;
+}
+
+img
+{
+	border: 0px;
+	display: block;
+}
+
+input
+{
+	margin: 0px;
+	padding: 0px;
+}
+
+div.pageContainer
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+}
+
+div.tabBar
+{
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 40px;
+	overflow: hidden;
+}
+
+img.officialLogo
+{
+	margin: 3px;
+	float: left;
+}
+
+ul.userItems
+{
+	margin: 2px 0px 0px 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+ul.userItems li.expanded
+{
+	height: auto;
+}
+
+ul.viewItems
+{
+	margin: 2px 0px 0px 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+ul.viewItems li
+{
+	line-height: 12px;
+	display: block;
+	font-size: 9px;
+	text-transform: uppercase;
+	padding-left: 14px;
+	margin-bottom: 4px;
+	cursor: pointer;
+}
+
+div.rightPanel
+	{
+	width: 850px;
+	position: absolute;
+	left: 150px;
+	top: 40px;
+	overflow: auto;
+}
+
+div.tabCollection
+{
+	height: 28px;
+	float: right;
+	margin-top: 12px;
+	margin-right: 4px;
+}
+
+div.fileSystemContainer
+{
+	width: 850px;
+}
+
+div.columnHeaderContainer
+{
+	height: 20px;
+	overflow: hidden;
+	background-color: #ffffff;
+}
+
+ul.columnHeaders
+{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+ul.columnHeaders li#checkHeader
+{
+	width: 49px;
+}
+
+ul.columnHeaders li#ownerHeader
+{
+	width: 40px;
+}
+
+ul.columnHeaders li#groupHeader
+{
+	width: 40px;
+}
+
+ul.columnHeaders li#otherHeader
+{
+	width: 40px;
+}
+
+ul.columnHeaders li#filenameHeader
+{
+	width: 300px;
+}
+
+ul.columnHeaders li#sizeHeader
+{
+	width: 60px;
+}
+
+ul.columnHeaders li#dateHeader
+{
+	width: 85px;
+}
+
+ul.columnHeaders li#timeHeader
+{
+	width: 65px;
+}
+
+ul.columnHeaders li#statusHeader
+{
+	width: 162px;
+}
+
+div.detailViewRow
+{
+	width: 850px;
+	height: 20px;
+}
+
+div.userItemContent
+{
+	cursor: default;
+	text-transform: none;
+	font-size: 10px;
+}
+
+span.pseudoButton
+{
+	cursor: pointer;
+}
+
+ul.columns
+{
+	margin: 0px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+ul.columns li
+{
+	display: block;
+	float: left;
+	height: 17px;
+	text-align: left;
+	color: #000000;
+	font-size: 12px;
+	font-weight: normal;
+	padding-top: 3px;
+	margin-right: 1px;
+	text-indent: 4px;
+}
+
+ul.columns li.check
+{
+	width: 49px;
+}
+
+ul.columns li.owner
+{
+	width: 40px;
+}
+
+ul.columns li.group
+{
+	width: 40px;
+}
+
+ul.columns li.other
+{
+	width: 40px;
+}
+
+ul.columns li.filename
+{
+	width: 300px;
+}
+
+ul.columns li.size
+{
+	width: 60px;
+}
+
+ul.columns li.date
+{
+	width: 85px;
+}
+
+ul.columns li.time
+{
+	width: 65px;
+}
+
+ul.columns li.status
+{
+	width: 162px;
+}
+
+div.icon
+{
+	width: 16px;
+	height: 16px;
+	float: left;
+	overflow: hidden;
+	background-image: url('../_images/iconsbyshaw.gif');
+	background-repeat: no-repeat;
+	margin: 0px 10px 0px 2px;
+}
+
+div.openFolder
+{
+	background-position: -16px -16px;
+	margin-right: 10px;
+}
+
+div.folder
+{
+	background-position: -16px 0px;
+	margin-right: 10px;
+}
+
+div.even
+{
+	background-color: #ffffff;
+}
+
+div.image
+{
+	background-position: -48px -64px;
+	margin-right: 10px;
+}
+
+div.textFile
+{
+	background-position: -16px -112px;
+	margin-right: 10px;
+}
+
+div.avatarContainer
+{
+	width: 50px;
+	height: 50px;
+	float: none;
+	overflow: hidden;
+	margin: 0px auto;
+}
+
+div.avatarFrame
+{
+	width: 50px;
+	height: 50px;
+	float: none;
+	overflow: hidden;
+	margin: 0px;
+	background-image: url('../_images/avatarFrame.png');
+	background-repeat: no-repeat;
+	background-position: top left;
+}
+
+span.centerText
+{
+	display: block;
+	text-align: center;
+}

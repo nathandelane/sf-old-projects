@@ -1,34 +1,6 @@
 body
 {
-	margin: 0px;
-	padding: 0px;
-	font-family: Arial,Verdana,sans-serif;
-	font-size: 12px;
 	background-color: #54c667;
-}
-
-img
-{
-	border: 0px;
-	display: block;
-}
-
-div.pageContainer
-{
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-}
-
-div.tabBar
-{
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 40px;
-	overflow: hidden;
 }
 
 div.leftPanel
@@ -49,24 +21,11 @@ div.tabBarBlue
 	background-position: top left;
 }
 
-img.officialLogo
-{
-	margin: 3px;
-	float: left;
-}
-
 div.userPanel
 {
 	color: #a4e0ae;
 	margin: 6px 5px;
 	border-bottom: 1px solid #a4e0ae;
-}
-
-ul.userItems
-{
-	margin: 2px 0px 0px 0px;
-	padding: 0px;
-	list-style-type: none;
 }
 
 ul.userItems li
@@ -91,34 +50,11 @@ ul.userItems li.collapsed
 	overflow: hidden;
 }
 
-ul.userItems li.expanded
-{
-	height: auto;
-}
-
 div.controlsPanel
 {
 	color: #a4e0ae;
 	margin: 6px 5px;
 	border-bottom: 1px solid #a4e0ae;
-}
-
-ul.viewItems
-{
-	margin: 2px 0px 0px 0px;
-	padding: 0px;
-	list-style-type: none;
-}
-
-ul.viewItems li
-{
-	line-height: 12px;
-	display: block;
-	font-size: 9px;
-	text-transform: uppercase;
-	padding-left: 14px;
-	margin-bottom: 4px;
-	cursor: pointer;
 }
 
 ul.viewItems li.radioButtonSelected
@@ -133,15 +69,6 @@ ul.viewItems li.radioButtonDeselected
 	background-image: url('../_images/greenRadioButtonOff.png');
 	background-repeat: no-repeat;
 	background-position: left center;
-}
-
-div.rightPanel
-	{
-	width: 850px;
-	position: absolute;
-	left: 150px;
-	top: 40px;
-	overflow: auto;
 }
 
 div.breadcrumbContainer
@@ -166,14 +93,6 @@ div.breadcrumb
 	cursor: pointer;
 }
 
-div.tabCollection
-{
-	height: 28px;
-	float: right;
-	margin-top: 12px;
-	margin-right: 4px;
-}
-
 div.tab
 {
 	width: 110px;
@@ -191,25 +110,6 @@ div.tab
 	cursor: pointer;
 }
 
-div.fileSystemContainer
-{
-	width: 850px;
-}
-
-div.columnHeaderContainer
-{
-	height: 20px;
-	overflow: hidden;
-	background-color: #ffffff;
-}
-
-ul.columnHeaders
-{
-	margin: 0px;
-	padding: 0px;
-	list-style-type: none;
-}
-
 ul.columnHeaders li
 {
 	display: block;
@@ -224,178 +124,9 @@ ul.columnHeaders li
 	margin-right: 1px;
 }
 
-ul.columnHeaders li#checkHeader
-{
-	width: 49px;
-}
-
-ul.columnHeaders li#ownerHeader
-{
-	width: 40px;
-}
-
-ul.columnHeaders li#groupHeader
-{
-	width: 40px;
-}
-
-ul.columnHeaders li#otherHeader
-{
-	width: 40px;
-}
-
-ul.columnHeaders li#filenameHeader
-{
-	width: 300px;
-}
-
-ul.columnHeaders li#sizeHeader
-{
-	width: 60px;
-}
-
-ul.columnHeaders li#dateHeader
-{
-	width: 85px;
-}
-
-ul.columnHeaders li#timeHeader
-{
-	width: 65px;
-}
-
-ul.columnHeaders li#statusHeader
-{
-	width: 162px;
-}
-
-div.detailViewRow
-{
-	width: 850px;
-	height: 20px;
-}
-
-div.userItemContent
-{
-	cursor: default;
-	text-transform: none;
-	font-size: 10px;
-}
-
-span.pseudoButton
-{
-	cursor: pointer;
-}
-
-ul.columns
-{
-	margin: 0px;
-	padding: 0px;
-	list-style-type: none;
-}
-
-ul.columns li
-{
-	display: block;
-	float: left;
-	height: 17px;
-	text-align: left;
-	color: #000000;
-	font-size: 12px;
-	font-weight: normal;
-	padding-top: 3px;
-	margin-right: 1px;
-	text-indent: 4px;
-}
-
-ul.columns li.check
-{
-	width: 49px;
-}
-
-ul.columns li.owner
-{
-	width: 40px;
-}
-
-ul.columns li.group
-{
-	width: 40px;
-}
-
-ul.columns li.other
-{
-	width: 40px;
-}
-
-ul.columns li.filename
-{
-	width: 300px;
-}
-
-ul.columns li.size
-{
-	width: 60px;
-}
-
-ul.columns li.date
-{
-	width: 85px;
-}
-
-ul.columns li.time
-{
-	width: 65px;
-}
-
-ul.columns li.status
-{
-	width: 162px;
-}
-
-div.icon
-{
-	width: 16px;
-	height: 16px;
-	float: left;
-	overflow: hidden;
-	background-image: url('../_images/iconsbyshaw.gif');
-	background-repeat: no-repeat;
-	margin: 0px 10px 0px 2px;
-}
-
-div.openFolder
-{
-	background-position: -16px -16px;
-	margin-right: 10px;
-}
-
-div.folder
-{
-	background-position: -16px 0px;
-	margin-right: 10px;
-}
-
 div.oddRow
 {
 	background-color: #c8edce;
-}
-
-div.even
-{
-	background-color: #ffffff;
-}
-
-div.image
-{
-	background-position: -48px -64px;
-	margin-right: 10px;
-}
-
-div.textFile
-{
-	background-position: -16px -112px;
-	margin-right: 10px;
 }
 
 div.downloadAllButton
@@ -408,29 +139,41 @@ div.downloadAllButton
 	margin: 5px 0px;
 }
 
-div.avatarContainer
+div.userHUD
 {
-	width: 50px;
-	height: 50px;
-	float: none;
-	overflow: hidden;
-	margin: 0px auto;
+	width: 140px;
+	margin: 6px 5px;
+	font-size: 10px;
+	color: #41bf56;
 }
 
-div.avatarFrame
+div.topOfUserDialog
 {
-	width: 50px;
-	height: 50px;
-	float: none;
+	width: 140px;
+	float: left;
+	height: 5px;
 	overflow: hidden;
-	margin: 0px;
-	background-image: url('../_images/avatarFrame.png');
+	background-image: url('../_images/userAreaDialogTopGreen.png');
 	background-repeat: no-repeat;
 	background-position: top left;
 }
 
-span.centerText
+div.bottomOfUserDialog
 {
-	display: block;
-	text-align: center;
+	width: 140px;
+	float: left;
+	height: 5px;
+	overflow: hidden;
+	background-image: url('../_images/userAreaDialogBottomGreen.png');
+	background-repeat: no-repeat;
+	background-position: top left;
+	margin: 0px 0px 6px 0px;
+}
+
+div.hudItem
+{
+	width: 140px;
+	margin: 0px;
+	background-color: #a4e0ae;
+	float: left;
 }
