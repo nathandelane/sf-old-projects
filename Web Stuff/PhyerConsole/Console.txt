@@ -1,0 +1,194 @@
+This text file serves only as a "run down" list of a few core ideas
+and concepts for the hardware codenamed "Project G". This document
+will be continuosly actively updated with purely "fantasy" concepts
+until they can be proven "possible". Such concepts that make it to
+the point in which they can be classified as "solid" will be listed
+in the actual design document.
+
+Project G, is a only code name that will be used publicly to refer
+to the gaming platform called "Gaia". Until further notice. Project
+G is the only name that will be allowed to refer to the hardware in
+public. And any/all concepts & ideas listed on this file must never
+be mentioned publicly.
+
+CONCEPT 1:
+
+Small Form factor-
+One major concept that has been planned for Project G. Was the use
+of smaller chipsets and alot of integrated technologies to allow us
+the ability to build the system with a small foot print. One system
+that comes to mind for an example is, "Zonbu". A miniPC/ITX system
+(http://en.wikipedia.org/wiki/Zonbu) with a minimal linux Operating
+system.
+
+At the rate technology is progressing, in terms of power and size.
+It is very possible to integrate everything needed by the system to
+1 system board. The power supply itself can also be placed outside 
+the case. As a "powerbrick". As seen with other small systems. Such
+as laptops or external USB devices.
+
+Despite the smaller size. The ability to keep the system cool even
+during long running sessions of heavy usage. Should be possible to
+pull off. As the power supply is out of the system. There should be
+absolutely no moving parts. Like a disk rom or hard drive. And the
+circutry should be smaller and drawing less current.
+
+All this equals out to a smaller system that should run quietly and
+is exempt to having any system failures. Due to overheating issues.
+___________________________________________________________________
+CONCEPT 2:
+
+Compact Flash-
+Regarding the media format for the actual games & internal storage.
+It was discussed awhile back to consider using Compact Flash-like 
+technology(http://en.wikipedia.org/wiki/Compact_flash). 
+
+Regarding the actual cards the games would be on. We should figure
+out a means to allow only the system to write to the media. Such as
+to save a player's data or for udates & patches meant for the game
+itself. Rather then using up the player's own system's drive space.
+
+This would of course mean that the player cannot overwrite or erase
+the card's actual content. And if possible. Prevent the player from
+trying to access the card's contents via a standard PC card reader 
+to copy and transfer the data to another CF card. Which would be a
+pirating ploy.
+
+Many benefits come from using CF cards over disk drives for loading
+applications. As well as for storing data internally over standard
+hard disks. These benefits are:
+1- Less power consumption
+2- Read & write speeds are sufficient enough to rival moving disks
+3- Less power consumption & no moving parts reduces "overheating"
+4- The hardware itself can be shipped in very small form factors
+5- Durable and resitant to many forms of physical shock
+6- Available in various starage capacities
+
+Despite these positives points. There are a few drawbacks that must
+be mentioned:
+
+1- CF like any other flash type technology have a shorter lifespan
+2- If power is lost during a write cycle. Data could be corrupted
+3- Slightly lower read & write speeds compared to moving disks
+
+The idea of using this format is that alot of developers. could cut
+cost in production as the technology to write the applications to
+the media are far cheaper than disk duplicators. Plus the developer
+can use lower storage capacity cards as opposed to being tied down
+to a size disk standard. Such as with DVD's & Blu Ray.
+
+Due to the fact that CF cards & reader/writers are widely available
+to the consummer. This opens up doorways for independant developers
+to be able to create their own games and share them directly with a
+friend.
+___________________________________________________________________
+CONCEPT 3:
+
+Upgradability-
+What has to be one of the most questionable ideas aside from the us
+even considering developing a console. Is, "the concept of making G
+"modular"". By "modular", we are talking about the possibilities of
+an actual upgradable & easy to modify system at the user's level.
+
+The idea came about during discussions over the escalating costs of
+research & development firms. Each time an older system's lifecycle
+comes to an end. They overhaul the entire units as 1 as opposed to
+focusing on just what really could use the upgrade. And leaving the
+things that do work and could hold the system over for a few more 
+cycles.
+
+This could help cut down development costs. Give th
+
+Modules/Items the user can upgrade at their level:
+1-DDR Ram
+2- System board+CPU
+3- CF Reader/Writer
+4- Internal Storage
+5- Chassis & Fans
+6- Power Supply
+
+Items the user can upgrade but is not supported unless serviced by
+actual techs we certify:
+
+1- Swapping system board CPU's
+2- Adding in cooling devices
+3- Gamepad modifications
+4- Full chassis modifications
+5- Overclocking items tied to the systemboard
+
+Items the user can upgrade but is not supported by us(3rd Party):
+
+1- USB devices aside from ones developed by us or an affiliate
+2- CF media or reader/writers not certified & tested by us
+3- Power Supply modifications
+4- Overclocking items by a non-certified individual
+5- Ram not certified & tested by us
+
+Using this approach could really cut down on unnecesarry R&D fees &
+allow the user more control and power over when its time to upgrade
+the system. Its not a 100% truly effective plan that wont come with
+out a few problems. Or cause a few users to feel "intimedated". But
+the possibility that the consumer can be won over by realizing the
+power he/she weilds over their gaming is high. Plus, the "average
+gamer" this day & age has evolved a great deal as opposed to 5yrs 
+ago whereas the idea of such a system really would scare the user
+off. 
+
+As the mentality back in those times was, "I only care to turn the
+system on then off when done". This straight forward frame of mind
+has been changed considerable thanks to importers. Users desiring a
+chance to play games that were not compatible with their system was
+forced to dive into the seedy world of "unsupported modding". Some
+with success. Most with a faulty system that could not be repaired
+under the manufacturer's warranties.
+
+So, with these factors in mind. It is indeed time for the console
+market to concider this approach. As the consummer IS "ready". If
+the user can stand for risking to break a system due to chip mods.
+The user is deffinitely ready to try this. With the added bonus of
+there being a bit of support from manufacturers.
+___________________________________________________________________
+CONCEPT 4:
+
+OS vs. Firmware-
+This brings about another internal debate with those aware of the
+plans for Project G. Whether or not, to go with using firmware as
+other integrated systems do. Or, to consider the combination of 2
+worlds. Using an actual operating system for the user. And firmware
+for the system itself. 
+
+The idea was to offer an OS that worked only on the Gaia hardware 
+platform that gave the user an interface for them to interact with 
+their games, other possible applications and painlessly upgrade or 
+apply patches without risking any harm to the firmware. Firmware 
+would be hard coded to the systemboards. The only real function it 
+serves is to identify with the OS that it is indeed a Gaia system &
+communicate at the "system level" to fulfill the user's needs.
+
+There should be absolutely no reason for firmware to be patched. Or
+in this case "flashed". Which can risk the user having an unusable
+system. As with the case with most PC systems. Whereas a user would
+flash the motherboard's bios. And either have resolved their issues
+or created alot more. These risks are too high. Even in the case of
+the user taking the item in question to a certified tech to perform
+there may be complications. Which are things we may not be able to 
+fully support.
+___________________________________________________________________
+CONCEPT 6:
+
+Multi-tasking-
+It should be understood that desdpite the fact of wanting to use an
+actual OS in an upgradable system. We are not out to "recreate the 
+PC". What we are simply doing is bringing in not just a "new gaming
+platform". We are trying to do just what should have been held to
+other companies before. "Making an actual usable entertainment hub"
+for the average person.
+
+Although the Gaia is not a "true" PC platform. There is still a few
+benefits of introducing a few PC-like elements and applications to
+the user:
+
+1- Ability to pause, minumize & swap one active session for another
+2- Ability to playback various media formats that are supported
+3- Customizable interface that is an ease to swap out with themes
+4- Support for multiple sessions. More than 1 application running
