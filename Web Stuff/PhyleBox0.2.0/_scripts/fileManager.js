@@ -1,5 +1,3 @@
-var windowWidth = 0;
-var windowHeight = 0;
 var currentlySelectedView = "details";
 
 function padRowNumber(number) {
@@ -13,23 +11,19 @@ function padRowNumber(number) {
 	return rowNumber;
 }
 
-function initializeEventHandlers() {
-	//window.onresize = scaleScalableElements;
-	//setWidthHeight();
-	//document.getElementById('rightPanel').style.width = (windowWidth - 150) + "px";
-	
+function initializeEventHandlers() {	
 	if(totalRows) {
-		for(i = 0; i < totalRows; i++) {
-			rowName = "row" + padRowNumber(i);
+		for(i = 1; i < totalRows; i++) {
+			rowName = "row" + padRowNumber(i) + "CheckBox";
 			
 			if(document.attachEvent) {
-				document.getElementById(rowName).attachEvent('onclick', checkOrUncheck);
+				document.getElementById(rowName).attachEvent('onclick', isChecked);
 			} else {
-				document.getElementById(rowName).addEventListener('click', checkOrUncheck, false);
+				document.getElementById(rowName).addEventListener('click', isChecked, false);
 			}
 		}
 	}
-
+	
 	selectCurrentlySelectedView();
 
 	if(document.attachEvent) {
@@ -53,6 +47,7 @@ function initializeEventHandlers() {
 		document.getElementById('editProfileButton').attachEvent('onmouseout', deactivatePseudoButton);
 		document.getElementById('settingsButton').attachEvent('onmouseover', activatePseudoButton);
 		document.getElementById('settingsButton').attachEvent('onmouseout', deactivatePseudoButton);
+		document.getElementById('downloadAllButton').attachEvent('onclick', downloadFiles);
 	} else {
 		document.getElementById('permissionsItem').addEventListener('click', expandOrCollapseUserItem, false);
 		document.getElementById('logoutItem').addEventListener('click', expandOrCollapseUserItem, false);
@@ -74,12 +69,13 @@ function initializeEventHandlers() {
 		document.getElementById('editProfileButton').addEventListener('mouseout', deactivatePseudoButton, false);
 		document.getElementById('settingsButton').addEventListener('mouseover', activatePseudoButton, false);
 		document.getElementById('settingsButton').addEventListener('mouseout', deactivatePseudoButton, false);
+		document.getElementById('downloadAllButton').addEventListener('click', downloadFiles, false);
 	}
 }
 
-function checkOrUncheck(e) {
+function downloadFiles(e) {
 	var target;
-
+	
 	if(!e) var e = window.event;
 	if(e.target) {
 		target = e.target;
@@ -87,16 +83,34 @@ function checkOrUncheck(e) {
 		target = e.srcElement;
 	}
 	
-	if(target.nodeName !== "INPUT")
-	{
-		checkBoxId = target.parentNode.parentNode.id + "CheckBox";
-		objCheckBox = document.getElementById(checkBoxId);
-		
-		if(objCheckBox.checked) {
-			objCheckBox.checked = false;
-		} else {
-			objCheckBox.checked = true;
+	if(target.className == "downloadAllButton downloadButtonActive") {
+		alert("Run AJAX to start downloading all of the files!");
+	}	
+}
+
+function isChecked(e) {
+	var target;
+	
+	if(!e) var e = window.event;
+	if(e.target) {
+		target = e.target;
+	} else if(e.srcElement) {
+		target = e.srcElement;
+	}
+	
+	numberChecked = 0;
+	for(j = 1; j < totalRows; j++) {
+		checkBoxName = "row" + padRowNumber(j) + "CheckBox";
+		checkBox = document.getElementById(checkBoxName);
+		if(checkBox.checked) {
+			numberChecked++;
 		}
+	}
+	
+	if(numberChecked > 0) {
+		document.getElementById('downloadAllButton').className = "downloadAllButton downloadButtonActive";
+	} else {
+		document.getElementById('downloadAllButton').className = "downloadAllButton downloadButtonInactive";
 	}
 }
 
@@ -110,7 +124,7 @@ function activatePseudoButton(e) {
 		target = e.srcElement;
 	}
 
-	target.style.color = "#ffffff";
+	target.className = "pseudoButton pbActive";
 }
 
 function deactivatePseudoButton(e) {
@@ -123,7 +137,7 @@ function deactivatePseudoButton(e) {
 		target = e.srcElement;
 	}
 
-	target.style.color = "#9fcbf8";
+	target.className = "pseudoButton pbInactive";
 }
 
 function selectCurrentlySelectedView() {
@@ -141,40 +155,6 @@ function selectCurrentlySelectedView() {
 	} else if(currentlySelectedView == "tree") {
 		document.getElementById('treeViewRadioButton').className = "radioButtonSelected";
 	}
-}
-
-function setWidthHeight() {
-	if(window.innerWidth) {
-		if(window.innerWidth > minimumWidth) {
-			windowWidth = window.innerWidth;
-		} else {
-			widowWidth = minimumWidth;
-		}
-		windowHeight = window.innerHeight;
-	} else if(document.body.offsetWidth) {
-		if(document.body.offsetWidth > minimumWidth) {
-			windowWidth = document.body.offsetWidth;
-		} else {
-			widowWidth = minimumWidth;
-		}
-		windowHeight = document.body.offsetHeight;
-	}
-}
-
-function scaleScalableElements(e) {
-	var target;
-
-	if(!e) var e = window.event;
-	if(e.target) {
-		target = e.target;
-	} else if(e.srcElement) {
-		target = e.srcElement;
-	}
-
-	setWidthHeight();
-
-	document.getElementById('rightPanel').style.width = (windowWidth - 150) + "px";
-	document.getElementById('rightPanel').style.height = (windowHeight - 40) + "px";
 }
 
 function expandOrCollapseUserItem(e) {

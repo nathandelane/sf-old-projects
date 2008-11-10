@@ -94,3 +94,8 @@ div.hudItem
 {
 	background-color: #9fcbf8;
 }
+
+span.pbInactive
+{
+	color: #9fcbf8;
+}

@@ -23,16 +23,24 @@
 				<img alt="PhylBox logo" id="logo" class="officialLogo" src="_images/phyleboxofficiallogo.png">
 				<div id="tabCollection" class="tabCollection">
 					<div id="fileManagerTab" class="tab">
-						<span>File Manager</span>
+						<a href="">
+							<span>File Manager</span>
+						</a>
 					</div>
 					<div id="messagesTab" class="tab">
-						<span>Messages</span>
+						<a href="">
+							<span>Messages</span>
+						</a>
 					</div>
 					<div id="forumTab" class="tab">
-						<span>Forum</span>
+						<a href="">
+							<span>Forum</span>
+						</a>
 					</div>
 					<div id="calendarTab" class="tab">
-						<span>Calendar</span>
+						<a href="">					
+							<span>Calendar</span>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -60,7 +68,7 @@
 							<div class="userItemContent">
 								<div><span>Are you sure you want to log out?</span></div>
 								<div>
-									<span id="yesLogoutButton" class="pseudoButton">[Yes]</span>&nbsp;<span id="noDontLogoutButton" class="pseudoButton">[No]</span>
+									<span id="yesLogoutButton" class="pseudoButton pbInactive">[Yes]</span>&nbsp;<span id="noDontLogoutButton" class="pseudoButton pbInactive">[No]</span>
 								</div>
 							</div>
 						</li>
@@ -70,16 +78,16 @@
 								<div>Display Name:</div><div>&nbsp;&nbsp;Nathan Lane</div>
 								<div>Email Address:</div><div>&nbsp;&nbsp;nathamberlane@gmail.com</div>
 								<div>
-									<span id="editProfileButton" class="pseudoButton">[Edit]</span>
+									<span id="editProfileButton" class="pseudoButton pbInactive">[Edit]</span>
 								</div>
 							</div>
 						</li>
 						<li class="collapsed" id="servicesItem">
 							Services
 							<div class="userItemContent">
-								<div><span id="helpButton" class="pseudoButton">Help</span></div>
-								<div><span id="uploadFilesButton" class="pseudoButton">Upload Files</span></div>
-								<div><span id="settingsButton" class="pseudoButton">Settings</span></div>
+								<div><span id="helpButton" class="pseudoButton pbInactive">Help</span></div>
+								<div><span id="uploadFilesButton" class="pseudoButton pbInactive">Upload Files</span></div>
+								<div><span id="settingsButton" class="pseudoButton pbInactive">Settings</span></div>
 							</div>
 						</li>
 					</ul>
@@ -115,16 +123,7 @@
 					<div id="columnHeaderContainer" class="columnHeaderContainer">
 						<ul id="columnHeaders" class="columnHeaders">
 							<li id="checkHeader">
-								<span>Check</span>
-							</li>
-							<li id="ownerHeader">
-								<span>Own</span>
-							</li>
-							<li id="groupHeader">
-								<span>Grp</span>
-							</li>
-							<li id="otherHeader">
-								<span>Oth</span>
+								<span>Chk</span>
 							</li>
 							<li id="filenameHeader">
 								<span>Filename</span>
@@ -143,12 +142,9 @@
 							</li>
 						</ul>
 					</div>
-					<div id="row000" class="detailViewRow even" style="display: none;" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#ffffff'">
+					<div id="row000" class="detailViewRow even" style="display: none;">
 						<ul id="row000Info" class="columns">
-							<li class="check"><input id="row000CheckBox" type="checkbox"></li>
-							<li class="owner"><span>&nbsp;</span></li>
-							<li class="group"><span>&nbsp;</span></li>
-							<li class="other"><span>&nbsp;</span></li>
+							<li class="check">&nbsp;</li>
 							<li class="filename"><div class="icon openFolder"></div><span>..</span></li>
 							<li class="size"><span>0.00 kb</span></li>
 							<li class="date"><span>10/27/2008</span></li>
@@ -156,12 +152,9 @@
 							<li class="status"><span>open</span></li>
 						</ul>
 					</div>
-					<div id="row001" class="detailViewRow oddRow" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#c8edce'">
+					<div id="row001" class="detailViewRow oddRow">
 						<ul id="row001Info" class="columns">
 							<li class="check"><input id="row001CheckBox" type="checkbox"></li>
-							<li class="owner"><span>&nbsp;</span></li>
-							<li class="group"><span>&nbsp;</span></li>
-							<li class="other"><span>&nbsp;</span></li>
 							<li class="filename"><div class="icon folder"></div><span>Images</span></li>
 							<li class="size"><span>0.00 kb</span></li>
 							<li class="date"><span>10/27/2008</span></li>
@@ -169,12 +162,9 @@
 							<li class="status"><span>open</span></li>
 						</ul>
 					</div>
-					<div id="row002" class="detailViewRow even" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#ffffff'">
+					<div id="row002" class="detailViewRow even">
 						<ul id="row002Info" class="columns">
 							<li class="check"><input id="row002CheckBox" type="checkbox"></li>
-							<li class="owner"><span>&nbsp;</span></li>
-							<li class="group"><span>&nbsp;</span></li>
-							<li class="other"><span>&nbsp;</span></li>
 							<li class="filename"><div class="icon folder"></div><span>Sources</span></li>
 							<li class="size"><span>0.00 kb</span></li>
 							<li class="date"><span>10/27/2008</span></li>
@@ -182,12 +172,9 @@
 							<li class="status"><span>open</span></li>
 						</ul>
 					</div>
-					<div id="row003" class="detailViewRow oddRow" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#c8edce'">
+					<div id="row003" class="detailViewRow oddRow">
 						<ul id="row003Info" class="columns">
 							<li class="check"><input id="row003CheckBox" type="checkbox"></li>
-							<li class="owner"><span>&nbsp;</span></li>
-							<li class="group"><span>&nbsp;</span></li>
-							<li class="other"><span>&nbsp;</span></li>
 							<li class="filename"><div class="icon image"></div><span>Image1.jpg</span></li>
 							<li class="size"><span>5.00 kb</span></li>
 							<li class="date"><span>10/27/2008</span></li>
@@ -195,12 +182,9 @@
 							<li class="status"><span>open</span></li>
 						</ul>
 					</div>
-					<div id="row004" class="detailViewRow even" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#ffffff'">
+					<div id="row004" class="detailViewRow even">
 						<ul id="row004Info" class="columns">
 							<li class="check"><input id="row004CheckBox" type="checkbox"></li>
-							<li class="owner"><span>&nbsp;</span></li>
-							<li class="group"><span>&nbsp;</span></li>
-							<li class="other"><span>&nbsp;</span></li>
 							<li class="filename"><div class="icon image"></div><span>icon.png</span></li>
 							<li class="size"><span>3.14 kb</span></li>
 							<li class="date"><span>10/27/2008</span></li>
@@ -208,12 +192,9 @@
 							<li class="status"><span>open</span></li>
 						</ul>
 					</div>
-					<div id="row005" class="detailViewRow oddRow" onmouseover="this.style.backgroundColor='#ffffb4'" onmouseout="this.style.backgroundColor='#c8edce'">
+					<div id="row005" class="detailViewRow oddRow">
 						<ul id="row005Info" class="columns">
 							<li class="check"><input id="row005CheckBox" type="checkbox"></li>
-							<li class="owner"><span>&nbsp;</span></li>
-							<li class="group"><span>&nbsp;</span></li>
-							<li class="other"><span>&nbsp;</span></li>
 							<li class="filename"><div class="icon textFile"></div><span>Test.txt</span></li>
 							<li class="size"><span>19.2 kb</span></li>
 							<li class="date"><span>10/27/2008</span></li>
@@ -224,7 +205,7 @@
 				</div>
 				<div class="fileSystemContainer" id="thumbnailsView" style="display: none;"></div>
 				<div class="fileSystemContainer" id="treeView" style="display: none;"></div>
-				<div id="downloadAllButton" class="downloadAllButton" style="background-position: right top;"></div>
+				<div id="downloadAllButton" class="downloadAllButton downloadButtonInactive"></div>
 			</div>
 		</div>
 	</body>

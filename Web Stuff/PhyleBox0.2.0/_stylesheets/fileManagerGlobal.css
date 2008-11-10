@@ -36,6 +36,12 @@ div.tabBar
 	overflow: hidden;
 }
 
+div.tab a:link, a:visited, a:active, a:hover
+{
+	color: #ffffff;
+	text-decoration: none;
+}
+
 img.officialLogo
 {
 	margin: 3px;
@@ -110,32 +116,17 @@ ul.columnHeaders
 
 ul.columnHeaders li#checkHeader
 {
-	width: 49px;
-}
-
-ul.columnHeaders li#ownerHeader
-{
-	width: 40px;
-}
-
-ul.columnHeaders li#groupHeader
-{
-	width: 40px;
-}
-
-ul.columnHeaders li#otherHeader
-{
-	width: 40px;
+	width: 29px;
 }
 
 ul.columnHeaders li#filenameHeader
 {
-	width: 300px;
+	width: 503px;
 }
 
 ul.columnHeaders li#sizeHeader
 {
-	width: 60px;
+	width: 100px;
 }
 
 ul.columnHeaders li#dateHeader
@@ -150,7 +141,7 @@ ul.columnHeaders li#timeHeader
 
 ul.columnHeaders li#statusHeader
 {
-	width: 162px;
+	width: 62px;
 }
 
 div.detailViewRow
@@ -194,32 +185,17 @@ ul.columns li
 
 ul.columns li.check
 {
-	width: 49px;
-}
-
-ul.columns li.owner
-{
-	width: 40px;
-}
-
-ul.columns li.group
-{
-	width: 40px;
-}
-
-ul.columns li.other
-{
-	width: 40px;
+	width: 29px;
 }
 
 ul.columns li.filename
 {
-	width: 300px;
+	width: 503px;
 }
 
 ul.columns li.size
 {
-	width: 60px;
+	width: 100px;
 }
 
 ul.columns li.date
@@ -234,7 +210,7 @@ ul.columns li.time
 
 ul.columns li.status
 {
-	width: 162px;
+	width: 62px;
 }
 
 div.icon
@@ -306,8 +282,9 @@ span.centerText
 
 div.hudItem
 {
-	width: 140px;
+	width: 130px;
 	margin: 0px;
+	padding: 0px 5px;
 	float: left;
 }
 div.leftPanel
@@ -452,4 +429,21 @@ div.bottomOfUserDialog
 	background-repeat: no-repeat;
 	background-position: top left;
 	margin: 0px 0px 6px 0px;
+}
+
+span.pbActive
+{
+	color: #ffffff;
+}
+
+div.downloadButtonActive
+{
+	background-position: left top;
+	cursor: pointer;
+}
+
+div.downloadButtonInactive
+{
+	background-position: right top;
+	cursor: default;
 }
