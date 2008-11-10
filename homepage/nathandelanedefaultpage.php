@@ -2,7 +2,7 @@
 	session_start();
 	
 	$defaultStylesheetName = "default.css";
-	$sitePath = "/";
+	$sitePath = "/Homepage/";
 	
 	if(!isset($_GET['page']))
 	{
