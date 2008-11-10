@@ -5,123 +5,64 @@ body
 
 div.leftPanel
 {
-	position: absolute;
-	left: 0px;
-	top: 40px;
-	width: 150px;
 	background-image: url('../_images/leftPanelBackgroundBlue.png');
-	background-repeat: repeat-y;
-	background-position: top left;
 }
 
 div.tabBarBlue
 {
 	background-image: url('../_images/tabBarBackgroundBlue.png');
-	background-repeat: repeat-x;
-	background-position: top left;
 }
 
 div.userPanel
 {
 	color: #9fcbf8;
-	margin: 6px 5px;
 	border-bottom: 1px solid #9fcbf8;
 }
 
 ul.userItems li
 {
-	line-height: 12px;
-	display: block;
 	background-image: url('../_images/blueBullet.png');
-	background-repeat: no-repeat;
-	background-position: top left;
-	font-size: 9px;
-	text-transform: uppercase;
-	padding-left: 14px;
-	padding-bottom: 1px;
-	margin-bottom: 4px;
-	cursor: pointer;
 }
 
 ul.userItems li.collapsed
 {
 	color: #6b86b1;
-	height: 9px;
-	overflow: hidden;
 }
 
 div.controlsPanel
 {
 	color: #9fcbf8;
-	margin: 6px 5px;
 	border-bottom: 1px solid #9fcbf8;
 }
 
 ul.viewItems li.radioButtonSelected
 {
 	background-image: url('../_images/blueRadioButtonOn.png');
-	background-repeat: no-repeat;
-	background-position: left center;
 }
 
 ul.viewItems li.radioButtonDeselected
 {
 	background-image: url('../_images/blueRadioButtonOff.png');
-	background-repeat: no-repeat;
-	background-position: left center;
 }
 
 div.breadcrumbContainer
 {
-	width: 100%;
-	height: 20px;
 	background-color: #6b86b1;
-	overflow: hidden;
 }
 
 div.breadcrumb
 {
-	height: 16px;
 	background-color: #9fcbf8;
-	padding: 0px 5px;
-	margin: 2px 2px;
-	text-align: center;
-	font-size: 14px;
-	font-weight: bold;
-	color: #000000;
-	float: left;
-	cursor: pointer;
 }
 
 div.tab
 {
-	width: 110px;
-	height: 28px;
-	float: right;
-	overflow: hidden;
 	background-image: url('../_images/largeTabBlue.png');
-	background-repeat: no-repeat;
-	background-position: top left;
-	font-size: 14px;
-	text-align: center;
-	color: #ffffff;
-	font-weight: bold;
-	padding-top: 7px;
-	cursor: pointer;
 }
 
 ul.columnHeaders li
 {
-	display: block;
-	float: left;
-	height: 17px;
-	text-align: center;
 	background-color: #9fcbf8;
-	color: #ffffff;
-	font-size: 12px;
-	font-weight: bold;
-	padding-top: 3px;
-	margin-right: 1px;
 }
 
 div.oddRow
@@ -131,49 +72,25 @@ div.oddRow
 
 div.downloadAllButton
 {
-	width: 110px;
-	height: 28px;
-	float: right;
 	background-image: url('../_images/downloadButtonBlue.png');
-	background-repeat: no-repeat;
-	margin: 5px 0px;
 }
 
 div.userHUD
 {
-	width: 140px;
-	margin: 6px 5px;
-	font-size: 10px;
 	color: #6b86b1;
 }
 
 div.topOfUserDialog
 {
-	width: 140px;
-	float: left;
-	height: 5px;
-	overflow: hidden;
 	background-image: url('../_images/userAreaDialogTopBlue.png');
-	background-repeat: no-repeat;
-	background-position: top left;
 }
 
 div.bottomOfUserDialog
 {
-	width: 140px;
-	float: left;
-	height: 5px;
-	overflow: hidden;
 	background-image: url('../_images/userAreaDialogBottomBlue.png');
-	background-repeat: no-repeat;
-	background-position: top left;
-	margin: 0px 0px 6px 0px;
 }
 
 div.hudItem
 {
-	width: 140px;
-	margin: 0px;
 	background-color: #9fcbf8;
-	float: left;
 }

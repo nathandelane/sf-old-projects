@@ -303,3 +303,153 @@ span.centerText
 	display: block;
 	text-align: center;
 }
+
+div.hudItem
+{
+	width: 140px;
+	margin: 0px;
+	float: left;
+}
+div.leftPanel
+{
+	position: absolute;
+	left: 0px;
+	top: 40px;
+	width: 150px;
+	background-repeat: repeat-y;
+	background-position: top left;
+}
+
+div.tabBarBlue
+{
+	background-repeat: repeat-x;
+	background-position: top left;
+}
+
+div.userPanel
+{
+	margin: 6px 5px;
+}
+
+ul.userItems li
+{
+	line-height: 12px;
+	display: block;
+	background-repeat: no-repeat;
+	background-position: top left;
+	font-size: 9px;
+	text-transform: uppercase;
+	padding-left: 14px;
+	padding-bottom: 1px;
+	margin-bottom: 4px;
+	cursor: pointer;
+}
+
+ul.userItems li.collapsed
+{
+	height: 9px;
+	overflow: hidden;
+}
+
+div.controlsPanel
+{
+	margin: 6px 5px;
+}
+
+ul.viewItems li.radioButtonSelected
+{
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+ul.viewItems li.radioButtonDeselected
+{
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+div.breadcrumbContainer
+{
+	width: 100%;
+	height: 20px;
+	overflow: hidden;
+}
+
+div.breadcrumb
+{
+	height: 16px;
+	padding: 0px 5px;
+	margin: 2px 2px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: bold;
+	float: left;
+	cursor: pointer;
+	color: #ffffff;
+}
+
+div.tab
+{
+	width: 110px;
+	height: 28px;
+	float: right;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-position: top left;
+	font-size: 14px;
+	text-align: center;
+	font-weight: bold;
+	padding-top: 7px;
+	cursor: pointer;
+	color: #ffffff;
+}
+
+ul.columnHeaders li
+{
+	display: block;
+	float: left;
+	height: 17px;
+	text-align: center;
+	font-size: 12px;
+	font-weight: bold;
+	padding-top: 3px;
+	margin-right: 1px;
+	color: #ffffff;
+}
+
+div.downloadAllButton
+{
+	width: 110px;
+	height: 28px;
+	float: right;
+	background-repeat: no-repeat;
+	margin: 5px 0px;
+}
+
+div.userHUD
+{
+	width: 140px;
+	margin: 6px 5px;
+	font-size: 10px;
+}
+
+div.topOfUserDialog
+{
+	width: 140px;
+	float: left;
+	height: 5px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-position: top left;
+}
+
+div.bottomOfUserDialog
+{
+	width: 140px;
+	float: left;
+	height: 5px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	background-position: top left;
+	margin: 0px 0px 6px 0px;
+}
