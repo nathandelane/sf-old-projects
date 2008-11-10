@@ -15,11 +15,16 @@ function initializeEventHandlers() {
 	if(totalRows) {
 		for(i = 1; i < totalRows; i++) {
 			rowName = "row" + padRowNumber(i) + "CheckBox";
+			fileName = "row" + padRowNumber(i) + "File";
 			
 			if(document.attachEvent) {
 				document.getElementById(rowName).attachEvent('onclick', isChecked);
+				document.getElementById(fileName).attachEvent('onmouseover', showOrHideMenuControl);
+				document.getElementById(fileName).attachEvent('onmouseout', showOrHideMenuControl);
 			} else {
 				document.getElementById(rowName).addEventListener('click', isChecked, false);
+				document.getElementById(fileName).addEventListener('mouseover', showOrHideMenuControl, false);
+				document.getElementById(fileName).addEventListener('mouseout', showOrHideMenuControl, false);
 			}
 		}
 	}
@@ -70,6 +75,25 @@ function initializeEventHandlers() {
 		document.getElementById('settingsButton').addEventListener('mouseover', activatePseudoButton, false);
 		document.getElementById('settingsButton').addEventListener('mouseout', deactivatePseudoButton, false);
 		document.getElementById('downloadAllButton').addEventListener('click', downloadFiles, false);
+	}
+}
+
+function showOrHideMenuControl(e) {
+	var target;
+	
+	if(!e) var e = window.event;
+	if(e.target) {
+		target = e.target;
+	} else if(e.srcElement) {
+		target = e.srcElement;
+	}
+	
+	if(target.nodeName == "LI") {
+		if(e.type == "mouseover" || e.type == "onmouseover") {
+			target.className = "filename fileMenuButtonActive";
+		} else {
+			target.className = "filename";
+		}
 	}
 }
 

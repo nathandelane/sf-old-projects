@@ -447,3 +447,10 @@ div.downloadButtonInactive
 	background-position: right top;
 	cursor: default;
 }
+
+li.fileMenuButtonActive
+{
+	background-image: url('../_images/filemanagerItemMenuHighlight.png');
+	background-position: top left;
+	background-repeat: no-repeat;
+}
