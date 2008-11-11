@@ -17,7 +17,7 @@
    version="1.0"
    sodipodi:docname="ndellogo.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   inkscape:export-filename="C:\Subversion\Nathandelane\trunk\Web Stuff\ndellogo.png"
+   inkscape:export-filename="C:\Subversion\Nathandelane.Trunk\trunk\Web Stuff\ndellogo.png"
    inkscape:export-xdpi="17.700001"
    inkscape:export-ydpi="17.700001">
   <defs
@@ -74,7 +74,11 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:showpageshadow="false" />
+     inkscape:showpageshadow="false"
+     inkscape:window-width="640"
+     inkscape:window-height="667"
+     inkscape:window-x="66"
+     inkscape:window-y="87" />
   <metadata
      id="metadata7">
     <rdf:RDF>
