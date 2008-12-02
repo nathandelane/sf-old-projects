@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html [
+  <!ENTITY % htmlDTD
+    PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "DTD/xhtml1-strict.dtd">
+  %htmlDTD;
+  <!ENTITY % globalDTD
+    SYSTEM "chrome://global/locale/global.dtd">
+  %globalDTD;
+  <!ENTITY % feedDTD
+    SYSTEM "chrome://browser/locale/feeds/subscribe.dtd">
+  %feedDTD;
+]>
+<?xml-stylesheet href="nathandelane_files/global.css" type="text/css"?><html id="feedHandler" xmlns="http://www.w3.org/1999/xhtml" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <head>
+    <title>Viewing Feed</title>
+    <link rel="stylesheet" href="nathandelane_files/subscribe.css" type="text/css" media="all"/>
+    <script type="application/x-javascript" src="nathandelane_files/subscribe.js"/>
+  </head>
+  <body onload="SubscribeHandler.writeContent();" onunload="SubscribeHandler.uninit();">
+    <div id="feedHeaderContainer">
+      <div id="feedHeader" dir="ltr" class="feedBackground">
+        <div id="feedIntroText"><xul:description id="feedSubscriptionInfo1"/><xul:description id="feedSubscriptionInfo2"/></div>
+
+<!-- XXXmano this can't have any whitespace in it.  Otherwise you would see
+     how much XUL-in-XHTML sucks, see bug 348830 -->
+        <div id="feedSubscribeLine"><xul:vbox><xul:hbox align="center"><xul:description id="subscribeUsingDescription" value="Subscribe to this feed using"/><xul:menulist id="handlersMenuList" aria-labelledby="subscribeUsingDescription" sizetopopup="pref" value="" image="chrome://browser/skin/page-livemarks.png" label="Live Bookmarks" description=""><xul:menupopup menugenerated="true" id="handlersMenuPopup"><xul:menuitem id="liveBookmarksMenuItem" label="Live Bookmarks" class="menuitem-iconic" image="chrome://browser/skin/page-livemarks.png" selected="true"/><xul:menuseparator/><xul:menuitem id="selectedAppMenuItem" class="menuitem-iconic" handlerType="client" hidden="true"/><xul:menuitem id="defaultHandlerMenuItem" class="menuitem-iconic" handlerType="client" label="feedreader.exe" image="moz-icon://file:///C:/Program%20Files/FeedReader30/feedreader.exe?size=16"/><xul:menuitem id="chooseApplicationMenuItem" label="Choose Application…"/><xul:menuseparator/><xul:menuitem class="menuitem-iconic" label="Bloglines" handlerType="web" webhandlerurl="http://www.bloglines.com/login?r=/sub/%s" image="data:image/bmp;base64,Qk04AwAAAAAAADYAAAAoAAAAEAAAABAAAAABABgAAAAAAAIDAAASCwAAEgsAAAAAAAAAAAAA////kXASkXETknEUknIVknIWknIWknIWknEVkXAUkXATkXATkXARkW8QkG8P////kXATkXEUw5cdw5gfw5kgxJohxJkgxJkgxJkgw5kfw5gew5ccwZYawZUYkXAQkG8PkXEWw5kfx58s////////////////////////////3cWBw5gfw5gdwpcawpUYkXAQk3MXxJsixZsk7uLA9/Hg////////7uLA9/Hg////////3cWBxJkgw5gdwpYbkXASk3QaxZwmxp0pxp4r0bBS////////x6AuxJoj7uLA////////xJojxJkgwpcdkXATlHUcxp0px58sx6Au0bBS////////yKIxyKEw3cWB////////xZwmxZoixJkfkXEVlHYex54syKAvyaEy0bBS////////yqM1wJMT5tSh////////xp0oxZwlxJkhkXIWlHYfyKAvyaIyyaI10bBS////////7uLA8unQ////////zalCxp4qxZ0nxJojknIXlXchyKAwyaI0yqQ30bBS////////////////////1bdiyKAwx58txp0oxZskknMXlnciyKExyqQ1y6Q50bBS////////zKc/zalC////////0bBSyJ8txp0pxZslknMYlXgiyaEyyqQ2y6U50bBS////////zKhAy6c97uLA////3cWBx58uxp4pxZslk3MZlngiyKIxyqM1yqU50bBS////////zKg/xJoj9/Hg////3cWBx6Atxp0pxZslk3MZlXchyKEwyqQ27uLA+fXo////////7uLA9/Hg////////yKEyx58sxZwoxZskk3MYlHYgyKAuyqQ2////////////////////////////1bdiyJ8ux54qxZwmxJsjknMXlHYelHchyKAvyaIyyaI0yqM1yaQ2yaM2yaI0yaIyyKEvx54sxp0oxZwlk3MZknIW////lHYflXchlXgilnkkl3kllnkllnkllnkklXcjlXchlHYflHUck3QaknMX////AAA="/><xul:menuitem class="menuitem-iconic" label="My Yahoo" handlerType="web" webhandlerurl="http://add.my.yahoo.com/rss?url=%s" image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAASElEQVQ4jWNgGAUM/xkY/uPCJJmDphGG8VqAYQkuCTSDcarDagi6ZlxieMMFm2a8BuCzhSjNRCgkbDO20CY2ev/jwIRtH5oAAKazfoKPSPbRAAAAAElFTkSuQmCC"/><xul:menuitem class="menuitem-iconic" label="Google" handlerType="web" webhandlerurl="http://fusion.google.com/add?feedurl=%s" image="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAACzUlEQVQ4jWWRa0iTURyHf9gst5Wa2pyzt2zTzDaz5aZdTMvuWhGlzsrofjEys7B7YUSMIidiUXbDoCAqw5mZWiBFkyhIVmJUSgvDD4vl+uKHXP364FmMOvDwHv7v8xwOHJBUkDSSzCQ5NwCTmAdiJpkh3HSSESCpF8FswUySqU4nS+vqBm81NfnaWlp8D8/ZvjdYz36oc7ncOSLOIJkKktPFySaSqSSnNT75eafQ4nh18uSj8gMHnI3pWQM0z3rac8Z6e5PL5ZolPBNJM0hOIZlM0kBS1+/ltnWbP3LX7srtfe6eeK/Xq91UNuBINL4duny12UJysnANJA0gOYlkvED1+g1r5mW/Y8m+qvXkoERS1dHxq9yY1sW8gtNHPB6PRFLnb0AyhmSsILS+eehgkukbV6++WdPX1yEnGdTdzd0J8fe4bPk2i9vtVpPU+BuQHEsyUhDW2/t9wtLFTmdKUierq98f7v3qyy3d+/lNrLTBZrVa47xeb6AfCZJy8ZQKkkqSsubml+P1qUcPLcmxPz946Dfj4k5cz8/Pl/f39ysCXAVJBdrb22WBVFRUBEGsU2ea5q/K+800Y8ensrKbaQD+8wEgSDBCdDLL2os7N2zsvLs0x9EwJdnetSjLzYVz+n7odAVzhBMUAGSCEQBCCvc8bsrMbP0SEppbBGgTgPBwtaqoeNECr2+C7oYDQIhw/R1GAhgFAOaMNSvKj/qI4Nk7xOl/pYSU82cT9Q88gFwSs1H+Tg5AAQC6pHWFKwtISdpfhX+W2Vx5QSMdawMwTtxCAUCBqKioMQBCASiB0aqUFLsjO8vDqaZ6e2x8SfFE7fYt02dcumJIvv5MJpPmAggH4G9CodVqwwBEAYgc/iGXwiIth5P011r1xvsv9Por9uiYrceBaIPwIoQ7vK+trQ1Wq9XjAGgEKgBh4hsrZtEAYgQaABqlUqm22WzyP+HiyEixjYg3AAAAAElFTkSuQmCC"/></xul:menupopup></xul:menulist></xul:hbox><xul:hbox><xul:checkbox id="alwaysUse" label="Always use Live Bookmarks to subscribe to feeds."/></xul:hbox><xul:hbox align="center"><xul:spacer flex="1"/><xul:button label="Subscribe Now" id="subscribeButton"/></xul:hbox></xul:vbox></div></div>
+    </div>
+
+    <script type="application/x-javascript">
+      SubscribeHandler.init();
+    </script>
+
+    <div id="feedBody">
+      <div id="feedTitle">
+        <a id="feedTitleLink">
+          <img id="feedTitleImage"/>
+        </a>
+        <div id="feedTitleContainer">
+          <h1 id="feedTitleText">Nathandelane.com</h1>
+          <h2 id="feedSubtitleText">My personal web site, showing off current and pas projects, experiences, and articles. Making a path for new programmers.</h2>
+        </div>
+      </div>
+      <div id="feedContent"><div class="entry"><h3><a href="http://www.nathandelane.com/">A New Face and Organization</a></h3><div xml:base="http://www.nathandelane.com/_feeds/nathandelane.xml" class="feedEntryContent">I have decided once again that it is time to show off my web design abilities using my simple web site.</div></div><div style="clear: both;"/><div class="entry"><h3><a href="http://www.nathandelane.com/?page=appPortfolio">Application Portfolio - Personal Calculator</a></h3><div xml:base="http://www.nathandelane.com/_feeds/nathandelane.xml" class="feedEntryContent">Text-mode calculator written in Java.</div></div><div style="clear: both;"/><div class="entry"><h3><a href="http://www.nathandelane.com/?page=appPortfolio">Application Portfolio - Adanna</a></h3><div xml:base="http://www.nathandelane.com/_feeds/nathandelane.xml" class="feedEntryContent">Watir automation framework +1</div></div><div style="clear: both;"/><div class="entry"><h3><a href="http://www.nathandelane.com/?page=appPortfolio">Application Portfolio - Ufooar</a></h3><div xml:base="http://www.nathandelane.com/_feeds/nathandelane.xml" class="feedEntryContent">Ruby-UNO bridge written for OpenOffice.org.</div></div><div style="clear: both;"/><div class="entry"><h3><a href="http://www.nathandelane.com/?page=appPortfolio">Application Portfolio - Personal Calculator .NET</a></h3><div xml:base="http://www.nathandelane.com/_feeds/nathandelane.xml" class="feedEntryContent">Update to Personal Calculator and now it's in .NET (C# to be exact).</div></div><div style="clear: both;"/></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,492 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<title>Phyernet</title>
+		<link href="http://www.phyer.net/rss.xml" title="PhyerNet News" type="application/rss+xml" rel="alternate"/>
+		<style>
+		body
+		{
+			padding: 0px;
+			margin: 0px;
+			font-family: Arial,sans-serif;
+			font-size: 12px;
+			color: #e9e9e9;
+		}
+		
+		label, input
+		{
+			display: block;
+			width: 110px;
+			float: left;
+		}
+		
+		label
+		{
+			text-align: right;
+			padding-right: 5px;
+		}
+		
+		div.pageWrapper
+		{
+			width: 800px;
+			margin: 0px;
+			padding: 0px;
+			float: left;
+		}
+		
+		div.pageHeading
+		{
+			width: 800px;
+			height: 90px;
+			overflow: hidden;
+			float: left;
+			background-color: #50779d;
+		}
+		
+		div.pageContent
+		{
+			width: 796px;
+			float: left;
+			background-color: #7097cd;
+			padding: 2px;
+		}
+		
+		a#aboutLink
+		{
+			display: block;
+			float: left;
+			width: 175px;
+			height: 50px;
+			overflow: hidden;
+			background-image: url('_images/phyernetlogo_tr.gif');
+			background-repeat: no-repeat;
+			margin: 20px;
+		}
+		
+		a#aboutLink span
+		{
+			display: none;
+		}
+		
+		h1#phyernetDescription
+		{
+			display: block;
+			width: 280px;
+			height: 90px;
+			margin: 10px 10px 0px 10px;
+			padding: 0px;
+			float: left;
+			overflow: hidden;
+			line-height: 18px;
+			font-size: 16px;
+		}
+		
+		div#loginPanel
+		{
+			width: 240px;
+			height: 90px;
+			float: left;
+			overflow: hidden;
+			margin: 10px;
+		}
+		
+		input#submitButton
+		{
+			width: 60px;
+			float: right;
+			margin-right: 10px;
+		}
+		
+		div#leftColumn
+		{
+			width: 489px;
+			color: #d8d8d8;
+			float: left;
+		}
+		
+		div#leftColumnInner
+		{
+			width: 486px;
+			float: left;
+			background-color: #e9e9e9;
+			color: #000000;
+		}
+		
+		div#rightColumn
+		{
+			width: 303px;
+			float: left;
+			background-color: #e9e9e9;
+			padding: 2px;
+		}
+		
+		div#rightColumnInner
+		{
+			width: 303px;
+			float: left;
+			background-color: #50779d;
+			color: #e9e9e9;
+		}
+		
+		h2
+		{
+			display: block;
+			margin: 2px 5px;
+			padding: 0px;
+			font-size: 18px;
+			font-weight: bold;
+		}
+		
+		h2 span
+		{
+			color: #50779d;
+		}
+		
+		h3.service
+		{
+			width: 452px;
+			height: 26px;
+			margin: 1px;
+			background-color: #50779d;
+			padding: 0px 0px 0px 32px;
+		}
+		
+		h3.service span
+		{
+			font-size: 18px;
+			font-weight: bold;
+			display: block;
+			color: #e9e9e9;
+			line-height: 26px;
+		}
+		
+		h3#phyerNetVisual
+		{
+			background-image: url('_images/DarkbossIcon_08_Visual.gif');
+			background-repeat: no-repeat;
+			background-position: 2px 1px;
+		}
+		
+		h3#phyerNetAudio
+		{
+			background-image: url('_images/DarkbossIcon_08_Audio.gif');
+			background-repeat: no-repeat;
+			background-position: 2px 1px;
+		}
+		
+		h3#phyerNetLiterature
+		{
+			background-image: url('_images/DarkbossIcon_08_Litterature.gif');
+			background-repeat: no-repeat;
+			background-position: 2px 1px;
+		}
+		
+		h3#phyerNetLogical
+		{
+			background-image: url('_images/DarkbossIcon_08_Logic.gif');
+			background-repeat: no-repeat;
+			background-position: 2px 1px;
+			margin: 0px 0px 20px 1px;
+		}
+		
+		ul#whatYouGetList
+		{
+			list-style-type: square;
+			margin: 20px;
+			padding-left: 0px;
+		}
+		
+		ul#whatYouGetList li span
+		{
+			display: block;
+			font-size: 16px;
+			line-height: 16px;
+			font-weight: normal;
+			margin-bottom: 4px;
+			text-transform: capitalize;
+		}
+		
+		ul#whatYouGetList li#signUpNow
+		{
+			list-style-type: none;
+			width: 100%;
+			text-align: center;
+		}
+		
+		ul#whatYouGetList li#signUpNow a
+		{
+			text-decoration: none;
+		}
+		
+		ul#whatYouGetList li#signUpNow a span
+		{
+			color: #e9e9e9;
+			display: block;
+			text-transform: uppercase;
+			font-size: 22px;
+			line-height: 22px;
+			height: 18px;
+			background-color: #db231a;
+			padding: 4px;
+			margin: 20px 10px 0px 0px;
+			background-repeat: x-repeat;
+			cursor: pointer;
+		}
+		
+		ul#whatYouGetList li#signUpNow a span.mout
+		{
+			background-image: url('_images/buttonbgmousout.png');
+		}
+		
+		ul#whatYouGetList li#signUpNow a span.mover
+		{
+			background-image: url('_images/buttonbgmousover.png');
+		}
+		
+		h2#rssNews
+		{
+			width: 138px;
+			float: left;
+		}
+		
+		h2#whatYouGetHeading
+		{
+			display: block;
+			border-bottom: 1px dashed #e9e9e9;
+		}
+		
+		h2#whatYouGetHeading span
+		{
+			display: block;
+			color: #e9e9e9;
+			text-align: center;
+		}
+		
+		div#rssFeedIcon
+		{
+			width: 14px;
+			height: 14px;
+			margin: 7px 0px 0px 0px;
+			float: left;
+		}
+		
+		div#rssFeedIcon a img
+		{
+			border: 0px;
+		}
+		
+		div#newsContainer
+		{
+			width: 474px;
+			float: left;
+			padding: 6px;
+		}
+		
+		div#newsContainer p
+		{
+			background-image: url('_images/gradient1.png');
+			background-repeat: no-repeat;
+			padding: 0px 4px;
+			margin: 0px
+		}
+		
+		div#newsContainer p span.date
+		{
+			display: block;
+			font-size: 14px;
+			font-weight: bold;
+			line-height: 20px;
+			height: 20px;
+		}
+		
+		div#newsContainer p span.message
+		{
+			display: block;
+			line-height: 16px;
+		}
+		
+		div#rightColumnInner p
+		{
+			margin: 4px;
+		}
+		
+		div#rssNews
+		{
+			width: 486px;
+		}
+		
+		span#question
+		{
+			margin: 4px 0px 0px 0px;
+			display: block;
+			text-transform: uppercase;
+			font-size: 14px;
+			font-weight: bold;
+			text-align: center
+		}
+		
+		div#footer
+		{
+			border-top: 1px dashed #e9e9e9;
+			width: 800px;
+			float: left;
+			color: #e9e9e9;
+			font-weight: bold;
+			background-color: #7097cd;
+			padding: 0px 0px 4px 0px;
+		}
+		
+		div#footer div
+		{
+			width: 294px;
+			margin: 0px auto;
+		}
+		
+		a.footerLink
+		{
+			display: block;
+			float: left;
+			height: 32px;
+			margin: 0px 4px;
+		}
+		
+		a.footerLink span
+		{
+			display: none;
+		}
+		
+		a#abyssLink
+		{
+			width: 105px;
+			background-image: url('_images/abysslogo.png');
+		}
+		
+		a#pclinuxosLink
+		{
+			width: 102px;
+			background-image: url('_images/pcloslogo.png');
+		}
+		
+		a#openfireLink
+		{
+			width: 62px;
+			background-image: url('_images/openfirelogo.png');
+		}
+		</style>
+	</head>
+	<body>
+		<form id="frontPageForm" name="frontPageForm" action="https://www.phyer.net/cgi-bin/fmanager/index.cgi" method="POST">
+			<div id="pageWrapper" class="pageWrapper">
+				<div id="pageHeading" class="pageHeading">
+					<a id="aboutLink" href="http://www.phyer.net/about.htm" onmouseover="this.style.backgroundPosition='top right';" onmouseout="this.style.backgroundPosition='top left';">
+						<span>About PhyerNet</span>
+					</a>
+					<h1 id="phyernetDescription">
+						<span>Welcome To Phyernet!<br/>The newest hosting service on the web that caters exclusively to the "creative mind movement"!</span>
+					</h1>
+					<div id="loginPanel">
+						<div id="userName">
+							<label for="userNameInput">Username:</label>
+							<input type="text" id="userNameInput" name="login" value=""/>
+						</div>
+						<div id="password">
+							<label for="passwordInput">Password:</label>
+							<input type="password" id="passwordInput" name="password" value=""/>
+						</div>
+						<div id="submitButton">
+							<input type="submit" id="submitButton" name="loginButton" value="Login"/>
+						</div>
+					</div>
+				</div>
+				<div id="pageContent" class="pageContent">
+					<div id="leftColumn">
+						<div id="leftColumnInner">
+							<h2>
+								<span>Services Offered</span>
+							</h2>
+							<div>
+								<h3 id="phyerNetVisual" class="service">
+									<span>Visual Mind</span>
+								</h3>
+							</div>
+							<div>
+								<h3 id="phyerNetAudio" class="service">
+									<span>Sound Mind</span>
+								</h3>
+							</div>
+							<div>
+								<h3 id="phyerNetLiterature" class="service">
+									<span>Written Mind</span>
+								</h3>
+							</div>
+							<div>
+								<h3 id="phyerNetLogical" class="service">
+									<span>Logical Mind</span>
+								</h3>
+							</div>
+							<div id="rssNews">
+								<h2 id="rssNews">
+									<span>PhyerNet News</span>
+								</h2>
+								<div id="rssFeedIcon">
+									<a href="http://www.phyer.net/rss.xml">
+										<img src="_images/feed.png"/>
+									</a>
+								</div>
+								<div id="newsContainer">
+									<p>
+										<span class="date">06/21/08</span>
+										<span class="message">PhyerNet is now officially open for registration!</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="rightColumn">
+						<div id="rightColumnInner">
+							<h2 id="whatYouGetHeading">
+								<span>What You Get</span>
+							</h2>
+							<p>
+								<span id="services">PhyerNet is a service offered to artists of all types that grants them a centralized point where they can advertise & meet! Users with existing accounts can login above. If you're not currently a user.</span>
+								<span id="question">What Are You Waiting For?</span>
+							</p>
+							<ul id="whatYouGetList">
+								<li>
+									<span>1.2 Gigabytes of personal web space</span>
+								</li>
+								<li>
+									<span>Personal storage space</span>
+								</li>
+								<li>
+									<span>Test</span>
+								</li>
+								<li id="signUpNow">
+									<a href="http://www.phyer.net/info.htm">
+										<span class="mout" onmouseover="this.className='mover';" onmouseout="this.className='mout';">Sign up now</span>		
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div id="footer">
+					<div>
+						<span>Powered by: </span>
+						<a id="abyssLink" class="footerLink" href="http://www.aprelium.com/">
+							<span>Abyss™ Web Server</span>
+						</a>
+						&nbsp;
+						<a id="pclinuxosLink" class="footerLink" href="http://www.pclinuxos.com/">
+							<span>PCLinuxOS</span>
+						</a>
+						&nbsp;
+						<a id="openfireLink" class="footerLink" href="http://www.igniterealtime.org/projects/openfire/index.jsp">
+							<span>openfire XMPP Server</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</body>
+</html>
