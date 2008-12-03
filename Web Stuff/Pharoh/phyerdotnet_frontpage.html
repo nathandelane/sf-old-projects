@@ -3,6 +3,115 @@
 	<head>
 		<title>Phyernet</title>
 		<link href="http://www.phyer.net/rss.xml" title="PhyerNet News" type="application/rss+xml" rel="alternate"/>
+		<link rel="shortcut icon" href="favicon.ico"/>
+		<script type="text/javascript" src="_scripts/jquery.js"></script>
+		<script type="text/javascript" src="_scripts/jquery.timers.js"></script>
+		<script type="text/javascript" src="_scripts/jquery.dimensions.js"></script>
+		<script language="javascript">
+			var mouseX = 0;
+			var mouseY = 0;
+			var newsLocation = 0;
+			var active = true;
+			var millisecondInterval = 250;
+			var decrementLength = 5;
+			var heightDifference = 175;
+			
+			$().mousemove(function(e) {
+				if(!e) var e = window.event;
+				
+				if(e.clientX || e.clientY) {
+					mouseX = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+					mouseY = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+				} else if(e.pageX || e.pageY) {
+					mouseX = e.pageX;
+					mouseY = e.pageY;
+				}
+			});
+			
+			$(document).ready(init);
+			
+			function init() {
+				// Start the news items scrolling
+				$("div#newsContainerInner").everyTime(millisecondInterval, 'controlled', function(i) {
+					height = $("div#newsContainerInner").height() - heightDifference;
+					if(newsLocation > (height * -2)) {
+						$("div#newsContainerInner").css("top", (newsLocation -= decrementLength) + "px");
+					} else {
+						newsLocation = 0;
+					}
+				});
+				
+				// Stop news items on mouse over
+				$("div#newsContainerInner").mouseover(function() {
+					if(active) {
+						active = false;
+						$(this).stopTime('controlled');
+					}
+				});
+				
+				// Start news items again on mouse out
+				$("div#newsContainerInner").mouseout(function() {
+					if(!active) {
+						active = true;
+						$("div#newsContainerInner").everyTime(millisecondInterval, 'controlled', function(i) {
+							height = $("div#newsContainerInner").height() - heightDifference;
+							if(newsLocation > (height * -2)) {
+								$("div#newsContainerInner").css("top", (newsLocation -= decrementLength) + "px");
+							} else {
+								newsLocation = 0;
+							}
+						});
+					}
+				});
+				
+				$("h3#phyerNetVisual")
+					.hover(
+						function() {showInformationFor("visual")}, 
+						function(){$("div#popup").find("span:last").remove();$("div#popup").css("display", "none");}
+					);
+				$("h3#phyerNetAudio")
+					.hover(
+						function() {showInformationFor("audio")}, 
+						function(){$("div#popup").find("span:last").remove();$("div#popup").css("display", "none");}
+					);
+				$("h3#phyerNetLiterature")
+					.hover(
+						function() {showInformationFor("literature")}, 
+						function(){$("div#popup").find("span:last").remove();$("div#popup").css("display", "none");}
+					);
+				$("h3#phyerNetLogical")
+					.hover(
+						function() {showInformationFor("logical")}, 
+						function(){$("div#popup").find("span:last").remove();$("div#popup").css("display", "none");}
+					);
+			}
+			
+			function showInformationFor(infoType) {
+				$("div#popup").find("span:last").remove();
+				if(infoType == "visual") {
+					$("div#popup")
+						.append('<span>Creative minds that focus on "visual" forms of artistic expression</span>');
+				} else if(infoType == "audio") {
+					$("div#popup")
+						.append('<span>Artistic souls that express creativity through sound</span>');
+				} else if(infoType == "literature") {
+					$("div#popup")
+						.append('<span>Users that express creativity through words</span>');
+				} else if(infoType == "logical") {
+					$("div#popup")
+						.append('<span>People who express creativity through "technical" means</span>');
+				}
+				
+				$("div#popup")
+					.css("left", (mouseX + 10) + "px");
+				
+				$("div#popup")
+					.css("top", (mouseY + 10) + "px");
+				
+				$("div#popup")
+					.css("display", "block");
+			}
+		</script>
 		<style>
 		body
 		{
@@ -43,6 +152,17 @@
 			background-color: #50779d;
 		}
 		
+		div.coolComputerBackgroundContainer
+		{
+			width: 800px;
+			height: 200px;
+			float: left;
+			overflow: hidden;
+			background-image: url('_images/head1.png');
+			background-repeat: no-repeat;
+			background-position: top right;
+		}
+		
 		div.pageContent
 		{
 			width: 796px;
@@ -68,24 +188,34 @@
 			display: none;
 		}
 		
+		div#feature
+		{
+			width: 300px;
+			height: 200px;
+			overflow: auto;
+			float: left;
+			background-color: #7097cd;
+		}
+		
 		h1#phyernetDescription
 		{
 			display: block;
 			width: 280px;
 			height: 90px;
-			margin: 10px 10px 0px 10px;
+			margin: 20px 10px 0px 10px;
 			padding: 0px;
 			float: left;
 			overflow: hidden;
 			line-height: 18px;
 			font-size: 16px;
+			color: #2a2a2a;
 		}
 		
 		div#loginPanel
 		{
 			width: 240px;
 			height: 90px;
-			float: left;
+			float: right;
 			overflow: hidden;
 			margin: 10px;
 		}
@@ -149,15 +279,30 @@
 			margin: 1px;
 			background-color: #50779d;
 			padding: 0px 0px 0px 32px;
+			cursor: default;
 		}
 		
-		h3.service span
+		h3.service span.name
 		{
+			width: 150px;
 			font-size: 18px;
 			font-weight: bold;
 			display: block;
 			color: #e9e9e9;
 			line-height: 26px;
+			float: left;
+			cursor: inherit;
+		}
+		
+		h3.service span.description
+		{
+			width: 300px;
+			float: left;
+			font-size: 11px;
+			line-height: 12px;
+			color: #e9e9e9;
+			display: block;
+			cursor: inherit;
 		}
 		
 		h3#phyerNetVisual
@@ -186,6 +331,13 @@
 			background-image: url('_images/DarkbossIcon_08_Logic.gif');
 			background-repeat: no-repeat;
 			background-position: 2px 1px;
+		}
+		
+		h3#checkItOut
+		{
+			padding-top: 3px;
+			line-height: 16px;
+			height: 16px;
 			margin: 0px 0px 20px 1px;
 		}
 		
@@ -233,6 +385,19 @@
 			cursor: pointer;
 		}
 		
+		ul#whatYouGetList li#disclaimer
+		{
+			list-style-type: none;
+			font-size: 10px;
+		}
+		
+		ul#whatYouGetList li#disclaimer span
+		{
+			display: block;
+			font-style: italic;
+			font-size: 10px;
+		}
+		
 		ul#whatYouGetList li#signUpNow a span.mout
 		{
 			background-image: url('_images/buttonbgmousout.png');
@@ -278,8 +443,16 @@
 		div#newsContainer
 		{
 			width: 474px;
+			height: 170px;
 			float: left;
 			padding: 6px;
+			overflow: hidden;
+		}
+		
+		div#newsContainerInner
+		{
+			position: relative;
+			left: 0px;
 		}
 		
 		div#newsContainer p
@@ -287,7 +460,7 @@
 			background-image: url('_images/gradient1.png');
 			background-repeat: no-repeat;
 			padding: 0px 4px;
-			margin: 0px
+			margin: 0px 0px 10px 0px;
 		}
 		
 		div#newsContainer p span.date
@@ -336,10 +509,27 @@
 			padding: 0px 0px 4px 0px;
 		}
 		
-		div#footer div
+		div#footerInner
 		{
-			width: 294px;
+			width: 600px;
 			margin: 0px auto;
+			height: 60px;
+			overflow: hidden;
+		}
+		
+		div#poweredBy
+		{
+			width: 400px;
+			height: 60px;
+			float: left;
+		}
+		
+		div#infoAbout
+		{
+			width: 200px;
+			height: 46px;
+			float: left;
+			padding-top: 14px;
 		}
 		
 		a.footerLink
@@ -355,9 +545,32 @@
 			display: none;
 		}
 		
+		div.footerObject
+		{
+			float: left;
+			height: 32px;
+			margin: 0px 4px;
+		}
+		
+		div#sslEnabled
+		{
+			width: 88px;
+			background-image: url('_images/_grafx_valid-rss.png');
+			background-repeat: no-repeat;
+			background-position: top left;
+		}
+		
+		div#rssCapable
+		{
+			width: 37px;
+			background-image: url('_images/ssl.gif');
+			background-repeat: no-repeat;
+			background-position: top left;
+		}
+		
 		a#abyssLink
 		{
-			width: 105px;
+			width: 172px;
 			background-image: url('_images/abysslogo.png');
 		}
 		
@@ -369,21 +582,42 @@
 		
 		a#openfireLink
 		{
-			width: 62px;
+			width: 94px;
 			background-image: url('_images/openfirelogo.png');
+		}
+		
+		div.popup
+		{
+			position: absolute;
+			width: 150px;
+			background-color: #ffffca;
+			color: #000000;
+			padding: 2px;
+			border: solid 1px #191919;
+		}
+		
+		div#copyright
+		{
+			width: 800px;
+			float: left;
+			background: transparent;
+		}
+		
+		div#copyright span
+		{
+			color: #000000;
+			display: block;
+			text-align: center;
 		}
 		</style>
 	</head>
-	<body>
+	<body onload="javascript: init();">
 		<form id="frontPageForm" name="frontPageForm" action="https://www.phyer.net/cgi-bin/fmanager/index.cgi" method="POST">
 			<div id="pageWrapper" class="pageWrapper">
 				<div id="pageHeading" class="pageHeading">
-					<a id="aboutLink" href="http://www.phyer.net/about.htm" onmouseover="this.style.backgroundPosition='top right';" onmouseout="this.style.backgroundPosition='top left';">
+					<a id="aboutLink" href="http://www.phyer.net/info.htm" onmouseover="this.style.backgroundPosition='top right';" onmouseout="this.style.backgroundPosition='top left';">
 						<span>About PhyerNet</span>
 					</a>
-					<h1 id="phyernetDescription">
-						<span>Welcome To Phyernet!<br/>The newest hosting service on the web that caters exclusively to the "creative mind movement"!</span>
-					</h1>
 					<div id="loginPanel">
 						<div id="userName">
 							<label for="userNameInput">Username:</label>
@@ -398,30 +632,41 @@
 						</div>
 					</div>
 				</div>
+				<div id="coolComputerBackgroundContainer" class="coolComputerBackgroundContainer">
+					<div id="feature">
+					</div>
+					<h1 id="phyernetDescription">
+						<span>Welcome To Phyernet!<br/>The newest hosting service on the web that caters exclusively to the "creative mind movement"!</span>
+					</h1>
+				</div>
 				<div id="pageContent" class="pageContent">
 					<div id="leftColumn">
 						<div id="leftColumnInner">
 							<h2>
-								<span>Services Offered</span>
+								<span>Services Available For...</span>
 							</h2>
 							<div>
 								<h3 id="phyerNetVisual" class="service">
-									<span>Visual Mind</span>
+									<span class="name">Visual Mind</span>
+									<span class="description">Illustrator, painter, sculptor, 3D modeler, photographer & model</span>
 								</h3>
 							</div>
 							<div>
 								<h3 id="phyerNetAudio" class="service">
-									<span>Sound Mind</span>
+									<span class="name">Sound Mind</span>
+									<span class="description">Music writer/performer, Comedy/Spoken & Sound Producer</span>
 								</h3>
 							</div>
 							<div>
 								<h3 id="phyerNetLiterature" class="service">
-									<span>Written Mind</span>
+									<span class="name">Written Mind</span>
+									<span class="description">Story, Poem, Script/Screenplay & Storyboarding</span>
 								</h3>
 							</div>
 							<div>
 								<h3 id="phyerNetLogical" class="service">
-									<span>Logical Mind</span>
+									<span class="name">Logical Mind</span>
+									<span class="description">Application/HTML coding</span>
 								</h3>
 							</div>
 							<div id="rssNews">
@@ -434,10 +679,24 @@
 									</a>
 								</div>
 								<div id="newsContainer">
-									<p>
-										<span class="date">06/21/08</span>
-										<span class="message">PhyerNet is now officially open for registration!</span>
-									</p>
+									<div id="newsContainerInner">
+										<p>
+											<span class="date">12/03/08</span>
+											<span class="message">Front page updated -PTG</span>
+										</p>
+										<p>
+											<span class="date">12/05/08</span>
+											<span class="message">PhyerNet is now officially open for manual registration!  -Phyeradmin</span>
+										</p>
+										<p>
+											<span class="date">12/05/08</span>
+											<span class="message">Automatic registration & forums are currently down -PTG</span>
+										</p>
+										<p>
+											<span class="date">06/13/08</span>
+											<span class="message">All services fully operational -Phyeradmin</span>
+										</p>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -445,24 +704,30 @@
 					<div id="rightColumn">
 						<div id="rightColumnInner">
 							<h2 id="whatYouGetHeading">
-								<span>What You Get</span>
+								<span>In A Nutshell</span>
 							</h2>
 							<p>
-								<span id="services">PhyerNet is a service offered to artists of all types that grants them a centralized point where they can advertise & meet! Users with existing accounts can login above. If you're not currently a user.</span>
-								<span id="question">What Are You Waiting For?</span>
+								<span id="services">PhyerNet is a service offered to artists of all types that grants them a centralized point where they can display works, advertise & meet! Users with existing accounts can login above. If you're not currently a user, check it out!</span>
+								<span id="question">What You Get</span>
 							</p>
 							<ul id="whatYouGetList">
 								<li>
-									<span>1.2 Gigabytes of personal web space</span>
+									<span>250 MB or More of Web Storage Space*</span>
 								</li>
 								<li>
-									<span>Personal storage space</span>
+									<span>Easy to Use &amp; Secure File Management</span>
 								</li>
 								<li>
-									<span>Test</span>
+									<span>Fast &amp; Stable Chat Services</span>
+								</li>
+								<li>
+									<span>Friendly 24/7 support</span>
+								</li>
+								<li id="disclaimer">
+									<span>*Space sizes vary &amp; depend on service type</span>
 								</li>
 								<li id="signUpNow">
-									<a href="http://www.phyer.net/info.htm">
+									<a href="http://www.phyer.net/services.htm">
 										<span class="mout" onmouseover="this.className='mover';" onmouseout="this.className='mout';">Sign up now</span>		
 									</a>
 								</li>
@@ -471,21 +736,31 @@
 					</div>
 				</div>
 				<div id="footer">
-					<div>
-						<span>Powered by: </span>
-						<a id="abyssLink" class="footerLink" href="http://www.aprelium.com/">
-							<span>Abyss™ Web Server</span>
-						</a>
-						&nbsp;
-						<a id="pclinuxosLink" class="footerLink" href="http://www.pclinuxos.com/">
-							<span>PCLinuxOS</span>
-						</a>
-						&nbsp;
-						<a id="openfireLink" class="footerLink" href="http://www.igniterealtime.org/projects/openfire/index.jsp">
-							<span>openfire XMPP Server</span>
-						</a>
+					<div id="footerInner">
+						<div id="poweredBy">
+							<div>
+								<span id="label">Powered by: </span>
+							</div>
+							<a id="abyssLink" class="footerLink" href="http://www.aprelium.com/">
+								<span>Abyss™ Web Server</span>
+							</a>
+							<a id="pclinuxosLink" class="footerLink" href="http://www.pclinuxos.com/">
+								<span>PCLinuxOS</span>
+							</a>
+							<a id="openfireLink" class="footerLink" href="http://www.igniterealtime.org/projects/openfire/index.jsp">
+								<span>openfire XMPP Server</span>
+							</a>
+						</div>
+						<div id="infoAbout">
+							<div id="sslEnabled" class="footerObject"></div>
+							<div id="rssCapable" class="footerObject"></div>
+						</div>
 					</div>
 				</div>
+				<div id="copyright">
+					<span>Copyright &copy; 2008 PhyerNet. All rights reserved.</span>
+				</div>
+				<div id="popup" style="display: none;" class="popup"></div>
 			</div>
 		</form>
 	</body>
