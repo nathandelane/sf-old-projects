@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command.cs" />
+    <Compile Include="ConsoleState.cs" />
+    <Compile Include="Interpreter.cs" />
     <Compile Include="NathandelaneConsoleForm.cs">
       <SubType>Form</SubType>
     </Compile>

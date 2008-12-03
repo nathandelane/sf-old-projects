@@ -43,7 +43,7 @@
 			this.commandTextBox.Multiline = true;
 			this.commandTextBox.Name = "commandTextBox";
 			this.commandTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-			this.commandTextBox.Size = new System.Drawing.Size(519, 478);
+			this.commandTextBox.Size = new System.Drawing.Size(1109, 639);
 			this.commandTextBox.TabIndex = 0;
 			this.commandTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CaptureKeys);
 			// 
@@ -51,7 +51,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(518, 475);
+			this.ClientSize = new System.Drawing.Size(1108, 634);
 			this.Controls.Add(this.commandTextBox);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MaximizeBox = false;

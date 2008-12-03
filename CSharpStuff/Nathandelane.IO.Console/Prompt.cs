@@ -8,7 +8,6 @@ namespace Nathandelane.IO.Console
 	public class Prompt
 	{
 		private static string _value;
-		private static Settings _settings = new Settings();
 
 		public string Value
 		{
@@ -20,8 +19,10 @@ namespace Nathandelane.IO.Console
 			_value = value;
 		}
 
-		public static string Parse(string encodedPrompt)
+		public static string Parse(Settings settings)
 		{
+			string encodedPrompt = settings["prompt"];
+
 			if (encodedPrompt.Contains('%'))
 			{
 				List<string> parts = new List<string>();
@@ -39,7 +40,7 @@ namespace Nathandelane.IO.Console
 
 						try
 						{
-							parts.Add(_settings[decodeValue]);
+							parts.Add(settings[decodeValue]);
 						}
 						catch (Exception)
 						{

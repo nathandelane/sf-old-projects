@@ -8,27 +8,33 @@ namespace Nathandelane.IO.Console
 {
 	public class Settings
 	{
-		private Dictionary<string, string> _properties;
+		private static Dictionary<string, string> _settings = new Dictionary<string, string>();
 
 		public Settings()
 		{
-			_properties = new Dictionary<string, string>();
+			LoadSettings();
+			CurrentDirectory = _settings["defaultDirectory"];
+		}
 
-			LoadProperties();
+		public string CurrentDirectory
+		{
+			get { return _settings["currentDirectory"]; }
+			set { _settings["currentDirectory"] = value; }
 		}
 
 		public string this[string key]
 		{
-			get { return _properties[key]; }
+			get { return _settings[key]; }
+			set { _settings[key] = value; }
 		}
 
-		private void LoadProperties()
+		private void LoadSettings()
 		{
 			string[] keys = ConfigurationManager.AppSettings.AllKeys;
 
 			foreach (string key in keys)
 			{
-				_properties.Add(key, ConfigurationManager.AppSettings[key]);
+				_settings.Add(key, ConfigurationManager.AppSettings[key]);
 			}
 		}
 	}

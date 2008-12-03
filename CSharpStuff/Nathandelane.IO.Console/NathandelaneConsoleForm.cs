@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -13,15 +14,29 @@ namespace Nathandelane.IO.Console
 	{
 		private Settings _settings;
 		private int _currentColumnIndex;
+		private int _lineBeginIndex;
+		private Interpreter _interpreter;
+		private DirectoryInfo _currentDirectory;
 
 		public NathandelaneConsoleForm()
 		{
 			_settings = new Settings();
 			_currentColumnIndex = 0;
+			_lineBeginIndex = 0;
+			_currentDirectory = new DirectoryInfo(_settings["defaultDirectory"]);
 
 			InitializeComponent();
+	
+			_interpreter = Interpreter.GetInstanceFor(commandTextBox);
+
+			SetFont();
 			SetColors();
 			ShowPrompt();
+		}
+
+		private void SetFont()
+		{
+			commandTextBox.Font = new System.Drawing.Font(_settings["fontName"], float.Parse(_settings["fontSize"]), System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 		}
 
 		private void SetColors()
@@ -54,7 +69,7 @@ namespace Nathandelane.IO.Console
 
 		private void ShowPrompt()
 		{
-			string prompt = Prompt.Parse(_settings["prompt"]);
+			string prompt = Prompt.Parse(_settings);
 
 			if (commandTextBox.Text.Equals(String.Empty))
 			{
@@ -64,12 +79,17 @@ namespace Nathandelane.IO.Console
 			{
 				commandTextBox.AppendText(String.Format("{0}{1}{2}", Environment.NewLine, Environment.NewLine, prompt));
 			}
+
+			_lineBeginIndex = commandTextBox.TextLength;
 		}
 
 		private void CaptureKeys(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Enter)
 			{
+				string commandLine = commandTextBox.Text.Substring(_lineBeginIndex);
+				InterpretCommandLine(commandLine);
+
 				_currentColumnIndex = 0;
 				ShowPrompt();
 				e.SuppressKeyPress = true;
@@ -88,6 +108,14 @@ namespace Nathandelane.IO.Console
 			else
 			{
 				_currentColumnIndex++;
+			}
+		}
+
+		private void InterpretCommandLine(string commandLine)
+		{
+			if (_interpreter.Interpret(_settings, commandLine))
+			{
+				ShowPrompt();
 			}
 		}
 	}
