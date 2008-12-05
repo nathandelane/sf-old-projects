@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C# Express 2005
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPG.NET", "RPG.NET\RPG.NET.csproj", "{5E8718F5-8AF4-46C9-B9B2-A49D96C30988}"
 EndProject
 Global
