@@ -274,6 +274,9 @@ namespace Nathandelane.Net.HttpAnalyzer
 					_webClient = WebRequest.CreateDefault(new Uri(String.Format("{0}?{1}", Url, QueryStringAsString))) as HttpWebRequest;
 					_webClient.Credentials = Credentials;
 					_webClient.Proxy = Proxy;
+					_webClient.ImpersonationLevel = System.Security.Principal.TokenImpersonationLevel.Impersonation;
+					_webClient.PreAuthenticate = true;
+					_webClient.UserAgent = "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0; SU 3.1; SLCC1; .NET CLR 2.0.50727; .NET CLR 3.0.04506; .NET CLR 1.1.4322; Tablet PC 2.0; .NET CLR 3.5.21022)";
 
 					try
 					{
