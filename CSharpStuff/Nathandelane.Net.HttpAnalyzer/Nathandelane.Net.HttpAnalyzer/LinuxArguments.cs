@@ -98,9 +98,17 @@ namespace Nathandelane.Net.HttpAnalyzer
 				}
 			}
 
-			for (int i = 0; i < keys.Count; i++)
+			for (int i = 0, j=0; i < keys.Count; i++, j++)
 			{
-				_args.Add(keys[i], (!keys[i].Equals("s") && !keys[i].Equals("suppress")) ? values[i] : null);
+				if (!keys[i].Equals("s") && !keys[i].Equals("suppress"))
+				{
+					_args.Add(keys[i], values[j]);
+				}
+				else
+				{
+					_args.Add(keys[i], null);
+					j--;
+				}
 			}
 
 			return _args;
