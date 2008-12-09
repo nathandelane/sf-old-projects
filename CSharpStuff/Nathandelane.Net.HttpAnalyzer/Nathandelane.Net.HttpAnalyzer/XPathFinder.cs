@@ -45,7 +45,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 					string nodeAttr = String.Empty;
 					foreach (string attr in _attributes)
 					{
-						nodeAttr = String.Format("{0},{1}={2}", nodeAttr, attr, node.Attributes[attr]);
+						nodeAttr = String.Format("{0},{1}={2}", nodeAttr, attr, node.Attributes[attr].Value);
 					}
 
 					response = String.Format("{0}; {2}:{1}", response, nodeAttr, i);
