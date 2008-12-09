@@ -6,11 +6,23 @@ namespace Nathandelane.Net.HttpAnalyzer
 {
 	public class LinuxArguments
 	{
+		#region Fields
+
 		private Dictionary<string, object> _args;
+		private Dictionary<string, object> _argMap;
+
+		#endregion
+
+		#region Properties
 
 		public string[] Args
 		{
 			set { _args = ParseArguments(value); }
+		}
+
+		public Dictionary<string, object> ArgMap
+		{
+			set { _argMap = value; }
 		}
 
 		public object this[string key]
@@ -18,38 +30,133 @@ namespace Nathandelane.Net.HttpAnalyzer
 			get { return _args[key]; }
 		}
 
-		public LinuxArguments(string[] args)
+		#endregion
+
+		#region Constructors
+
+		/// <summary>
+		/// Default Constructor
+		/// </summary>
+		public LinuxArguments()
 		{
 			_args = new Dictionary<string, object>();
 		}
 
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		/// <param name="args"></param>
+		public LinuxArguments(string[] args)
+		{
+			_args = ParseArguments(args);
+		}
+
+		/// <summary>
+		/// Constructor
+		/// </summary>
+		/// <param name="args"></param>
+		/// <param name="argMap"></param>
+		public LinuxArguments(string[] args, Dictionary<string, object> argMap)
+		{
+			_argMap = argMap;
+			_args = ParseArguments(args);
+		}
+
+		#endregion
+
+		public bool IsDefined(string key)
+		{
+			return _args.ContainsKey(key);
+		}
+
+		#region Private Methods
+
+		/// <summary>
+		/// Parse the arguments into usable bits
+		/// </summary>
+		/// <param name="args"></param>
+		/// <returns></returns>
 		private Dictionary<string, object> ParseArguments(string[] args)
 		{
+			_args = new Dictionary<string, object>();
 			List<string> keys = new List<string>();
-			List<string> values = new List<string>();
+			List<object> values = new List<object>();
+			string lastKey = String.Empty;
 
 			foreach (string arg in args)
 			{
 				if (arg.StartsWith("-"))
 				{
-					keys.Add(arg);
+					int index = arg.LastIndexOf('-') + 1;
+					string argS = arg.Substring(arg.LastIndexOf('-') + 1);
+					keys.Add(argS);
+					lastKey = argS;
 				}
 				else
 				{
-					values.Add(arg);
+					values.Add(Preprocess(arg, lastKey));
 				}
+			}
+
+			for (int i = 0; i < keys.Count; i++)
+			{
+				_args.Add(keys[i], (!keys[i].Equals("s") && !keys[i].Equals("suppress")) ? values[i] : null);
 			}
 
 			return _args;
 		}
 
-		private string Preprocess(string arg)
+		/// <summary>
+		/// Perprocess argument parts that are surrounded by quotes
+		/// </summary>
+		/// <param name="arg"></param>
+		/// <returns></returns>
+		private object Preprocess(string arg, string forArg)
 		{
-			string result = String.Empty;
+			object result = null;
 
-			if (arg.StartsWith("\""))
+			if (_argMap.ContainsKey(forArg))
 			{
+				switch (_argMap[forArg].GetType().FullName)
+				{
+					case "System.String":
+						result = arg;
+						break;
+					case "System.String[]":
+						string[] delimiters = ((string[])_argMap[forArg]);
+						if (delimiters.Length == 1)
+						{
+							string[] values = arg.Split(new string[] { delimiters[0] }, StringSplitOptions.RemoveEmptyEntries);
+							result = values;
+						}
+						else if (delimiters.Length == 2)
+						{
+							string[] pairs = arg.Split(new string[] { delimiters[0] }, StringSplitOptions.RemoveEmptyEntries);
+							Dictionary<string, string> keyValuePairs = new Dictionary<string, string>();
+							foreach (string pair in pairs)
+							{
+								string[] keyValuePair = pair.Split(new string[] { delimiters[1] }, StringSplitOptions.RemoveEmptyEntries);
+								keyValuePairs.Add(keyValuePair[0], keyValuePair[1]);
+							}
+							result = keyValuePairs;
+						}
+						break;
+					case "System.Int64":
+						result = long.Parse(arg);
+						break;
+					default:
+						result = arg;
+						break;
+				}
 			}
+			else
+			{
+				result = arg;
+			}
+
+			return result;
 		}
+
+		#endregion
 	}
 }
