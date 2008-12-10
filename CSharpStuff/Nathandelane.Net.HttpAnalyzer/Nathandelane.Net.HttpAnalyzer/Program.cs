@@ -600,13 +600,16 @@ namespace Nathandelane.Net.HttpAnalyzer
 						switch (arg)
 						{
 							case "h":
-
+								Console.WriteLine("Displays this help");
 								break;
 							case "help":
+								Console.WriteLine("Displays this help");
 								break;
 							case "s":
+								Console.WriteLine("Suppresses the default output");
 								break;
 							case "suppress":
+								Console.WriteLine("Suppresses the default output");
 								break;
 							default:
 								break;
@@ -617,7 +620,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 				{
 					if (_argMap[arg] != null)
 					{
-						Console.WriteLine("--{0}\t\t{1}", arg, _argMap[arg]);
+						Console.WriteLine("--{0}\t\t{1}\n", arg, _argMap[arg].GetType().Name);
 					}
 					else
 					{
