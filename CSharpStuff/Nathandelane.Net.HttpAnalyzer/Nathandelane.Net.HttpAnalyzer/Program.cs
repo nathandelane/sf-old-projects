@@ -592,18 +592,18 @@ namespace Nathandelane.Net.HttpAnalyzer
 				{
 					if (_argMap[arg] != null)
 					{
-						Console.WriteLine("-{0}\t\t{1}", arg, _argMap[arg].GetType().Name);
+						Console.WriteLine("-{0,-16}{1}", arg, _argMap[arg].GetType().Name);
 					}
 					else
 					{
-						Console.Write("-{0}\t\t", arg);
+						Console.Write("-{0,-16}", arg);
 						switch (arg)
 						{
 							case "h":
 								Console.WriteLine("Displays this help");
 								break;
 							case "help":
-								Console.WriteLine("Displays this help");
+								Console.WriteLine("Displays this help\n");
 								break;
 							case "s":
 								Console.WriteLine("Suppresses the default output");
@@ -620,18 +620,18 @@ namespace Nathandelane.Net.HttpAnalyzer
 				{
 					if (_argMap[arg] != null)
 					{
-						Console.WriteLine("--{0}\t\t{1}\n", arg, _argMap[arg].GetType().Name);
+						Console.WriteLine("--{0,-16}{1}\n", arg, _argMap[arg].GetType().Name);
 					}
 					else
 					{
-						Console.Write("--{0}\t\t", arg);
+						Console.Write("--{0,-16}", arg);
 						switch (arg)
 						{
 							case "h":
 								Console.WriteLine("Displays this help");
 								break;
 							case "help":
-								Console.WriteLine("Displays this help");
+								Console.WriteLine("Displays this help\n");
 								break;
 							case "s":
 								Console.WriteLine("Suppresses the default output");
