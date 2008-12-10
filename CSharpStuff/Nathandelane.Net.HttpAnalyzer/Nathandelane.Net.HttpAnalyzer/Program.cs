@@ -365,7 +365,35 @@ namespace Nathandelane.Net.HttpAnalyzer
 				}
 				else // Display help
 				{
+					if (_arguments.IsDefined("h") && _arguments.IsDefined("help"))
+					{
+						DisplayHelp();
+					}
+					else if (_arguments.IsDefined("w") && _arguments.IsDefined("help-with"))
+					{
+						string val = String.Empty;
+						if (_arguments.IsDefined("w"))
+						{
+							val = (string)_arguments["w"];
+						}
+						else
+						{
+							val = (string)_arguments["help-with"];
+						}
 
+						switch(val)
+						{
+							case "user-agent":
+								DisplayUserAgentCatalog();
+								break;
+							case "g":
+								DisplayUserAgentCatalog();
+								break;
+							default:
+								Console.WriteLine("I don't know an argument named {0}", val);
+								break;
+						}
+					}
 				}
 			}
 		}
