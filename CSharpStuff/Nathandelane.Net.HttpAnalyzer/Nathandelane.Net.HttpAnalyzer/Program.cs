@@ -365,11 +365,11 @@ namespace Nathandelane.Net.HttpAnalyzer
 				}
 				else // Display help
 				{
-					if (_arguments.IsDefined("h") && _arguments.IsDefined("help"))
+					if (_arguments.IsDefined("h") || _arguments.IsDefined("help"))
 					{
 						DisplayHelp();
 					}
-					else if (_arguments.IsDefined("w") && _arguments.IsDefined("help-with"))
+					else if (_arguments.IsDefined("w") || _arguments.IsDefined("help-with"))
 					{
 						string val = String.Empty;
 						if (_arguments.IsDefined("w"))
