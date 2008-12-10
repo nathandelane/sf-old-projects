@@ -100,7 +100,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 			for (int i = 0, j=0; i < keys.Count; i++, j++)
 			{
-				if (!keys[i].Equals("s") && !keys[i].Equals("suppress"))
+				if (_argMap[keys[i]] != null)
 				{
 					_args.Add(keys[i], values[j]);
 				}
