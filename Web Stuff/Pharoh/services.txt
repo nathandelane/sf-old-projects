@@ -1,0 +1,92 @@
+{Services}
+
+Almost all plans include disk space for a website or personal
+storage. And, access to the exclusive chat service, "ROAR!".
+Additional support & other services are available for select plans.
+
+-Level1 "Basic Services"-
+Core Pass: 250MB of web space and 1 ROAR! login- FREE
+
+EX-Core Pass: 1.5GB of web space and 1 ROAR! login- $2.50/mo
+
+-Level2 "Premium Services"-
+Studio Pass: 2.2GB of web space & 1 ROAR! login with 1 reserved
+chatroom- $3.50/mo
+
+Team Pass- 3.5gb of web space, support for 1 domain & 3 ROAR! logins with 1 reserved chatroom- $5/mo
+
+-Level3 Misc Services-
+Drive Pass- 5gb of personal storage space- $4.75/mo
+
+"+" Services:
+"+"Space- $1/mo per additional 1.5gb of space for Core, Studio, Team & Drive Pass(Limit is 12.2gb*)
+"+"Domain- $1/mo per domain for either Core, Studio or Team Pass(Limit is 3 domains*)
+"+"Member- $1.50 per additional user for a Team Pass or Studio Pass account(Limit is 7 users*)
+
+Level2 & Level3 services receive "priority support"*
+___________________________________________________________________
+<BILLING>
+Payments must be made in USD(United States Dollar*) via Paypal(TM). All international users are responsible for keeping up with the exchange rates of their country's currency to the American dollar. An additional $1 fee will be charged to users paying through Paypal by credit or debit card. We reserve the right to remove, change or add any services or adjust any prices & fees. With or without any notification.
+
+Billing cycles are ran in 30-day periods. Starting from the very moment of an account's activation. However an additional 2 days is added on as a "grace period" for processing payments. Clients are still encouraged to make their payments within the 30-day time frame. Or risk the account being temporarily deactivated. Statements act as a reminder and are sent out on the 27th day of the account being active. Statements are sent by the file manager's private message system. If a customer's account falls into delinquency after the  30 day period. The customer will be sent a follow up statement & warning notice regarding their services being interrupted. 
+___________________________________________________________________
+<FAQ>
+Q: Specifically what types web scripts can I use?
+A: Scripts that can be ran on PhyerNet are:
+   Perl/CGI
+   PHP
+   RoR
+   Python
+
+   Plus, like any other service. Users can also run flash. However,
+   any script a user chooses to use must have its on built-in data
+   base. Also known as a "flat file". Users can run scripts of this
+   kind. Or ones that are totally independant of needing suc
+
+Q: So, just WHAT do you guy define as a "creative mind"? 
+A: Individuals that are into a creative craft of some sort. These 
+   "crafts" can either be in a traditional or digital form and are
+   placed into 4 distinct categories: 
+
+   Visual Mind: Covers graphic arts such as illustration, painting,
+   sculpting, 3D modeling, human modeling, acting & photography
+
+   Sound Mind: Applies to instrumental or vocal music compositions,
+   music production, spoken word or comedy & sound creation
+
+   Literary Mind: Covers areas of creative story & script writing,
+   screenplays and poems
+
+   Logical Mind: Is a term that applies to the creative aspects of 
+   a more "technical" nature. Like, application programming, & HTML
+   development(Yes, we deemthings of this nature as "creative")
+
+Q: So, okay. Im NOT a "creative mind". Is'nt there ANY service you
+   guys can provide for me?
+A: Nope. Sorry. All roads closed...hmm, uh wait. Actually non-CM's
+   can at least get a "file storage" type of account. Unfortunately
+   it doesn't come with access to the chat. Plus the directory cant
+   be accessed from the web.
+___________________________________________________________________
+<TERMS of SERVICE>
+Only one "PHREE pass" account allowed per user. Customers caught opening up or owning additional free accounts under various user profiles will be banned. And their accounts will be suspended until further notice. This also includes anyone caught "assisting" others by "piggybacking". Allowing the use of their art or name to open an account. "Piggybacking" is a term that we use to describe 2 scenarios. The first as described in the previous line as an artist that is or is not registered to PhyerNet allowing another person to use their works and name in some cases. As a means to "validate" their claim of being someone or something they are not. The other form of piggybacking is users that willingly allow non-users to use their login info to access the services. This sort of activity is strongly discouraged. As it can lead to accounts being compromised if the person the login info was entrusted to "shares" it with others. Plus this can lead to random logins to ROAR!. Which can possibly lead up to problems for other users. 
+
+It is encouraged that users DO NOT share login info! We reserve the right to deactivate any accounts we feel are suspected of "piggybacking". 
+
+"PHREE pass" accounts that are inactive for over 90 days are subject to deactivation & deletion. The owners will receive notice before & after the accounts are removed. Users that lose their accounts due to inactivity must re-submit their information to reestablish service.
+
+Customers can still use the ROAR! chat services for another 24 hours after the web account is deactivated. This is given as a "courtesy" to allow the customer a chance to update their contacts on their situation or try and reach the System Administrator to make arrangements for payment. If a customer is unable to render any payments or make an arrangement for payment for whatever reason. The account will be deactivated until payment is made. Customers have 30 additional days from the account's deactivation to render full payment to reactivate services. Or the account will be permanently closed. Any returning customers that try to open a new account and was delinquent with a previous one are expected to pay off the pending debt before any new orders can be processed. 
+
+
+___________________________________________________________________
+<CANCELATION POLICY>
+A user that desires to cancel service can do so at anytime by contacting the System Administrator. Once contacted the system admin will begin a "break down" process that entails fully removing the user's web access account and then their ROAR login. This process takes under 24 hours and the user need not check in to insure the process was completed. It is strongly cautioned that before submitting such an order that the user takes the appropriate time & measures to notify their ROAR! contacts and backup any content they desire to keep. For once an account is removed. All files & settings are gone. If the user wishes to use PhyerNet again. He/she will need to resubmit their info again to reestablish service.
+___________________________________________________________________
+<MONEY BACK>
+We do not offer any "money back guarantees" past the 1st 30 days. "Money back" options are only valid to users that left during the 1st 30 days of service. Due to being dissatisfied for any reason with the service. However if the user was removed from the service due to misconduct or a breach in the terms of service. Any claims for "money back" will be revoked.
+___________________________________________________________________
+<PRIVACY>
+PhyerNet does NOT trade, rent or sell your personal information to
+any other organization or third party.
+
+PhyerNet respects the privacy of its clients & visitors. PhyerNet is also committed to protecting the personal information of its customers and visitors. This Privacy Policy covers only this service.  We collect no personally identifiable information about you when you visit our site unless you choose to provide that information to us or as specifically outlined in this Policy.
