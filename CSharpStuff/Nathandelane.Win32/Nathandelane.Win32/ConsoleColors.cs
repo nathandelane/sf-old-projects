@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Nathandelane.Win32
 {
-	static class ConsoleColors
+	public class ConsoleColors
 	{
 		[DllImport("kernel32.dll")]
 		public static extern bool SetConsoleTextAttribute(IntPtr hConsoleOutput, int wAttributes);
