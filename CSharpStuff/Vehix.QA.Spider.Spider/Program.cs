@@ -491,7 +491,7 @@ namespace Vehix.QA.Spider.Spider
 				catch (Exception ex)
 				{
 					this.Ex = ex;
-					WriteLogMessage(String.Format("{2} Request for {0} passed: {1} (actual url: {3}, referrer: {4})", this.Url, response.StatusCode.ToString(), this.Id, request.RequestUri.AbsoluteUri, this.ReferringUrl), true);
+					WriteLogMessage(String.Format("{2} Request for {0} passed: {1} (actual url: {3}, referrer: {4})", this.Url, ((response == null) ? "null" : response.StatusCode.ToString()), this.Id, request.RequestUri.AbsoluteUri, this.ReferringUrl), true);
 					Interlocked.Increment(ref __badUrls);
 				}
 				finally
@@ -830,8 +830,11 @@ namespace Vehix.QA.Spider.Spider
 					new Program();
 				}
 				catch (Exception e)
-				{					
+				{
 					WriteLogMessage(String.Format("Exception caught in outer program.\n\n{0}\n{1}\n{2}\n\n", e.Message, e.Source, e.StackTrace));
+				}
+				finally
+				{
 					WriteLogMessage(String.Concat("Number of links checked: {0}", __visitedPages.Count));
 					WriteLogMessage(String.Concat("Number of good links: {0}", __goodUrls));
 					WriteLogMessage(String.Concat("Number of bad links: {0}", __badUrls));
