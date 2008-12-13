@@ -117,7 +117,7 @@ namespace Nathandelane.Net.Spider
 			string resultingHash = String.Empty;
 
 			SHA1Managed sha1 = new SHA1Managed();
-			byte[] bytes = sha1.ComputeHash(ASCIIEncoding.ASCII.GetBytes(String.Format("{0}:{1}", _referringUrl, _root).ToCharArray()));
+			byte[] bytes = sha1.ComputeHash(ASCIIEncoding.ASCII.GetBytes(String.Format("{0}", _root).ToCharArray()));
 			resultingHash = ASCIIEncoding.ASCII.GetString(bytes);
 
 			return resultingHash;
