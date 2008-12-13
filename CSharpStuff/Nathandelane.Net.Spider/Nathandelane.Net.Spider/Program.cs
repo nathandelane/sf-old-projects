@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Windows.Forms;
+using Nathandelane.Win32;
 
 namespace Nathandelane.Net.Spider
 {
@@ -36,6 +37,15 @@ namespace Nathandelane.Net.Spider
 				if (!_visitedUrlHashes.Contains(agent.Hash()))
 				{
 					agent.Run();
+
+					if (agent.ToString().Contains("200"))
+					{
+						ConsoleColors.SetConsoleColor((byte)ConsoleColor.Green);
+					}
+					else
+					{
+						ConsoleColors.SetConsoleColor((byte)ConsoleColor.DarkRed);
+					}
 
 					Console.WriteLine("{0}", agent);
 
@@ -71,56 +81,6 @@ namespace Nathandelane.Net.Spider
 			{
 				_queuedLinks.Enqueue(new SpiderUrl(url, agent.Root));
 			}
-		}
-
-		private string GetStatusMessageFor(HttpStatusCode statusCode)
-		{
-			string message = String.Empty;
-
-			switch (statusCode)
-			{
-				case HttpStatusCode.Continue:
-					message = "Continue HTTP 100";
-					break;
-				case HttpStatusCode.SwitchingProtocols:
-					message = "Switching Protocols HTTP 101";
-					break;
-				case HttpStatusCode.OK:
-					message = "OK HTTP 200";
-					break;
-				case HttpStatusCode.Created:
-					message = "Creates HTTP 201";
-					break;
-				case HttpStatusCode.Accepted:
-					message = "Accepted HTTP 202";
-					break;
-				case HttpStatusCode.NonAuthoritativeInformation:
-					message = "Non-Authoritative Information HTTP 203";
-					break;
-				case HttpStatusCode.NoContent:
-					message = "No Content HTTP 204";
-					break;
-				case HttpStatusCode.ResetContent:
-					message = "Reset Content HTTP 205";
-					break;
-				case HttpStatusCode.PartialContent:
-					message = "Partial Content HTTP 206";
-					break;
-				case HttpStatusCode.MultipleChoices:
-					message = "Multiple Choices HTTP 300";
-					break;
-				case HttpStatusCode.MovedPermanently:
-					message = "Moved Permanently HTTP 301";
-					break;
-				case HttpStatusCode.Redirect:
-					message = "Redirect HTTP 302";
-					break;
-				default:
-					message = "OK HTTP 200";
-					break;
-			}
-
-			return message;
 		}
 
 		static void Main()

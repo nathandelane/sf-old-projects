@@ -25,6 +25,7 @@ namespace Nathandelane.Net.Spider
 		private HttpWebRequest _request;
 		private HttpWebResponse _response;
 		private Settings _settings;
+		private Exception _ex;
 
 		#endregion
 
@@ -94,7 +95,7 @@ namespace Nathandelane.Net.Spider
 
 		public override string ToString()
 		{
-			return String.Format("{0}, \"{1}\", \"{2}\", \"{3}\", \"{4}\"", _id, _response.StatusCode, _root, _pageTitle, _referringUrl);
+			return String.Format("{0}, \"{1}\", \"{2}\", \"{3}\", \"{4}\"", _id, ((_response == null) ? _ex.Message : GetStatusMessageFor(_response.StatusCode)), _root, (String.IsNullOrEmpty(_pageTitle) ? "null" : _pageTitle), _referringUrl);
 		}
 
 		public string Hash()
@@ -121,14 +122,22 @@ namespace Nathandelane.Net.Spider
 			_request.Referer = _referringUrl;
 			_request.Timeout = int.Parse(_settings["timeOut"]);
 			_request.UserAgent = "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; WOW64; SLCC1; .NET CLR 2.0.50727; .NET CLR 3.0.04506; Media Center PC 5.0; .NET CLR 1.1.4322; Nathandelane.Net.Spider)";
-			_response = _request.GetResponse() as HttpWebResponse;
 
-			using (StreamReader reader = new StreamReader(_response.GetResponseStream()))
+			try
 			{
-				_data = reader.ReadToEnd();
-			}
+				_response = _request.GetResponse() as HttpWebResponse;
 
-			SetPageTitleAndLinkList();
+				using (StreamReader reader = new StreamReader(_response.GetResponseStream()))
+				{
+					_data = reader.ReadToEnd();
+				}
+
+				SetPageTitleAndLinkList();
+			}
+			catch (Exception ex)
+			{
+				_ex = ex;
+			}
 		}
 
 		private void SetPageTitleAndLinkList()
@@ -197,6 +206,11 @@ namespace Nathandelane.Net.Spider
 						result = String.Format("{0}{1}", _settings["startingUrl"], linkHref);
 					}
 				}
+			}
+
+			if (linkHref.Contains("&amp;"))
+			{
+				linkHref = linkHref.Replace("&amp;", "&");
 			}
 
 			return result;
@@ -626,6 +640,56 @@ namespace Nathandelane.Net.Spider
 			}
 
 			return zone;
+		}
+
+		private string GetStatusMessageFor(HttpStatusCode statusCode)
+		{
+			string message = String.Empty;
+
+			switch (statusCode)
+			{
+				case HttpStatusCode.Continue:
+					message = "Continue HTTP 100";
+					break;
+				case HttpStatusCode.SwitchingProtocols:
+					message = "Switching Protocols HTTP 101";
+					break;
+				case HttpStatusCode.OK:
+					message = "OK HTTP 200";
+					break;
+				case HttpStatusCode.Created:
+					message = "Creates HTTP 201";
+					break;
+				case HttpStatusCode.Accepted:
+					message = "Accepted HTTP 202";
+					break;
+				case HttpStatusCode.NonAuthoritativeInformation:
+					message = "Non-Authoritative Information HTTP 203";
+					break;
+				case HttpStatusCode.NoContent:
+					message = "No Content HTTP 204";
+					break;
+				case HttpStatusCode.ResetContent:
+					message = "Reset Content HTTP 205";
+					break;
+				case HttpStatusCode.PartialContent:
+					message = "Partial Content HTTP 206";
+					break;
+				case HttpStatusCode.MultipleChoices:
+					message = "Multiple Choices HTTP 300";
+					break;
+				case HttpStatusCode.MovedPermanently:
+					message = "Moved Permanently HTTP 301";
+					break;
+				case HttpStatusCode.Redirect:
+					message = "Redirect HTTP 302";
+					break;
+				default:
+					message = "OK HTTP 200";
+					break;
+			}
+
+			return message;
 		}
 
 		#endregion
