@@ -24,6 +24,11 @@ namespace Nathandelane.Net.Spider
 			_queuedLinks = new Queue<SpiderUrl>();
 			_id = 0L;
 			_cookies = new CookieCollection();
+
+			Cookie zipCookie = new Cookie("zip", "84106");
+			zipCookie.Domain = _settings["domain"];
+			_cookies.Add(zipCookie);
+
 			_headers = new WebHeaderCollection();
 
 			if (File.Exists("SpiderLog.csv"))
