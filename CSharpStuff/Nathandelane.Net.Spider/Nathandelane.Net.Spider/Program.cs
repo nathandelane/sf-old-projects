@@ -34,6 +34,7 @@ namespace Nathandelane.Net.Spider
 			if (File.Exists("SpiderLog.csv"))
 			{
 				File.Create("SpiderLog.csv");
+				LogMessage("\"Id\", \"Response\", \"Url\", \"Title\", \"Full Url\", \"Referring Page\"", false);
 			}
 
 			string startingUrl = String.Format("{0}{1}", _settings["startingUrl"], _settings["path"]);

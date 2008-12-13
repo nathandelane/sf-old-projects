@@ -309,6 +309,11 @@ namespace Nathandelane.Net.Spider
 		{
 			string zone = String.Empty;
 
+			if (aspxFileName.StartsWith("/"))
+			{
+				aspxFileName = aspxFileName.Substring(1);
+			}
+
 			if (true/*aspxFileName.Contains(".aspx")*/)
 			{
 				string switchOn = aspxFileName.Split(new string[] { ".aspx" }, StringSplitOptions.RemoveEmptyEntries)[0];
