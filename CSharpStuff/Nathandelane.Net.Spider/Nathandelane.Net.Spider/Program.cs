@@ -50,7 +50,7 @@ namespace Nathandelane.Net.Spider
 				SpiderUrl url = _queuedLinks.Dequeue();
 				Agent agent = new Agent(url, _id, _settings, _cookies, _headers);
 
-				if (!_visitedUrlHashes.Contains(agent.Hash()))
+				if (!_visitedUrlHashes.Contains(agent.Root))
 				{
 					agent.Run();
 
@@ -68,7 +68,11 @@ namespace Nathandelane.Net.Spider
 
 					LogMessage(String.Format("{0}", agent), true);
 
-					_visitedUrlHashes.Add(agent.Hash());
+					if (_settings.ContainsKey("onlyFollowUniques") && bool.Parse(_settings["onlyFollowUniques"]))
+					{
+						_visitedUrlHashes.Add(agent.Root);
+					}
+
 					_id++;
 
 					AddLinksFor(agent);
