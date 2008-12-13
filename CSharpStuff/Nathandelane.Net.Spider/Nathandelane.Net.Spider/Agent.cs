@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Linq;
 using System.Security.Cryptography;
@@ -7,7 +8,6 @@ using System.Security.Principal;
 using System.Text;
 using System.Xml;
 using HtmlAgilityPack;
-using System.IO;
 
 namespace Nathandelane.Net.Spider
 {
@@ -26,6 +26,8 @@ namespace Nathandelane.Net.Spider
 		private HttpWebResponse _response;
 		private Settings _settings;
 		private Exception _ex;
+		private CookieCollection _cookies;
+		private WebHeaderCollection _headers;
 
 		#endregion
 
@@ -70,18 +72,30 @@ namespace Nathandelane.Net.Spider
 			get { return _response; }
 		}
 
+		public CookieCollection Cookies
+		{
+			get { return _cookies; }
+		}
+
+		public WebHeaderCollection Headers
+		{
+			get { return _headers; }
+		}
+
 		#endregion
 
 		#region Constructors
 
-		public Agent(SpiderUrl url, long id, Settings settings)
+		public Agent(SpiderUrl url, long id, Settings settings, CookieCollection cookies, WebHeaderCollection headers)
 		{
 			_pageTitle = String.Empty;
 			_urls = new string[0];
 			_referringUrl = url.ReferringUrl;
-			_root = url.Url;
+			_root = url.Url.Replace("&amp;", "&");
 			_id = id;
 			_settings = settings;
+			_cookies = cookies;
+			_headers = headers;
 		}
 
 		#endregion
@@ -123,9 +137,14 @@ namespace Nathandelane.Net.Spider
 			_request.Timeout = int.Parse(_settings["timeOut"]);
 			_request.UserAgent = "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; WOW64; SLCC1; .NET CLR 2.0.50727; .NET CLR 3.0.04506; Media Center PC 5.0; .NET CLR 1.1.4322; Nathandelane.Net.Spider)";
 
+			CookieContainer cookies = new CookieContainer();
+			cookies.Add(_cookies);
+			_request.CookieContainer = cookies;
+
 			try
 			{
 				_response = _request.GetResponse() as HttpWebResponse;
+				_cookies = _response.Cookies;
 
 				using (StreamReader reader = new StreamReader(_response.GetResponseStream()))
 				{
@@ -180,6 +199,9 @@ namespace Nathandelane.Net.Spider
 		{
 			string result = linkHref;
 
+			linkHref = linkHref.Replace("../", String.Empty);
+			linkHref = linkHref.Replace("&amp;", "&");
+
 			if (!linkHref.StartsWith("http://") && !linkHref.StartsWith("https://"))
 			{
 				if (!linkHref.StartsWith("/"))
@@ -206,11 +228,6 @@ namespace Nathandelane.Net.Spider
 						result = String.Format("{0}{1}", _settings["startingUrl"], linkHref);
 					}
 				}
-			}
-
-			if (linkHref.Contains("&amp;"))
-			{
-				linkHref = linkHref.Replace("&amp;", "&");
 			}
 
 			return result;

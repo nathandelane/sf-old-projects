@@ -29,5 +29,17 @@ namespace Nathandelane.Net.Spider
 				_settings.Add(key, ConfigurationManager.AppSettings[key]);
 			}
 		}
+
+		internal bool ContainsKey(string key)
+		{
+			bool containsKey = false;
+
+			if (_settings.ContainsKey(key))
+			{
+				containsKey = true;
+			}
+
+			return containsKey;
+		}
 	}
 }

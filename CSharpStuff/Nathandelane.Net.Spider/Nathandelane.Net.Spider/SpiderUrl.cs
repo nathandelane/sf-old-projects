@@ -14,11 +14,13 @@ namespace Nathandelane.Net.Spider
 		public string Url
 		{
 			get { return _url; }
+			set { _url = value; }
 		}
 
 		public string ReferringUrl
 		{
 			get { return _referringUrl; }
+			set { _referringUrl = value; }
 		}
 
 		public SpiderUrl(string url, string referringUrl)
