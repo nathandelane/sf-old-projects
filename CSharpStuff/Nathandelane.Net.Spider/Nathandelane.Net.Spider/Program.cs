@@ -111,9 +111,9 @@ namespace Nathandelane.Net.Spider
 
 				headResponse.Close();
 			}
-			catch (Exception)
+			catch (Exception ex)
 			{
-				Console.Write("(HEAD failed)...");
+				LogError(String.Format("Exception caught! {0}; {1}; InnerException {2}; {3}", ex.Message, ex.StackTrace, ex.InnerException.Message, ex.InnerException.StackTrace));
 			}
 		}
 
@@ -155,6 +155,15 @@ namespace Nathandelane.Net.Spider
 			if (writeToConsole)
 			{
 				Console.WriteLine(String.Format("{0}", msg));
+			}
+		}
+
+		private void LogError(string errmsg)
+		{
+			using (StreamWriter writer = new StreamWriter(new FileStream("SpiderErrorLog.log", FileMode.Append)))
+			{
+				writer.WriteLine(String.Format("{0}", errmsg));
+				writer.Flush();
 			}
 		}
 
