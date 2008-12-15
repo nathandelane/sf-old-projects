@@ -132,7 +132,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 			if (_argMap.ContainsKey(forArg))
 			{
-				switch (_argMap[forArg].GetType().FullName)
+				switch (_argMap[forArg].ArgType.GetType().FullName)
 				{
 					case "System.String":
 						result = arg;
