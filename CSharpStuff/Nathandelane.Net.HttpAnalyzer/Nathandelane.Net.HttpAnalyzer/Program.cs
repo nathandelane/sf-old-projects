@@ -17,7 +17,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 	class Program
 	{
 		private static LinuxArguments _arguments;
-		private static Dictionary<string, object> _argMap;
+		private static Dictionary<string, CommandLineArgument> _argMap;
 		private static Dictionary<string, string> _userAgentMap;
 		private static HttpWebResponse _response;
 		private static HttpWebRequest _webClient;
@@ -474,35 +474,35 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 		private static void CreateArgMap()
 		{
-			_argMap = new Dictionary<string, object>();
-			_argMap.Add("i", String.Empty);
-			_argMap.Add("uri", String.Empty);
-			_argMap.Add("r", new string[1] { "," });
-			_argMap.Add("return", new string[1] { "," });
-			_argMap.Add("u", String.Empty);
-			_argMap.Add("user", String.Empty);
-			_argMap.Add("p", String.Empty);
-			_argMap.Add("password", String.Empty);
-			_argMap.Add("x", String.Empty);
-			_argMap.Add("proxy", String.Empty);
-			_argMap.Add("e", new string[2] { "&", "=" });
-			_argMap.Add("headers", new string[2] { "&", "=" });
-			_argMap.Add("t", 0L);
-			_argMap.Add("timeout", 0L);
-			_argMap.Add("f", String.Empty);
-			_argMap.Add("find", String.Empty);
-			_argMap.Add("a", new string[1] { "," });
-			_argMap.Add("attributes", new string[1] { "," });
-			_argMap.Add("o", new string[2] { "&", "=" });
-			_argMap.Add("postbody", new string[2] { "&", "=" });
-			_argMap.Add("s", null);
-			_argMap.Add("suppress", null);
-			_argMap.Add("g", String.Empty);
-			_argMap.Add("user-agent", String.Empty);
-			_argMap.Add("h", null);
-			_argMap.Add("help", null);
-			_argMap.Add("w", String.Empty);
-			_argMap.Add("help-with", String.Empty);
+			_argMap = new Dictionary<string, CommandLineArgument>();
+			_argMap.Add("i", new CommandLineArgument("i", String.Empty, "Uri that starts with http:// or https://"));
+			_argMap.Add("uri", new CommandLineArgument("uri", String.Empty, "Uri that starts with http:// or https://"));
+			_argMap.Add("r", new CommandLineArgument("r", new string[1] { "," }, "Comma-separated list of items to return from analysis. May be data, response, and/or request in any order"));
+			_argMap.Add("return", new CommandLineArgument("return", new string[1] { "," }, "Comma-separated list of items to return from analysis. May be data, response, and/or request in any order"));
+			_argMap.Add("u", new CommandLineArgument("u", String.Empty, "Domain (if required) and username separated by \\ as in domain\\username"));
+			_argMap.Add("user", new CommandLineArgument("user", String.Empty, "Domain (if required) and username separated by \\ as in domain\\username"));
+			_argMap.Add("p", new CommandLineArgument("p", String.Empty, "Password for domain\\username combination"));
+			_argMap.Add("password", new CommandLineArgument("password", String.Empty, "Password for domain\\username combination"));
+			_argMap.Add("x", new CommandLineArgument("x",String.Empty, "Proxy formed as ip-address:port-number. You may exclude the port number"));
+			_argMap.Add("proxy", new CommandLineArgument("proxy", String.Empty, "Proxy formed as ip-address:port-number. You may exclude the port number"));
+			_argMap.Add("e", new CommandLineArgument("e", new string[2] { "&", "=" }, "List of headers. Keys and values are separated by equals signs (=) and pairs are separated by ampersands (&)"));
+			_argMap.Add("headers", new CommandLineArgument("e", new string[2] { "&", "=" }, "List of headers. Keys and values are separated by equals signs (=) and pairs are separated by ampersands (&)"));
+			_argMap.Add("t", new CommandLineArgument("t", 0L, "Timeout in milliseconds. For example 30000 equals thirty seconds"));
+			_argMap.Add("timeout", new CommandLineArgument("t", 0L, "Timeout in milliseconds. For example 30000 equals thirty seconds"));
+			_argMap.Add("f", new CommandLineArgument("f", String.Empty, "Find an element by using XPath query syntax"));
+			_argMap.Add("find", new CommandLineArgument("f", String.Empty, "Find an element by using XPath query syntax"));
+			_argMap.Add("a", new CommandLineArgument("a", new string[1] { "," }, "Display the value of a specific attribute in an element. Attributes are comma-separated. Only works with -f or --find"));
+			_argMap.Add("attributes", new CommandLineArgument("a", new string[1] { "," }, "Display the value of a specific attribute in an element. Attributes are comma-separated. Only works with -f or --find"));
+			_argMap.Add("o", new CommandLineArgument("o", new string[2] { "&", "=" }, "Post form body formatted like a stadard querystring. Keys and values are spearated by = and pairs by &"));
+			_argMap.Add("postbody", new CommandLineArgument("o", new string[2] { "&", "=" }, "Post form body formatted like a stadard querystring. Keys and values are spearated by = and pairs by &"));
+			_argMap.Add("s", new CommandLineArgument("s", null, "This argument does not take a value. Use it to suppress the default output"));
+			_argMap.Add("suppress", new CommandLineArgument("s", null, "This argument does not take a value. Use it to suppress the default output"));
+			_argMap.Add("g", new CommandLineArgument("g", String.Empty, "Specify the user-agent. Use a user-agent keyword as the name. To learn what user-agents HttpAnalyzer supports type httpanalyzer --help-with \"user-agent\""));
+			_argMap.Add("user-agent", new CommandLineArgument("user-agent", String.Empty, "Specify the user-agent. Use a user-agent keyword as the name. To learn what user-agents HttpAnalyzer supports type httpanalyzer --help-with \"user-agent\""));
+			_argMap.Add("h", new CommandLineArgument("h", null, "Display this help text. This argument takes no value"));
+			_argMap.Add("help", new CommandLineArgument("h", null, "Display this help text. This argument takes no value"));
+			_argMap.Add("w", new CommandLineArgument("w", String.Empty, "Get help for a specific feature. An argument must be supplied. Currently only these are valid: user-agent, g"));
+			_argMap.Add("help-with", new CommandLineArgument("help-with", String.Empty, "Get help for a specific feature. An argument must be supplied. Currently only these are valid: user-agent, g"));
 		}
 
 		private void Report(MessageType type, string message)

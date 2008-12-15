@@ -9,7 +9,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 		#region Fields
 
 		private Dictionary<string, object> _args;
-		private Dictionary<string, object> _argMap;
+		private Dictionary<string, CommandLineArgument> _argMap;
 
 		#endregion
 
@@ -20,7 +20,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 			set { _args = ParseArguments(value); }
 		}
 
-		public Dictionary<string, object> ArgMap
+		public Dictionary<string, CommandLineArgument> ArgMap
 		{
 			set { _argMap = value; }
 		}
@@ -56,7 +56,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 		/// </summary>
 		/// <param name="args"></param>
 		/// <param name="argMap"></param>
-		public LinuxArguments(string[] args, Dictionary<string, object> argMap)
+		public LinuxArguments(string[] args, Dictionary<string, CommandLineArgument> argMap)
 		{
 			_argMap = argMap;
 			_args = ParseArguments(args);
@@ -85,10 +85,17 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 			foreach (string arg in args)
 			{
-				if (arg.StartsWith("-"))
+				if (arg.StartsWith("--"))
+				{
+					int index = arg.LastIndexOf("--") + 2;
+					string argS = arg.Substring(index);
+					keys.Add(argS);
+					lastKey = argS;
+				}
+				else if (arg.StartsWith("-"))
 				{
 					int index = arg.LastIndexOf('-') + 1;
-					string argS = arg.Substring(arg.LastIndexOf('-') + 1);
+					string argS = arg.Substring(index);
 					keys.Add(argS);
 					lastKey = argS;
 				}
@@ -100,7 +107,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 			for (int i = 0, j=0; i < keys.Count; i++, j++)
 			{
-				if (_argMap[keys[i]] != null)
+				if (_argMap[keys[i]].ArgType != null)
 				{
 					_args.Add(keys[i], values[j]);
 				}
@@ -131,7 +138,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 						result = arg;
 						break;
 					case "System.String[]":
-						string[] delimiters = ((string[])_argMap[forArg]);
+						string[] delimiters = ((string[])_argMap[forArg].ArgType);
 						if (delimiters.Length == 1)
 						{
 							string[] values = arg.Split(new string[] { delimiters[0] }, StringSplitOptions.RemoveEmptyEntries);
