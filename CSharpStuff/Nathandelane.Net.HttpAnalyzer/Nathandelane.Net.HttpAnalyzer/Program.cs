@@ -592,7 +592,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 				{
 					if (_argMap[arg] != null)
 					{
-						Console.WriteLine("-{0,-16}{1}", arg, _argMap[arg].GetType().Name);
+						Console.WriteLine("-{0,-16}{1}", arg, _argMap[arg].Description);
 					}
 					else
 					{
@@ -620,7 +620,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 				{
 					if (_argMap[arg] != null)
 					{
-						Console.WriteLine("--{0,-16}{1}\n", arg, _argMap[arg].GetType().Name);
+						Console.WriteLine("--{0,-16}{1}\n", arg, _argMap[arg].Description);
 					}
 					else
 					{
