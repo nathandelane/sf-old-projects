@@ -1,118 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<title>Phyernet</title>
+		<meta http-equiv="content-type" content="text/xhtml; charset=windows-1252"/>
 		<link href="http://www.phyer.net/rss.xml" title="PhyerNet News" type="application/rss+xml" rel="alternate"/>
 		<link rel="shortcut icon" href="favicon.ico"/>
 		<script type="text/javascript" src="_scripts/jquery.js"></script>
 		<script type="text/javascript" src="_scripts/jquery.timers.js"></script>
 		<script type="text/javascript" src="_scripts/jquery.dimensions.js"></script>
-		<script language="javascript">
-			var mouseX = 0;
-			var mouseY = 0;
-			var newsLocation = 0;
-			var active = true;
-			var millisecondInterval = 250;
-			var decrementLength = 5;
-			var heightDifference = 175;
-			
-			$().mousemove(function(e) {
-				if(!e) var e = window.event;
-				
-				if(e.clientX || e.clientY) {
-					mouseX = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-					mouseY = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-				} else if(e.pageX || e.pageY) {
-					mouseX = e.pageX;
-					mouseY = e.pageY;
-				}
-			});
-			
-			$(document).ready(init);
-			
-			function init() {
-				// Start the news items scrolling
-				$("div#newsContainerInner").everyTime(millisecondInterval, 'controlled', function(i) {
-					height = $("div#newsContainerInner").height() - heightDifference;
-					if(newsLocation > (height * -2)) {
-						$("div#newsContainerInner").css("top", (newsLocation -= decrementLength) + "px");
-					} else {
-						newsLocation = 0;
-					}
-				});
-				
-				// Stop news items on mouse over
-				$("div#newsContainerInner").mouseover(function() {
-					if(active) {
-						active = false;
-						$(this).stopTime('controlled');
-					}
-				});
-				
-				// Start news items again on mouse out
-				$("div#newsContainerInner").mouseout(function() {
-					if(!active) {
-						active = true;
-						$("div#newsContainerInner").everyTime(millisecondInterval, 'controlled', function(i) {
-							height = $("div#newsContainerInner").height() - heightDifference;
-							if(newsLocation > (height * -2)) {
-								$("div#newsContainerInner").css("top", (newsLocation -= decrementLength) + "px");
-							} else {
-								newsLocation = 0;
-							}
-						});
-					}
-				});
-				
-				$("h3#phyerNetVisual")
-					.hover(
-						function() {showInformationFor("visual")}, 
-						function(){$("div#popup").find("span:last").remove();$("div#popup").css("display", "none");}
-					);
-				$("h3#phyerNetAudio")
-					.hover(
-						function() {showInformationFor("audio")}, 
-						function(){$("div#popup").find("span:last").remove();$("div#popup").css("display", "none");}
-					);
-				$("h3#phyerNetLiterature")
-					.hover(
-						function() {showInformationFor("literature")}, 
-						function(){$("div#popup").find("span:last").remove();$("div#popup").css("display", "none");}
-					);
-				$("h3#phyerNetLogical")
-					.hover(
-						function() {showInformationFor("logical")}, 
-						function(){$("div#popup").find("span:last").remove();$("div#popup").css("display", "none");}
-					);
-			}
-			
-			function showInformationFor(infoType) {
-				$("div#popup").find("span:last").remove();
-				if(infoType == "visual") {
-					$("div#popup")
-						.append('<span>Creative minds that focus on "visual" forms of artistic expression</span>');
-				} else if(infoType == "audio") {
-					$("div#popup")
-						.append('<span>Artistic souls that express creativity through sound</span>');
-				} else if(infoType == "literature") {
-					$("div#popup")
-						.append('<span>Users that express creativity through words</span>');
-				} else if(infoType == "logical") {
-					$("div#popup")
-						.append('<span>People who express creativity through "technical" means</span>');
-				}
-				
-				$("div#popup")
-					.css("left", (mouseX + 10) + "px");
-				
-				$("div#popup")
-					.css("top", (mouseY + 10) + "px");
-				
-				$("div#popup")
-					.css("display", "block");
-			}
-		</script>
-		<style>
+		<script type="text/javascript" src="_scripts/phyernet.js"></script>
+		<style type="text/css">
 		body
 		{
 			padding: 0px;
@@ -620,10 +517,10 @@
 		</style>
 	</head>
 	<body onload="javascript: init();">
-		<form id="frontPageForm" name="frontPageForm" action="https://www.phyer.net/cgi-bin/fmanager/index.cgi" method="POST">
+		<form id="frontPageForm" action="https://www.phyer.net/cgi-bin/fmanager/index.cgi" method="post">
 			<div id="pageWrapper" class="pageWrapper">
 				<div id="pageHeading" class="pageHeading">
-					<a id="aboutLink" href="http://www.phyer.net/info.htm" onmouseover="this.style.backgroundPosition='top right';" onmouseout="this.style.backgroundPosition='top left';">
+					<a id="aboutLink" href="http://www.phyer.net/info.html" onmouseover="this.style.backgroundPosition='top right';" onmouseout="this.style.backgroundPosition='top left';">
 						<span>About PhyerNet</span>
 					</a>
 					<div id="loginPanel">
@@ -635,7 +532,7 @@
 							<label for="passwordInput">Password:</label>
 							<input type="password" id="passwordInput" name="password" value=""/>
 						</div>
-						<div id="submitButton">
+						<div id="submitButtonContainer">
 							<input type="submit" id="submitButton" name="loginButton" value="Login"/>
 						</div>
 					</div>
@@ -659,19 +556,19 @@
 							<div>
 								<h3 id="phyerNetVisual" class="service">
 									<span class="name">Visual Mind</span>
-									<span class="description">Illustrator, painter, sculptor, 3D modeler, photographer & model</span>
+									<span class="description">Illustrator, painter, sculptor, 3D modeler, photographer &amp; model</span>
 								</h3>
 							</div>
 							<div>
 								<h3 id="phyerNetAudio" class="service">
 									<span class="name">Sound Mind</span>
-									<span class="description">Music writer/performer, Comedy/Spoken & Sound Producer</span>
+									<span class="description">Music writer/performer, Comedy/Spoken &amp; Sound Producer</span>
 								</h3>
 							</div>
 							<div>
 								<h3 id="phyerNetLiterature" class="service">
 									<span class="name">Written Mind</span>
-									<span class="description">Story, Poem, Script/Screenplay & Storyboarding</span>
+									<span class="description">Story, Poem, Script/Screenplay &amp; Storyboarding</span>
 								</h3>
 							</div>
 							<div>
@@ -680,13 +577,13 @@
 									<span class="description">Application/HTML coding</span>
 								</h3>
 							</div>
-							<div id="rssNews">
+							<div id="rssNewsContainer">
 								<h2 id="rssNews">
 									<span>PhyerNet News</span>
 								</h2>
 								<div id="rssFeedIcon">
 									<a href="http://www.phyer.net/rss.xml">
-										<img src="_images/feed.png"/>
+										<img alt="RSS Feed Icon" src="_images/feed.png"/>
 									</a>
 								</div>
 								<div id="newsContainer">
@@ -701,7 +598,7 @@
 										</p>
 										<p>
 											<span class="date">12/05/08</span>
-											<span class="message">Automatic registration & forums are currently down -PTG</span>
+											<span class="message">Automatic registration &amp; forums are currently down -PTG</span>
 										</p>
 										<p>
 											<span class="date">06/13/08</span>
@@ -718,7 +615,7 @@
 								<span>In A Nutshell</span>
 							</h2>
 							<p>
-								<span id="services">PhyerNet is a service offered to artists of all types that grants them a centralized point where they can display works, advertise & meet! Users with existing accounts can login above. If you're not currently a user, check it out!</span>
+								<span id="services">PhyerNet is a service offered to artists of all types that grants them a centralized point where they can display works, advertise &amp; meet! Users with existing accounts can login above. If you're not currently a user, check it out!</span>
 								<span id="question">What You Get</span>
 							</p>
 							<ul id="whatYouGetList">
@@ -738,7 +635,7 @@
 									<span>*Space sizes vary &amp; depend on service type</span>
 								</li>
 								<li id="signUpNow">
-									<a href="http://www.phyer.net/services.htm">
+									<a href="http://www.phyer.net/services.html">
 										<span class="mout" onmouseover="this.className='mover';" onmouseout="this.className='mout';">Sign up now</span>		
 									</a>
 								</li>

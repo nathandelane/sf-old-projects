@@ -1,15 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<title>Services | Phyernet</title>
+		<meta http-equiv="content-type" content="text/xhtml; charset=windows-1252"/>
 		<link href="http://www.phyer.net/rss.xml" title="PhyerNet News" type="application/rss+xml" rel="alternate"/>
 		<link rel="shortcut icon" href="favicon.ico"/>
-		<script>
+		<script type="text/javascript">
 			function init()
 			{
 			}
 		</script>
-		<style>
+		<style type="text/css">
 		body
 		{
 			padding: 0px;
@@ -231,7 +232,7 @@
 		</style>
 	</head>
 	<body onload="javascript: init();">
-		<form id="frontPageForm" name="frontPageForm" action="https://www.phyer.net/cgi-bin/fmanager/index.cgi" method="POST">
+		<form id="frontPageForm" action="https://www.phyer.net/cgi-bin/fmanager/index.cgi" method="post">
 			<div id="pageWrapper" class="pageWrapper">
 				<div id="pageHeading" class="pageHeading">
 					<a id="aboutLink" href="http://www.phyer.net/info.html" onmouseover="this.style.backgroundPosition='top right';" onmouseout="this.style.backgroundPosition='top left';">
@@ -246,7 +247,7 @@
 							<label for="passwordInput">Password:</label>
 							<input type="password" id="passwordInput" name="password" value=""/>
 						</div>
-						<div id="submitButton">
+						<div id="submitButtonContainer">
 							<input type="submit" id="submitButton" name="loginButton" value="Login"/>
 						</div>
 					</div>
@@ -255,7 +256,7 @@
 					<p>
 						Almost all plans include disk space for a website or personal storage. And, access to the exclusive chat service, "ROAR!". Additional support &amp; other services are available for select plans.
 					</p>
-					<p>
+					<div>
 						<h2>
 							<img alt="External Hard Drive Image" src="http://www.phyer.net/grafx/pnet.png"/>
 							<span class="spanWithImage">-Level1 "Basic Services"-</span>
@@ -288,7 +289,7 @@
 							</li>
 						</ul>
 						<p>Level2 &amp; Level3 services receive "priority support"*</p>
-					</p>
+					</div>
 					<hr />
 					<h3>Billing</h3>
 					<p>
@@ -301,31 +302,31 @@
 					<h3>Faq</h3>
 					<p>Q: Specifically what types web scripts can I use?</p>
 					<p>A: Scripts that can be ran on PhyerNet are:
-						<ul class="plain">
-							<li>Perl/CGI</li>
-							<li>PHP</li>
-							<li>RoR</li>
-							<li>Python</li>
-						</ul>
-						<div>
-							<img alt="PHP Logo" src="http://www.phyer.net/grafx/php.gif"/>
-							<img alt="Perl Logo" src="http://www.phyer.net/grafx/perlogo.gif"/>
-							<img alt="Python Logo" src="http://www.phyer.net/grafx/pylogo.gif"/>
-							<img alt="RoR Logo" src="http://www.phyer.net/grafx/rails.png"/>
-						</div>
-						<p>
-						   Plus, like any other service. Users can also run flash. However, any script a user chooses to use must have its on built-in data base. Also known as a "flat file". Users can run scripts of this kind. Or ones that are totally independant of needing such.
-						</p>
+					</p>
+					<ul class="plain">
+						<li>Perl/CGI</li>
+						<li>PHP</li>
+						<li>RoR</li>
+						<li>Python</li>
+					</ul>
+					<div>
+						<img alt="PHP Logo" src="http://www.phyer.net/grafx/php.gif"/>
+						<img alt="Perl Logo" src="http://www.phyer.net/grafx/perlogo.gif"/>
+						<img alt="Python Logo" src="http://www.phyer.net/grafx/pylogo.gif"/>
+						<img alt="RoR Logo" src="http://www.phyer.net/grafx/rails.png"/>
+					</div>
+					<p>
+					   Plus, like any other service. Users can also run flash. However, any script a user chooses to use must have its on built-in data base. Also known as a "flat file". Users can run scripts of this kind. Or ones that are totally independant of needing such.
 					</p>
 					<p>Q: So, just WHAT do you guy define as a "creative mind"?</p>
 					<p>A: Individuals that are into a creative craft of some sort. These "crafts" can either be in a traditional or digital form and are placed into 4 distinct categories:
-						<ul class="plain">
-							<li>Visual Mind: Covers graphic arts such as illustration, painting, sculpting, 3D modeling, human modeling, acting &amp; photography</li>
-							<li>Sound Mind: Applies to instrumental or vocal music compositions, music production, spoken word or comedy &amp; sound creation</li>
-							<li>Literary Mind: Covers areas of creative story &amp; script writing, screenplays and poems</li>
-							<li>Logical Mind: Is a term that applies to the creative aspects of a more "technical" nature. Like, application programming, &amp; HTML development(Yes, we deemthings of this nature as "creative")</li>
-						</ul>
 					</p>
+					<ul class="plain">
+						<li>Visual Mind: Covers graphic arts such as illustration, painting, sculpting, 3D modeling, human modeling, acting &amp; photography</li>
+						<li>Sound Mind: Applies to instrumental or vocal music compositions, music production, spoken word or comedy &amp; sound creation</li>
+						<li>Literary Mind: Covers areas of creative story &amp; script writing, screenplays and poems</li>
+						<li>Logical Mind: Is a term that applies to the creative aspects of a more "technical" nature. Like, application programming, &amp; HTML development(Yes, we deemthings of this nature as "creative")</li>
+					</ul>
 					<p>Q: So, okay. Im NOT a "creative mind". Is'nt there ANY service you guys can provide for me?</p>
 					<p>A: Nope. Sorry. All roads closed...hmm, uh wait. Actually non-CM's can at least get a "file storage" type of account. Unfortunately it doesn't come with access to the chat. Plus the directory can't be accessed from the web.</p>
 					<hr />
