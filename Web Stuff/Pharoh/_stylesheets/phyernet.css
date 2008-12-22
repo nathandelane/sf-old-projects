@@ -22,7 +22,7 @@ h3
 
 h2 img
 {
-	display: none;
+	display: inline;
 }
 
 hr
@@ -124,7 +124,7 @@ div#footer
 
 div#footerInner
 {
-	width: 600px;
+	width: 700px;
 	margin: 0px auto;
 	height: 60px;
 	overflow: hidden;
@@ -132,7 +132,7 @@ div#footerInner
 
 div#poweredBy
 {
-	width: 400px;
+	width: 500px;
 	height: 60px;
 	float: left;
 }
@@ -199,6 +199,12 @@ a#openfireLink
 	background-image: url('../_images/openfirelogo.png');
 }
 
+a#w3cLink
+{
+        width: 88px;
+        background-image: url('http://www.w3.org/Icons/valid-xhtml10-blue');
+}
+		
 div.popup
 {
 	position: absolute;
@@ -221,4 +227,64 @@ div#copyright span
 	color: #000000;
 	display: block;
 	text-align: center;
+}             
+
+div#sitemap
+{
+    width: 800px;
+    float: left;
+    background: transparent;
+    overflow: hidden;
+    text-align: center;
+}
+
+div#sitemap a
+{
+    color: #000000;
+    text-decoration: underline;
+}
+
+div#sitemap a:link, a:active, a:visited, a:hover
+{
+    color: #000000;
+    text-decoration: underline;
+}               
+
+div#simpleNavigation
+{
+   width: 800px;
+   overflow: hidden;
+   background-color: #7097cd;
+   border-top: 1px solid #50779d;
+   border-bottom: 1px solid #ffffff;
+   float: left;
+}
+
+div#simpleNavigation div.navigationLink
+{
+  width: 80px;
+  float: left;
+  border-right: 1px solid #50779d;
+}
+
+div#simpleNavigation div.navigationLink a
+{
+  display: block;
+}
+
+div#simpleNavigation div.navigationLink a:link, a:visited, a:active
+{
+   color: #e0e0e0;
+   text-decoration: none;
+}
+
+div#simpleNavigation div.navigationLink a span
+{
+  text-indent: 5px;
+  display: block;
+}
+
+div#simpleNavigation div.navigationLink a span.current
+{
+   background-color: #50779d;
 }

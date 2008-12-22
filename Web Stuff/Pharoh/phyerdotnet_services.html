@@ -11,6 +11,21 @@
 			{
 			}
 		</script>
+		<style>
+			a.signupLink
+			{
+				display: block;
+				width: 92px;
+				height: 22px;
+				background-image: url('http://www.phyer.net/grafx/signup.png');
+				margin: 4px 0px;
+			}
+			
+			a.signupLink span
+			{
+				display: none;
+			}
+		</style>
 	</head>
 	<body onload="javascript: init();">
 		<form id="frontPageForm" action="https://www.phyer.net/cgi-bin/fmanager/index.cgi" method="post">
@@ -51,8 +66,15 @@
 							<span class="spanWithImage">-Level2 "Premium Services"-</span>
 						</h2>
 						<ul>
-							<li>Studio Pass: 2.2GB of web space &amp; 1 ROAR! login with 1 reserved chatroom- $3.50/mo</li>
-							<li>Team Pass- 3.5gb of web space, support for 1 domain &amp; 3 ROAR! logins with 1 reserved chatroom- $5/mo</li>
+							<li>
+								<span>Studio Pass: 2.2GB of web space &amp; 1 ROAR! login with 1 reserved chatroom- $3.50/mo</span>
+							</li>
+							<li>
+								<span>Team Pass- 3.5gb of web space, support for 1 domain &amp; 3 ROAR! logins with 1 reserved chatroom- $5/mo</span>
+								<a class="signupLink" href="https://www.phyer.net/cgi-bin/fmanager/signup.cgi?group=4" onmouseover="this.style.backgroundImage='url(http://www.phyer.net/grafx/signup2.png)'" onmouseout="this.style.backgroundImage='url(http://www.phyer.net/grafx/signup.png)'">
+									<span>Sign Up Now!</span>
+								</a>
+							</li>
 						</ul>
 						<h2>
 							<img alt="NAS Image" src="http://www.phyer.net/grafx/NAS.gif"/>
@@ -67,6 +89,9 @@
 									<li>"+"Domain- $1/mo per domain for either Core, Studio or Team Pass(Limit is 3 domains*)</li>
 									<li>"+"Member- $1.50 per additional user for a Team Pass or Studio Pass account(Limit is 7 users*)</li>
 								</ul>
+								<a class="signupLink" href="https://www.phyer.net/cgi-bin/fmanager/signup.cgi?group=4" onmouseover="this.style.backgroundImage='url(http://www.phyer.net/grafx/signup2.png)'" onmouseout="this.style.backgroundImage='url(http://www.phyer.net/grafx/signup.png)'">
+									<span>Sign Up Now!</span>
+								</a>
 							</li>
 						</ul>
 						<p>Level2 &amp; Level3 services receive "priority support"*</p>
@@ -141,6 +166,9 @@
 							</a>
 							<a id="openfireLink" class="footerLink" href="http://www.igniterealtime.org/projects/openfire/index.jsp">
 								<span>openfire XMPP Server</span>
+							</a>
+							<a id="w3cLink" class="footerLink" href="http://validator.w3.org/check?uri=referer">
+								<span>W3C Valid - HTML</span>
 							</a>
 						</div>
 						<div id="infoAbout">
