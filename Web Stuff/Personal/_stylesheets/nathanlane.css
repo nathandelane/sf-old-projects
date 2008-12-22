@@ -78,8 +78,6 @@ div#pageWrapper
 	width: 800px;
 	overflow: hidden;
 	margin: 0px auto;
-	background-image: url('../_images/pagebackground.png');
-	background-repeat: y-repeat;
 	float: none;
 }
 
@@ -164,32 +162,15 @@ div.horizontalRule
 	background-repeat: x-repeat;
 }
 
-div#blogEntryContainer
+div#footer
 {
-	width: 800px;
+	margin: 10px 0px;
+	width: 100%;
 	overflow: hidden;
-	float: left;
 }
 
-div#blogEntries
+span#copyright
 {
-	width: 500px;
-	overflow: hidden;
-	float: left;
-}
-
-div#blogContents
-{
-	width: 270px;
-	overflow: hidden;
-	float: left;
-	margin: 0px 0px 0px 10px;
-	padding: 0px 10px;
-	background-color: #ffe3cd;
-}
-
-div.blogEntry
-{
-	width: 500px;
-	overflow: hidden;
+	display: block;
+	text-align: center;
 }

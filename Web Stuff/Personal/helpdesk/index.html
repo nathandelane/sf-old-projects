@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>Nathan Lane's Helpdesk | PTG | Phyernet</title>
+		<meta http-equiv="content-type" content="text/xhtml; charset=windows-1252"/>
+		<link rel="stylesheet" href="../_stylesheets/nathanlane.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="../_stylesheets/helpdesk.css" type="text/css" media="screen">
+		<link href="../favicon.png" rel="shortcut icon"/>
+	</head>
+	<body>
+		<div id="pageWrapper">
+			<div id="pageContent">
+				<div id="navigationContainer">
+					<div id="blogLink" class="navigationItem">
+						<a id="blogLinkAnchor" href="/nathanlane/">
+							<span>blog</span>
+						</a>
+					</div>
+					<div id="articlesLink" class="navigationItem">
+						<a id="articlesLinkAnchor" href="/nathanlane/articles/">
+							<span>articles</span>
+						</a>
+					</div>
+					<div id="helpdeskLink" class="navigationItem">
+						<a class="current" id="helpdeskLinkAnchor" href="/nathanlane/helpdesk/">
+							<span>helpdesk</span>
+						</a>
+					</div>
+				</div>
+				<div id="contentContainer">
+					<div id="containerSpacer"></div>
+					<p>This page is a wrapper around the Easy File Manager messaging system. In order to utilize it you must have an account with Phyer on PhyerNet.</p>
+					<div class="horizontalRule"></div>
+					<div id="helpdeskFormContainer">
+						<form name="helpdeskForm" id="helpdeskForm" method="post" action="https://www.phyer.net/cgi-bin/fmanager/index.cgi?act=message_form">
+							<input id="actField" type="hidden" value="message" name="act"/>
+							<div class="formFieldContainer">
+								<label class="helpdeskForm" for="recepientField">Recepient:</label>
+								<input class="helpdeskForm" id="recepientField" type="text" size="32" value="nathanlane" name="user" readonly/>
+							</div>
+							<div class="formFieldContainer">
+								<label class="helpdeskForm" for="subjectField">Subject:</label>
+								<input class="helpdeskForm" id="subjectField" type="text" size="50" value="helpdesk" name="subject" readonly/>
+							</div>
+							<div class="formFieldContainer">
+								<label class="helpdeskForm" for="contentField">Email Text:</label>
+								<textarea class="helpdeskForm" id="contentField" name="content">Type your question here.</textarea>
+							</div>
+							<div class="formFieldContainer">
+								<input id="submitButton" type="submit" value="Send Email" onmouseout="this.style.backgroundPosition='top left'" onmouseover="this.style.backgroundPosition='top right'"/>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="horizontalRule"></div>
+			<div id="footer">
+				<span id="copyright">Website Copyright &copy; 2008, Nathan Lane. Flowing Orange Diamond logo Copyright &copy, 2008, Nathan Lane.</span>
+			</div>
+		</div>
+	</body>
+</html>

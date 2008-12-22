@@ -1,0 +1,29 @@
+div#blogEntryContainer
+{
+	width: 800px;
+	overflow: hidden;
+	float: left;
+}
+
+div#blogEntries
+{
+	width: 500px;
+	overflow: hidden;
+	float: left;
+}
+
+div#blogContents
+{
+	width: 270px;
+	overflow: hidden;
+	float: left;
+	margin: 0px 0px 0px 10px;
+	padding: 0px 10px;
+	background-color: #ffe3cd;
+}
+
+div.blogEntry
+{
+	width: 500px;
+	overflow: hidden;
+}

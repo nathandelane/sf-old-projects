@@ -1,0 +1,58 @@
+div#helpdeskFormContainer
+{
+	width: 420px;
+	margin: 20px 140px;
+}
+
+div.formFieldContainer
+{
+	width: 420px;
+	overflow: hidden;
+	margin: 0px 0px 10px 0px;
+}
+
+label.helpdeskForm
+{
+	display: block;
+	float: left;
+	width: 200px;
+	overflow: hidden;
+	text-align: right;
+	font-size: 16px;
+	margin: 0px 10px 0px 0px;
+}
+
+input.helpdeskForm
+{
+	display: block;
+	float: left;
+	width: 200px;
+	overflow: hidden;
+	border: solid 1px #868686;
+	color: #868686;
+}
+
+textarea.helpdeskForm
+{
+	display: block;
+	float: left;
+	width: 410px;
+	height: 200px;
+	overflow: hidden;
+	border: solid 1px #868686;
+	margin: 10px 0px 0px 0px;
+}
+
+input#submitButton
+{
+	display: block;
+	width: 90px;
+	height: 22px;
+	overflow: hidden;
+	float: right;
+	margin: 0px 8px 0px 0px;
+	background-image: url('../_images/sendbuttonbg.png');
+	border: 0px;
+	cursor: pointer;
+	color: #ffffff;
+}
