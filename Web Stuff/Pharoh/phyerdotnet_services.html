@@ -12,13 +12,17 @@
 			}
 		</script>
 		<style>
+			div.signupLink
+			{
+				margin: 28px 0px 0px 0px;
+			}
+			
 			a.signupLink
 			{
 				display: block;
 				width: 92px;
 				height: 22px;
 				background-image: url('http://www.phyer.net/grafx/signup.png');
-				margin: 4px 0px;
 			}
 			
 			a.signupLink span
@@ -48,6 +52,23 @@
 						</div>
 					</div>
 				</div>
+				<div id="simpleNavigation">
+					<div class="navigationLink">
+						<a id="homeLink" href="http://www.phyer.net/">
+							<span>Home</span>
+						</a>
+					</div>
+					<div class="navigationLink">
+						<a id="servicesLink" href="http://www.phyer.net/services.html">
+							<span>Services</span>
+						</a>
+					</div>
+					<div class="navigationLink">
+						<a id="infoLink" href="http://www.phyer.net/info.html">
+							<span class="current">Info</span>
+						</a>
+					</div>
+				</div>
 				<div id="pageContent" class="pageContent">
 					<p>
 						Almost all plans include disk space for a website or personal storage. And, access to the exclusive chat service, "ROAR!". Additional support &amp; other services are available for select plans.
@@ -71,6 +92,9 @@
 							</li>
 							<li>
 								<span>Team Pass- 3.5gb of web space, support for 1 domain &amp; 3 ROAR! logins with 1 reserved chatroom- $5/mo</span>
+								<div class="signupLink">
+									<span>For Level1 &amp; 2 services Click here</span>
+								</div>
 								<a class="signupLink" href="https://www.phyer.net/cgi-bin/fmanager/signup.cgi?group=4" onmouseover="this.style.backgroundImage='url(http://www.phyer.net/grafx/signup2.png)'" onmouseout="this.style.backgroundImage='url(http://www.phyer.net/grafx/signup.png)'">
 									<span>Sign Up Now!</span>
 								</a>
@@ -89,6 +113,9 @@
 									<li>"+"Domain- $1/mo per domain for either Core, Studio or Team Pass(Limit is 3 domains*)</li>
 									<li>"+"Member- $1.50 per additional user for a Team Pass or Studio Pass account(Limit is 7 users*)</li>
 								</ul>
+								<div class="signupLink">
+									<span>For Level 3 &amp; non-CM's Click here</span>
+								</div>
 								<a class="signupLink" href="https://www.phyer.net/cgi-bin/fmanager/signup.cgi?group=4" onmouseover="this.style.backgroundImage='url(http://www.phyer.net/grafx/signup2.png)'" onmouseout="this.style.backgroundImage='url(http://www.phyer.net/grafx/signup.png)'">
 									<span>Sign Up Now!</span>
 								</a>
@@ -179,6 +206,11 @@
 				</div>
 				<div id="copyright">
 					<span>Copyright &copy; 2008 PhyerNet. All rights reserved.</span>
+				</div>
+				<div id="sitemap">
+					<a id="homeSMLink" href="http://www.phyer.net/">Home</a>
+					<a id="servicesSMLink" href="http://www.phyer.net/services.html">Services</a>
+					<a id="infoSMLink" href="http://www.phyer.net/info.html">Info</a>
 				</div>
 				<div id="popup" style="display: none;" class="popup"></div>
 			</div>

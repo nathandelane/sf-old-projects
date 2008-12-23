@@ -520,6 +520,66 @@
 			display: block;
 			text-align: center;
 		}
+		
+		div#sitemap
+		{
+		    width: 800px;
+		    float: left;
+		    background: transparent;
+		    overflow: hidden;
+		    text-align: center;
+		}
+
+		div#sitemap a
+		{
+		    color: #000000;
+		    text-decoration: underline;
+		}
+
+		div#sitemap a:link, a:active, a:visited, a:hover
+		{
+		    color: #000000;
+		    text-decoration: underline;
+		}               
+
+		div#simpleNavigation
+		{
+		   width: 800px;
+		   overflow: hidden;
+		   background-color: #7097cd;
+		   border-top: 1px solid #50779d;
+		   border-bottom: 1px solid #ffffff;
+		   float: left;
+		}
+
+		div#simpleNavigation div.navigationLink
+		{
+		  width: 80px;
+		  float: left;
+		  border-right: 1px solid #50779d;
+		}
+
+		div#simpleNavigation div.navigationLink a
+		{
+		  display: block;
+		}
+
+		div#simpleNavigation div.navigationLink a:link, a:visited, a:active
+		{
+		   color: #e0e0e0;
+		   text-decoration: none;
+		}
+
+		div#simpleNavigation div.navigationLink a span
+		{
+		  text-indent: 5px;
+		  display: block;
+		}
+
+		div#simpleNavigation div.navigationLink a span.current
+		{
+		   background-color: #50779d;
+		}
 		</style>
 	</head>
 	<body onload="javascript: init();">
@@ -541,6 +601,23 @@
 						<div id="submitButtonContainer">
 							<input type="submit" id="submitButton" name="loginButton" value="Login"/>
 						</div>
+					</div>
+				</div>
+				<div id="simpleNavigation">
+					<div class="navigationLink">
+						<a id="homeLink" href="http://www.phyer.net/">
+							<span>Home</span>
+						</a>
+					</div>
+					<div class="navigationLink">
+						<a id="servicesLink" href="http://www.phyer.net/services.html">
+							<span>Services</span>
+						</a>
+					</div>
+					<div class="navigationLink">
+						<a id="infoLink" href="http://www.phyer.net/info.html">
+							<span class="current">Info</span>
+						</a>
 					</div>
 				</div>
 				<div id="coolComputerBackgroundContainer" class="coolComputerBackgroundContainer">
@@ -684,6 +761,11 @@
 				</div>
 				<div id="copyright">
 					<span>Copyright &copy; 2008 PhyerNet. All rights reserved.</span>
+				</div>
+				<div id="sitemap">
+					<a id="homeSMLink" href="http://www.phyer.net/">Home</a>
+					<a id="servicesSMLink" href="http://www.phyer.net/services.html">Services</a>
+					<a id="infoSMLink" href="http://www.phyer.net/info.html">Info</a>
 				</div>
 				<div id="popup" style="display: none;" class="popup"></div>
 			</div>
