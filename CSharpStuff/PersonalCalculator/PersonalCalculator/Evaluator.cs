@@ -245,6 +245,24 @@ namespace Nathandelane.Math.PersonalCalculator
             return result;
         }
 
+        public static string Logarithm(string b, string r)
+        {
+            string result = String.Empty;
+            double bas = double.Parse(b);
+            double real = double.Parse(r);
+            double internalResult = System.Math.Log(real, bas);
+
+            result = String.Format("{0}", internalResult);
+
+            if (!DecimalHasValue(result))
+            {
+                Int64 intResult = Int64.Parse(result);
+                result = String.Format("{0}", intResult);
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region Private Methods

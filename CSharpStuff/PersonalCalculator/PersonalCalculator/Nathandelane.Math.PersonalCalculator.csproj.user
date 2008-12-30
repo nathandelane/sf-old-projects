@@ -3,7 +3,7 @@
     <StartArguments>0.5/2</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <StartArguments>6^3</StartArguments>
+    <StartArguments>-i</StartArguments>
   </PropertyGroup>
   <PropertyGroup>
     <PublishUrlHistory>

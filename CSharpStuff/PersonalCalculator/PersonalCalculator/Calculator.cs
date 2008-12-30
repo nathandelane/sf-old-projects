@@ -228,6 +228,14 @@ namespace Nathandelane.Math.PersonalCalculator
                                     right = unusedTokens.Pop().Value;
                                     localResult = Evaluator.InverseTangent(right);
                                     break;
+                                case "log":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.Logarithm(String.Format("{0}", 10), right);
+                                    break;
+                                case "ln":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.Logarithm(String.Format("{0}", System.Math.E), right);
+                                    break;
                             }
 
                             unusedTokens.Push(new NumberToken(localResult));
