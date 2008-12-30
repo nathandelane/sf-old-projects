@@ -6,8 +6,14 @@ namespace Nathandelane.Math.PersonalCalculator
 {
     internal class Token
     {
+        #region Fields
+
         private string _value;
         private TokenType _type;
+
+        #endregion
+
+        #region Properties
 
         public string Value
         {
@@ -19,11 +25,19 @@ namespace Nathandelane.Math.PersonalCalculator
             get { return _type; }
         }
 
+        #endregion
+
+        #region Constructors
+
         public Token(string value, TokenType type)
         {
             _value = value;
             _type = type;
         }
+
+        #endregion
+
+        #region Public Methods
 
         public static Token CreateNullToken()
         {
@@ -50,5 +64,7 @@ namespace Nathandelane.Math.PersonalCalculator
 
             return value;
         }
+
+        #endregion
     }
 }

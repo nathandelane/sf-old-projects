@@ -4,8 +4,27 @@ using System.Text;
 
 namespace Nathandelane.Math.PersonalCalculator
 {
-    internal class Evaluator
+    public class Evaluator
     {
+        #region Public Methods
+
+        public static string Negate(string right)
+        {
+            string result = String.Empty;
+            double rt = double.Parse(right);
+            double internalResult = (-1) * rt;
+
+            result = String.Format("{0}", internalResult);
+
+            if (!DecimalHasValue(result))
+            {
+                Int64 intResult = Int64.Parse(result);
+                result = String.Format("{0}", intResult);
+            }
+
+            return result;
+        }
+
         public static string Add(string leftAddend, string rightAddend)
         {
             string result = String.Empty;
@@ -179,6 +198,8 @@ namespace Nathandelane.Math.PersonalCalculator
 
             return result;
         }
+
+        #endregion
 
         #region Private Methods
 

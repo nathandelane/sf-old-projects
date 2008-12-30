@@ -11,13 +11,13 @@ namespace Nathandelane.Math.PersonalCalculator
     {
         Variable,           // A variable constitutes any alphanumeric symbol that does not map to a function. It has the lowest precedence, because it must be evaluated before other operations may continue.
         Number,             // Number is any real number of either integer or floating point type.
+        LeftPerenthesis,    // A left perenthesis marks the beginning of a portion of an equation that is to be evaluated before all other operations external to the perenthesized block.
+        RightPerenthesis,   // A right perenthesis marks the end of a perenthesized block of an equation.
         Negation,           // Negation is the negation of a result or number. It looks similar to a subtraction without a minuend.
         Subtraction,        // Subtraction is the difference between two numbers, the minuend minus the subtrahend.
         Addition,           // Addition is the sum of two addends.
         Division,           // Division is the quotient of two numbers, the dividend divided by the divisor.
         Multiplication,     // Multiplication is the product of two numbers, the multiplier and the multiplicand, or factors.
-        LeftPerenthesis,    // A left perenthesis marks the beginning of a portion of an equation that is to be evaluated before all other operations external to the perenthesized block.
-        RightPerenthesis,   // A right perenthesis marks the end of a perenthesized block of an equation.
         Function,           // A function my be trigonometrical, analytical, algebraic, or a calculus function. It may also be user defined. It is not limited to mathematically provable functions.
         Null                // This is only used in the case of creating a null token.
     }

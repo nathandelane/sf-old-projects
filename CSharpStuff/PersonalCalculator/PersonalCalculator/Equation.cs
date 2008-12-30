@@ -76,11 +76,6 @@ namespace Nathandelane.Math.PersonalCalculator
                     }
                     while (NumberToken.Matches(strPart));
 
-                    if (lastToken.Type == TokenType.Negation)
-                    {
-                        tokenValue = String.Format("-{0}", tokenValue);
-                    }
-
                     lastToken = new NumberToken(tokenValue);
                     AddComponent(lastToken);
                     index = tokenIndex - 1;
@@ -100,6 +95,7 @@ namespace Nathandelane.Math.PersonalCalculator
                     else
                     {
                         lastToken = new NegationToken();
+                        AddComponent(lastToken);
                     }
                 }
                 else if (MultiplicationToken.Matches(tokenValue))
@@ -230,6 +226,7 @@ namespace Nathandelane.Math.PersonalCalculator
                         if (operationStack.Count > 0 && operationStack.Peek().Type > nextToken.Type)
                         {
                             newEquation.Push(operationStack.Pop());
+                            operationStack.Push(nextToken);
                         }
                         else
                         {
@@ -240,6 +237,7 @@ namespace Nathandelane.Math.PersonalCalculator
                         if (operationStack.Count > 0 && operationStack.Peek().Type > nextToken.Type)
                         {
                             newEquation.Push(operationStack.Pop());
+                            operationStack.Push(nextToken);
                         }
                         else
                         {
@@ -247,10 +245,26 @@ namespace Nathandelane.Math.PersonalCalculator
                         }
                         break;
                     case TokenType.Division:
-                        operationStack.Push(nextToken);
+                        if (operationStack.Count > 0 && (operationStack.Peek().Type < nextToken.Type && operationStack.Peek().Type != TokenType.LeftPerenthesis))
+                        {
+                            newEquation.Push(operationStack.Pop());
+                            operationStack.Push(nextToken);
+                        }
+                        else
+                        {
+                            operationStack.Push(nextToken);
+                        }
                         break;
                     case TokenType.Multiplication:
-                        operationStack.Push(nextToken);
+                        if (operationStack.Count > 0 && (operationStack.Peek().Type < nextToken.Type && operationStack.Peek().Type != TokenType.LeftPerenthesis))
+                        {
+                            newEquation.Push(operationStack.Pop());
+                            operationStack.Push(nextToken);
+                        }
+                        else
+                        {
+                            operationStack.Push(nextToken);
+                        }
                         break;
                     case TokenType.LeftPerenthesis:
                         operationStack.Push(nextToken);

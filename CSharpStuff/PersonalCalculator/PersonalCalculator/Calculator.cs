@@ -121,6 +121,20 @@ namespace Nathandelane.Math.PersonalCalculator
                     case TokenType.Number:
                         unusedTokens.Push(equation.Pop());
                         break;
+                    case TokenType.Negation:
+                        equation.Pop();
+                        try
+                        {
+                            string right = unusedTokens.Pop().Value;
+                            string result = Evaluator.Negate(right);
+
+                            unusedTokens.Push(new NumberToken(result));
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+                            Console.WriteLine("Could not evaluate subtraction because not enough operands were present. This may be an internal error. {0}", ex.Message);
+                        }
+                        break;
                     case TokenType.Subtraction:
                         equation.Pop();
                         try
@@ -183,38 +197,45 @@ namespace Nathandelane.Math.PersonalCalculator
                         break;
                     case TokenType.Function:
                         Token function = equation.Pop();
-                        string localResult = String.Empty;
-                        string right = String.Empty;
-
-                        switch (function.Value.ToLower())
+                        try
                         {
-                            case "sin":
-                                right = unusedTokens.Pop().Value;
-                                localResult = Evaluator.Sine(right);
-                                break;
-                            case "cos":
-                                right = unusedTokens.Pop().Value;
-                                localResult = Evaluator.Cosine(right);
-                                break;
-                            case "tan":
-                                right = unusedTokens.Pop().Value;
-                                localResult = Evaluator.Tangent(right);
-                                break;
-                            case "arcsin":
-                                right = unusedTokens.Pop().Value;
-                                localResult = Evaluator.InverseSine(right);
-                                break;
-                            case "arccos":
-                                right = unusedTokens.Pop().Value;
-                                localResult = Evaluator.InverseCosine(right);
-                                break;
-                            case "arctan":
-                                right = unusedTokens.Pop().Value;
-                                localResult = Evaluator.InverseTangent(right);
-                                break;
-                        }
+                            string localResult = String.Empty;
+                            string right = String.Empty;
 
-                        unusedTokens.Push(new NumberToken(localResult));
+                            switch (function.Value.ToLower())
+                            {
+                                case "sin":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.Sine(right);
+                                    break;
+                                case "cos":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.Cosine(right);
+                                    break;
+                                case "tan":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.Tangent(right);
+                                    break;
+                                case "arcsin":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.InverseSine(right);
+                                    break;
+                                case "arccos":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.InverseCosine(right);
+                                    break;
+                                case "arctan":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.InverseTangent(right);
+                                    break;
+                            }
+
+                            unusedTokens.Push(new NumberToken(localResult));
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+                            Console.WriteLine("Could not evaluate subtraction because not enough operands were present. This may be an internal error. {0}", ex.Message);
+                        }
                         break;
                     default:
                         throw new TokenUnrecognizedException(String.Format("{0}", equation.Peek()));
