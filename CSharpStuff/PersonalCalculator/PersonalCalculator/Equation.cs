@@ -143,6 +143,16 @@ namespace Nathandelane.Math.PersonalCalculator
                     AddComponent(lastToken);
                     index = tokenIndex - 1;
                 }
+                else if (FactorialToken.Matches(tokenValue))
+                {
+                    lastToken = new FactorialToken();
+                    AddComponent(lastToken);
+                }
+                else if (PowerToken.Matches(tokenValue))
+                {
+                    lastToken = new PowerToken();
+                    AddComponent(lastToken);
+                }
                 else // This case is that we are probably dealing with a variable, but for now I'm going to throw an exception.
                 {
                     // TODO: fix this to handle variables.
@@ -281,10 +291,16 @@ namespace Nathandelane.Math.PersonalCalculator
                         }
                         catch (InvalidOperationException ex)
                         {
-                            Console.WriteLine("Could not find left perenthesis on operation stack. This might be an internal error.");
+                            Console.WriteLine("Could not find left perenthesis on operation stack. This might be an internal error. {0}", ex.Message);
                         }
                         break;
                     case TokenType.Function:
+                        operationStack.Push(nextToken);
+                        break;
+                    case TokenType.Factorial:
+                        operationStack.Push(nextToken);
+                        break;
+                    case TokenType.Power:
                         operationStack.Push(nextToken);
                         break;
                 }

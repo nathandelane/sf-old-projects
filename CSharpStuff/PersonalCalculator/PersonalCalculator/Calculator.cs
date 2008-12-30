@@ -237,6 +237,35 @@ namespace Nathandelane.Math.PersonalCalculator
                             Console.WriteLine("Could not evaluate subtraction because not enough operands were present. This may be an internal error. {0}", ex.Message);
                         }
                         break;
+                    case TokenType.Factorial:
+                        equation.Pop();
+                        try
+                        {
+                            string left = unusedTokens.Pop().Value;
+                            string localResult = Evaluator.Factorial(left);
+
+                            unusedTokens.Push(new NumberToken(localResult));
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+                            Console.WriteLine("Could not evaluate subtraction because not enough operands were present. This may be an internal error. {0}", ex.Message);
+                        }
+                        break;
+                    case TokenType.Power:
+                        equation.Pop();
+                        try
+                        {
+                            string pow = unusedTokens.Pop().Value;
+                            string bas = unusedTokens.Pop().Value;
+                            string localResult = Evaluator.Power(bas, pow);
+
+                            unusedTokens.Push(new NumberToken(localResult));
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+                            Console.WriteLine("Could not evaluate subtraction because not enough operands were present. This may be an internal error. {0}", ex.Message);
+                        }
+                        break;
                     default:
                         throw new TokenUnrecognizedException(String.Format("{0}", equation.Peek()));
                 }

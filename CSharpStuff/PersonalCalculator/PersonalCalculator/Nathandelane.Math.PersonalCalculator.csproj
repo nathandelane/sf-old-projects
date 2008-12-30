@@ -59,11 +59,13 @@
     <Compile Include="DivisionToken.cs" />
     <Compile Include="Equation.cs" />
     <Compile Include="Evaluator.cs" />
+    <Compile Include="FactorialToken.cs" />
     <Compile Include="FunctionToken.cs" />
     <Compile Include="LeftPerenthesisToken.cs" />
     <Compile Include="MultiplicationToken.cs" />
     <Compile Include="NegationToken.cs" />
     <Compile Include="NumberToken.cs" />
+    <Compile Include="PowerToken.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RightPerenthesisToken.cs" />

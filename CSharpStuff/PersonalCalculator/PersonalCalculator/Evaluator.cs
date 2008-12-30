@@ -199,6 +199,52 @@ namespace Nathandelane.Math.PersonalCalculator
             return result;
         }
 
+        public static string Factorial(string left)
+        {
+            string result = String.Empty;
+            double lt = double.Parse(left);
+            double internalResult = lt;
+
+            while (lt > 1)
+            {
+                internalResult = internalResult * (lt - 1);
+                lt--;
+            }
+
+            result = String.Format("{0}", internalResult);
+
+            if (!DecimalHasValue(result))
+            {
+                Int64 intResult = Int64.Parse(result);
+                result = String.Format("{0}", intResult);
+            }
+
+            return result;
+        }
+
+        public static string Power(string b, string n)
+        {
+            string result = String.Empty;
+            double bas = double.Parse(b);
+            double pow = double.Parse(n);
+            double internalResult = bas;
+
+            for (int counter = int.Parse(n); counter > 1; counter--)
+            {
+                internalResult = internalResult * bas;
+            }
+
+            result = String.Format("{0}", internalResult);
+
+            if (!DecimalHasValue(result))
+            {
+                Int64 intResult = Int64.Parse(result);
+                result = String.Format("{0}", intResult);
+            }
+
+            return result;
+        }
+
         #endregion
 
         #region Private Methods
