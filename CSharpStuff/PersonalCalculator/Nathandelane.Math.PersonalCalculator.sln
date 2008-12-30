@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual C# Express 2005
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Math.PersonalCalculator", "PersonalCalculator\Nathandelane.Math.PersonalCalculator.csproj", "{AAB7A937-03D6-4057-800C-6BA3DF2093D3}"
 EndProject
 Global
