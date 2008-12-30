@@ -54,11 +54,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionToken.cs" />
+    <Compile Include="Calculator.cs" />
+    <Compile Include="DivisionToken.cs" />
+    <Compile Include="Equation.cs" />
+    <Compile Include="Evaluator.cs" />
+    <Compile Include="FunctionToken.cs" />
+    <Compile Include="LeftPerenthesisToken.cs" />
+    <Compile Include="MultiplicationToken.cs" />
+    <Compile Include="NegationToken.cs" />
+    <Compile Include="NumberToken.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <Compile Include="RightPerenthesisToken.cs" />
+    <Compile Include="SubtractionToken.cs" />
+    <Compile Include="Token.cs" />
+    <Compile Include="TokenType.cs" />
+    <Compile Include="TokenUnrecognizedException.cs" />
+    <Compile Include="UserQuitException.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
