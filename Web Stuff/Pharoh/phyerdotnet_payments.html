@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<title>Payments | Phyernet</title>
+		<meta http-equiv="content-type" content="text/xhtml; charset=windows-1252"/>
+		<link href="http://www.phyer.net/rss.xml" title="PhyerNet News" type="application/rss+xml" rel="alternate"/>
+		<link href="_stylesheets/phyernet.css" type="text/css" rel="stylesheet">
+		<link rel="shortcut icon" href="favicon.ico"/>
+		<script type="text/javascript">
+		function init()
+		{
+		}
+		</script>
+		<style type="text/css">
+		div.formRow
+		{
+			width: 100%;
+			float: none;
+			overflow: hidden;
+		}
+		
+		div#alertPayFormFields
+		{
+			width: 100%;
+			margin: 20px 10px;
+		}
+		
+		label.alertPayFormRow
+		{
+			width: 370px;
+			overflow: hidden;
+			line-height: 20px;
+			margin: 0px 10px 0px 0px;
+		}
+		
+		input.alertPayFormRow
+		{
+			width: 380px;
+			overflow: hidden;
+			height: 16px;
+			border: solid #e0e0e0 1px;
+		}
+		
+		input#imageButton
+		{
+			display: block;
+			float: right;
+			margin: 10px 30px 0px 0px;
+		}
+		
+		span.emphesized
+		{
+			font-style: italic;
+		}
+		</style>
+	</head>
+	<body onload="javascript: init();">
+		<form id="alertPayForm" action="https://www.alertpay.com/PayProcess.aspx" method="post">
+			<input type="hidden" name="ap_purchasetype" value="service"/>
+			<input type="hidden" name="ap_merchant" value="darkpryzm@hotmail.com"/>
+			<input type="hidden" name="ap_itemname" value="PhyerNet Hosting"/>
+			<input type="hidden" name="ap_currency" value="USD"/>
+			<input type="hidden" name="ap_returnurl" value="http://www.phyer.net/payments.html"/>
+			<input type="hidden" name="ap_itemcode" value="PN:0000"/>
+			<input type="hidden" name="ap_quantity" value="1"/>
+			<input type="hidden" name="ap_description" value="Your PhyerNet hosting package's total"/>
+			<input type="hidden" name="ap_cancelurl" value="http://www.phyer.net/index.html"/>
+			<div id="pageWrapper" class="pageWrapper">
+				<div id="pageHeading" class="pageHeading">
+					<a id="aboutLink" href="http://www.phyer.net/index.html" onmouseover="this.style.backgroundPosition='top right';" onmouseout="this.style.backgroundPosition='top left';">
+						<span>About PhyerNet</span>
+					</a>
+					<div id="loginPanel">
+						<form id="frontPageForm" method="post" action="https://www.phyer.net/cgi-bin/fmanager/index.cgi">
+							<div id="userName">
+								<label for="userNameInput">Username:</label>
+								<input type="text" id="userNameInput" name="login" value=""/>
+							</div>
+							<div id="password">
+								<label for="passwordInput">Password:</label>
+								<input type="password" id="passwordInput" name="password" value=""/>
+							</div>
+							<div id="submitButtonContainer">
+								<input type="submit" id="submitButton" name="loginButton" value="Login"/>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div id="simpleNavigation">
+					<div class="navigationLink">
+						<a id="homeLink" href="http://www.phyer.net/">
+							<span>Home</span>
+						</a>
+					</div>
+					<div class="navigationLink">
+						<a id="servicesLink" href="http://www.phyer.net/services.html">
+							<span>Services</span>
+						</a>
+					</div>
+					<div class="navigationLink">
+						<a id="infoLink" href="http://www.phyer.net/info.html">
+							<span>Info</span>
+						</a>
+					</div>
+					<div class="navigationLink">
+						<a id="infoLink" href="http://www.phyer.net/payments.html">
+							<span class="current">Payments</span>
+						</a>
+					</div>
+				</div>
+				<div id="pageContent" class="pageContent">
+					<!-- This is where the content of the page goes -->
+					<h2>Payments</h2>
+					<p>
+						All payments for the use of services provided by PhyerNet are processed through Alertpay(TM). You must be an existing customer to make a payment. Or have a Visa(TM) or AMEX(TM) debit or credit card on hand.
+					</p>
+					<p>Payments made with a credit card are subject to an additional $1 fee.</p>
+					<p>When submitting payments for the 1st time. Alertpay will create a "personal user" account for you. This is done as a courtesy to simplify future payments.</p>
+					<hr />
+					<h2>Instructions</h2>
+					<p>To make a payment. Please follow the steps listed below:</p>
+					<ul>
+						<li>1)Remove the "example amount" of 1.00 that is in the text field</li>
+						<li>2)Replace it with the total amount owed. This amount can be found on your monthly statement. Which we send out by PM through the file manager</li>
+						<li>3)Click, the "Pay Now" button and you will be forwarded to the checkout page</li>
+						<li>4)If you have an existing Alertpay account. Please, login. If you are a 1st time payer. Fill in ALL the information fields</li>
+						<li>5)After the payment has been made. You will receive a statement on Alertpay that is sent out to the email address provided</li>
+						<li>6)The statement that Alertpay sends out to you will contain a DATE with the time. A REFERENCE NUMBER & the AMOUNT paid. You must send a PM through the file manager to "phyeradmin" containing those 3 pieces of info to confirm that the payment was sent.</li>
+					</ul>
+					<p>Once Phyeradmin receives your PM. You will be sent a receipt.txt. Remember, the FULL amount owed must be paid in order to avoid any interruptions of service.</p>
+					<p><span class="emphesized">It is the customer's own responsibility to keep their statements & receipts on record</span>*</p>
+					<!-- This area is the form -->
+					<div id="alertPayFormFields">
+						<form id="alertPayForm" action="https://www.alertpay.com/PayProcess.aspx" method="post">
+							<div class="formRow">
+								<label class="alertPayFormRow" for="amountTextField">Total Amount (in U.S. Dollars):</label>
+								<input class="alertPayFormRow" id="amountTextField" type="text" name="ap_amount" value="1.00"/>
+							</div>
+							<div class="formRow">
+								<input id="imageButton" type="image" name="ap_image" src="https://www.alertpay.com//PayNow/C407D26FB06B4536938C9C70A7C637B3b.gif"/>
+							</div>
+						</form>
+					</div>
+					<hr />
+					<h2>Disclaimer</h2>
+					<p>By rendering a payment from this page. You are agreeing to the terms of this disclaimer. Which is an agreement solely between you the user & PhyerNet. Users paying in a currency other than USD(United States Dollar*). Are responsible for keeping up with the current exchange rates of their country's currency to the United States Dollar. PhyerNet is not responsible for any additional fees charged to the user by the user's own banking institution. The institution they received their credit card through. Or by Alertpay. These are entities totally separate from PhyerNet. So, there is a chance that their rates & terms differ greatly from PhyerNet's own. PhyerNet reserves the right to suspend or terminate a user's account despite payments made if necessary. As well as change up rates & service plans. Users will be allowed to keep the service plan they are currently using at the same rates. If the plan is discontinued or altered in any way.</p>
+				</div>
+				<div id="footer">
+					<div id="footerInner">
+						<div id="poweredBy">
+							<div>
+								<span id="label">Powered by: </span>
+							</div>
+							<a id="abyssLink" class="footerLink" href="http://www.aprelium.com/">
+								<span>Abyss™ Web Server</span>
+							</a>
+							<a id="pclinuxosLink" class="footerLink" href="http://www.pclinuxos.com/">
+								<span>PCLinuxOS</span>
+							</a>
+							<a id="openfireLink" class="footerLink" href="http://www.igniterealtime.org/projects/openfire/index.jsp">
+								<span>openfire XMPP Server</span>
+							</a>
+							<a id="w3cLink" class="footerLink" href="http://validator.w3.org/check?uri=referer">
+								<span>W3C Valid - HTML</span>
+							</a>
+						</div>
+						<div id="infoAbout">
+							<div id="sslEnabled" class="footerObject"></div>
+							<div id="rssCapable" class="footerObject"></div>
+						</div>
+					</div>
+				</div>
+				<div id="copyright">
+					<span>Copyright &copy; 2008 PhyerNet. All rights reserved.</span>
+				</div>
+				<div id="sitemap">
+					<a id="homeSMLink" href="http://www.phyer.net/">Home</a>
+					<a id="servicesSMLink" href="http://www.phyer.net/services.html">Services</a>
+					<a id="infoSMLink" href="http://www.phyer.net/info.html">Info</a>
+				</div>
+				<div id="popup" style="display: none;" class="popup"></div>
+			</div>
+		</form>
+	</body>
+</html>
