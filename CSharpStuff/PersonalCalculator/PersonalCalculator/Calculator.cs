@@ -97,6 +97,10 @@ namespace Nathandelane.Math.PersonalCalculator
                             {
                                 Console.WriteLine("An internal error occurred: TokenUnrecognizedException was caught. {0}", ex0.Message);
                             }
+                            catch (FormatException ex0)
+                            {
+                                Console.WriteLine("An internal error occurred: Probably you attempted unary operations on a binary value. {0}", ex0.Message);
+                            }
                         }
                     }
                 }

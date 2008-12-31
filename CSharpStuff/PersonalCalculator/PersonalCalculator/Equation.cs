@@ -55,7 +55,21 @@ namespace Nathandelane.Math.PersonalCalculator
             {
                 tokenValue = String.Format("{0}", parts[index]);
 
-                if (ConditionalOperatorToken.Matches(tokenValue) || AssignmentOperatorToken.Matches(tokenValue))
+                if (BooleanToken.Matches(tokenValue))
+                {
+                    switch (tokenValue)
+                    {
+                        case "True":
+                            lastToken = new BooleanToken("True");
+                            break;
+                        case "False":
+                            lastToken = new BooleanToken("False");
+                            break;
+                    }
+
+                    AddComponent(lastToken);
+                }
+                else if (ConditionalOperatorToken.Matches(tokenValue) || AssignmentOperatorToken.Matches(tokenValue))
                 {
                     if (tokenValue.Equals("=")) // Could be either an assignment operator or a conditional
                     {

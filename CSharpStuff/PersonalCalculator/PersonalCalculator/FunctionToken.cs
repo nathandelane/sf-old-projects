@@ -20,7 +20,7 @@ namespace Nathandelane.Math.PersonalCalculator
         public static bool Matches(string value)
         {
             bool result = false;
-            Regex regex = new Regex("[A-Za-z]+");
+            Regex regex = new Regex("[a-z]+");
 
             if(regex.IsMatch(value))
             {
