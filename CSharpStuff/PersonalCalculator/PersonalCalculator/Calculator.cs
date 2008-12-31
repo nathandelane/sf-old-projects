@@ -131,6 +131,20 @@ namespace Nathandelane.Math.PersonalCalculator
             {
                 switch (equation.Peek().Type)
                 {
+                    case TokenType.BooleanToken:
+                        switch (equation.Peek().Value)
+                        {
+                            case "True":
+                                calculationResult = "1";
+                                break;
+                            case "False":
+                                calculationResult = "0";
+                                break;
+                        }
+
+                        equation.Pop();
+                        unusedTokens.Push(new NumberToken(calculationResult));
+                        break;
                     case TokenType.ConditionalOperator:
                         try
                         {

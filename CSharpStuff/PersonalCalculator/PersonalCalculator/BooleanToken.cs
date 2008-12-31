@@ -15,5 +15,22 @@ namespace Nathandelane.Math.PersonalCalculator
         }
 
         #endregion
+
+        #region Static Methods
+
+        public static bool Matches(string value)
+        {
+            bool result = false;
+            Regex regex = new Regex("^[FT]{1}");
+
+            if (regex.IsMatch(value))
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
+        #endregion
     }
 }
