@@ -70,6 +70,7 @@
     <Compile Include="MultiplicationToken.cs" />
     <Compile Include="NegationToken.cs" />
     <Compile Include="NumberToken.cs" />
+    <Compile Include="PCState.cs" />
     <Compile Include="PowerToken.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +98,9 @@
       <ProductName>.NET Framework 3.5</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

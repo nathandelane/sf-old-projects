@@ -67,26 +67,36 @@ namespace Nathandelane.Math.PersonalCalculator
                         userInput = userInput.Trim();
                         userInput = userInput.Replace(" ", "");
 
-                        switch (userInput)
+                        if (!String.IsNullOrEmpty(userInput))
                         {
-                            default:
-                                Equation equation = Equation.Parse(userInput);
-                                string result = Calculate(equation);
-                                Console.WriteLine("{0}", result);
-                                break;
-                            case "h":
-                                DisplayHelp();
-                                break;
-                            case "help":
-                                DisplayHelp();
-                                break;
-                            case "?":
-                                DisplayHelp();
-                                break;
-                            case "q":
-                                throw new UserQuitException();
-                            case "quit":
-                                throw new UserQuitException();
+                            try
+                            {
+                                switch (userInput)
+                                {
+                                    default:
+                                        Equation equation = Equation.Parse(userInput);
+                                        string result = Calculate(equation);
+                                        Console.WriteLine("{0}", result);
+                                        break;
+                                    case "h":
+                                        DisplayHelp();
+                                        break;
+                                    case "help":
+                                        DisplayHelp();
+                                        break;
+                                    case "?":
+                                        DisplayHelp();
+                                        break;
+                                    case "q":
+                                        throw new UserQuitException();
+                                    case "quit":
+                                        throw new UserQuitException();
+                                }
+                            }
+                            catch (TokenUnrecognizedException ex0)
+                            {
+                                Console.WriteLine("An internal error occurred: TokenUnrecognizedException was caught. {0}", ex0.Message);
+                            }
                         }
                     }
                 }
@@ -102,6 +112,9 @@ namespace Nathandelane.Math.PersonalCalculator
         /// </summary>
         public static void DisplayHelp()
         {
+            string availableFunctionsAndOperators = @"+ -(subtraction and negation) * / mod %(which is xor) & | ^(which is power) > < == != <= >= pi e sin cos tan arcsin arccos arctan log ln bin hex oct round ceil floor";
+
+            Console.WriteLine("Available functions and operators are {0}", availableFunctionsAndOperators);
         }
 
         #endregion
@@ -119,28 +132,38 @@ namespace Nathandelane.Math.PersonalCalculator
                 switch (equation.Peek().Type)
                 {
                     case TokenType.ConditionalOperator:
-                        string condRight = unusedTokens.Pop().Value;
-                        string condLeft = unusedTokens.Pop().Value;
-                        switch (equation.Peek().Value)
+                        try
                         {
-                            case "<":
-                                calculationResult = Evaluator.LessThan(condLeft, condRight);
-                                break;
-                            case ">":
-                                calculationResult = Evaluator.GreaterThan(condLeft, condRight);
-                                break;
-                            case "!=":
-                                calculationResult = Evaluator.NotEqual(condLeft, condRight);
-                                break;
-                            case "<=":
-                                calculationResult = Evaluator.LesThanOrEqual(condLeft, condRight);
-                                break;
-                            case ">=":
-                                calculationResult = Evaluator.GreaterThanOrEqual(condLeft, condRight);
-                                break;
-                            case "==":
-                                calculationResult = Evaluator.AreEqual(condLeft, condRight);
-                                break;
+                            string condRight = unusedTokens.Pop().Value;
+                            string condLeft = unusedTokens.Pop().Value;
+                            switch (equation.Peek().Value)
+                            {
+                                case "<":
+                                    calculationResult = Evaluator.LessThan(condLeft, condRight);
+                                    break;
+                                case ">":
+                                    calculationResult = Evaluator.GreaterThan(condLeft, condRight);
+                                    break;
+                                case "!=":
+                                    calculationResult = Evaluator.NotEqual(condLeft, condRight);
+                                    break;
+                                case "<=":
+                                    calculationResult = Evaluator.LesThanOrEqual(condLeft, condRight);
+                                    break;
+                                case ">=":
+                                    calculationResult = Evaluator.GreaterThanOrEqual(condLeft, condRight);
+                                    break;
+                                case "==":
+                                    calculationResult = Evaluator.AreEqual(condLeft, condRight);
+                                    break;
+                                default:
+                                    Console.WriteLine("Somehow the conditional {0} got through your filters. This is an internal error.", equation.Peek().Value);
+                                    throw new TokenUnrecognizedException(equation.Peek().Value);
+                            }
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+                            Console.WriteLine("Could not evaluate conditional because not enough operands were present. This may be an internal error. {0}", ex.Message);
                         }
 
                         equation.Pop();
@@ -154,6 +177,9 @@ namespace Nathandelane.Math.PersonalCalculator
                                 break;
                             case "pi":
                                 calculationResult = Evaluator.GetPi();
+                                break;
+                            case "$":
+                                calculationResult = PCState.Instance["$"] as String;
                                 break;
                         }
 
@@ -174,7 +200,7 @@ namespace Nathandelane.Math.PersonalCalculator
                         }
                         catch (InvalidOperationException ex)
                         {
-                            Console.WriteLine("Could not evaluate subtraction because not enough operands were present. This may be an internal error. {0}", ex.Message);
+                            Console.WriteLine("Could not evaluate negation because not enough operands were present. This may be an internal error. {0}", ex.Message);
                         }
                         break;
                     case TokenType.Subtraction:
@@ -204,7 +230,7 @@ namespace Nathandelane.Math.PersonalCalculator
                         }
                         catch (InvalidOperationException ex)
                         {
-                            Console.WriteLine("Could not evaluate subtraction because not enough operands were present. This may be an internal error. {0}", ex.Message);
+                            Console.WriteLine("Could not evaluate addition because not enough operands were present. This may be an internal error. {0}", ex.Message);
                         }
                         break;
                     case TokenType.Division:
@@ -219,7 +245,7 @@ namespace Nathandelane.Math.PersonalCalculator
                         }
                         catch (InvalidOperationException ex)
                         {
-                            Console.WriteLine("Could not evaluate subtraction because not enough operands were present. This may be an internal error. {0}", ex.Message);
+                            Console.WriteLine("Could not evaluate division because not enough operands were present. This may be an internal error. {0}", ex.Message);
                         }
                         break;
                     case TokenType.Multiplication:
@@ -234,7 +260,7 @@ namespace Nathandelane.Math.PersonalCalculator
                         }
                         catch (InvalidOperationException ex)
                         {
-                            Console.WriteLine("Could not evaluate subtraction because not enough operands were present. This may be an internal error. {0}", ex.Message);
+                            Console.WriteLine("Could not evaluate multiplication because not enough operands were present. This may be an internal error. {0}", ex.Message);
                         }
                         break;
                     case TokenType.Function:
@@ -308,13 +334,15 @@ namespace Nathandelane.Math.PersonalCalculator
                                     right = unusedTokens.Pop().Value;
                                     localResult = Evaluator.Floor(right);
                                     break;
+                                default:
+                                    throw new InvalidOperationException(function.Value.ToLower());
                             }
 
                             unusedTokens.Push(new NumberToken(localResult));
                         }
                         catch (InvalidOperationException ex)
                         {
-                            Console.WriteLine("Could not evaluate subtraction because not enough operands were present. This may be an internal error. {0}", ex.Message);
+                            Console.WriteLine("Could not evaluate function because function is not implemented. This may be an internal error. {0}", ex.Message);
                         }
                         break;
                     case TokenType.Factorial:
@@ -328,7 +356,7 @@ namespace Nathandelane.Math.PersonalCalculator
                         }
                         catch (InvalidOperationException ex)
                         {
-                            Console.WriteLine("Could not evaluate subtraction because not enough operands were present. This may be an internal error. {0}", ex.Message);
+                            Console.WriteLine("Could not evaluate factorial because not enough operands were present. This may be an internal error. {0}", ex.Message);
                         }
                         break;
                     case TokenType.Power:
@@ -343,7 +371,7 @@ namespace Nathandelane.Math.PersonalCalculator
                         }
                         catch (InvalidOperationException ex)
                         {
-                            Console.WriteLine("Could not evaluate subtraction because not enough operands were present. This may be an internal error. {0}", ex.Message);
+                            Console.WriteLine("Could not evaluate power function because not enough operands were present. This may be an internal error. {0}", ex.Message);
                         }
                         break;
                     case TokenType.BitwiseOperation:
@@ -371,7 +399,7 @@ namespace Nathandelane.Math.PersonalCalculator
                         }
                         catch (InvalidOperationException ex)
                         {
-                            Console.WriteLine("Could not evaluate subtraction because not enough operands were present. This may be an internal error. {0}", ex.Message);
+                            Console.WriteLine("Could not evaluate bitwise operation because not enough operands were present. This may be an internal error. {0}", ex.Message);
                         }
                         break;
                     default:
@@ -380,6 +408,8 @@ namespace Nathandelane.Math.PersonalCalculator
             }
 
             calculationResult = unusedTokens.Pop().Value;
+
+            PCState.Instance["$"] = calculationResult;
 
             return calculationResult;
         }
