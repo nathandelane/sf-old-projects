@@ -5,12 +5,12 @@ using System.Text.RegularExpressions;
 
 namespace Nathandelane.Math.PersonalCalculator
 {
-    internal class NumberToken : Token
+    internal class ComponentSeparationOperator : Token
     {
         #region Constructors
 
-        public NumberToken(string value)
-            : base(value, TokenType.Number)
+        public ComponentSeparationOperator()
+            : base(",", TokenType.Addition)
         {
         }
 
@@ -21,7 +21,7 @@ namespace Nathandelane.Math.PersonalCalculator
         public static bool Matches(string value)
         {
             bool result = false;
-            Regex regex = new Regex("[\\d.]+");
+            Regex regex = new Regex("[,]{1}");
 
             if (regex.IsMatch(value))
             {

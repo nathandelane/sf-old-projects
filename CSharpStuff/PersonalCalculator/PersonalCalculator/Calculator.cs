@@ -300,6 +300,14 @@ namespace Nathandelane.Math.PersonalCalculator
                                     right = unusedTokens.Pop().Value;
                                     localResult = Evaluator.Round(right);
                                     break;
+                                case "ceil":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.Ceiling(right);
+                                    break;
+                                case "floor":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.Floor(right);
+                                    break;
                             }
 
                             unusedTokens.Push(new NumberToken(localResult));

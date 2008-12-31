@@ -429,6 +429,28 @@ namespace Nathandelane.Math.PersonalCalculator
             return result;
         }
 
+        public static string Ceiling(string right)
+        {
+            string result = String.Empty;
+            double rt = double.Parse(right);
+            double internalResult = System.Math.Ceiling(rt);
+
+            result = String.Format("{0}", internalResult);
+
+            return result;
+        }
+
+        public static string Floor(string right)
+        {
+            string result = String.Empty;
+            double rt = double.Parse(right);
+            double internalResult = System.Math.Floor(rt);
+
+            result = String.Format("{0}", internalResult);
+
+            return result;
+        }
+
         #endregion
 
         #region Private Methods

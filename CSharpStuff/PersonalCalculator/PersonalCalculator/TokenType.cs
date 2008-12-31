@@ -9,6 +9,7 @@ namespace Nathandelane.Math.PersonalCalculator
     /// </summary>
     internal enum TokenType
     {
+        ComponentSeparationOperator, // This is the comma -- used to separate components in an array or matrix and arguments in a function.
         Variable,           // A variable constitutes any alphanumeric symbol that does not map to a function. It has the lowest precedence, because it must be evaluated before other operations may continue.
         AssignmentOperator, // The assignment operator is =.
         ConditionalOperator,// Conditional operators include !=, <=, >=, and ==.

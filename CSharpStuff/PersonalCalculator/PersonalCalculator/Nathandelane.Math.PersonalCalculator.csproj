@@ -59,6 +59,7 @@
     <Compile Include="BitwiseOperationToken.cs" />
     <Compile Include="BooleanToken.cs" />
     <Compile Include="Calculator.cs" />
+    <Compile Include="ComponentSeparationOperator.cs" />
     <Compile Include="ConditionalOperatorToken.cs" />
     <Compile Include="DivisionToken.cs" />
     <Compile Include="Equation.cs" />
