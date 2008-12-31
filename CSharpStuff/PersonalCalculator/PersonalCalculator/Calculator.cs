@@ -118,20 +118,47 @@ namespace Nathandelane.Math.PersonalCalculator
             {
                 switch (equation.Peek().Type)
                 {
-                    case TokenType.SpecialNumber:
-                        string value = String.Empty;
-                        switch (equation.Peek().Value.ToLower())
+                    case TokenType.ConditionalOperator:
+                        string condRight = unusedTokens.Pop().Value;
+                        string condLeft = unusedTokens.Pop().Value;
+                        switch (equation.Peek().Value)
                         {
-                            case "e":
-                                value = Evaluator.GetE();
+                            case "<":
+                                calculationResult = Evaluator.LessThan(condLeft, condRight);
                                 break;
-                            case "pi":
-                                value = Evaluator.GetPi();
+                            case ">":
+                                calculationResult = Evaluator.GreaterThan(condLeft, condRight);
+                                break;
+                            case "!=":
+                                calculationResult = Evaluator.NotEqual(condLeft, condRight);
+                                break;
+                            case "<=":
+                                calculationResult = Evaluator.LesThanOrEqual(condLeft, condRight);
+                                break;
+                            case ">=":
+                                calculationResult = Evaluator.GreaterThanOrEqual(condLeft, condRight);
+                                break;
+                            case "==":
+                                calculationResult = Evaluator.AreEqual(condLeft, condRight);
                                 break;
                         }
 
                         equation.Pop();
-                        unusedTokens.Push(new NumberToken(value));
+                        unusedTokens.Push(new BooleanToken(calculationResult));
+                        break;
+                    case TokenType.SpecialNumber:
+                        switch (equation.Peek().Value.ToLower())
+                        {
+                            case "e":
+                                calculationResult = Evaluator.GetE();
+                                break;
+                            case "pi":
+                                calculationResult = Evaluator.GetPi();
+                                break;
+                        }
+
+                        equation.Pop();
+                        unusedTokens.Push(new NumberToken(calculationResult));
                         break;
                     case TokenType.Number:
                         unusedTokens.Push(equation.Pop());
@@ -216,6 +243,7 @@ namespace Nathandelane.Math.PersonalCalculator
                         {
                             string localResult = String.Empty;
                             string right = String.Empty;
+                            string left = String.Empty;
 
                             switch (function.Value.ToLower())
                             {
@@ -262,6 +290,15 @@ namespace Nathandelane.Math.PersonalCalculator
                                 case "oct":
                                     right = unusedTokens.Pop().Value;
                                     localResult = Evaluator.ToOctal(right);
+                                    break;
+                                case "mod":
+                                    right = unusedTokens.Pop().Value;
+                                    left = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.Modulus(left, right);
+                                    break;
+                                case "round":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.Round(right);
                                     break;
                             }
 

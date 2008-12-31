@@ -334,6 +334,101 @@ namespace Nathandelane.Math.PersonalCalculator
             return String.Format("{0}", System.Math.PI);
         }
 
+        public static string NotEqual(string left, string right)
+        {
+            string result = String.Empty;
+            double lt = double.Parse(left);
+            double rt = double.Parse(right);
+            bool internalResult = lt != rt;
+
+            result = String.Format("{0}", internalResult);
+
+            return result;
+        }
+
+        public static string LesThanOrEqual(string left, string right)
+        {
+            string result = String.Empty;
+            double lt = double.Parse(left);
+            double rt = double.Parse(right);
+            bool internalResult = lt <= rt;
+
+            result = String.Format("{0}", internalResult);
+
+            return result;
+        }
+
+        public static string GreaterThanOrEqual(string left, string right)
+        {
+            string result = String.Empty;
+            double lt = double.Parse(left);
+            double rt = double.Parse(right);
+            bool internalResult = lt >= rt;
+
+            result = String.Format("{0}", internalResult);
+
+            return result;
+        }
+
+        public static string AreEqual(string left, string right)
+        {
+            string result = String.Empty;
+            double lt = double.Parse(left);
+            double rt = double.Parse(right);
+            bool internalResult = lt == rt;
+
+            result = String.Format("{0}", internalResult);
+
+            return result;
+        }
+
+        public static string LessThan(string left, string right)
+        {
+            string result = String.Empty;
+            double lt = double.Parse(left);
+            double rt = double.Parse(right);
+            bool internalResult = lt < rt;
+
+            result = String.Format("{0}", internalResult);
+
+            return result;
+        }
+
+        public static string GreaterThan(string left, string right)
+        {
+            string result = String.Empty;
+            double lt = double.Parse(left);
+            double rt = double.Parse(right);
+            bool internalResult = lt > rt;
+
+            result = String.Format("{0}", internalResult);
+
+            return result;
+        }
+
+        public static string Modulus(string left, string right)
+        {
+            string result = String.Empty;
+            double lt = double.Parse(left);
+            double rt = double.Parse(right);
+            double internalResult = lt % rt;
+
+            result = String.Format("{0}", internalResult);
+
+            return result;
+        }
+
+        public static string Round(string right)
+        {
+            string result = String.Empty;
+            double rt = double.Parse(right);
+            double internalResult = System.Math.Round(rt);
+
+            result = String.Format("{0}", internalResult);
+
+            return result;
+        }
+
         #endregion
 
         #region Private Methods

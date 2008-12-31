@@ -10,6 +10,9 @@ namespace Nathandelane.Math.PersonalCalculator
     internal enum TokenType
     {
         Variable,           // A variable constitutes any alphanumeric symbol that does not map to a function. It has the lowest precedence, because it must be evaluated before other operations may continue.
+        AssignmentOperator, // The assignment operator is =.
+        ConditionalOperator,// Conditional operators include !=, <=, >=, and ==.
+        BooleanToken,       // A boolean token is either true or false.
         SpecialNumber,      // Special numbers are numbers like e or pi. These numbers are devined as Evaluator functions, but really they are numbers.
         Number,             // Number is any real number of either integer or floating point type.
         LeftPerenthesis,    // A left perenthesis marks the beginning of a portion of an equation that is to be evaluated before all other operations external to the perenthesized block.

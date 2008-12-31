@@ -55,7 +55,52 @@ namespace Nathandelane.Math.PersonalCalculator
             {
                 tokenValue = String.Format("{0}", parts[index]);
 
-                if (SpecialNumberToken.Matches(tokenValue))
+                if (ConditionalOperatorToken.Matches(tokenValue) || AssignmentOperatorToken.Matches(tokenValue))
+                {
+                    if (tokenValue.Equals("=")) // Could be either an assignment operator or a conditional
+                    {
+                        if (String.Format("{0}", parts[index + 1]).Equals("="))
+                        {
+                            lastToken = new ConditionalOperatorToken(String.Format("{0}=", tokenValue));
+                            AddComponent(lastToken);
+                            index++;
+                        }
+                        else
+                        {
+                            lastToken = new AssignmentOperatorToken();
+                            AddComponent(lastToken);
+                        }
+                    }
+                    else if (tokenValue.Equals("!")) // Could either be a conditional or factorial
+                    {
+                        if (String.Format("{0}", parts[index + 1]).Equals("="))
+                        {
+                            lastToken = new ConditionalOperatorToken(String.Format("{0}=", tokenValue));
+                            AddComponent(lastToken);
+                            index++;
+                        }
+                        else
+                        {
+                            lastToken = new FactorialToken();
+                            AddComponent(lastToken);
+                        }
+                    }
+                    else // It is a conditional that is either one or two characters long, i.e. <, >, <=, >=
+                    {
+                        if (String.Format("{0}", parts[index + 1]).Equals("="))
+                        {
+                            lastToken = new ConditionalOperatorToken(String.Format("{0}=", tokenValue));
+                            AddComponent(lastToken);
+                            index++;
+                        }
+                        else
+                        {
+                            lastToken = new ConditionalOperatorToken(tokenValue);
+                            AddComponent(lastToken);
+                        }
+                    }
+                }
+                else if (SpecialNumberToken.Matches(tokenValue))
                 {
                     int tokenIndex = index;
                     string strPart = String.Empty;
@@ -256,6 +301,12 @@ namespace Nathandelane.Math.PersonalCalculator
 
                 switch (nextToken.Type)
                 {
+                    case TokenType.AssignmentOperator:
+                        operationStack.Push(nextToken);
+                        break;
+                    case TokenType.ConditionalOperator:
+                        operationStack.Push(nextToken);
+                        break;
                     case TokenType.SpecialNumber:
                         newEquation.Push(nextToken);
                         break;
