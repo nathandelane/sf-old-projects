@@ -227,12 +227,7 @@ namespace Nathandelane.Math.PersonalCalculator
             string result = String.Empty;
             double bas = double.Parse(b);
             double pow = double.Parse(n);
-            double internalResult = bas;
-
-            for (int counter = int.Parse(n); counter > 1; counter--)
-            {
-                internalResult = internalResult * bas;
-            }
+            double internalResult = System.Math.Pow(bas, pow);
 
             result = String.Format("{0}", internalResult);
 
@@ -261,6 +256,82 @@ namespace Nathandelane.Math.PersonalCalculator
             }
 
             return result;
+        }
+
+        public static string ToBinary(string right)
+        {
+            string result = String.Empty;
+            int rt = int.Parse(right);
+
+            result = Convert.ToString(rt, 2);
+
+            return result;
+        }
+
+        public static string ToHexadecimal(string right)
+        {
+            string result = String.Empty;
+            int rt = int.Parse(right);
+
+            result = Convert.ToString(rt, 16);
+
+            return result;
+        }
+
+        public static string ToOctal(string right)
+        {
+            string result = String.Empty;
+            int rt = int.Parse(right);
+
+            result = Convert.ToString(rt, 8);
+
+            return result;
+        }
+
+        public static string BitwiseAnd(string left, string right)
+        {
+            string result = String.Empty;
+            Int64 lt = Int64.Parse(left);
+            Int64 rt = Int64.Parse(right);
+            Int64 internalResult = lt & rt;
+
+            result = String.Format("{0}", internalResult);
+
+            return result;
+        }
+
+        public static string BitwiseOr(string left, string right)
+        {
+            string result = String.Empty;
+            Int64 lt = Int64.Parse(left);
+            Int64 rt = Int64.Parse(right);
+            Int64 internalResult = lt | rt;
+
+            result = String.Format("{0}", internalResult);
+
+            return result;
+        }
+
+        public static string BitwiseXor(string left, string right)
+        {
+            string result = String.Empty;
+            Int64 lt = Int64.Parse(left);
+            Int64 rt = Int64.Parse(right);
+            Int64 internalResult = lt ^ rt;
+
+            result = String.Format("{0}", internalResult);
+
+            return result;
+        }
+
+        public static string GetE()
+        {
+            return String.Format("{0}", System.Math.E);
+        }
+
+        public static string GetPi()
+        {
+            return String.Format("{0}", System.Math.PI);
         }
 
         #endregion

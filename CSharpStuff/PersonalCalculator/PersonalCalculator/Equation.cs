@@ -55,7 +55,32 @@ namespace Nathandelane.Math.PersonalCalculator
             {
                 tokenValue = String.Format("{0}", parts[index]);
 
-                if (NumberToken.Matches(tokenValue)) // Common case, where the token is a number
+                if (SpecialNumberToken.Matches(tokenValue))
+                {
+                    int tokenIndex = index;
+                    string strPart = String.Empty;
+
+                    do
+                    {
+                        tokenValue = String.Format("{0}{1}", tokenValue, strPart);
+                        tokenIndex++;
+
+                        if (tokenIndex < numParts)
+                        {
+                            strPart = String.Format("{0}", parts[tokenIndex]);
+                        }
+                        else
+                        {
+                            strPart = String.Empty;
+                        }
+                    }
+                    while (FunctionToken.Matches(strPart));
+
+                    lastToken = new SpecialNumberToken(tokenValue);
+                    AddComponent(lastToken);
+                    index = tokenIndex - 1;
+                }
+                else if (NumberToken.Matches(tokenValue)) // Common case, where the token is a number
                 {
                     int tokenIndex = index;
                     string strPart = String.Empty;
@@ -153,6 +178,11 @@ namespace Nathandelane.Math.PersonalCalculator
                     lastToken = new PowerToken();
                     AddComponent(lastToken);
                 }
+                else if (BitwiseOperationToken.Matches(tokenValue))
+                {
+                    lastToken = new BitwiseOperationToken(tokenValue);
+                    AddComponent(lastToken);
+                }
                 else // This case is that we are probably dealing with a variable, but for now I'm going to throw an exception.
                 {
                     // TODO: fix this to handle variables.
@@ -226,6 +256,9 @@ namespace Nathandelane.Math.PersonalCalculator
 
                 switch (nextToken.Type)
                 {
+                    case TokenType.SpecialNumber:
+                        newEquation.Push(nextToken);
+                        break;
                     case TokenType.Number:
                         newEquation.Push(nextToken);
                         break;
@@ -301,6 +334,9 @@ namespace Nathandelane.Math.PersonalCalculator
                         operationStack.Push(nextToken);
                         break;
                     case TokenType.Power:
+                        operationStack.Push(nextToken);
+                        break;
+                    case TokenType.BitwiseOperation:
                         operationStack.Push(nextToken);
                         break;
                 }

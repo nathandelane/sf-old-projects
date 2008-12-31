@@ -10,9 +10,11 @@ namespace Nathandelane.Math.PersonalCalculator
     internal enum TokenType
     {
         Variable,           // A variable constitutes any alphanumeric symbol that does not map to a function. It has the lowest precedence, because it must be evaluated before other operations may continue.
+        SpecialNumber,      // Special numbers are numbers like e or pi. These numbers are devined as Evaluator functions, but really they are numbers.
         Number,             // Number is any real number of either integer or floating point type.
         LeftPerenthesis,    // A left perenthesis marks the beginning of a portion of an equation that is to be evaluated before all other operations external to the perenthesized block.
         RightPerenthesis,   // A right perenthesis marks the end of a perenthesized block of an equation.
+        BitwiseOperation,   // A bitwise operation operates at the binary level. Included are &, |, and ^ (xor).
         Negation,           // Negation is the negation of a result or number. It looks similar to a subtraction without a minuend.
         Subtraction,        // Subtraction is the difference between two numbers, the minuend minus the subtrahend.
         Addition,           // Addition is the sum of two addends.

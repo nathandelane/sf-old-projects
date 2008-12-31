@@ -118,6 +118,21 @@ namespace Nathandelane.Math.PersonalCalculator
             {
                 switch (equation.Peek().Type)
                 {
+                    case TokenType.SpecialNumber:
+                        string value = String.Empty;
+                        switch (equation.Peek().Value.ToLower())
+                        {
+                            case "e":
+                                value = Evaluator.GetE();
+                                break;
+                            case "pi":
+                                value = Evaluator.GetPi();
+                                break;
+                        }
+
+                        equation.Pop();
+                        unusedTokens.Push(new NumberToken(value));
+                        break;
                     case TokenType.Number:
                         unusedTokens.Push(equation.Pop());
                         break;
@@ -236,6 +251,18 @@ namespace Nathandelane.Math.PersonalCalculator
                                     right = unusedTokens.Pop().Value;
                                     localResult = Evaluator.Logarithm(String.Format("{0}", System.Math.E), right);
                                     break;
+                                case "bin":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.ToBinary(right);
+                                    break;
+                                case "hex":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.ToHexadecimal(right);
+                                    break;
+                                case "oct":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.ToOctal(right);
+                                    break;
                             }
 
                             unusedTokens.Push(new NumberToken(localResult));
@@ -266,6 +293,34 @@ namespace Nathandelane.Math.PersonalCalculator
                             string pow = unusedTokens.Pop().Value;
                             string bas = unusedTokens.Pop().Value;
                             string localResult = Evaluator.Power(bas, pow);
+
+                            unusedTokens.Push(new NumberToken(localResult));
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+                            Console.WriteLine("Could not evaluate subtraction because not enough operands were present. This may be an internal error. {0}", ex.Message);
+                        }
+                        break;
+                    case TokenType.BitwiseOperation:
+                        string bitwiseOperator = equation.Pop().Value;
+                        try
+                        {
+                            string right = unusedTokens.Pop().Value;
+                            string left = unusedTokens.Pop().Value;
+                            string localResult = String.Empty;
+
+                            switch (bitwiseOperator)
+                            {
+                                case "&":
+                                    localResult = Evaluator.BitwiseAnd(left, right);
+                                    break;
+                                case "|":
+                                    localResult = Evaluator.BitwiseOr(left, right);
+                                    break;
+                                case "%":
+                                    localResult = Evaluator.BitwiseXor(left, right);
+                                    break;
+                            }
 
                             unusedTokens.Push(new NumberToken(localResult));
                         }
