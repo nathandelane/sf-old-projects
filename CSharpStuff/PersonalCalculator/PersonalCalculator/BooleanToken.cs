@@ -10,7 +10,7 @@ namespace Nathandelane.Math.PersonalCalculator
         #region Constructors
 
         public BooleanToken(string value)
-            : base(value, TokenType.SpecialNumber)
+            : base(value, TokenType.BooleanToken)
         {
         }
 
@@ -21,7 +21,7 @@ namespace Nathandelane.Math.PersonalCalculator
         public static bool Matches(string value)
         {
             bool result = false;
-            Regex regex = new Regex("^[FT]{1}");
+            Regex regex = new Regex(@"^[TFrueals]+");
 
             if (regex.IsMatch(value))
             {

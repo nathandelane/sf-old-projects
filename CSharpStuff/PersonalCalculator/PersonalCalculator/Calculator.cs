@@ -101,6 +101,10 @@ namespace Nathandelane.Math.PersonalCalculator
                             {
                                 Console.WriteLine("An internal error occurred: Probably you attempted unary operations on a binary value. {0}", ex0.Message);
                             }
+                            catch (InvalidOperationException ex0)
+                            {
+                                Console.WriteLine("An internal error occurred: Probably the stack was empty for some reason. {0}", ex0.Message);
+                            }
                         }
                     }
                 }
@@ -116,7 +120,7 @@ namespace Nathandelane.Math.PersonalCalculator
         /// </summary>
         public static void DisplayHelp()
         {
-            string availableFunctionsAndOperators = @"+ -(subtraction and negation) * / mod %(which is xor) & | ^(which is power) > < == != <= >= pi e sin cos tan arcsin arccos arctan log ln bin hex oct round ceil floor";
+            string availableFunctionsAndOperators = @"+ -(subtraction and negation) * / mod %(which is xor) & | ^(which is power) > < == != <= >= pi e sin cos tan arcsin arccos arctan log ln bin hex oct round ceil floor sinh cosh tanh rad deg";
 
             Console.WriteLine("Available functions and operators are {0}", availableFunctionsAndOperators);
         }
@@ -198,6 +202,16 @@ namespace Nathandelane.Math.PersonalCalculator
                                 break;
                             case "$":
                                 calculationResult = PCState.Instance["$"] as String;
+
+                                if (calculationResult.Equals("True"))
+                                {
+                                    calculationResult = "1";
+                                }
+                                else if (calculationResult.Equals("False"))
+                                {
+                                    calculationResult = "0";
+                                }
+
                                 break;
                         }
 
@@ -351,6 +365,26 @@ namespace Nathandelane.Math.PersonalCalculator
                                 case "floor":
                                     right = unusedTokens.Pop().Value;
                                     localResult = Evaluator.Floor(right);
+                                    break;
+                                case "tanh":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.HyperbolicTangent(right);
+                                    break;
+                                case "sinh":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.HyperbolicSine(right);
+                                    break;
+                                case "cosh":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.HyperbolicCosine(right);
+                                    break;
+                                case "rad":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.ToRadians(right);
+                                    break;
+                                case "deg":
+                                    right = unusedTokens.Pop().Value;
+                                    localResult = Evaluator.ToDegrees(right);
                                     break;
                                 default:
                                     throw new InvalidOperationException(function.Value.ToLower());

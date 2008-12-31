@@ -57,6 +57,25 @@ namespace Nathandelane.Math.PersonalCalculator
 
                 if (BooleanToken.Matches(tokenValue))
                 {
+                    int tokenIndex = index;
+                    string strPart = String.Empty;
+
+                    do
+                    {
+                        tokenValue = String.Format("{0}{1}", tokenValue, strPart);
+                        tokenIndex++;
+
+                        if (tokenIndex < numParts)
+                        {
+                            strPart = String.Format("{0}", parts[tokenIndex]);
+                        }
+                        else
+                        {
+                            strPart = String.Empty;
+                        }
+                    }
+                    while (BooleanToken.Matches(strPart));
+
                     switch (tokenValue)
                     {
                         case "True":
@@ -68,6 +87,7 @@ namespace Nathandelane.Math.PersonalCalculator
                     }
 
                     AddComponent(lastToken);
+                    index = tokenIndex - 1;
                 }
                 else if (ConditionalOperatorToken.Matches(tokenValue) || AssignmentOperatorToken.Matches(tokenValue))
                 {
@@ -315,6 +335,9 @@ namespace Nathandelane.Math.PersonalCalculator
 
                 switch (nextToken.Type)
                 {
+                    case TokenType.BooleanToken:
+                        newEquation.Push(nextToken);
+                        break;
                     case TokenType.AssignmentOperator:
                         operationStack.Push(nextToken);
                         break;

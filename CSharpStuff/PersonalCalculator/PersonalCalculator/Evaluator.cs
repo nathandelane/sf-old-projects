@@ -199,6 +199,57 @@ namespace Nathandelane.Math.PersonalCalculator
             return result;
         }
 
+        public static string HyperbolicSine(string right)
+        {
+            string result = String.Empty;
+            double rt = double.Parse(right);
+            double internalResult = System.Math.Sinh(rt);
+
+            result = String.Format("{0}", internalResult);
+
+            if (!DecimalHasValue(result))
+            {
+                Int64 intResult = Int64.Parse(result);
+                result = String.Format("{0}", intResult);
+            }
+
+            return result;
+        }
+
+        public static string HyperbolicCosine(string right)
+        {
+            string result = String.Empty;
+            double rt = double.Parse(right);
+            double internalResult = System.Math.Cosh(rt);
+
+            result = String.Format("{0}", internalResult);
+
+            if (!DecimalHasValue(result))
+            {
+                Int64 intResult = Int64.Parse(result);
+                result = String.Format("{0}", intResult);
+            }
+
+            return result;
+        }
+
+        public static string HyperbolicTangent(string right)
+        {
+            string result = String.Empty;
+            double rt = double.Parse(right);
+            double internalResult = System.Math.Tanh(rt);
+
+            result = String.Format("{0}", internalResult);
+
+            if (!DecimalHasValue(result))
+            {
+                Int64 intResult = Int64.Parse(result);
+                result = String.Format("{0}", intResult);
+            }
+
+            return result;
+        }
+
         public static string Factorial(string left)
         {
             string result = String.Empty;
@@ -288,6 +339,26 @@ namespace Nathandelane.Math.PersonalCalculator
             return result;
         }
 
+        public static string ToRadians(string right)
+        {
+            string result = String.Empty;
+            int rt = int.Parse(right);
+
+            result = String.Format("{0}", (System.Math.PI * rt / 180.0));
+
+            return result;
+        }
+
+        public static string ToDegrees(string right)
+        {
+            string result = String.Empty;
+            int rt = int.Parse(right);
+
+            result = String.Format("{0}", (rt * (180 / System.Math.PI)));
+
+            return result;
+        }
+
         public static string BitwiseAnd(string left, string right)
         {
             string result = String.Empty;
@@ -341,7 +412,7 @@ namespace Nathandelane.Math.PersonalCalculator
             double rt = double.Parse(right);
             bool internalResult = lt != rt;
 
-            result = String.Format("{0}", internalResult);
+            result = NormalizeBoolean(String.Format("{0}", internalResult));
 
             return result;
         }
@@ -353,7 +424,7 @@ namespace Nathandelane.Math.PersonalCalculator
             double rt = double.Parse(right);
             bool internalResult = lt <= rt;
 
-            result = String.Format("{0}", internalResult);
+            result = NormalizeBoolean(String.Format("{0}", internalResult));
 
             return result;
         }
@@ -365,7 +436,7 @@ namespace Nathandelane.Math.PersonalCalculator
             double rt = double.Parse(right);
             bool internalResult = lt >= rt;
 
-            result = String.Format("{0}", internalResult);
+            result = NormalizeBoolean(String.Format("{0}", internalResult));
 
             return result;
         }
@@ -377,7 +448,7 @@ namespace Nathandelane.Math.PersonalCalculator
             double rt = double.Parse(right);
             bool internalResult = lt == rt;
 
-            result = String.Format("{0}", internalResult);
+            result = NormalizeBoolean(String.Format("{0}", internalResult));
 
             return result;
         }
@@ -389,7 +460,7 @@ namespace Nathandelane.Math.PersonalCalculator
             double rt = double.Parse(right);
             bool internalResult = lt < rt;
 
-            result = String.Format("{0}", internalResult);
+            result = NormalizeBoolean(String.Format("{0}", internalResult));
 
             return result;
         }
@@ -401,7 +472,7 @@ namespace Nathandelane.Math.PersonalCalculator
             double rt = double.Parse(right);
             bool internalResult = lt > rt;
 
-            result = String.Format("{0}", internalResult);
+            result = NormalizeBoolean(String.Format("{0}", internalResult));
 
             return result;
         }
@@ -467,13 +538,17 @@ namespace Nathandelane.Math.PersonalCalculator
             return result;
         }
 
-        private static string Normalize(string value)
+        private static string NormalizeBoolean(string value)
         {
             string result = value;
 
-            if (value.Contains(","))
+            if (value.Equals("True"))
             {
-                value = value.Replace(",", String.Empty);
+                result = "1";
+            }
+            else if (value.Equals("False"))
+            {
+                result = "0";
             }
 
             return result;
