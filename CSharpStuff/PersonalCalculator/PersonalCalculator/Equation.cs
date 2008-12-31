@@ -55,41 +55,7 @@ namespace Nathandelane.Math.PersonalCalculator
             {
                 tokenValue = String.Format("{0}", parts[index]);
 
-                if (BooleanToken.Matches(tokenValue))
-                {
-                    int tokenIndex = index;
-                    string strPart = String.Empty;
-
-                    do
-                    {
-                        tokenValue = String.Format("{0}{1}", tokenValue, strPart);
-                        tokenIndex++;
-
-                        if (tokenIndex < numParts)
-                        {
-                            strPart = String.Format("{0}", parts[tokenIndex]);
-                        }
-                        else
-                        {
-                            strPart = String.Empty;
-                        }
-                    }
-                    while (BooleanToken.Matches(strPart));
-
-                    switch (tokenValue)
-                    {
-                        case "True":
-                            lastToken = new BooleanToken("True");
-                            break;
-                        case "False":
-                            lastToken = new BooleanToken("False");
-                            break;
-                    }
-
-                    AddComponent(lastToken);
-                    index = tokenIndex - 1;
-                }
-                else if (ConditionalOperatorToken.Matches(tokenValue) || AssignmentOperatorToken.Matches(tokenValue))
+                if (ConditionalOperatorToken.Matches(tokenValue) || AssignmentOperatorToken.Matches(tokenValue))
                 {
                     if (tokenValue.Equals("=")) // Could be either an assignment operator or a conditional
                     {
@@ -244,6 +210,40 @@ namespace Nathandelane.Math.PersonalCalculator
                     while (FunctionToken.Matches(strPart));
 
                     lastToken = new FunctionToken(tokenValue);
+                    AddComponent(lastToken);
+                    index = tokenIndex - 1;
+                }
+                else if (BooleanToken.Matches(tokenValue))
+                {
+                    int tokenIndex = index;
+                    string strPart = String.Empty;
+
+                    do
+                    {
+                        tokenValue = String.Format("{0}{1}", tokenValue, strPart);
+                        tokenIndex++;
+
+                        if (tokenIndex < numParts)
+                        {
+                            strPart = String.Format("{0}", parts[tokenIndex]);
+                        }
+                        else
+                        {
+                            strPart = String.Empty;
+                        }
+                    }
+                    while (BooleanToken.Matches(strPart));
+
+                    switch (tokenValue)
+                    {
+                        case "True":
+                            lastToken = new BooleanToken("True");
+                            break;
+                        case "False":
+                            lastToken = new BooleanToken("False");
+                            break;
+                    }
+
                     AddComponent(lastToken);
                     index = tokenIndex - 1;
                 }
