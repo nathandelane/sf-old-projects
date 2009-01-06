@@ -157,7 +157,7 @@ namespace Nathandelane.Math.PersonalCalculator
                 }
                 else if (SubtractionToken.Matches(tokenValue) || NegationToken.Matches(tokenValue))
                 {
-                    if (lastToken.Type == TokenType.Number)
+                    if (lastToken.Type == TokenType.Number || lastToken.Type == TokenType.RightPerenthesis)
                     {
                         lastToken = new SubtractionToken();
                         AddComponent(lastToken);
