@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Nathandelane.NCommand
 {
-	public class Copy
+	internal class Copy
 	{
 		private string _source;
 		private string _destination;
