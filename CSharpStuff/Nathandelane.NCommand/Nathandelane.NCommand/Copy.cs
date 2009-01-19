@@ -30,23 +30,6 @@ namespace Nathandelane.NCommand
 		public Copy(string[] arguments)
 		{
 			_source = arguments[0];
-
-			if (arguments.Length > 1)
-			{
-				switch (arguments.Length)
-				{
-					case 2:
-						_destination = arguments[1];
-						break;
-					default:
-						_arguments = new List<string>();
-						for (int i = 2; i < arguments.Length; i++)
-						{
-							_arguments.Add(arguments[i]);
-						}
-						break;
-				}
-			}
 		}
 
 		public int Run()
@@ -61,12 +44,12 @@ namespace Nathandelane.NCommand
 			return retVal;
 		}
 
-		protected bool SourceFileExists()
+		private bool SourceFileExists()
 		{
 			return File.Exists(_source);
 		}
 
-		protected bool SourceDirectoryExists()
+		private bool SourceDirectoryExists()
 		{
 			return Directory.Exists(_source);
 		}

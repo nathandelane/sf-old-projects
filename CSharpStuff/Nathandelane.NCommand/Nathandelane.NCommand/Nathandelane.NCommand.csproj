@@ -58,8 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandLineArgument.cs" />
     <Compile Include="Copy.cs" />
     <Compile Include="Impersonator.cs" />
+    <Compile Include="LinuxArguments.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
