@@ -94,6 +94,15 @@ namespace Nathandelane.IO.Hash
 				case HashType.SHA1:
 					output = SHA1.Create().ComputeHash(input);
 					break;
+				case HashType.SHA256:
+					output = SHA256.Create().ComputeHash(input);
+					break;
+				case HashType.SHA384:
+					output = SHA384.Create().ComputeHash(input);
+					break;
+				case HashType.SHA512:
+					output = SHA512.Create().ComputeHash(input);
+					break;
 				default:
 					output = MD5.Create().ComputeHash(input);
 					break;

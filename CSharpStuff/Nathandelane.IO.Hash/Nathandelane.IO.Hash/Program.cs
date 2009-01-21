@@ -41,6 +41,15 @@ namespace Nathandelane.IO.Hash
 							case "sha1":
 								hashType = HashType.SHA1;
 								break;
+							case "sha256":
+								hashType = HashType.SHA256;
+								break;
+							case "sha384":
+								hashType = HashType.SHA384;
+								break;
+							case "sha512":
+								hashType = HashType.SHA512;
+								break;
 						}
 						break;
 				}
