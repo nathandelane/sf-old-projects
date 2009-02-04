@@ -10,6 +10,7 @@ namespace Nathandelane.IO.Hash
 		SHA1,
 		SHA256,
 		SHA384,
-		SHA512
+		SHA512,
+		DES
 	}
 }

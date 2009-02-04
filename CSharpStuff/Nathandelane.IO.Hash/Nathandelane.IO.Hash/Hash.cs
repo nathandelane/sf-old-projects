@@ -10,6 +10,7 @@ namespace Nathandelane.IO.Hash
 	{
 		private string _resourceValue;
 		private string _resultingHash;
+		private string _desKey;
 		private ResourceType _resourceType;
 		private HashType _hashType;
 		private bool _isDisposed;
@@ -38,6 +39,21 @@ namespace Nathandelane.IO.Hash
 			_isDisposed = false;
 		}
 
+		public Hash(string resourceValue, ResourceType resourceType, HashType hashType, string desKey)
+		{
+			if (desKey.Length < 8)
+			{
+				throw new ArgumentException("DES key must be at least eight (8) characters long.");
+			}
+
+			_resourceValue = resourceValue;
+			_resourceType = resourceType;
+			_hashType = hashType;
+			_desKey = desKey;
+			_resultingHash = String.Empty;
+			_isDisposed = false;
+		}
+
 		public override string ToString()
 		{
 			if (String.IsNullOrEmpty(_resultingHash))
@@ -55,9 +71,19 @@ namespace Nathandelane.IO.Hash
 			byte[] input = ASCIIEncoding.ASCII.GetBytes(GetResource());
 			byte[] output = GetHash(input);
 
-			for (int outputIndex = 0; outputIndex < output.Length; outputIndex++)
+			if (_hashType == HashType.DES)
 			{
-				sb.Append(output[outputIndex].ToString("X2"));
+				for (int outputIndex = 0; outputIndex < output.Length; outputIndex++)
+				{
+					sb.Append(Convert.ToChar(output[outputIndex]).ToString());
+				}
+			}
+			else
+			{
+				for (int outputIndex = 0; outputIndex < output.Length; outputIndex++)
+				{
+					sb.Append(output[outputIndex].ToString("X2"));
+				}
 			}
 
 			return sb.ToString();
@@ -103,12 +129,35 @@ namespace Nathandelane.IO.Hash
 				case HashType.SHA512:
 					output = SHA512.Create().ComputeHash(input);
 					break;
+				case HashType.DES:
+					output = ComputeDES(input);
+					break;
 				default:
 					output = MD5.Create().ComputeHash(input);
 					break;
 			}
 
 			return output;
+		}
+
+		private byte[] ComputeDES(byte[] plaint)
+		{
+			byte[] result;
+
+			DES des = new DESCryptoServiceProvider();
+			des.Mode = CipherMode.CBC;
+			byte[] plaintext = plaint;
+			byte[] key = Encoding.ASCII.GetBytes(_desKey);
+			byte[] iv = Encoding.ASCII.GetBytes("init vec");
+			des.Key = key;
+			des.IV = iv;
+			ICryptoTransform transform = des.CreateEncryptor(des.Key, des.IV);
+			MemoryStream memoryStream = new MemoryStream();
+			memoryStream.Write(plaintext, 0, plaintext.Length);
+			CryptoStream cryptoStream = new CryptoStream(memoryStream, transform, CryptoStreamMode.Write);
+			result = memoryStream.ToArray();
+
+			return result;
 		}
 
 		#region IDisposable Members

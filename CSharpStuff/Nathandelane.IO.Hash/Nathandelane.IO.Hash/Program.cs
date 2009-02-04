@@ -19,6 +19,7 @@ namespace Nathandelane.IO.Hash
 			string resource = String.Empty;
 			ResourceType resourceType = ResourceType.File;
 			HashType hashType = HashType.MD5;
+			string desKey = String.Empty;
 
 			foreach (string key in arguments.Keys)
 			{
@@ -50,37 +51,71 @@ namespace Nathandelane.IO.Hash
 							case "sha512":
 								hashType = HashType.SHA512;
 								break;
+							case "des":
+								hashType = HashType.DES;
+								break;
 						}
+						break;
+					default:
+						desKey = key;
 						break;
 				}
 			}
 
-			using (Hash hash = new Hash(resource, resourceType, hashType))
+			if (hashType == HashType.DES)
 			{
-				Console.WriteLine("{0}", hash);
+				using (Hash desHash = new Hash(resource, resourceType, hashType, desKey))
+				{
+					Console.WriteLine("{0}", desHash);
+				}
+			}
+			else
+			{
+				using (Hash hash = new Hash(resource, resourceType, hashType))
+				{
+					Console.WriteLine("{0}", hash);
+				}
 			}
 		}
 
 		static void Main(string[] args)
 		{
-			if (args.Length == 4 && (String.Join(" ", args).Contains("-c") && (String.Join(" ", args).Contains("-s") || String.Join(" ", args).Contains("-f"))))
+			if (args.Length >= 4 && (String.Join(" ", args).Contains("-c") && (String.Join(" ", args).Contains("-s") || String.Join(" ", args).Contains("-f"))))
 			{
-				new Program(ParseArguments(args));
+				try
+				{
+					new Program(ParseArguments(args));
+				}
+				catch (ArgumentException ex)
+				{
+					Console.WriteLine("Exception caught: {0}", ex.Message);
+				}
 			}
 			else
 			{
-				Console.WriteLine("Usage: hash (-s string|-f filename) -c (md5|sha1)");
+				Console.WriteLine("Usage: hash (-s string|-f filename) -c (md5|sha1|sha256|sha384|sha512|des)");
 			}
 		}
 
 		private static Dictionary<string, string> ParseArguments(string[] args)
 		{
 			Dictionary<string, string>  arguments = new Dictionary<string, string>();
+			string[] paddedArgs = args;
+
+			if ((paddedArgs.Length % 2) != 0)
+			{
+				paddedArgs = new string[args.Length + 1];
+				for (int index = 0; index < args.Length; index++)
+				{
+					paddedArgs[index] = args[index];
+				}
+				paddedArgs[paddedArgs.Length - 1] = String.Empty;
+			}
 
 			ArgumentType argType = ArgumentType.Name;
 			string name = String.Empty;
 			string value = String.Empty;
-			foreach (string arg in args)
+			foreach (string arg in paddedArgs)
 			{
 				if (argType == ArgumentType.Name)
 				{
