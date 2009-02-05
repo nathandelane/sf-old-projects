@@ -53,5 +53,10 @@ namespace Nathandelane.Net.Spider
 
 			return result;
 		}
+
+		public override int GetHashCode()
+		{
+			return base.GetHashCode();
+		}
 	}
 }

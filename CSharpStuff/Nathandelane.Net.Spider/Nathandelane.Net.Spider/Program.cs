@@ -23,20 +23,15 @@ namespace Nathandelane.Net.Spider
 			_visitedUrlHashes = new List<string>();
 			_queuedLinks = new Queue<SpiderUrl>();
 			_id = 0L;
-			_cookies = new CookieCollection();
 
-			Cookie zipCookie = new Cookie("zip", "84106");
-			zipCookie.Domain = _settings["domain"];
-			_cookies.Add(zipCookie);
+			InitializeCookie();
+			InitializeHeaders();
+			InitializeLogFile();
+			Run();
+		}
 
-			_headers = new WebHeaderCollection();
-
-			if (File.Exists("SpiderLog.csv"))
-			{
-				File.Create("SpiderLog.csv");
-				LogMessage("\"Id\", \"Response\", \"Url\", \"Title\", \"Full Url\", \"Referring Page\"", false);
-			}
-
+		private void Run()
+		{
 			string startingUrl = String.Format("{0}{1}", _settings["startingUrl"], _settings["path"]);
 			_queuedLinks.Enqueue(new SpiderUrl(startingUrl, startingUrl));
 
@@ -152,6 +147,30 @@ namespace Nathandelane.Net.Spider
 			{
 				_queuedLinks.Enqueue(new SpiderUrl(url, agent.Root));
 			}
+		}
+
+		private void InitializeCookie()
+		{
+			_cookies = new CookieCollection();
+
+			Cookie zipCookie = new Cookie("zip", "84106");
+			zipCookie.Domain = _settings["domain"];
+			_cookies.Add(zipCookie);
+		}
+
+		private void InitializeHeaders()
+		{
+			_headers = new WebHeaderCollection();
+		}
+
+		private void InitializeLogFile()
+		{
+			if (File.Exists("SpiderLog.csv"))
+			{
+				File.Delete("SpiderLog.csv");
+			}
+
+			LogMessage("\"Id\", \"Response\", \"Url\", \"Title\", \"Full Url\", \"Referring Page\"", false);
 		}
 
 		private void LogMessage(string msg, bool writeToConsole)
