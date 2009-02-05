@@ -9,6 +9,7 @@ namespace Nathandelane.Net.Spider
 	public class Settings
 	{
 		private Dictionary<string, string> _settings;
+		private Dictionary<string, string> _zones;
 
 		public string this[string key]
 		{
@@ -18,6 +19,7 @@ namespace Nathandelane.Net.Spider
 		public Settings()
 		{
 			_settings = new Dictionary<string, string>();
+			_zones = new Dictionary<string, string>();
 
 			LoadSettings();
 		}
@@ -26,8 +28,32 @@ namespace Nathandelane.Net.Spider
 		{
 			foreach (string key in ConfigurationManager.AppSettings.Keys)
 			{
-				_settings.Add(key, ConfigurationManager.AppSettings[key]);
+				if (key.StartsWith("zone"))
+				{
+					string[] pages = ConfigurationManager.AppSettings[key].Split(new char[] { ',' });
+
+					foreach (string nextPage in pages)
+					{
+						_zones.Add(nextPage, key.Substring(4).ToLower());
+					}
+				}
+				else
+				{
+					_settings.Add(key, ConfigurationManager.AppSettings[key]);
+				}
 			}
+		}
+
+		internal string GetZoneFor(string pageName)
+		{
+			string zone = String.Empty;
+
+			if (_zones.ContainsKey(pageName))
+			{
+				zone = _zones[pageName];
+			}
+
+			return zone;
 		}
 
 		internal bool ContainsKey(string key)
