@@ -34,7 +34,10 @@ namespace Nathandelane.Net.Spider
 
 					foreach (string nextPage in pages)
 					{
-						_zones.Add(nextPage, key.Substring(4).ToLower());
+						if (!_zones.ContainsKey(nextPage))
+						{
+							_zones.Add(nextPage, key.Substring(4).ToLower());
+						}
 					}
 				}
 				else
