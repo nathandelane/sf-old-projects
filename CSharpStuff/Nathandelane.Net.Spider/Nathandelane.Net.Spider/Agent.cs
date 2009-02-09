@@ -7,7 +7,6 @@ using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
 using System.Xml;
-using System.Xml.Linq;
 using HtmlAgilityPack;
 
 namespace Nathandelane.Net.Spider
@@ -160,43 +159,18 @@ namespace Nathandelane.Net.Spider
 			}
 		}
 
-		private XDocument HtmlToXDocument(HtmlAgilityPack.HtmlDocument document)
-		{
-			XDocument xmlDocument = null;
-
-			using (StringWriter sw = new StringWriter())
-			{
-				document.OptionOutputAsXml = true;
-				document.Save(sw);
-				xmlDocument = XDocument.Parse(sw.GetStringBuilder().ToString());
-			}
-
-			return xmlDocument;
-		}
-
 		private void SetPageTitleAndLinkList()
 		{
 			HtmlAgilityPack.HtmlDocument document = new HtmlAgilityPack.HtmlDocument();
 			document.LoadHtml(_data);
+			_pageTitle = (((document.DocumentNode.SelectSingleNode("//title")).InnerText).Trim(new char[] { '\n', '\r' })).Trim();
 
-			XDocument xmlDoc = HtmlToXDocument(document);
-
-			var titleNode = from node in xmlDoc.Descendants()
-							where node.Name.LocalName.Equals("title")
-							select node as XElement;
-
-			_pageTitle = titleNode.FirstOrDefault<XElement>().Value.Replace("\n", String.Empty).Replace("\r", String.Empty).Replace("\t", String.Empty);
-
-			var links = from node in xmlDoc.Descendants()
-						where node.Name.LocalName.Equals("a")
-						&& !String.IsNullOrEmpty((node.Attribute(XName.Get("href"))).Value)
-						select node as XElement;
-
+			HtmlNodeCollection links = document.DocumentNode.SelectNodes("//a[@href]");
 			List<string> hrefs = new List<string>();
 
-			foreach (XElement nextLink in links)
+			foreach (HtmlNode nextLink in links)
 			{
-				string normalizedLink = NormalizeLinkHref(nextLink.Attribute("href").Value);
+				string normalizedLink = NormalizeLinkHref(nextLink.Attributes["href"].Value);
 
 				bool add = true;
 				if (bool.Parse(_settings["stayWithinWebSite"]))
