@@ -6,23 +6,14 @@ using System.Text;
 
 namespace Nathandelane.IO.DataDump
 {
-	public class DataDump
+	public class DataDump : IDisposable
 	{
 		#region Fields
 
 		private DataDumpSource _source;
 		private string _destination;
 		private MemoryStream _data;
-
-		#endregion
-
-		#region Constructor
-
-		public DataDump(DataDumpSource source, string destination)
-		{
-			_source = source;
-			_destination = destination;
-		}
+		private bool _isDisposed;
 
 		#endregion
 
@@ -41,6 +32,22 @@ namespace Nathandelane.IO.DataDump
 			}
 		}
 
+		public bool IsDisposed
+		{
+			get { return _isDisposed; }
+		}
+
+		#endregion
+
+		#region Constructor
+
+		public DataDump(DataDumpSource source, string destination)
+		{
+			_source = source;
+			_destination = destination;
+			_isDisposed = false;
+		}
+
 		#endregion
 
 		#region Public Methods
@@ -50,6 +57,18 @@ namespace Nathandelane.IO.DataDump
 			using (StreamWriter writer = new StreamWriter(_destination))
 			{
 				writer.Write(ASCIIEncoding.ASCII.GetChars(_source.Bytes));
+			}
+		}
+
+		#endregion
+
+		#region IDisposable Members
+
+		public void Dispose()
+		{
+			if (!_isDisposed)
+			{
+				_isDisposed = true;
 			}
 		}
 

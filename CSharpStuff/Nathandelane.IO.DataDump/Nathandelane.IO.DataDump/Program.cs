@@ -38,6 +38,8 @@ namespace Nathandelane.IO.DataDump
 			}
 		}
 
+		#region Private Static Methods
+
 		private static DataDumpSource CreateDataDumpSource(string source, string destination, int numberOfBytes)
 		{
 			DataDumpSource ddSource;
@@ -72,5 +74,7 @@ namespace Nathandelane.IO.DataDump
 		{
 			Console.WriteLine("Usage: DataDump source destination [num]");
 		}
+
+		#endregion
 	}
 }

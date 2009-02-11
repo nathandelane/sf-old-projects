@@ -11,7 +11,7 @@ namespace Nathandelane.IO.DataDump
 		Zero
 	}
 
-	public class DataDumpSource : IDisposable
+	public class DataDumpSource
 	{
 		#region Fields
 
@@ -20,7 +20,6 @@ namespace Nathandelane.IO.DataDump
 		private byte[] _bytes;
 		private int _numberOfBytes;
 		private string _filePath;
-		private bool _isDisposed;
 
 		#endregion
 
@@ -48,11 +47,6 @@ namespace Nathandelane.IO.DataDump
 			}
 		}
 
-		public bool IsDisposed
-		{
-			get { return _isDisposed; }
-		}
-
 		#endregion
 
 		#region Constructors
@@ -66,7 +60,6 @@ namespace Nathandelane.IO.DataDump
 
 			_sourceType = sourceType;
 			_numberOfBytes = numberOfBytes;
-			_isDisposed = false;
 
 			GetBytes();
 		}
@@ -76,7 +69,6 @@ namespace Nathandelane.IO.DataDump
 			_numberOfBytes = numberOfBytes;
 			_sourceType = DataDumpSourceType.File;
 			_filePath = filePath;
-			_isDisposed = false;
 
 			GetBytes();
 		}
@@ -121,18 +113,6 @@ namespace Nathandelane.IO.DataDump
 			random.NextBytes(bytes);
 
 			return bytes;
-		}
-
-		#endregion
-
-		#region IDisposable Members
-
-		public void Dispose()
-		{
-			if (!_isDisposed)
-			{
-				_isDisposed = true;
-			}
 		}
 
 		#endregion
