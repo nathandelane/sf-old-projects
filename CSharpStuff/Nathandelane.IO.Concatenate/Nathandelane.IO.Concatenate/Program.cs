@@ -70,7 +70,28 @@ namespace Nathandelane.IO.Concatenate
 
 		static void Main(string[] args)
 		{
-			new Program(args);
+			if (args.Length < 1 || (args.Length == 1 && (args[0].Contains("help") || args[0].Contains("h"))))
+			{
+				DisplayHelp();
+			}
+			else
+			{
+				new Program(args);
+			}
+		}
+
+		private static void DisplayHelp()
+		{
+			Console.WriteLine("Usage: Concatenate [options] file1[, file2, fileN...]");
+			Console.WriteLine("Options:");
+			Console.WriteLine("-b, --number-nonblank");
+			Console.WriteLine("       Number all nonblank output lines, starting with 1.");
+			Console.WriteLine("-E, --show-ends");
+			Console.WriteLine("       Print $ at the end of each line.");
+			Console.WriteLine("-n, --number");
+			Console.WriteLine("       Number all output lines, starting with 1.");
+			Console.WriteLine("-T, --show-tabs");
+			Console.WriteLine("       Print TAB characters as ^I.");
 		}
 	}
 }
