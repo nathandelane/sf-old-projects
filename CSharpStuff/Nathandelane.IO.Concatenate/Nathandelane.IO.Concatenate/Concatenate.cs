@@ -116,13 +116,13 @@ namespace Nathandelane.IO.Concatenate
 			{
 				if (!String.IsNullOrEmpty(line.Trim().Replace("\r", String.Empty).Replace("\n", String.Empty)))
 				{
-					value = _lineNumber.ToString();
+					value = String.Format("{0} ", _lineNumber.ToString());
 					_lineNumber++;
 				}
 			}
 			else if (_options.Contains("n"))
 			{
-				value = _lineNumber.ToString();
+				value = String.Format("{0} ", _lineNumber.ToString());
 				_lineNumber++;
 			}
 
