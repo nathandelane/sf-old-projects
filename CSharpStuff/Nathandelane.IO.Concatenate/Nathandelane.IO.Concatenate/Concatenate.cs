@@ -68,9 +68,25 @@ namespace Nathandelane.IO.Concatenate
 				using (StreamReader reader = new StreamReader(fileName))
 				{
 					string line = String.Empty;
-					while (!String.IsNullOrEmpty(line = reader.ReadLine()))
+					try
 					{
-						Console.WriteLine("{0}{1}{2}", ShowLineNumberOption(line), Normalize(line), ShowEndsOption());
+						do
+						{
+							line = reader.ReadLine();
+
+							if (line == null)
+							{
+								break;
+							}
+							else
+							{
+								Console.WriteLine("{0}{1}{2}", ShowLineNumberOption(line), Normalize(line), ShowEndsOption());
+							}
+						}
+						while (true);
+					}
+					catch (Exception)
+					{
 					}
 				}
 			}
