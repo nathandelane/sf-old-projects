@@ -10,7 +10,7 @@ namespace Nathandelane.IO.FileTool
 	{
 		#region Fields
 
-		private Inode _inode;
+		private List<InodeQuery> _query;
 
 		#endregion
 
@@ -18,14 +18,28 @@ namespace Nathandelane.IO.FileTool
 
 		private Program(string[] args)
 		{
+			if (args.Length >= 2)
+			{
+				_query = new List<InodeQuery>();
+
+				using (Inode inode = ParseArguments(args))
+				{
+					inode.Query(_query);
+				}
+			}
+			else
+			{
+				DisplayHelp();
+			}
 		}
 
 		#endregion
 
 		#region Private Methods
 
-		private void ParseArguments(string[] args)
+		private Inode ParseArguments(string[] args)
 		{
+			Inode inode = null;
 			int index = 0;
 			while (index < args.Length)
 			{
@@ -35,33 +49,34 @@ namespace Nathandelane.IO.FileTool
 					case "-f":
 					case "--file":
 						index++;
-						FileInfo fileInfo = new FileInfo(args[index]);
-						_inode = new Inode(fileInfo);
+						inode  = new Inode(new FileInfo(args[index]));
 						break;
 					case "-d":
 					case "--directory":
 						index++;
-						DirectoryInfo directoryInfo = new DirectoryInfo(args[index]);
-						_inode = new Inode(directoryInfo);
+						inode = new Inode(new DirectoryInfo(args[index]));
 						break;
-					case "-q":
-					case "--query":
-						index++;
-						string query = args[index];
-						arguments.AddOrReplace("query", query);
+					default:
+						_query.Add(new InodeQuery(args[index]));
 						break;
 				}
 
 				index++;
 			}
 
-			return arguments;
+			return inode;
 		}
 
+
+		private void DisplayHelp()
+		{
+			Console.WriteLine("Usage: FileTool (-f filePath|-d directory) [-a[=attribute1[&attributen]]] [-c[=[MM/DD/YYYY]HH:MM:SS]]] [-t[=[MM/DD/YYYY]HH:MM:SS]]] [-w[=[MM/DD/YYYY]HH:MM:SS]]]");
+		}
 		#endregion
 
 		static void Main(string[] args)
 		{
+			new Program(args);
 		}
 	}
 }
