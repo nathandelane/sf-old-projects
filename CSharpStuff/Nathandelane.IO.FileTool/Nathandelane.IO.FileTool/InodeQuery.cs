@@ -103,11 +103,11 @@ namespace Nathandelane.IO.FileTool
 		{
 			FileAttributes fileAttributes = FileAttributes.Normal;
 
-			if (!(attribs.ToLower().Contains("normal") || attribs.ToLower().Contains("n")))
+			if (attribs.Contains("+"))
 			{
-				if (attribs.Contains("+"))
+				if (!attribs.ToLower().Contains("normal"))
 				{
-					string[] attributes = attribs.Split(new char[] { '&' });
+					string[] attributes = attribs.Split(new char[] { '+' });
 					foreach (string nextAttribute in attributes)
 					{
 						switch (nextAttribute.ToLower())
@@ -127,33 +127,34 @@ namespace Nathandelane.IO.FileTool
 						}
 					}
 				}
-				else
+			}
+			else if(!attribs.ToLower().Contains("n"))
+			{
+				char[] attributes = attribs.ToCharArray();
+				foreach (char nextAttribute in attributes)
 				{
-					char[] attributes = attribs.ToCharArray();
-					foreach (char nextAttribute in attributes)
+					switch (nextAttribute)
 					{
-						switch (nextAttribute)
-						{
-							case 'a':
-							case 'A':
-								fileAttributes = AddAttribute(fileAttributes, FileAttributes.Archive);
-								break;
-							case 'r':
-							case 'R':
-								fileAttributes = AddAttribute(fileAttributes, FileAttributes.ReadOnly);
-								break;
-							case 'h':
-							case 'H':
-								fileAttributes = AddAttribute(fileAttributes, FileAttributes.Hidden);
-								break;
-							case 's':
-							case 'S':
-								fileAttributes = AddAttribute(fileAttributes, FileAttributes.System);
-								break;
-						}
+						case 'a':
+						case 'A':
+							fileAttributes = AddAttribute(fileAttributes, FileAttributes.Archive);
+							break;
+						case 'r':
+						case 'R':
+							fileAttributes = AddAttribute(fileAttributes, FileAttributes.ReadOnly);
+							break;
+						case 'h':
+						case 'H':
+							fileAttributes = AddAttribute(fileAttributes, FileAttributes.Hidden);
+							break;
+						case 's':
+						case 'S':
+							fileAttributes = AddAttribute(fileAttributes, FileAttributes.System);
+							break;
 					}
 				}
 			}
+			
 
 			return fileAttributes;
 		}
@@ -166,7 +167,7 @@ namespace Nathandelane.IO.FileTool
 			}
 			else
 			{
-				currentAttributes = currentAttributes & additionalAttribute;
+				currentAttributes = currentAttributes | additionalAttribute;
 			}
 
 			return currentAttributes;
