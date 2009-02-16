@@ -105,7 +105,7 @@ namespace Nathandelane.IO.FileTool
 
 			if (!(attribs.ToLower().Contains("normal") || attribs.ToLower().Contains("n")))
 			{
-				if (attribs.Contains("&"))
+				if (attribs.Contains("+"))
 				{
 					string[] attributes = attribs.Split(new char[] { '&' });
 					foreach (string nextAttribute in attributes)
