@@ -108,26 +108,26 @@ namespace Nathandelane.IO.FileTool
 					}
 					else if (qItem.Type == QueryType.SetCreationTime)
 					{
-						CreationTime = DateTime.Parse((string)qItem.SetValue);
+						CreationTime = (DateTime)qItem.SetValue;
 						Console.WriteLine("Creation Time: {0}", CreationTime);
 					}
 					else if (qItem.Type == QueryType.GetLastAccessTime)
 					{
-						Console.WriteLine("Creation Time: {0}", LastAccessTime);
+						Console.WriteLine("Last Access Time: {0}", LastAccessTime);
 					}
 					else if (qItem.Type == QueryType.SetLastAccessTime)
 					{
-						LastAccessTime = DateTime.Parse((string)qItem.SetValue);
-						Console.WriteLine("Creation Time: {0}", LastAccessTime);
+						LastAccessTime = (DateTime)qItem.SetValue;
+						Console.WriteLine("Last Access Time: {0}", LastAccessTime);
 					}
 					else if (qItem.Type == QueryType.GetLastWriteTime)
 					{
-						Console.WriteLine("Creation Time: {0}", LastWriteTime);
+						Console.WriteLine("Last Write Time: {0}", LastWriteTime);
 					}
 					else if (qItem.Type == QueryType.SetLastWriteTime)
 					{
-						LastWriteTime = DateTime.Parse((string)qItem.SetValue);
-						Console.WriteLine("Creation Time: {0}", LastWriteTime);
+						LastWriteTime = (DateTime)qItem.SetValue;
+						Console.WriteLine("Last Write Time: {0}", LastWriteTime);
 					}
 				}
 			}
