@@ -24,7 +24,14 @@ namespace Nathandelane.IO.FileTool
 
 				using (Inode inode = ParseArguments(args))
 				{
-					inode.Query(_query);
+					try
+					{
+						inode.Query(_query);
+					}
+					catch (NullReferenceException ex)
+					{
+						Console.WriteLine("Exception caught! Did you forget to specify -f or -d before the file name? Message: {0}", ex.Message);
+					}
 				}
 			}
 			else
