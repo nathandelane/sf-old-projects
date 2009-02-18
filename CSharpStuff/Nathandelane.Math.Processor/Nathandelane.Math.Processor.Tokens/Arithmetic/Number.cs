@@ -89,6 +89,11 @@ namespace Nathandelane.Math.Processor.Tokens
 			return regex.Matches(str)[0].Value;
 		}
 
+		public override string ToString()
+		{
+			return String.Format("{Type={0};Value={1};Precedence={2}}", Type, Value, Precedence);
+		}
+
 		#endregion
 	}
 }

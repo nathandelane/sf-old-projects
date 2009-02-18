@@ -45,7 +45,7 @@ namespace Nathandelane.Math.Processor.Parser
 				Add(nextToken);
 
 				int tokenLength = nextToken.Value.Length;
-				expression = expression.Substring(tokenLength - 1);
+				expression = expression.Substring(tokenLength);
 			}
 
 			return tokenParser;
@@ -67,7 +67,7 @@ namespace Nathandelane.Math.Processor.Parser
 
 			if (firstMatchingToken is Number)
 			{
-				nextToken = TokenFactory.CreateToken<Number>(firstMatchingToken.FirstMatch(expression));
+				nextToken = new Number(firstMatchingToken.FirstMatch(expression));
 			}
 			else
 			{
