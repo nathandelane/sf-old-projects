@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nathandelane.Math.Processor.Tokens
 {
-	public class Function : IToken
+	public abstract class Function : IToken
 	{
 		#region Fields
 
@@ -48,6 +48,11 @@ namespace Nathandelane.Math.Processor.Tokens
 		public string Value
 		{
 			get { return _value; }
+		}
+
+		public bool Matches(string str)
+		{
+			throw new NotImplementedException();
 		}
 
 		#endregion

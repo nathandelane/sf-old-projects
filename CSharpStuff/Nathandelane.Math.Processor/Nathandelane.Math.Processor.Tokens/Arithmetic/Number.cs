@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Nathandelane.Math.Processor.Tokens
 {
@@ -68,6 +69,13 @@ namespace Nathandelane.Math.Processor.Tokens
 			{
 				return _value;
 			}
+		}
+
+		public bool Matches(string str)
+		{
+			Regex regex = new Regex("[\\d]{1}");
+
+			return regex.IsMatch(str);
 		}
 
 		#endregion

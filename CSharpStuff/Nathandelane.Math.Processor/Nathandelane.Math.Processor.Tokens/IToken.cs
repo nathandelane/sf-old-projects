@@ -14,5 +14,11 @@ namespace Nathandelane.Math.Processor.Tokens
         string Value { get; }
 
         #endregion
-    }
+
+		#region Methods
+
+		bool Matches(string str);
+
+		#endregion
+	}
 }
