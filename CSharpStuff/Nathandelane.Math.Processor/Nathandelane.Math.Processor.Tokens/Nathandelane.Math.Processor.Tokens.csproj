@@ -48,6 +48,8 @@
     <Compile Include="Arithmetic\Addition.cs" />
     <Compile Include="Arithmetic\ClosePerenthesis.cs" />
     <Compile Include="Arithmetic\Division.cs" />
+    <Compile Include="Trigonometry\Tangent.cs" />
+    <Compile Include="Trigonometry\Cosine.cs" />
     <Compile Include="Function.cs" />
     <Compile Include="IToken.cs" />
     <Compile Include="Arithmetic\Multiplication.cs" />
@@ -55,11 +57,9 @@
     <Compile Include="Arithmetic\OpenPerenthesis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Arithmetic\Subtraction.cs" />
+    <Compile Include="Trigonometry\Sine.cs" />
     <Compile Include="TokenPrecedence.cs" />
     <Compile Include="TokenType.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Trigonometry\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
