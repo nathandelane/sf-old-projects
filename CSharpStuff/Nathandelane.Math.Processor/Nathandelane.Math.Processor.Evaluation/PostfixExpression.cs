@@ -6,7 +6,7 @@ using Nathandelane.Math.Processor.Tokens;
 
 namespace Nathandelane.Math.Processor.Evaluation
 {
-	public class PostfixExpression : Stack<IToken>
+	public class PostfixExpression : Queue<IToken>
 	{
 		#region Constructors
 
@@ -30,7 +30,7 @@ namespace Nathandelane.Math.Processor.Evaluation
 
 				if (nextToken.Type == TokenType.Number)
 				{
-					Push(nextToken);
+					Enqueue(nextToken);
 				}
 				else if (nextToken.Type == TokenType.Operator)
 				{
@@ -38,12 +38,12 @@ namespace Nathandelane.Math.Processor.Evaluation
 					{
 						if (operatorStack.Peek().Precedence.IsGreaterThan(nextToken.Precedence))
 						{
-							Push(operatorStack.Pop());
+							Enqueue(operatorStack.Pop());
 							operatorStack.Push(nextToken);
 						}
 						else
 						{
-							Push(nextToken);
+							Enqueue(nextToken);
 						}
 					}
 					else
@@ -61,7 +61,7 @@ namespace Nathandelane.Math.Processor.Evaluation
 					{
 						while (!(operatorStack.Peek() is OpenPerenthesis))
 						{
-							Push(operatorStack.Pop());
+							Enqueue(operatorStack.Pop());
 						}
 
 						operatorStack.Pop(); // Get rid of the open perenthesis
@@ -78,7 +78,7 @@ namespace Nathandelane.Math.Processor.Evaluation
 		{
 			while (operatorStack.Count > 0)
 			{
-				Push(operatorStack.Pop());
+				Enqueue(operatorStack.Pop());
 			}
 		}
 
