@@ -23,28 +23,28 @@ namespace Nathandelane.Math.Processor.Tokens
 		{
 			_value = value.ToString();
 			_type = TokenType.Number;
-			_precedence = new TokenPrecedence(-1);
+			_precedence = new TokenPrecedence(0);
 		}
 
 		public Number(int value)
 		{
 			_value = value.ToString();
 			_type = TokenType.Number;
-			_precedence = new TokenPrecedence(-1);
+			_precedence = new TokenPrecedence(0);
 		}
 
 		public Number(double value)
 		{
 			_value = value.ToString();
 			_type = TokenType.Number;
-			_precedence = new TokenPrecedence(-1);
+			_precedence = new TokenPrecedence(0);
 		}
 
 		public Number(string value)
 		{
 			_value = value;
 			_type = TokenType.Number;
-			_precedence = new TokenPrecedence(-1);
+			_precedence = new TokenPrecedence(0);
 		}
 
 		#endregion

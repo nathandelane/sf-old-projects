@@ -25,8 +25,10 @@ namespace Nathandelane.Math.Processor.Evaluation
 
 			foreach (IToken token in this)
 			{
-				str = String.Concat(str, token.Value);
+				str = String.Concat(str, token.Value, ", ");
 			}
+
+			str = str.Substring(0, str.Length - 2);
 
 			return str;
 		}
@@ -52,14 +54,25 @@ namespace Nathandelane.Math.Processor.Evaluation
 				{
 					if (operatorStack.Count > 0)
 					{
-						if (operatorStack.Peek().Precedence.IsGreaterThan(nextToken.Precedence))
+						if (nextToken.Precedence.Equals(operatorStack.Peek().Precedence))
 						{
 							Add(operatorStack.Pop());
 							operatorStack.Push(nextToken);
 						}
-						else
+						else if (nextToken.Precedence.IsGreaterThan(operatorStack.Peek().Precedence))
 						{
-							Add(nextToken);
+							operatorStack.Push(nextToken);
+						}
+						else if (nextToken.Precedence.IsLessThan(operatorStack.Peek().Precedence))
+						{
+							if (operatorStack.Peek() is OpenPerenthesis)
+							{
+								operatorStack.Push(nextToken);
+							}
+							else
+							{
+								Add(nextToken);
+							}
 						}
 					}
 					else

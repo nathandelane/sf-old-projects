@@ -74,5 +74,13 @@ namespace Nathandelane.Math.Processor.Evaluation.UnitTests
 			Expression expression = TokenParser.Parse(strExpression);
 			PostfixExpression postfixExpression = new PostfixExpression(expression);
 		}
+
+		[TestMethod]
+		public void TestPostfixExpressionUsingFourNumberExpression()
+		{
+			string strExpression = "1+2*12-3";
+			Expression expression = TokenParser.Parse(strExpression);
+			PostfixExpression postfixExpression = new PostfixExpression(expression);
+		}
 	}
 }

@@ -22,7 +22,7 @@ namespace Nathandelane.Math.Processor.Tokens
 		public Division()
 		{
 			_type = TokenType.Operator;
-			_precedence = new TokenPrecedence(4);
+			_precedence = new TokenPrecedence(2);
 			_value = "/";
 		}
 

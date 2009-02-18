@@ -22,7 +22,7 @@ namespace Nathandelane.Math.Processor.Tokens
 		public Subtraction()
 		{
 			_type = TokenType.Operator;
-			_precedence = new TokenPrecedence(5);
+			_precedence = new TokenPrecedence(1);
 			_value = "-";
 		}
 

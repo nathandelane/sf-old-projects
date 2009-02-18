@@ -20,7 +20,7 @@ namespace Nathandelane.Math.Processor.Tokens
 		public Function(string name)
 		{
 			_type = TokenType.Function;
-			_precedence = new TokenPrecedence(0);
+			_precedence = new TokenPrecedence(5);
 			_value = name;
 		}
 

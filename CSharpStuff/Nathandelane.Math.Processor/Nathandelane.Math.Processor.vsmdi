@@ -3,6 +3,7 @@
   <TestList name="Three Variables" id="5be554d8-72ff-4672-a273-c0a47a45ad32" parentListId="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">
     <TestLinks>
       <TestLink id="042c0259-bd32-dac3-52ff-cd03eeb25905" name="TestPostfixExpressionUsingThreeNumberExpression" storage="bin\nathandelane.math.processor.evaluation.unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
+      <TestLink id="af1dff65-2b56-3713-c9f0-be85b29fc533" name="TestPostfixExpressionUsingFourNumberExpression" storage="bin\nathandelane.math.processor.evaluation.unittests.dll" type="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel,   PublicKeyToken=b03f5f7f11d50a3a" />
     </TestLinks>
   </TestList>
   <TestList name="Lists of Tests" id="8c43106b-9dc1-4907-a29f-aa66a61bf5b6">

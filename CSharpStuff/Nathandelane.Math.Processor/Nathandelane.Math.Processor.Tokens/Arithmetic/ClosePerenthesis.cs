@@ -22,7 +22,7 @@ namespace Nathandelane.Math.Processor.Tokens
 		public ClosePerenthesis()
 		{
 			_type = TokenType.Structure;
-			_precedence = new TokenPrecedence(1);
+			_precedence = new TokenPrecedence(-1);
 			_value = ")";
 		}
 
