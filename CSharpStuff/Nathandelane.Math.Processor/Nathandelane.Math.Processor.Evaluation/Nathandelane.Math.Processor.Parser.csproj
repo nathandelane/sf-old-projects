@@ -8,7 +8,7 @@
     <ProjectGuid>{F107EFB6-4C52-499F-98B2-EA4756DDD84E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nathandelane.Math.Processor.Parser</RootNamespace>
+    <RootNamespace>Nathandelane.Math.Processor.Evaluation</RootNamespace>
     <AssemblyName>Nathandelane.Math.Processor.Parser</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Math.Processor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Math.Processor.Tokens", "Nathandelane.Math.Processor.Tokens\Nathandelane.Math.Processor.Tokens.csproj", "{508F0585-FFA5-4990-B509-3BD63B90C426}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Math.Processor.Parser", "Nathandelane.Math.Processor.Parser\Nathandelane.Math.Processor.Parser.csproj", "{F107EFB6-4C52-499F-98B2-EA4756DDD84E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Math.Processor.Evaluation", "Nathandelane.Math.Processor.Evaluation\Nathandelane.Math.Processor.Evaluation.csproj", "{F107EFB6-4C52-499F-98B2-EA4756DDD84E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1843F055-C08C-4319-87AE-F0910EDB29E0}"
 	ProjectSection(SolutionItems) = preProject
@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Nathandelane.Math.Processor.vsmdi = Nathandelane.Math.Processor.vsmdi
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Math.Processor.Parser.UnitTests", "Nathandelane.Math.Processor.Parser.UnitTests\Nathandelane.Math.Processor.Parser.UnitTests.csproj", "{62263122-0B0E-4D7C-A544-D5A6A14A4F61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Math.Processor.Evaluation.UnitTests", "Nathandelane.Math.Processor.Evaluation.UnitTests\Nathandelane.Math.Processor.Evaluation.UnitTests.csproj", "{62263122-0B0E-4D7C-A544-D5A6A14A4F61}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution

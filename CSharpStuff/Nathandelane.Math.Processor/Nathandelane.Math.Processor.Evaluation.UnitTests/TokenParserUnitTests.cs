@@ -3,10 +3,10 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Nathandelane.Math.Processor.Parser;
+using Nathandelane.Math.Processor.Evaluation;
 using Nathandelane.Math.Processor.Tokens;
 
-namespace Nathandelane.Math.Processor.Parser.UnitTests
+namespace Nathandelane.Math.Processor.Evaluation.UnitTests
 {
 	/// <summary>
 	/// Summary description for TokenParserUnitTests

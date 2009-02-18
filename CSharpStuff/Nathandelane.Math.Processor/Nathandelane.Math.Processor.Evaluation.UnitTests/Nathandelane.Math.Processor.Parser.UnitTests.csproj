@@ -7,7 +7,7 @@
     <ProjectGuid>{62263122-0B0E-4D7C-A544-D5A6A14A4F61}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nathandelane.Math.Processor.Parser.UnitTests</RootNamespace>
+    <RootNamespace>Nathandelane.Math.Processor.Evaluation.UnitTests</RootNamespace>
     <AssemblyName>Nathandelane.Math.Processor.Parser.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
