@@ -48,12 +48,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Nathandelane.Math.Processor.Tokens\Nathandelane.Math.Processor.Tokens.csproj">
-      <Project>{508F0585-FFA5-4990-B509-3BD63B90C426}</Project>
-      <Name>Nathandelane.Math.Processor.Tokens</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
