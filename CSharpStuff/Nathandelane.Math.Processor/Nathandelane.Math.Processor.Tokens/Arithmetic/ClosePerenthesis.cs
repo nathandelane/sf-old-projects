@@ -10,6 +10,7 @@ namespace Nathandelane.Math.Processor.Tokens
 	{
 		#region Fields
 
+		private readonly Regex regex = new Regex("^[)]{1}");
 		private TokenType _type;
 		private TokenPrecedence _precedence;
 		private string _value;
@@ -53,9 +54,12 @@ namespace Nathandelane.Math.Processor.Tokens
 
 		public bool Matches(string str)
 		{
-			Regex regex = new Regex("[)]{1}");
-
 			return regex.IsMatch(str);
+		}
+
+		public string FirstMatch(string str)
+		{
+			return regex.Matches(str)[0].Value;
 		}
 
 		#endregion

@@ -18,6 +18,7 @@ namespace Nathandelane.Math.Processor.Tokens
 		#region Methods
 
 		bool Matches(string str);
+		string FirstMatch(string str);
 
 		#endregion
 	}

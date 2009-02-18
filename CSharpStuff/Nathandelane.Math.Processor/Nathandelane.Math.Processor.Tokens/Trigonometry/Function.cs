@@ -55,6 +55,11 @@ namespace Nathandelane.Math.Processor.Tokens
 			throw new NotImplementedException();
 		}
 
+		public string FirstMatch(string str)
+		{
+			throw new NotImplementedException();
+		}
+
 		#endregion
 	}
 }

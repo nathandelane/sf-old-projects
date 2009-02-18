@@ -8,6 +8,8 @@ namespace Nathandelane.Math.Processor.Tokens
 {
 	public class Sine : Function
 	{
+		private readonly Regex regex = new Regex("^(sin){1}");
+
 		public Sine()
 			: base("sine")
 		{
@@ -15,9 +17,12 @@ namespace Nathandelane.Math.Processor.Tokens
 
 		public new bool Matches(string str)
 		{
-			Regex regex = new Regex("(sin){1}");
-
 			return regex.IsMatch(str);
+		}
+
+		public new string FirstMatch(string str)
+		{
+			return regex.Matches(str)[0].Value;
 		}
 	}
 }
