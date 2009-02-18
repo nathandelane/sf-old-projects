@@ -5,7 +5,10 @@ using System.Text;
 
 namespace Nathandelane.Math.Processor.Tokens
 {
-    public class Class1
+    public enum TokenType
     {
+        Number,
+        Operator,
+        Structure
     }
 }
