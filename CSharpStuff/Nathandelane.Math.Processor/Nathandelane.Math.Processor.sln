@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Math.Processor", "Nathandelane.Math.Processor\Nathandelane.Math.Processor.csproj", "{9DA8364D-C3DF-464F-9100-141D277C6A66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Math.Processor.Tokens", "Nathandelane.Math.Processor.Tokens\Nathandelane.Math.Processor.Tokens.csproj", "{508F0585-FFA5-4990-B509-3BD63B90C426}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9DA8364D-C3DF-464F-9100-141D277C6A66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DA8364D-C3DF-464F-9100-141D277C6A66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DA8364D-C3DF-464F-9100-141D277C6A66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DA8364D-C3DF-464F-9100-141D277C6A66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{508F0585-FFA5-4990-B509-3BD63B90C426}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{508F0585-FFA5-4990-B509-3BD63B90C426}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{508F0585-FFA5-4990-B509-3BD63B90C426}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{508F0585-FFA5-4990-B509-3BD63B90C426}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
