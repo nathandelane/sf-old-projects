@@ -40,6 +40,13 @@ namespace Nathandelane.Math.Processor.Tokens
 			_precedence = new TokenPrecedence(-1);
 		}
 
+		public Number(string value)
+		{
+			_value = value;
+			_type = TokenType.Number;
+			_precedence = new TokenPrecedence(-1);
+		}
+
 		#endregion
 
 		#region IToken Members

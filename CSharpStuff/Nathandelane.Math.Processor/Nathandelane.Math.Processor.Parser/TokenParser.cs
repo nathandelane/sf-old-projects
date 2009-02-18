@@ -38,8 +38,12 @@ namespace Nathandelane.Math.Processor.Parser
 		{
 			TokenParser tokenParser = new TokenParser();
 
-			var tokens = from t in AllTokens.Set
-						 select t;
+			while (expression.Length > 0)
+			{
+				IToken nextToken = GetNextToken(expression);
+				int tokenLength = nextToken.Value.Length;
+				expression = expression.Substring(tokenLength - 1);
+			}
 
 			return tokenParser;
 		}
@@ -48,17 +52,39 @@ namespace Nathandelane.Math.Processor.Parser
 
 		#region Private Methods
 
-		private void Add(IToken token)
+		private static IToken GetNextToken(string expression)
+		{
+			IToken nextToken = null;
+
+			var tokens = from t in AllTokens.Set
+						 where t.Matches(expression)
+						 select t;
+
+			IToken firstMatchingToken = tokens.First<IToken>();
+
+			if (firstMatchingToken is Number)
+			{
+				nextToken = TokenFactory.CreateToken<Number>(firstMatchingToken.FirstMatch(expression));
+			}
+			else
+			{
+				nextToken = firstMatchingToken;
+			}
+
+			return nextToken;
+		}
+
+		private static void Add(IToken token)
 		{
 			_expression.Add(token);
 		}
 
-		private void Remove(IToken token)
+		private static void Remove(IToken token)
 		{
 			_expression.Remove(token);
 		}
 
-		private void RemoveAt(int index)
+		private static void RemoveAt(int index)
 		{
 			_expression.RemoveAt(index);
 		}
