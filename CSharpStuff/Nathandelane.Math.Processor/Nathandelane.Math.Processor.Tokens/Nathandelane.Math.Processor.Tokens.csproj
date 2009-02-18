@@ -49,7 +49,7 @@
     <Compile Include="Arithmetic\ClosePerenthesis.cs" />
     <Compile Include="Arithmetic\Division.cs" />
     <Compile Include="Arithmetic\Negation.cs" />
-    <Compile Include="TokenSet.cs" />
+    <Compile Include="AllTokens.cs" />
     <Compile Include="Trigonometry\Tangent.cs" />
     <Compile Include="Trigonometry\Cosine.cs" />
     <Compile Include="Trigonometry\Function.cs" />

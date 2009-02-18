@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nathandelane.Math.Processor.Tokens
 {
-	public class TokenSet
+	public class AllTokens
 	{
 		#region Fields
 
@@ -25,11 +25,11 @@ namespace Nathandelane.Math.Processor.Tokens
 
 		#endregion
 
-		#region IEnumerable Members
+		#region Properties
 
-		public static IEnumerator<IToken> GetEnumerator()
+		public static IList<IToken> Set
 		{
-			return _tokens.GetEnumerator();
+			get { return _tokens; }
 		}
 
 		#endregion

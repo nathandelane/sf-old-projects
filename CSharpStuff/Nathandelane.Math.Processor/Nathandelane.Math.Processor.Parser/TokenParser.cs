@@ -38,6 +38,9 @@ namespace Nathandelane.Math.Processor.Parser
 		{
 			TokenParser tokenParser = new TokenParser();
 
+			var tokens = from t in AllTokens.Set
+						 select t;
+
 			return tokenParser;
 		}
 
