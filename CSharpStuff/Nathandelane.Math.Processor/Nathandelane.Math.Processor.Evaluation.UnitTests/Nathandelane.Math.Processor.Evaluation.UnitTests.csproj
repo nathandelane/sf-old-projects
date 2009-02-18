@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nathandelane.Math.Processor.Evaluation.UnitTests</RootNamespace>
-    <AssemblyName>Nathandelane.Math.Processor.Parser.UnitTests</AssemblyName>
+    <AssemblyName>Nathandelane.Math.Processor.Evaluation.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -39,12 +39,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TokenParserUnitTests.cs" />
+    <Compile Include="TokenEvaluationUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nathandelane.Math.Processor.Parser\Nathandelane.Math.Processor.Parser.csproj">
+    <ProjectReference Include="..\Nathandelane.Math.Processor.Evaluation\Nathandelane.Math.Processor.Evaluation.csproj">
       <Project>{F107EFB6-4C52-499F-98B2-EA4756DDD84E}</Project>
-      <Name>Nathandelane.Math.Processor.Parser</Name>
+      <Name>Nathandelane.Math.Processor.Evaluation</Name>
     </ProjectReference>
     <ProjectReference Include="..\Nathandelane.Math.Processor.Tokens\Nathandelane.Math.Processor.Tokens.csproj">
       <Project>{508F0585-FFA5-4990-B509-3BD63B90C426}</Project>
