@@ -41,6 +41,9 @@ namespace Nathandelane.Math.Processor.Parser
 			while (expression.Length > 0)
 			{
 				IToken nextToken = GetNextToken(expression);
+
+				Add(nextToken);
+
 				int tokenLength = nextToken.Value.Length;
 				expression = expression.Substring(tokenLength - 1);
 			}
