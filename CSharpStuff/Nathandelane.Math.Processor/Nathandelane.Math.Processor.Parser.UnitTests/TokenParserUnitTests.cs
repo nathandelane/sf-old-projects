@@ -3,6 +3,8 @@ using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Nathandelane.Math.Processor.Parser;
+using Nathandelane.Math.Processor.Tokens;
 
 namespace Nathandelane.Math.Processor.Parser.UnitTests
 {
@@ -61,6 +63,11 @@ namespace Nathandelane.Math.Processor.Parser.UnitTests
 		{
 			string exampleExpression = "1+2";
 			TokenParser parser = TokenParser.Parse(exampleExpression);
+
+			var tokens = from t in parser.Expression
+						 select t;
+
+			Assert.AreEqual(3, tokens.Count<IToken>());
 		}
 	}
 }

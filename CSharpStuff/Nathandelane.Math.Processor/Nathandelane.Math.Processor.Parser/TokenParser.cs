@@ -16,9 +16,9 @@ namespace Nathandelane.Math.Processor.Parser
 
 		#region Properties
 
-		public IEnumerator<IToken> Expression
+		public IList<IToken> Expression
 		{
-			get { return _expression.GetEnumerator(); }
+			get { return _expression; }
 		}
 
 		#endregion
