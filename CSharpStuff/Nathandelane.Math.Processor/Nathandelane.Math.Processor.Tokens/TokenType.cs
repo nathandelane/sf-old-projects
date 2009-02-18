@@ -9,6 +9,7 @@ namespace Nathandelane.Math.Processor.Tokens
     {
         Number,
         Operator,
-        Structure
+        Structure,
+		Function
     }
 }
