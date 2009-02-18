@@ -40,6 +40,8 @@ namespace Nathandelane.Math.Processor.Evaluation
 			IToken lastToken = new NullToken();
 			bool nextNumberIsNegative = false;
 
+			expression = RemoveSpaces(expression);
+
 			while (expression.Length > 0)
 			{
 				IToken nextToken = GetNextToken(expression);
@@ -72,6 +74,18 @@ namespace Nathandelane.Math.Processor.Evaluation
 		#endregion
 
 		#region Private Methods
+
+		private static string RemoveSpaces(string expression)
+		{
+			string processedExpression = expression;
+
+			while (processedExpression.Contains(" "))
+			{
+				processedExpression = processedExpression.Replace(" ", String.Empty);
+			}
+
+			return processedExpression;
+		}
 
 		private static bool IsNegation(IToken lastToken, IToken nextToken)
 		{
