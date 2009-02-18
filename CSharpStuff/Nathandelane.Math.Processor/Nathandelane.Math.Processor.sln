@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Math.Processor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Math.Processor.Tokens", "Nathandelane.Math.Processor.Tokens\Nathandelane.Math.Processor.Tokens.csproj", "{508F0585-FFA5-4990-B509-3BD63B90C426}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Math.Processor.Parser", "Nathandelane.Math.Processor.Parser\Nathandelane.Math.Processor.Parser.csproj", "{F107EFB6-4C52-499F-98B2-EA4756DDD84E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{508F0585-FFA5-4990-B509-3BD63B90C426}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{508F0585-FFA5-4990-B509-3BD63B90C426}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{508F0585-FFA5-4990-B509-3BD63B90C426}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F107EFB6-4C52-499F-98B2-EA4756DDD84E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F107EFB6-4C52-499F-98B2-EA4756DDD84E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F107EFB6-4C52-499F-98B2-EA4756DDD84E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F107EFB6-4C52-499F-98B2-EA4756DDD84E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
