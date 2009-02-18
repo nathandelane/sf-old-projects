@@ -165,5 +165,17 @@ namespace Nathandelane.Math.Processor.Evaluation.UnitTests
 
 			Assert.AreEqual(3, tokens.Count<IToken>());
 		}
+
+		[TestMethod]
+		public void TestParseMethodUsingPerentheses()
+		{
+			string exampleExpression = "(-1)-(-2)";
+			Expression expression = TokenParser.Parse(exampleExpression);
+
+			var tokens = from t in expression
+						 select t;
+
+			Assert.AreEqual(7, tokens.Count<IToken>());
+		}
 	}
 }

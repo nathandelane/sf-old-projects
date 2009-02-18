@@ -33,7 +33,8 @@ namespace Nathandelane.Math.Processor.Evaluation
 					nextNumberIsNegative = false;
 					nextToken = new Number(tokenValue);
 
-					expressionObject.Remove(lastToken);
+					int i = expressionObject.Count;
+					expressionObject.RemoveAt(i - 1);
 				}
 
 				expressionObject.Add(nextToken);
@@ -69,7 +70,7 @@ namespace Nathandelane.Math.Processor.Evaluation
 
 			if(nextToken.Type == TokenType.Operator)
 			{
-				if ((lastToken.Type == TokenType.Operator) || (lastToken.Type == TokenType.Structure) || (lastToken.Type == TokenType.Null))
+				if ((lastToken.Type == TokenType.Operator) || ((lastToken.Type == TokenType.Structure) && (lastToken is OpenPerenthesis)) || (lastToken.Type == TokenType.Null))
 				{
 					result = true;
 				}
