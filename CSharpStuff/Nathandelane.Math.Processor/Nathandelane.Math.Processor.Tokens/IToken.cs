@@ -9,9 +9,9 @@ namespace Nathandelane.Math.Processor.Tokens
     {
         #region Propeties
 
-        TokenType Type { get; set; }
+        TokenType Type { get; }
         TokenPrecedence Precedence { get; set; }
-        string Value { get; set; }
+        string Value { get; }
 
         #endregion
     }

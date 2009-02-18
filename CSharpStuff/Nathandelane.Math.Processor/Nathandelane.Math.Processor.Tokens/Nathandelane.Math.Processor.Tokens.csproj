@@ -45,9 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Addition.cs" />
+    <Compile Include="ClosePerenthesis.cs" />
+    <Compile Include="Division.cs" />
     <Compile Include="IToken.cs" />
-    <Compile Include="NumberToken.cs" />
+    <Compile Include="Multiplication.cs" />
+    <Compile Include="Number.cs" />
+    <Compile Include="OpenPerenthesis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subtraction.cs" />
     <Compile Include="TokenPrecedence.cs" />
     <Compile Include="TokenType.cs" />
   </ItemGroup>

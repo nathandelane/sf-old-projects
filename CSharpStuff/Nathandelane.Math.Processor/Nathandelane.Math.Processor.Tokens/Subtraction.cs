@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nathandelane.Math.Processor.Tokens
 {
-    public class NumberToken : IToken
+	public class Subtraction : IToken
 	{
 		#region Fields
 
@@ -15,18 +15,22 @@ namespace Nathandelane.Math.Processor.Tokens
 
 		#endregion
 
+		#region Constructors
+
+		public Subtraction()
+		{
+			_type = TokenType.Operator;
+			_precedence = new TokenPrecedence(5);
+			_value = "-";
+		}
+
+		#endregion
+
 		#region IToken Members
 
 		public TokenType Type
 		{
-			get
-			{
-				return _type;
-			}
-			set
-			{
-				_type = value;
-			}
+			get { return _type; }
 		}
 
 		public TokenPrecedence Precedence
@@ -43,14 +47,7 @@ namespace Nathandelane.Math.Processor.Tokens
 
 		public string Value
 		{
-			get
-			{
-				return _value;
-			}
-			set
-			{
-				_value = value;
-			}
+			get { return _value; }
 		}
 
 		#endregion
