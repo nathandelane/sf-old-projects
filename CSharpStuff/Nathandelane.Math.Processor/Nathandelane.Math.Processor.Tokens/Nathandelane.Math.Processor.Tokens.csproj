@@ -50,7 +50,7 @@
     <Compile Include="Arithmetic\Division.cs" />
     <Compile Include="Trigonometry\Tangent.cs" />
     <Compile Include="Trigonometry\Cosine.cs" />
-    <Compile Include="Function.cs" />
+    <Compile Include="Trigonometry\Function.cs" />
     <Compile Include="IToken.cs" />
     <Compile Include="Arithmetic\Multiplication.cs" />
     <Compile Include="Arithmetic\Number.cs" />
