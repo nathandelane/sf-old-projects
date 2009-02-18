@@ -21,7 +21,7 @@ namespace Nathandelane.Math.Processor.Tokens
 
 		public NullToken()
 		{
-			_type = TokenType.Operator;
+			_type = TokenType.Null;
 			_precedence = new TokenPrecedence(-2);
 			_value = String.Empty;
 		}

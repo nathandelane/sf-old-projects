@@ -37,7 +37,7 @@ namespace Nathandelane.Math.Processor.Parser
 		public static TokenParser Parse(string expression)
 		{
 			TokenParser tokenParser = new TokenParser();
-			IToken lastToken = null;
+			IToken lastToken = new NullToken();
 			bool nextNumberIsNegative = false;
 
 			while (expression.Length > 0)

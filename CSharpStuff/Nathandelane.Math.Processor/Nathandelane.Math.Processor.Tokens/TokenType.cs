@@ -7,6 +7,7 @@ namespace Nathandelane.Math.Processor.Tokens
 {
     public enum TokenType
     {
+		Null,
         Number,
         Operator,
         Structure,
