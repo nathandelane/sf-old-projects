@@ -8,35 +8,11 @@ namespace Nathandelane.Math.Processor.Evaluation
 {
 	public class TokenParser
 	{
-		#region Fields
-
-		private static IList<IToken> _expression;
-
-		#endregion
-
-		#region Properties
-
-		public IList<IToken> Expression
-		{
-			get { return _expression; }
-		}
-
-		#endregion
-
-		#region Constructors
-
-		private TokenParser()
-		{
-			_expression = new List<IToken>();
-		}
-
-		#endregion
-
 		#region Public Methods
 
-		public static TokenParser Parse(string expression)
+		public static Expression Parse(string expression)
 		{
-			TokenParser tokenParser = new TokenParser();
+			Expression expressionObject = new Expression();
 			IToken lastToken = new NullToken();
 			bool nextNumberIsNegative = false;
 
@@ -57,10 +33,10 @@ namespace Nathandelane.Math.Processor.Evaluation
 					nextNumberIsNegative = false;
 					nextToken = new Number(tokenValue);
 
-					Remove(lastToken);
+					expressionObject.Remove(lastToken);
 				}
 
-				Add(nextToken);
+				expressionObject.Add(nextToken);
 
 				lastToken = nextToken;
 
@@ -68,7 +44,7 @@ namespace Nathandelane.Math.Processor.Evaluation
 				expression = expression.Substring(tokenLength);
 			}
 
-			return tokenParser;
+			return expressionObject;
 		}
 
 		#endregion
@@ -122,26 +98,6 @@ namespace Nathandelane.Math.Processor.Evaluation
 			}
 
 			return nextToken;
-		}
-
-		private static void Add(IToken token)
-		{
-			_expression.Add(token);
-		}
-
-		private static void Remove(IToken token)
-		{
-			_expression.Remove(token);
-		}
-
-		private static void RemoveAt(int index)
-		{
-			_expression.RemoveAt(index);
-		}
-
-		private static int Count()
-		{
-			return _expression.Count;
 		}
 
 		#endregion

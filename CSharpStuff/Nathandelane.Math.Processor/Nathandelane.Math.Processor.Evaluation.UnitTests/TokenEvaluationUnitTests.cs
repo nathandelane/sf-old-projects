@@ -62,9 +62,9 @@ namespace Nathandelane.Math.Processor.Evaluation.UnitTests
 		public void TestParseMethodUsingTwoNumbers1()
 		{
 			string exampleExpression = "1+2";
-			TokenParser parser = TokenParser.Parse(exampleExpression);
+			Expression expression = TokenParser.Parse(exampleExpression);
 
-			var tokens = from t in parser.Expression
+			var tokens = from t in expression
 						 select t;
 
 			Assert.AreEqual(3, tokens.Count<IToken>());
@@ -74,9 +74,9 @@ namespace Nathandelane.Math.Processor.Evaluation.UnitTests
 		public void TestParseMethodUsingTwoNumbers2()
 		{
 			string exampleExpression = "1-2";
-			TokenParser parser = TokenParser.Parse(exampleExpression);
+			Expression expression = TokenParser.Parse(exampleExpression);
 
-			var tokens = from t in parser.Expression
+			var tokens = from t in expression
 						 select t;
 
 			Assert.AreEqual(3, tokens.Count<IToken>());
@@ -86,9 +86,9 @@ namespace Nathandelane.Math.Processor.Evaluation.UnitTests
 		public void TestParseMethodUsingTwoNumbers3()
 		{
 			string exampleExpression = "-1+2";
-			TokenParser parser = TokenParser.Parse(exampleExpression);
+			Expression expression = TokenParser.Parse(exampleExpression);
 
-			var tokens = from t in parser.Expression
+			var tokens = from t in expression
 						 select t;
 
 			Assert.AreEqual(3, tokens.Count<IToken>());
@@ -98,9 +98,9 @@ namespace Nathandelane.Math.Processor.Evaluation.UnitTests
 		public void TestParseMethodUsingTwoNumbers4()
 		{
 			string exampleExpression = "-1-2";
-			TokenParser parser = TokenParser.Parse(exampleExpression);
+			Expression expression = TokenParser.Parse(exampleExpression);
 
-			var tokens = from t in parser.Expression
+			var tokens = from t in expression
 						 select t;
 
 			Assert.AreEqual(3, tokens.Count<IToken>());
@@ -110,9 +110,9 @@ namespace Nathandelane.Math.Processor.Evaluation.UnitTests
 		public void TestParseMethodUsingTwoNumbers5()
 		{
 			string exampleExpression = "1+-2";
-			TokenParser parser = TokenParser.Parse(exampleExpression);
+			Expression expression = TokenParser.Parse(exampleExpression);
 
-			var tokens = from t in parser.Expression
+			var tokens = from t in expression
 						 select t;
 
 			Assert.AreEqual(3, tokens.Count<IToken>());
@@ -122,9 +122,9 @@ namespace Nathandelane.Math.Processor.Evaluation.UnitTests
 		public void TestParseMethodUsingTwoNumbers6()
 		{
 			string exampleExpression = "1--2";
-			TokenParser parser = TokenParser.Parse(exampleExpression);
+			Expression expression = TokenParser.Parse(exampleExpression);
 
-			var tokens = from t in parser.Expression
+			var tokens = from t in expression
 						 select t;
 
 			Assert.AreEqual(3, tokens.Count<IToken>());
@@ -134,9 +134,9 @@ namespace Nathandelane.Math.Processor.Evaluation.UnitTests
 		public void TestParseMethodUsingTwoNumbers7()
 		{
 			string exampleExpression = "-1+-2";
-			TokenParser parser = TokenParser.Parse(exampleExpression);
+			Expression expression = TokenParser.Parse(exampleExpression);
 
-			var tokens = from t in parser.Expression
+			var tokens = from t in expression
 						 select t;
 
 			Assert.AreEqual(3, tokens.Count<IToken>());
@@ -146,9 +146,9 @@ namespace Nathandelane.Math.Processor.Evaluation.UnitTests
 		public void TestParseMethodUsingTwoNumbers8()
 		{
 			string exampleExpression = "-1--2";
-			TokenParser parser = TokenParser.Parse(exampleExpression);
+			Expression expression = TokenParser.Parse(exampleExpression);
 
-			var tokens = from t in parser.Expression
+			var tokens = from t in expression
 						 select t;
 
 			Assert.AreEqual(3, tokens.Count<IToken>());
@@ -158,9 +158,9 @@ namespace Nathandelane.Math.Processor.Evaluation.UnitTests
 		public void TestParseMethodUsingSpaces()
 		{
 			string exampleExpression = "-1 - -2";
-			TokenParser parser = TokenParser.Parse(exampleExpression);
+			Expression expression = TokenParser.Parse(exampleExpression);
 
-			var tokens = from t in parser.Expression
+			var tokens = from t in expression
 						 select t;
 
 			Assert.AreEqual(3, tokens.Count<IToken>());

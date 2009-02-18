@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Expression.cs" />
     <Compile Include="TokenParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
