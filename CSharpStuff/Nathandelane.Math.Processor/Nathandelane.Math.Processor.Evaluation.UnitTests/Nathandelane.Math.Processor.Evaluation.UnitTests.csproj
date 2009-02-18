@@ -39,7 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TokenEvaluationUnitTests.cs" />
+    <Compile Include="TokenParserUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nathandelane.Math.Processor.Evaluation\Nathandelane.Math.Processor.Evaluation.csproj">
