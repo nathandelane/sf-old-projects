@@ -7,7 +7,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Math.Processor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Math.Processor.Parser", "Nathandelane.Math.Processor.Parser\Nathandelane.Math.Processor.Parser.csproj", "{F107EFB6-4C52-499F-98B2-EA4756DDD84E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1843F055-C08C-4319-87AE-F0910EDB29E0}"
+	ProjectSection(SolutionItems) = preProject
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		Nathandelane.Math.Processor.vsmdi = Nathandelane.Math.Processor.vsmdi
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Math.Processor.Parser.UnitTests", "Nathandelane.Math.Processor.Parser.UnitTests\Nathandelane.Math.Processor.Parser.UnitTests.csproj", "{62263122-0B0E-4D7C-A544-D5A6A14A4F61}"
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Nathandelane.Math.Processor.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -25,6 +36,10 @@ Global
 		{F107EFB6-4C52-499F-98B2-EA4756DDD84E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F107EFB6-4C52-499F-98B2-EA4756DDD84E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F107EFB6-4C52-499F-98B2-EA4756DDD84E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62263122-0B0E-4D7C-A544-D5A6A14A4F61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62263122-0B0E-4D7C-A544-D5A6A14A4F61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62263122-0B0E-4D7C-A544-D5A6A14A4F61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62263122-0B0E-4D7C-A544-D5A6A14A4F61}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
