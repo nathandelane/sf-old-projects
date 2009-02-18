@@ -44,20 +44,23 @@ namespace Nathandelane.Math.Processor.Parser
 			{
 				IToken nextToken = GetNextToken(expression);
 
-				if ((nextToken.Type == TokenType.Operator) && (lastToken.Type == TokenType.Operator))
+				if (IsNegation(lastToken, nextToken))
 				{
 					nextNumberIsNegative = true;
 				}
 				else if ((nextToken is Number) && nextNumberIsNegative)
 				{
-					nextNumberIsNegative = false;
-
 					string tokenValue = String.Concat("-", nextToken.Value);
-
+					expression = String.Concat("-", expression);
+					nextNumberIsNegative = false;
 					nextToken = new Number(tokenValue);
+
+					Remove(lastToken);
 				}
 
 				Add(nextToken);
+
+				lastToken = nextToken;
 
 				int tokenLength = nextToken.Value.Length;
 				expression = expression.Substring(tokenLength);
@@ -69,6 +72,21 @@ namespace Nathandelane.Math.Processor.Parser
 		#endregion
 
 		#region Private Methods
+
+		private static bool IsNegation(IToken lastToken, IToken nextToken)
+		{
+			bool result = false;
+
+			if(nextToken.Type == TokenType.Operator)
+			{
+				if ((lastToken.Type == TokenType.Operator) || (lastToken.Type == TokenType.Structure) || (lastToken.Type == TokenType.Null))
+				{
+					result = true;
+				}
+			}
+
+			return result;
+		}
 
 		private static IToken GetNextToken(string expression)
 		{
@@ -105,6 +123,11 @@ namespace Nathandelane.Math.Processor.Parser
 		private static void RemoveAt(int index)
 		{
 			_expression.RemoveAt(index);
+		}
+
+		private static int Count()
+		{
+			return _expression.Count;
 		}
 
 		#endregion

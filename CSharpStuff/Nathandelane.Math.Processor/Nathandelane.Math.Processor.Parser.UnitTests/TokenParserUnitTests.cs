@@ -71,9 +71,45 @@ namespace Nathandelane.Math.Processor.Parser.UnitTests
 		}
 
 		[TestMethod]
-		public void TestParseMethodUsingNegatives()
+		public void TestParseMethodUsingNegatives1()
 		{
 			string exampleExpression = "1+-2";
+			TokenParser parser = TokenParser.Parse(exampleExpression);
+
+			var tokens = from t in parser.Expression
+						 select t;
+
+			Assert.AreEqual(3, tokens.Count<IToken>());
+		}
+
+		[TestMethod]
+		public void TestParseMethodUsingNegatives2()
+		{
+			string exampleExpression = "-1+-2";
+			TokenParser parser = TokenParser.Parse(exampleExpression);
+
+			var tokens = from t in parser.Expression
+						 select t;
+
+			Assert.AreEqual(3, tokens.Count<IToken>());
+		}
+
+		[TestMethod]
+		public void TestParseMethodUsingNegatives3()
+		{
+			string exampleExpression = "-1+2";
+			TokenParser parser = TokenParser.Parse(exampleExpression);
+
+			var tokens = from t in parser.Expression
+						 select t;
+
+			Assert.AreEqual(3, tokens.Count<IToken>());
+		}
+
+		[TestMethod]
+		public void TestParseMethodUsingNegatives4()
+		{
+			string exampleExpression = "-1--2";
 			TokenParser parser = TokenParser.Parse(exampleExpression);
 
 			var tokens = from t in parser.Expression
