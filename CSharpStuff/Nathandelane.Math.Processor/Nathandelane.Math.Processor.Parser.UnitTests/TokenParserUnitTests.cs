@@ -69,5 +69,17 @@ namespace Nathandelane.Math.Processor.Parser.UnitTests
 
 			Assert.AreEqual(3, tokens.Count<IToken>());
 		}
+
+		[TestMethod]
+		public void TestParseMethodUsingNegatives()
+		{
+			string exampleExpression = "1+-2";
+			TokenParser parser = TokenParser.Parse(exampleExpression);
+
+			var tokens = from t in parser.Expression
+						 select t;
+
+			Assert.AreEqual(3, tokens.Count<IToken>());
+		}
 	}
 }

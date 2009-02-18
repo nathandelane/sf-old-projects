@@ -37,10 +37,25 @@ namespace Nathandelane.Math.Processor.Parser
 		public static TokenParser Parse(string expression)
 		{
 			TokenParser tokenParser = new TokenParser();
+			IToken lastToken = null;
+			bool nextNumberIsNegative = false;
 
 			while (expression.Length > 0)
 			{
 				IToken nextToken = GetNextToken(expression);
+
+				if ((nextToken.Type == TokenType.Operator) && (lastToken.Type == TokenType.Operator))
+				{
+					nextNumberIsNegative = true;
+				}
+				else if ((nextToken is Number) && nextNumberIsNegative)
+				{
+					nextNumberIsNegative = false;
+
+					string tokenValue = String.Concat("-", nextToken.Value);
+
+					nextToken = new Number(tokenValue);
+				}
 
 				Add(nextToken);
 
