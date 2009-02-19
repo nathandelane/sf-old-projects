@@ -88,6 +88,8 @@ namespace Nathandelane.IO.ListSegments
 			foreach (FileInfo nextFile in files)
 			{
 				string output = String.Format("{0}", nextFile.Name);
+
+				Console.WriteLine(output);
 			}
 		}
 
