@@ -102,6 +102,8 @@ namespace Nathandelane.IO.ListSegments
 			Console.WriteLine("Options");
 			Console.WriteLine("-h, --help");
 			Console.WriteLine("      Displays this help message.");
+
+			Environment.Exit(0);
 		}
 
 		#endregion
