@@ -118,6 +118,8 @@ namespace Nathandelane.IO.ListSegments
 
 		private string GetMonthName(int month)
 		{
+			month--;
+
 			return (new List<string>()
 			{
 				"Jan", "Feb", "Mar", "Apr", "May", "Jun",
