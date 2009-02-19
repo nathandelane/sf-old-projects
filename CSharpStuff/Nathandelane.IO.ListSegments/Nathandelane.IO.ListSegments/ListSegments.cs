@@ -11,7 +11,7 @@ namespace Nathandelane.IO.ListSegments
 		#region Fields
 
 		private string _directory;
-		private string[] _filters;
+		private IList<string> _filters;
 		private bool _isDisposed;
 
 		#endregion
@@ -30,25 +30,25 @@ namespace Nathandelane.IO.ListSegments
 		public ListSegments()
 		{
 			_directory = @".\";
-			_filters = new string[0];
+			_filters = new List<string>();
 			_isDisposed = false;
 		}
 
 		public ListSegments(string directory)
 		{
 			_directory = directory;
-			_filters = new string[0];
+			_filters = new List<string>();
 			_isDisposed = false;
 		}
 
-		public ListSegments(string[] filters)
+		public ListSegments(IList<string> filters)
 		{
 			_directory = @".\";
 			_filters = filters;
 			_isDisposed = false;
 		}
 
-		public ListSegments(string directory, string[] filters)
+		public ListSegments(string directory, IList<string> filters)
 		{
 			_directory = directory;
 			_filters = filters;
@@ -61,38 +61,90 @@ namespace Nathandelane.IO.ListSegments
 
 		public void Run()
 		{
-			List<FileInfo> files = new List<FileInfo>();
+			List<FileSystemInfo> segments = new List<FileSystemInfo>();
 			DirectoryInfo directoryInfo = new DirectoryInfo(_directory);
 
-			if (_filters.Length > 0)
+			if (_filters.Count > 0)
 			{
 				foreach (string filter in _filters)
 				{
-					FileInfo[] filteredFiles = directoryInfo.GetFiles(filter);
-					files.AddRange(filteredFiles.AsEnumerable<FileInfo>());
+					FileSystemInfo[] filteredFiles = directoryInfo.GetFiles(filter);
+					segments.AddRange(filteredFiles.AsEnumerable<FileSystemInfo>());
+
+					FileSystemInfo[] filteredDirectories = directoryInfo.GetDirectories(filter);
+					segments.AddRange(filteredDirectories.AsEnumerable<FileSystemInfo>());
 				}
 			}
 			else
 			{
-				FileInfo[] allFiles = directoryInfo.GetFiles();
-				files.AddRange(allFiles.AsEnumerable<FileInfo>());
+				FileSystemInfo[] allFiles = directoryInfo.GetFiles();
+				segments.AddRange(allFiles.AsEnumerable<FileSystemInfo>());
+
+				FileSystemInfo[] allDirectories = directoryInfo.GetDirectories();
+				segments.AddRange(allDirectories.AsEnumerable<FileSystemInfo>());
 			}
 
-			DisplayFiles(files);
+			DisplayFiles(segments);
 		}
 
 		#endregion
 
 		#region Private Methods
 
-		private void DisplayFiles(IList<FileInfo> files)
+		private void DisplayFiles(IList<FileSystemInfo> segments)
 		{
-			foreach (FileInfo nextFile in files)
+			string output = String.Empty;
+
+			foreach (FileSystemInfo nextSegment in segments)
 			{
-				string output = String.Format("{0}", nextFile.Name);
+				output = String.Format("{0,-13} {1} {2}", FormatAttributes(nextSegment.Attributes, (nextSegment is DirectoryInfo)), FormatDateTime(nextSegment.LastWriteTime), nextSegment.Name);
 
 				Console.WriteLine(output);
 			}
+		}
+
+		private string FormatDateTime(DateTime dateTime)
+		{
+			string result = String.Format("{0} {1} {2,2}:{3,2}", GetMonthName(dateTime.Month), PadNumber(dateTime.Day, 2), PadNumber(dateTime.TimeOfDay.Hours, 2), PadNumber(dateTime.Minute, 2));
+
+			return result;
+		}
+
+		private string GetMonthName(int month)
+		{
+			return (new List<string>()
+			{
+				"Jan", "Feb", "Mar", "Apr", "May", "Jun",
+				"Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+			})[month];
+		}
+
+		private string PadNumber(int number, int padding)
+		{
+			string paddedNumber = String.Format("{0}", number);
+
+			for (int counter = paddedNumber.Length; counter < padding; counter++)
+			{
+				paddedNumber = String.Concat("0", paddedNumber);
+			}
+
+			return paddedNumber;
+		}
+
+		private string FormatAttributes(FileAttributes attributes, bool isDirectory)
+		{
+			string result = String.Empty;
+
+			if (isDirectory)
+			{
+				result = String.Concat(result, " d");
+			}
+			else
+			{
+				result = String.Concat(result, " -");
+			}
+
+			return result;
 		}
 
 		#endregion

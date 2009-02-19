@@ -7,12 +7,21 @@ namespace Nathandelane.IO.ListSegments
 {
 	class Program
 	{
+		#region Fields
+
+		private string _directory;
+		private IList<string> _filters;
+		private IList<Option> _options;
+
+		#endregion
+
 		#region Constructors
 
 		private Program(string[] args)
 		{
-			string directory = String.Empty;
-			IList<string> filters = new List<string>();
+			_directory = String.Empty;
+			_filters = new List<string>();
+			_options = new List<Option>();
 
 			if (args.Length == 0)
 			{
@@ -31,15 +40,15 @@ namespace Nathandelane.IO.ListSegments
 					}
 					else if (argument.Contains(@"\"))
 					{
-						directory = argument;
+						_directory = argument;
 					}
 					else
 					{
-						filters.Add(argument);
+						_filters.Add(argument);
 					}
 				}
 
-				ExecuteListSegments(directory, filters.ToArray());
+				ExecuteListSegments(_directory, _filters);
 			}
 		}
 
@@ -47,9 +56,9 @@ namespace Nathandelane.IO.ListSegments
 
 		#region Private Methods
 
-		private void ExecuteListSegments(string directory, string[] filters)
+		private void ExecuteListSegments(string directory, IList<string> filters)
 		{
-			if (filters.Length == 0)
+			if (filters.Count == 0)
 			{
 				if (String.IsNullOrEmpty(directory))
 				{
@@ -87,13 +96,23 @@ namespace Nathandelane.IO.ListSegments
 
 		private void ParseArgument(string argument)
 		{
-			switch (argument)
+			switch (argument.Split(new char[] { '=' })[0])
 			{
 				case "-h":
 				case "--help":
 					DisplayHelp();
 					break;
+				case "-c":
+				case "--columns":
+					SetDisplayColumns(argument);
+					break;
 			}
+		}
+
+		private void SetDisplayColumns(string argument)
+		{
+			string[] columns = (argument.Split(new char[] { '=' })[1]).Split(new char[] { ';' });
+			_options.Add(new Option("columns", new List<string>(columns.AsEnumerable())));
 		}
 
 		private void DisplayHelp()
