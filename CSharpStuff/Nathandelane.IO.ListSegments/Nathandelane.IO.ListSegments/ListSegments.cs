@@ -77,6 +77,8 @@ namespace Nathandelane.IO.ListSegments
 				FileInfo[] allFiles = directoryInfo.GetFiles();
 				files.AddRange(allFiles.AsEnumerable<FileInfo>());
 			}
+
+			DisplayFiles(files);
 		}
 
 		#endregion
