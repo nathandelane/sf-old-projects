@@ -95,12 +95,18 @@ namespace Nathandelane.IO.ListSegments
 		{
 			string output = String.Empty;
 
+			DisplayDefaultDirectories();
+
 			foreach (FileSystemInfo nextSegment in segments)
 			{
-				output = String.Format("{0,-13} {1} {2}", FormatAttributes(nextSegment.Attributes, (nextSegment is DirectoryInfo)), FormatDateTime(nextSegment.LastWriteTime), nextSegment.Name);
-
-				Console.WriteLine(output);
+				Console.WriteLine("{0,-13} {1} {2}", FormatAttributes(nextSegment.Attributes, (nextSegment is DirectoryInfo)), FormatDateTime(nextSegment.LastWriteTime), nextSegment.Name);
 			}
+		}
+
+		private void DisplayDefaultDirectories()
+		{
+			Console.WriteLine("{0,-13} {1} {2}", FormatAttributes((new DirectoryInfo(_directory)).Attributes, ((new DirectoryInfo(_directory)) is DirectoryInfo)), FormatDateTime((new DirectoryInfo(_directory)).LastWriteTime), ".");
+			Console.WriteLine("{0,-13} {1} {2}", FormatAttributes((new DirectoryInfo("..")).Attributes, ((new DirectoryInfo("..")) is DirectoryInfo)), FormatDateTime((new DirectoryInfo("..")).LastWriteTime), "..");
 		}
 
 		private string FormatDateTime(DateTime dateTime)
