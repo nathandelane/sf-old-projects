@@ -9,6 +9,11 @@ namespace Nathandelane.IO.Encrypt
 	{
 		private Program(Input userInput)
 		{
+			if (userInput.Algorithm == EncryptionAlgorithm.Xor)
+			{
+				Xor xorAlgorithm = new Xor(userInput.Key, userInput.FilePath);
+				xorAlgorithm.Run();
+			}
 		}
 
 		static void Main(string[] args)
