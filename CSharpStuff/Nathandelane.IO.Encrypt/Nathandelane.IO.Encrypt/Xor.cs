@@ -39,20 +39,32 @@ namespace Nathandelane.IO.Encrypt
 			byte[] bytes = ASCIIEncoding.UTF8.GetBytes(data);
 			byte[] newData = new byte[bytes.Length];
 
-			using (StreamWriter writer = new StreamWriter("Xor.temp"))
+			int keyIndex = 0;
+
+			if (!String.IsNullOrEmpty(_key))
 			{
-				int keyIndex = 0;
 				byte[] keyArray = ASCIIEncoding.UTF8.GetBytes(_key);
+
 				for (long index = 0; index < bytes.Length; index++)
 				{
 					newData[index] = (byte)((int)bytes[index] ^ (int)keyArray[keyIndex]);
 					keyIndex++;
 
-					if (keyIndex > _key.Length)
+					if (keyIndex == _key.Length)
 					{
 						keyIndex = 0;
 					}
 				}
+
+			}
+			else
+			{
+				throw new ArgumentException("Xor.Key");
+			}
+
+			using (StreamWriter writer = new StreamWriter("Xor.temp"))
+			{
+				writer.Write(ASCIIEncoding.UTF8.GetChars(newData));
 			}
 
 			File.Copy("Xor.temp", _inputFilePath, true);

@@ -91,6 +91,22 @@ namespace Nathandelane.IO.Encrypt
 					{
 						_isValid = ParseOtherArguments(args);
 					}
+					else
+					{
+						_algorithm = (EncryptionAlgorithm)Enum.Parse(typeof(EncryptionAlgorithm), ConfigurationManager.AppSettings["defaultAlgorithm"], true);
+
+						if (File.Exists(ConfigurationManager.AppSettings["keyLocation"]))
+						{
+							using (StreamReader reader = new StreamReader(ConfigurationManager.AppSettings["keyLocation"]))
+							{
+								_key = reader.ReadToEnd();
+							}
+						}
+						else
+						{
+							throw new ConfigurationErrorsException("keyLocation");
+						}
+					}
 				}
 				else
 				{
