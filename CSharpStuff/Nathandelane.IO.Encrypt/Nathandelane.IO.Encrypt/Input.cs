@@ -137,10 +137,6 @@ namespace Nathandelane.IO.Encrypt
 
 		#endregion
 
-		#region Private Methods
-
-		#endregion
-
 		#region IDisposable Members
 
 		public void Dispose()
