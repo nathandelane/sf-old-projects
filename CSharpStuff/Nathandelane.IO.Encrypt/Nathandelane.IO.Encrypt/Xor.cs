@@ -68,6 +68,7 @@ namespace Nathandelane.IO.Encrypt
 			}
 
 			File.Copy("Xor.temp", _inputFilePath, true);
+			File.Delete("Xor.temp");
 		}
 
 		#endregion
