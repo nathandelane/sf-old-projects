@@ -18,16 +18,23 @@ namespace Nathandelane.IO.Encrypt
 
 		static void Main(string[] args)
 		{
-			using (Input userInput = Input.CheckAndSanitizeInput(args))
+			try
 			{
-				if (userInput.IsValid)
+				using (Input userInput = Input.CheckAndSanitizeInput(args))
 				{
-					new Program(userInput);
+					if (userInput.IsValid)
+					{
+						new Program(userInput);
+					}
+					else
+					{
+						Input.Help();
+					}
 				}
-				else
-				{
-					Input.Help();
-				}
+			}
+			catch (ArgumentException ex)
+			{
+				Console.WriteLine("Invalid argument for {0}", ex.Message);
 			}
 		}
 	}
