@@ -2,9 +2,10 @@ package com.nathandelane.paintchat.web;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
-public class Client extends JApplet implements MouseMotionListener {
+public class Client extends JApplet implements MouseMotionListener, MouseListener {
 
 	private static final long serialVersionUID = 1L;
 	private static final int __width = 800;
@@ -32,9 +33,10 @@ public class Client extends JApplet implements MouseMotionListener {
 		_background.setColor(Color.WHITE);
 		_background.fillRect(0, 0, __width, __height);
 		
-		_brush = new Brush(Color.RED);
+		_brush = new Brush(BrushType.RECTANGLE, Color.RED);
 		
 		addMouseMotionListener(this);
+		addMouseListener(this);
 	}
 	
 	public void update(Graphics g) {
@@ -60,5 +62,30 @@ public class Client extends JApplet implements MouseMotionListener {
 
 	@Override
 	public void mouseMoved(MouseEvent e) { }
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		int brushX = e.getX();
+		int brushY = e.getY();
+
+		_background.setColor(_brush.getColor());
+		_brush.paint(_background, brushX, brushY);
+		
+		repaint();
+		
+		e.consume();
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) { }
+
+	@Override
+	public void mouseExited(MouseEvent e) { }
+
+	@Override
+	public void mousePressed(MouseEvent e) { }
+
+	@Override
+	public void mouseReleased(MouseEvent e) { }
 
 }
