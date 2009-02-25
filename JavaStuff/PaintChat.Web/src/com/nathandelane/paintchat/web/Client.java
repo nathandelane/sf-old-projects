@@ -11,7 +11,8 @@ public class Client extends JApplet implements MouseMotionListener {
 	private static final int __height = 600;
 	
 	private Image _backBuffer;
-	private Graphics _background;
+	private Graphics2D _background;
+	private Brush _brush;
 	
 	public void init() {
 		try {
@@ -27,10 +28,11 @@ public class Client extends JApplet implements MouseMotionListener {
 		
 		_backBuffer = createImage(__width, __height);
 		
-		_background = _backBuffer.getGraphics();
+		_background = (Graphics2D)_backBuffer.getGraphics();
 		_background.setColor(Color.WHITE);
 		_background.fillRect(0, 0, __width, __height);
-		_background.setColor(Color.BLACK);
+		
+		_brush = new Brush(Color.RED);
 		
 		addMouseMotionListener(this);
 	}
@@ -47,8 +49,9 @@ public class Client extends JApplet implements MouseMotionListener {
 	public void mouseDragged(MouseEvent e) {
 		int brushX = e.getX();
 		int brushY = e.getY();
-		
-		_background.fillOval(brushX - 5, brushY - 5, 10, 10);
+
+		_background.setColor(_brush.getColor());
+		_brush.paint(_background, brushX, brushY);
 		
 		repaint();
 		
