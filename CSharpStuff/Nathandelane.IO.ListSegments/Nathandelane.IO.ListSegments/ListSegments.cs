@@ -114,7 +114,7 @@ namespace Nathandelane.IO.ListSegments
 		
 		private string FormatFileSize(FileSystemInfo segment)
 		{
-			string size = String.Format("{0,20", String.Empty);
+			string size = String.Format("{0,20}  ", "<dir>");
 			
 			if(segment is FileInfo)
 			{
