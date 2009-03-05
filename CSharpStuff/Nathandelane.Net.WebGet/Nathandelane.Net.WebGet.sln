@@ -4,8 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # SharpDevelop 3.0.0.3800
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.WebGet", "Nathandelane.Net.WebGet\Nathandelane.Net.WebGet.csproj", "{364A28A6-5874-4A5A-BD60-4A8967747216}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.WebGet.UserInterface", "Nathandelane.Net.WebGet.UserInterface\Nathandelane.Net.WebGet.UserInterface.csproj", "{372827B1-9A17-47DB-93DF-AA43CC260C87}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -16,9 +14,5 @@ Global
 		{364A28A6-5874-4A5A-BD60-4A8967747216}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{364A28A6-5874-4A5A-BD60-4A8967747216}.Release|Any CPU.Build.0 = Release|Any CPU
 		{364A28A6-5874-4A5A-BD60-4A8967747216}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{372827B1-9A17-47DB-93DF-AA43CC260C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{372827B1-9A17-47DB-93DF-AA43CC260C87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{372827B1-9A17-47DB-93DF-AA43CC260C87}.Release|Any CPU.Build.0 = Release|Any CPU
-		{372827B1-9A17-47DB-93DF-AA43CC260C87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 EndGlobal
