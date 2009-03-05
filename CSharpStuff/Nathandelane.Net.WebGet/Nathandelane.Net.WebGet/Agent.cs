@@ -1,6 +1,8 @@
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Net;
 
 namespace Nathandelane.Net.WebGet
@@ -11,6 +13,7 @@ namespace Nathandelane.Net.WebGet
 		
 		private bool _isDisposed;
 		private string _url;
+		private string _fileName;
 		
 		#endregion
 		
@@ -28,6 +31,7 @@ namespace Nathandelane.Net.WebGet
 		public Agent(string url)
 		{
 			_url = url;
+			_fileName = _url.Substring(_url.LastIndexOf("/") + 1);
 		}
 		
 		#endregion
@@ -36,14 +40,27 @@ namespace Nathandelane.Net.WebGet
 		
 		public void Run()
 		{
-			string fileName = _url.Substring(_url.LastIndexOf("/"));
 			WebClient webClient = new WebClient();
-			byte[] data = webClient.DownloadData(_url);
+			Uri uri = new Uri(_url);
 			
-			using(FileStream stream = new FileStream(fileName, FileMode.Append))
-			{
-				stream.Write(data, 0, data.Length);
-			}
+			webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(OnProgressChanged);
+			webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(OnDownloadCompleted);
+			
+			webClient.DownloadFileAsync(uri, _fileName);
+		}
+		
+		#endregion
+		
+		#region Private Methods
+		
+		private void OnProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+		{
+			Console.WriteLine("{0} bytes received. {1}% complete...", e.BytesReceived, e.ProgressPercentage);
+		}
+		
+		private void OnDownloadCompleted(object sender, AsyncCompletedEventArgs e)
+		{
+			Console.WriteLine("Download completed.");
 		}
 		
 		#endregion

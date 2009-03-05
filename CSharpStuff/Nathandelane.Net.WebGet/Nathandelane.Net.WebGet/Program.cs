@@ -33,7 +33,7 @@ namespace Nathandelane.Net.WebGet
 		
 		private static void DisplayHelp()
 		{
-			Console.WriteLine("Usage: {0} url", Assembly.GetEntryAssembly().GetName());
+			Console.WriteLine("Usage: {0} url", Assembly.GetEntryAssembly().GetName().Name);
 		}
 	}
 }
