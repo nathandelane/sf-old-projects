@@ -43,24 +43,7 @@ namespace Nathandelane.Net.WebGet
 			WebClient webClient = new WebClient();
 			Uri uri = new Uri(_url);
 			
-			webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(OnProgressChanged);
-			webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(OnDownloadCompleted);
-			
-			webClient.DownloadFileAsync(uri, _fileName);
-		}
-		
-		#endregion
-		
-		#region Private Methods
-		
-		private void OnProgressChanged(object sender, DownloadProgressChangedEventArgs e)
-		{
-			Console.WriteLine("{0} bytes received. {1}% complete...", e.BytesReceived, e.ProgressPercentage);
-		}
-		
-		private void OnDownloadCompleted(object sender, AsyncCompletedEventArgs e)
-		{
-			Console.WriteLine("Download completed.");
+			webClient.DownloadFile(uri, _fileName);
 		}
 		
 		#endregion
