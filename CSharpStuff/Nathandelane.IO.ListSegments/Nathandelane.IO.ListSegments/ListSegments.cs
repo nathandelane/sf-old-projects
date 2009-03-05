@@ -99,14 +99,14 @@ namespace Nathandelane.IO.ListSegments
 
 			foreach (FileSystemInfo nextSegment in segments)
 			{
-				Console.WriteLine("{0,-13} {1} {2} {3,22}", FormatAttributes(nextSegment.Attributes, (nextSegment is DirectoryInfo)), FormatDateTime(nextSegment.LastWriteTime), FormatFileSize(nextSegment), nextSegment.Name);
+				Console.WriteLine("{0,-13} {1} {2} {3,-22}", FormatAttributes(nextSegment.Attributes, (nextSegment is DirectoryInfo)), FormatDateTime(nextSegment.LastWriteTime), FormatFileSize(nextSegment), nextSegment.Name);
 			}
 		}
 
 		private void DisplayDefaultDirectories()
 		{
-			Console.WriteLine("{0,-13} {1} {2} {3,22}", FormatAttributes((new DirectoryInfo(_directory)).Attributes, ((new DirectoryInfo(_directory)) is DirectoryInfo)), FormatDateTime((new DirectoryInfo(_directory)).LastWriteTime), String.Empty, ".");
-			Console.WriteLine("{0,-13} {1} {2} {3,22}", FormatAttributes((new DirectoryInfo("..")).Attributes, ((new DirectoryInfo("..")) is DirectoryInfo)), FormatDateTime((new DirectoryInfo("..")).LastWriteTime), String.Empty, "..");
+			Console.WriteLine("{0,-13} {1} {2} {3}", FormatAttributes((new DirectoryInfo(_directory)).Attributes, ((new DirectoryInfo(_directory)) is DirectoryInfo)), FormatDateTime((new DirectoryInfo(_directory)).LastWriteTime), String.Empty, ".");
+			Console.WriteLine("{0,-13} {1} {2} {3}", FormatAttributes((new DirectoryInfo("..")).Attributes, ((new DirectoryInfo("..")) is DirectoryInfo)), FormatDateTime((new DirectoryInfo("..")).LastWriteTime), String.Empty, "..");
 		}
 		
 		private string FormatFileSize(FileSystemInfo segment)
@@ -115,7 +115,7 @@ namespace Nathandelane.IO.ListSegments
 			
 			if(segment is FileInfo)
 			{
-				size = String.Format("{0:n} b", ((FileInfo)segment).Length);
+				size = String.Format("{0,20:0,0}  ", ((FileInfo)segment).Length);
 			}
 			
 			return size;
