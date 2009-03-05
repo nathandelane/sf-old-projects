@@ -105,13 +105,16 @@ namespace Nathandelane.IO.ListSegments
 
 		private void DisplayDefaultDirectories()
 		{
-			Console.WriteLine("{0,-13} {1} {2} {3}", FormatAttributes((new DirectoryInfo(_directory)).Attributes, ((new DirectoryInfo(_directory)) is DirectoryInfo)), FormatDateTime((new DirectoryInfo(_directory)).LastWriteTime), String.Empty, ".");
-			Console.WriteLine("{0,-13} {1} {2} {3}", FormatAttributes((new DirectoryInfo("..")).Attributes, ((new DirectoryInfo("..")) is DirectoryInfo)), FormatDateTime((new DirectoryInfo("..")).LastWriteTime), String.Empty, "..");
+			DirectoryInfo cwd = new DirectoryInfo(".");
+			DirectoryInfo parent = new DirectoryInfo("..");
+			
+			Console.WriteLine("{0,-13} {1} {2} {3}", FormatAttributes(cwd.Attributes, cwd is DirectoryInfo), FormatDateTime(cwd.LastWriteTime), FormatFileSize(cwd), ".");
+			Console.WriteLine("{0,-13} {1} {2} {3}", FormatAttributes(parent.Attributes, parent is DirectoryInfo), FormatDateTime(parent.LastWriteTime), FormatFileSize(parent), "..");
 		}
 		
 		private string FormatFileSize(FileSystemInfo segment)
 		{
-			string size = String.Empty;
+			string size = String.Format("{0,20", String.Empty);
 			
 			if(segment is FileInfo)
 			{
