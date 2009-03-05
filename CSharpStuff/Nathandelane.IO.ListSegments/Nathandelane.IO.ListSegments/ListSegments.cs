@@ -68,10 +68,10 @@ namespace Nathandelane.IO.ListSegments
 			{
 				foreach (string filter in _filters)
 				{
-					FileSystemInfo[] filteredFiles = directoryInfo.GetFiles(filter);
+					FileInfo[] filteredFiles = directoryInfo.GetFiles(filter);
 					segments.AddRange(filteredFiles.AsEnumerable<FileSystemInfo>());
 
-					FileSystemInfo[] filteredDirectories = directoryInfo.GetDirectories(filter);
+					DirectoryInfo[] filteredDirectories = directoryInfo.GetDirectories(filter);
 					segments.AddRange(filteredDirectories.AsEnumerable<FileSystemInfo>());
 				}
 			}
@@ -99,14 +99,26 @@ namespace Nathandelane.IO.ListSegments
 
 			foreach (FileSystemInfo nextSegment in segments)
 			{
-				Console.WriteLine("{0,-13} {1} {2}", FormatAttributes(nextSegment.Attributes, (nextSegment is DirectoryInfo)), FormatDateTime(nextSegment.LastWriteTime), nextSegment.Name);
+				Console.WriteLine("{0,-13} {1} {2} {3,22}", FormatAttributes(nextSegment.Attributes, (nextSegment is DirectoryInfo)), FormatDateTime(nextSegment.LastWriteTime), FormatFileSize(nextSegment), nextSegment.Name);
 			}
 		}
 
 		private void DisplayDefaultDirectories()
 		{
-			Console.WriteLine("{0,-13} {1} {2}", FormatAttributes((new DirectoryInfo(_directory)).Attributes, ((new DirectoryInfo(_directory)) is DirectoryInfo)), FormatDateTime((new DirectoryInfo(_directory)).LastWriteTime), ".");
-			Console.WriteLine("{0,-13} {1} {2}", FormatAttributes((new DirectoryInfo("..")).Attributes, ((new DirectoryInfo("..")) is DirectoryInfo)), FormatDateTime((new DirectoryInfo("..")).LastWriteTime), "..");
+			Console.WriteLine("{0,-13} {1} {2} {3,22}", FormatAttributes((new DirectoryInfo(_directory)).Attributes, ((new DirectoryInfo(_directory)) is DirectoryInfo)), FormatDateTime((new DirectoryInfo(_directory)).LastWriteTime), String.Empty, ".");
+			Console.WriteLine("{0,-13} {1} {2} {3,22}", FormatAttributes((new DirectoryInfo("..")).Attributes, ((new DirectoryInfo("..")) is DirectoryInfo)), FormatDateTime((new DirectoryInfo("..")).LastWriteTime), String.Empty, "..");
+		}
+		
+		private string FormatFileSize(FileSystemInfo segment)
+		{
+			string size = String.Empty;
+			
+			if(segment is FileInfo)
+			{
+				size = String.Format("{0:n} b");
+			}
+			
+			return size;
 		}
 
 		private string FormatDateTime(DateTime dateTime)
