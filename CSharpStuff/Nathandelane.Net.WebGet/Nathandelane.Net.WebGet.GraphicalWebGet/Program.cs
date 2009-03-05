@@ -1,30 +1,19 @@
-﻿/*
- * Created by SharpDevelop.
- * User: nathanl
- * Date: 3/5/2009
- * Time: 12:13 PM
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-using System;
+﻿using System;
+using System.Configuration;
 using System.Windows.Forms;
 
 namespace Nathandelane.Net.WebGet.GraphicalWebGet
 {
-	/// <summary>
-	/// Class with program entry point.
-	/// </summary>
 	internal sealed class Program
 	{
-		/// <summary>
-		/// Program entry point.
-		/// </summary>
 		[STAThread]
 		private static void Main(string[] args)
 		{
+			string outputDirectory = ConfigurationManager.AppSettings["outputDirectory"];
+
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MainForm());
+			Application.Run(new MainForm(outputDirectory));
 		}
 		
 	}
