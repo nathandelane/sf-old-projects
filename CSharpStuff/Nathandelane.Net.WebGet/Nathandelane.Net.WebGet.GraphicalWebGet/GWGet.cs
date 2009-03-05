@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Nathandelane.Net.WebGet.GraphicalWebGet
 {
-	internal sealed class Program
+	internal sealed class GWGet
 	{
 		[STAThread]
 		private static void Main(string[] args)

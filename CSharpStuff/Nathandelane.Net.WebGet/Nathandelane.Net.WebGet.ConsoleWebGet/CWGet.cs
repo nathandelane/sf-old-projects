@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace Nathandelane.Net.WebGet
+namespace Nathandelane.Net.WebGet.ConsoleWebGet
 {
-	class Program
+	class CWGet
 	{
-		private Program(IList<string> urls)
+		private CWGet(IList<string> urls)
 		{
 			foreach(string nextUrl in urls)
 			{
@@ -27,7 +27,7 @@ namespace Nathandelane.Net.WebGet
 			{
 				IList<string> urls = new List<string>(args);
 				
-				new Program(urls);
+				new CWGet(urls);
 			}
 		}
 		
