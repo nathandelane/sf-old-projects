@@ -22,10 +22,13 @@ using System.Runtime.InteropServices;
 // If you need to expose a type to COM, use [ComVisible(true)] on that type.
 [assembly: ComVisible(false)]
 
+[assembly: Guid("a5a41f4b-ccf9-44d5-a64c-e9b226ae0a10")]
+
 // The assembly version has following format :
 //
 // Major.Minor.Build.Revision
 //
 // You can specify all the values or you can use the default the Revision and 
 // Build Numbers by using the '*' as shown below:
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
