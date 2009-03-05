@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using Nathandelane.Net.WebGet;
 
@@ -13,6 +14,7 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 {
 	public partial class Form1 : Form
 	{
+		
 		private Dictionary<string, Agent> _agents;
 		private string _outputDirectory;
 
@@ -44,7 +46,10 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 						nextAgent.Client.DownloadFileCompleted += new AsyncCompletedEventHandler(OnDownloadCompleted);
 
 						_agents.Add(name, nextAgent);
-						_agents[name].Run();
+
+						ThreadStart threadStart = new ThreadStart(_agents[name].Run);
+						Thread thread = new Thread(threadStart);
+						thread.Start();						
 
 						_resourceListBox.Items.Add(name);
 					}
