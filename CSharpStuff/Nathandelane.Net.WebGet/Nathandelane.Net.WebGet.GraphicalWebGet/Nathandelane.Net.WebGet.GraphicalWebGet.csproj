@@ -62,4 +62,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nathandelane.Net.WebGet\Nathandelane.Net.WebGet.csproj">
+      <Project>{364A28A6-5874-4A5A-BD60-4A8967747216}</Project>
+      <Name>Nathandelane.Net.WebGet</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
