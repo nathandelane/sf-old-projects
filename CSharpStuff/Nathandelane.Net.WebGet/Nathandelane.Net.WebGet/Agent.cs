@@ -20,6 +20,7 @@ namespace Nathandelane.Net.WebGet
 		public string FileName
 		{
 			get { return _fileName; }
+			set { _fileName = value; }
 		}
 
 		public WebClient Client
@@ -32,13 +33,13 @@ namespace Nathandelane.Net.WebGet
 		{
 			_url = url;
 			_fileName = _url.Substring(_url.LastIndexOf("/") + 1);
+			_client = new WebClient();
 		}
 
 		public void Run()
 		{
 			Uri uri = new Uri(Url);
 
-			Client = new WebClient();
 			Client.DownloadFile(uri, FileName);
 		}
 	}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -13,10 +14,12 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 	public partial class Form1 : Form
 	{
 		private Dictionary<string, Agent> _agents;
+		private string _outputDirectory;
 
 		public Form1()
 		{
 			_agents = new Dictionary<string, Agent>();
+			_outputDirectory = ConfigurationManager.AppSettings["outputDirectory"];
 
 			InitializeComponent();
 		}
@@ -37,6 +40,8 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 					try
 					{
 						Agent nextAgent = new Agent(_urlTextBox.Text);
+						nextAgent.FileName = String.Format("{0}\\{1}", _outputDirectory, nextAgent.FileName);
+						nextAgent.Client.DownloadFileCompleted += new AsyncCompletedEventHandler(OnDownloadCompleted);
 
 						_agents.Add(name, nextAgent);
 						_agents[name].Run();
@@ -45,6 +50,7 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 					}
 					catch (Exception ex)
 					{
+						MessageBox.Show(String.Format("Exception caught! {0}", ex.Message));
 					}
 				}
 				else
@@ -58,6 +64,15 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 			{
 				MessageBox.Show("You must enter a URL in the text box.");
 			}
+		}
+
+		void OnDownloadCompleted(object sender, AsyncCompletedEventArgs e)
+		{
+			string name = ((Agent)sender).FileName;
+			int resourceIndex = _resourceListBox.Items.IndexOf(name);
+
+			_resourceListBox.Items[resourceIndex] = String.Concat("Done...", name);
+			_agents.Remove(name);
 		}
 	}
 }
