@@ -115,7 +115,7 @@ namespace Nathandelane.IO.ListSegments
 			
 			if(segment is FileInfo)
 			{
-				size = String.Format("{0:n} b");
+				size = String.Format("{0:n} b", ((FileInfo)segment).Length);
 			}
 			
 			return size;
