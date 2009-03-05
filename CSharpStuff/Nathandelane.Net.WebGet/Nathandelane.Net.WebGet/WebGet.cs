@@ -7,7 +7,7 @@ using System.Net;
 
 namespace Nathandelane.Net.WebGet
 {
-	public class Agent : IDisposable
+	public class WebGet : IDisposable
 	{
 		#region Fields
 		
@@ -28,7 +28,7 @@ namespace Nathandelane.Net.WebGet
 		
 		#region Constructors
 		
-		public Agent(string url)
+		public WebGet(string url)
 		{
 			_url = url;
 			_fileName = _url.Substring(_url.LastIndexOf("/") + 1);

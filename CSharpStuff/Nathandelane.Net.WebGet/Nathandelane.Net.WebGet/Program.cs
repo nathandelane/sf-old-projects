@@ -10,9 +10,9 @@ namespace Nathandelane.Net.WebGet
 		{
 			foreach(string nextUrl in urls)
 			{
-				using(Agent agent = new Agent(nextUrl))
+				using(WebGet webGet = new WebGet(nextUrl))
 				{
-					agent.Run();
+					webGet.Run();
 				}
 			}
 		}
