@@ -4,11 +4,17 @@ using System.Reflection;
 
 namespace Nathandelane.Net.WebGet
 {
-	private class Program
+	class Program
 	{
-		private Program(List<string> urls)
+		private Program(IList<string> urls)
 		{
-			
+			foreach(string nextUrl in urls)
+			{
+				using(Agent agent = new Agent(nextUrl))
+				{
+					agent.Run();
+				}
+			}
 		}
 		
 		public static void Main(string[] args)
@@ -27,7 +33,7 @@ namespace Nathandelane.Net.WebGet
 		
 		private static void DisplayHelp()
 		{
-			Console.WriteLine("Usage: {0} url", Assembly.GetEntryAssembly().FullName);
+			Console.WriteLine("Usage: {0} url", Assembly.GetEntryAssembly().GetName());
 		}
 	}
 }
