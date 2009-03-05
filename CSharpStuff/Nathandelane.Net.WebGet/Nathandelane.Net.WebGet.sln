@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.WebGet", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.WebGet.GraphicalWebGet", "Nathandelane.Net.WebGet.GraphicalWebGet\Nathandelane.Net.WebGet.GraphicalWebGet.csproj", "{20B7922D-08C3-42EF-85C6-A58DF28CA22F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.WebGet.ConsoleWebGet", "Nathandelane.Net.WebGet.ConsoleWebGet\Nathandelane.Net.WebGet.ConsoleWebGet.csproj", "{A8541EBC-AEF6-4DFE-9F55-8BF4D1205A5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,5 +22,9 @@ Global
 		{20B7922D-08C3-42EF-85C6-A58DF28CA22F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{20B7922D-08C3-42EF-85C6-A58DF28CA22F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{20B7922D-08C3-42EF-85C6-A58DF28CA22F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8541EBC-AEF6-4DFE-9F55-8BF4D1205A5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8541EBC-AEF6-4DFE-9F55-8BF4D1205A5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8541EBC-AEF6-4DFE-9F55-8BF4D1205A5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8541EBC-AEF6-4DFE-9F55-8BF4D1205A5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 EndGlobal

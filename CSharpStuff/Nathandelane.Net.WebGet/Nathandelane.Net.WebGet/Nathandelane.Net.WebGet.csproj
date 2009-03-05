@@ -3,7 +3,7 @@
     <ProjectGuid>{364A28A6-5874-4A5A-BD60-4A8967747216}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>Nathandelane.Net.WebGet</RootNamespace>
     <AssemblyName>wget</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
