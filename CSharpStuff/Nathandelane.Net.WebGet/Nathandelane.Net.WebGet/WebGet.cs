@@ -14,6 +14,7 @@ namespace Nathandelane.Net.WebGet
 		private bool _isDisposed;
 		private string _url;
 		private string _fileName;
+		private WebClient _webClient;
 		
 		#endregion
 		
@@ -23,7 +24,17 @@ namespace Nathandelane.Net.WebGet
 		{
 			get { return _isDisposed; }
 		}
-		
+
+		public string FileName
+		{
+			get { return _fileName; }
+		}
+
+		public AsyncCompletedEventHandler DownloadFileCompleted
+		{
+			set { _webClient.DownloadFileCompleted += value; }
+		}
+
 		#endregion
 		
 		#region Constructors
@@ -40,10 +51,10 @@ namespace Nathandelane.Net.WebGet
 		
 		public void Run()
 		{
-			WebClient webClient = new WebClient();
 			Uri uri = new Uri(_url);
 			
-			webClient.DownloadFile(uri, _fileName);
+			_webClient = new WebClient();
+			_webClient.DownloadFile(uri, _fileName);
 		}
 		
 		#endregion
