@@ -33,7 +33,7 @@ namespace Nathandelane.IO.Analyzer
 		#region Constructors
 
 		public DnsAnalyzer(string host)
-			: base(WebAnalyzerType.Dns, new Uri(host))
+			: base(WebAnalyzerType.Dns, host)
 		{
 		}
 
@@ -43,7 +43,7 @@ namespace Nathandelane.IO.Analyzer
 
 		private void DoForwardLookup()
 		{
-			_hostEntry = Dns.GetHostByName(Location.Host);
+			_hostEntry = Dns.GetHostByName(Location);
 			_addresses = _hostEntry.AddressList;
 
 			Console.WriteLine("Addresses:");
@@ -56,7 +56,7 @@ namespace Nathandelane.IO.Analyzer
 
 		private void DoReverseLookup()
 		{
-			_hostEntry = Dns.Resolve(Location.Host);
+			_hostEntry = Dns.Resolve(Location);
 
 			Console.WriteLine("Host name: {0}", _hostEntry.HostName);
 		}
@@ -67,7 +67,7 @@ namespace Nathandelane.IO.Analyzer
 
 		public override void Run()
 		{
-			if (Regex.IsMatch(Location.AbsoluteUri, "[A-Za-z]+"))
+			if (Regex.IsMatch(Location, "[A-Za-z]+"))
 			{
 				DoForwardLookup();
 			}

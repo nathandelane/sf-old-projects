@@ -11,7 +11,8 @@ namespace Nathandelane.IO.Analyzer
 		#region Fields
 
 		private WebAnalyzerType _type;
-		private Uri _location;
+		private string _location;
+		private int _timeout;
 
 		#endregion
 
@@ -23,19 +24,26 @@ namespace Nathandelane.IO.Analyzer
 			set { _type = value; }
 		}
 
-		public Uri Location
+		public string Location
 		{
 			get { return _location; }
+		}
+
+		public int Timeout
+		{
+			get { return _timeout; }
+			set { _timeout = value; }
 		}
 
 		#endregion
 
 		#region Constructors
 
-		public WebAnalyzer(WebAnalyzerType type, Uri location)
+		public WebAnalyzer(WebAnalyzerType type, string location)
 		{
 			_type = type;
 			_location = location;
+			_timeout = 30;
 		}
 
 		#endregion

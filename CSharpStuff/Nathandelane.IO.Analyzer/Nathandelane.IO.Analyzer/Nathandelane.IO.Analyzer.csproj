@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnalyzerType.cs" />
     <Compile Include="DnsAnalyzer.cs" />
     <Compile Include="HttpAnalyzer.cs" />
     <Compile Include="IAnalyzer.cs" />

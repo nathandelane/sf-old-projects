@@ -13,7 +13,6 @@ namespace Nathandelane.IO.Analyzer
 
 		private Ping _sender;
 		private PingOptions _options;
-		private int _timeout;
 
 		#endregion
 
@@ -25,28 +24,22 @@ namespace Nathandelane.IO.Analyzer
 			set { _options = value; }
 		}
 
-		public int Timeout
-		{
-			get { return _timeout; }
-			set { _timeout = value; }
-		}
-
 		#endregion
 
 		#region Constructors
 
 		public IpAnalyzer(string host)
-			: base(WebAnalyzerType.Ip, new Uri(host))
+			: base(WebAnalyzerType.Ip, host)
 		{
 			_options = new PingOptions(128, true);
-			_timeout = 120;
+			Timeout = 120;
 		}
 
 		public IpAnalyzer(string host, int timeout)
-			: base(WebAnalyzerType.Ip, new Uri(host))
+			: base(WebAnalyzerType.Ip, host)
 		{
 			_options = new PingOptions(128, true);
-			_timeout = timeout;
+			Timeout = timeout;
 		}
 
 		#endregion
@@ -59,11 +52,11 @@ namespace Nathandelane.IO.Analyzer
 
 			using (_sender = new Ping())
 			{
-				PingReply reply = _sender.Send(Location.Host, _timeout, data, _options);
+				PingReply reply = _sender.Send(Location, Timeout, data, _options);
 
 				if (reply.Status == IPStatus.Success)
 				{
-					Console.WriteLine("Address: {0}\nRoundtrip time: {1}", reply.Address, reply.RoundtripTime);
+					Console.WriteLine("Address: {0}\nRoundtrip time: {1} ms", reply.Address, reply.RoundtripTime);
 				}
 			}
 		}

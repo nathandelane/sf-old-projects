@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nathandelane.IO.Analyzer.ConsoleAnalyzer</RootNamespace>
-    <AssemblyName>Nathandelane.IO.Analyzer.ConsoleAnalyzer</AssemblyName>
+    <AssemblyName>analyzer</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
