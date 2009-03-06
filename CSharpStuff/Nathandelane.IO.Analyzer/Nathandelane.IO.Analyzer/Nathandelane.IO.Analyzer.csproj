@@ -54,6 +54,7 @@
     <Compile Include="DnsAnalyzer.cs" />
     <Compile Include="HttpAnalyzer.cs" />
     <Compile Include="IAnalyzer.cs" />
+    <Compile Include="IpAnalyzer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebAnalyzer.cs" />
     <Compile Include="WebAnalyzerType.cs" />
