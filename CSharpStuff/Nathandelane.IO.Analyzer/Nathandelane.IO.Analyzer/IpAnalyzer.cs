@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace Nathandelane.IO.Analyzer
@@ -59,6 +60,15 @@ namespace Nathandelane.IO.Analyzer
 					Console.WriteLine("Address: {0}\nRoundtrip time: {1} ms", reply.Address, reply.RoundtripTime);
 				}
 			}
+		}
+
+		#endregion
+
+		#region Static Methods
+
+		public static void DisplayHelp()
+		{
+			Console.WriteLine("Usage: {0} --type=IpAnalyzer url [timeoutInSeconds]", Assembly.GetEntryAssembly().GetName().Name);
 		}
 
 		#endregion

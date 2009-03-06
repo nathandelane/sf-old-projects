@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -75,6 +76,15 @@ namespace Nathandelane.IO.Analyzer
 			{
 				DoReverseLookup();
 			}
+		}
+
+		#endregion
+
+		#region Static Methods
+
+		public static void DisplayHelp()
+		{
+			Console.WriteLine("Usage: {0} --type=DnsAnalyzer url", Assembly.GetEntryAssembly().GetName().Name);
 		}
 
 		#endregion

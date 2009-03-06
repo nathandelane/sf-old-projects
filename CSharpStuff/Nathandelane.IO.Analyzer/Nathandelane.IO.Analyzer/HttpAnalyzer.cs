@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
 using HtmlAgilityPack;
@@ -54,14 +55,13 @@ namespace Nathandelane.IO.Analyzer
 		{
 			HttpWebRequest request = WebRequest.Create(Location) as HttpWebRequest;
 			request.UserAgent = Agent.AgentString;
-			request.Timeout = Timeout;
+			request.Timeout = Timeout * 1000;
 
 			HttpWebResponse response = request.GetResponse() as HttpWebResponse;
 
 			using (StreamReader reader = new StreamReader(response.GetResponseStream()))
 			{
-				HtmlDocument document;
-				document = new HtmlDocument();
+				HtmlDocument document = new HtmlDocument();
 				document.LoadHtml(reader.ReadToEnd());
 				document.OptionOutputAsXml = true;
 				
@@ -72,6 +72,15 @@ namespace Nathandelane.IO.Analyzer
 					_document = XDocument.Parse(stringWriter.GetStringBuilder().ToString());
 				}
 			}
+		}
+
+		#endregion
+
+		#region Static Methods
+
+		public static void DisplayHelp()
+		{
+			Console.WriteLine("Usage: {0} --type=HttpAnalyzer url [timeoutInSeconds]", Assembly.GetEntryAssembly().GetName().Name);
 		}
 
 		#endregion

@@ -11,7 +11,7 @@ namespace Nathandelane.IO.Analyzer.ConsoleAnalyzer
 	{
 		private Program(string[] args)
 		{
-			WebAnalyzer analyzer = null;
+			IAnalyzer analyzer = null;
 			string analyzerType = args[0].Split(new string[] { "--type=" }, StringSplitOptions.RemoveEmptyEntries)[0];
 
 			switch (analyzerType)
@@ -20,7 +20,7 @@ namespace Nathandelane.IO.Analyzer.ConsoleAnalyzer
 					analyzer = new DnsAnalyzer(args[1]);
 					break;
 				case "IpAnalyzer":
-					analyzer = new IpAnalyzer(args[1]);
+					analyzer = (args.Length == 3) ? new IpAnalyzer(args[1], int.Parse(args[2])) : new IpAnalyzer(args[1]);
 					break;
 				case "HttpAnalyzer":
 					analyzer = new HttpAnalyzer(args[1]);
@@ -38,9 +38,47 @@ namespace Nathandelane.IO.Analyzer.ConsoleAnalyzer
 			{
 				DisplayHelp();
 			}
+			else if (args[0].StartsWith("-h="))
+			{
+				string analyzerType = args[0].Split(new string[] { "--h=" }, StringSplitOptions.RemoveEmptyEntries)[0];
+
+				DisplayHelpFor(analyzerType);
+
+			}
+			else if (args[0].StartsWith("--help="))
+			{
+				string analyzerType = args[0].Split(new string[] { "--help=" }, StringSplitOptions.RemoveEmptyEntries)[0];
+
+				DisplayHelpFor(analyzerType);
+			}
 			else
 			{
-				new Program(args);
+				try
+				{
+					new Program(args);
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("{0} caught! {1}", ex.GetType().Name, ex.Message);
+				}
+			}
+		}
+
+		private static void DisplayHelpFor(string analyzerType)
+		{
+			switch (analyzerType)
+			{
+				case "DnsAnalyzer":
+					DnsAnalyzer.DisplayHelp();
+					break;
+				case "IpAnalyzer":
+					IpAnalyzer.DisplayHelp();
+					break;
+				case "HttpAnalyzer":
+					HttpAnalyzer.DisplayHelp();
+					break;
+				default:
+					throw new ArgumentException(analyzerType);
 			}
 		}
 

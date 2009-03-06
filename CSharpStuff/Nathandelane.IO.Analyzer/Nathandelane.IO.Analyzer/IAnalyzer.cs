@@ -7,9 +7,15 @@ namespace Nathandelane.IO.Analyzer
 {
 	public interface IAnalyzer
 	{
-		#region properties
+		#region Properties
 
-		string Location { get; set; }
+		string Location { get; }
+
+		#endregion
+
+		#region Methods
+
+		void Run();
 
 		#endregion
 	}

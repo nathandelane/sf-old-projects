@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Nathandelane.IO.Analyzer
 {
-	public abstract class WebAnalyzer
+	public class WebAnalyzer : IAnalyzer
 	{
 		#region Fields
 
@@ -50,7 +50,10 @@ namespace Nathandelane.IO.Analyzer
 
 		#region Public Methods
 
-		public abstract void Run();
+		public virtual void Run()
+		{
+			throw new NotImplementedException("Run()");
+		}
 
 		#endregion
 	}
