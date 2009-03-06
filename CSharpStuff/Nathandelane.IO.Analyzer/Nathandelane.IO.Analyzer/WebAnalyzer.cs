@@ -20,6 +20,7 @@ namespace Nathandelane.IO.Analyzer
 		public WebAnalyzerType Type
 		{
 			get { return _type; }
+			set { _type = value; }
 		}
 
 		public Uri Location
