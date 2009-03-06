@@ -10,9 +10,26 @@ namespace Nathandelane.IO.Analyzer
 	public class HttpAnalyzer : WebAnalyzer
 	{
 		#region Fields
+
+		private UserAgent _agentString;
+		private int _timeout;
+
 		#endregion
 
 		#region Properties
+
+		public UserAgent Agent
+		{
+			get { return _agentString; }
+			set { _agentString = value; }
+		}
+
+		public int Timeout
+		{
+			get { return _timeout; }
+			set { _timeout = value; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -24,6 +41,9 @@ namespace Nathandelane.IO.Analyzer
 			{
 				Type = WebAnalyzerType.Https;
 			}
+
+			Agent = UserAgent.InternetExplorer;
+			Timeout = 30;
 		}
 
 		#endregion
@@ -33,6 +53,10 @@ namespace Nathandelane.IO.Analyzer
 		public override void Run()
 		{
 			HttpWebRequest request = WebRequest.Create(Location) as HttpWebRequest;
+			request.UserAgent = Agent.AgentString;
+			request.Timeout = Timeout;
+
+			HttpWebResponse response = request.GetResponse() as HttpWebResponse;
 		}
 
 		#endregion
