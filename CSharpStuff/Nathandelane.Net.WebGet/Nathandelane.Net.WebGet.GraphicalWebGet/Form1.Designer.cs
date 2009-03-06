@@ -32,7 +32,7 @@
 			this._clearButton = new System.Windows.Forms.Button();
 			this._goButton = new System.Windows.Forms.Button();
 			this._resourceListBox = new System.Windows.Forms.ListBox();
-			this.saveAsTextBox = new System.Windows.Forms.TextBox();
+			this._saveAsTextBox = new System.Windows.Forms.TextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
@@ -71,12 +71,12 @@
 			this._resourceListBox.Size = new System.Drawing.Size(658, 368);
 			this._resourceListBox.TabIndex = 3;
 			// 
-			// saveAsTextBox
+			// _saveAsTextBox
 			// 
-			this.saveAsTextBox.Location = new System.Drawing.Point(65, 38);
-			this.saveAsTextBox.Name = "saveAsTextBox";
-			this.saveAsTextBox.Size = new System.Drawing.Size(605, 20);
-			this.saveAsTextBox.TabIndex = 4;
+			this._saveAsTextBox.Location = new System.Drawing.Point(65, 38);
+			this._saveAsTextBox.Name = "_saveAsTextBox";
+			this._saveAsTextBox.Size = new System.Drawing.Size(605, 20);
+			this._saveAsTextBox.TabIndex = 4;
 			// 
 			// label1
 			// 
@@ -93,7 +93,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(682, 469);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.saveAsTextBox);
+			this.Controls.Add(this._saveAsTextBox);
 			this.Controls.Add(this._resourceListBox);
 			this.Controls.Add(this._goButton);
 			this.Controls.Add(this._clearButton);
@@ -113,7 +113,7 @@
 		private System.Windows.Forms.Button _clearButton;
 		private System.Windows.Forms.Button _goButton;
 		private System.Windows.Forms.ListBox _resourceListBox;
-		private System.Windows.Forms.TextBox saveAsTextBox;
+		private System.Windows.Forms.TextBox _saveAsTextBox;
 		private System.Windows.Forms.Label label1;
 	}
 }

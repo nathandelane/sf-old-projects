@@ -36,6 +36,13 @@ namespace Nathandelane.Net.WebGet
 			_client = new WebClient();
 		}
 
+		public Agent(string url, string fileName)
+		{
+			_url = url;
+			_fileName = fileName;
+			_client = new WebClient();
+		}
+
 		public void Run()
 		{
 			Uri uri = new Uri(Url);

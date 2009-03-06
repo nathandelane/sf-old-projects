@@ -29,19 +29,30 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 		private void ClearUrlTextBox(object sender, EventArgs e)
 		{
 			_urlTextBox.Text = String.Empty;
+			_saveAsTextBox.Text = String.Empty;
 		}
 
 		private void AddResource(object sender, EventArgs e)
 		{
 			if (!String.IsNullOrEmpty(_urlTextBox.Text))
 			{
-				string name = (String.IsNullOrEmpty(saveAsTextBox.Text)) ? _urlTextBox.Text.Substring(_urlTextBox.Text.LastIndexOf("/") + 1) : saveAsTextBox.Text;
+				string name = _urlTextBox.Text.Substring(_urlTextBox.Text.LastIndexOf("/") + 1);
 
 				if (!_resourceListBox.Items.Contains(name))
 				{
 					try
 					{
-						Agent nextAgent = new Agent(_urlTextBox.Text);
+						Agent nextAgent;
+
+						if (String.IsNullOrEmpty(_saveAsTextBox.Text))
+						{
+							nextAgent = new Agent(_urlTextBox.Text);
+						}
+						else
+						{
+							nextAgent = new Agent(_urlTextBox.Text, _saveAsTextBox.Text);
+						}
+
 						nextAgent.FileName = String.Format("{0}\\{1}", _outputDirectory, nextAgent.FileName);
 						nextAgent.Client.DownloadFileCompleted += new AsyncCompletedEventHandler(OnDownloadCompleted);
 
