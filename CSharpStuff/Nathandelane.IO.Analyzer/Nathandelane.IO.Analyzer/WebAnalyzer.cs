@@ -38,5 +38,11 @@ namespace Nathandelane.IO.Analyzer
 		}
 
 		#endregion
+
+		#region Public Methods
+
+		public abstract void Run();
+
+		#endregion
 	}
 }
