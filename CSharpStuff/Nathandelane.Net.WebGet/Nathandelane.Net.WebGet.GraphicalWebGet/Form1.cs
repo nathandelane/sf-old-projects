@@ -35,7 +35,7 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 		{
 			if (!String.IsNullOrEmpty(_urlTextBox.Text))
 			{
-				string name = _urlTextBox.Text.Substring(_urlTextBox.Text.LastIndexOf("/") + 1);
+				string name = (String.IsNullOrEmpty(saveAsTextBox.Text)) ? _urlTextBox.Text.Substring(_urlTextBox.Text.LastIndexOf("/") + 1) : saveAsTextBox.Text;
 
 				if (!_resourceListBox.Items.Contains(name))
 				{
