@@ -23,6 +23,8 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 			_agents = new Dictionary<string, Agent>();
 			_outputDirectory = ConfigurationManager.AppSettings["outputDirectory"];
 
+			Logger.LogMessage(String.Format("Created new GWGet form with empty agents collection and outputDirectory of {0}.", _outputDirectory));
+
 			InitializeComponent();
 		}
 
@@ -30,13 +32,19 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 		{
 			_urlTextBox.Text = String.Empty;
 			_saveAsTextBox.Text = String.Empty;
+
+			Logger.LogMessage("Cleared url and save as file name.");
 		}
 
 		private void AddResource(object sender, EventArgs e)
 		{
+			Logger.LogMessage("Began downloading file.");
+
 			if (!String.IsNullOrEmpty(_urlTextBox.Text))
 			{
 				string name = _urlTextBox.Text.Substring(_urlTextBox.Text.LastIndexOf("/") + 1);
+
+				Logger.LogMessage(String.Format("Got file name: {0}", name));
 
 				if (!_resourceListBox.Items.Contains(name))
 				{
@@ -47,14 +55,20 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 						if (String.IsNullOrEmpty(_saveAsTextBox.Text))
 						{
 							nextAgent = new Agent(_urlTextBox.Text);
+
+							Logger.LogMessage("Using resource name as file name.");
 						}
 						else
 						{
 							nextAgent = new Agent(_urlTextBox.Text, _saveAsTextBox.Text);
+
+							Logger.LogMessage("Using save as file name as file name.");
 						}
 
 						nextAgent.FileName = String.Format("{0}\\{1}", _outputDirectory, nextAgent.FileName);
 						nextAgent.Client.DownloadFileCompleted += new AsyncCompletedEventHandler(OnDownloadCompleted);
+
+						Logger.LogMessage(String.Format("Set file name and location to {0}.", nextAgent.FileName));
 
 						_agents.Add(name, nextAgent);
 
@@ -66,6 +80,8 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 					}
 					catch (Exception ex)
 					{
+						Logger.LogMessage(String.Format("Caught an exception! {0}", ex.Message));
+
 						MessageBox.Show(String.Format("Exception caught! {0}", ex.Message));
 					}
 				}
@@ -84,6 +100,8 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 
 		void OnDownloadCompleted(object sender, AsyncCompletedEventArgs e)
 		{
+			Logger.LogMessage("Download completed.");
+
 			string name = ((Agent)sender).FileName;
 			int resourceIndex = _resourceListBox.Items.IndexOf(name);
 

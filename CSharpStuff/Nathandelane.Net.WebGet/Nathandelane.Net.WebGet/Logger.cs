@@ -6,13 +6,18 @@ using System.Text;
 
 namespace Nathandelane.Net.WebGet
 {
-	static class Logger
+	public class Logger
 	{
+		private static object __lockObject = new object();
+
 		public static void LogMessage(string message)
 		{
-			using (StreamWriter writer = new StreamWriter(new FileStream("WGet.log", FileMode.Append)))
+			lock (__lockObject)
 			{
-				writer.WriteLine(message);
+				using (StreamWriter writer = new StreamWriter(new FileStream("WGet.log", FileMode.Append)))
+				{
+					writer.WriteLine(message);
+				}
 			}
 		}
 	}
