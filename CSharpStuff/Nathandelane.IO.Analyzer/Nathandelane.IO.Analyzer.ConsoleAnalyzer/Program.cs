@@ -23,7 +23,7 @@ namespace Nathandelane.IO.Analyzer.ConsoleAnalyzer
 					analyzer = (args.Length == 3) ? new IpAnalyzer(args[1], int.Parse(args[2])) : new IpAnalyzer(args[1]);
 					break;
 				case "HttpAnalyzer":
-					analyzer = new HttpAnalyzer(args[1]);
+					analyzer = new HttpAnalyzer(args);
 					break;
 				default:
 					throw new ArgumentException(args[0]);

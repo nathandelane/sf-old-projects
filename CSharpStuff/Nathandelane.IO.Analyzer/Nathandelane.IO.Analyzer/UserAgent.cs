@@ -53,6 +53,71 @@ namespace Nathandelane.IO.Analyzer
 		public static readonly UserAgent Opera = new UserAgent("Opera/9.60 (Windows NT 6.0; U; en) Presto/2.1.1");
 		public static readonly UserAgent Safari = new UserAgent("Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/525.19 (KHTML, like Gecko) Version/3.1.2 Safari/525.21");
 
+		public static UserAgent ByName(string name)
+		{
+			UserAgent userAgent = UserAgent.Empty;
+
+			switch (name)
+			{
+				case "Empty":
+					userAgent = UserAgent.Empty;
+					break;
+				case "InternetExplorer":
+					userAgent = UserAgent.InternetExplorer;
+					break;
+				case "InternetExplorer8":
+					userAgent = UserAgent.InternetExplorer8;
+					break;
+				case "InternetExplorer7":
+					userAgent = UserAgent.InternetExplorer7;
+					break;
+				case "InternetExplorer6":
+					userAgent = UserAgent.InternetExplorer6;
+					break;
+				case "GoogleChrome":
+					userAgent = UserAgent.GoogleChrome;
+					break;
+				case "ELinks":
+					userAgent = UserAgent.ELinks;
+					break;
+				case "Emacs":
+					userAgent = UserAgent.Emacs;
+					break;
+				case "Epiphany":
+					userAgent = UserAgent.Epiphany;
+					break;
+				case "Firefox":
+					userAgent = UserAgent.Firefox;
+					break;
+				case "Firefox3":
+					userAgent = UserAgent.Firefox3;
+					break;
+				case "Firefox2":
+					userAgent = UserAgent.Firefox2;
+					break;
+				case "Firefox1_5":
+					userAgent = UserAgent.Firefox1_5;
+					break;
+				case "IceApe":
+					userAgent = UserAgent.IceApe;
+					break;
+				case "IceCat":
+					userAgent = UserAgent.IceCat;
+					break;
+				case "IceWeasel":
+					userAgent = UserAgent.IceWeasel;
+					break;
+				case "Opera":
+					userAgent = UserAgent.Opera;
+					break;
+				case "Safari":
+					userAgent = UserAgent.Safari;
+					break;
+			}
+
+			return userAgent;
+		}
+
 		#endregion
 	}
 }
