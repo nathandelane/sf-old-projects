@@ -59,6 +59,10 @@ namespace Nathandelane.IO.Analyzer
 				{
 					Console.WriteLine("Address: {0}\nRoundtrip time: {1} ms", reply.Address, reply.RoundtripTime);
 				}
+				else
+				{
+					Console.WriteLine("Pinging {0} resulted in {1}", Location, reply.Status);
+				}
 			}
 		}
 
