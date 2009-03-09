@@ -16,10 +16,12 @@ namespace Nathandelane.IO.Analyzer
 
 		private string[] _returnKey;
 		private string[] _cookies;
+		private string[] _selectElements;
 		private UserAgent _agentString;
 		private XDocument _document;
 		private WebHeaderCollection _requestHeaders;
 		private WebHeaderCollection _responseHeaders;
+		private bool _suppress;
 
 		#endregion
 
@@ -67,18 +69,34 @@ namespace Nathandelane.IO.Analyzer
 		public HttpAnalyzer(string[] parameters)
 			: base(WebAnalyzerType.Http, parameters[1])
 		{
-			if (parameters[1].ToLower().StartsWith("https://"))
+			if (parameters.Length >= 2)
 			{
-				Type = WebAnalyzerType.Https;
+				if (parameters[1].ToLower().StartsWith("http"))
+				{
+					if (parameters[1].ToLower().StartsWith("https://"))
+					{
+						Type = WebAnalyzerType.Https;
+					}
+
+					_returnKey = new string[0];
+					_cookies = new string[0];
+					_selectElements = new string[0];
+					_suppress = false;
+
+					Timeout = 30000;
+					Agent = UserAgent.InternetExplorer;
+
+					ParseParameters(parameters);
+				}
+				else
+				{
+					throw new ArgumentException("Uri must start with http:// or https://");
+				}
 			}
-
-			_returnKey = new string[0];
-			_cookies = new string[0];
-
-			Timeout = 30000;
-			Agent = UserAgent.InternetExplorer;
-
-			ParseParameters(parameters);
+			else
+			{
+				HttpAnalyzer.DisplayHelp();
+			}
 		}
 
 		#endregion
@@ -113,7 +131,28 @@ namespace Nathandelane.IO.Analyzer
 				}
 			}
 
-			DisplayResults();
+			if (!_suppress)
+			{
+				DisplayResults();
+			}
+
+			if (_selectElements.Length != 0)
+			{
+				foreach (string elementName in _selectElements)
+				{
+					var elements = from e in Document.Root.Descendants()
+								   where e.Name.Equals(XName.Get(elementName, "http://www.w3.org/1999/xhtml"))
+								   select e as XElement;
+
+					for (int elementIndex = 0; elementIndex < elements.Count<XElement>(); elementIndex++)
+					{
+						XElement element = elements.ElementAt<XElement>(elementIndex);
+
+						Console.Write("{0}:{1}={2}; ", elementName, elementIndex, element);
+					}
+				}
+
+			}
 		}
 
 		#endregion
@@ -122,13 +161,13 @@ namespace Nathandelane.IO.Analyzer
 
 		private void ParseParameters(string[] parameters)
 		{
-			foreach (string parameter in parameters)
+			for (int paramIndex = 2; paramIndex < parameters.Length; paramIndex++)
 			{
+				string parameter = parameters[paramIndex];
+
 				if (parameter.StartsWith("--returnKey="))
 				{
-					string[] returnKeys = parameter.Substring("--returnKey=".Length).Split(new char[] { ',' });
-
-					_returnKey = returnKeys;
+					_returnKey = parameter.Substring("--returnKey=".Length).Split(new char[] { ',' });
 				}
 				else if (parameter.StartsWith("--timeout="))
 				{
@@ -138,15 +177,25 @@ namespace Nathandelane.IO.Analyzer
 				}
 				else if (parameter.StartsWith("--cookies="))
 				{
-					string[] cookies = parameter.Substring("--cookies=".Length).Split(new char[] { ',' });
-
-					_cookies = cookies;
+					_cookies = parameter.Substring("--cookies=".Length).Split(new char[] { ',' });
 				}
 				else if (parameter.StartsWith("--userAgent="))
 				{
 					string userAgent = parameter.Substring("--userAgent=".Length);
 
 					Agent = UserAgent.ByName(userAgent);
+				}
+				else if (parameter.StartsWith("--selectElements="))
+				{
+					_selectElements = parameter.Substring("--selectElements=".Length).Split(new char[] { ',' });
+				}
+				else if (parameter.StartsWith("--suppress"))
+				{
+					_suppress = true;
+				}
+				else
+				{
+					Console.WriteLine("Warning, unrecognized parameter found on command-line: {0}. All parameters must use specified case.", parameter);
 				}
 			}
 		}
@@ -190,7 +239,10 @@ namespace Nathandelane.IO.Analyzer
 							Console.Write("$responseHeaders=[{0}];", DisplayHeaders(ResponseHeaders));
 							break;
 						case "Data":
-							Console.Write("$data={0}", DisplayData());
+							Console.Write("$data={0}", DisplayData(false));
+							break;
+						case "DataFormatted":
+							Console.Write("$data={0}", DisplayData(true));
 							break;
 						case "Default":
 							Console.Write("$requestHeaders=[{0}]; $responseHeaders=[{1}];", DisplayHeaders(RequestHeaders), DisplayHeaders(ResponseHeaders));
@@ -208,9 +260,9 @@ namespace Nathandelane.IO.Analyzer
 			}
 		}
 
-		private string DisplayData()
+		private string DisplayData(bool maintainFormatting)
 		{
-			return Document.ToString(SaveOptions.DisableFormatting);
+			return (maintainFormatting) ? Document.ToString(SaveOptions.None) : Document.ToString(SaveOptions.DisableFormatting);
 		}
 
 		private string DisplayHeaders(WebHeaderCollection headers)
@@ -228,13 +280,17 @@ namespace Nathandelane.IO.Analyzer
 			return result.Substring(0, result.Length - 2);
 		}
 
+		private void SelectElements()
+		{
+		}
+
 		#endregion
 
 		#region Static Methods
 
 		public static void DisplayHelp()
 		{
-			Console.WriteLine("Usage: {0} --type=HttpAnalyzer url [--returnKeys=RequestHeaders,ResponseHeaders,Data] [--timeout=timeoutInSeconds] [--cookies=cookie1=value[,cookieN=value]] [--userAgent=userAgentName]", Assembly.GetEntryAssembly().GetName().Name);
+			Console.WriteLine("Usage: {0} --type=HttpAnalyzer url [--returnKey=RequestHeaders,ResponseHeaders,Data] [--timeout=timeoutInSeconds] [--cookies=cookie1=value[,cookieN=value]] [--userAgent=userAgentName]", Assembly.GetEntryAssembly().GetName().Name);
 		}
 
 		#endregion
