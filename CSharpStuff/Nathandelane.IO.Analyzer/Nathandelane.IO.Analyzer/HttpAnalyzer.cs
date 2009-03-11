@@ -222,7 +222,25 @@ namespace Nathandelane.IO.Analyzer
 					{
 						int startIndex = elementName.IndexOf('(');
 						int endIndex = elementName.IndexOf(')', startIndex);
-						string expression = elementName.Substring(startIndex + 1, (endIndex - startIndex) - 2);
+						string expression = elementName.Substring(startIndex + 1, (endIndex - startIndex) - 1);
+						string conditionalAttributeName = expression.Split(new string[] { "==" }, StringSplitOptions.RemoveEmptyEntries)[0];
+						string conditionalAttributeValue = expression.Split(new string[] { "==" }, StringSplitOptions.RemoveEmptyEntries)[1];
+						//string conditionalOperator = expression.Substring(conditionalAttributeName.Length, (expression.Length - conditionalAttributeName.Length - conditionalAttributeValue.Length)); -- Only == supported now
+
+						elementName = elementName.Substring(0, startIndex);
+
+						var elements = from e in Document.Root.Descendants()
+									   where e.Name.Equals(XName.Get(elementName, "http://www.w3.org/1999/xhtml")) &&
+											e.Attributes(XName.Get(conditionalAttributeName)).Count() == 1 &&
+											e.Attributes(XName.Get(conditionalAttributeName)).Contains(new XAttribute(conditionalAttributeName, conditionalAttributeValue))
+									   select e as XElement;
+
+						for (int elementIndex = 0; elementIndex < elements.Count<XElement>(); elementIndex++)
+						{
+							XElement element = elements.ElementAt<XElement>(elementIndex);
+
+							Console.Write("{0}.{1}:{2}:{3}; ", elementName, elementAttribute, elementIndex, GetAttribute(element, elementAttribute));
+						}
 					}
 					else
 					{
