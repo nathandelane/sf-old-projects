@@ -20,7 +20,7 @@ namespace Nathandelane.IO.Analyzer.ConsoleAnalyzer
 					analyzer = new DnsAnalyzer(args[1]);
 					break;
 				case "IpAnalyzer":
-					analyzer = (args.Length == 3) ? new IpAnalyzer(args[1], int.Parse(args[2])) : new IpAnalyzer(args[1]);
+					analyzer = new IpAnalyzer(args);
 					break;
 				case "HttpAnalyzer":
 					analyzer = new HttpAnalyzer(args);

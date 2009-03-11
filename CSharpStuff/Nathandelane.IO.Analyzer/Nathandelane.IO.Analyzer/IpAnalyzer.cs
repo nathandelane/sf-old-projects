@@ -17,6 +17,7 @@ namespace Nathandelane.IO.Analyzer
 		private Ping _sender;
 		private PingOptions _options;
 		private int _repeat;
+		private byte[] _data;
 
 		#endregion
 
@@ -34,24 +35,26 @@ namespace Nathandelane.IO.Analyzer
 			set { _repeat = value; }
 		}
 
+		public byte[] Data
+		{
+			get { return _data; }
+			set { _data = value; }
+		}
+
 		#endregion
 
 		#region Constructors
 
-		public IpAnalyzer(string host)
-			: base(WebAnalyzerType.Ip, host)
+		public IpAnalyzer(string[] args)
+			: base(WebAnalyzerType.Ip, args[1])
 		{
 			_options = new PingOptions(128, true);
 			_repeat = 1;
-			Timeout = 120;
-		}
+			_data = ASCIIEncoding.ASCII.GetBytes(new String('0', 32));
 
-		public IpAnalyzer(string host, int timeout)
-			: base(WebAnalyzerType.Ip, host)
-		{
-			_options = new PingOptions(128, true);
-			_repeat = 1;
-			Timeout = timeout;
+			Timeout = 120;
+
+			ParseParameters(args);
 		}
 
 		#endregion
@@ -61,20 +64,19 @@ namespace Nathandelane.IO.Analyzer
 		public override void Run()
 		{
 			Regex regex = new Regex("[\\d]+(.){1}[\\d]+(.){1}[\\d]+(.){1}[\\d]+");
-			byte[] data = ASCIIEncoding.ASCII.GetBytes(new String('0', 32));
 			IPHostEntry _hostEntry = (regex.IsMatch(Location)) ? Dns.GetHostByAddress(Location) : Dns.GetHostByName(Location);
 
-			Console.WriteLine("Pinging {0} [{1}] with {2} bytes of data:", _hostEntry.HostName, _hostEntry.AddressList[0], data.Length);
+			Console.WriteLine("Pinging {0} [{1}] with {2} bytes of data:", _hostEntry.HostName, _hostEntry.AddressList[0], _data.Length);
 
 			for (int repeatCounter = 0; repeatCounter < Repeat; repeatCounter++)
 			{
 				using (_sender = new Ping())
 				{
-					PingReply reply = _sender.Send(Location, Timeout, data, _options);
+					PingReply reply = _sender.Send(Location, Timeout, _data, _options);
 
 					if (reply.Status == IPStatus.Success)
 					{
-						Console.WriteLine("Reply from {0}: bytes={1} time={2}ms TTL={3}", reply.Address, data.Length, reply.RoundtripTime, Options.Ttl);
+						Console.WriteLine("Reply from {0}: bytes={1} time={2}ms TTL={3}", reply.Address, _data.Length, reply.RoundtripTime, Options.Ttl);
 					}
 					else
 					{
@@ -86,11 +88,50 @@ namespace Nathandelane.IO.Analyzer
 
 		#endregion
 
+		#region Private Methods
+
+		private void ParseParameters(string[] parameters)
+		{
+			for (int paramIndex = 2; paramIndex < parameters.Length; paramIndex++)
+			{
+				string parameter = parameters[paramIndex];
+
+				if (parameter.StartsWith("--ttl="))
+				{
+					Options.Ttl = int.Parse(parameter.Substring("--ttl=".Length));
+				}
+				else if (parameter.StartsWith("--timeout="))
+				{
+					string timeout = parameter.Substring("--timeout=".Length);
+
+					Timeout = int.Parse(timeout);
+				}
+				else if (parameter.StartsWith("--repeat="))
+				{
+					_repeat = int.Parse(parameter.Substring("--repeat=".Length));
+				}
+				else if (parameter.StartsWith("--dataLength="))
+				{
+					_data = new byte[(new String('0', int.Parse(parameter.Substring("--dataLength=".Length)))).Length];
+				}
+				else if (parameter.StartsWith("--data="))
+				{
+					_data = ASCIIEncoding.ASCII.GetBytes(new String('0', int.Parse(parameter.Substring("--dataLength=".Length))));
+				}
+				else
+				{
+					Console.WriteLine("Warning, unrecognized parameter found on command-line: {0}. All parameters must use specified case.", parameter);
+				}
+			}
+		}
+
+		#endregion
+
 		#region Static Methods
 
 		public static void DisplayHelp()
 		{
-			Console.WriteLine("Usage: {0} --type=IpAnalyzer url [timeoutInSeconds]", Assembly.GetEntryAssembly().GetName().Name);
+			Console.WriteLine("Usage: {0} --type=IpAnalyzer url [--timeout=timeoutInSeconds] [--ttl=timeToLiveInNumberOfNodes] [--repeat=timesToRepeat] [--dataLength=numberOfBytes|--data=actualData]", Assembly.GetEntryAssembly().GetName().Name);
 		}
 
 		#endregion
