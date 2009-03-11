@@ -56,6 +56,8 @@ namespace Nathandelane.IO.Analyzer.ConsoleAnalyzer
 				try
 				{
 					new Program(args);
+
+					Console.WriteLine();
 				}
 				catch (Exception ex)
 				{
