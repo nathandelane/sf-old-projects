@@ -136,23 +136,7 @@ namespace Nathandelane.IO.Analyzer
 				DisplayResults();
 			}
 
-			if (_selectElements.Length != 0)
-			{
-				foreach (string elementName in _selectElements)
-				{
-					var elements = from e in Document.Root.Descendants()
-								   where e.Name.Equals(XName.Get(elementName, "http://www.w3.org/1999/xhtml"))
-								   select e as XElement;
-
-					for (int elementIndex = 0; elementIndex < elements.Count<XElement>(); elementIndex++)
-					{
-						XElement element = elements.ElementAt<XElement>(elementIndex);
-
-						Console.Write("{0}:{1}={2}; ", elementName, elementIndex, element);
-					}
-				}
-
-			}
+			DisplaySelection();
 		}
 
 		#endregion
@@ -217,6 +201,44 @@ namespace Nathandelane.IO.Analyzer
 			}
 
 			return cookies;
+		}
+
+		private void DisplaySelection()
+		{
+			if (_selectElements.Length != 0)
+			{
+				foreach (string nextElement in _selectElements)
+				{
+					string elementName = nextElement;
+					string elementAttribute = String.Empty;
+
+					if (elementName.Contains('.'))
+					{
+						elementName = elementName.Split(new char[] { '.' })[0];
+						elementAttribute = elementName.Split(new char[] { '.' })[1];
+					}
+
+					var elements = from e in Document.Root.Descendants()
+								   where e.Name.Equals(XName.Get(elementName, "http://www.w3.org/1999/xhtml"))
+								   select e as XElement;
+
+					for (int elementIndex = 0; elementIndex < elements.Count<XElement>(); elementIndex++)
+					{
+						XElement element = elements.ElementAt<XElement>(elementIndex);
+
+						if (String.IsNullOrEmpty(elementAttribute))
+						{
+							Console.Write("{0}:{1}={2}; ", elementName, elementIndex, element);
+						}
+						else
+						{
+							Console.Write("{0}.{1}:{2}={3}; ", elementName, elementIndex, elementAttribute, element.Attribute(XName.Get(elementAttribute)));
+						}
+					}
+
+				}
+
+			}
 		}
 
 		private void DisplayResults()
@@ -290,7 +312,7 @@ namespace Nathandelane.IO.Analyzer
 
 		public static void DisplayHelp()
 		{
-			Console.WriteLine("Usage: {0} --type=HttpAnalyzer url [--returnKey=RequestHeaders,ResponseHeaders,Data] [--timeout=timeoutInSeconds] [--cookies=cookie1=value[,cookieN=value]] [--userAgent=userAgentName]", Assembly.GetEntryAssembly().GetName().Name);
+			Console.WriteLine("Usage: {0} --type=HttpAnalyzer url [--returnKey=RequestHeaders,ResponseHeaders,Data] [--timeout=timeoutInSeconds] [--cookies=cookie1=value[,cookieN=value]] [--userAgent=userAgentName] [--suppress] [--selectElements=elementName[.attributeName][,elementNameN[.attributeName]]]", Assembly.GetEntryAssembly().GetName().Name);
 		}
 
 		#endregion
