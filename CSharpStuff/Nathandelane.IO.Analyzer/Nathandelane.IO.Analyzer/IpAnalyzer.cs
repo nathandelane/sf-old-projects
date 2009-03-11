@@ -83,6 +83,8 @@ namespace Nathandelane.IO.Analyzer
 						Console.WriteLine("Pinging {0} resulted in {1}", Location, reply.Status);
 					}
 				}
+
+				Thread.Sleep(1000);
 			}
 		}
 
