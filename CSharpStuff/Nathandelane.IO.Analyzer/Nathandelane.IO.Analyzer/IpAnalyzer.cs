@@ -5,6 +5,7 @@ using System.Net.NetworkInformation;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace Nathandelane.IO.Analyzer
@@ -59,10 +60,11 @@ namespace Nathandelane.IO.Analyzer
 
 		public override void Run()
 		{
+			Regex regex = new Regex("[\\d]+(.){1}[\\d]+(.){1}[\\d]+(.){1}[\\d]+");
 			byte[] data = ASCIIEncoding.ASCII.GetBytes(new String('0', 32));
-			IPHostEntry _hostEntry = (Location.Contains('.')) ? Dns.GetHostByAddress(Location) : Dns.GetHostByName(Location);
+			IPHostEntry _hostEntry = (regex.IsMatch(Location)) ? Dns.GetHostByAddress(Location) : Dns.GetHostByName(Location);
 
-			Console.WriteLine("Pinging {0} [{1}] with {2} bytes of data:", String.Join(", ", _hostEntry.Aliases), _hostEntry.AddressList[0], data.Length);
+			Console.WriteLine("Pinging {0} [{1}] with {2} bytes of data:", _hostEntry.HostName, _hostEntry.AddressList[0], data.Length);
 
 			for (int repeatCounter = 0; repeatCounter < Repeat; repeatCounter++)
 			{
