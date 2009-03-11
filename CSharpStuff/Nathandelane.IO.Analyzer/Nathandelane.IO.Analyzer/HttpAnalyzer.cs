@@ -218,27 +218,56 @@ namespace Nathandelane.IO.Analyzer
 						elementName = elementName.Split(new char[] { '.' })[0];
 					}
 
-					var elements = from e in Document.Root.Descendants()
-								   where e.Name.Equals(XName.Get(elementName, "http://www.w3.org/1999/xhtml"))
-								   select e as XElement;
-
-					for (int elementIndex = 0; elementIndex < elements.Count<XElement>(); elementIndex++)
+					if (elementName.Contains('(') && elementName.Contains(')'))
 					{
-						XElement element = elements.ElementAt<XElement>(elementIndex);
+						int startIndex = elementName.IndexOf('(');
+						int endIndex = elementName.IndexOf(')', startIndex);
+						string expression = elementName.Substring(startIndex + 1, (endIndex - startIndex) - 2);
+					}
+					else
+					{
+						var elements = from e in Document.Root.Descendants()
+									   where e.Name.Equals(XName.Get(elementName, "http://www.w3.org/1999/xhtml"))
+									   select e as XElement;
 
-						if (String.IsNullOrEmpty(elementAttribute))
+						for (int elementIndex = 0; elementIndex < elements.Count<XElement>(); elementIndex++)
 						{
-							Console.Write("{0}:{1}={2}; ", elementName, elementIndex, element);
-						}
-						else
-						{
-							Console.Write("{0}.{1}:{2}:{3}; ", elementName, elementAttribute, elementIndex, element.Attribute(XName.Get(elementAttribute)));
+							XElement element = elements.ElementAt<XElement>(elementIndex);
+
+							if (String.IsNullOrEmpty(elementAttribute))
+							{
+								Console.Write("{0}:{1}={2}; ", elementName, elementIndex, element);
+							}
+							else
+							{
+								Console.Write("{0}.{1}:{2}:{3}; ", elementName, elementAttribute, elementIndex, GetAttribute(element, elementAttribute));
+							}
 						}
 					}
 
 				}
 
 			}
+		}
+
+		private string GetAttribute(XElement element, string attributeName)
+		{
+			string result = String.Empty;
+
+			if (attributeName.ToLower().Equals("innerhtml"))
+			{
+				result = String.Format("innerHtml=\"{0}\"", element.Descendants().FirstOrDefault().ToString());
+			}
+			else if (attributeName.ToLower().Equals("innerText"))
+			{
+				result = String.Format("innerText=\"{0}\"", element.Value);
+			}
+			else
+			{
+				result = element.Attribute(XName.Get(attributeName)).ToString();
+			}
+
+			return result;
 		}
 
 		private void DisplayResults()
