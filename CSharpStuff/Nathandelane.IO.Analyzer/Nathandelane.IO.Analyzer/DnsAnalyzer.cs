@@ -47,12 +47,19 @@ namespace Nathandelane.IO.Analyzer
 			_hostEntry = Dns.GetHostByName(Location);
 			_addresses = _hostEntry.AddressList;
 
-			Console.WriteLine("Addresses:");
+			Console.Write("Host-name: {0}; ", String.Join(", ", _hostEntry.Aliases));
+
+			StringBuilder sb = new StringBuilder();
+			sb.Append("Addresses: ");
 
 			foreach (IPAddress nextAddress in _addresses)
 			{
-				Console.WriteLine("{0}", nextAddress);
+				sb.Append(String.Format("{0}, ", nextAddress));
 			}
+
+			string result = (sb.ToString()).Substring(0, sb.Length - 2);
+
+			Console.WriteLine("{0}", result);
 		}
 
 		private void DoReverseLookup()
