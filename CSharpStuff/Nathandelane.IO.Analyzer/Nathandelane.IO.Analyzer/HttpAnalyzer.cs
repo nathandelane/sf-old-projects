@@ -232,7 +232,7 @@ namespace Nathandelane.IO.Analyzer
 						}
 						else
 						{
-							Console.Write("{0}.{1}:{2}={3}; ", elementName, elementIndex, elementAttribute, element.Attribute(XName.Get(elementAttribute)));
+							Console.Write("{0}.{1}:{2}:{3}; ", elementName, elementAttribute, elementIndex, element.Attribute(XName.Get(elementAttribute)));
 						}
 					}
 
