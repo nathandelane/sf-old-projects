@@ -214,8 +214,8 @@ namespace Nathandelane.IO.Analyzer
 
 					if (elementName.Contains('.'))
 					{
-						elementName = elementName.Split(new char[] { '.' })[0];
 						elementAttribute = elementName.Split(new char[] { '.' })[1];
+						elementName = elementName.Split(new char[] { '.' })[0];
 					}
 
 					var elements = from e in Document.Root.Descendants()
