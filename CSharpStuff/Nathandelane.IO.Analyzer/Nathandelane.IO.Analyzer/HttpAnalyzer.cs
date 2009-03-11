@@ -232,7 +232,7 @@ namespace Nathandelane.IO.Analyzer
 						var elements = from e in Document.Root.Descendants()
 									   where e.Name.Equals(XName.Get(elementName, "http://www.w3.org/1999/xhtml")) &&
 											e.Attributes(XName.Get(conditionalAttributeName)).Count() == 1 &&
-											e.Attributes(XName.Get(conditionalAttributeName)).Contains(new XAttribute(conditionalAttributeName, conditionalAttributeValue))
+											e.Attributes(XName.Get(conditionalAttributeName)).FirstOrDefault().Value.Equals(conditionalAttributeValue)
 									   select e as XElement;
 
 						for (int elementIndex = 0; elementIndex < elements.Count<XElement>(); elementIndex++)
@@ -242,7 +242,7 @@ namespace Nathandelane.IO.Analyzer
 							Console.Write("{0}.{1}:{2}:{3}; ", elementName, elementAttribute, elementIndex, GetAttribute(element, elementAttribute));
 						}
 					}
-					else
+					else if (String.IsNullOrEmpty(elementAttribute))
 					{
 						var elements = from e in Document.Root.Descendants()
 									   where e.Name.Equals(XName.Get(elementName, "http://www.w3.org/1999/xhtml"))
@@ -252,14 +252,21 @@ namespace Nathandelane.IO.Analyzer
 						{
 							XElement element = elements.ElementAt<XElement>(elementIndex);
 
-							if (String.IsNullOrEmpty(elementAttribute))
-							{
-								Console.Write("{0}:{1}={2}; ", elementName, elementIndex, element);
-							}
-							else
-							{
-								Console.Write("{0}.{1}:{2}:{3}; ", elementName, elementAttribute, elementIndex, GetAttribute(element, elementAttribute));
-							}
+							Console.Write("{0}:{1}={2}; ", elementName, elementIndex, element);
+						}
+					}
+					else
+					{
+						var elements = from e in Document.Root.Descendants()
+									   where e.Name.Equals(XName.Get(elementName, "http://www.w3.org/1999/xhtml")) &&
+											e.Attributes(XName.Get(elementAttribute)).Count() == 1
+									   select e as XElement;
+
+						for (int elementIndex = 0; elementIndex < elements.Count<XElement>(); elementIndex++)
+						{
+							XElement element = elements.ElementAt<XElement>(elementIndex);
+
+							Console.Write("{0}.{1}:{2}:{3}; ", elementName, elementAttribute, elementIndex, GetAttribute(element, elementAttribute));
 						}
 					}
 
@@ -276,7 +283,7 @@ namespace Nathandelane.IO.Analyzer
 			{
 				result = String.Format("innerHtml=\"{0}\"", element.Descendants().FirstOrDefault().ToString());
 			}
-			else if (attributeName.ToLower().Equals("innerText"))
+			else if (attributeName.ToLower().Equals("innertext"))
 			{
 				result = String.Format("innerText=\"{0}\"", element.Value);
 			}
