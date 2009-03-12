@@ -16,12 +16,15 @@ namespace Nathandelane.IO.Analyzer.ConsoleAnalyzer
 
 			switch (analyzerType)
 			{
+				case "Dns":
 				case "DnsAnalyzer":
 					analyzer = new DnsAnalyzer(args[1]);
 					break;
+				case "Ip":
 				case "IpAnalyzer":
 					analyzer = new IpAnalyzer(args);
 					break;
+				case "Http":
 				case "HttpAnalyzer":
 					analyzer = new HttpAnalyzer(args);
 					break;
