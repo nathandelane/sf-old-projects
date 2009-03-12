@@ -258,7 +258,7 @@ namespace Nathandelane.IO.Analyzer
 					else
 					{
 						var elements = from e in Document.Root.Descendants()
-									   where e.Name.Equals(XName.Get(elementName, "http://www.w3.org/1999/xhtml")) &&
+									   where e.Name.Equals(XName.Get(elementName, Document.Root.GetDefaultNamespace().NamespaceName)) &&
 											e.Attributes(XName.Get(elementAttribute)).Count() == 1
 									   select e as XElement;
 
