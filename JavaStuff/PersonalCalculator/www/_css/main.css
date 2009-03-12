@@ -1,0 +1,28 @@
+.navigation
+{
+	color: #669966;
+	font-size: 16px;
+}
+
+.navigation .navigationList
+{
+	padding: 0px;
+	margin: 0px;
+}
+
+.navigation .navigationList li
+{
+	list-style-type: none;
+	display: inline;
+}
+
+.newsItem
+{
+	width: auto;
+	text-align: left;
+}
+
+.newsItem .date
+{
+	font-weight: bold;
+}
