@@ -242,7 +242,7 @@ namespace Nathandelane.IO.Analyzer
 							Console.Write("{0}.{1}:{2}:{3}; ", elementName, elementAttribute, elementIndex, GetAttribute(element, elementAttribute));
 						}
 					}
-					else if (String.IsNullOrEmpty(elementAttribute))
+					else if (String.IsNullOrEmpty(elementAttribute) || elementAttribute.ToLower().Equals("innertext") || elementAttribute.ToLower().Equals("innerhtml"))
 					{
 						var elements = from e in Document.Root.Descendants()
 									   where e.Name.Equals(XName.Get(elementName, "http://www.w3.org/1999/xhtml"))
@@ -252,7 +252,14 @@ namespace Nathandelane.IO.Analyzer
 						{
 							XElement element = elements.ElementAt<XElement>(elementIndex);
 
-							Console.Write("{0}:{1}={2}; ", elementName, elementIndex, element);
+							if (elementAttribute.ToLower().Equals("innertext") || elementAttribute.ToLower().Equals("innerhtml"))
+							{
+								Console.Write("{0}.{1}:{2}:{3}; ", elementName, elementAttribute, elementIndex, GetAttribute(element, elementAttribute));
+							}
+							else
+							{
+								Console.Write("{0}:{1}={2}; ", elementName, elementIndex, element);
+							}
 						}
 					}
 					else
