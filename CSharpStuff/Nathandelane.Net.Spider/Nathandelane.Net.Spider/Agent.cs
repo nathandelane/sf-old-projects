@@ -138,9 +138,8 @@ namespace Nathandelane.Net.Spider
 			_request.Referer = _referringUrl;
 			_request.Timeout = int.Parse(_settings["timeOut"]);
 			_request.UserAgent = "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; WOW64; SLCC1; .NET CLR 2.0.50727; .NET CLR 3.0.04506; Media Center PC 5.0; .NET CLR 1.1.4322; Nathandelane.Net.Spider)";
-			_request.AllowAutoRedirect = true;
 
-			if (bool.Parse(_settings["ignoreCertifiacteErrors"]))
+			if (bool.Parse(_settings["ignoreCertificateErrors"]))
 			{
 				ServicePointManager.ServerCertificateValidationCallback +=
 					delegate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
