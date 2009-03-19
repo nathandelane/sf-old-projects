@@ -85,7 +85,7 @@ namespace Nathandelane.Net.Spider
 			bool result = false;
 			int wordsIndex = 0;
 
-			while(!result && wordsIndex < words.Length)
+			while(wordsIndex < words.Length && !result)
 			{
 				string word = words[wordsIndex];
 
@@ -93,6 +93,8 @@ namespace Nathandelane.Net.Spider
 				{
 					result = true;
 				}
+
+				wordsIndex++;
 			}
 
 			return result;
