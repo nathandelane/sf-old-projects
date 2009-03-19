@@ -56,6 +56,10 @@ namespace Nathandelane.Net.Spider
 					{
 						ConsoleColors.SetConsoleColor((byte)ConsoleColor.Green);
 					}
+					else if(ContainsWords(agent.ToString()))
+					{
+						ConsoleColors.SetConsoleColor((byte)ConsoleColor.Green);
+					}
 					else
 					{
 						ConsoleColors.SetConsoleColor((byte)ConsoleColor.Red);
@@ -73,6 +77,25 @@ namespace Nathandelane.Net.Spider
 					AddLinksFor(agent);
 				}
 			}
+		}
+
+		private bool ContainsWords(string source)
+		{
+			string[] words = _settings["logErrorOnWords"].Split(new char[] { ',' });
+			bool result = false;
+			int wordsIndex = 0;
+
+			while(!result && wordsIndex < words.Length)
+			{
+				string word = words[wordsIndex];
+
+				if (source.Contains(word))
+				{
+					result = true;
+				}
+			}
+
+			return result;
 		}
 
 		private void GetHeadRequest(SpiderUrl url)
