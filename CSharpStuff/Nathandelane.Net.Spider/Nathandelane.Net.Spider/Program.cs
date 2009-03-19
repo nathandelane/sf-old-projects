@@ -54,7 +54,7 @@ namespace Nathandelane.Net.Spider
 
 					if (agent.Response == null || agent.Response.StatusCode != HttpStatusCode.OK)
 					{
-						ConsoleColors.SetConsoleColor((byte)ConsoleColor.Green);
+						ConsoleColors.SetConsoleColor((byte)ConsoleColor.Red);
 					}
 					else if(ContainsWords(agent.ToString()))
 					{
@@ -62,7 +62,7 @@ namespace Nathandelane.Net.Spider
 					}
 					else
 					{
-						ConsoleColors.SetConsoleColor((byte)ConsoleColor.Red);
+						ConsoleColors.SetConsoleColor((byte)ConsoleColor.Green);
 					}
 
 					LogMessage(String.Format("{0}", agent), true);
