@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Nathandelane.WatiN.VehixTesting.Data
+namespace Nathandelane.WatiN.VehixTesting.Data.VehixFoundation
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -23,114 +23,133 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 	
 	
 	[System.Data.Linq.Mapping.DatabaseAttribute(Name="VehixFoundation")]
-	public partial class VehixFoundationTaxonomyDataContext : System.Data.Linq.DataContext
+	public partial class VehixFoundationGeographyDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertTaxonomicRankingRelationshipTable(TaxonomicRankingRelationshipTable instance);
-    partial void UpdateTaxonomicRankingRelationshipTable(TaxonomicRankingRelationshipTable instance);
-    partial void DeleteTaxonomicRankingRelationshipTable(TaxonomicRankingRelationshipTable instance);
-    partial void InsertTaxonTable(TaxonTable instance);
-    partial void UpdateTaxonTable(TaxonTable instance);
-    partial void DeleteTaxonTable(TaxonTable instance);
-    partial void InsertTaxonomicRankingTable(TaxonomicRankingTable instance);
-    partial void UpdateTaxonomicRankingTable(TaxonomicRankingTable instance);
-    partial void DeleteTaxonomicRankingTable(TaxonomicRankingTable instance);
-    partial void InsertTaxonomicRankTable(TaxonomicRankTable instance);
-    partial void UpdateTaxonomicRankTable(TaxonomicRankTable instance);
-    partial void DeleteTaxonomicRankTable(TaxonomicRankTable instance);
-    partial void InsertTaxonomyTable(TaxonomyTable instance);
-    partial void UpdateTaxonomyTable(TaxonomyTable instance);
-    partial void DeleteTaxonomyTable(TaxonomyTable instance);
-    partial void InsertTaxonRelationshipTable(TaxonRelationshipTable instance);
-    partial void UpdateTaxonRelationshipTable(TaxonRelationshipTable instance);
-    partial void DeleteTaxonRelationshipTable(TaxonRelationshipTable instance);
+    partial void InsertIPAddressRangeTable(IPAddressRangeTable instance);
+    partial void UpdateIPAddressRangeTable(IPAddressRangeTable instance);
+    partial void DeleteIPAddressRangeTable(IPAddressRangeTable instance);
+    partial void InsertLocaleCategoryTable(LocaleCategoryTable instance);
+    partial void UpdateLocaleCategoryTable(LocaleCategoryTable instance);
+    partial void DeleteLocaleCategoryTable(LocaleCategoryTable instance);
+    partial void InsertLocaleIPAddressRangeTable(LocaleIPAddressRangeTable instance);
+    partial void UpdateLocaleIPAddressRangeTable(LocaleIPAddressRangeTable instance);
+    partial void DeleteLocaleIPAddressRangeTable(LocaleIPAddressRangeTable instance);
+    partial void InsertLocalePostalCodeTable(LocalePostalCodeTable instance);
+    partial void UpdateLocalePostalCodeTable(LocalePostalCodeTable instance);
+    partial void DeleteLocalePostalCodeTable(LocalePostalCodeTable instance);
+    partial void InsertLocaleTable(LocaleTable instance);
+    partial void UpdateLocaleTable(LocaleTable instance);
+    partial void DeleteLocaleTable(LocaleTable instance);
+    partial void InsertPostalCodeFormatTable(PostalCodeFormatTable instance);
+    partial void UpdatePostalCodeFormatTable(PostalCodeFormatTable instance);
+    partial void DeletePostalCodeFormatTable(PostalCodeFormatTable instance);
+    partial void InsertPostalCodeTable(PostalCodeTable instance);
+    partial void UpdatePostalCodeTable(PostalCodeTable instance);
+    partial void DeletePostalCodeTable(PostalCodeTable instance);
     #endregion
 		
-		public VehixFoundationTaxonomyDataContext() : 
+		public VehixFoundationGeographyDataContext() : 
 				base(global::Vehix.QA.WebTest.Data.Properties.Settings.Default.VehixFoundationConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public VehixFoundationTaxonomyDataContext(string connection) : 
+		public VehixFoundationGeographyDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public VehixFoundationTaxonomyDataContext(System.Data.IDbConnection connection) : 
+		public VehixFoundationGeographyDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public VehixFoundationTaxonomyDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public VehixFoundationGeographyDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public VehixFoundationTaxonomyDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public VehixFoundationGeographyDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<TaxonomicRankingRelationshipTable> TaxonomicRankingRelationshipTables
+		public System.Data.Linq.Table<IPAddressRangeTable> IPAddressRangeTables
 		{
 			get
 			{
-				return this.GetTable<TaxonomicRankingRelationshipTable>();
+				return this.GetTable<IPAddressRangeTable>();
 			}
 		}
 		
-		public System.Data.Linq.Table<TaxonTable> TaxonTables
+		public System.Data.Linq.Table<QA_SearchRadiusTable> QA_SearchRadiusTables
 		{
 			get
 			{
-				return this.GetTable<TaxonTable>();
+				return this.GetTable<QA_SearchRadiusTable>();
 			}
 		}
 		
-		public System.Data.Linq.Table<TaxonomicRankingTable> TaxonomicRankingTables
+		public System.Data.Linq.Table<LocaleCategoryTable> LocaleCategoryTables
 		{
 			get
 			{
-				return this.GetTable<TaxonomicRankingTable>();
+				return this.GetTable<LocaleCategoryTable>();
 			}
 		}
 		
-		public System.Data.Linq.Table<TaxonomicRankTable> TaxonomicRankTables
+		public System.Data.Linq.Table<LocaleIPAddressRangeTable> LocaleIPAddressRangeTables
 		{
 			get
 			{
-				return this.GetTable<TaxonomicRankTable>();
+				return this.GetTable<LocaleIPAddressRangeTable>();
 			}
 		}
 		
-		public System.Data.Linq.Table<TaxonomyTable> TaxonomyTables
+		public System.Data.Linq.Table<LocalePostalCodeTable> LocalePostalCodeTables
 		{
 			get
 			{
-				return this.GetTable<TaxonomyTable>();
+				return this.GetTable<LocalePostalCodeTable>();
 			}
 		}
 		
-		public System.Data.Linq.Table<TaxonRelationshipTable> TaxonRelationshipTables
+		public System.Data.Linq.Table<LocaleTable> LocaleTables
 		{
 			get
 			{
-				return this.GetTable<TaxonRelationshipTable>();
+				return this.GetTable<LocaleTable>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PostalCodeFormatTable> PostalCodeFormatTables
+		{
+			get
+			{
+				return this.GetTable<PostalCodeFormatTable>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PostalCodeTable> PostalCodeTables
+		{
+			get
+			{
+				return this.GetTable<PostalCodeTable>();
 			}
 		}
 	}
 	
-	[Table(Name="Taxonomy.TaxonomicRankingRelationshipTable")]
-	public partial class TaxonomicRankingRelationshipTable : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="Geography.IPAddressRangeTable")]
+	public partial class IPAddressRangeTable : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -149,11 +168,17 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 		
 		private System.Nullable<System.DateTime> _VFX_DateDeleted;
 		
-		private long _Target;
+		private long _From;
 		
-		private long _TaxonomicRanking;
+		private long _To;
 		
-		private float _Relevance;
+		private System.Nullable<double> _Latitude;
+		
+		private System.Nullable<double> _Longitude;
+		
+		private string _Format;
+		
+		private string _Code;
 		
 		private string _ETL_NaturalKey;
 		
@@ -163,7 +188,9 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 		
 		private System.Nullable<System.DateTime> _ETL_DateEffective;
 		
-		private EntityRef<TaxonomicRankingTable> _TaxonomicRankingTable;
+		private EntitySet<LocaleIPAddressRangeTable> _LocaleIPAddressRangeTables;
+		
+		private EntityRef<PostalCodeTable> _PostalCodeTable;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -183,12 +210,18 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnVFX_DateUpdatedChanged();
     partial void OnVFX_DateDeletedChanging(System.Nullable<System.DateTime> value);
     partial void OnVFX_DateDeletedChanged();
-    partial void OnTargetChanging(long value);
-    partial void OnTargetChanged();
-    partial void OnTaxonomicRankingChanging(long value);
-    partial void OnTaxonomicRankingChanged();
-    partial void OnRelevanceChanging(float value);
-    partial void OnRelevanceChanged();
+    partial void OnFromChanging(long value);
+    partial void OnFromChanged();
+    partial void OnToChanging(long value);
+    partial void OnToChanged();
+    partial void OnLatitudeChanging(System.Nullable<double> value);
+    partial void OnLatitudeChanged();
+    partial void OnLongitudeChanging(System.Nullable<double> value);
+    partial void OnLongitudeChanged();
+    partial void OnFormatChanging(string value);
+    partial void OnFormatChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
     partial void OnETL_NaturalKeyChanging(string value);
     partial void OnETL_NaturalKeyChanged();
     partial void OnETL_HashChanging(System.Data.Linq.Binary value);
@@ -199,9 +232,10 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnETL_DateEffectiveChanged();
     #endregion
 		
-		public TaxonomicRankingRelationshipTable()
+		public IPAddressRangeTable()
 		{
-			this._TaxonomicRankingTable = default(EntityRef<TaxonomicRankingTable>);
+			this._LocaleIPAddressRangeTables = new EntitySet<LocaleIPAddressRangeTable>(new Action<LocaleIPAddressRangeTable>(this.attach_LocaleIPAddressRangeTables), new Action<LocaleIPAddressRangeTable>(this.detach_LocaleIPAddressRangeTables));
+			this._PostalCodeTable = default(EntityRef<PostalCodeTable>);
 			OnCreated();
 		}
 		
@@ -345,66 +379,130 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_Target", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
-		public long Target
+		[Column(Name="[From]", Storage="_From", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long From
 		{
 			get
 			{
-				return this._Target;
+				return this._From;
 			}
 			set
 			{
-				if ((this._Target != value))
+				if ((this._From != value))
 				{
-					this.OnTargetChanging(value);
+					this.OnFromChanging(value);
 					this.SendPropertyChanging();
-					this._Target = value;
-					this.SendPropertyChanged("Target");
-					this.OnTargetChanged();
+					this._From = value;
+					this.SendPropertyChanged("From");
+					this.OnFromChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_TaxonomicRanking", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
-		public long TaxonomicRanking
+		[Column(Name="[To]", Storage="_To", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long To
 		{
 			get
 			{
-				return this._TaxonomicRanking;
+				return this._To;
 			}
 			set
 			{
-				if ((this._TaxonomicRanking != value))
+				if ((this._To != value))
 				{
-					if (this._TaxonomicRankingTable.HasLoadedOrAssignedValue)
+					this.OnToChanging(value);
+					this.SendPropertyChanging();
+					this._To = value;
+					this.SendPropertyChanged("To");
+					this.OnToChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Latitude", DbType="Float")]
+		public System.Nullable<double> Latitude
+		{
+			get
+			{
+				return this._Latitude;
+			}
+			set
+			{
+				if ((this._Latitude != value))
+				{
+					this.OnLatitudeChanging(value);
+					this.SendPropertyChanging();
+					this._Latitude = value;
+					this.SendPropertyChanged("Latitude");
+					this.OnLatitudeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Longitude", DbType="Float")]
+		public System.Nullable<double> Longitude
+		{
+			get
+			{
+				return this._Longitude;
+			}
+			set
+			{
+				if ((this._Longitude != value))
+				{
+					this.OnLongitudeChanging(value);
+					this.SendPropertyChanging();
+					this._Longitude = value;
+					this.SendPropertyChanged("Longitude");
+					this.OnLongitudeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Format", DbType="NVarChar(64)")]
+		public string Format
+		{
+			get
+			{
+				return this._Format;
+			}
+			set
+			{
+				if ((this._Format != value))
+				{
+					if (this._PostalCodeTable.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnTaxonomicRankingChanging(value);
+					this.OnFormatChanging(value);
 					this.SendPropertyChanging();
-					this._TaxonomicRanking = value;
-					this.SendPropertyChanged("TaxonomicRanking");
-					this.OnTaxonomicRankingChanged();
+					this._Format = value;
+					this.SendPropertyChanged("Format");
+					this.OnFormatChanged();
 				}
 			}
 		}
 		
-		[Column(Name="[Relevance]", Storage="_Relevance", DbType="Real NOT NULL")]
-		public float Relevance
+		[Column(Storage="_Code", DbType="NVarChar(15)")]
+		public string Code
 		{
 			get
 			{
-				return this._Relevance;
+				return this._Code;
 			}
 			set
 			{
-				if ((this._Relevance != value))
+				if ((this._Code != value))
 				{
-					this.OnRelevanceChanging(value);
+					if (this._PostalCodeTable.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCodeChanging(value);
 					this.SendPropertyChanging();
-					this._Relevance = value;
-					this.SendPropertyChanged("Relevance");
-					this.OnRelevanceChanged();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
 				}
 			}
 		}
@@ -489,36 +587,51 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Association(Name="TaxonomicRankingTable_TaxonomicRankingRelationshipTable", Storage="_TaxonomicRankingTable", ThisKey="TaxonomicRanking", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public TaxonomicRankingTable TaxonomicRankingTable
+		[Association(Name="IPAddressRangeTable_LocaleIPAddressRangeTable", Storage="_LocaleIPAddressRangeTables", ThisKey="From,To", OtherKey="From,To")]
+		public EntitySet<LocaleIPAddressRangeTable> LocaleIPAddressRangeTables
 		{
 			get
 			{
-				return this._TaxonomicRankingTable.Entity;
+				return this._LocaleIPAddressRangeTables;
 			}
 			set
 			{
-				TaxonomicRankingTable previousValue = this._TaxonomicRankingTable.Entity;
+				this._LocaleIPAddressRangeTables.Assign(value);
+			}
+		}
+		
+		[Association(Name="PostalCodeTable_IPAddressRangeTable", Storage="_PostalCodeTable", ThisKey="Format,Code", OtherKey="Format,Code", IsForeignKey=true, DeleteRule="SET NULL")]
+		public PostalCodeTable PostalCodeTable
+		{
+			get
+			{
+				return this._PostalCodeTable.Entity;
+			}
+			set
+			{
+				PostalCodeTable previousValue = this._PostalCodeTable.Entity;
 				if (((previousValue != value) 
-							|| (this._TaxonomicRankingTable.HasLoadedOrAssignedValue == false)))
+							|| (this._PostalCodeTable.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._TaxonomicRankingTable.Entity = null;
-						previousValue.TaxonomicRankingRelationshipTables.Remove(this);
+						this._PostalCodeTable.Entity = null;
+						previousValue.IPAddressRangeTables.Remove(this);
 					}
-					this._TaxonomicRankingTable.Entity = value;
+					this._PostalCodeTable.Entity = value;
 					if ((value != null))
 					{
-						value.TaxonomicRankingRelationshipTables.Add(this);
-						this._TaxonomicRanking = value.ID;
+						value.IPAddressRangeTables.Add(this);
+						this._Format = value.Format;
+						this._Code = value.Code;
 					}
 					else
 					{
-						this._TaxonomicRanking = default(long);
+						this._Format = default(string);
+						this._Code = default(string);
 					}
-					this.SendPropertyChanged("TaxonomicRankingTable");
+					this.SendPropertyChanged("PostalCodeTable");
 				}
 			}
 		}
@@ -542,19 +655,58 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_LocaleIPAddressRangeTables(LocaleIPAddressRangeTable entity)
+		{
+			this.SendPropertyChanging();
+			entity.IPAddressRangeTable = this;
+		}
+		
+		private void detach_LocaleIPAddressRangeTables(LocaleIPAddressRangeTable entity)
+		{
+			this.SendPropertyChanging();
+			entity.IPAddressRangeTable = null;
+		}
 	}
 	
-	[Table(Name="Taxonomy.TaxonTable")]
-	public partial class TaxonTable : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="Geography.QA_SearchRadiusTable")]
+	public partial class QA_SearchRadiusTable
+	{
+		
+		private string _Radius;
+		
+		public QA_SearchRadiusTable()
+		{
+		}
+		
+		[Column(Storage="_Radius", DbType="NVarChar(32)")]
+		public string Radius
+		{
+			get
+			{
+				return this._Radius;
+			}
+			set
+			{
+				if ((this._Radius != value))
+				{
+					this._Radius = value;
+				}
+			}
+		}
+	}
+	
+	[Table(Name="Geography.LocaleCategoryTable")]
+	public partial class LocaleCategoryTable : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private long _ID;
 		
-		private long _VFX_CreatorID;
+		private System.Nullable<long> _VFX_CreatorID;
 		
-		private long _VFX_UpdaterID;
+		private System.Nullable<long> _VFX_UpdaterID;
 		
 		private System.Nullable<long> _VFX_DeletorID;
 		
@@ -563,8 +715,6 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 		private System.DateTime _VFX_DateUpdated;
 		
 		private System.Nullable<System.DateTime> _VFX_DateDeleted;
-		
-		private System.Nullable<long> _Parent;
 		
 		private string _Name;
 		
@@ -576,13 +726,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 		
 		private System.Nullable<System.DateTime> _ETL_DateEffective;
 		
-		private EntitySet<TaxonTable> _TaxonTables;
-		
-		private EntitySet<TaxonomicRankingTable> _TaxonomicRankingTables;
-		
-		private EntitySet<TaxonRelationshipTable> _TaxonRelationshipTables;
-		
-		private EntityRef<TaxonTable> _TaxonTable1;
+		private EntitySet<LocaleTable> _LocaleTables;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -590,9 +734,9 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnCreated();
     partial void OnIDChanging(long value);
     partial void OnIDChanged();
-    partial void OnVFX_CreatorIDChanging(long value);
+    partial void OnVFX_CreatorIDChanging(System.Nullable<long> value);
     partial void OnVFX_CreatorIDChanged();
-    partial void OnVFX_UpdaterIDChanging(long value);
+    partial void OnVFX_UpdaterIDChanging(System.Nullable<long> value);
     partial void OnVFX_UpdaterIDChanged();
     partial void OnVFX_DeletorIDChanging(System.Nullable<long> value);
     partial void OnVFX_DeletorIDChanged();
@@ -602,8 +746,6 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnVFX_DateUpdatedChanged();
     partial void OnVFX_DateDeletedChanging(System.Nullable<System.DateTime> value);
     partial void OnVFX_DateDeletedChanged();
-    partial void OnParentChanging(System.Nullable<long> value);
-    partial void OnParentChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
     partial void OnETL_NaturalKeyChanging(string value);
@@ -616,12 +758,9 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnETL_DateEffectiveChanged();
     #endregion
 		
-		public TaxonTable()
+		public LocaleCategoryTable()
 		{
-			this._TaxonTables = new EntitySet<TaxonTable>(new Action<TaxonTable>(this.attach_TaxonTables), new Action<TaxonTable>(this.detach_TaxonTables));
-			this._TaxonomicRankingTables = new EntitySet<TaxonomicRankingTable>(new Action<TaxonomicRankingTable>(this.attach_TaxonomicRankingTables), new Action<TaxonomicRankingTable>(this.detach_TaxonomicRankingTables));
-			this._TaxonRelationshipTables = new EntitySet<TaxonRelationshipTable>(new Action<TaxonRelationshipTable>(this.attach_TaxonRelationshipTables), new Action<TaxonRelationshipTable>(this.detach_TaxonRelationshipTables));
-			this._TaxonTable1 = default(EntityRef<TaxonTable>);
+			this._LocaleTables = new EntitySet<LocaleTable>(new Action<LocaleTable>(this.attach_LocaleTables), new Action<LocaleTable>(this.detach_LocaleTables));
 			OnCreated();
 		}
 		
@@ -645,8 +784,8 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_VFX_CreatorID", DbType="BigInt NOT NULL")]
-		public long VFX_CreatorID
+		[Column(Storage="_VFX_CreatorID", DbType="BigInt")]
+		public System.Nullable<long> VFX_CreatorID
 		{
 			get
 			{
@@ -665,8 +804,8 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_VFX_UpdaterID", DbType="BigInt NOT NULL")]
-		public long VFX_UpdaterID
+		[Column(Storage="_VFX_UpdaterID", DbType="BigInt")]
+		public System.Nullable<long> VFX_UpdaterID
 		{
 			get
 			{
@@ -765,31 +904,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_Parent", DbType="BigInt")]
-		public System.Nullable<long> Parent
-		{
-			get
-			{
-				return this._Parent;
-			}
-			set
-			{
-				if ((this._Parent != value))
-				{
-					if (this._TaxonTable1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnParentChanging(value);
-					this.SendPropertyChanging();
-					this._Parent = value;
-					this.SendPropertyChanged("Parent");
-					this.OnParentChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Name", DbType="NVarChar(100) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[Column(Storage="_Name", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string Name
 		{
 			get
@@ -889,76 +1004,16 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Association(Name="TaxonTable_TaxonTable", Storage="_TaxonTables", ThisKey="ID", OtherKey="Parent")]
-		public EntitySet<TaxonTable> TaxonTables
+		[Association(Name="LocaleCategoryTable_LocaleTable", Storage="_LocaleTables", ThisKey="Name", OtherKey="Category")]
+		public EntitySet<LocaleTable> LocaleTables
 		{
 			get
 			{
-				return this._TaxonTables;
+				return this._LocaleTables;
 			}
 			set
 			{
-				this._TaxonTables.Assign(value);
-			}
-		}
-		
-		[Association(Name="TaxonTable_TaxonomicRankingTable", Storage="_TaxonomicRankingTables", ThisKey="ID", OtherKey="Taxon")]
-		public EntitySet<TaxonomicRankingTable> TaxonomicRankingTables
-		{
-			get
-			{
-				return this._TaxonomicRankingTables;
-			}
-			set
-			{
-				this._TaxonomicRankingTables.Assign(value);
-			}
-		}
-		
-		[Association(Name="TaxonTable_TaxonRelationshipTable", Storage="_TaxonRelationshipTables", ThisKey="ID", OtherKey="Taxon")]
-		public EntitySet<TaxonRelationshipTable> TaxonRelationshipTables
-		{
-			get
-			{
-				return this._TaxonRelationshipTables;
-			}
-			set
-			{
-				this._TaxonRelationshipTables.Assign(value);
-			}
-		}
-		
-		[Association(Name="TaxonTable_TaxonTable", Storage="_TaxonTable1", ThisKey="Parent", OtherKey="ID", IsForeignKey=true)]
-		public TaxonTable TaxonTable1
-		{
-			get
-			{
-				return this._TaxonTable1.Entity;
-			}
-			set
-			{
-				TaxonTable previousValue = this._TaxonTable1.Entity;
-				if (((previousValue != value) 
-							|| (this._TaxonTable1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TaxonTable1.Entity = null;
-						previousValue.TaxonTables.Remove(this);
-					}
-					this._TaxonTable1.Entity = value;
-					if ((value != null))
-					{
-						value.TaxonTables.Add(this);
-						this._Parent = value.ID;
-					}
-					else
-					{
-						this._Parent = default(Nullable<long>);
-					}
-					this.SendPropertyChanged("TaxonTable1");
-				}
+				this._LocaleTables.Assign(value);
 			}
 		}
 		
@@ -982,45 +1037,21 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		private void attach_TaxonTables(TaxonTable entity)
+		private void attach_LocaleTables(LocaleTable entity)
 		{
 			this.SendPropertyChanging();
-			entity.TaxonTable1 = this;
+			entity.LocaleCategoryTable = this;
 		}
 		
-		private void detach_TaxonTables(TaxonTable entity)
+		private void detach_LocaleTables(LocaleTable entity)
 		{
 			this.SendPropertyChanging();
-			entity.TaxonTable1 = null;
-		}
-		
-		private void attach_TaxonomicRankingTables(TaxonomicRankingTable entity)
-		{
-			this.SendPropertyChanging();
-			entity.TaxonTable = this;
-		}
-		
-		private void detach_TaxonomicRankingTables(TaxonomicRankingTable entity)
-		{
-			this.SendPropertyChanging();
-			entity.TaxonTable = null;
-		}
-		
-		private void attach_TaxonRelationshipTables(TaxonRelationshipTable entity)
-		{
-			this.SendPropertyChanging();
-			entity.TaxonTable = this;
-		}
-		
-		private void detach_TaxonRelationshipTables(TaxonRelationshipTable entity)
-		{
-			this.SendPropertyChanging();
-			entity.TaxonTable = null;
+			entity.LocaleCategoryTable = null;
 		}
 	}
 	
-	[Table(Name="Taxonomy.TaxonomicRankingTable")]
-	public partial class TaxonomicRankingTable : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="Geography.LocaleIPAddressRangeTable")]
+	public partial class LocaleIPAddressRangeTable : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -1039,13 +1070,11 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 		
 		private System.Nullable<System.DateTime> _VFX_DateDeleted;
 		
-		private long _Taxonomy;
+		private long _Locale;
 		
-		private System.Nullable<long> _Parent;
+		private long _From;
 		
-		private long _Rank;
-		
-		private long _Taxon;
+		private long _To;
 		
 		private string _ETL_NaturalKey;
 		
@@ -1055,17 +1084,9 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 		
 		private System.Nullable<System.DateTime> _ETL_DateEffective;
 		
-		private EntitySet<TaxonomicRankingRelationshipTable> _TaxonomicRankingRelationshipTables;
+		private EntityRef<IPAddressRangeTable> _IPAddressRangeTable;
 		
-		private EntitySet<TaxonomicRankingTable> _TaxonomicRankingTables;
-		
-		private EntityRef<TaxonTable> _TaxonTable;
-		
-		private EntityRef<TaxonomicRankingTable> _TaxonomicRankingTable1;
-		
-		private EntityRef<TaxonomicRankTable> _TaxonomicRankTable;
-		
-		private EntityRef<TaxonomyTable> _TaxonomyTable;
+		private EntityRef<LocaleTable> _LocaleTable;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1085,14 +1106,12 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnVFX_DateUpdatedChanged();
     partial void OnVFX_DateDeletedChanging(System.Nullable<System.DateTime> value);
     partial void OnVFX_DateDeletedChanged();
-    partial void OnTaxonomyChanging(long value);
-    partial void OnTaxonomyChanged();
-    partial void OnParentChanging(System.Nullable<long> value);
-    partial void OnParentChanged();
-    partial void OnRankChanging(long value);
-    partial void OnRankChanged();
-    partial void OnTaxonChanging(long value);
-    partial void OnTaxonChanged();
+    partial void OnLocaleChanging(long value);
+    partial void OnLocaleChanged();
+    partial void OnFromChanging(long value);
+    partial void OnFromChanged();
+    partial void OnToChanging(long value);
+    partial void OnToChanged();
     partial void OnETL_NaturalKeyChanging(string value);
     partial void OnETL_NaturalKeyChanged();
     partial void OnETL_HashChanging(System.Data.Linq.Binary value);
@@ -1103,14 +1122,10 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnETL_DateEffectiveChanged();
     #endregion
 		
-		public TaxonomicRankingTable()
+		public LocaleIPAddressRangeTable()
 		{
-			this._TaxonomicRankingRelationshipTables = new EntitySet<TaxonomicRankingRelationshipTable>(new Action<TaxonomicRankingRelationshipTable>(this.attach_TaxonomicRankingRelationshipTables), new Action<TaxonomicRankingRelationshipTable>(this.detach_TaxonomicRankingRelationshipTables));
-			this._TaxonomicRankingTables = new EntitySet<TaxonomicRankingTable>(new Action<TaxonomicRankingTable>(this.attach_TaxonomicRankingTables), new Action<TaxonomicRankingTable>(this.detach_TaxonomicRankingTables));
-			this._TaxonTable = default(EntityRef<TaxonTable>);
-			this._TaxonomicRankingTable1 = default(EntityRef<TaxonomicRankingTable>);
-			this._TaxonomicRankTable = default(EntityRef<TaxonomicRankTable>);
-			this._TaxonomyTable = default(EntityRef<TaxonomyTable>);
+			this._IPAddressRangeTable = default(EntityRef<IPAddressRangeTable>);
+			this._LocaleTable = default(EntityRef<LocaleTable>);
 			OnCreated();
 		}
 		
@@ -1254,98 +1269,66 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_Taxonomy", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
-		public long Taxonomy
+		[Column(Storage="_Locale", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long Locale
 		{
 			get
 			{
-				return this._Taxonomy;
+				return this._Locale;
 			}
 			set
 			{
-				if ((this._Taxonomy != value))
+				if ((this._Locale != value))
 				{
-					if (this._TaxonomicRankingTable1.HasLoadedOrAssignedValue)
+					if (this._LocaleTable.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnTaxonomyChanging(value);
+					this.OnLocaleChanging(value);
 					this.SendPropertyChanging();
-					this._Taxonomy = value;
-					this.SendPropertyChanged("Taxonomy");
-					this.OnTaxonomyChanged();
+					this._Locale = value;
+					this.SendPropertyChanged("Locale");
+					this.OnLocaleChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Parent", DbType="BigInt")]
-		public System.Nullable<long> Parent
+		[Column(Name="[From]", Storage="_From", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long From
 		{
 			get
 			{
-				return this._Parent;
+				return this._From;
 			}
 			set
 			{
-				if ((this._Parent != value))
+				if ((this._From != value))
 				{
-					if (this._TaxonomicRankingTable1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnParentChanging(value);
+					this.OnFromChanging(value);
 					this.SendPropertyChanging();
-					this._Parent = value;
-					this.SendPropertyChanged("Parent");
-					this.OnParentChanged();
+					this._From = value;
+					this.SendPropertyChanged("From");
+					this.OnFromChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Rank", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
-		public long Rank
+		[Column(Name="[To]", Storage="_To", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long To
 		{
 			get
 			{
-				return this._Rank;
+				return this._To;
 			}
 			set
 			{
-				if ((this._Rank != value))
+				if ((this._To != value))
 				{
-					if (this._TaxonomicRankTable.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnRankChanging(value);
+					this.OnToChanging(value);
 					this.SendPropertyChanging();
-					this._Rank = value;
-					this.SendPropertyChanged("Rank");
-					this.OnRankChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Taxon", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
-		public long Taxon
-		{
-			get
-			{
-				return this._Taxon;
-			}
-			set
-			{
-				if ((this._Taxon != value))
-				{
-					if (this._TaxonTable.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTaxonChanging(value);
-					this.SendPropertyChanging();
-					this._Taxon = value;
-					this.SendPropertyChanged("Taxon");
-					this.OnTaxonChanged();
+					this._To = value;
+					this.SendPropertyChanged("To");
+					this.OnToChanged();
 				}
 			}
 		}
@@ -1430,168 +1413,72 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Association(Name="TaxonomicRankingTable_TaxonomicRankingRelationshipTable", Storage="_TaxonomicRankingRelationshipTables", ThisKey="ID", OtherKey="TaxonomicRanking")]
-		public EntitySet<TaxonomicRankingRelationshipTable> TaxonomicRankingRelationshipTables
+		[Association(Name="IPAddressRangeTable_LocaleIPAddressRangeTable", Storage="_IPAddressRangeTable", ThisKey="From,To", OtherKey="From,To", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public IPAddressRangeTable IPAddressRangeTable
 		{
 			get
 			{
-				return this._TaxonomicRankingRelationshipTables;
+				return this._IPAddressRangeTable.Entity;
 			}
 			set
 			{
-				this._TaxonomicRankingRelationshipTables.Assign(value);
-			}
-		}
-		
-		[Association(Name="TaxonomicRankingTable_TaxonomicRankingTable", Storage="_TaxonomicRankingTables", ThisKey="Taxonomy,ID", OtherKey="Taxonomy,Parent")]
-		public EntitySet<TaxonomicRankingTable> TaxonomicRankingTables
-		{
-			get
-			{
-				return this._TaxonomicRankingTables;
-			}
-			set
-			{
-				this._TaxonomicRankingTables.Assign(value);
-			}
-		}
-		
-		[Association(Name="TaxonTable_TaxonomicRankingTable", Storage="_TaxonTable", ThisKey="Taxon", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public TaxonTable TaxonTable
-		{
-			get
-			{
-				return this._TaxonTable.Entity;
-			}
-			set
-			{
-				TaxonTable previousValue = this._TaxonTable.Entity;
+				IPAddressRangeTable previousValue = this._IPAddressRangeTable.Entity;
 				if (((previousValue != value) 
-							|| (this._TaxonTable.HasLoadedOrAssignedValue == false)))
+							|| (this._IPAddressRangeTable.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._TaxonTable.Entity = null;
-						previousValue.TaxonomicRankingTables.Remove(this);
+						this._IPAddressRangeTable.Entity = null;
+						previousValue.LocaleIPAddressRangeTables.Remove(this);
 					}
-					this._TaxonTable.Entity = value;
+					this._IPAddressRangeTable.Entity = value;
 					if ((value != null))
 					{
-						value.TaxonomicRankingTables.Add(this);
-						this._Taxon = value.ID;
+						value.LocaleIPAddressRangeTables.Add(this);
+						this._From = value.From;
+						this._To = value.To;
 					}
 					else
 					{
-						this._Taxon = default(long);
+						this._From = default(long);
+						this._To = default(long);
 					}
-					this.SendPropertyChanged("TaxonTable");
+					this.SendPropertyChanged("IPAddressRangeTable");
 				}
 			}
 		}
 		
-		[Association(Name="TaxonomicRankingTable_TaxonomicRankingTable", Storage="_TaxonomicRankingTable1", ThisKey="Taxonomy,Parent", OtherKey="Taxonomy,ID", IsForeignKey=true)]
-		public TaxonomicRankingTable TaxonomicRankingTable1
+		[Association(Name="LocaleTable_LocaleIPAddressRangeTable", Storage="_LocaleTable", ThisKey="Locale", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public LocaleTable LocaleTable
 		{
 			get
 			{
-				return this._TaxonomicRankingTable1.Entity;
+				return this._LocaleTable.Entity;
 			}
 			set
 			{
-				TaxonomicRankingTable previousValue = this._TaxonomicRankingTable1.Entity;
+				LocaleTable previousValue = this._LocaleTable.Entity;
 				if (((previousValue != value) 
-							|| (this._TaxonomicRankingTable1.HasLoadedOrAssignedValue == false)))
+							|| (this._LocaleTable.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._TaxonomicRankingTable1.Entity = null;
-						previousValue.TaxonomicRankingTables.Remove(this);
+						this._LocaleTable.Entity = null;
+						previousValue.LocaleIPAddressRangeTables.Remove(this);
 					}
-					this._TaxonomicRankingTable1.Entity = value;
+					this._LocaleTable.Entity = value;
 					if ((value != null))
 					{
-						value.TaxonomicRankingTables.Add(this);
-						this._Taxonomy = value.Taxonomy;
-						this._Parent = value.ID;
+						value.LocaleIPAddressRangeTables.Add(this);
+						this._Locale = value.ID;
 					}
 					else
 					{
-						this._Taxonomy = default(long);
-						this._Parent = default(Nullable<long>);
+						this._Locale = default(long);
 					}
-					this.SendPropertyChanged("TaxonomicRankingTable1");
-				}
-			}
-		}
-		
-		[Association(Name="TaxonomicRankTable_TaxonomicRankingTable", Storage="_TaxonomicRankTable", ThisKey="Taxonomy,Rank", OtherKey="Taxonomy,ID", IsForeignKey=true)]
-		public TaxonomicRankTable TaxonomicRankTable
-		{
-			get
-			{
-				return this._TaxonomicRankTable.Entity;
-			}
-			set
-			{
-				TaxonomicRankTable previousValue = this._TaxonomicRankTable.Entity;
-				if (((previousValue != value) 
-							|| (this._TaxonomicRankTable.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TaxonomicRankTable.Entity = null;
-						previousValue.TaxonomicRankingTables.Remove(this);
-					}
-					this._TaxonomicRankTable.Entity = value;
-					if ((value != null))
-					{
-						value.TaxonomicRankingTables.Add(this);
-						this._Taxonomy = value.Taxonomy;
-						this._Rank = value.ID;
-					}
-					else
-					{
-						this._Taxonomy = default(long);
-						this._Rank = default(long);
-					}
-					this.SendPropertyChanged("TaxonomicRankTable");
-				}
-			}
-		}
-		
-		[Association(Name="TaxonomyTable_TaxonomicRankingTable", Storage="_TaxonomyTable", ThisKey="Taxonomy", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public TaxonomyTable TaxonomyTable
-		{
-			get
-			{
-				return this._TaxonomyTable.Entity;
-			}
-			set
-			{
-				TaxonomyTable previousValue = this._TaxonomyTable.Entity;
-				if (((previousValue != value) 
-							|| (this._TaxonomyTable.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TaxonomyTable.Entity = null;
-						previousValue.TaxonomicRankingTables.Remove(this);
-					}
-					this._TaxonomyTable.Entity = value;
-					if ((value != null))
-					{
-						value.TaxonomicRankingTables.Add(this);
-						this._Taxonomy = value.ID;
-					}
-					else
-					{
-						this._Taxonomy = default(long);
-					}
-					this.SendPropertyChanged("TaxonomyTable");
+					this.SendPropertyChanged("LocaleTable");
 				}
 			}
 		}
@@ -1615,43 +1502,19 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-		
-		private void attach_TaxonomicRankingRelationshipTables(TaxonomicRankingRelationshipTable entity)
-		{
-			this.SendPropertyChanging();
-			entity.TaxonomicRankingTable = this;
-		}
-		
-		private void detach_TaxonomicRankingRelationshipTables(TaxonomicRankingRelationshipTable entity)
-		{
-			this.SendPropertyChanging();
-			entity.TaxonomicRankingTable = null;
-		}
-		
-		private void attach_TaxonomicRankingTables(TaxonomicRankingTable entity)
-		{
-			this.SendPropertyChanging();
-			entity.TaxonomicRankingTable1 = this;
-		}
-		
-		private void detach_TaxonomicRankingTables(TaxonomicRankingTable entity)
-		{
-			this.SendPropertyChanging();
-			entity.TaxonomicRankingTable1 = null;
-		}
 	}
 	
-	[Table(Name="Taxonomy.TaxonomicRankTable")]
-	public partial class TaxonomicRankTable : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="Geography.LocalePostalCodeTable")]
+	public partial class LocalePostalCodeTable : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private long _ID;
 		
-		private long _VFX_CreatorID;
+		private System.Nullable<long> _VFX_CreatorID;
 		
-		private long _VFX_UpdaterID;
+		private System.Nullable<long> _VFX_UpdaterID;
 		
 		private System.Nullable<long> _VFX_DeletorID;
 		
@@ -1661,14 +1524,484 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 		
 		private System.Nullable<System.DateTime> _VFX_DateDeleted;
 		
-		private long _Taxonomy;
+		private long _Locale;
+		
+		private string _Format;
+		
+		private string _Code;
+		
+		private string _ETL_NaturalKey;
+		
+		private System.Data.Linq.Binary _ETL_Hash;
+		
+		private string _ETL_JobCategory;
+		
+		private System.Nullable<System.DateTime> _ETL_DateEffective;
+		
+		private EntityRef<LocaleTable> _LocaleTable;
+		
+		private EntityRef<PostalCodeTable> _PostalCodeTable;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(long value);
+    partial void OnIDChanged();
+    partial void OnVFX_CreatorIDChanging(System.Nullable<long> value);
+    partial void OnVFX_CreatorIDChanged();
+    partial void OnVFX_UpdaterIDChanging(System.Nullable<long> value);
+    partial void OnVFX_UpdaterIDChanged();
+    partial void OnVFX_DeletorIDChanging(System.Nullable<long> value);
+    partial void OnVFX_DeletorIDChanged();
+    partial void OnVFX_DateCreatedChanging(System.DateTime value);
+    partial void OnVFX_DateCreatedChanged();
+    partial void OnVFX_DateUpdatedChanging(System.DateTime value);
+    partial void OnVFX_DateUpdatedChanged();
+    partial void OnVFX_DateDeletedChanging(System.Nullable<System.DateTime> value);
+    partial void OnVFX_DateDeletedChanged();
+    partial void OnLocaleChanging(long value);
+    partial void OnLocaleChanged();
+    partial void OnFormatChanging(string value);
+    partial void OnFormatChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
+    partial void OnETL_NaturalKeyChanging(string value);
+    partial void OnETL_NaturalKeyChanged();
+    partial void OnETL_HashChanging(System.Data.Linq.Binary value);
+    partial void OnETL_HashChanged();
+    partial void OnETL_JobCategoryChanging(string value);
+    partial void OnETL_JobCategoryChanged();
+    partial void OnETL_DateEffectiveChanging(System.Nullable<System.DateTime> value);
+    partial void OnETL_DateEffectiveChanged();
+    #endregion
+		
+		public LocalePostalCodeTable()
+		{
+			this._LocaleTable = default(EntityRef<LocaleTable>);
+			this._PostalCodeTable = default(EntityRef<PostalCodeTable>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_ID", DbType="BigInt NOT NULL")]
+		public long ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_VFX_CreatorID", DbType="BigInt")]
+		public System.Nullable<long> VFX_CreatorID
+		{
+			get
+			{
+				return this._VFX_CreatorID;
+			}
+			set
+			{
+				if ((this._VFX_CreatorID != value))
+				{
+					this.OnVFX_CreatorIDChanging(value);
+					this.SendPropertyChanging();
+					this._VFX_CreatorID = value;
+					this.SendPropertyChanged("VFX_CreatorID");
+					this.OnVFX_CreatorIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_VFX_UpdaterID", DbType="BigInt")]
+		public System.Nullable<long> VFX_UpdaterID
+		{
+			get
+			{
+				return this._VFX_UpdaterID;
+			}
+			set
+			{
+				if ((this._VFX_UpdaterID != value))
+				{
+					this.OnVFX_UpdaterIDChanging(value);
+					this.SendPropertyChanging();
+					this._VFX_UpdaterID = value;
+					this.SendPropertyChanged("VFX_UpdaterID");
+					this.OnVFX_UpdaterIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_VFX_DeletorID", DbType="BigInt")]
+		public System.Nullable<long> VFX_DeletorID
+		{
+			get
+			{
+				return this._VFX_DeletorID;
+			}
+			set
+			{
+				if ((this._VFX_DeletorID != value))
+				{
+					this.OnVFX_DeletorIDChanging(value);
+					this.SendPropertyChanging();
+					this._VFX_DeletorID = value;
+					this.SendPropertyChanged("VFX_DeletorID");
+					this.OnVFX_DeletorIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_VFX_DateCreated", DbType="DateTime NOT NULL")]
+		public System.DateTime VFX_DateCreated
+		{
+			get
+			{
+				return this._VFX_DateCreated;
+			}
+			set
+			{
+				if ((this._VFX_DateCreated != value))
+				{
+					this.OnVFX_DateCreatedChanging(value);
+					this.SendPropertyChanging();
+					this._VFX_DateCreated = value;
+					this.SendPropertyChanged("VFX_DateCreated");
+					this.OnVFX_DateCreatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_VFX_DateUpdated", DbType="DateTime NOT NULL")]
+		public System.DateTime VFX_DateUpdated
+		{
+			get
+			{
+				return this._VFX_DateUpdated;
+			}
+			set
+			{
+				if ((this._VFX_DateUpdated != value))
+				{
+					this.OnVFX_DateUpdatedChanging(value);
+					this.SendPropertyChanging();
+					this._VFX_DateUpdated = value;
+					this.SendPropertyChanged("VFX_DateUpdated");
+					this.OnVFX_DateUpdatedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_VFX_DateDeleted", DbType="DateTime")]
+		public System.Nullable<System.DateTime> VFX_DateDeleted
+		{
+			get
+			{
+				return this._VFX_DateDeleted;
+			}
+			set
+			{
+				if ((this._VFX_DateDeleted != value))
+				{
+					this.OnVFX_DateDeletedChanging(value);
+					this.SendPropertyChanging();
+					this._VFX_DateDeleted = value;
+					this.SendPropertyChanged("VFX_DateDeleted");
+					this.OnVFX_DateDeletedChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Locale", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
+		public long Locale
+		{
+			get
+			{
+				return this._Locale;
+			}
+			set
+			{
+				if ((this._Locale != value))
+				{
+					if (this._LocaleTable.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLocaleChanging(value);
+					this.SendPropertyChanging();
+					this._Locale = value;
+					this.SendPropertyChanged("Locale");
+					this.OnLocaleChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Format", DbType="NVarChar(64) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Format
+		{
+			get
+			{
+				return this._Format;
+			}
+			set
+			{
+				if ((this._Format != value))
+				{
+					if (this._PostalCodeTable.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFormatChanging(value);
+					this.SendPropertyChanging();
+					this._Format = value;
+					this.SendPropertyChanged("Format");
+					this.OnFormatChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Code", DbType="NVarChar(15) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					if (this._PostalCodeTable.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCodeChanging(value);
+					this.SendPropertyChanging();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ETL_NaturalKey", DbType="VarChar(256)")]
+		public string ETL_NaturalKey
+		{
+			get
+			{
+				return this._ETL_NaturalKey;
+			}
+			set
+			{
+				if ((this._ETL_NaturalKey != value))
+				{
+					this.OnETL_NaturalKeyChanging(value);
+					this.SendPropertyChanging();
+					this._ETL_NaturalKey = value;
+					this.SendPropertyChanged("ETL_NaturalKey");
+					this.OnETL_NaturalKeyChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ETL_Hash
+		{
+			get
+			{
+				return this._ETL_Hash;
+			}
+			set
+			{
+				if ((this._ETL_Hash != value))
+				{
+					this.OnETL_HashChanging(value);
+					this.SendPropertyChanging();
+					this._ETL_Hash = value;
+					this.SendPropertyChanged("ETL_Hash");
+					this.OnETL_HashChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ETL_JobCategory", DbType="VarChar(50)")]
+		public string ETL_JobCategory
+		{
+			get
+			{
+				return this._ETL_JobCategory;
+			}
+			set
+			{
+				if ((this._ETL_JobCategory != value))
+				{
+					this.OnETL_JobCategoryChanging(value);
+					this.SendPropertyChanging();
+					this._ETL_JobCategory = value;
+					this.SendPropertyChanged("ETL_JobCategory");
+					this.OnETL_JobCategoryChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_ETL_DateEffective", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ETL_DateEffective
+		{
+			get
+			{
+				return this._ETL_DateEffective;
+			}
+			set
+			{
+				if ((this._ETL_DateEffective != value))
+				{
+					this.OnETL_DateEffectiveChanging(value);
+					this.SendPropertyChanging();
+					this._ETL_DateEffective = value;
+					this.SendPropertyChanged("ETL_DateEffective");
+					this.OnETL_DateEffectiveChanged();
+				}
+			}
+		}
+		
+		[Association(Name="LocaleTable_LocalePostalCodeTable", Storage="_LocaleTable", ThisKey="Locale", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public LocaleTable LocaleTable
+		{
+			get
+			{
+				return this._LocaleTable.Entity;
+			}
+			set
+			{
+				LocaleTable previousValue = this._LocaleTable.Entity;
+				if (((previousValue != value) 
+							|| (this._LocaleTable.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._LocaleTable.Entity = null;
+						previousValue.LocalePostalCodeTables.Remove(this);
+					}
+					this._LocaleTable.Entity = value;
+					if ((value != null))
+					{
+						value.LocalePostalCodeTables.Add(this);
+						this._Locale = value.ID;
+					}
+					else
+					{
+						this._Locale = default(long);
+					}
+					this.SendPropertyChanged("LocaleTable");
+				}
+			}
+		}
+		
+		[Association(Name="PostalCodeTable_LocalePostalCodeTable", Storage="_PostalCodeTable", ThisKey="Format,Code", OtherKey="Format,Code", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public PostalCodeTable PostalCodeTable
+		{
+			get
+			{
+				return this._PostalCodeTable.Entity;
+			}
+			set
+			{
+				PostalCodeTable previousValue = this._PostalCodeTable.Entity;
+				if (((previousValue != value) 
+							|| (this._PostalCodeTable.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PostalCodeTable.Entity = null;
+						previousValue.LocalePostalCodeTables.Remove(this);
+					}
+					this._PostalCodeTable.Entity = value;
+					if ((value != null))
+					{
+						value.LocalePostalCodeTables.Add(this);
+						this._Format = value.Format;
+						this._Code = value.Code;
+					}
+					else
+					{
+						this._Format = default(string);
+						this._Code = default(string);
+					}
+					this.SendPropertyChanged("PostalCodeTable");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="Geography.LocaleTable")]
+	public partial class LocaleTable : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private long _ID;
+		
+		private System.Nullable<long> _VFX_CreatorID;
+		
+		private System.Nullable<long> _VFX_UpdaterID;
+		
+		private System.Nullable<long> _VFX_DeletorID;
+		
+		private System.DateTime _VFX_DateCreated;
+		
+		private System.DateTime _VFX_DateUpdated;
+		
+		private System.Nullable<System.DateTime> _VFX_DateDeleted;
+		
+		private string _Category;
+		
+		private string _Active;
 		
 		private System.Nullable<long> _Parent;
 		
+		private int _Depth;
+		
 		private string _Name;
+		
+		private string _Abbreviation;
 		
 		private string _Description;
 		
+		private string _Code;
+		
 		private string _ETL_NaturalKey;
 		
 		private System.Data.Linq.Binary _ETL_Hash;
@@ -1677,13 +2010,15 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 		
 		private System.Nullable<System.DateTime> _ETL_DateEffective;
 		
-		private EntitySet<TaxonomicRankingTable> _TaxonomicRankingTables;
+		private EntitySet<LocaleIPAddressRangeTable> _LocaleIPAddressRangeTables;
 		
-		private EntitySet<TaxonomicRankTable> _TaxonomicRankTables;
+		private EntitySet<LocalePostalCodeTable> _LocalePostalCodeTables;
 		
-		private EntityRef<TaxonomicRankTable> _TaxonomicRankTable1;
+		private EntitySet<LocaleTable> _LocaleTables;
 		
-		private EntityRef<TaxonomyTable> _TaxonomyTable;
+		private EntityRef<LocaleCategoryTable> _LocaleCategoryTable;
+		
+		private EntityRef<LocaleTable> _LocaleTable1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1691,9 +2026,9 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnCreated();
     partial void OnIDChanging(long value);
     partial void OnIDChanged();
-    partial void OnVFX_CreatorIDChanging(long value);
+    partial void OnVFX_CreatorIDChanging(System.Nullable<long> value);
     partial void OnVFX_CreatorIDChanged();
-    partial void OnVFX_UpdaterIDChanging(long value);
+    partial void OnVFX_UpdaterIDChanging(System.Nullable<long> value);
     partial void OnVFX_UpdaterIDChanged();
     partial void OnVFX_DeletorIDChanging(System.Nullable<long> value);
     partial void OnVFX_DeletorIDChanged();
@@ -1703,14 +2038,22 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnVFX_DateUpdatedChanged();
     partial void OnVFX_DateDeletedChanging(System.Nullable<System.DateTime> value);
     partial void OnVFX_DateDeletedChanged();
-    partial void OnTaxonomyChanging(long value);
-    partial void OnTaxonomyChanged();
+    partial void OnCategoryChanging(string value);
+    partial void OnCategoryChanged();
+    partial void OnActiveChanging(string value);
+    partial void OnActiveChanged();
     partial void OnParentChanging(System.Nullable<long> value);
     partial void OnParentChanged();
+    partial void OnDepthChanging(int value);
+    partial void OnDepthChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
+    partial void OnAbbreviationChanging(string value);
+    partial void OnAbbreviationChanged();
     partial void OnDescriptionChanging(string value);
     partial void OnDescriptionChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
     partial void OnETL_NaturalKeyChanging(string value);
     partial void OnETL_NaturalKeyChanged();
     partial void OnETL_HashChanging(System.Data.Linq.Binary value);
@@ -1721,12 +2064,13 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnETL_DateEffectiveChanged();
     #endregion
 		
-		public TaxonomicRankTable()
+		public LocaleTable()
 		{
-			this._TaxonomicRankingTables = new EntitySet<TaxonomicRankingTable>(new Action<TaxonomicRankingTable>(this.attach_TaxonomicRankingTables), new Action<TaxonomicRankingTable>(this.detach_TaxonomicRankingTables));
-			this._TaxonomicRankTables = new EntitySet<TaxonomicRankTable>(new Action<TaxonomicRankTable>(this.attach_TaxonomicRankTables), new Action<TaxonomicRankTable>(this.detach_TaxonomicRankTables));
-			this._TaxonomicRankTable1 = default(EntityRef<TaxonomicRankTable>);
-			this._TaxonomyTable = default(EntityRef<TaxonomyTable>);
+			this._LocaleIPAddressRangeTables = new EntitySet<LocaleIPAddressRangeTable>(new Action<LocaleIPAddressRangeTable>(this.attach_LocaleIPAddressRangeTables), new Action<LocaleIPAddressRangeTable>(this.detach_LocaleIPAddressRangeTables));
+			this._LocalePostalCodeTables = new EntitySet<LocalePostalCodeTable>(new Action<LocalePostalCodeTable>(this.attach_LocalePostalCodeTables), new Action<LocalePostalCodeTable>(this.detach_LocalePostalCodeTables));
+			this._LocaleTables = new EntitySet<LocaleTable>(new Action<LocaleTable>(this.attach_LocaleTables), new Action<LocaleTable>(this.detach_LocaleTables));
+			this._LocaleCategoryTable = default(EntityRef<LocaleCategoryTable>);
+			this._LocaleTable1 = default(EntityRef<LocaleTable>);
 			OnCreated();
 		}
 		
@@ -1750,8 +2094,8 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_VFX_CreatorID", DbType="BigInt NOT NULL")]
-		public long VFX_CreatorID
+		[Column(Storage="_VFX_CreatorID", DbType="BigInt")]
+		public System.Nullable<long> VFX_CreatorID
 		{
 			get
 			{
@@ -1770,8 +2114,8 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_VFX_UpdaterID", DbType="BigInt NOT NULL")]
-		public long VFX_UpdaterID
+		[Column(Storage="_VFX_UpdaterID", DbType="BigInt")]
+		public System.Nullable<long> VFX_UpdaterID
 		{
 			get
 			{
@@ -1870,26 +2214,46 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_Taxonomy", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
-		public long Taxonomy
+		[Column(Storage="_Category", DbType="NVarChar(128) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Category
 		{
 			get
 			{
-				return this._Taxonomy;
+				return this._Category;
 			}
 			set
 			{
-				if ((this._Taxonomy != value))
+				if ((this._Category != value))
 				{
-					if (this._TaxonomicRankTable1.HasLoadedOrAssignedValue)
+					if (this._LocaleCategoryTable.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnTaxonomyChanging(value);
+					this.OnCategoryChanging(value);
 					this.SendPropertyChanging();
-					this._Taxonomy = value;
-					this.SendPropertyChanged("Taxonomy");
-					this.OnTaxonomyChanged();
+					this._Category = value;
+					this.SendPropertyChanged("Category");
+					this.OnCategoryChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Active", DbType="Char(5) NOT NULL", CanBeNull=false)]
+		public string Active
+		{
+			get
+			{
+				return this._Active;
+			}
+			set
+			{
+				if ((this._Active != value))
+				{
+					this.OnActiveChanging(value);
+					this.SendPropertyChanging();
+					this._Active = value;
+					this.SendPropertyChanged("Active");
+					this.OnActiveChanged();
 				}
 			}
 		}
@@ -1905,7 +2269,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			{
 				if ((this._Parent != value))
 				{
-					if (this._TaxonomicRankTable1.HasLoadedOrAssignedValue)
+					if (this._LocaleTable1.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -1918,7 +2282,27 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_Name", DbType="NVarChar(100) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[Column(Storage="_Depth", DbType="Int NOT NULL")]
+		public int Depth
+		{
+			get
+			{
+				return this._Depth;
+			}
+			set
+			{
+				if ((this._Depth != value))
+				{
+					this.OnDepthChanging(value);
+					this.SendPropertyChanging();
+					this._Depth = value;
+					this.SendPropertyChanged("Depth");
+					this.OnDepthChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Name", DbType="NVarChar(128) NOT NULL", CanBeNull=false)]
 		public string Name
 		{
 			get
@@ -1938,7 +2322,27 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_Description", DbType="NVarChar(MAX)")]
+		[Column(Storage="_Abbreviation", DbType="NVarChar(16)")]
+		public string Abbreviation
+		{
+			get
+			{
+				return this._Abbreviation;
+			}
+			set
+			{
+				if ((this._Abbreviation != value))
+				{
+					this.OnAbbreviationChanging(value);
+					this.SendPropertyChanging();
+					this._Abbreviation = value;
+					this.SendPropertyChanged("Abbreviation");
+					this.OnAbbreviationChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Description", DbType="NVarChar(512)")]
 		public string Description
 		{
 			get
@@ -1958,6 +2362,26 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
+		[Column(Storage="_Code", DbType="NVarChar(256) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this.OnCodeChanging(value);
+					this.SendPropertyChanging();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
+				}
+			}
+		}
+		
 		[Column(Storage="_ETL_NaturalKey", DbType="VarChar(256)")]
 		public string ETL_NaturalKey
 		{
@@ -2038,98 +2462,109 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Association(Name="TaxonomicRankTable_TaxonomicRankingTable", Storage="_TaxonomicRankingTables", ThisKey="Taxonomy,ID", OtherKey="Taxonomy,Rank")]
-		public EntitySet<TaxonomicRankingTable> TaxonomicRankingTables
+		[Association(Name="LocaleTable_LocaleIPAddressRangeTable", Storage="_LocaleIPAddressRangeTables", ThisKey="ID", OtherKey="Locale")]
+		public EntitySet<LocaleIPAddressRangeTable> LocaleIPAddressRangeTables
 		{
 			get
 			{
-				return this._TaxonomicRankingTables;
+				return this._LocaleIPAddressRangeTables;
 			}
 			set
 			{
-				this._TaxonomicRankingTables.Assign(value);
+				this._LocaleIPAddressRangeTables.Assign(value);
 			}
 		}
 		
-		[Association(Name="TaxonomicRankTable_TaxonomicRankTable", Storage="_TaxonomicRankTables", ThisKey="Taxonomy,ID", OtherKey="Taxonomy,Parent")]
-		public EntitySet<TaxonomicRankTable> TaxonomicRankTables
+		[Association(Name="LocaleTable_LocalePostalCodeTable", Storage="_LocalePostalCodeTables", ThisKey="ID", OtherKey="Locale")]
+		public EntitySet<LocalePostalCodeTable> LocalePostalCodeTables
 		{
 			get
 			{
-				return this._TaxonomicRankTables;
+				return this._LocalePostalCodeTables;
 			}
 			set
 			{
-				this._TaxonomicRankTables.Assign(value);
+				this._LocalePostalCodeTables.Assign(value);
 			}
 		}
 		
-		[Association(Name="TaxonomicRankTable_TaxonomicRankTable", Storage="_TaxonomicRankTable1", ThisKey="Taxonomy,Parent", OtherKey="Taxonomy,ID", IsForeignKey=true)]
-		public TaxonomicRankTable TaxonomicRankTable1
+		[Association(Name="LocaleTable_LocaleTable", Storage="_LocaleTables", ThisKey="ID", OtherKey="Parent")]
+		public EntitySet<LocaleTable> LocaleTables
 		{
 			get
 			{
-				return this._TaxonomicRankTable1.Entity;
+				return this._LocaleTables;
 			}
 			set
 			{
-				TaxonomicRankTable previousValue = this._TaxonomicRankTable1.Entity;
+				this._LocaleTables.Assign(value);
+			}
+		}
+		
+		[Association(Name="LocaleCategoryTable_LocaleTable", Storage="_LocaleCategoryTable", ThisKey="Category", OtherKey="Name", IsForeignKey=true)]
+		public LocaleCategoryTable LocaleCategoryTable
+		{
+			get
+			{
+				return this._LocaleCategoryTable.Entity;
+			}
+			set
+			{
+				LocaleCategoryTable previousValue = this._LocaleCategoryTable.Entity;
 				if (((previousValue != value) 
-							|| (this._TaxonomicRankTable1.HasLoadedOrAssignedValue == false)))
+							|| (this._LocaleCategoryTable.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._TaxonomicRankTable1.Entity = null;
-						previousValue.TaxonomicRankTables.Remove(this);
+						this._LocaleCategoryTable.Entity = null;
+						previousValue.LocaleTables.Remove(this);
 					}
-					this._TaxonomicRankTable1.Entity = value;
+					this._LocaleCategoryTable.Entity = value;
 					if ((value != null))
 					{
-						value.TaxonomicRankTables.Add(this);
-						this._Taxonomy = value.Taxonomy;
-						this._Parent = value.ID;
+						value.LocaleTables.Add(this);
+						this._Category = value.Name;
 					}
 					else
 					{
-						this._Taxonomy = default(long);
-						this._Parent = default(Nullable<long>);
+						this._Category = default(string);
 					}
-					this.SendPropertyChanged("TaxonomicRankTable1");
+					this.SendPropertyChanged("LocaleCategoryTable");
 				}
 			}
 		}
 		
-		[Association(Name="TaxonomyTable_TaxonomicRankTable", Storage="_TaxonomyTable", ThisKey="Taxonomy", OtherKey="ID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public TaxonomyTable TaxonomyTable
+		[Association(Name="LocaleTable_LocaleTable", Storage="_LocaleTable1", ThisKey="Parent", OtherKey="ID", IsForeignKey=true)]
+		public LocaleTable LocaleTable1
 		{
 			get
 			{
-				return this._TaxonomyTable.Entity;
+				return this._LocaleTable1.Entity;
 			}
 			set
 			{
-				TaxonomyTable previousValue = this._TaxonomyTable.Entity;
+				LocaleTable previousValue = this._LocaleTable1.Entity;
 				if (((previousValue != value) 
-							|| (this._TaxonomyTable.HasLoadedOrAssignedValue == false)))
+							|| (this._LocaleTable1.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._TaxonomyTable.Entity = null;
-						previousValue.TaxonomicRankTables.Remove(this);
+						this._LocaleTable1.Entity = null;
+						previousValue.LocaleTables.Remove(this);
 					}
-					this._TaxonomyTable.Entity = value;
+					this._LocaleTable1.Entity = value;
 					if ((value != null))
 					{
-						value.TaxonomicRankTables.Add(this);
-						this._Taxonomy = value.ID;
+						value.LocaleTables.Add(this);
+						this._Parent = value.ID;
 					}
 					else
 					{
-						this._Taxonomy = default(long);
+						this._Parent = default(Nullable<long>);
 					}
-					this.SendPropertyChanged("TaxonomyTable");
+					this.SendPropertyChanged("LocaleTable1");
 				}
 			}
 		}
@@ -2154,42 +2589,54 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		private void attach_TaxonomicRankingTables(TaxonomicRankingTable entity)
+		private void attach_LocaleIPAddressRangeTables(LocaleIPAddressRangeTable entity)
 		{
 			this.SendPropertyChanging();
-			entity.TaxonomicRankTable = this;
+			entity.LocaleTable = this;
 		}
 		
-		private void detach_TaxonomicRankingTables(TaxonomicRankingTable entity)
+		private void detach_LocaleIPAddressRangeTables(LocaleIPAddressRangeTable entity)
 		{
 			this.SendPropertyChanging();
-			entity.TaxonomicRankTable = null;
+			entity.LocaleTable = null;
 		}
 		
-		private void attach_TaxonomicRankTables(TaxonomicRankTable entity)
+		private void attach_LocalePostalCodeTables(LocalePostalCodeTable entity)
 		{
 			this.SendPropertyChanging();
-			entity.TaxonomicRankTable1 = this;
+			entity.LocaleTable = this;
 		}
 		
-		private void detach_TaxonomicRankTables(TaxonomicRankTable entity)
+		private void detach_LocalePostalCodeTables(LocalePostalCodeTable entity)
 		{
 			this.SendPropertyChanging();
-			entity.TaxonomicRankTable1 = null;
+			entity.LocaleTable = null;
+		}
+		
+		private void attach_LocaleTables(LocaleTable entity)
+		{
+			this.SendPropertyChanging();
+			entity.LocaleTable1 = this;
+		}
+		
+		private void detach_LocaleTables(LocaleTable entity)
+		{
+			this.SendPropertyChanging();
+			entity.LocaleTable1 = null;
 		}
 	}
 	
-	[Table(Name="Taxonomy.TaxonomyTable")]
-	public partial class TaxonomyTable : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="Geography.PostalCodeFormatTable")]
+	public partial class PostalCodeFormatTable : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private long _ID;
 		
-		private long _VFX_CreatorID;
+		private System.Nullable<long> _VFX_CreatorID;
 		
-		private long _VFX_UpdaterID;
+		private System.Nullable<long> _VFX_UpdaterID;
 		
 		private System.Nullable<long> _VFX_DeletorID;
 		
@@ -2201,8 +2648,6 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 		
 		private string _Name;
 		
-		private string _Description;
-		
 		private string _ETL_NaturalKey;
 		
 		private System.Data.Linq.Binary _ETL_Hash;
@@ -2211,9 +2656,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 		
 		private System.Nullable<System.DateTime> _ETL_DateEffective;
 		
-		private EntitySet<TaxonomicRankingTable> _TaxonomicRankingTables;
-		
-		private EntitySet<TaxonomicRankTable> _TaxonomicRankTables;
+		private EntitySet<PostalCodeTable> _PostalCodeTables;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2221,9 +2664,9 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnCreated();
     partial void OnIDChanging(long value);
     partial void OnIDChanged();
-    partial void OnVFX_CreatorIDChanging(long value);
+    partial void OnVFX_CreatorIDChanging(System.Nullable<long> value);
     partial void OnVFX_CreatorIDChanged();
-    partial void OnVFX_UpdaterIDChanging(long value);
+    partial void OnVFX_UpdaterIDChanging(System.Nullable<long> value);
     partial void OnVFX_UpdaterIDChanged();
     partial void OnVFX_DeletorIDChanging(System.Nullable<long> value);
     partial void OnVFX_DeletorIDChanged();
@@ -2235,8 +2678,6 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnVFX_DateDeletedChanged();
     partial void OnNameChanging(string value);
     partial void OnNameChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
     partial void OnETL_NaturalKeyChanging(string value);
     partial void OnETL_NaturalKeyChanged();
     partial void OnETL_HashChanging(System.Data.Linq.Binary value);
@@ -2247,10 +2688,9 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnETL_DateEffectiveChanged();
     #endregion
 		
-		public TaxonomyTable()
+		public PostalCodeFormatTable()
 		{
-			this._TaxonomicRankingTables = new EntitySet<TaxonomicRankingTable>(new Action<TaxonomicRankingTable>(this.attach_TaxonomicRankingTables), new Action<TaxonomicRankingTable>(this.detach_TaxonomicRankingTables));
-			this._TaxonomicRankTables = new EntitySet<TaxonomicRankTable>(new Action<TaxonomicRankTable>(this.attach_TaxonomicRankTables), new Action<TaxonomicRankTable>(this.detach_TaxonomicRankTables));
+			this._PostalCodeTables = new EntitySet<PostalCodeTable>(new Action<PostalCodeTable>(this.attach_PostalCodeTables), new Action<PostalCodeTable>(this.detach_PostalCodeTables));
 			OnCreated();
 		}
 		
@@ -2274,8 +2714,8 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_VFX_CreatorID", DbType="BigInt NOT NULL")]
-		public long VFX_CreatorID
+		[Column(Storage="_VFX_CreatorID", DbType="BigInt")]
+		public System.Nullable<long> VFX_CreatorID
 		{
 			get
 			{
@@ -2294,8 +2734,8 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_VFX_UpdaterID", DbType="BigInt NOT NULL")]
-		public long VFX_UpdaterID
+		[Column(Storage="_VFX_UpdaterID", DbType="BigInt")]
+		public System.Nullable<long> VFX_UpdaterID
 		{
 			get
 			{
@@ -2394,7 +2834,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_Name", DbType="NVarChar(100) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[Column(Storage="_Name", DbType="NVarChar(64) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
 		public string Name
 		{
 			get
@@ -2414,26 +2854,6 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_Description", DbType="NVarChar(MAX)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
 		[Column(Storage="_ETL_NaturalKey", DbType="VarChar(256)")]
 		public string ETL_NaturalKey
 		{
@@ -2514,29 +2934,16 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Association(Name="TaxonomyTable_TaxonomicRankingTable", Storage="_TaxonomicRankingTables", ThisKey="ID", OtherKey="Taxonomy")]
-		public EntitySet<TaxonomicRankingTable> TaxonomicRankingTables
+		[Association(Name="PostalCodeFormatTable_PostalCodeTable", Storage="_PostalCodeTables", ThisKey="Name", OtherKey="Format")]
+		public EntitySet<PostalCodeTable> PostalCodeTables
 		{
 			get
 			{
-				return this._TaxonomicRankingTables;
+				return this._PostalCodeTables;
 			}
 			set
 			{
-				this._TaxonomicRankingTables.Assign(value);
-			}
-		}
-		
-		[Association(Name="TaxonomyTable_TaxonomicRankTable", Storage="_TaxonomicRankTables", ThisKey="ID", OtherKey="Taxonomy")]
-		public EntitySet<TaxonomicRankTable> TaxonomicRankTables
-		{
-			get
-			{
-				return this._TaxonomicRankTables;
-			}
-			set
-			{
-				this._TaxonomicRankTables.Assign(value);
+				this._PostalCodeTables.Assign(value);
 			}
 		}
 		
@@ -2560,42 +2967,30 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		private void attach_TaxonomicRankingTables(TaxonomicRankingTable entity)
+		private void attach_PostalCodeTables(PostalCodeTable entity)
 		{
 			this.SendPropertyChanging();
-			entity.TaxonomyTable = this;
+			entity.PostalCodeFormatTable = this;
 		}
 		
-		private void detach_TaxonomicRankingTables(TaxonomicRankingTable entity)
+		private void detach_PostalCodeTables(PostalCodeTable entity)
 		{
 			this.SendPropertyChanging();
-			entity.TaxonomyTable = null;
-		}
-		
-		private void attach_TaxonomicRankTables(TaxonomicRankTable entity)
-		{
-			this.SendPropertyChanging();
-			entity.TaxonomyTable = this;
-		}
-		
-		private void detach_TaxonomicRankTables(TaxonomicRankTable entity)
-		{
-			this.SendPropertyChanging();
-			entity.TaxonomyTable = null;
+			entity.PostalCodeFormatTable = null;
 		}
 	}
 	
-	[Table(Name="Taxonomy.TaxonRelationshipTable")]
-	public partial class TaxonRelationshipTable : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="Geography.PostalCodeTable")]
+	public partial class PostalCodeTable : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
 		private long _ID;
 		
-		private long _VFX_CreatorID;
+		private System.Nullable<long> _VFX_CreatorID;
 		
-		private long _VFX_UpdaterID;
+		private System.Nullable<long> _VFX_UpdaterID;
 		
 		private System.Nullable<long> _VFX_DeletorID;
 		
@@ -2605,11 +3000,15 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 		
 		private System.Nullable<System.DateTime> _VFX_DateDeleted;
 		
-		private long _Taxon;
+		private string _Format;
 		
-		private long _Target;
+		private string _Code;
 		
-		private float _Weight;
+		private System.Nullable<double> _Latitude;
+		
+		private System.Nullable<double> _Longitude;
+		
+		private System.Nullable<long> _Region;
 		
 		private string _ETL_NaturalKey;
 		
@@ -2619,7 +3018,11 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 		
 		private System.Nullable<System.DateTime> _ETL_DateEffective;
 		
-		private EntityRef<TaxonTable> _TaxonTable;
+		private EntitySet<IPAddressRangeTable> _IPAddressRangeTables;
+		
+		private EntitySet<LocalePostalCodeTable> _LocalePostalCodeTables;
+		
+		private EntityRef<PostalCodeFormatTable> _PostalCodeFormatTable;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2627,9 +3030,9 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnCreated();
     partial void OnIDChanging(long value);
     partial void OnIDChanged();
-    partial void OnVFX_CreatorIDChanging(long value);
+    partial void OnVFX_CreatorIDChanging(System.Nullable<long> value);
     partial void OnVFX_CreatorIDChanged();
-    partial void OnVFX_UpdaterIDChanging(long value);
+    partial void OnVFX_UpdaterIDChanging(System.Nullable<long> value);
     partial void OnVFX_UpdaterIDChanged();
     partial void OnVFX_DeletorIDChanging(System.Nullable<long> value);
     partial void OnVFX_DeletorIDChanged();
@@ -2639,12 +3042,16 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnVFX_DateUpdatedChanged();
     partial void OnVFX_DateDeletedChanging(System.Nullable<System.DateTime> value);
     partial void OnVFX_DateDeletedChanged();
-    partial void OnTaxonChanging(long value);
-    partial void OnTaxonChanged();
-    partial void OnTargetChanging(long value);
-    partial void OnTargetChanged();
-    partial void OnWeightChanging(float value);
-    partial void OnWeightChanged();
+    partial void OnFormatChanging(string value);
+    partial void OnFormatChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
+    partial void OnLatitudeChanging(System.Nullable<double> value);
+    partial void OnLatitudeChanged();
+    partial void OnLongitudeChanging(System.Nullable<double> value);
+    partial void OnLongitudeChanged();
+    partial void OnRegionChanging(System.Nullable<long> value);
+    partial void OnRegionChanged();
     partial void OnETL_NaturalKeyChanging(string value);
     partial void OnETL_NaturalKeyChanged();
     partial void OnETL_HashChanging(System.Data.Linq.Binary value);
@@ -2655,9 +3062,11 @@ namespace Nathandelane.WatiN.VehixTesting.Data
     partial void OnETL_DateEffectiveChanged();
     #endregion
 		
-		public TaxonRelationshipTable()
+		public PostalCodeTable()
 		{
-			this._TaxonTable = default(EntityRef<TaxonTable>);
+			this._IPAddressRangeTables = new EntitySet<IPAddressRangeTable>(new Action<IPAddressRangeTable>(this.attach_IPAddressRangeTables), new Action<IPAddressRangeTable>(this.detach_IPAddressRangeTables));
+			this._LocalePostalCodeTables = new EntitySet<LocalePostalCodeTable>(new Action<LocalePostalCodeTable>(this.attach_LocalePostalCodeTables), new Action<LocalePostalCodeTable>(this.detach_LocalePostalCodeTables));
+			this._PostalCodeFormatTable = default(EntityRef<PostalCodeFormatTable>);
 			OnCreated();
 		}
 		
@@ -2681,8 +3090,8 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_VFX_CreatorID", DbType="BigInt NOT NULL")]
-		public long VFX_CreatorID
+		[Column(Storage="_VFX_CreatorID", DbType="BigInt")]
+		public System.Nullable<long> VFX_CreatorID
 		{
 			get
 			{
@@ -2701,8 +3110,8 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_VFX_UpdaterID", DbType="BigInt NOT NULL")]
-		public long VFX_UpdaterID
+		[Column(Storage="_VFX_UpdaterID", DbType="BigInt")]
+		public System.Nullable<long> VFX_UpdaterID
 		{
 			get
 			{
@@ -2801,66 +3210,106 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_Taxon", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
-		public long Taxon
+		[Column(Storage="_Format", DbType="NVarChar(64) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Format
 		{
 			get
 			{
-				return this._Taxon;
+				return this._Format;
 			}
 			set
 			{
-				if ((this._Taxon != value))
+				if ((this._Format != value))
 				{
-					if (this._TaxonTable.HasLoadedOrAssignedValue)
+					if (this._PostalCodeFormatTable.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnTaxonChanging(value);
+					this.OnFormatChanging(value);
 					this.SendPropertyChanging();
-					this._Taxon = value;
-					this.SendPropertyChanged("Taxon");
-					this.OnTaxonChanged();
+					this._Format = value;
+					this.SendPropertyChanged("Format");
+					this.OnFormatChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Target", DbType="BigInt NOT NULL", IsPrimaryKey=true)]
-		public long Target
+		[Column(Storage="_Code", DbType="NVarChar(15) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Code
 		{
 			get
 			{
-				return this._Target;
+				return this._Code;
 			}
 			set
 			{
-				if ((this._Target != value))
+				if ((this._Code != value))
 				{
-					this.OnTargetChanging(value);
+					this.OnCodeChanging(value);
 					this.SendPropertyChanging();
-					this._Target = value;
-					this.SendPropertyChanged("Target");
-					this.OnTargetChanged();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
 				}
 			}
 		}
 		
-		[Column(Storage="_Weight", DbType="Real NOT NULL")]
-		public float Weight
+		[Column(Storage="_Latitude", DbType="Float")]
+		public System.Nullable<double> Latitude
 		{
 			get
 			{
-				return this._Weight;
+				return this._Latitude;
 			}
 			set
 			{
-				if ((this._Weight != value))
+				if ((this._Latitude != value))
 				{
-					this.OnWeightChanging(value);
+					this.OnLatitudeChanging(value);
 					this.SendPropertyChanging();
-					this._Weight = value;
-					this.SendPropertyChanged("Weight");
-					this.OnWeightChanged();
+					this._Latitude = value;
+					this.SendPropertyChanged("Latitude");
+					this.OnLatitudeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Longitude", DbType="Float")]
+		public System.Nullable<double> Longitude
+		{
+			get
+			{
+				return this._Longitude;
+			}
+			set
+			{
+				if ((this._Longitude != value))
+				{
+					this.OnLongitudeChanging(value);
+					this.SendPropertyChanging();
+					this._Longitude = value;
+					this.SendPropertyChanged("Longitude");
+					this.OnLongitudeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Region", DbType="BigInt")]
+		public System.Nullable<long> Region
+		{
+			get
+			{
+				return this._Region;
+			}
+			set
+			{
+				if ((this._Region != value))
+				{
+					this.OnRegionChanging(value);
+					this.SendPropertyChanging();
+					this._Region = value;
+					this.SendPropertyChanged("Region");
+					this.OnRegionChanged();
 				}
 			}
 		}
@@ -2945,36 +3394,62 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Association(Name="TaxonTable_TaxonRelationshipTable", Storage="_TaxonTable", ThisKey="Taxon", OtherKey="ID", IsForeignKey=true)]
-		public TaxonTable TaxonTable
+		[Association(Name="PostalCodeTable_IPAddressRangeTable", Storage="_IPAddressRangeTables", ThisKey="Format,Code", OtherKey="Format,Code")]
+		public EntitySet<IPAddressRangeTable> IPAddressRangeTables
 		{
 			get
 			{
-				return this._TaxonTable.Entity;
+				return this._IPAddressRangeTables;
 			}
 			set
 			{
-				TaxonTable previousValue = this._TaxonTable.Entity;
+				this._IPAddressRangeTables.Assign(value);
+			}
+		}
+		
+		[Association(Name="PostalCodeTable_LocalePostalCodeTable", Storage="_LocalePostalCodeTables", ThisKey="Format,Code", OtherKey="Format,Code")]
+		public EntitySet<LocalePostalCodeTable> LocalePostalCodeTables
+		{
+			get
+			{
+				return this._LocalePostalCodeTables;
+			}
+			set
+			{
+				this._LocalePostalCodeTables.Assign(value);
+			}
+		}
+		
+		[Association(Name="PostalCodeFormatTable_PostalCodeTable", Storage="_PostalCodeFormatTable", ThisKey="Format", OtherKey="Name", IsForeignKey=true)]
+		public PostalCodeFormatTable PostalCodeFormatTable
+		{
+			get
+			{
+				return this._PostalCodeFormatTable.Entity;
+			}
+			set
+			{
+				PostalCodeFormatTable previousValue = this._PostalCodeFormatTable.Entity;
 				if (((previousValue != value) 
-							|| (this._TaxonTable.HasLoadedOrAssignedValue == false)))
+							|| (this._PostalCodeFormatTable.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._TaxonTable.Entity = null;
-						previousValue.TaxonRelationshipTables.Remove(this);
+						this._PostalCodeFormatTable.Entity = null;
+						previousValue.PostalCodeTables.Remove(this);
 					}
-					this._TaxonTable.Entity = value;
+					this._PostalCodeFormatTable.Entity = value;
 					if ((value != null))
 					{
-						value.TaxonRelationshipTables.Add(this);
-						this._Taxon = value.ID;
+						value.PostalCodeTables.Add(this);
+						this._Format = value.Name;
 					}
 					else
 					{
-						this._Taxon = default(long);
+						this._Format = default(string);
 					}
-					this.SendPropertyChanged("TaxonTable");
+					this.SendPropertyChanged("PostalCodeFormatTable");
 				}
 			}
 		}
@@ -2997,6 +3472,30 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_IPAddressRangeTables(IPAddressRangeTable entity)
+		{
+			this.SendPropertyChanging();
+			entity.PostalCodeTable = this;
+		}
+		
+		private void detach_IPAddressRangeTables(IPAddressRangeTable entity)
+		{
+			this.SendPropertyChanging();
+			entity.PostalCodeTable = null;
+		}
+		
+		private void attach_LocalePostalCodeTables(LocalePostalCodeTable entity)
+		{
+			this.SendPropertyChanging();
+			entity.PostalCodeTable = this;
+		}
+		
+		private void detach_LocalePostalCodeTables(LocalePostalCodeTable entity)
+		{
+			this.SendPropertyChanging();
+			entity.PostalCodeTable = null;
 		}
 	}
 }

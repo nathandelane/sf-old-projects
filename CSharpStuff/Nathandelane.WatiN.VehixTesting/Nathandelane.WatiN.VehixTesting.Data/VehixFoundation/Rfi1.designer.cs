@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Nathandelane.WatiN.VehixTesting.Data
+namespace Nathandelane.WatiN.VehixTesting.Data.VehixFoundation
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;

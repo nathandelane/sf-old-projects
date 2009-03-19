@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Nathandelane.WatiN.VehixTesting.Data
+namespace Nathandelane.WatiN.VehixTesting.Data.VehixFoundation
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -610,7 +610,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -763,7 +763,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -1113,7 +1113,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -1388,7 +1388,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -1706,7 +1706,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -2035,7 +2035,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -2314,7 +2314,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -2593,7 +2593,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -2728,7 +2728,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -2845,7 +2845,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -3196,7 +3196,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -3421,7 +3421,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -3538,7 +3538,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -3655,7 +3655,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -3772,7 +3772,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -4090,7 +4090,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -4239,7 +4239,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -4581,7 +4581,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -4874,7 +4874,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -5027,7 +5027,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -5472,7 +5472,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -5747,7 +5747,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -5990,7 +5990,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -6363,7 +6363,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -6754,7 +6754,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -7081,7 +7081,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -7581,7 +7581,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -7960,7 +7960,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -8093,7 +8093,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -8390,7 +8390,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
@@ -8844,7 +8844,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data
 			}
 		}
 		
-		[Column(Storage="_ETL_Hash", DbType="Binary(16)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_ETL_Hash", DbType="Binary(16)", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary ETL_Hash
 		{
 			get
