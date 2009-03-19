@@ -59,7 +59,7 @@ namespace Nathandelane.WatiN.VehixTesting
 		#region Test Methods
 
 		[TestMethod]
-		public void TestMethod1()
+		public abstract void TestMain()
 		{
 		}
 
