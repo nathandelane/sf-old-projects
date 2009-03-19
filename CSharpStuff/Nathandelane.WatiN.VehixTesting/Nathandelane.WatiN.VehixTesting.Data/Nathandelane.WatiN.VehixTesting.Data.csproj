@@ -197,6 +197,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Branding.dbml.layout">
       <DependentUpon>Branding.dbml</DependentUpon>
     </None>
