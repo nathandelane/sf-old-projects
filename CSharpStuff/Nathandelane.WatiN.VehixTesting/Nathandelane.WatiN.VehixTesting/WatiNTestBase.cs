@@ -101,9 +101,7 @@ namespace Nathandelane.WatiN.VehixTesting
 		#region Test Methods
 
 		[TestMethod]
-		public abstract void TestMain()
-		{
-		}
+		public abstract void TestMain();
 
 		#endregion
 
