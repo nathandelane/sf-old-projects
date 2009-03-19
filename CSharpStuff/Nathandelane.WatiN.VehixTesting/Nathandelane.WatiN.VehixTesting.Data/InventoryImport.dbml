@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="VehixFoundation" Class="VehixFoundationInventoryImportDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=qa-sql-01\a;Initial Catalog=VehixFoundation;Integrated Security=True" SettingsObjectName="Vehix.QA.WebTest.Data.Properties.Settings" SettingsPropertyName="VehixFoundationConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="InventoryImport.FileColumnTable" Member="FileColumnTables">
+    <Type Name="FileColumnTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreateDateColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UpdateDateColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VinColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="AccountColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StockNumberColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MileageColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NewPriceColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="UsedPriceColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="YearColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MakeColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ModelColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TrimColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NewUsedColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CPOColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ColorColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ColorCodeColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InteriorColorColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ImageCodeColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Comment1Column" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Comment2Column" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Comment3Column" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Comment4Column" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Comment5Column" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StockDateColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EngineColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InductionColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TransmissionColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="EngineSizeColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CylindersColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="InvoiceColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WarrantyColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LimitedWarrantyColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ServiceAgreementColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ManufacturerCodeColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FuelTypeColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MilesPerGallonColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CabStyleColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BedStyleColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OtherColumn1" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OtherTitle1" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="OtherColumn2" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OtherTitle2" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="OtherColumn3" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OtherTitle3" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="OtherColumn4" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OtherTitle4" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ImageUrlColumn" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="InventoryImport.InventorySystemTable" Member="InventorySystemTables">
+    <Type Name="InventorySystemTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="InventoryImport.ImportRuleTable" Member="ImportRuleTables">
+    <Type Name="ImportRuleTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="InventorySource" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="CheckFieldName" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="CheckFieldValue" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="SetFieldName" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="SetFieldValue" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="SetFieldDefault" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="CaseSensitive" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="NoMatchAction" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Sequence" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="Comments" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="InventorySourceTable_ImportRuleTable" Member="InventorySourceTable" ThisKey="InventorySource" OtherKey="ID" Type="InventorySourceTable" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="InventoryImport.InventoryAccountTable" Member="InventoryAccountTables">
+    <Type Name="InventoryAccountTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Account" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
+      <Column Name="VehicleType" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SellerInfo" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="InventorySource" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="InventorySourceTable_InventoryAccountTable" Member="InventorySourceTable" ThisKey="InventorySource" OtherKey="ID" Type="InventorySourceTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="InventoryImport.InventorySourceTable" Member="InventorySourceTables">
+    <Type Name="InventorySourceTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FileName" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="FileDelimiter" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TextQualifier" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
+      <Column Name="FileColumn" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="InventorySystem" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UseImageUrl" Type="System.String" DbType="NVarChar(9)" CanBeNull="true" />
+      <Association Name="InventorySourceTable_ImportRuleTable" Member="ImportRuleTables" ThisKey="ID" OtherKey="InventorySource" Type="ImportRuleTable" />
+      <Association Name="InventorySourceTable_InventoryAccountTable" Member="InventoryAccountTables" ThisKey="ID" OtherKey="InventorySource" Type="InventoryAccountTable" />
+    </Type>
+  </Table>
+</Database>

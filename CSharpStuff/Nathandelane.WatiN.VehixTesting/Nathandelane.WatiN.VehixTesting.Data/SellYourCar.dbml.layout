@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.25" name="VehixFoundationSellYourCar">
+  <DataContextMoniker Name="/VehixFoundationSellYourCarDataContext" />
+  <nestedChildShapes>
+    <classShape Id="eade8eba-1c28-4a46-8a0b-fcea502e382e" absoluteBounds="0.75, 1.625, 2, 6.1938297526041648">
+      <DataClassMoniker Name="/VehixFoundationSellYourCarDataContext/ListingPackageTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="33befcb0-b425-4bc2-9409-362a06b8385e" absoluteBounds="0.765, 2.085, 1.9700000000000002, 5.6338297526041661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9732081e-8ed5-40e1-996c-57a670b51f97" absoluteBounds="3.5, 1.125, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/VehixFoundationSellYourCarDataContext/SellYourCarProductTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d1985049-44aa-48fe-970d-440747f43f02" absoluteBounds="3.515, 1.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d9a4736f-b3d9-42bb-b688-dc009a2a4c79" absoluteBounds="6.75, 0.75, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/VehixFoundationSellYourCarDataContext/ListingTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9e811c95-e792-4679-b201-6c689dcaaadb" absoluteBounds="6.765, 1.21, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b7d250f9-7213-40b5-82db-f842d3285aaa" absoluteBounds="3.5, 4.125, 2, 4.2708154296875005">
+      <DataClassMoniker Name="/VehixFoundationSellYourCarDataContext/ListingTransactionTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="691bcd77-d935-46eb-b36a-758821c42e65" absoluteBounds="3.515, 4.585, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f3da96d6-e773-4e2a-b215-72d4d3ef5eba" absoluteBounds="6.75, 5.75, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/VehixFoundationSellYourCarDataContext/PrivateSellerOptionsTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="58aec1ec-85f6-4351-b5d8-f4845bbfefa8" absoluteBounds="6.765, 6.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.45274983723958); (3.5 : 2.45274983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationSellYourCarDataContext/ListingPackageTable/ListingPackageTable_SellYourCarProductTable" />
+      <nodes>
+        <classShapeMoniker Id="eade8eba-1c28-4a46-8a0b-fcea502e382e" />
+        <classShapeMoniker Id="9732081e-8ed5-40e1-996c-57a670b51f97" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 5.97191487630208); (3.5 : 5.97191487630208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationSellYourCarDataContext/ListingPackageTable/ListingPackageTable_ListingTransactionTable" />
+      <nodes>
+        <classShapeMoniker Id="eade8eba-1c28-4a46-8a0b-fcea502e382e" />
+        <classShapeMoniker Id="b7d250f9-7213-40b5-82db-f842d3285aaa" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

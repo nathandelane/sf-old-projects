@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 15.25" name="VehixFoundationContacts">
+  <DataContextMoniker Name="/VehixFoundationContactsDataContext" />
+  <nestedChildShapes>
+    <classShape Id="ad41e257-cf30-4d60-b87c-649d8ae69b2c" absoluteBounds="0.75, 9.25, 2, 4.4631168619791666">
+      <DataClassMoniker Name="/VehixFoundationContactsDataContext/AddressTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3d4c4f68-2ddc-49c5-8395-ae5ea1d1295b" absoluteBounds="0.765, 9.71, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4a305bda-948b-4f72-9251-094278554ec4" absoluteBounds="3.5, 11.25, 2, 3.6939111328124987">
+      <DataClassMoniker Name="/VehixFoundationContactsDataContext/ScheduleTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5f45cd10-de06-4d49-8796-eea248537bb7" absoluteBounds="3.515, 11.71, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="68abc26c-a630-424e-b477-d6e3f3a7f8a6" absoluteBounds="6.25, 1.375, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/VehixFoundationContactsDataContext/ContactInfoContactMethodTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="02984626-77c9-4145-be4b-723f0834f4a6" absoluteBounds="6.265, 1.835, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5bbedd21-8472-46f7-bef5-70d46d4d0e17" absoluteBounds="3.5, 1, 2, 4.0785139973958326">
+      <DataClassMoniker Name="/VehixFoundationContactsDataContext/ContactInfoTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="625e5b45-5c67-40c5-8147-d69db7fe4d87" absoluteBounds="3.515, 1.46, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="84b184ac-65a1-4711-8038-f2b333a4bbed" absoluteBounds="6.25, 6.375, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/VehixFoundationContactsDataContext/ContactMethodScheduleTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="333da87c-3310-4894-8e5b-4d7014e3a96f" absoluteBounds="6.265, 6.835, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="57eb226c-73f7-4def-8d50-da109f0b4d22" absoluteBounds="3.5, 6.5, 2, 3.1170068359375014">
+      <DataClassMoniker Name="/VehixFoundationContactsDataContext/ContactMethodTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ad94e7f0-b072-4d99-9131-e93c1aa1746d" absoluteBounds="3.515, 6.96, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a7c9ac2a-fe16-4346-94bf-0e81edcf0d9b" absoluteBounds="0.75, 1.875, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/VehixFoundationContactsDataContext/EmailTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fa580fe7-cd98-4f7c-9ba1-2d9c3d6edca5" absoluteBounds="0.765, 2.335, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0181daa6-d35e-4039-8eba-d8c4c345c47a" absoluteBounds="0.75, 6.125, 2, 2.3478011067708344">
+      <DataClassMoniker Name="/VehixFoundationContactsDataContext/PhoneTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c998effe-f7c5-4b4d-9e93-f01ff1c68584" absoluteBounds="0.765, 6.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 3.02965413411458); (6.25 : 3.02965413411458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationContactsDataContext/ContactInfoTable/ContactInfoTable_ContactInfoContactMethodTable" />
+      <nodes>
+        <classShapeMoniker Id="5bbedd21-8472-46f7-bef5-70d46d4d0e17" />
+        <classShapeMoniker Id="68abc26c-a630-424e-b477-d6e3f3a7f8a6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 9.25153746153846); (3.125 : 8.87653746153846); (3.125 : 3.03925699869792); (3.22916666666667 : 3.03925699869792 : JumpStart); (3.39583333333333 : 3.03925699869792 : JumpEnd); (3.5 : 3.03925699869792)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationContactsDataContext/AddressTable/AddressTable_ContactInfoTable" />
+      <nodes>
+        <classShapeMoniker Id="ad41e257-cf30-4d60-b87c-649d8ae69b2c" />
+        <classShapeMoniker Id="5bbedd21-8472-46f7-bef5-70d46d4d0e17" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 13.0969555664062); (7.25 : 13.0969555664062); (7.25 : 9.68430826822917)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationContactsDataContext/ScheduleTable/ScheduleTable_ContactMethodScheduleTable" />
+      <nodes>
+        <classShapeMoniker Id="4a305bda-948b-4f72-9251-094278554ec4" />
+        <classShapeMoniker Id="84b184ac-65a1-4711-8038-f2b333a4bbed" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 6.5); (5.875 : 6.125); (5.875 : 3.88823320117187); (6.25 : 3.88823320117187)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationContactsDataContext/ContactMethodTable/ContactMethodTable_ContactInfoContactMethodTable" />
+      <nodes>
+        <classShapeMoniker Id="57eb226c-73f7-4def-8d50-da109f0b4d22" />
+        <classShapeMoniker Id="68abc26c-a630-424e-b477-d6e3f3a7f8a6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 8.08975591796875); (6.25 : 8.08975591796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationContactsDataContext/ContactMethodTable/ContactMethodTable_ContactMethodScheduleTable" />
+      <nodes>
+        <classShapeMoniker Id="57eb226c-73f7-4def-8d50-da109f0b4d22" />
+        <classShapeMoniker Id="84b184ac-65a1-4711-8038-f2b333a4bbed" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 3.69352905273437); (3.04166666666667 : 3.69352905273437 : JumpStart); (3.20833333333333 : 3.69352905273437 : JumpEnd); (3.22916666666667 : 3.69352905273437 : JumpStart); (3.39583333333333 : 3.69352905273437 : JumpEnd); (3.5 : 3.69352905273437)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationContactsDataContext/EmailTable/EmailTable_ContactInfoTable" />
+      <nodes>
+        <classShapeMoniker Id="a7c9ac2a-fe16-4346-94bf-0e81edcf0d9b" />
+        <classShapeMoniker Id="5bbedd21-8472-46f7-bef5-70d46d4d0e17" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 6.18807592307692); (3.06607443490112 : 5.8720014881758 : JumpStart); (3.18392556509888 : 5.75415035797804 : JumpEnd); (3.3125 : 5.62557592307692); (3.3125 : 1.98837649934896); (3.5 : 1.98837649934896)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationContactsDataContext/PhoneTable/PhoneTable_ContactInfoTable" />
+      <nodes>
+        <classShapeMoniker Id="0181daa6-d35e-4039-8eba-d8c4c345c47a" />
+        <classShapeMoniker Id="5bbedd21-8472-46f7-bef5-70d46d4d0e17" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

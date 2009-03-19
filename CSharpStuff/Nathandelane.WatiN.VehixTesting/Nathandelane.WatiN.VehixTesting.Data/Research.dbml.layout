@@ -1,0 +1,786 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 29.25, 128.625" name="VehixFoundationResearch">
+  <DataContextMoniker Name="/VehixFoundationResearchDataContext" />
+  <nestedChildShapes>
+    <classShape Id="29d2f901-bf1f-4c29-ba62-80b7b81e98ac" absoluteBounds="9, 69.625, 2, 4.6554182942708451">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/CategoryExtendedBodyStyleMakeModelTrimAggregateTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="480b841c-05b9-450b-bc9e-7727be60decc" absoluteBounds="9.015, 70.085, 1.9700000000000002, 4.095418294270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0f72ae0c-fc3f-431f-bafe-b1042b9485f8" absoluteBounds="3.75, 4.75, 2, 6.7707340494791666">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/VinPatternTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7e9a61df-ed7b-4683-805e-9c57cfaa5c9d" absoluteBounds="3.765, 5.21, 1.9700000000000002, 6.2107340494791661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2fccb6ce-ae6f-4170-8bac-e2c930b3d8ba" absoluteBounds="6.25, 54.75, 2, 4.0785139973958309">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/CategoryMakeModelFileAggregateTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8f085d48-3123-45e2-9487-9c938540af0b" absoluteBounds="6.265, 55.21, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="61a6e078-3f25-4d7b-baa4-88ca338516ea" absoluteBounds="11.75, 88.875, 2, 3.5016097005208451">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ConsumerGuideConsTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="db5d9275-456e-4347-92c8-a6f04d88d003" absoluteBounds="11.765, 89.335, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="59c239f7-dffa-48d1-8351-6865c3368769" absoluteBounds="11.75, 93.125, 2, 3.5016097005208451">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ConsumerGuideProsTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0d95bae8-68b5-48ad-8449-20b20e26ab89" absoluteBounds="11.765, 93.585, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8178d4f7-b94c-4a65-933a-ec3b262bc4e8" absoluteBounds="9, 89, 2, 7.5399397786458451">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ConsumerGuideTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8d21d428-4560-4fb1-be56-f72cfc646319" absoluteBounds="9.015, 89.46, 1.9700000000000002, 6.979939778645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="409042f5-0644-49f2-be0a-792553fe9975" absoluteBounds="20.75, 81.75, 2, 3.5016097005208451">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ConsumerInfoTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cfd8466d-46f4-419a-b02b-4291de90d374" absoluteBounds="20.765, 82.21, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5da8dbc5-a0bf-4a83-9c56-a0b47d4d3719" absoluteBounds="18, 87, 2, 3.1170068359375023">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ConsumerInfoTypeTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="19bf7a2b-9a91-4259-9fb3-542f493a853d" absoluteBounds="18.015, 87.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3655efb3-0d58-4b61-9e92-ad28d2424c24" absoluteBounds="15.25, 71, 2, 3.1170068359375023">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/EpaMarketClassTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="670256fc-cba3-4c0d-99a8-4d3e0a8ea073" absoluteBounds="15.265, 71.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8d75ad8e-f584-4f13-b213-2123551e810a" absoluteBounds="18, 63, 2, 6.963035481770838">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/EpaSmartWayTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3380fee4-eb2f-42d5-9b69-76521fc4b270" absoluteBounds="18.015, 63.46, 1.9700000000000002, 6.403035481770833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5b3e2531-d762-46fe-820d-80097b05e5d5" absoluteBounds="20.75, 76.875, 2, 3.3093082682291595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/EpaSmartWayTrimTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0a9fae1b-661a-400c-b2e1-498b84d2b5c5" absoluteBounds="20.765, 77.335, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5ef2dbdc-1856-4c60-9397-1debed308810" absoluteBounds="9.25, 59.625, 2, 3.6939111328125023">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ExtendedBodyStyleMarketSegmentTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d8ef0282-e996-4577-9db2-7f4c4281ae82" absoluteBounds="9.265, 60.085, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="beae1b02-46bc-43dc-9bd7-074782e5d5b0" absoluteBounds="9.25, 54.625, 2, 3.6939111328125023">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ExtendedBodyStyleMarketSegmentTrimSortColumnsTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="848571f1-c725-4029-9caf-039f0a84487d" absoluteBounds="9.265, 55.085, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c01d0ecb-e443-417c-b4ed-d860a80f37b5" absoluteBounds="12, 64.125, 2, 10.80906412760416">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ExtendedBodyStyleMarketSegmentTrimTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="70b1023d-a29b-489c-a0cf-175287e77a92" absoluteBounds="12.015, 64.585, 1.9700000000000002, 10.249064127604166" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c11ae032-eddd-4c37-8fb8-ceb6bda19dcf" absoluteBounds="6.5, 59.875, 2, 3.3093082682291595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ExtendedBodyStyleTypeTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="abec6810-633b-400f-97d7-b1078f832a84" absoluteBounds="6.515, 60.335, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0e74a131-1875-4773-ae59-94a04855a8ae" absoluteBounds="23.75, 54.625, 2, 3.8862125651041595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/FeatureCategoryTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="065ec831-f71e-4ec1-8b66-d73eccd85eca" absoluteBounds="23.765, 55.085, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="982d8643-64cb-408c-bece-ef2d6fd1634c" absoluteBounds="21, 54.875, 2, 3.3093082682291595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/HeaderTypeTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d64a8957-7237-4970-8f9c-a4f4b0bc8d35" absoluteBounds="21.015, 55.335, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6a4f53ca-7842-4158-ba8d-ee2d9d506e7e" absoluteBounds="9, 97.375, 2, 7.9245426432291595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/JDPowerPowerRatingsTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3d2fe597-61a4-44f7-b566-0968fb4df19e" absoluteBounds="9.015, 97.835, 1.9700000000000002, 7.3645426432291661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="53e76f5c-350f-431a-9d79-36a8cbd06612" absoluteBounds="3.5, 68.75, 2, 3.8862125651041595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/MakeTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be373676-7e39-4b7e-9c72-dfe5a3a2ecd3" absoluteBounds="3.515, 69.21, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7c102dc2-29ba-4d13-8dd6-3f2aebbd8249" absoluteBounds="0.75, 69, 2, 3.3093082682291595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ManufacturerTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fac8268d-c19b-4b31-87bd-ffe00614cc91" absoluteBounds="0.765, 69.46, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="abc78e11-1a27-4a4c-9631-a165260cb573" absoluteBounds="6.75, 0.75, 2, 6.5784326171874987">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ModelAggregateTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2dc6b8d6-35b7-4077-8b18-2143a8ad1d77" absoluteBounds="6.765, 1.21, 1.9700000000000002, 6.0184326171875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3034464d-35f8-42d8-97b9-363183c4a949" absoluteBounds="9, 65, 2, 3.3093082682291595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ModelMediaTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6d10c36e-a2be-4f8e-a7e6-f7b88dab0e74" absoluteBounds="9.015, 65.46, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="229de048-49b8-4989-b443-06f5470b7945" absoluteBounds="12, 75.875, 2, 5.4246240234375023">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ModelPopularityTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="688c3edf-5f67-4e2d-b4c2-dcec7600246c" absoluteBounds="12.015, 76.335, 1.9700000000000002, 4.8646240234375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c771f229-1eba-49f3-94ea-0e8aaa921bc2" absoluteBounds="6.25, 75.875, 2, 5.4246240234375023">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ModelTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="91d31973-9333-4cc3-a299-289860550431" absoluteBounds="6.265, 76.335, 1.9700000000000002, 4.8646240234375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6635beee-1efe-4941-a0ba-7e917ecfdfcd" absoluteBounds="6.75, 8.75, 2, 4.2708154296874987">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/NadaMileageAdjustmentTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ae141cfa-9561-49e7-94b8-7681c522e733" absoluteBounds="6.765, 9.21, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a733af4b-9787-4ba2-854d-7ae599cfe14b" absoluteBounds="15, 82.875, 2, 5.2323225911458451">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/NadaOptionSetOptionTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3781b55a-557d-47e1-9873-ebcd67729427" absoluteBounds="15.015, 83.335, 1.9700000000000002, 4.672322591145833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="730e87cd-5db3-46e5-9c14-d64a1c52a809" absoluteBounds="12.25, 83, 2, 3.1170068359375023">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/NadaOptionSetTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7cf153e9-4910-4ef5-be64-a7da808e3bd2" absoluteBounds="12.265, 83.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="14eed0b2-9ddf-4993-bb15-5edf9f6ceabd" absoluteBounds="12.25, 97.875, 2, 3.3093082682291595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/NadaOptionTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="207da2da-c7a4-4ae3-ad5d-19e9b30b65af" absoluteBounds="12.265, 98.335, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="80cb2e56-096d-4923-8898-00c1009b481e" absoluteBounds="15, 75.375, 2, 6.3861311848958451">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/NadaTrimTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1c19f87a-a0b3-4370-bc85-1b5f3bc56f2f" absoluteBounds="15.015, 75.835, 1.9700000000000002, 5.826131184895833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="19abb5a9-e998-4754-8197-dbc61464736d" absoluteBounds="21, 47, 2, 3.1170068359375023">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/OptionalFeatureHeaderTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cb5b0c95-4146-4d85-aba1-bd85448b56bb" absoluteBounds="21.015, 47.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9ce96b46-4925-4152-863b-5beb447ace0b" absoluteBounds="21, 51, 2, 3.1170068359375023">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/OptionalFeatureKindTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2eee85d1-84c6-4c8c-be60-871712f496bf" absoluteBounds="21.015, 51.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bc82ca0a-ab77-4f27-9d62-9ee9dfc6f269" absoluteBounds="26.5, 49.375, 2, 4.2708154296875023">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/OptionalFeaturePriceTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a0af590d-883b-40f3-9190-b9509d9afa77" absoluteBounds="26.515, 49.835, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bb01a57f-564d-4fe1-aba5-36f71fbba006" absoluteBounds="23.75, 49.625, 2, 3.6939111328125023">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/OptionalFeatureTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="84516e9c-cdd1-4935-bfbb-f8a1fd9e2c2f" absoluteBounds="23.765, 50.085, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cac86be9-1ce3-4cd1-b8b0-dd8351c2e5e1" absoluteBounds="9.75, 0.75, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ReviewSourceTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cdb7bcae-dd9a-4811-96cd-174d339c3799" absoluteBounds="9.765, 1.21, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e902e4c9-fdaf-46c8-a198-59c913c7c534" absoluteBounds="9, 75.25, 2, 5.8092268880208451">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/ReviewTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9a0a1624-61f7-4714-97fb-4d5b16e56a62" absoluteBounds="9.015, 75.71, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f915a1cf-0ed8-4110-b08b-bbc2d6f37bfb" absoluteBounds="0.75, 1, 2, 3.1170068359375009">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/StandardFeatureHeaderTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="871d57a4-0aca-4809-8aff-c76650b0f1fb" absoluteBounds="0.765, 1.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7628974e-b001-45df-b3c7-630b93f80e4d" absoluteBounds="3.5, 1.5, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/StandardFeatureTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b7482dc9-2840-4afc-98e4-bbd3c0857c98" absoluteBounds="3.515, 1.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6dfc044c-5f04-466b-8afb-488725d33624" absoluteBounds="9.75, 5.75, 2, 1.0016910807291666">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TempAppendTechSpec2ChromeStyleID" />
+      <nestedChildShapes>
+        <elementListCompartment Id="53a091ed-afa2-4411-9b0d-74fb55c477d2" absoluteBounds="9.765, 6.21, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="61bc5104-a4a7-4e03-a0fa-5959ea40a975" absoluteBounds="9.75, 7.75, 2, 1.0016910807291666">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TempAppendTEchSpecChromeStyleID" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8160bc77-d48d-43b9-9d3c-000c493a3f43" absoluteBounds="9.765, 8.21, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="44a008eb-ea7a-436a-bae2-3aeeec0e2c0f" absoluteBounds="9.75, 9.75, 2, 1.0016910807291666">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TempComputeExtBodyStyleStyleID12" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e6f6dae7-71c7-48f5-b3d2-2f9c9f605723" absoluteBounds="9.765, 10.21, 1.9700000000000002, 0.44169108072916669" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fc185084-e5f4-478c-8cdd-ca9b37efd4b9" absoluteBounds="9.75, 11.75, 2, 2.5401025390624987">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TopNItemTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e3cb34a0-9404-4edc-8d01-78629734eba4" absoluteBounds="9.765, 12.21, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="896750cb-d67f-4813-ae30-11d504281293" absoluteBounds="20.75, 97.625, 2, 3.8862125651041595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimAdditionalExteriorColorTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="18094242-56eb-4335-855e-b3afdeaaa6f6" absoluteBounds="20.765, 98.085, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8fbdbb07-6173-484d-bf5c-de0c0754b4c6" absoluteBounds="23.75, 71.75, 2, 3.5016097005208451">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimBodyStyleTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b3976e0e-9d89-4ec8-9ecb-14160b5f74d3" absoluteBounds="23.765, 72.21, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="74b26943-1932-447f-9b8a-9289e0cb52de" absoluteBounds="21, 60, 2, 3.1170068359375023">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimBodyStyleTypeTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="455dc819-2c21-4469-97ee-2dbae5c3fd16" absoluteBounds="21.015, 60.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d1f11a33-88c1-47a4-aa7f-4ffe21bfd25d" absoluteBounds="23.75, 81.75, 2, 3.5016097005208451">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimClassificationTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0117fa2a-af10-4cbd-a6a4-3fbaeb8dd724" absoluteBounds="23.765, 82.21, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f6fe9221-0164-475c-ac7b-657a0acca960" absoluteBounds="21, 112.875, 2, 3.3093082682291595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimClassificationTypeTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ff62e538-9a29-4483-885b-92604f7945de" absoluteBounds="21.015, 113.335, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fa517c24-81be-4888-a2d6-2d400d0efb1a" absoluteBounds="23.5, 89.25, 2, 4.0785139973958451">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimColorCombinationTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f7faa97f-a4ec-407c-8fe5-3c2f4671a9e3" absoluteBounds="23.515, 89.71, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="10626564-537e-473c-8d86-c88c7714db17" absoluteBounds="26.75, 76.625, 2, 3.6939111328125023">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimExtendedBodyStyleTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a4068742-ba02-462a-8b55-94bdf21e0940" absoluteBounds="26.765, 77.085, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="835d44e3-f1bf-4363-9785-18b959403d27" absoluteBounds="20.75, 106.875, 2, 4.4631168619791595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimExteriorColorTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b1843b62-0d82-4c57-9237-7a3becc7ddd5" absoluteBounds="20.765, 107.335, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="23522f03-09d7-4f96-9ba1-956a24dbb1ce" absoluteBounds="26.5, 71.25, 2, 4.4631168619791595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimFeatureCategoryTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4340378e-31d7-42eb-8862-d5c2aedeb18f" absoluteBounds="26.515, 71.71, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="37a2650b-5c28-47bb-9ac1-bfb2a245f7c0" absoluteBounds="20.75, 72.375, 2, 3.3093082682291595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimFeatureTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="60c72c1f-5b6f-4480-9eed-8406e436af3b" absoluteBounds="20.765, 72.835, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2fecff9b-27b6-41eb-8c17-922ab14e182e" absoluteBounds="20.75, 102.25, 2, 3.8862125651041595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimInteriorColorTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e38bedbf-62a0-4b25-9d8f-b38b0b168570" absoluteBounds="20.765, 102.71, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9783bb76-17c8-4f7e-98db-1551a48503ed" absoluteBounds="26.5, 91.5, 2, 3.5016097005208451">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimMediaTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ac7f5420-8473-4262-858b-b6cdaf7c123c" absoluteBounds="26.515, 91.96, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e46d1a58-0dc1-469d-986f-8cc5836aabf1" absoluteBounds="23.75, 76.875, 2, 3.3093082682291595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimRequiredOptionalFeatureKindTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="64c3e981-5265-451a-9536-8f0b2d4a4bae" absoluteBounds="23.765, 77.335, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cf2a8885-ef60-4fde-8bc4-b7376b562ebb" absoluteBounds="20.75, 122.625, 2, 5.8092268880208451">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimStandardsTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="53aefb01-0529-4880-9137-209c95623fb5" absoluteBounds="20.765, 123.085, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="adb66e99-06df-4865-9ef4-463b0be43930" absoluteBounds="20.75, 64.375, 2, 3.1170068359375023">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimsWithShowroomMediaTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4e16bec3-e146-40a0-a7e3-0d281bce0927" absoluteBounds="20.765, 64.835, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5600b712-52f8-47e3-b728-37a45c620d45" absoluteBounds="18, 71.25, 2, 14.655092773437502">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="906a6fb8-b20b-4f33-b16e-e44cd0ac43d3" absoluteBounds="18.015, 71.71, 1.9700000000000002, 14.0950927734375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4581b1f3-0c07-44c1-9af6-2fd3c12e53b2" absoluteBounds="26.75, 81.25, 2, 4.4631168619791595">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimTechnicalSpecTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4a568538-5888-411f-af74-02cae0839573" absoluteBounds="26.765, 81.71, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f7aab8e7-613f-4ff7-84be-ade7651b4440" absoluteBounds="24, 66.625, 2, 3.6939111328125023">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/TrimTechnicalSpecTypeTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2f4a5a64-8765-40bc-a404-896a4fdcca35" absoluteBounds="24.015, 67.085, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d0b16844-3e5d-4052-886b-f0c48172a5cb" absoluteBounds="12.75, 0.75, 2, 5.2323225911458326">
+      <DataClassMoniker Name="/VehixFoundationResearchDataContext/VehicleClassificationsTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="565bf368-d365-4b2e-98f6-7f046feb8ab7" absoluteBounds="12.765, 1.21, 1.9700000000000002, 4.672322591145833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(11 : 90.6883048502604); (11.75 : 90.6883048502604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ConsumerGuideTable/ConsumerGuideTable_ConsumerGuideConsTable" />
+      <nodes>
+        <classShapeMoniker Id="8178d4f7-b94c-4a65-933a-ec3b262bc4e8" />
+        <classShapeMoniker Id="61a6e078-3f25-4d7b-baa4-88ca338516ea" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11 : 94.8324698893229); (11.75 : 94.8324698893229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ConsumerGuideTable/ConsumerGuideTable_ConsumerGuideProsTable" />
+      <nodes>
+        <classShapeMoniker Id="8178d4f7-b94c-4a65-933a-ec3b262bc4e8" />
+        <classShapeMoniker Id="59c239f7-dffa-48d1-8351-6865c3368769" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20 : 88.5585034179688); (20.2916666666667 : 88.5585034179688 : JumpStart); (20.7708333333333 : 88.5585034179688 : JumpEnd); (21.75 : 88.5585034179688); (21.75 : 85.2516097005208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ConsumerInfoTypeTable/ConsumerInfoTypeTable_ConsumerInfoTable" />
+      <nodes>
+        <classShapeMoniker Id="5da8dbc5-a0bf-4a83-9c56-a0b47d4d3719" />
+        <classShapeMoniker Id="409042f5-0644-49f2-be0a-792553fe9975" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20 : 69.9630354817708); (20.375 : 70.3380354817708); (20.375 : 78.5296541341146); (20.75 : 78.5296541341146)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/EpaSmartWayTable/EpaSmartWayTable_EpaSmartWayTrimTable" />
+      <nodes>
+        <classShapeMoniker Id="8d75ad8e-f584-4f13-b213-2123551e810a" />
+        <classShapeMoniker Id="5b3e2531-d762-46fe-820d-80097b05e5d5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.15625 : 63.3189111328125); (11.15625 : 68.9671541341146); (11.6666666666667 : 68.9671541341146 : JumpStart); (11.8333333333333 : 68.9671541341146 : JumpEnd); (12 : 68.9671541341146)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ExtendedBodyStyleMarketSegmentTable/ExtendedBodyStyleMarketSegmentTable_ExtendedBodyStyleMarketSegmentTrimTable" />
+      <nodes>
+        <classShapeMoniker Id="5ef2dbdc-1856-4c60-9397-1debed308810" />
+        <classShapeMoniker Id="c01d0ecb-e443-417c-b4ed-d860a80f37b5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 61.5296541341146); (8.66666666666667 : 61.5296541341146 : JumpStart); (8.83333333333333 : 61.5296541341146 : JumpEnd); (9.25 : 61.5296541341146)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ExtendedBodyStyleTypeTable/ExtendedBodyStyleTypeTable_ExtendedBodyStyleMarketSegmentTable" />
+      <nodes>
+        <classShapeMoniker Id="c11ae032-eddd-4c37-8fb8-ceb6bda19dcf" />
+        <classShapeMoniker Id="5ef2dbdc-1856-4c60-9397-1debed308810" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.40625 : 59.875); (8.40625 : 54.65625); (9.25 : 54.65625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ExtendedBodyStyleTypeTable/ExtendedBodyStyleTypeTable_ExtendedBodyStyleMarketSegmentTrimSortColumnsTable" />
+      <nodes>
+        <classShapeMoniker Id="c11ae032-eddd-4c37-8fb8-ceb6bda19dcf" />
+        <classShapeMoniker Id="beae1b02-46bc-43dc-9bd7-074782e5d5b0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(23 : 56.5296541341146); (23.2916666666667 : 56.5296541341146 : JumpStart); (23.4583333333333 : 56.5296541341146 : JumpEnd); (23.75 : 56.5296541341146)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/HeaderTypeTable/HeaderTypeTable_FeatureCategoryTable" />
+      <nodes>
+        <classShapeMoniker Id="982d8643-64cb-408c-bece-ef2d6fd1634c" />
+        <classShapeMoniker Id="0e74a131-1875-4773-ae59-94a04855a8ae" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 71.1306062825521); (6.63541416666667 : 71.1306062825521 : JumpStart); (6.80208083333333 : 71.1306062825521 : JumpEnd); (7.69791916666667 : 71.1306062825521 : JumpStart); (7.86458583333333 : 71.1306062825521 : JumpEnd); (9 : 71.1306062825521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/MakeTable/MakeTable_CategoryExtendedBodyStyleMakeModelTrimAggregateTable" />
+      <nodes>
+        <classShapeMoniker Id="53e76f5c-350f-431a-9d79-36a8cbd06612" />
+        <classShapeMoniker Id="29d2f901-bf1f-4c29-ba62-80b7b81e98ac" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5 : 68.75); (4.5 : 56.7892569986979); (6.25 : 56.7892569986979)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/MakeTable/MakeTable_CategoryMakeModelFileAggregateTable" />
+      <nodes>
+        <classShapeMoniker Id="53e76f5c-350f-431a-9d79-36a8cbd06612" />
+        <classShapeMoniker Id="2fccb6ce-ae6f-4170-8bac-e2c930b3d8ba" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 70.6546541341146); (3.5 : 70.6546541341146)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ManufacturerTable/ManufacturerTable_MakeTable" />
+      <nodes>
+        <classShapeMoniker Id="7c102dc2-29ba-4d13-8dd6-3f2aebbd8249" />
+        <classShapeMoniker Id="53e76f5c-350f-431a-9d79-36a8cbd06612" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 62.3882332011719); (8.66666666666667 : 62.3882332011719 : JumpStart); (8.83333333333333 : 62.3882332011719 : JumpEnd); (9 : 62.3882332011719); (9 : 63.875); (11.0729166666667 : 63.875 : JumpStart); (11.2395833333333 : 63.875 : JumpEnd); (11.75 : 63.875); (11.75 : 75.5); (13 : 75.5); (13 : 75.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ExtendedBodyStyleTypeTable/ExtendedBodyStyleTypeTable_ModelPopularityTable" />
+      <nodes>
+        <classShapeMoniker Id="c11ae032-eddd-4c37-8fb8-ceb6bda19dcf" />
+        <classShapeMoniker Id="229de048-49b8-4989-b443-06f5470b7945" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.25 : 75.875); (7.25 : 72.7367647884115); (7.69791916666667 : 72.7367647884115 : JumpStart); (7.86458583333333 : 72.7367647884115 : JumpEnd); (9 : 72.7367647884115)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ModelTable/ModelTable_CategoryExtendedBodyStyleMakeModelTrimAggregateTable" />
+      <nodes>
+        <classShapeMoniker Id="c771f229-1eba-49f3-94ea-0e8aaa921bc2" />
+        <classShapeMoniker Id="29d2f901-bf1f-4c29-ba62-80b7b81e98ac" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.25 : 81.2996240234375); (7.25 : 92.7699698893229); (7.69791916666667 : 92.7699698893229 : JumpStart); (7.86458583333333 : 92.7699698893229 : JumpEnd); (9 : 92.7699698893229)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ModelTable/ModelTable_ConsumerGuideTable" />
+      <nodes>
+        <classShapeMoniker Id="c771f229-1eba-49f3-94ea-0e8aaa921bc2" />
+        <classShapeMoniker Id="8178d4f7-b94c-4a65-933a-ec3b262bc4e8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.7812525 : 75.875); (7.7812525 : 64.53125); (11.0729166666667 : 64.53125 : JumpStart); (11.2395833333333 : 64.53125 : JumpEnd); (11.6666666666667 : 64.53125 : JumpStart); (11.8333333333333 : 64.53125 : JumpEnd); (12 : 64.53125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ModelTable/ModelTable_ExtendedBodyStyleMarketSegmentTrimTable" />
+      <nodes>
+        <classShapeMoniker Id="c771f229-1eba-49f3-94ea-0e8aaa921bc2" />
+        <classShapeMoniker Id="c01d0ecb-e443-417c-b4ed-d860a80f37b5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.7812525 : 81.2996240234375); (7.7812525 : 101.337271321615); (9 : 101.337271321615)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ModelTable/ModelTable_JDPowerPowerRatingsTable" />
+      <nodes>
+        <classShapeMoniker Id="c771f229-1eba-49f3-94ea-0e8aaa921bc2" />
+        <classShapeMoniker Id="6a4f53ca-7842-4158-ba8d-ee2d9d506e7e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.7187475 : 75.875); (6.7187475 : 66.6546541341146); (7.69791916666667 : 66.6546541341146 : JumpStart); (7.86458583333333 : 66.6546541341146 : JumpEnd); (9 : 66.6546541341146)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ModelTable/ModelTable_ModelMediaTable" />
+      <nodes>
+        <classShapeMoniker Id="c771f229-1eba-49f3-94ea-0e8aaa921bc2" />
+        <classShapeMoniker Id="3034464d-35f8-42d8-97b9-363183c4a949" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 81.2106754557292); (12 : 81.2106754557292)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ModelTable/ModelTable_ModelPopularityTable" />
+      <nodes>
+        <classShapeMoniker Id="c771f229-1eba-49f3-94ea-0e8aaa921bc2" />
+        <classShapeMoniker Id="229de048-49b8-4989-b443-06f5470b7945" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5 : 72.6362125651042); (4.5 : 78.5873120117188); (6.25 : 78.5873120117188)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/MakeTable/MakeTable_ModelTable" />
+      <nodes>
+        <classShapeMoniker Id="53e76f5c-350f-431a-9d79-36a8cbd06612" />
+        <classShapeMoniker Id="c771f229-1eba-49f3-94ea-0e8aaa921bc2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 84.5585034179688); (15 : 84.5585034179688)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/NadaOptionSetTable/NadaOptionSetTable_NadaOptionSetOptionTable" />
+      <nodes>
+        <classShapeMoniker Id="730e87cd-5db3-46e5-9c14-d64a1c52a809" />
+        <classShapeMoniker Id="a733af4b-9787-4ba2-854d-7ae599cfe14b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.25 : 99.5296541341146); (16 : 99.5296541341146); (16 : 88.1073225911458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/NadaOptionTable/NadaOptionTable_NadaOptionSetOptionTable" />
+      <nodes>
+        <classShapeMoniker Id="14eed0b2-9ddf-4993-bb15-5edf9f6ceabd" />
+        <classShapeMoniker Id="a733af4b-9787-4ba2-854d-7ae599cfe14b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 81.2996240234375); (8.625 : 81.6746240234375); (8.625 : 82.1361311848958); (14.0729166666667 : 82.1361311848958 : JumpStart); (14.2395833333333 : 82.1361311848958 : JumpEnd); (14.6265374615385 : 82.1361311848958); (15.0015374615385 : 81.7611311848958)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ModelTable/ModelTable_NadaTrimTable" />
+      <nodes>
+        <classShapeMoniker Id="c771f229-1eba-49f3-94ea-0e8aaa921bc2" />
+        <classShapeMoniker Id="80cb2e56-096d-4923-8898-00c1009b481e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(14.15625 : 83); (14.15625 : 81.5616276041667); (15 : 81.5616276041667)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/NadaOptionSetTable/NadaOptionSetTable_NadaTrimTable" />
+      <nodes>
+        <classShapeMoniker Id="730e87cd-5db3-46e5-9c14-d64a1c52a809" />
+        <classShapeMoniker Id="80cb2e56-096d-4923-8898-00c1009b481e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(25.75 : 51.4719555664063); (26.5 : 51.4719555664063)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/OptionalFeatureTable/OptionalFeatureTable_OptionalFeaturePriceTable" />
+      <nodes>
+        <classShapeMoniker Id="bb01a57f-564d-4fe1-aba5-36f71fbba006" />
+        <classShapeMoniker Id="bc82ca0a-ab77-4f27-9d62-9ee9dfc6f269" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(23 : 49.8710034179688); (23.75 : 49.8710034179688)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/OptionalFeatureHeaderTable/OptionalFeatureHeaderTable_OptionalFeatureTable" />
+      <nodes>
+        <classShapeMoniker Id="19abb5a9-e998-4754-8197-dbc61464736d" />
+        <classShapeMoniker Id="bb01a57f-564d-4fe1-aba5-36f71fbba006" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(23 : 52.1594555664063); (23.75 : 52.1594555664063)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/OptionalFeatureKindTable/OptionalFeatureKindTable_OptionalFeatureTable" />
+      <nodes>
+        <classShapeMoniker Id="9ce96b46-4925-4152-863b-5beb447ace0b" />
+        <classShapeMoniker Id="bb01a57f-564d-4fe1-aba5-36f71fbba006" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 78.4671134440104); (9 : 78.4671134440104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ModelTable/ModelTable_ReviewTable" />
+      <nodes>
+        <classShapeMoniker Id="c771f229-1eba-49f3-94ea-0e8aaa921bc2" />
+        <classShapeMoniker Id="e902e4c9-fdaf-46c8-a198-59c913c7c534" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 2.57774983723958); (3.5 : 2.57774983723958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/StandardFeatureHeaderTable/StandardFeatureHeaderTable_StandardFeatureTable" />
+      <nodes>
+        <classShapeMoniker Id="f915a1cf-0ed8-4110-b08b-bbc2d6f37bfb" />
+        <classShapeMoniker Id="7628974e-b001-45df-b3c7-630b93f80e4d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(22.90625 : 63.1170068359375); (22.90625 : 72.03125); (23.2916666666667 : 72.03125 : JumpStart); (23.4583333333333 : 72.03125 : JumpEnd); (23.75 : 72.03125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimBodyStyleTypeTable/TrimBodyStyleTypeTable_TrimBodyStyleTable" />
+      <nodes>
+        <classShapeMoniker Id="74b26943-1932-447f-9b8a-9289e0cb52de" />
+        <classShapeMoniker Id="8fbdbb07-6173-484d-bf5c-de0c0754b4c6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(23 : 114.529654134115); (25.65625 : 114.529654134115); (25.65625 : 85.2516097005208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimClassificationTypeTable/TrimClassificationTypeTable_TrimClassificationTable" />
+      <nodes>
+        <classShapeMoniker Id="f6fe9221-0164-475c-ac7b-657a0acca960" />
+        <classShapeMoniker Id="d1f11a33-88c1-47a4-aa7f-4ffe21bfd25d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(21.75 : 97.625); (21.75 : 91.2892569986979); (23.5 : 91.2892569986979)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimAdditionalExteriorColorTable/TrimAdditionalExteriorColorTable_TrimColorCombinationTable" />
+      <nodes>
+        <classShapeMoniker Id="896750cb-d67f-4813-ae30-11d504281293" />
+        <classShapeMoniker Id="fa517c24-81be-4888-a2d6-2d400d0efb1a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 60.6710750670573); (8.75 : 60.6710750670573); (8.75 : 63.5689111328125); (8.91666666666667 : 63.5689111328125 : JumpStart); (9.08333333333333 : 63.5689111328125 : JumpEnd); (11.0729166666667 : 63.5689111328125 : JumpStart); (11.2395833333333 : 63.5689111328125 : JumpEnd); (17.75 : 63.5689111328125); (17.75 : 71); (20.1974348974359 : 71 : JumpStart); (20.4583333333333 : 71 : JumpEnd); (22.8229166666667 : 71 : JumpStart); (22.9895833333333 : 71 : JumpEnd); (23.2916666666667 : 71 : JumpStart); (23.4583333333333 : 71 : JumpEnd); (25.8229166666667 : 71 : JumpStart); (25.9895833333333 : 71 : JumpEnd); (27.4166666666667 : 71 : JumpStart); (27.5833333333333 : 71 : JumpEnd); (28.75 : 71); (28.75 : 76.25); (27.75 : 76.25); (27.75 : 76.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ExtendedBodyStyleTypeTable/ExtendedBodyStyleTypeTable_TrimExtendedBodyStyleTable" />
+      <nodes>
+        <classShapeMoniker Id="c11ae032-eddd-4c37-8fb8-ceb6bda19dcf" />
+        <classShapeMoniker Id="10626564-537e-473c-8d86-c88c7714db17" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(22.75 : 109.10655843099); (24.5 : 109.10655843099); (24.5 : 93.3285139973958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimExteriorColorTable/TrimExteriorColorTable_TrimColorCombinationTable" />
+      <nodes>
+        <classShapeMoniker Id="835d44e3-f1bf-4363-9785-18b959403d27" />
+        <classShapeMoniker Id="fa517c24-81be-4888-a2d6-2d400d0efb1a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(25.75 : 56.5681062825521); (27.5 : 56.5681062825521); (27.5 : 71.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/FeatureCategoryTable/FeatureCategoryTable_TrimFeatureCategoryTable" />
+      <nodes>
+        <classShapeMoniker Id="0e74a131-1875-4773-ae59-94a04855a8ae" />
+        <classShapeMoniker Id="23522f03-09d7-4f96-9ba1-956a24dbb1ce" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(22.75 : 75.499208984375); (23.2916666666667 : 75.499208984375 : JumpStart); (23.4583333333333 : 75.499208984375 : JumpEnd); (25.8229166666667 : 75.499208984375 : JumpStart); (25.9895833333333 : 75.499208984375 : JumpEnd); (26.5 : 75.499208984375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimFeatureTable/TrimFeatureTable_TrimFeatureCategoryTable" />
+      <nodes>
+        <classShapeMoniker Id="37a2650b-5c28-47bb-9ac1-bfb2a245f7c0" />
+        <classShapeMoniker Id="23522f03-09d7-4f96-9ba1-956a24dbb1ce" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(22.75 : 104.193106282552); (23.9687475 : 104.193106282552); (23.9687475 : 93.3285139973958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimInteriorColorTable/TrimInteriorColorTable_TrimColorCombinationTable" />
+      <nodes>
+        <classShapeMoniker Id="2fecff9b-27b6-41eb-8c17-922ab14e182e" />
+        <classShapeMoniker Id="fa517c24-81be-4888-a2d6-2d400d0efb1a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(22.75 : 107.959526715495); (24.4166666666667 : 107.959526715495 : JumpStart); (24.5833333333333 : 107.959526715495 : JumpEnd); (25.5729166666667 : 107.959526715495 : JumpStart); (25.7395833333333 : 107.959526715495 : JumpEnd); (27.5 : 107.959526715495); (27.5 : 95.0016097005208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimExteriorColorTable/TrimExteriorColorTable_TrimMediaTable" />
+      <nodes>
+        <classShapeMoniker Id="835d44e3-f1bf-4363-9785-18b959403d27" />
+        <classShapeMoniker Id="9783bb76-17c8-4f7e-98db-1551a48503ed" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(23 : 54.1170068359375); (23.375 : 54.4920068359375); (23.375 : 78.5296541341146); (23.75 : 78.5296541341146)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/OptionalFeatureKindTable/OptionalFeatureKindTable_TrimRequiredOptionalFeatureKindTable" />
+      <nodes>
+        <classShapeMoniker Id="9ce96b46-4925-4152-863b-5beb447ace0b" />
+        <classShapeMoniker Id="e46d1a58-0dc1-469d-986f-8cc5836aabf1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(18 : 78.5775463867188); (17.25 : 78.5775463867188); (17.25 : 75.125); (11.8333333333333 : 75.125 : JumpStart); (11.6666666666667 : 75.125 : JumpEnd); (11.25 : 75.125); (11.25 : 75); (10 : 75); (10 : 74.2804182942708)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_CategoryExtendedBodyStyleMakeModelTrimAggregateTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="29d2f901-bf1f-4c29-ba62-80b7b81e98ac" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20 : 83.5008048502604); (20.75 : 83.5008048502604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_ConsumerInfoTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="409042f5-0644-49f2-be0a-792553fe9975" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20 : 77.6398270670573); (20.2916666666667 : 77.6398270670573 : JumpStart); (20.4583333333333 : 77.6398270670573 : JumpEnd); (20.75 : 77.6398270670573)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_EpaSmartWayTrimTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="5b3e2531-d762-46fe-820d-80097b05e5d5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(18 : 74.5567854817708); (14 : 74.5567854817708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_ExtendedBodyStyleMarketSegmentTrimTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="c01d0ecb-e443-417c-b4ed-d860a80f37b5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20 : 85.8743225426683); (20.6875 : 86.5618225426683); (20.6875 : 99.5681062825521); (20.75 : 99.5681062825521)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_TrimAdditionalExteriorColorTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="896750cb-d67f-4813-ae30-11d504281293" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20 : 72.234375); (20.1041666666667 : 72.234375 : JumpStart); (20.2708333333333 : 72.234375 : JumpEnd); (20.2916666666667 : 72.234375 : JumpStart); (20.4583333333333 : 72.234375 : JumpEnd); (23.2916666666667 : 72.234375 : JumpStart); (23.4583333333333 : 72.234375 : JumpEnd); (23.75 : 72.234375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_TrimBodyStyleTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="8fbdbb07-6173-484d-bf5c-de0c0754b4c6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20 : 85.5783512369792); (21.6666666666667 : 85.5783512369792 : JumpStart); (21.8333333333333 : 85.5783512369792 : JumpEnd); (23.5104166666667 : 85.5783512369792 : JumpStart); (23.6770833333333 : 85.5783512369792 : JumpEnd); (24.6718725 : 85.5783512369792); (24.6718725 : 85.2516097005208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_TrimClassificationTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="d1f11a33-88c1-47a4-aa7f-4ffe21bfd25d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20 : 80.9671541341146); (23.59375 : 80.9671541341146); (23.59375 : 89.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_TrimColorCombinationTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="fa517c24-81be-4888-a2d6-2d400d0efb1a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20 : 76.71875); (20.2916666666667 : 76.71875 : JumpStart); (20.4583333333333 : 76.71875 : JumpEnd); (23.2916666666667 : 76.71875 : JumpStart); (23.4583333333333 : 76.71875 : JumpEnd); (23.5119541282051 : 76.71875 : JumpStart); (23.6786207948718 : 76.71875 : JumpEnd); (25.8229166666667 : 76.71875 : JumpStart); (25.9895833333333 : 76.71875 : JumpEnd); (26.75 : 76.71875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_TrimExtendedBodyStyleTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="10626564-537e-473c-8d86-c88c7714db17" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(19.9969230769231 : 85.9050927734375); (20.53125 : 86.4394196965144); (20.53125 : 109.10655843099); (20.75 : 109.10655843099)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_TrimExteriorColorTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="835d44e3-f1bf-4363-9785-18b959403d27" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20 : 71.46875); (20.1041666666667 : 71.46875 : JumpStart); (20.2708333333333 : 71.46875 : JumpEnd); (20.2916666666667 : 71.46875 : JumpStart); (20.4583333333333 : 71.46875 : JumpEnd); (22.8229166666667 : 71.46875 : JumpStart); (22.9895833333333 : 71.46875 : JumpEnd); (23.2916666666667 : 71.46875 : JumpStart); (23.4583333333333 : 71.46875 : JumpEnd); (25.8229166666667 : 71.46875 : JumpStart); (25.9895833333333 : 71.46875 : JumpEnd); (26.5 : 71.46875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_TrimFeatureCategoryTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="23522f03-09d7-4f96-9ba1-956a24dbb1ce" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20 : 74.0296541341146); (20.1041666666667 : 74.0296541341146 : JumpStart); (20.2708333333333 : 74.0296541341146 : JumpEnd); (20.2916666666667 : 74.0296541341146 : JumpStart); (20.4583333333333 : 74.0296541341146 : JumpEnd); (20.75 : 74.0296541341146)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_TrimFeatureTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="37a2650b-5c28-47bb-9ac1-bfb2a245f7c0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(19.9984615384615 : 85.9050927734375); (20.59375 : 86.500381234976); (20.59375 : 104.193106282552); (20.75 : 104.193106282552)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_TrimInteriorColorTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="2fecff9b-27b6-41eb-8c17-922ab14e182e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20 : 85.8420148503606); (20.4380779230769 : 86.2800927734375); (21.6666666666667 : 86.2800927734375 : JumpStart); (21.8333333333333 : 86.2800927734375 : JumpEnd); (23.5104166666667 : 86.2800927734375 : JumpStart); (23.6770833333333 : 86.2800927734375 : JumpEnd); (25.5729166666667 : 86.2800927734375 : JumpStart); (25.7395833333333 : 86.2800927734375 : JumpEnd); (27.5 : 86.2800927734375); (27.5 : 91.5)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_TrimMediaTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="9783bb76-17c8-4f7e-98db-1551a48503ed" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20 : 71.2853836153846); (20.1875 : 71.0978836153846); (20.1875 : 76.5); (20.2916666666667 : 76.5 : JumpStart); (20.4583333333333 : 76.5 : JumpEnd); (23.3765374615385 : 76.5); (23.7515374615385 : 76.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_TrimRequiredOptionalFeatureKindTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="e46d1a58-0dc1-469d-986f-8cc5836aabf1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(19.9338461538462 : 85.9050927734375); (20.375 : 86.3462466195914); (20.375 : 125.52961344401); (20.75 : 125.52961344401)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_TrimStandardsTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="cf2a8885-ef60-4fde-8bc4-b7376b562ebb" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20 : 71.2807682307692); (20.3160744349011 : 70.9646937958681 : JumpStart); (20.4339255650989 : 70.8468426656704 : JumpEnd); (20.5625 : 70.7182682307692); (20.5625 : 65.9335034179688); (20.75 : 65.9335034179688)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_TrimsWithShowroomMediaTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="adb66e99-06df-4865-9ef4-463b0be43930" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(17.25 : 72.6835034179688); (18 : 72.6835034179688)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/EpaMarketClassTable/EpaMarketClassTable_TrimTable" />
+      <nodes>
+        <classShapeMoniker Id="3655efb3-0d58-4b61-9e92-ad28d2424c24" />
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.7187475 : 81.2996240234375); (6.7187475 : 82.4743155924479); (7.16666666666667 : 82.4743155924479 : JumpStart); (7.33333333333333 : 82.4743155924479 : JumpEnd); (7.69791916666667 : 82.4743155924479 : JumpStart); (7.86458583333333 : 82.4743155924479 : JumpEnd); (14.0729166666667 : 82.4743155924479 : JumpStart); (14.2395833333333 : 82.4743155924479 : JumpEnd); (18 : 82.4743155924479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/ModelTable/ModelTable_TrimTable" />
+      <nodes>
+        <classShapeMoniker Id="c771f229-1eba-49f3-94ea-0e8aaa921bc2" />
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(20 : 81.46875); (23.5104166666667 : 81.46875 : JumpStart); (23.6770833333333 : 81.46875 : JumpEnd); (25.8229166666667 : 81.46875 : JumpStart); (25.9895833333333 : 81.46875 : JumpEnd); (26.75 : 81.46875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTable/TrimTable_TrimTechnicalSpecTable" />
+      <nodes>
+        <classShapeMoniker Id="5600b712-52f8-47e3-b728-37a45c620d45" />
+        <classShapeMoniker Id="4581b1f3-0c07-44c1-9af6-2fd3c12e53b2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(25.90625 : 70.3189111328125); (25.90625 : 85.44623046875); (26.75 : 85.44623046875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/TrimTechnicalSpecTypeTable/TrimTechnicalSpecTypeTable_TrimTechnicalSpecTable" />
+      <nodes>
+        <classShapeMoniker Id="f7aab8e7-613f-4ff7-84be-ade7651b4440" />
+        <classShapeMoniker Id="4581b1f3-0c07-44c1-9af6-2fd3c12e53b2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(23 : 58.1227688066907); (23.3160744349011 : 58.4388432415918 : JumpStart); (23.4339255650989 : 58.5566943717896 : JumpEnd); (23.5625 : 58.6852688066907); (23.5625 : 68.4719555664063); (24 : 68.4719555664063)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationResearchDataContext/HeaderTypeTable/HeaderTypeTable_TrimTechnicalSpecTypeTable" />
+      <nodes>
+        <classShapeMoniker Id="982d8643-64cb-408c-bece-ef2d6fd1634c" />
+        <classShapeMoniker Id="f7aab8e7-613f-4ff7-84be-ade7651b4440" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

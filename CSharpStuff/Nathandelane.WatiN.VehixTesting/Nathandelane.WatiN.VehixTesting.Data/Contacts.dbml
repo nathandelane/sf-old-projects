@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="VehixFoundation" Class="VehixFoundationContactsDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=qa-sql-01\a;Initial Catalog=VehixFoundation;Integrated Security=True" SettingsObjectName="Vehix.QA.WebTest.Data.Properties.Settings" SettingsPropertyName="VehixFoundationConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="Contacts.AddressTable" Member="AddressTables">
+    <Type Name="AddressTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="CassStatus" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="Street" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="Zip" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="Zip4" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="AddressCategory" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Latitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Longitude" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RooftopLatLon" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Column Name="Street2" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="Street3" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="County" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Association Name="AddressTable_ContactInfoTable" Member="ContactInfoTables" ThisKey="ID" OtherKey="PrimaryAddress" Type="ContactInfoTable" />
+    </Type>
+  </Table>
+  <Table Name="Contacts.ScheduleTable" Member="ScheduleTables">
+    <Type Name="ScheduleTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Day" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Hour" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Minute" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="ScheduleTable_ContactMethodScheduleTable" Member="ContactMethodScheduleTables" ThisKey="ID" OtherKey="Schedule" Type="ContactMethodScheduleTable" />
+    </Type>
+  </Table>
+  <Table Name="Contacts.ContactInfoContactMethodTable" Member="ContactInfoContactMethodTables">
+    <Type Name="ContactInfoContactMethodTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ContactInfo" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ContactMethod" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="ContactInfoTable_ContactInfoContactMethodTable" Member="ContactInfoTable" ThisKey="ContactInfo" OtherKey="ID" Type="ContactInfoTable" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="ContactMethodTable_ContactInfoContactMethodTable" Member="ContactMethodTable" ThisKey="ContactMethod" OtherKey="ID" Type="ContactMethodTable" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Contacts.ContactInfoTable" Member="ContactInfoTables">
+    <Type Name="ContactInfoTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Contact" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="PreferredMethod" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="PrimaryPhone" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PrimaryAddress" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="PrimaryEmail" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Website" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="ContactInfoTable_ContactInfoContactMethodTable" Member="ContactInfoContactMethodTables" ThisKey="ID" OtherKey="ContactInfo" Type="ContactInfoContactMethodTable" />
+      <Association Name="AddressTable_ContactInfoTable" Member="AddressTable" ThisKey="PrimaryAddress" OtherKey="ID" Type="AddressTable" IsForeignKey="true" />
+      <Association Name="EmailTable_ContactInfoTable" Member="EmailTable" ThisKey="PrimaryEmail" OtherKey="ID" Type="EmailTable" IsForeignKey="true" />
+      <Association Name="PhoneTable_ContactInfoTable" Member="PhoneTable" ThisKey="PrimaryPhone" OtherKey="ID" Type="PhoneTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Contacts.ContactMethodScheduleTable" Member="ContactMethodScheduleTables">
+    <Type Name="ContactMethodScheduleTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ContactMethod" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Schedule" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="ScheduleTable_ContactMethodScheduleTable" Member="ScheduleTable" ThisKey="Schedule" OtherKey="ID" Type="ScheduleTable" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="ContactMethodTable_ContactMethodScheduleTable" Member="ContactMethodTable" ThisKey="ContactMethod" OtherKey="ID" Type="ContactMethodTable" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Contacts.ContactMethodTable" Member="ContactMethodTables">
+    <Type Name="ContactMethodTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="ContactMethodTable_ContactInfoContactMethodTable" Member="ContactInfoContactMethodTables" ThisKey="ID" OtherKey="ContactMethod" Type="ContactInfoContactMethodTable" />
+      <Association Name="ContactMethodTable_ContactMethodScheduleTable" Member="ContactMethodScheduleTables" ThisKey="ID" OtherKey="ContactMethod" Type="ContactMethodScheduleTable" />
+    </Type>
+  </Table>
+  <Table Name="Contacts.EmailTable" Member="EmailTables">
+    <Type Name="EmailTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Address" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="EmailCategory" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EmailFormat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="EmailTable_ContactInfoTable" Member="ContactInfoTables" ThisKey="ID" OtherKey="PrimaryEmail" Type="ContactInfoTable" />
+    </Type>
+  </Table>
+  <Table Name="Contacts.PhoneTable" Member="PhoneTables">
+    <Type Name="PhoneTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Number" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="Extension" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="PhoneCategory" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="PhoneTable_ContactInfoTable" Member="ContactInfoTables" ThisKey="ID" OtherKey="PrimaryPhone" Type="ContactInfoTable" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 12.375" name="VehixFoundationTaxonomy">
+  <DataContextMoniker Name="/VehixFoundationTaxonomyDataContext" />
+  <nestedChildShapes>
+    <classShape Id="514e0477-3307-4d02-ade8-6582ad1ef447" absoluteBounds="9, 5.875, 2, 3.5016097005208318">
+      <DataClassMoniker Name="/VehixFoundationTaxonomyDataContext/TaxonomicRankingRelationshipTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="258ee6aa-85f5-40bb-a5c8-fb1999c56a79" absoluteBounds="9.015, 6.335, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="40e8a02d-df29-4ce8-9f69-446a891c6fbc" absoluteBounds="3.5, 3, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/VehixFoundationTaxonomyDataContext/TaxonTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e1484490-c10e-4131-ae11-79b34a7ccccc" absoluteBounds="3.515, 3.46, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="eada6d42-929e-4100-9261-40f6d65c38a3" absoluteBounds="6.25, 5.75, 2, 3.6939111328124987">
+      <DataClassMoniker Name="/VehixFoundationTaxonomyDataContext/TaxonomicRankingTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="468aaf49-40eb-42a5-8092-82672eea1e1a" absoluteBounds="6.265, 6.21, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e6bd5469-9353-4be3-86b2-ef845cd95758" absoluteBounds="3.5, 7.875, 2, 3.6939111328124987">
+      <DataClassMoniker Name="/VehixFoundationTaxonomyDataContext/TaxonomicRankTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="94e86ad2-3fd6-4cbc-9993-32d4dc568b75" absoluteBounds="3.515, 8.335, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5f7e85cf-ddfe-4ca1-b593-16822547f27e" absoluteBounds="0.75, 3.625, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/VehixFoundationTaxonomyDataContext/TaxonomyTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d30710b6-cf0f-48c4-8f1e-20f8f419575e" absoluteBounds="0.765, 4.085, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c7341471-5de4-4e43-9ab4-f048d7149dcb" absoluteBounds="6.25, 0.875, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/VehixFoundationTaxonomyDataContext/TaxonRelationshipTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5ca78d66-17ef-4a64-8bfe-4e824de00cc1" absoluteBounds="6.265, 1.335, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.20923076923077 : 6.30930826822917); (4.20923076923077 : 6.55930826822917); (4.80461538461539 : 6.55930826822917); (4.80461538461539 : 6.30930826822917)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/VehixFoundationTaxonomyDataContext/TaxonTable/TaxonTable_TaxonTable" />
+      <nodes>
+        <classShapeMoniker Id="40e8a02d-df29-4ce8-9f69-446a891c6fbc" />
+        <classShapeMoniker Id="40e8a02d-df29-4ce8-9f69-446a891c6fbc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 7.62580485026042); (9 : 7.62580485026042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationTaxonomyDataContext/TaxonomicRankingTable/TaxonomicRankingTable_TaxonomicRankingRelationshipTable" />
+      <nodes>
+        <classShapeMoniker Id="eada6d42-929e-4100-9261-40f6d65c38a3" />
+        <classShapeMoniker Id="514e0477-3307-4d02-ade8-6582ad1ef447" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 6.02965413411458); (6.25 : 6.02965413411458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationTaxonomyDataContext/TaxonTable/TaxonTable_TaxonomicRankingTable" />
+      <nodes>
+        <classShapeMoniker Id="40e8a02d-df29-4ce8-9f69-446a891c6fbc" />
+        <classShapeMoniker Id="eada6d42-929e-4100-9261-40f6d65c38a3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.95923076923077 : 9.4439111328125); (6.95923076923077 : 9.6939111328125); (7.55461538461539 : 9.6939111328125); (7.55461538461539 : 9.4439111328125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/VehixFoundationTaxonomyDataContext/TaxonomicRankingTable/TaxonomicRankingTable_TaxonomicRankingTable" />
+      <nodes>
+        <classShapeMoniker Id="eada6d42-929e-4100-9261-40f6d65c38a3" />
+        <classShapeMoniker Id="eada6d42-929e-4100-9261-40f6d65c38a3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 8.65945556640625); (6.25 : 8.65945556640625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationTaxonomyDataContext/TaxonomicRankTable/TaxonomicRankTable_TaxonomicRankingTable" />
+      <nodes>
+        <classShapeMoniker Id="e6bd5469-9353-4be3-86b2-ef845cd95758" />
+        <classShapeMoniker Id="eada6d42-929e-4100-9261-40f6d65c38a3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.20923076923077 : 11.5689111328125); (4.20923076923077 : 11.8189111328125); (4.80461538461539 : 11.8189111328125); (4.80461538461539 : 11.5689111328125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/VehixFoundationTaxonomyDataContext/TaxonomicRankTable/TaxonomicRankTable_TaxonomicRankTable" />
+      <nodes>
+        <classShapeMoniker Id="e6bd5469-9353-4be3-86b2-ef845cd95758" />
+        <classShapeMoniker Id="e6bd5469-9353-4be3-86b2-ef845cd95758" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 6.80930826822917); (6.25 : 6.80930826822917)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationTaxonomyDataContext/TaxonomyTable/TaxonomyTable_TaxonomicRankingTable" />
+      <nodes>
+        <classShapeMoniker Id="5f7e85cf-ddfe-4ca1-b593-16822547f27e" />
+        <classShapeMoniker Id="eada6d42-929e-4100-9261-40f6d65c38a3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 6.93430826822917); (1.75 : 9.72195556640625); (3.5 : 9.72195556640625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationTaxonomyDataContext/TaxonomyTable/TaxonomyTable_TaxonomicRankTable" />
+      <nodes>
+        <classShapeMoniker Id="5f7e85cf-ddfe-4ca1-b593-16822547f27e" />
+        <classShapeMoniker Id="e6bd5469-9353-4be3-86b2-ef845cd95758" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 3.68830485026042); (6.25 : 3.68830485026042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationTaxonomyDataContext/TaxonTable/TaxonTable_TaxonRelationshipTable" />
+      <nodes>
+        <classShapeMoniker Id="40e8a02d-df29-4ce8-9f69-446a891c6fbc" />
+        <classShapeMoniker Id="c7341471-5de4-4e43-9ab4-f048d7149dcb" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

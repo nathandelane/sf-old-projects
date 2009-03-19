@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="VehixFoundation" Class="VehixFoundationNListDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=qa-sql-01\a;Initial Catalog=VehixFoundation;Integrated Security=True" SettingsObjectName="Vehix.QA.WebTest.Data.Properties.Settings" SettingsPropertyName="VehixFoundationConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="NList.NItemValueTable" Member="NItemValueTables">
+    <Type Name="NItemValueTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ListItemID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ListColumnID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ItemColumnValue" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="NListColumnTable_NItemValueTable" Member="NListColumnTable" ThisKey="ListColumnID" OtherKey="ID" Type="NListColumnTable" IsForeignKey="true" />
+      <Association Name="NListItemTable_NItemValueTable" Member="NListItemTable" ThisKey="ListItemID" OtherKey="ID" Type="NListItemTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="NList.NListTable" Member="NListTables">
+    <Type Name="NListTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Category" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="MaxN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Active" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="NListTable_NListColumnTable" Member="NListColumnTables" ThisKey="ID" OtherKey="ListID" Type="NListColumnTable" />
+      <Association Name="NListTable_NListItemTable" Member="NListItemTables" ThisKey="ID" OtherKey="ListID" Type="NListItemTable" />
+      <Association Name="NListCategoryTable_NListTable" Member="NListCategoryTable" ThisKey="Category" OtherKey="Name" Type="NListCategoryTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="NList.NListCategoryTable" Member="NListCategoryTables">
+    <Type Name="NListCategoryTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="NListCategoryTable_NListTable" Member="NListTables" ThisKey="Name" OtherKey="Category" Type="NListTable" />
+    </Type>
+  </Table>
+  <Table Name="NList.NListColumnTable" Member="NListColumnTables">
+    <Type Name="NListColumnTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ListID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Attribute" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Header" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="ItemRank" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="NListColumnTable_NItemValueTable" Member="NItemValueTables" ThisKey="ID" OtherKey="ListColumnID" Type="NItemValueTable" />
+      <Association Name="NListTable_NListColumnTable" Member="NListTable" ThisKey="ListID" OtherKey="ID" Type="NListTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="NList.NListItemTable" Member="NListItemTables">
+    <Type Name="NListItemTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ListID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ItemRank" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="NListItemTable_NItemValueTable" Member="NItemValueTables" ThisKey="ID" OtherKey="ListItemID" Type="NItemValueTable" />
+      <Association Name="NListTable_NListItemTable" Member="NListTable" ThisKey="ListID" OtherKey="ID" Type="NListTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

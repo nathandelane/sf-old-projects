@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.25, 9.25" name="VehixFoundationNList">
+  <DataContextMoniker Name="/VehixFoundationNListDataContext" />
+  <nestedChildShapes>
+    <classShape Id="085dacbb-bf89-461f-8225-319cc0939b14" absoluteBounds="9, 3.375, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/VehixFoundationNListDataContext/NItemValueTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9d8a1459-0430-4c9e-97c4-1373fb6b9384" absoluteBounds="9.015, 3.835, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2cab48eb-4a2e-40f0-b266-6f0292ccff09" absoluteBounds="3.5, 3.125, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/VehixFoundationNListDataContext/NListTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0a0fd0dd-b45d-458d-b192-a133a01f195b" absoluteBounds="3.515, 3.585, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2086bc18-67be-450c-8b8e-2e5a79d8b77e" absoluteBounds="0.75, 3.375, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/VehixFoundationNListDataContext/NListCategoryTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3138c508-e9e7-475c-b454-ca8a07cbef8e" absoluteBounds="0.765, 3.835, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5d3665d2-2e95-4332-bfd4-f1203f6f9c93" absoluteBounds="6.25, 5.25, 2, 3.6939111328124987">
+      <DataClassMoniker Name="/VehixFoundationNListDataContext/NListColumnTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e97a89cc-9254-4ac4-964a-2a356365203f" absoluteBounds="6.265, 5.71, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bdbae4f9-96c5-4a05-905b-ef99edbf43f1" absoluteBounds="6.25, 1.25, 2, 3.309308268229167">
+      <DataClassMoniker Name="/VehixFoundationNListDataContext/NListItemTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6fed3e0a-688e-4b8d-a4e1-06b1bd2bc7a2" absoluteBounds="6.265, 1.71, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 5.02965413411458); (3.5 : 5.02965413411458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationNListDataContext/NListCategoryTable/NListCategoryTable_NListTable" />
+      <nodes>
+        <classShapeMoniker Id="2086bc18-67be-450c-8b8e-2e5a79d8b77e" />
+        <classShapeMoniker Id="2cab48eb-4a2e-40f0-b266-6f0292ccff09" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 6.06330485026042); (9 : 6.06330485026042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationNListDataContext/NListColumnTable/NListColumnTable_NItemValueTable" />
+      <nodes>
+        <classShapeMoniker Id="5d3665d2-2e95-4332-bfd4-f1203f6f9c93" />
+        <classShapeMoniker Id="085dacbb-bf89-461f-8225-319cc0939b14" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 6.13060628255208); (6.25 : 6.13060628255208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationNListDataContext/NListTable/NListTable_NListColumnTable" />
+      <nodes>
+        <classShapeMoniker Id="2cab48eb-4a2e-40f0-b266-6f0292ccff09" />
+        <classShapeMoniker Id="5d3665d2-2e95-4332-bfd4-f1203f6f9c93" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 3.96715413411458); (9 : 3.96715413411458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationNListDataContext/NListItemTable/NListItemTable_NItemValueTable" />
+      <nodes>
+        <classShapeMoniker Id="bdbae4f9-96c5-4a05-905b-ef99edbf43f1" />
+        <classShapeMoniker Id="085dacbb-bf89-461f-8225-319cc0939b14" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 3.84215413411458); (6.25 : 3.84215413411458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationNListDataContext/NListTable/NListTable_NListItemTable" />
+      <nodes>
+        <classShapeMoniker Id="2cab48eb-4a2e-40f0-b266-6f0292ccff09" />
+        <classShapeMoniker Id="bdbae4f9-96c5-4a05-905b-ef99edbf43f1" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

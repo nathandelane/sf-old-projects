@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="VehixFoundation" Class="VehixFoundationCensorshipDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=qa-sql-01\a;Initial Catalog=VehixFoundation;Integrated Security=True" SettingsObjectName="Vehix.QA.WebTest.Data.Properties.Settings" SettingsPropertyName="VehixFoundationConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="Censorship.CensoredTypeBindingTable" Member="CensoredTypeBindingTables">
+    <Type Name="CensoredTypeBindingTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TargetType" Type="System.String" DbType="NVarChar(400) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Member" Type="System.String" DbType="NVarChar(256) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Evaluation" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="CensorshipEvaluationTable_CensoredTypeBindingTable" Member="CensorshipEvaluationTable" ThisKey="Evaluation" OtherKey="ID" Type="CensorshipEvaluationTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Censorship.RegExCensorshipEvaluationTable" Member="RegExCensorshipEvaluationTables">
+    <Type Name="RegExCensorshipEvaluationTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Behavior" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Expression" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="CensorshipEvaluationTable_RegExCensorshipEvaluationTable" Member="CensorshipEvaluationTable" ThisKey="ID" OtherKey="ID" Type="CensorshipEvaluationTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Censorship.CensorshipEvaluationTable" Member="CensorshipEvaluationTables">
+    <Type Name="CensorshipEvaluationTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(256) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="CensorshipEvaluationTable_CensoredTypeBindingTable" Member="CensoredTypeBindingTables" ThisKey="ID" OtherKey="Evaluation" Type="CensoredTypeBindingTable" />
+      <Association Name="CensorshipEvaluationTable_RegExCensorshipEvaluationTable" Member="RegExCensorshipEvaluationTables" ThisKey="ID" OtherKey="ID" Type="RegExCensorshipEvaluationTable" />
+      <Association Name="CensorshipEvaluationTable_CustomCensorshipEvaluationTable" Member="CustomCensorshipEvaluationTables" ThisKey="ID" OtherKey="ID" Type="CustomCensorshipEvaluationTable" />
+    </Type>
+  </Table>
+  <Table Name="Censorship.CustomCensorshipEvaluationTable" Member="CustomCensorshipEvaluationTables">
+    <Type Name="CustomCensorshipEvaluationTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="EvaluatorType" Type="System.String" DbType="NVarChar(400) NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="CensorshipEvaluationTable_CustomCensorshipEvaluationTable" Member="CensorshipEvaluationTable" ThisKey="ID" OtherKey="ID" Type="CensorshipEvaluationTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

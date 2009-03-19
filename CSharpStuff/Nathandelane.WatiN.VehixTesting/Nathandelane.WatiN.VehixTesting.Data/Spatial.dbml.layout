@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 18.25" name="VehixFoundationSpatial">
+  <DataContextMoniker Name="/VehixFoundationSpatialDataContext" />
+  <nestedChildShapes>
+    <classShape Id="39e35c93-674e-4ecf-b6f6-a9af8ef0e60d" absoluteBounds="6.25, 10.375, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/VehixFoundationSpatialDataContext/RegionInternalBoundaryTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9ddb4743-686c-4dbe-9dd8-948964767508" absoluteBounds="6.265, 10.835, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f674a5ea-49f3-4456-8306-e3a8b0f49f34" absoluteBounds="0.75, 0.75, 2, 3.6939111328124992">
+      <DataClassMoniker Name="/VehixFoundationSpatialDataContext/SpatialPointTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="15ea30ff-a552-4ed8-8e1a-c71ba2b11d21" absoluteBounds="0.765, 1.21, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4fb8fdb7-76c5-4bc5-a2a1-057280ff02f8" absoluteBounds="3.5, 13.875, 2, 4.0785139973958309">
+      <DataClassMoniker Name="/VehixFoundationSpatialDataContext/RegionTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="85446bdf-d6f9-4b01-b279-9519c6cb5559" absoluteBounds="3.515, 14.335, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="15e4e394-d591-40d0-949c-0507d5dd0433" absoluteBounds="3.5, 5.875, 2, 3.5016097005208335">
+      <DataClassMoniker Name="/VehixFoundationSpatialDataContext/SpatialChainSpatialPointTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f03807f0-e6cd-4a1e-83dd-8dd1a8332c6c" absoluteBounds="3.515, 6.335, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="430f219c-c887-4bea-ba67-b00212806bd5" absoluteBounds="0.75, 6.125, 2, 3.1170068359374996">
+      <DataClassMoniker Name="/VehixFoundationSpatialDataContext/SpatialChainTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ecb072f3-ed04-4046-a7ff-5c6376c2580b" absoluteBounds="0.765, 6.585, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 15.9142569986979); (7.25 : 15.9142569986979); (7.25 : 13.6843082682292)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationSpatialDataContext/RegionTable/RegionTable_RegionInternalBoundaryTable" />
+      <nodes>
+        <classShapeMoniker Id="4fb8fdb7-76c5-4bc5-a2a1-057280ff02f8" />
+        <classShapeMoniker Id="39e35c93-674e-4ecf-b6f6-a9af8ef0e60d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 2.59695556640625); (4.5 : 2.59695556640625); (4.5 : 5.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationSpatialDataContext/SpatialPointTable/SpatialPointTable_SpatialChainSpatialPointTable" />
+      <nodes>
+        <classShapeMoniker Id="f674a5ea-49f3-4456-8306-e3a8b0f49f34" />
+        <classShapeMoniker Id="15e4e394-d591-40d0-949c-0507d5dd0433" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 9.2420068359375); (1.75 : 12.0296541341146); (2.19791916666667 : 12.0296541341146 : JumpStart); (2.36458583333333 : 12.0296541341146 : JumpEnd); (6.25 : 12.0296541341146)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationSpatialDataContext/SpatialChainTable/SpatialChainTable_RegionInternalBoundaryTable" />
+      <nodes>
+        <classShapeMoniker Id="430f219c-c887-4bea-ba67-b00212806bd5" />
+        <classShapeMoniker Id="39e35c93-674e-4ecf-b6f6-a9af8ef0e60d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.2812525 : 9.2420068359375); (2.2812525 : 15.9142569986979); (3.5 : 15.9142569986979)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationSpatialDataContext/SpatialChainTable/SpatialChainTable_RegionTable" />
+      <nodes>
+        <classShapeMoniker Id="430f219c-c887-4bea-ba67-b00212806bd5" />
+        <classShapeMoniker Id="4fb8fdb7-76c5-4bc5-a2a1-057280ff02f8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 7.68350341796875); (3.5 : 7.68350341796875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationSpatialDataContext/SpatialChainTable/SpatialChainTable_SpatialChainSpatialPointTable" />
+      <nodes>
+        <classShapeMoniker Id="430f219c-c887-4bea-ba67-b00212806bd5" />
+        <classShapeMoniker Id="15e4e394-d591-40d0-949c-0507d5dd0433" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 20, 30.25" name="VehixFoundationInventory">
+  <DataContextMoniker Name="/VehixFoundationInventoryDataContext" />
+  <nestedChildShapes>
+    <classShape Id="694d1692-0ef1-4790-978a-bf403ded8c38" absoluteBounds="12, 1.875, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/AftermarketFeatureTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="310b6184-371a-4075-8a42-d91e421e66f3" absoluteBounds="12.015, 2.335, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7d58fa76-8d5b-4874-8147-aa22f395c67d" absoluteBounds="3.5, 15.5, 2, 4.0785139973958309">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/SellerPriorityLevelTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="90ab6236-11f8-441e-b297-78dc22965935" absoluteBounds="3.515, 15.96, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6cee2945-1040-4cb4-9cb7-10aef94d0eae" absoluteBounds="9.25, 1.875, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/AftermarketFeatureTypeTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="665726f3-97d9-49b2-b6e2-948e0b652325" absoluteBounds="9.265, 2.335, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9d219db7-5823-4740-b782-4e0c023a118a" absoluteBounds="0.75, 6.75, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/Background_JobStatus" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0e5f604a-c84b-4f25-9223-28b0e241629f" absoluteBounds="0.765, 7.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="cdcbc6d8-dd43-48df-baab-53d5eed1393f" absoluteBounds="3.75, 6.75, 2, 4.0785139973958318">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/ConditionExtendedBodyStyleMakeModelTrimAggregateTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="34918cb5-baad-455a-9011-e97957f79529" absoluteBounds="3.765, 7.21, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6a7a6303-f245-4752-bd63-9cdcec2bf4ed" absoluteBounds="0.75, 13.75, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/InventoryCatalogTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ce01c545-449d-43c5-a64d-7cd0a7c524cf" absoluteBounds="0.765, 14.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bf50ceb4-8d90-44bf-98aa-77d68146541b" absoluteBounds="11.75, 6.75, 2, 3.6939111328124987">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/InventoryLocationTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be0d1df7-6dd7-44da-9b21-cad827d28c99" absoluteBounds="11.765, 7.21, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6b5fc913-186e-4437-9260-79da97259a1f" absoluteBounds="6.25, 14.375, 2, 6.3861311848958309">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/InventorySellerInfoTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4395cfbf-f975-48b9-9948-4eb4ea88390e" absoluteBounds="6.265, 14.835, 1.9700000000000002, 5.826131184895833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4e1e0673-0282-44aa-9f9a-8da9fc1fd572" absoluteBounds="14.75, 15.875, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/InventoryVehicleAftermarketFeatureTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="716b45ca-4e60-4344-8541-268e1a944463" absoluteBounds="14.765, 16.335, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="428a2e80-2dd4-4d32-8534-e14199d52265" absoluteBounds="11.75, 21.5, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/InventoryVehicleExtendedBodyStyleTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c7feb35e-c745-4fbd-ac26-29e696d245e5" absoluteBounds="11.765, 21.96, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e45a176a-eec4-4721-93f4-4f94bdf3dc2e" absoluteBounds="11.75, 26.125, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/InventoryVehicleFileTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="08c74774-6cef-4309-b318-df8d1c4cba5d" absoluteBounds="11.765, 26.585, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="54a7bc32-5f5d-46b3-a3a4-8ff099d8ad3b" absoluteBounds="14.75, 0.75, 2, 3.6939111328124992">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/InventoryVehicleFileTableTemp" />
+      <nestedChildShapes>
+        <elementListCompartment Id="24406c34-d497-4692-87cb-122c7700cca8" absoluteBounds="14.765, 1.21, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="212fa9f5-2b28-48cd-a682-1f32b496cca9" absoluteBounds="11.75, 13.25, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/InventoryVehicleOptionalFeatureTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7d3806db-f0a7-464e-808e-50d04ebe3a27" absoluteBounds="11.765, 13.71, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="85171a33-17a1-4d18-904b-1b66a72291aa" absoluteBounds="14.75, 5.75, 2, 1.9631982421875005">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/InventoryVehiclePhotoProductTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f0b147da-2828-4e51-920d-633510a82fec" absoluteBounds="14.765, 6.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="01614925-4e0b-4ad0-aed5-e2daeb476264" absoluteBounds="9, 6.625, 2, 21.962547200520838">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/InventoryVehicleTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b2737e70-963f-4936-b865-33c4e7dd1da2" absoluteBounds="9.015, 7.085, 1.9700000000000002, 21.402547200520832" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4fcaefab-392e-4e6e-91e1-f3a24d00e894" absoluteBounds="17.75, 0.75, 2, 19.462628580729167">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/InventoryVehicleTableTemp" />
+      <nestedChildShapes>
+        <elementListCompartment Id="376ef2b1-cda5-4759-aaa9-1d1e2c54d6a8" absoluteBounds="17.765, 1.21, 1.9700000000000002, 18.902628580729164" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4d7dd314-9a65-4b8e-b1d9-a5cc9aba2dfc" absoluteBounds="11.75, 17.25, 2, 3.5016097005208309">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/InventoryVehicleTrimTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="32b1a3a1-faa6-4acf-bd8b-23ca44736748" absoluteBounds="11.765, 17.71, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a4ef1cbb-8b9c-4cb5-bc8d-e694056552f8" absoluteBounds="3.5, 2.125, 2, 3.6939111328124996">
+      <DataClassMoniker Name="/VehixFoundationInventoryDataContext/ListingPriorityLevelTable" />
+      <nestedChildShapes>
+        <elementListCompartment Id="93270741-c7ec-464e-8766-f425ec494bc6" absoluteBounds="3.515, 2.585, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(11.25 : 3.52965413411458); (12 : 3.52965413411458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationInventoryDataContext/AftermarketFeatureTypeTable/AftermarketFeatureTypeTable_AftermarketFeatureTable" />
+      <nodes>
+        <classShapeMoniker Id="6cee2945-1040-4cb4-9cb7-10aef94d0eae" />
+        <classShapeMoniker Id="694d1692-0ef1-4790-978a-bf403ded8c38" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 16.2796541341146); (3.5 : 16.2796541341146)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationInventoryDataContext/InventoryCatalogTable/InventoryCatalogTable_SellerPriorityLevelTable" />
+      <nodes>
+        <classShapeMoniker Id="6a7a6303-f245-4752-bd63-9cdcec2bf4ed" />
+        <classShapeMoniker Id="7d58fa76-8d5b-4874-8147-aa22f395c67d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 17.5392569986979); (6.25 : 17.5392569986979)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationInventoryDataContext/SellerPriorityLevelTable/SellerPriorityLevelTable_InventorySellerInfoTable" />
+      <nodes>
+        <classShapeMoniker Id="7d58fa76-8d5b-4874-8147-aa22f395c67d" />
+        <classShapeMoniker Id="6b5fc913-186e-4437-9260-79da97259a1f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(13.90625 : 5.37660970052083); (13.90625 : 16.9046541341146); (14.75 : 16.9046541341146)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationInventoryDataContext/AftermarketFeatureTable/AftermarketFeatureTable_InventoryVehicleAftermarketFeatureTable" />
+      <nodes>
+        <classShapeMoniker Id="694d1692-0ef1-4790-978a-bf403ded8c38" />
+        <classShapeMoniker Id="4e1e0673-0282-44aa-9f9a-8da9fc1fd572" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11 : 17.1085770670573); (14.75 : 17.1085770670573)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationInventoryDataContext/InventoryVehicleTable/InventoryVehicleTable_InventoryVehicleAftermarketFeatureTable" />
+      <nodes>
+        <classShapeMoniker Id="01614925-4e0b-4ad0-aed5-e2daeb476264" />
+        <classShapeMoniker Id="4e1e0673-0282-44aa-9f9a-8da9fc1fd572" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11 : 23.4431062825521); (11.75 : 23.4431062825521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationInventoryDataContext/InventoryVehicleTable/InventoryVehicleTable_InventoryVehicleExtendedBodyStyleTable" />
+      <nodes>
+        <classShapeMoniker Id="01614925-4e0b-4ad0-aed5-e2daeb476264" />
+        <classShapeMoniker Id="428a2e80-2dd4-4d32-8534-e14199d52265" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11 : 27.3562736002604); (11.75 : 27.3562736002604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationInventoryDataContext/InventoryVehicleTable/InventoryVehicleTable_InventoryVehicleFileTable" />
+      <nodes>
+        <classShapeMoniker Id="01614925-4e0b-4ad0-aed5-e2daeb476264" />
+        <classShapeMoniker Id="e45a176a-eec4-4721-93f4-4f94bdf3dc2e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11 : 14.9046541341146); (11.75 : 14.9046541341146)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationInventoryDataContext/InventoryVehicleTable/InventoryVehicleTable_InventoryVehicleOptionalFeatureTable" />
+      <nodes>
+        <classShapeMoniker Id="01614925-4e0b-4ad0-aed5-e2daeb476264" />
+        <classShapeMoniker Id="212fa9f5-2b28-48cd-a682-1f32b496cca9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 17.5680655924479); (9 : 17.5680655924479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationInventoryDataContext/InventorySellerInfoTable/InventorySellerInfoTable_InventoryVehicleTable" />
+      <nodes>
+        <classShapeMoniker Id="6b5fc913-186e-4437-9260-79da97259a1f" />
+        <classShapeMoniker Id="01614925-4e0b-4ad0-aed5-e2daeb476264" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11 : 19.0008048502604); (11.75 : 19.0008048502604)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationInventoryDataContext/InventoryVehicleTable/InventoryVehicleTable_InventoryVehicleTrimTable" />
+      <nodes>
+        <classShapeMoniker Id="01614925-4e0b-4ad0-aed5-e2daeb476264" />
+        <classShapeMoniker Id="4d7dd314-9a65-4b8e-b1d9-a5cc9aba2dfc" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 13.7515374615385); (3.125 : 13.3765374615385); (3.125 : 3.97195556640625); (3.5 : 3.97195556640625)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/VehixFoundationInventoryDataContext/InventoryCatalogTable/InventoryCatalogTable_ListingPriorityLevelTable" />
+      <nodes>
+        <classShapeMoniker Id="6a7a6303-f245-4752-bd63-9cdcec2bf4ed" />
+        <classShapeMoniker Id="a4ef1cbb-8b9c-4cb5-bc8d-e694056552f8" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

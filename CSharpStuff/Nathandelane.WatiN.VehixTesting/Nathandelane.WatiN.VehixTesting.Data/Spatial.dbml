@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="VehixFoundation" Class="VehixFoundationSpatialDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=qa-sql-01\a;Initial Catalog=VehixFoundation;Integrated Security=True" SettingsObjectName="Vehix.QA.WebTest.Data.Properties.Settings" SettingsPropertyName="VehixFoundationConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="Spatial.RegionInternalBoundaryTable" Member="RegionInternalBoundaryTables">
+    <Type Name="RegionInternalBoundaryTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Region" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="InternalBoundary" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="RegionTable_RegionInternalBoundaryTable" Member="RegionTable" ThisKey="Region" OtherKey="ID" Type="RegionTable" IsForeignKey="true" />
+      <Association Name="SpatialChainTable_RegionInternalBoundaryTable" Member="SpatialChainTable" ThisKey="InternalBoundary" OtherKey="ID" Type="SpatialChainTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Spatial.SpatialPointTable" Member="SpatialPointTables">
+    <Type Name="SpatialPointTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Latitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Longitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="AltitudeInMiles" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ReferenceFrame" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="SpatialPointTable_SpatialChainSpatialPointTable" Member="SpatialChainSpatialPointTables" ThisKey="ID" OtherKey="SpatialPoint" Type="SpatialChainSpatialPointTable" />
+    </Type>
+  </Table>
+  <Table Name="Spatial.RegionTable" Member="RegionTables">
+    <Type Name="RegionTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
+      <Column Name="Boundary" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MinLatitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MaxLatitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MinLongitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MaxLongitude" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Association Name="RegionTable_RegionInternalBoundaryTable" Member="RegionInternalBoundaryTables" ThisKey="ID" OtherKey="Region" Type="RegionInternalBoundaryTable" />
+      <Association Name="SpatialChainTable_RegionTable" Member="SpatialChainTable" ThisKey="Boundary" OtherKey="ID" Type="SpatialChainTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Spatial.SpatialChainSpatialPointTable" Member="SpatialChainSpatialPointTables">
+    <Type Name="SpatialChainSpatialPointTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SpatialChain" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="SpatialPoint" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Sequence" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="SpatialPointTable_SpatialChainSpatialPointTable" Member="SpatialPointTable" ThisKey="SpatialPoint" OtherKey="ID" Type="SpatialPointTable" IsForeignKey="true" />
+      <Association Name="SpatialChainTable_SpatialChainSpatialPointTable" Member="SpatialChainTable" ThisKey="SpatialChain" OtherKey="ID" Type="SpatialChainTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Spatial.SpatialChainTable" Member="SpatialChainTables">
+    <Type Name="SpatialChainTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(32)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="SpatialChainTable_RegionInternalBoundaryTable" Member="RegionInternalBoundaryTables" ThisKey="ID" OtherKey="InternalBoundary" Type="RegionInternalBoundaryTable" />
+      <Association Name="SpatialChainTable_RegionTable" Member="RegionTables" ThisKey="ID" OtherKey="Boundary" Type="RegionTable" />
+      <Association Name="SpatialChainTable_SpatialChainSpatialPointTable" Member="SpatialChainSpatialPointTables" ThisKey="ID" OtherKey="SpatialChain" Type="SpatialChainSpatialPointTable" />
+    </Type>
+  </Table>
+</Database>

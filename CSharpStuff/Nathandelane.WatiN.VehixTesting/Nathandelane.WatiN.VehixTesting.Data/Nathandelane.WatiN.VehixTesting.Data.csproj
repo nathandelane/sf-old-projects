@@ -36,9 +36,215 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Branding1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Branding.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Censorship1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Censorship.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Contacts1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Contacts.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Editorial1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Editorial.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Geography1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Geography.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Inventory.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryImport1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventoryImport.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="NList1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NList.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="People1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>People.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Research1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Research.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Rfi1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rfi.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="SellYourCar1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SellYourCar.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Spatial1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Spatial.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Tasks.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Taxonomy1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Taxonomy.dbml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Branding.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Branding1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Censorship.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Censorship1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Contacts.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Contacts1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Editorial.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Editorial1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Geography.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Geography1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Inventory.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Inventory1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="InventoryImport.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>InventoryImport1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="NList.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>NList1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="People.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>People1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Research.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Research1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Rfi.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Rfi1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SellYourCar.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>SellYourCar1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Spatial.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Spatial1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Tasks.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Tasks1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Taxonomy.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Taxonomy1.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Branding.dbml.layout">
+      <DependentUpon>Branding.dbml</DependentUpon>
+    </None>
+    <None Include="Censorship.dbml.layout">
+      <DependentUpon>Censorship.dbml</DependentUpon>
+    </None>
+    <None Include="Contacts.dbml.layout">
+      <DependentUpon>Contacts.dbml</DependentUpon>
+    </None>
+    <None Include="Editorial.dbml.layout">
+      <DependentUpon>Editorial.dbml</DependentUpon>
+    </None>
+    <None Include="Geography.dbml.layout">
+      <DependentUpon>Geography.dbml</DependentUpon>
+    </None>
+    <None Include="Inventory.dbml.layout">
+      <DependentUpon>Inventory.dbml</DependentUpon>
+    </None>
+    <None Include="InventoryImport.dbml.layout">
+      <DependentUpon>InventoryImport.dbml</DependentUpon>
+    </None>
+    <None Include="NList.dbml.layout">
+      <DependentUpon>NList.dbml</DependentUpon>
+    </None>
+    <None Include="People.dbml.layout">
+      <DependentUpon>People.dbml</DependentUpon>
+    </None>
+    <None Include="Research.dbml.layout">
+      <DependentUpon>Research.dbml</DependentUpon>
+    </None>
+    <None Include="Rfi.dbml.layout">
+      <DependentUpon>Rfi.dbml</DependentUpon>
+    </None>
+    <None Include="SellYourCar.dbml.layout">
+      <DependentUpon>SellYourCar.dbml</DependentUpon>
+    </None>
+    <None Include="Spatial.dbml.layout">
+      <DependentUpon>Spatial.dbml</DependentUpon>
+    </None>
+    <None Include="Tasks.dbml.layout">
+      <DependentUpon>Tasks.dbml</DependentUpon>
+    </None>
+    <None Include="Taxonomy.dbml.layout">
+      <DependentUpon>Taxonomy.dbml</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

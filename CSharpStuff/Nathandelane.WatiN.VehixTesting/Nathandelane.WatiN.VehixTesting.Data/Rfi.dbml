@@ -1,0 +1,726 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="VehixFoundation" Class="VehixFoundationRfiDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=qa-sql-01\a;Initial Catalog=VehixFoundation;Integrated Security=True" SettingsObjectName="Vehix.QA.WebTest.Data.Properties.Settings" SettingsPropertyName="VehixFoundationConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="Rfi.ApprovalHandlerTable" Member="ApprovalHandlerTables">
+    <Type Name="ApprovalHandlerTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Label" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="HandlerTable_ApprovalHandlerTable" Member="HandlerTable" ThisKey="ID" OtherKey="ID" Type="HandlerTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.YearRangeFilterEvaluatorTable" Member="YearRangeFilterEvaluatorTables">
+    <Type Name="YearRangeFilterEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="[From]" Member="From" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="[To]" Member="To" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.BodyStyleFilterEvaluatorTable" Member="BodyStyleFilterEvaluatorTables">
+    <Type Name="BodyStyleFilterEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="BodyStyle" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="FilterEvaluatorTable_BodyStyleFilterEvaluatorTable" Member="FilterEvaluatorTable" ThisKey="ID" OtherKey="ID" Type="FilterEvaluatorTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.CapacityFilterEvaluatorTable" Member="CapacityFilterEvaluatorTables">
+    <Type Name="CapacityFilterEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Capacity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Peroid" Type="System.String" DbType="VarChar(27) NOT NULL" CanBeNull="false" />
+      <Column Name="LastAcceptanceDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="FilterEvaluatorTable_CapacityFilterEvaluatorTable" Member="FilterEvaluatorTable" ThisKey="ID" OtherKey="ID" Type="FilterEvaluatorTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.ConditionFilterEvaluatorTable" Member="ConditionFilterEvaluatorTables">
+    <Type Name="ConditionFilterEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Condition" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.ConditionRadiusFilterEvaluatorTable" Member="ConditionRadiusFilterEvaluatorTables">
+    <Type Name="ConditionRadiusFilterEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Radius" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Scale" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Condition" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="FilterEvaluatorTable_ConditionRadiusFilterEvaluatorTable" Member="FilterEvaluatorTable" ThisKey="ID" OtherKey="ID" Type="FilterEvaluatorTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.ContactMethodHandlerTable" Member="ContactMethodHandlerTables">
+    <Type Name="ContactMethodHandlerTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ContactMethod" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="ContactMethodHandlerTable_PartyContactMethodHandlerTable" Member="PartyContactMethodHandlerTables" ThisKey="ID" OtherKey="ID" Type="PartyContactMethodHandlerTable" />
+      <Association Name="ContactMethodHandlerTable_SellerInfoContactMethodHandlerTable" Member="SellerInfoContactMethodHandlerTables" ThisKey="ID" OtherKey="ID" Type="SellerInfoContactMethodHandlerTable" />
+      <Association Name="HandlerTable_ContactMethodHandlerTable" Member="HandlerTable" ThisKey="ID" OtherKey="ID" Type="HandlerTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.DateMetricEvaluatorTable" Member="DateMetricEvaluatorTables">
+    <Type Name="DateMetricEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="LastAcceptanceDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="MetricEvaluatorTable_DateMetricEvaluatorTable" Member="MetricEvaluatorTable" ThisKey="ID" OtherKey="ID" Type="MetricEvaluatorTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.DistanceMetricEvaluatorTable" Member="DistanceMetricEvaluatorTables">
+    <Type Name="DistanceMetricEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Scale" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="MetricEvaluatorTable_DistanceMetricEvaluatorTable" Member="MetricEvaluatorTable" ThisKey="ID" OtherKey="ID" Type="MetricEvaluatorTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.EpaMarketClassFilterEvaluatorTable" Member="EpaMarketClassFilterEvaluatorTables">
+    <Type Name="EpaMarketClassFilterEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="MarketClass" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="FilterEvaluatorTable_EpaMarketClassFilterEvaluatorTable" Member="FilterEvaluatorTable" ThisKey="ID" OtherKey="ID" Type="FilterEvaluatorTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.EvaluatorTable" Member="EvaluatorTables">
+    <Type Name="EvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Active" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RequestType" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="Hidden" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Association Name="EvaluatorTable_HandlerEvaluatorTable" Member="HandlerEvaluatorTables" ThisKey="ID" OtherKey="Evaluator" Type="HandlerEvaluatorTable" />
+      <Association Name="EvaluatorTable_HandlerTemplateEvaluatorTable" Member="HandlerTemplateEvaluatorTables" ThisKey="ID" OtherKey="Evaluator" Type="HandlerTemplateEvaluatorTable" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.ExtendedBodyStyleFilterEvaluatorTable" Member="ExtendedBodyStyleFilterEvaluatorTables">
+    <Type Name="ExtendedBodyStyleFilterEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ExtendedBodyStyle" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="FilterEvaluatorTable_ExtendedBodyStyleFilterEvaluatorTable" Member="FilterEvaluatorTable" ThisKey="ID" OtherKey="ID" Type="FilterEvaluatorTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.FilterEvaluatorTable" Member="FilterEvaluatorTables">
+    <Type Name="FilterEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Behavior" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RequestType" Type="System.String" DbType="NVarChar(400)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="FilterEvaluatorTable_BodyStyleFilterEvaluatorTable" Member="BodyStyleFilterEvaluatorTables" ThisKey="ID" OtherKey="ID" Type="BodyStyleFilterEvaluatorTable" />
+      <Association Name="FilterEvaluatorTable_CapacityFilterEvaluatorTable" Member="CapacityFilterEvaluatorTables" ThisKey="ID" OtherKey="ID" Type="CapacityFilterEvaluatorTable" />
+      <Association Name="FilterEvaluatorTable_ConditionRadiusFilterEvaluatorTable" Member="ConditionRadiusFilterEvaluatorTables" ThisKey="ID" OtherKey="ID" Type="ConditionRadiusFilterEvaluatorTable" />
+      <Association Name="FilterEvaluatorTable_EpaMarketClassFilterEvaluatorTable" Member="EpaMarketClassFilterEvaluatorTables" ThisKey="ID" OtherKey="ID" Type="EpaMarketClassFilterEvaluatorTable" />
+      <Association Name="FilterEvaluatorTable_ExtendedBodyStyleFilterEvaluatorTable" Member="ExtendedBodyStyleFilterEvaluatorTables" ThisKey="ID" OtherKey="ID" Type="ExtendedBodyStyleFilterEvaluatorTable" />
+      <Association Name="FilterEvaluatorTable_RegexFilterEvaluatorTable" Member="RegexFilterEvaluatorTables" ThisKey="ID" OtherKey="ID" Type="RegexFilterEvaluatorTable" />
+      <Association Name="FilterEvaluatorTable_SourceFilterEvaluatorTable" Member="SourceFilterEvaluatorTables" ThisKey="ID" OtherKey="ID" Type="SourceFilterEvaluatorTable" />
+      <Association Name="FilterEvaluatorTable_ValidationFilterEvaluatorTable" Member="ValidationFilterEvaluatorTables" ThisKey="ID" OtherKey="ID" Type="ValidationFilterEvaluatorTable" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.HandlerEvaluatorTable" Member="HandlerEvaluatorTables">
+    <Type Name="HandlerEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Handler" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Evaluator" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="EvaluatorTable_HandlerEvaluatorTable" Member="EvaluatorTable" ThisKey="Evaluator" OtherKey="ID" Type="EvaluatorTable" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="HandlerTable_HandlerEvaluatorTable" Member="HandlerTable" ThisKey="Handler" OtherKey="ID" Type="HandlerTable" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.HandlerTable" Member="HandlerTables">
+    <Type Name="HandlerTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Active" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Comments" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="HandlerTable_ApprovalHandlerTable" Member="ApprovalHandlerTables" ThisKey="ID" OtherKey="ID" Type="ApprovalHandlerTable" />
+      <Association Name="HandlerTable_ContactMethodHandlerTable" Member="ContactMethodHandlerTables" ThisKey="ID" OtherKey="ID" Type="ContactMethodHandlerTable" />
+      <Association Name="HandlerTable_HandlerEvaluatorTable" Member="HandlerEvaluatorTables" ThisKey="ID" OtherKey="Handler" Type="HandlerEvaluatorTable" />
+      <Association Name="HandlerTable_JumpStartAutomotiveHandlerTable" Member="JumpStartAutomotiveHandlerTables" ThisKey="ID" OtherKey="ID" Type="JumpStartAutomotiveHandlerTable" />
+      <Association Name="HandlerTable_RequestHandlerTable" Member="RequestHandlerTables" ThisKey="ID" OtherKey="Handler" Type="RequestHandlerTable" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.HandlerTemplateEvaluatorTable" Member="HandlerTemplateEvaluatorTables">
+    <Type Name="HandlerTemplateEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HandlerTemplate" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Evaluator" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="EvaluatorTable_HandlerTemplateEvaluatorTable" Member="EvaluatorTable" ThisKey="Evaluator" OtherKey="ID" Type="EvaluatorTable" IsForeignKey="true" />
+      <Association Name="HandlerTemplateTable_HandlerTemplateEvaluatorTable" Member="HandlerTemplateTable" ThisKey="HandlerTemplate" OtherKey="ID" Type="HandlerTemplateTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.HandlerTemplateTable" Member="HandlerTemplateTables">
+    <Type Name="HandlerTemplateTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="HandlerType" Type="System.String" DbType="NVarChar(400) NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="HandlerTemplateTable_HandlerTemplateEvaluatorTable" Member="HandlerTemplateEvaluatorTables" ThisKey="ID" OtherKey="HandlerTemplate" Type="HandlerTemplateEvaluatorTable" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.HttpSourceTable" Member="HttpSourceTables">
+    <Type Name="HttpSourceTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Host" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="Path" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.InventoryVehicleRequestTable" Member="InventoryVehicleRequestTables">
+    <Type Name="InventoryVehicleRequestTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="IncludeMultipleSellers" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Vehicle" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.JumpStartAutomotiveHandlerTable" Member="JumpStartAutomotiveHandlerTables">
+    <Type Name="JumpStartAutomotiveHandlerTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Party" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Provider" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="RequirePing" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="HandlerTable_JumpStartAutomotiveHandlerTable" Member="HandlerTable" ThisKey="ID" OtherKey="ID" Type="HandlerTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.LocaleHandlerConditionMakeDistributionTable" Member="LocaleHandlerConditionMakeDistributionTables">
+    <Type Name="LocaleHandlerConditionMakeDistributionTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LocaleHandler" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Condition" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Make" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RequestVolume" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="LocaleHandlerTable_LocaleHandlerConditionMakeDistributionTable" Member="LocaleHandlerTable" ThisKey="LocaleHandler" OtherKey="ID" Type="LocaleHandlerTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.LocaleHandlerPriorityOptionsTable" Member="LocaleHandlerPriorityOptionsTables">
+    <Type Name="LocaleHandlerPriorityOptionsTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LocaleHandler" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="SellerPriorityLevel" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="AllowIncludeMultipleSellerNewInventorySpecific" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="OptInIncludeMultipleSellerNewInventorySpecific" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.LocaleHandlerTable" Member="LocaleHandlerTables">
+    <Type Name="LocaleHandlerTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Locale" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="NewSearchRadiusInMiles" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="UsedSearchRadiusInMiles" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="SellerDistanceWeight" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="SellerHistoryWeight" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SellerPreferenceWeight" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="SellerQuotaWeight" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="DefaultRequestDistributionVolume" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="LocaleHandlerTable_LocaleHandlerConditionMakeDistributionTable" Member="LocaleHandlerConditionMakeDistributionTables" ThisKey="ID" OtherKey="LocaleHandler" Type="LocaleHandlerConditionMakeDistributionTable" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.MakeFilterEvaluatorTable" Member="MakeFilterEvaluatorTables">
+    <Type Name="MakeFilterEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Make" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.MetricEvaluatorTable" Member="MetricEvaluatorTables">
+    <Type Name="MetricEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="[Dummy]" Member="Dummy" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="MetricEvaluatorTable_DateMetricEvaluatorTable" Member="DateMetricEvaluatorTables" ThisKey="ID" OtherKey="ID" Type="DateMetricEvaluatorTable" />
+      <Association Name="MetricEvaluatorTable_DistanceMetricEvaluatorTable" Member="DistanceMetricEvaluatorTables" ThisKey="ID" OtherKey="ID" Type="DistanceMetricEvaluatorTable" />
+      <Association Name="MetricEvaluatorTable_PreferenceMetricEvaluatorTable" Member="PreferenceMetricEvaluatorTables" ThisKey="ID" OtherKey="ID" Type="PreferenceMetricEvaluatorTable" />
+      <Association Name="MetricEvaluatorTable_QuotaMetricEvaluatorTable" Member="QuotaMetricEvaluatorTables" ThisKey="ID" OtherKey="ID" Type="QuotaMetricEvaluatorTable" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.PartyContactMethodHandlerTable" Member="PartyContactMethodHandlerTables">
+    <Type Name="PartyContactMethodHandlerTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Party" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="ContactMethodHandlerTable_PartyContactMethodHandlerTable" Member="ContactMethodHandlerTable" ThisKey="ID" OtherKey="ID" Type="ContactMethodHandlerTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.PartyHandlerCategoryTable" Member="PartyHandlerCategoryTables">
+    <Type Name="PartyHandlerCategoryTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.PartyHandlerTable" Member="PartyHandlerTables">
+    <Type Name="PartyHandlerTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Party" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Category" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.PreferenceMetricEvaluatorTable" Member="PreferenceMetricEvaluatorTables">
+    <Type Name="PreferenceMetricEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Preference" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="MetricEvaluatorTable_PreferenceMetricEvaluatorTable" Member="MetricEvaluatorTable" ThisKey="ID" OtherKey="ID" Type="MetricEvaluatorTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.QuotaMetricEvaluatorTable" Member="QuotaMetricEvaluatorTables">
+    <Type Name="QuotaMetricEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Period" Type="System.String" DbType="VarChar(27) NOT NULL" CanBeNull="false" />
+      <Column Name="PeriodBeginDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Threshold" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="MetricEvaluatorTable_QuotaMetricEvaluatorTable" Member="MetricEvaluatorTable" ThisKey="ID" OtherKey="ID" Type="MetricEvaluatorTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.RegexFilterEvaluatorTable" Member="RegexFilterEvaluatorTables">
+    <Type Name="RegexFilterEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Label" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="Bindings" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Patterns" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="FilterEvaluatorTable_RegexFilterEvaluatorTable" Member="FilterEvaluatorTable" ThisKey="ID" OtherKey="ID" Type="FilterEvaluatorTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.RequestHandlerTable" Member="RequestHandlerTables">
+    <Type Name="RequestHandlerTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Reason" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="DateHandled" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[Primary]" Member="Primary" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Sequence" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Request" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Handler" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="HandlerTable_RequestHandlerTable" Member="HandlerTable" ThisKey="Handler" OtherKey="ID" Type="HandlerTable" IsForeignKey="true" />
+      <Association Name="RequestTable_RequestHandlerTable" Member="RequestTable" ThisKey="Request" OtherKey="ID" Type="RequestTable" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.RequestHashHistoryTable" Member="RequestHashHistoryTables">
+    <Type Name="RequestHashHistoryTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Hash" Type="System.String" DbType="NVarChar(24) NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.RequestSourceTable" Member="RequestSourceTables">
+    <Type Name="RequestSourceTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Request" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Source" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="RequestTable_RequestSourceTable" Member="RequestTable" ThisKey="Request" OtherKey="ID" Type="RequestTable" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="SourceTable_RequestSourceTable" Member="SourceTable" ThisKey="Source" OtherKey="ID" Type="SourceTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.RequestTable" Member="RequestTables">
+    <Type Name="RequestTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Test" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="Agent" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ContactInfo" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Category" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Source" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Reason" Type="System.String" DbType="VarChar(1024)" CanBeNull="true" />
+      <Column Name="Uri" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="AgentIP" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="AgentKey" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Association Name="RequestTable_RequestHandlerTable" Member="RequestHandlerTables" ThisKey="ID" OtherKey="Request" Type="RequestHandlerTable" />
+      <Association Name="RequestTable_RequestSourceTable" Member="RequestSourceTables" ThisKey="ID" OtherKey="Request" Type="RequestSourceTable" />
+      <Association Name="RequestTable_TollFreeRequestTable" Member="TollFreeRequestTables" ThisKey="ID" OtherKey="ID" Type="TollFreeRequestTable" />
+      <Association Name="RequestTypeCategoryTable_RequestTable" Member="RequestTypeCategoryTable" ThisKey="Category" OtherKey="ID" Type="RequestTypeCategoryTable" IsForeignKey="true" />
+      <Association Name="SourceTable_RequestTable" Member="SourceTable" ThisKey="Source" OtherKey="ID" Type="SourceTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.RequestTypeCategoryTable" Member="RequestTypeCategoryTables">
+    <Type Name="RequestTypeCategoryTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="RequestType" Type="System.String" DbType="NVarChar(400) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="RequestTypeCategoryTable_RequestTable" Member="RequestTables" ThisKey="ID" OtherKey="Category" Type="RequestTable" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.ResearchVehicleModelRequestTable" Member="ResearchVehicleModelRequestTables">
+    <Type Name="ResearchVehicleModelRequestTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Model" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.ResearchVehiclePreviewRequestTable" Member="ResearchVehiclePreviewRequestTables">
+    <Type Name="ResearchVehiclePreviewRequestTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Make" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Model" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Year" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.ResearchVehicleRequestTable" Member="ResearchVehicleRequestTables">
+    <Type Name="ResearchVehicleRequestTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Condition" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SellerInfo" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.ResearchVehicleTrimRequestTable" Member="ResearchVehicleTrimRequestTables">
+    <Type Name="ResearchVehicleTrimRequestTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Trim" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ColorCombination" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Options" Type="System.Xml.Linq.XElement" DbType="Xml" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.SellerInfoContactMethodHandlerTable" Member="SellerInfoContactMethodHandlerTables">
+    <Type Name="SellerInfoContactMethodHandlerTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="SellerInfo" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="ContactMethodHandlerTable_SellerInfoContactMethodHandlerTable" Member="ContactMethodHandlerTable" ThisKey="ID" OtherKey="ID" Type="ContactMethodHandlerTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.SellerInfoHandlerConditionMakeTable" Member="SellerInfoHandlerConditionMakeTables">
+    <Type Name="SellerInfoHandlerConditionMakeTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SellerInfoHandler" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Condition" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Make" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="SellerInfoHandlerTable_SellerInfoHandlerConditionMakeTable" Member="SellerInfoHandlerTable" ThisKey="SellerInfoHandler" OtherKey="ID" Type="SellerInfoHandlerTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.SellerInfoHandlerTable" Member="SellerInfoHandlerTables">
+    <Type Name="SellerInfoHandlerTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="SellerInfo" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="RequirePrimaryPhone" Type="System.String" DbType="Char(5) NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="SellerInfoHandlerTable_SellerInfoHandlerConditionMakeTable" Member="SellerInfoHandlerConditionMakeTables" ThisKey="ID" OtherKey="SellerInfoHandler" Type="SellerInfoHandlerConditionMakeTable" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.SourceFilterEvaluatorTable" Member="SourceFilterEvaluatorTables">
+    <Type Name="SourceFilterEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Source" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="FilterEvaluatorTable_SourceFilterEvaluatorTable" Member="FilterEvaluatorTable" ThisKey="ID" OtherKey="ID" Type="FilterEvaluatorTable" IsForeignKey="true" />
+      <Association Name="SourceTable_SourceFilterEvaluatorTable" Member="SourceTable" ThisKey="Source" OtherKey="ID" Type="SourceTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.SourceTable" Member="SourceTables">
+    <Type Name="SourceTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Category" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="SourceTable_RequestSourceTable" Member="RequestSourceTables" ThisKey="ID" OtherKey="Source" Type="RequestSourceTable" />
+      <Association Name="SourceTable_RequestTable" Member="RequestTables" ThisKey="ID" OtherKey="Source" Type="RequestTable" />
+      <Association Name="SourceTable_SourceFilterEvaluatorTable" Member="SourceFilterEvaluatorTables" ThisKey="ID" OtherKey="Source" Type="SourceFilterEvaluatorTable" />
+      <Association Name="SourceTypeCategoryTable_SourceTable" Member="SourceTypeCategoryTable" ThisKey="Category" OtherKey="ID" Type="SourceTypeCategoryTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.SourceTypeCategoryTable" Member="SourceTypeCategoryTables">
+    <Type Name="SourceTypeCategoryTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_CreatorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_UpdaterID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DeletorID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="VFX_DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateUpdated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VFX_DateDeleted" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SourceType" Type="System.String" DbType="NVarChar(400) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(128) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="SourceTypeCategoryTable_SourceTable" Member="SourceTables" ThisKey="ID" OtherKey="Category" Type="SourceTable" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.TollFreeRequestTable" Member="TollFreeRequestTables">
+    <Type Name="TollFreeRequestTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="SellerInfo" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Duration" Type="System.String" DbType="VarChar(27)" CanBeNull="true" />
+      <Column Name="ConnectDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DisconnectDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DisconnectReason" Type="System.String" DbType="NVarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="RecordingUri" Type="System.String" DbType="NVarChar(1024)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ProviderKey" Type="System.String" DbType="VarChar(36) NOT NULL" CanBeNull="false" />
+      <Association Name="RequestTable_TollFreeRequestTable" Member="RequestTable" ThisKey="ID" OtherKey="ID" Type="RequestTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.ValidationFilterEvaluatorTable" Member="ValidationFilterEvaluatorTables">
+    <Type Name="ValidationFilterEvaluatorTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="ValidatorType" Type="System.String" DbType="NVarChar(400) NOT NULL" CanBeNull="false" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="FilterEvaluatorTable_ValidationFilterEvaluatorTable" Member="FilterEvaluatorTable" ThisKey="ID" OtherKey="ID" Type="FilterEvaluatorTable" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="Rfi.VehicleRequestTable" Member="VehicleRequestTables">
+    <Type Name="VehicleRequestTable">
+      <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Timeframe" Type="System.String" DbType="VarChar(27)" CanBeNull="true" />
+      <Column Name="ETL_NaturalKey" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="ETL_Hash" Type="System.Data.Linq.Binary" DbType="Binary(16)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="ETL_JobCategory" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ETL_DateEffective" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
