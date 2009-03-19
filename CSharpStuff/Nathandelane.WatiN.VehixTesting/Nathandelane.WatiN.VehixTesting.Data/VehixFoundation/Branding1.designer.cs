@@ -63,7 +63,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data.VehixFoundation
     #endregion
 		
 		public VehixFoundationDataContext() : 
-				base(global::Vehix.QA.WebTest.Data.Properties.Settings.Default.VehixFoundationConnectionString, mappingSource)
+				base(global::Nathandelane.WatiN.VehixTesting.Data.Properties.Settings.Default.VehixFoundationConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -3164,7 +3164,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data.VehixFoundation
 			}
 		}
 		
-		[Column(Storage="_FormData", DbType="Xml", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[Column(Storage="_FormData", DbType="Xml", UpdateCheck=UpdateCheck.Never)]
 		public System.Xml.Linq.XElement FormData
 		{
 			get

@@ -54,7 +54,7 @@ namespace Nathandelane.WatiN.VehixTesting.Data.VehixFoundation
     #endregion
 		
 		public VehixFoundationInventoryDataContext() : 
-				base(global::Vehix.QA.WebTest.Data.Properties.Settings.Default.VehixFoundationConnectionString, mappingSource)
+				base(global::Nathandelane.WatiN.VehixTesting.Data.Properties.Settings.Default.VehixFoundationConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

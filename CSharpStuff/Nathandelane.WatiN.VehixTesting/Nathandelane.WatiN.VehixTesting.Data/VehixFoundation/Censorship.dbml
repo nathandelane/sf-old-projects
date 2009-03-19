@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="VehixFoundation" Class="VehixFoundationCensorshipDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=qa-sql-01\a;Initial Catalog=VehixFoundation;Integrated Security=True" SettingsObjectName="Vehix.QA.WebTest.Data.Properties.Settings" SettingsPropertyName="VehixFoundationConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=qa-sql-01\a;Initial Catalog=VehixFoundation;Integrated Security=True" SettingsObjectName="Nathandelane.WatiN.VehixTesting.Data.Properties.Settings" SettingsPropertyName="VehixFoundationConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="Censorship.CensoredTypeBindingTable" Member="CensoredTypeBindingTables">
     <Type Name="CensoredTypeBindingTable">
       <Column Name="ID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
