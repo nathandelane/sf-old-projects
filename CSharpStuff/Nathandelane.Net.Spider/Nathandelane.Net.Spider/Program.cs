@@ -52,13 +52,13 @@ namespace Nathandelane.Net.Spider
 					_cookies = agent.Cookies;
 					_headers = agent.Headers;
 
-					if (agent.Response != null && agent.Response.StatusCode == HttpStatusCode.OK)
+					if (agent.Response == null || agent.Response.StatusCode != HttpStatusCode.OK)
 					{
 						ConsoleColors.SetConsoleColor((byte)ConsoleColor.Green);
 					}
 					else if(ContainsWords(agent.ToString()))
 					{
-						ConsoleColors.SetConsoleColor((byte)ConsoleColor.Green);
+						ConsoleColors.SetConsoleColor((byte)ConsoleColor.Red);
 					}
 					else
 					{
