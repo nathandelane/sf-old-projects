@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nathandelane.Net.Spider
 {
-	public class SpiderZone
+	internal class SpiderZone
 	{
 		private string _name;
 		private List<string> _pages;

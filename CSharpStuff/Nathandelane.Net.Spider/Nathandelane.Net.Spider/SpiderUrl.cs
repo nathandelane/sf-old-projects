@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Nathandelane.Net.Spider
 {
-	public class SpiderUrl
+	internal class SpiderUrl
 	{
 		private string _url;
 		private string _referringUrl;

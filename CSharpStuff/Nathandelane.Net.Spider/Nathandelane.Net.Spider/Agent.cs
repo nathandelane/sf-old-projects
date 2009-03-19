@@ -4,14 +4,16 @@ using System.IO;
 using System.Net;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.Text;
 using System.Xml;
 using HtmlAgilityPack;
+using System.Net.Security;
 
 namespace Nathandelane.Net.Spider
 {
-	public class Agent
+	internal class Agent
 	{
 		#region Fields
 
@@ -137,6 +139,15 @@ namespace Nathandelane.Net.Spider
 			_request.Timeout = int.Parse(_settings["timeOut"]);
 			_request.UserAgent = "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0; WOW64; SLCC1; .NET CLR 2.0.50727; .NET CLR 3.0.04506; Media Center PC 5.0; .NET CLR 1.1.4322; Nathandelane.Net.Spider)";
 			_request.AllowAutoRedirect = true;
+
+			if (bool.Parse(_settings["ignoreCertifiacteErrors"]))
+			{
+				ServicePointManager.ServerCertificateValidationCallback +=
+					delegate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+					{
+						return true;
+					};
+			}
 
 			CookieContainer cookies = new CookieContainer(100);
 			cookies.Add(_cookies);

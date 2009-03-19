@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Nathandelane.Net.Spider
 {
-	public class Settings
+	internal class Settings
 	{
 		private Dictionary<string, string> _settings;
 		private Dictionary<string, string> _zones;

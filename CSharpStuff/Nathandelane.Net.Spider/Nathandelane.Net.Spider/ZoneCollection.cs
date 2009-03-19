@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Nathandelane.Net.Spider
 {
-	public class ZoneCollection : ConfigurationElementCollection
+	internal class ZoneCollection : ConfigurationElementCollection
 	{
 		public override ConfigurationElementCollectionType CollectionType
 		{
