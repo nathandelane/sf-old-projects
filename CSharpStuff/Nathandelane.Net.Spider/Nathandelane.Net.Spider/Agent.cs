@@ -242,6 +242,15 @@ namespace Nathandelane.Net.Spider
 				}
 			}
 
+			string[] parts = result.Split(new string[] { "://" }, StringSplitOptions.RemoveEmptyEntries);
+
+			while (parts[1].Contains("//"))
+			{
+				parts[1] = parts[1].Replace("//", "/");
+			}
+
+			result = String.Concat(parts[0], "://", parts[1]);
+
 			return result;
 		}
 
