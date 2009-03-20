@@ -22,6 +22,8 @@ namespace Nathandelane.Net.Spider
 
 		#endregion
 
+		#region Properties
+
 		public static Queue<SpiderUrl> QueuedLinks
 		{
 			get
@@ -29,6 +31,33 @@ namespace Nathandelane.Net.Spider
 				return __queuedLinks; 
 			}
 		}
+
+		private string LogFileName
+		{
+			get
+			{
+				string logFileName = "SpiderLog.csv";
+
+				if (_settings.ContainsKey("loggingType"))
+				{
+					LoggingType loggingType = (LoggingType)Enum.Parse(typeof(LoggingType), _settings["loggingType"]);
+
+					switch (loggingType)
+					{
+						case LoggingType.Reuse:
+							logFileName = "SpiderLog.csv";
+							break;
+						case LoggingType.Rotate:
+							logFileName = String.Format("SpiderLog_{0}.csv", DateTime.Now.ToString("dd.MMM.HH.mm.ss"));
+							break;
+					}
+				}
+
+				return logFileName;
+			}
+		}
+
+		#endregion
 
 		#region Constructors
 
@@ -249,7 +278,7 @@ namespace Nathandelane.Net.Spider
 
 		private void LogMessage(string msg, bool writeToConsole)
 		{
-			using (StreamWriter writer = new StreamWriter(new FileStream("SpiderLog.csv", FileMode.Append)))
+			using (StreamWriter writer = new StreamWriter(new FileStream(LogFileName, FileMode.Append)))
 			{
 				writer.WriteLine(String.Format("{0}", msg));
 				writer.Flush();
