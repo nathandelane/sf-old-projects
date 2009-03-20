@@ -10,18 +10,33 @@ namespace Nathandelane.Net.Spider
 {
 	class Program
 	{
+		#region Fields
+
+		private static Queue<SpiderUrl> __queuedLinks;
+
 		private Settings _settings;
 		private List<string> _visitedUrlHashes;
-		private Queue<SpiderUrl> _queuedLinks;
 		private long _id;
 		private CookieCollection _cookies;
 		private WebHeaderCollection _headers;
+
+		#endregion
+
+		public static Queue<SpiderUrl> QueuedLinks
+		{
+			get
+			{
+				return __queuedLinks; 
+			}
+		}
+
+		#region Constructors
 
 		private Program()
 		{
 			_settings = new Settings();
 			_visitedUrlHashes = new List<string>();
-			_queuedLinks = new Queue<SpiderUrl>();
+			__queuedLinks = new Queue<SpiderUrl>();
 			_id = 0L;
 
 			InitializeCookie();
@@ -36,19 +51,23 @@ namespace Nathandelane.Net.Spider
 			Run();
 		}
 
+		#endregion
+
+		#region Run Method
+
 		private void Run()
 		{
 			string startingUrl = String.Format("{0}{1}", _settings["startingUrl"], _settings["path"]);
-			_queuedLinks.Enqueue(new SpiderUrl(startingUrl, startingUrl));
+			__queuedLinks.Enqueue(new SpiderUrl(startingUrl, startingUrl));
 
-			string referrer = _queuedLinks.Peek().ReferringUrl;
-			string lastUrl = _queuedLinks.Peek().Url;
+			string referrer = __queuedLinks.Peek().ReferringUrl;
+			string lastUrl = __queuedLinks.Peek().Url;
 
-			GetFirstPage(_queuedLinks.Dequeue());
+			GetFirstPage(__queuedLinks.Dequeue());
 
-			while (_queuedLinks.Count > 0)
+			while (__queuedLinks.Count > 0)
 			{
-				SpiderUrl url = _queuedLinks.Dequeue();
+				SpiderUrl url = __queuedLinks.Dequeue();
 				Agent agent = new Agent(url, _id, _settings, _cookies, _headers);
 
 				if (!_visitedUrlHashes.Contains(agent.Root))
@@ -90,6 +109,10 @@ namespace Nathandelane.Net.Spider
 			}
 		}
 
+		#endregion
+
+		#region Private Methods
+
 		private void SetQueueUsingStartUpQueue()
 		{
 			StartUpQueue startUpQueue = new StartUpQueue();
@@ -97,14 +120,14 @@ namespace Nathandelane.Net.Spider
 
 			for (int startUpQueueIndex = 0; startUpQueueIndex < queueLength; startUpQueueIndex++)
 			{
-				_queuedLinks.Enqueue(startUpQueue[startUpQueueIndex]);
+				__queuedLinks.Enqueue(startUpQueue[startUpQueueIndex]);
 			}
 		}
 
 		private void SaveRemainingQueue()
 		{
 			StartUpQueue startUpQueue = new StartUpQueue();
-			startUpQueue.Save(_queuedLinks);
+			startUpQueue.Save(__queuedLinks);
 		}
 
 		private bool ContainsWords(string source)
@@ -177,8 +200,6 @@ namespace Nathandelane.Net.Spider
 
 		private void GetFirstPage(SpiderUrl url)
 		{
-			//GetHeadRequest(url);
-
 			Agent agent = GetNextAgent(url);
 			agent.Run();
 
@@ -198,7 +219,7 @@ namespace Nathandelane.Net.Spider
 		{
 			foreach (string url in agent.Urls)
 			{
-				_queuedLinks.Enqueue(new SpiderUrl(url, agent.Root));
+				__queuedLinks.Enqueue(new SpiderUrl(url, agent.Root));
 			}
 		}
 
@@ -249,9 +270,20 @@ namespace Nathandelane.Net.Spider
 			}
 		}
 
+		#endregion
+
 		static void Main()
 		{
+
+			Console.CancelKeyPress += new ConsoleCancelEventHandler(CleanUpSpider);
+
 			new Program();
+		}
+
+		static void CleanUpSpider(object sender, ConsoleCancelEventArgs e)
+		{
+			StartUpQueue startUpQueue = new StartUpQueue();
+			startUpQueue.Save(QueuedLinks);
 		}
 	}
 }
