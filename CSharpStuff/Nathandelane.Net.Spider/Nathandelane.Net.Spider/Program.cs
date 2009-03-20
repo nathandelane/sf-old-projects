@@ -19,6 +19,7 @@ namespace Nathandelane.Net.Spider
 		private long _id;
 		private CookieCollection _cookies;
 		private WebHeaderCollection _headers;
+		private string _logFileName;
 
 		#endregion
 
@@ -67,6 +68,7 @@ namespace Nathandelane.Net.Spider
 			_visitedUrlHashes = new List<string>();
 			__queuedLinks = new Queue<SpiderUrl>();
 			_id = 0L;
+			_logFileName = LogFileName;
 
 			InitializeCookie();
 			InitializeHeaders();
@@ -278,7 +280,7 @@ namespace Nathandelane.Net.Spider
 
 		private void LogMessage(string msg, bool writeToConsole)
 		{
-			using (StreamWriter writer = new StreamWriter(new FileStream(LogFileName, FileMode.Append)))
+			using (StreamWriter writer = new StreamWriter(new FileStream(_logFileName, FileMode.Append)))
 			{
 				writer.WriteLine(String.Format("{0}", msg));
 				writer.Flush();
