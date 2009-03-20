@@ -82,7 +82,7 @@ namespace Nathandelane.Net.Spider
 
 					AddLinksFor(agent);
 
-					if (RamCounter.MegabytesAvailable < 500.0f)
+					if (RamCounter.MegabytesAvailable < float.Parse(_settings["maxRemainingMemeoryAtExit"]))
 					{
 						SaveRemainingQueue();
 					}
