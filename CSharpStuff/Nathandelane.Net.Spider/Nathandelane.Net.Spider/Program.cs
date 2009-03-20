@@ -27,6 +27,12 @@ namespace Nathandelane.Net.Spider
 			InitializeCookie();
 			InitializeHeaders();
 			InitializeLogFile();
+
+			if (bool.Parse(_settings["useStartupQueue"]))
+			{
+				SetQueueUsingStartUpQueue();
+			}
+
 			Run();
 		}
 
@@ -75,8 +81,30 @@ namespace Nathandelane.Net.Spider
 					_id++;
 
 					AddLinksFor(agent);
+
+					if (RamCounter.MegabytesAvailable < 500.0f)
+					{
+						SaveRemainingQueue();
+					}
 				}
 			}
+		}
+
+		private void SetQueueUsingStartUpQueue()
+		{
+			StartUpQueue startUpQueue = new StartUpQueue();
+			int queueLength = startUpQueue.Count;
+
+			for (int startUpQueueIndex = 0; startUpQueueIndex < queueLength; startUpQueueIndex++)
+			{
+				_queuedLinks.Enqueue(startUpQueue[startUpQueueIndex]);
+			}
+		}
+
+		private void SaveRemainingQueue()
+		{
+			StartUpQueue startUpQueue = new StartUpQueue();
+			startUpQueue.Save(_queuedLinks);
 		}
 
 		private bool ContainsWords(string source)
