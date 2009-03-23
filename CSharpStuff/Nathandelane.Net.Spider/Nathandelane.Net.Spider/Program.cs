@@ -164,7 +164,7 @@ namespace Nathandelane.Net.Spider
 			StartUpQueue startUpQueue = new StartUpQueue();
 			int queueLength = startUpQueue.Count;
 
-			Console.Write("{0} entries to be loaded...");
+			Console.Write("{0} entries to be loaded...", queueLength);
 
 			for (int startUpQueueIndex = 0; startUpQueueIndex < queueLength; startUpQueueIndex++)
 			{
