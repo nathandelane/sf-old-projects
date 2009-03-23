@@ -136,6 +136,12 @@ namespace Nathandelane.Net.Spider
 					{
 						SaveRemainingQueue();
 					}
+
+					if (agent.SearchValueFound)
+					{
+						Console.WriteLine("SEARCH VALUE FOUND: {0}, PAGE: {1}", _settings["searchForText"], agent.Root);
+						SaveRemainingQueue();
+					}
 				}
 			}
 		}
