@@ -74,9 +74,12 @@ namespace Nathandelane.Net.Spider
 			InitializeHeaders();
 			InitializeLogFile();
 
-			if (bool.Parse(_settings["useStartupQueue"]))
+			if (_settings.ContainsKey("useStartupQueue"))
 			{
-				SetQueueUsingStartUpQueue();
+				if (bool.Parse(_settings["useStartupQueue"]))
+				{
+					SetQueueUsingStartUpQueue();
+				}
 			}
 
 			Run();
@@ -132,9 +135,12 @@ namespace Nathandelane.Net.Spider
 
 					AddLinksFor(agent);
 
-					if (RamCounter.MegabytesAvailable < float.Parse(_settings["maxRemainingMemoryAtExit"]))
+					if (_settings.ContainsKey("maxRemainingMemoryAtExit"))
 					{
-						SaveRemainingQueue();
+						if (RamCounter.MegabytesAvailable < float.Parse(_settings["maxRemainingMemoryAtExit"]))
+						{
+							SaveRemainingQueue();
+						}
 					}
 
 					if (agent.SearchValueFound)
@@ -171,20 +177,24 @@ namespace Nathandelane.Net.Spider
 
 		private bool ContainsWords(string source)
 		{
-			string[] words = _settings["logErrorOnWords"].Split(new char[] { ',' });
 			bool result = false;
-			int wordsIndex = 0;
 
-			while(wordsIndex < words.Length && !result)
+			if (_settings.ContainsKey("logErrorOnWords"))
 			{
-				string word = words[wordsIndex];
+				string[] words = _settings["logErrorOnWords"].Split(new char[] { ',' });
+				int wordsIndex = 0;
 
-				if (source.Contains(word))
+				while (wordsIndex < words.Length && !result)
 				{
-					result = true;
-				}
+					string word = words[wordsIndex];
 
-				wordsIndex++;
+					if (source.Contains(word))
+					{
+						result = true;
+					}
+
+					wordsIndex++;
+				}
 			}
 
 			return result;
@@ -266,21 +276,52 @@ namespace Nathandelane.Net.Spider
 		{
 			_cookies = new CookieCollection();
 
-			Cookie zipCookie = new Cookie("zip", "84106");
-			zipCookie.Domain = _settings["domain"];
-			_cookies.Add(zipCookie);
+			if (_settings.ContainsKey("acceptCookies") && bool.Parse(_settings["acceptCookies"]))
+			{
+				if (_settings.ContainsKey("defaultCookies"))
+				{
+					string[] cookiePairs = _settings["defaultCookies"].Split(new char[] { '&' });
+
+					foreach (string cookiePair in cookiePairs)
+					{
+						if (cookiePair.Contains("="))
+						{
+							string[] keyAndValue = cookiePair.Split(new char[] { '=' });
+
+							Cookie nextCookie = new Cookie(keyAndValue[0], keyAndValue[1]);
+							nextCookie.Domain = _settings["domain"];
+							_cookies.Add(nextCookie);
+						}
+					}
+				}
+			}
 		}
 
 		private void InitializeHeaders()
 		{
 			_headers = new WebHeaderCollection();
+
+			if (_settings.ContainsKey("defaultHeaders"))
+			{
+				string[] headerPairs = _settings["defaultHeaders"].Split(new char[] { '&' });
+
+				foreach (string headerPair in headerPairs)
+				{
+					if (headerPair.Contains("="))
+					{
+						string[] keyAndValue = headerPair.Split(new char[] { '=' });
+
+						_headers.Add(keyAndValue[0], keyAndValue[1]);
+					}
+				}
+			}
 		}
 
 		private void InitializeLogFile()
 		{
-			if (File.Exists("SpiderLog.csv"))
+			if (File.Exists(LogFileName))
 			{
-				File.Delete("SpiderLog.csv");
+				File.Delete(LogFileName);
 			}
 
 			LogMessage("\"Id\", \"Response\", \"Url\", \"Title\", \"Full Url\", \"Referring Page\"", false);
