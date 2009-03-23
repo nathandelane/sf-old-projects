@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 using Nathandelane.Win32;
+using System.Threading;
 
 namespace Nathandelane.Net.Spider
 {
@@ -158,14 +159,19 @@ namespace Nathandelane.Net.Spider
 
 		private void SetQueueUsingStartUpQueue()
 		{
-			Console.WriteLine("Using startup queue to begin testing...");
+			Console.Write("Using startup queue to begin testing...");
 
 			StartUpQueue startUpQueue = new StartUpQueue();
 			int queueLength = startUpQueue.Count;
 
+			Console.Write("{0} entries to be loaded...");
+
 			for (int startUpQueueIndex = 0; startUpQueueIndex < queueLength; startUpQueueIndex++)
 			{
 				__queuedLinks.Enqueue(startUpQueue[startUpQueueIndex]);
+				Console.Write(".");
+
+				Thread.Sleep(150);
 			}
 		}
 
