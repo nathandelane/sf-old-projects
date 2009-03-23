@@ -22,6 +22,7 @@ namespace Nathandelane.Net.Spider
 		private string _root;
 		private string _referringUrl;
 		private string _pageTitle;
+		private bool _searchValueFound;
 		private int _timeOut;
 		private long _id;
 		private HttpWebRequest _request;
@@ -50,6 +51,11 @@ namespace Nathandelane.Net.Spider
 		{
 			get { return _referringUrl; }
 			set { _referringUrl = value; }
+		}
+
+		public bool SearchValueFound
+		{
+			get { return _searchValueFound; }
 		}
 
 		public int TimeOut
@@ -95,6 +101,7 @@ namespace Nathandelane.Net.Spider
 			_referringUrl = url.ReferringUrl;
 			_root = url.Url.Replace("&amp;", "&");
 			_id = id;
+			_searchValueFound = false;
 			_settings = settings;
 			_cookies = cookies;
 			_headers = headers;
@@ -172,6 +179,22 @@ namespace Nathandelane.Net.Spider
 
 		private void SetPageTitleAndLinkList()
 		{
+			if (_settings.ContainsKey("searchForText"))
+			{
+				string[] values = _settings["searchForText"].Split(new char[] { '/' });
+				int valuesIndex = 0;
+
+				while (valuesIndex < values.Length && !_searchValueFound)
+				{
+					if (_data.Contains(values[valuesIndex]))
+					{
+						_searchValueFound = true;
+					}
+
+					valuesIndex++;
+				}
+			}
+
 			HtmlAgilityPack.HtmlDocument document = new HtmlAgilityPack.HtmlDocument();
 			document.LoadHtml(_data);
 			_pageTitle = (((document.DocumentNode.SelectSingleNode("//title")).InnerText).Trim(new char[] { '\n', '\r' })).Trim();
