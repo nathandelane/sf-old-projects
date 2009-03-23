@@ -144,7 +144,7 @@ namespace Nathandelane.Net.Spider
 
 		public override string ToString()
 		{
-			return String.Format("{0}, \"{1}\", \"{2}\", \"{3}\", \"{4}\", \"{5}\"", _id, ((_response == null) ? _ex.Message : GetStatusMessageFor(_response.StatusCode)), _root, (String.IsNullOrEmpty(_pageTitle) ? "null" : _pageTitle), _referringUrl, ElapsedTime);
+			return String.Format("{0}, \"{1}\", \"{2}\", \"{3}\", \"{4}\", \"{5:0.00}\"", _id, ((_response == null) ? _ex.Message : GetStatusMessageFor(_response.StatusCode)), _root, (String.IsNullOrEmpty(_pageTitle) ? "null" : _pageTitle), _referringUrl, ElapsedTime);
 		}
 
 		public string Hash()
