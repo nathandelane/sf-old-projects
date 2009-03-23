@@ -146,6 +146,8 @@ namespace Nathandelane.Net.Spider
 
 		private void SetQueueUsingStartUpQueue()
 		{
+			Console.WriteLine("Using startup queue to begin testing...");
+
 			StartUpQueue startUpQueue = new StartUpQueue();
 			int queueLength = startUpQueue.Count;
 
