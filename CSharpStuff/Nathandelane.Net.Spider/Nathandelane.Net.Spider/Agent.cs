@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using System.Linq;
+using System.Net;
+using System.Net.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.Text;
+using System.Timers;
 using System.Xml;
 using HtmlAgilityPack;
-using System.Net.Security;
 
 namespace Nathandelane.Net.Spider
 {
@@ -26,6 +27,7 @@ namespace Nathandelane.Net.Spider
 		private bool _searchValueFound;
 		private int _timeOut;
 		private long _id;
+		private long _elapsedMillis;
 		private HttpWebRequest _request;
 		private HttpWebResponse _response;
 		private Settings _settings;
@@ -109,6 +111,11 @@ namespace Nathandelane.Net.Spider
 			get { return _headers; }
 		}
 
+		public long ElapsedTime
+		{
+			get { return _elapsedMillis; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -137,7 +144,7 @@ namespace Nathandelane.Net.Spider
 
 		public override string ToString()
 		{
-			return String.Format("{0}, \"{1}\", \"{2}\", \"{3}\", \"{4}\"", _id, ((_response == null) ? _ex.Message : GetStatusMessageFor(_response.StatusCode)), _root, (String.IsNullOrEmpty(_pageTitle) ? "null" : _pageTitle), _referringUrl);
+			return String.Format("{0}, \"{1}\", \"{2}\", \"{3}\", \"{4}\", \"{5}\"", _id, ((_response == null) ? _ex.Message : GetStatusMessageFor(_response.StatusCode)), _root, (String.IsNullOrEmpty(_pageTitle) ? "null" : _pageTitle), _referringUrl, ElapsedTime);
 		}
 
 		public string Hash()
@@ -180,7 +187,10 @@ namespace Nathandelane.Net.Spider
 
 			try
 			{
+				long startTime = DateTime.Now.Ticks;
+	
 				_response = _request.GetResponse() as HttpWebResponse;
+				_elapsedMillis = DateTime.Now.Ticks - startTime;
 				_cookies = _response.Cookies;
 
 				using (StreamReader reader = new StreamReader(_response.GetResponseStream()))

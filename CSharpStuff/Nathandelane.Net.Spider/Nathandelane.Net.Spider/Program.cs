@@ -324,7 +324,7 @@ namespace Nathandelane.Net.Spider
 				File.Delete(LogFileName);
 			}
 
-			LogMessage("\"Id\", \"Response\", \"Url\", \"Title\", \"Full Url\", \"Referring Page\"", false);
+			LogMessage("\"Id\", \"Response\", \"Url\", \"Title\", \"Full Url\", \"Referring Page\", \"Elapsed Time\"", false);
 		}
 
 		private void LogMessage(string msg, bool writeToConsole)
