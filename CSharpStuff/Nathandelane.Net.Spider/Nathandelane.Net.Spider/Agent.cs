@@ -113,7 +113,7 @@ namespace Nathandelane.Net.Spider
 
 		public double ElapsedTime
 		{
-			get { return (new TimeSpan(_elapsedMillis)).TotalMilliseconds; }
+			get { return (new TimeSpan(_elapsedMillis)).TotalSeconds; }
 		}
 
 		#endregion
