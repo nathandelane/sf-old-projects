@@ -280,11 +280,26 @@ namespace Nathandelane.Net.Spider
 
 		private void LogMessage(string msg, bool writeToConsole)
 		{
-			using (StreamWriter writer = new StreamWriter(new FileStream(_logFileName, FileMode.Append)))
+			Exception innerException = null;
+
+			do
 			{
-				writer.WriteLine(String.Format("{0}", msg));
-				writer.Flush();
-			}
+				innerException = null;
+
+				try
+				{
+					using (StreamWriter writer = new StreamWriter(new FileStream(_logFileName, FileMode.Append)))
+					{
+						writer.WriteLine(String.Format("{0}", msg));
+						writer.Flush();
+					}
+				}
+				catch (IOException ex)
+				{
+					innerException = ex;
+					LogError(String.Concat(ex.Message, ex.Source, ex.StackTrace));
+				}
+			} while (innerException != null);
 
 			if (writeToConsole)
 			{
