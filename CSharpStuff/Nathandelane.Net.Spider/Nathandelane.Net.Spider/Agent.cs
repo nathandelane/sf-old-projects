@@ -111,9 +111,9 @@ namespace Nathandelane.Net.Spider
 			get { return _headers; }
 		}
 
-		public long ElapsedTime
+		public double ElapsedTime
 		{
-			get { return _elapsedMillis; }
+			get { return (_elapsedMillis / 1000 / 60); }
 		}
 
 		#endregion
