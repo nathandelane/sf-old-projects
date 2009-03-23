@@ -181,7 +181,7 @@ namespace Nathandelane.Net.Spider
 		{
 			if (_settings.ContainsKey("searchForText"))
 			{
-				string[] values = _settings["searchForText"].Split(new char[] { '/' });
+				string[] values = _settings["searchForText"].Split(new char[] { '|' });
 				int valuesIndex = 0;
 
 				while (valuesIndex < values.Length && !_searchValueFound)
