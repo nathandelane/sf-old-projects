@@ -14,6 +14,8 @@ namespace Nathandelane.IO.Analyzer
 	{
 		#region Fields
 
+		private static readonly int __parametersStartIndex = 1;
+
 		private Ping _sender;
 		private PingOptions _options;
 		private int _repeat;
@@ -46,7 +48,7 @@ namespace Nathandelane.IO.Analyzer
 		#region Constructors
 
 		public IpAnalyzer(string[] args)
-			: base(WebAnalyzerType.Ip, args[1])
+			: base(WebAnalyzerType.Ip, args[0])
 		{
 			_options = new PingOptions(128, true);
 			_repeat = 1;
@@ -94,7 +96,7 @@ namespace Nathandelane.IO.Analyzer
 
 		private void ParseParameters(string[] parameters)
 		{
-			for (int paramIndex = 2; paramIndex < parameters.Length; paramIndex++)
+			for (int paramIndex = IpAnalyzer.__parametersStartIndex; paramIndex < parameters.Length; paramIndex++)
 			{
 				string parameter = parameters[paramIndex];
 

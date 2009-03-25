@@ -14,6 +14,8 @@ namespace Nathandelane.IO.Analyzer
 	{
 		#region Fields
 
+		private static readonly int __parametersStartIndex = 0;
+
 		private string[] _returnKey;
 		private string[] _cookies;
 		private string[] _selectElements;
@@ -67,7 +69,7 @@ namespace Nathandelane.IO.Analyzer
 		#region Constructors
 
 		public HttpAnalyzer(string[] parameters)
-			: base(WebAnalyzerType.Http, parameters[1])
+			: base(WebAnalyzerType.Http, parameters[HttpAnalyzer.__parametersStartIndex])
 		{
 			if (parameters.Length >= 2)
 			{
@@ -78,9 +80,9 @@ namespace Nathandelane.IO.Analyzer
 						Type = WebAnalyzerType.Https;
 					}
 
-					_returnKey = new string[0];
-					_cookies = new string[0];
-					_selectElements = new string[0];
+					_returnKey = new string[HttpAnalyzer.__parametersStartIndex];
+					_cookies = new string[HttpAnalyzer.__parametersStartIndex];
+					_selectElements = new string[HttpAnalyzer.__parametersStartIndex];
 					_suppress = false;
 
 					Timeout = 30000;
@@ -145,7 +147,7 @@ namespace Nathandelane.IO.Analyzer
 
 		private void ParseParameters(string[] parameters)
 		{
-			for (int paramIndex = 2; paramIndex < parameters.Length; paramIndex++)
+			for (int paramIndex = HttpAnalyzer.__parametersStartIndex; paramIndex < parameters.Length; paramIndex++)
 			{
 				string parameter = parameters[paramIndex];
 

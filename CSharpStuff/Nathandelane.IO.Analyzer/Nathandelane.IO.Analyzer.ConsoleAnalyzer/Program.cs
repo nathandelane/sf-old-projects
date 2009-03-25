@@ -20,25 +20,29 @@ namespace Nathandelane.IO.Analyzer.ConsoleAnalyzer
 			}
 			else
 			{
-				if (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("analyzerdefault")))
+				if (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("analyzerdefault", EnvironmentVariableTarget.User)))
 				{
-					analyzerType = Environment.GetEnvironmentVariable("analyzerdefault");
+					analyzerType = Environment.GetEnvironmentVariable("analyzerdefault", EnvironmentVariableTarget.User);
 				}
 			}
+
+			int remainingArgsArrayLength = args.Length - 1;
+			string[] remainingArgs = new string[remainingArgsArrayLength];
+			Array.Copy(args, 1, remainingArgs, 0, remainingArgsArrayLength);
 
 			switch (analyzerType)
 			{
 				case "Dns":
 				case "DnsAnalyzer":
-					analyzer = new DnsAnalyzer(args[1]);
+					analyzer = new DnsAnalyzer(remainingArgs[0]);
 					break;
 				case "Ip":
 				case "IpAnalyzer":
-					analyzer = new IpAnalyzer(args);
+					analyzer = new IpAnalyzer(remainingArgs);
 					break;
 				case "Http":
 				case "HttpAnalyzer":
-					analyzer = new HttpAnalyzer(args);
+					analyzer = new HttpAnalyzer(remainingArgs);
 					break;
 				default:
 					Console.WriteLine("Missing --type argument which must come first.");
