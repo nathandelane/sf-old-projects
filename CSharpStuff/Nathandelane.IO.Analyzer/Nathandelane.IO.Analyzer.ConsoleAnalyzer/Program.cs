@@ -12,7 +12,10 @@ namespace Nathandelane.IO.Analyzer.ConsoleAnalyzer
 		private Program(string[] args)
 		{
 			IAnalyzer analyzer = null;
+			int remainingArgsArrayLength = args.Length - 1;
+			int remainingArgsStartIndex = 1;
 			string analyzerType = String.Empty;
+			string[] remainingArgs = new string[remainingArgsArrayLength];
 
 			if (args[0].StartsWith("--type="))
 			{
@@ -23,12 +26,13 @@ namespace Nathandelane.IO.Analyzer.ConsoleAnalyzer
 				if (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("analyzerdefault", EnvironmentVariableTarget.User)))
 				{
 					analyzerType = Environment.GetEnvironmentVariable("analyzerdefault", EnvironmentVariableTarget.User);
+					remainingArgsArrayLength = args.Length;
+					remainingArgsStartIndex = 0;
+					remainingArgs = new string[remainingArgsArrayLength];
 				}
 			}
 
-			int remainingArgsArrayLength = args.Length - 1;
-			string[] remainingArgs = new string[remainingArgsArrayLength];
-			Array.Copy(args, 1, remainingArgs, 0, remainingArgsArrayLength);
+			Array.Copy(args, remainingArgsStartIndex, remainingArgs, 0, remainingArgsArrayLength);
 
 			switch (analyzerType)
 			{

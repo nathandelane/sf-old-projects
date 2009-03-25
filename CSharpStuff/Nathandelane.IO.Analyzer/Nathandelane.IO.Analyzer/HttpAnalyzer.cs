@@ -15,6 +15,8 @@ namespace Nathandelane.IO.Analyzer
 		#region Fields
 
 		private static readonly int __parametersStartIndex = 0;
+		private static readonly int __defaultExpectedNumberOfParameters = 1;
+		private static readonly int __defaultArrayLength = 0;
 
 		private string[] _returnKey;
 		private string[] _cookies;
@@ -71,18 +73,18 @@ namespace Nathandelane.IO.Analyzer
 		public HttpAnalyzer(string[] parameters)
 			: base(WebAnalyzerType.Http, parameters[HttpAnalyzer.__parametersStartIndex])
 		{
-			if (parameters.Length >= 2)
+			if (parameters.Length >= HttpAnalyzer.__defaultExpectedNumberOfParameters)
 			{
-				if (parameters[1].ToLower().StartsWith("http"))
+				if (parameters[HttpAnalyzer.__parametersStartIndex].ToLower().StartsWith("http"))
 				{
-					if (parameters[1].ToLower().StartsWith("https://"))
+					if (parameters[HttpAnalyzer.__parametersStartIndex].ToLower().StartsWith("https://"))
 					{
 						Type = WebAnalyzerType.Https;
 					}
 
-					_returnKey = new string[HttpAnalyzer.__parametersStartIndex];
-					_cookies = new string[HttpAnalyzer.__parametersStartIndex];
-					_selectElements = new string[HttpAnalyzer.__parametersStartIndex];
+					_returnKey = new string[HttpAnalyzer.__defaultArrayLength];
+					_cookies = new string[HttpAnalyzer.__defaultArrayLength];
+					_selectElements = new string[HttpAnalyzer.__defaultArrayLength];
 					_suppress = false;
 
 					Timeout = 30000;
