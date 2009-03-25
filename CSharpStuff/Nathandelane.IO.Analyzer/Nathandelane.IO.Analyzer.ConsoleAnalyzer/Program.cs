@@ -12,7 +12,19 @@ namespace Nathandelane.IO.Analyzer.ConsoleAnalyzer
 		private Program(string[] args)
 		{
 			IAnalyzer analyzer = null;
-			string analyzerType = args[0].Split(new string[] { "--type=" }, StringSplitOptions.RemoveEmptyEntries)[0];
+			string analyzerType = String.Empty;
+
+			if (args[0].StartsWith("--type="))
+			{
+				analyzerType = args[0].Split(new string[] { "--type=" }, StringSplitOptions.RemoveEmptyEntries)[0];
+			}
+			else
+			{
+				if (!String.IsNullOrEmpty(Environment.GetEnvironmentVariable("analyzerdefault")))
+				{
+					analyzerType = Environment.GetEnvironmentVariable("analyzerdefault");
+				}
+			}
 
 			switch (analyzerType)
 			{
@@ -29,6 +41,7 @@ namespace Nathandelane.IO.Analyzer.ConsoleAnalyzer
 					analyzer = new HttpAnalyzer(args);
 					break;
 				default:
+					Console.WriteLine("Missing --type argument which must come first.");
 					throw new ArgumentException(args[0]);
 			}
 
