@@ -94,7 +94,7 @@ namespace Nathandelane.IO.Analyzer.ConsoleAnalyzer
 		{
 			if (analyzerType.Contains(","))
 			{
-				string[] helpTopicParts = analyzerType.Split(new char[] { ",' });
+				string[] helpTopicParts = analyzerType.Split(new char[] { ',' });
 
 				switch (helpTopicParts[0])
 				{
