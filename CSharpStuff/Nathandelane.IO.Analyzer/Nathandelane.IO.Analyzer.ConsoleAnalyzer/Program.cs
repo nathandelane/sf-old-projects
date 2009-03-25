@@ -92,9 +92,9 @@ namespace Nathandelane.IO.Analyzer.ConsoleAnalyzer
 
 		private static void DisplayHelpFor(string analyzerType)
 		{
-			if (analyzerType.Contains("|"))
+			if (analyzerType.Contains("-"))
 			{
-				string[] helpTopicParts = analyzerType.Split(new char[] { '|' });
+				string[] helpTopicParts = analyzerType.Split(new char[] { '-' });
 
 				switch (helpTopicParts[0])
 				{
