@@ -15,5 +15,13 @@ namespace HackerConsole
 		{
 			InitializeComponent();
 		}
+
+		private void OnKeyPress(object sender, KeyEventArgs e)
+		{
+			if (e.Alt && e.KeyCode == Keys.F4)
+			{
+
+			}
+		}
 	}
 }
