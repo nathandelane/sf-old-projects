@@ -14,7 +14,7 @@ namespace Nathandelane.IO.Analyzer
 	{
 		#region Fields
 
-		private static readonly int __parametersStartIndex = 0;
+		private static readonly int __parametersStartIndex = 1;
 		private static readonly int __defaultExpectedNumberOfParameters = 1;
 		private static readonly int __defaultArrayLength = 0;
 
@@ -71,13 +71,13 @@ namespace Nathandelane.IO.Analyzer
 		#region Constructors
 
 		public HttpAnalyzer(string[] parameters)
-			: base(WebAnalyzerType.Http, parameters[HttpAnalyzer.__parametersStartIndex])
+			: base(WebAnalyzerType.Http, parameters[0])
 		{
 			if (parameters.Length >= HttpAnalyzer.__defaultExpectedNumberOfParameters)
 			{
-				if (parameters[HttpAnalyzer.__parametersStartIndex].ToLower().StartsWith("http"))
+				if (parameters[0].ToLower().StartsWith("http"))
 				{
-					if (parameters[HttpAnalyzer.__parametersStartIndex].ToLower().StartsWith("https://"))
+					if (parameters[0].ToLower().StartsWith("https://"))
 					{
 						Type = WebAnalyzerType.Https;
 					}
