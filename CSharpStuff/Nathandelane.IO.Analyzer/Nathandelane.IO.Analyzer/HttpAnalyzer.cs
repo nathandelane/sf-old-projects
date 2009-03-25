@@ -377,7 +377,52 @@ namespace Nathandelane.IO.Analyzer
 
 		public static void DisplayHelp()
 		{
-			Console.WriteLine("Usage: {0} --type=HttpAnalyzer url [--returnKey=RequestHeaders,ResponseHeaders,Data] [--timeout=timeoutInSeconds] [--cookies=cookie1=value[,cookieN=value]] [--userAgent=userAgentName] [--suppress] [--selectElements=elementName[.attributeName][,elementNameN[.attributeName]]]", Assembly.GetEntryAssembly().GetName().Name);
+			Console.WriteLine("Usage: {0} --type=HttpAnalyzer url [--returnKey=RequestHeaders,ResponseHeaders,Data] [--timeout=timeoutInSeconds] [--cookies=cookie1=value[,cookieN=value]] [--userAgent=userAgentName] [--suppress] [--selectElements=elementName[[(attribute=value)].attributeName][,elementNameN[[(attribute=value)].attributeName]]]", Assembly.GetEntryAssembly().GetName().Name);
+		}
+
+		public static void DisplayHelpFor(string option)
+		{
+			Console.Write("HttpAnalyzer Option [{0}] ", option);
+
+			if (option.Equals("url"))
+			{
+				Console.WriteLine("is a fully qualified URL beginning with http:// or https://.");
+			}
+			else if (option.Equals("--returnKey") || option.Equals("returnKey"))
+			{
+				Console.WriteLine("tells the analyzer what type of information to return, Data, RequestHeaders, ResponseHeaders, or a combination (comma separated).");
+			}
+			else if (option.Equals("--timeout") || option.Equals("timeout"))
+			{
+				Console.WriteLine("tells how long to wait for a response from a website before timing out in milliseconds.");
+			}
+			else if (option.Equals("--cookies") || option.Equals("cookies"))
+			{
+				Console.WriteLine("allows you to set cookies for the request (comma separated).");
+			}
+			else if (option.Equals("--userAgent") || option.Equals("userAgent"))
+			{
+				Console.WriteLine("is the user-agent string you would like to use. Names include {0}.", UserAgent.Description());
+			}
+			else if (option.Equals("--suppress") || option.Equals("suppress"))
+			{
+				Console.WriteLine("suppresses all output from returnKey including the default output.");
+			}
+			else if (option.Equals("--selectElements") || option.Equals("selectElements"))
+			{
+				Console.WriteLine("selects specific elements or groups of elements using a simple query language.");
+				Console.WriteLine("The query language is structured as such: elementName[[(attribute=value)].attributeName][,elementNameN[[(attribute=value)].attributeName]]");
+				Console.WriteLine("elementName is the name of the element you want to select, such as a or span.");
+				Console.WriteLine("(attribute=value) only accepts one attribute currently. Typical you would write (id=specificElementId).");
+				Console.WriteLine(".attributeName is the name of a specific attribute of the element you want to return. This attribute is the only thing returned in that case.");
+				Console.WriteLine("\nExample: --selectElements=span(id=nameSpan).innertext");
+				Console.WriteLine("\nExample: --selectElements=span");
+				Console.WriteLine("\nExample: --selectElements=body.innertext");
+			}
+			else
+			{
+				Console.WriteLine("Cannot find help for unknown argument type {0}.", option);
+			}
 		}
 
 		#endregion

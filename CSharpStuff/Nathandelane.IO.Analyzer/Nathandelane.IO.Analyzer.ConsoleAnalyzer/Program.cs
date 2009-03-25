@@ -92,25 +92,47 @@ namespace Nathandelane.IO.Analyzer.ConsoleAnalyzer
 
 		private static void DisplayHelpFor(string analyzerType)
 		{
-			switch (analyzerType)
+			if (analyzerType.Contains("|"))
 			{
-				case "DnsAnalyzer":
-					DnsAnalyzer.DisplayHelp();
-					break;
-				case "IpAnalyzer":
-					IpAnalyzer.DisplayHelp();
-					break;
-				case "HttpAnalyzer":
-					HttpAnalyzer.DisplayHelp();
-					break;
-				default:
-					throw new ArgumentException(analyzerType);
+				string[] helpTopicParts = analyzerType.Split(new char[] { '|' });
+
+				switch (helpTopicParts[0])
+				{
+					case "DnsAnalyzer":
+						DnsAnalyzer.DisplayHelp();
+						break;
+					case "IpAnalyzer":
+						IpAnalyzer.DisplayHelp();
+						break;
+					case "HttpAnalyzer":
+						HttpAnalyzer.DisplayHelpFor(helpTopicParts[1]);
+						break;
+					default:
+						throw new ArgumentException(analyzerType);
+				}
+			}
+			else
+			{
+				switch (analyzerType)
+				{
+					case "DnsAnalyzer":
+						DnsAnalyzer.DisplayHelp();
+						break;
+					case "IpAnalyzer":
+						IpAnalyzer.DisplayHelp();
+						break;
+					case "HttpAnalyzer":
+						HttpAnalyzer.DisplayHelp();
+						break;
+					default:
+						throw new ArgumentException(analyzerType);
+				}
 			}
 		}
 
 		private static void DisplayHelp()
 		{
-			Console.WriteLine("Usage: {0} --type=AnalyzerType [options] uri", Assembly.GetEntryAssembly().GetName().Name);
+			Console.WriteLine("Usage: {0} [--type=AnalyzerType [options] uri | --helpAnalyzerType[|helpTopic] ]", Assembly.GetEntryAssembly().GetName().Name);
 			Console.WriteLine("Valid AnalyzerType values are: {0}", String.Join(", ", Enum.GetNames(typeof(AnalyzerType))));
 		}
 	}

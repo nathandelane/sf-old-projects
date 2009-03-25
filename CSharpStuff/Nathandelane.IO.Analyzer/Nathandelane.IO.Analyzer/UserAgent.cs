@@ -119,5 +119,10 @@ namespace Nathandelane.IO.Analyzer
 		}
 
 		#endregion
+
+		public static string Description()
+		{
+			return "Empty, InternetExplorer, InternetExplorer8, InternetExplorer7, InternetExplorer6, GoogleChrome, ELinks, Emacs, Epiphany, Firefox, Firefox3, Firefox2, Firefox1_5, IceApe, IceWeasel, Opera, Safari";
+		}
 	}
 }
