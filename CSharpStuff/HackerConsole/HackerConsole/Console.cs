@@ -18,10 +18,11 @@ namespace HackerConsole
 
 		private void OnKeyPress(object sender, KeyEventArgs e)
 		{
-			if (e.Alt && e.KeyCode == Keys.F4)
-			{
+		}
 
-			}
+		private void ExitConsole(object sender, EventArgs e)
+		{
+			Environment.Exit(0);
 		}
 	}
 }
