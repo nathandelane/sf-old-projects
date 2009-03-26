@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nathandelane.IO.Analyzer.InteractiveAnalyzer</RootNamespace>
-    <AssemblyName>Nathandelane.IO.Analyzer.InteractiveAnalyzer</AssemblyName>
+    <AssemblyName>ica</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <StartupObject>
