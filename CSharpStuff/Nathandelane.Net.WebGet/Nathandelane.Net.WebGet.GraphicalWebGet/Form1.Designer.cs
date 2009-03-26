@@ -86,6 +86,7 @@
 			this._saveAsTextBox.Name = "_saveAsTextBox";
 			this._saveAsTextBox.Size = new System.Drawing.Size(602, 20);
 			this._saveAsTextBox.TabIndex = 4;
+			this._saveAsTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilterEnterKey);
 			// 
 			// label2
 			// 
