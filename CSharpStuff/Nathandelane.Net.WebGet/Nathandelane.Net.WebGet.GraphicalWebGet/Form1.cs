@@ -56,7 +56,7 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 					try
 					{
 						Agent nextAgent = new Agent(_urlTextBox.Text, name);
-						nextAgent.FileName = String.Format("{0}{1}{2}", _outputDirectory, Path.PathSeparator, nextAgent.FileName);
+						nextAgent.FileName = String.Format("{0}{1}{2}", _outputDirectory, '\\', nextAgent.FileName);
 						nextAgent.Client.DownloadFileCompleted += new AsyncCompletedEventHandler(OnDownloadCompleted);
 
 						_agents.Add(name, nextAgent);
