@@ -57,6 +57,7 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 					{
 						Agent nextAgent = new Agent(_urlTextBox.Text, name);
 						nextAgent.FileName = String.Format("{0}{1}{2}", _outputDirectory, Path.PathSeparator, nextAgent.FileName);
+						nextAgent.Client.DownloadFileCompleted += new AsyncCompletedEventHandler(OnDownloadCompleted);
 
 						_agents.Add(name, nextAgent);
 
@@ -65,6 +66,8 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 						thread.Start();
 
 						_resourceListBox.Items.Add(name);
+
+						ResetForm(sender, e);
 					}
 					catch (Exception ex)
 					{
@@ -98,6 +101,15 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 				StartWget(sender, e);
 				_urlTextBox.Focus();
 			}
+		}
+
+		public void OnDownloadCompleted(object sender, AsyncCompletedEventArgs e)
+		{
+			string name = ((Agent)sender).FileName;
+			int resourceIndex = _resourceListBox.Items.IndexOf(name);
+
+			_resourceListBox.Items[resourceIndex] = String.Concat("Done...", name);
+			_agents.Remove(name);
 		}
 	}
 }
