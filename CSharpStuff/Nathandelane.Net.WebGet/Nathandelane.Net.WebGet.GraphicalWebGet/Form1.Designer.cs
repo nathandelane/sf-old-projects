@@ -170,7 +170,7 @@
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this._topPanel);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-			this.MinimizeBox = false;
+			this.MaximizeBox = false;
 			this.Name = "Form1";
 			this.Text = "Graphical WGet";
 			this._topPanel.ResumeLayout(false);
