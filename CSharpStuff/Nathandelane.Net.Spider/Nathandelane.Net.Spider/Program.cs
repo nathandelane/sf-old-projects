@@ -14,6 +14,7 @@ namespace Nathandelane.Net.Spider
 		#region Fields
 
 		private static Queue<SpiderUrl> __queuedLinks;
+		private static Dictionary<SpiderUrl, string[]> __imagesForPage;
 
 		private Settings _settings;
 		private List<string> _visitedUrlHashes;
@@ -68,6 +69,7 @@ namespace Nathandelane.Net.Spider
 			_settings = new Settings();
 			_visitedUrlHashes = new List<string>();
 			__queuedLinks = new Queue<SpiderUrl>();
+			__imagesForPage = new Dictionary<SpiderUrl, string[]>();
 			_id = 0L;
 			_logFileName = LogFileName;
 
@@ -104,6 +106,24 @@ namespace Nathandelane.Net.Spider
 			{
 				SpiderUrl url = __queuedLinks.Dequeue();
 				Agent agent = new Agent(url, _id, _settings, _cookies, _headers);
+
+				if (bool.Parse(_settings["checkImages"]))
+				{
+					foreach (string imageSrc in __imagesForPage[url])
+					{
+						HttpWebRequest imageRequest = WebRequest.Create(imageSrc) as HttpWebRequest;
+
+						try
+						{
+							HttpWebResponse imageResponse = imageRequest.GetResponse() as HttpWebResponse;
+							LogMessage(String.Format("{0}, \"{1}\", \"{2}\", \"{3}\", \"{4}\"", _id, "OK HTTP 200", imageSrc, String.Empty, 0.0), true);
+						}
+						catch (Exception ex)
+						{
+							LogMessage(String.Format("{0}, \"{1}\", \"{2}\", \"{3}\", \"{4}\"", _id, ex.Message, imageSrc, String.Empty, 0.0), true);
+						}
+					}
+				}
 
 				if (!_visitedUrlHashes.Contains(agent.Root))
 				{
@@ -274,7 +294,14 @@ namespace Nathandelane.Net.Spider
 		{
 			foreach (string url in agent.Urls)
 			{
-				__queuedLinks.Enqueue(new SpiderUrl(url, agent.Root));
+				SpiderUrl spiderUrl = new SpiderUrl(url, agent.Root);
+
+				__queuedLinks.Enqueue(spiderUrl);
+
+				if (bool.Parse(_settings["checkImages"]))
+				{
+					__imagesForPage.Add(spiderUrl, agent.Images);
+				}
 			}
 		}
 

@@ -20,6 +20,7 @@ namespace Nathandelane.Net.Spider
 
 		private string _data;
 		private string[] _urls;
+		private string[] _images;
 		private string _root;
 		private string _referringUrl;
 		private string _pageTitle;
@@ -42,6 +43,11 @@ namespace Nathandelane.Net.Spider
 		public string[] Urls
 		{
 			get { return _urls; }
+		}
+
+		public string[] Images
+		{
+			get { return _images; }
 		}
 
 		public string Root
@@ -124,6 +130,7 @@ namespace Nathandelane.Net.Spider
 		{
 			_pageTitle = String.Empty;
 			_urls = new string[0];
+			_images = new string[0];
 			_referringUrl = url.ReferringUrl;
 			_root = url.Url.Replace("&amp;", "&");
 			_id = id;
@@ -255,7 +262,69 @@ namespace Nathandelane.Net.Spider
 
 			}
 
+			if (bool.Parse(_settings["checkImages"]))
+			{
+				HtmlNodeCollection images = document.DocumentNode.SelectNodes("//img[@src]");
+				List<string> srcs = new List<string>();
+
+				foreach (HtmlNode nextImage in images)
+				{
+					string normalizedImage = NormalizeLinkSrc(nextImage.Attributes["src"].Value);
+
+					bool add = true;
+					if (bool.Parse(_settings["stayWithinWebSite"]))
+					{
+						if (normalizedImage.Contains(_settings["webSite"]))
+						{
+							add = true;
+						}
+						else
+						{
+							add = false;
+						}
+					}
+
+					if (add)
+					{
+						srcs.Add(normalizedImage);
+					}
+				}
+
+				_images = srcs.ToArray();
+			}
+
 			_urls = hrefs.ToArray();
+		}
+
+		private string NormalizeLinkSrc(string imageSrc)
+		{
+			string result = imageSrc;
+
+			imageSrc = imageSrc.Replace("../", String.Empty);
+			imageSrc = imageSrc.Replace("&amp;", "&");
+
+			if (!imageSrc.StartsWith("http://") && !imageSrc.StartsWith("https://"))
+			{
+				if (!imageSrc.StartsWith("/"))
+				{
+					result = String.Format("{0}/{1}", _settings["startingUrl"], imageSrc);
+				}
+				else
+				{
+					result = String.Format("{0}{1}", _settings["startingUrl"], imageSrc);
+				}
+			}
+
+			string[] parts = result.Split(new string[] { "://" }, StringSplitOptions.RemoveEmptyEntries);
+
+			while (parts[1].Contains("//"))
+			{
+				parts[1] = parts[1].Replace("//", "/");
+			}
+
+			result = String.Concat(parts[0], "://", parts[1]);
+
+			return result;
 		}
 
 		private string NormalizeLinkHref(string linkHref)
