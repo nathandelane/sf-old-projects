@@ -6,6 +6,7 @@ using System.Net;
 using System.Windows.Forms;
 using Nathandelane.Win32;
 using System.Threading;
+using System.Security.Principal;
 
 namespace Nathandelane.Net.Spider
 {
@@ -112,14 +113,21 @@ namespace Nathandelane.Net.Spider
 					foreach (string imageSrc in __imagesForPage[url])
 					{
 						HttpWebRequest imageRequest = WebRequest.Create(imageSrc) as HttpWebRequest;
+						imageRequest.Accept = "text/xml,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
+						imageRequest.ImpersonationLevel = TokenImpersonationLevel.Impersonation;
+						imageRequest.KeepAlive = true;
+						imageRequest.Timeout = _settings.ContainsKey("timeOut") ? int.Parse(_settings["timeOut"]) : (30 * 1000);
+						imageRequest.UserAgent = agent.UserAgent;
 
 						try
 						{
+							ConsoleColors.SetConsoleColor((byte)ConsoleColor.Green);
 							HttpWebResponse imageResponse = imageRequest.GetResponse() as HttpWebResponse;
 							LogMessage(String.Format("{0}, \"{1}\", \"{2}\", \"{3}\", \"{4}\"", _id, "OK HTTP 200", imageSrc, String.Empty, 0.0), true);
 						}
 						catch (Exception ex)
 						{
+							ConsoleColors.SetConsoleColor((byte)ConsoleColor.Red);
 							LogMessage(String.Format("{0}, \"{1}\", \"{2}\", \"{3}\", \"{4}\"", _id, ex.Message, imageSrc, String.Empty, 0.0), true);
 						}
 					}
