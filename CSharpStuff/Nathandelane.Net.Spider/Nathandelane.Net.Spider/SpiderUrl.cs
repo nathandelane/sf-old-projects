@@ -67,15 +67,17 @@ namespace Nathandelane.Net.Spider
 				_isImage = false;
 			}
 
-			Sanitize_target();
+			SanitizeTarget();
 		}
 
 		#endregion
 
 		#region Private Members
 
-		private void Sanitize_target()
+		private void SanitizeTarget()
 		{
+			_target.Replace("&amp;", "&");
+
 			if (!_target.StartsWith("http://") && !_target.StartsWith("https://"))
 			{
 				if (_target.StartsWith("/"))
