@@ -8,8 +8,8 @@
     <ProjectGuid>{1E72CC23-12BF-48F3-8639-194BBFF896A1}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nathandelane.Net.Spider2</RootNamespace>
-    <AssemblyName>Nathandelane.Net.Spider2</AssemblyName>
+    <RootNamespace>Nathandelane.Net.Spider</RootNamespace>
+    <AssemblyName>Nathandelane.Net.Spider</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
