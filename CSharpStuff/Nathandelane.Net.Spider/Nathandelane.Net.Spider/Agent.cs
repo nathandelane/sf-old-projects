@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
@@ -7,6 +8,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Nathandelane.Net.Spider
 {
@@ -60,7 +62,7 @@ namespace Nathandelane.Net.Spider
 		{
 			_webRequest = WebRequest.CreateDefault(uri) as HttpWebRequest;
 			_webRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-			_webRequest.AllowAutoRedirect = true;
+			_webRequest.AllowAutoRedirect = bool.Parse(ConfigurationManager.AppSettings["allowAutoRedirects"]);
 			_webRequest.AllowWriteStreamBuffering = true;
 			_webRequest.AuthenticationLevel = AuthenticationLevel.None;
 			_webRequest.AutomaticDecompression = DecompressionMethods.GZip;
@@ -73,11 +75,18 @@ namespace Nathandelane.Net.Spider
 			_webRequest.UseDefaultCredentials = true;
 			_webRequest.UserAgent = "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.0.8) Gecko/2009032609 Firefox/3.0.8 (.NET CLR 3.5.30729)";
 
-			ServicePointManager.ServerCertificateValidationCallback +=
-					delegate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
-					{
-						return true;
-					};
+			if (bool.Parse(ConfigurationManager.AppSettings["ignoreBadCertificates"]))
+			{
+				ServicePointManager.ServerCertificateValidationCallback +=
+						delegate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+						{
+							return true;
+						};
+			}
+		}
+
+		private void GatherUrls(XDocument document)
+		{
 		}
 
 		#endregion
