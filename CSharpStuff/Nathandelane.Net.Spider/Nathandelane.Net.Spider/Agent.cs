@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
@@ -8,8 +9,7 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.Text;
-using System.Xml.Linq;
-using System.IO;
+using HtmlAgilityPack;
 
 namespace Nathandelane.Net.Spider
 {
@@ -117,29 +117,18 @@ namespace Nathandelane.Net.Spider
 
 				_elapsedTime = new TimeSpan(mark - startingTicks);
 
-				XDocument xDocument = new XDocument();
+				HtmlDocument document = new HtmlDocument();
 				using (StreamReader reader = new StreamReader(response.GetResponseStream()))
 				{
-					HtmlAgilityPack.HtmlDocument document = new HtmlAgilityPack.HtmlDocument();
 					document.LoadHtml(reader.ReadToEnd());
-					document.OptionOutputAsXml = true;
 
-					using (StringWriter sw = new StringWriter())
+					if (!_url.IsImage)
 					{
-						document.Save(sw);
-
-						xDocument = XDocument.Parse(sw.GetStringBuilder().ToString());
+						_documentTitle = document.DocumentNode.SelectSingleNode("//title").InnerText.Trim();
 					}
 				}
 
-				if (!_url.IsImage)
-				{
-					_documentTitle = (from el in xDocument.Root.Descendants()
-									  where el.Name.LocalName.Equals("title")
-									  select el).FirstOrDefault<XElement>().Value.Trim();
-				}
-
-				GatherUrls(xDocument);
+				GatherUrls(document);
 
 				_cookies = response.Cookies;
 				_message = "HTTP 200 OK";
@@ -180,23 +169,21 @@ namespace Nathandelane.Net.Spider
 			}
 		}
 
-		private void GatherUrls(XDocument document)
+		private void GatherUrls(HtmlDocument document)
 		{
-			var links = from el in document.Root.Descendants()
-						where el.Name.LocalName.Equals("a")
-						&& el.Attribute(XName.Get("href")) != null
-						select el.Attribute(XName.Get("href")).Value;
-
-			_urls.AddRange(links);
+			HtmlNodeCollection linksNodes = document.DocumentNode.SelectNodes("//a[@href]");
+			foreach(HtmlNode linkNode in linksNodes)
+			{
+				_urls.Add(linkNode.Attributes["href"].Value.Trim());
+			}
 
 			if (bool.Parse(ConfigurationManager.AppSettings["checkImages"]))
 			{
-				var images = from el in document.Root.Descendants()
-							 where el.Name.LocalName.Equals("img")
-							 && el.Attribute(XName.Get("src")) != null
-							 select el.Attribute(XName.Get("src")).Value;
-
-				_urls.AddRange(images);
+				HtmlNodeCollection imageNodes = document.DocumentNode.SelectNodes("//a[@href]");
+				foreach (HtmlNode imageNode in imageNodes)
+				{
+					_urls.Add(imageNode.Attributes["src"].Value.Trim());
+				}
 			}
 		}
 
