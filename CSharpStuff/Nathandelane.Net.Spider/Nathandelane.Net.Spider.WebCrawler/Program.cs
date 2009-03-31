@@ -26,6 +26,8 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			_urls.Enqueue(new SpiderUrl(startingUrl, startingUrl));
 
 			_visitedUrls = new List<string>();
+
+			Logger.InitializeLogFile("Id, Message, Target, Referrer, Title, Time");
 		}
 
 		private void Crawl()
@@ -49,6 +51,8 @@ namespace Nathandelane.Net.Spider.WebCrawler
 						AddUrls(nextAgent.Urls.ToArray(), nextAgent.Referrer.AbsoluteUri);
 
 						_visitedUrls.Add(nextAgent.Hash);
+
+						Logger.LogMessage(nextAgent.ToString(), LoggingType.Both);
 					}
 					else
 					{
