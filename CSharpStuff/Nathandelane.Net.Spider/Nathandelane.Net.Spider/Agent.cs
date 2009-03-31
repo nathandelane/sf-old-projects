@@ -9,6 +9,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Principal;
 using System.Text;
 using System.Xml.Linq;
+using System.IO;
 
 namespace Nathandelane.Net.Spider
 {
@@ -18,10 +19,23 @@ namespace Nathandelane.Net.Spider
 
 		private HttpWebRequest _webRequest;
 		private TimeSpan _elapsedTime;
+		private string _documentTitle;
+		private List<string> _urls;
+		private Uri _referrer;
 
 		#endregion
 
 		#region Properties
+
+		public List<string> Urls
+		{
+			get { return _urls; }
+		}
+
+		public Uri Referrer
+		{
+			get { return _referrer; }
+		}
 
 		private long Ticks
 		{
@@ -34,9 +48,13 @@ namespace Nathandelane.Net.Spider
 
 		public Agent(string address)
 		{
-			Uri uri = new Uri(address, UriKind.Absolute);
+			_webRequest = null;
+			_elapsedTime = new TimeSpan();
+			_documentTitle = String.Empty;
+			_urls = new List<string>();
+			_referrer = new Uri(address, UriKind.Absolute);
 
-			SetupWebRequest(uri);
+			SetupWebRequest(_referrer);
 		}
 
 		#endregion
@@ -52,6 +70,27 @@ namespace Nathandelane.Net.Spider
 			long mark = Ticks;
 
 			_elapsedTime = new TimeSpan(mark - startingTicks);
+
+			XDocument xDocument = new XDocument();
+			using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+			{
+				HtmlAgilityPack.HtmlDocument document = new HtmlAgilityPack.HtmlDocument();
+				document.LoadHtml(reader.ReadToEnd());
+				document.OptionOutputAsXml = true;
+
+				using (StringWriter sw = new StringWriter())
+				{
+					document.Save(sw);
+
+					xDocument = XDocument.Parse(sw.GetStringBuilder().ToString());
+				}
+			}
+
+			_documentTitle = (from el in xDocument.Root.Descendants()
+							 where el.Name.LocalName.Equals("title")
+							 select el).FirstOrDefault<XElement>().Value;
+
+			GatherUrls(xDocument);
 		}
 
 		#endregion
@@ -87,6 +126,22 @@ namespace Nathandelane.Net.Spider
 
 		private void GatherUrls(XDocument document)
 		{
+			var links = from el in document.Root.Descendants()
+						where el.Name.LocalName.Equals("a")
+						&& el.Attribute(XName.Get("href")) != null
+						select el.Attribute(XName.Get("href")).Value;
+
+			_urls.AddRange(links);
+
+			if (bool.Parse(ConfigurationManager.AppSettings["checkImages"]))
+			{
+				var images = from el in document.Root.Descendants()
+							 where el.Name.LocalName.Equals("img")
+							 && el.Attribute(XName.Get("src")) != null
+							 select el.Attribute(XName.Get("src")).Value;
+
+				_urls.AddRange(images);
+			}
 		}
 
 		#endregion
