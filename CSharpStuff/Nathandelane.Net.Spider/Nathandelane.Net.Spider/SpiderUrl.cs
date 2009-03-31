@@ -33,6 +33,21 @@ namespace Nathandelane.Net.Spider
 			get { return _isImage; }
 		}
 
+		public bool IsDocument
+		{
+			get
+			{
+				bool result = false;
+
+				if (_target.ToLower().Contains(".doc") || _target.ToLower().Contains(".pdf") || _target.ToLower().Contains(".xls"))
+				{
+					result = true;
+				}
+
+				return result;
+			}
+		}
+
 		public bool IsJavascript
 		{
 			get

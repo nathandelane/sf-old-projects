@@ -122,13 +122,13 @@ namespace Nathandelane.Net.Spider
 				{
 					document.LoadHtml(reader.ReadToEnd());
 
-					if (!_url.IsImage)
+					if (!_url.IsImage && !_url.IsDocument)
 					{
 						_documentTitle = document.DocumentNode.SelectSingleNode("//title").InnerText.Trim();
+
+						GatherUrls(document);
 					}
 				}
-
-				GatherUrls(document);
 
 				_cookies = response.Cookies;
 				_message = "HTTP 200 OK";
