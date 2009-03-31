@@ -37,7 +37,7 @@ namespace Nathandelane.Net.Spider
 
 		public Uri Referrer
 		{
-			get { return new Uri(_url.Referrer); }
+			get { return new Uri(_url.Target); }
 		}
 
 		public string Hash
