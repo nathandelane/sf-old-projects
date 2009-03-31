@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 using System.Threading;
+using System.Net;
 
 namespace Nathandelane.Net.Spider.WebCrawler
 {
@@ -13,6 +14,62 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 		private UrlCollection _urls;
 		private List<string> _visitedUrls;
+
+		#endregion
+
+		#region Properties
+
+		private CookieCollection DefaultCookies
+		{
+			get
+			{
+				CookieCollection cookies = new CookieCollection();
+
+				if (ConfigurationManager.AppSettings["defaultCookies"] != null)
+				{
+					string[] cookiePairs = ConfigurationManager.AppSettings["defaultCookies"].Split(new char[] { '&' });
+
+					foreach (string pair in cookiePairs)
+					{
+						string[] keyValue = pair.Split(new char[] { '=' });
+
+						if (keyValue.Length == 2)
+						{
+							Cookie cookie = new Cookie(keyValue[0], keyValue[1]);
+
+							cookies.Add(cookie);
+						}
+					}
+				}
+
+				return cookies;
+			}
+		}
+
+		private WebHeaderCollection DefaultHeaders
+		{
+			get
+			{
+				WebHeaderCollection headers = new WebHeaderCollection();
+
+				if (ConfigurationManager.AppSettings["defaultheaders"] != null)
+				{
+					string[] headerPairs = ConfigurationManager.AppSettings["defaultheaders"].Split(new char[] { '&' });
+
+					foreach (string pair in headerPairs)
+					{
+						string[] keyValue = pair.Split(new char[] { '=' });
+
+						if (keyValue.Length == 2)
+						{
+							headers.Add(keyValue[0], keyValue[1]);
+						}
+					}
+				}
+
+				return headers;
+			}
+		}
 
 		#endregion
 
@@ -40,7 +97,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 				{
 					if ((bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]) && nextUrl.Target.Contains(ConfigurationManager.AppSettings["website"])) || !bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]))
 					{
-						Agent nextAgent = new Agent(nextUrl);
+						Agent nextAgent = new Agent(nextUrl, DefaultCookies, DefaultHeaders);
 
 						if (!_visitedUrls.Contains(nextAgent.Hash))
 						{

@@ -20,6 +20,8 @@ namespace Nathandelane.Net.Spider
 		private static long __id = 0L;
 
 		private HttpWebRequest _webRequest;
+		private CookieCollection _cookies;
+
 		private TimeSpan _elapsedTime;
 		private string _documentTitle;
 		private List<string> _urls;
@@ -79,13 +81,17 @@ namespace Nathandelane.Net.Spider
 
 		#region Constructors
 
-		public Agent(SpiderUrl _target)
+		public Agent(SpiderUrl target, CookieCollection cookies, WebHeaderCollection headers)
 		{
-			_webRequest = null;
 			_elapsedTime = new TimeSpan();
 			_documentTitle = String.Empty;
 			_urls = new List<string>();
-			_url = _target;
+			_url = target;
+
+			_webRequest = WebRequest.Create(_url.Target) as HttpWebRequest;
+			_webRequest.CookieContainer = new CookieContainer();
+			_webRequest.CookieContainer.Add(cookies);
+			_webRequest.Headers = headers;
 
 			SetupWebRequest();
 		}
@@ -146,7 +152,6 @@ namespace Nathandelane.Net.Spider
 
 		private void SetupWebRequest()
 		{
-			_webRequest = WebRequest.Create(_url.Target) as HttpWebRequest;
 			_webRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
 			_webRequest.AllowAutoRedirect = bool.Parse(ConfigurationManager.AppSettings["allowAutoRedirects"]);
 			_webRequest.AllowWriteStreamBuffering = true;
