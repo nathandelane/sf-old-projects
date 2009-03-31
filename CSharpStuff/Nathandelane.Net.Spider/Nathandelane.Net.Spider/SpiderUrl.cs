@@ -76,7 +76,7 @@ namespace Nathandelane.Net.Spider
 
 		private void SanitizeTarget()
 		{
-			_target.Replace("&amp;", "&");
+			_target = _target.Replace("&amp;", "&");
 
 			if (!_target.StartsWith("http://") && !_target.StartsWith("https://"))
 			{
