@@ -30,7 +30,18 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			while (_urls.Count > 0)
 			{
 				Agent nextAgent = new Agent(_urls.Dequeue());
+				nextAgent.Run();
+				/*
 				ThreadStart threadStart = new ThreadStart(nextAgent.Run);
+				Thread thread = new Thread(threadStart);
+				thread.Start();*/
+
+				foreach(string nextUrl in nextAgent.Urls)
+				{
+					SpiderUrl spiderUrl = new SpiderUrl(nextUrl, nextAgent.Referrer.AbsolutePath);
+
+					_urls.Enqueue(spiderUrl);
+				}
 			}
 		}
 

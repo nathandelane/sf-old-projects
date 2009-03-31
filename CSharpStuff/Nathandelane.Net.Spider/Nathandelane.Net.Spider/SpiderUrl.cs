@@ -11,6 +11,7 @@ namespace Nathandelane.Net.Spider
 
 		private string _target;
 		private string _referrer;
+		private bool _isImage;
 
 		#endregion
 
@@ -26,6 +27,11 @@ namespace Nathandelane.Net.Spider
 			get { return _referrer; }
 		}
 
+		public bool IsImage
+		{
+			get { return _isImage; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -34,6 +40,15 @@ namespace Nathandelane.Net.Spider
 		{
 			_target = target;
 			_referrer = referrer;
+
+			if (target.EndsWith("gif") || target.EndsWith("jpg") || target.EndsWith("jpeg") || target.EndsWith("bmp") || target.EndsWith("png"))
+			{
+				_isImage = true;
+			}
+			else
+			{
+				_isImage = false;
+			}
 		}
 
 		#endregion

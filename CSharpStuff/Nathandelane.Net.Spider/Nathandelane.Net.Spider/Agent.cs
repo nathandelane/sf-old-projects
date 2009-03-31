@@ -21,7 +21,7 @@ namespace Nathandelane.Net.Spider
 		private TimeSpan _elapsedTime;
 		private string _documentTitle;
 		private List<string> _urls;
-		private Uri _referrer;
+		private SpiderUrl _url;
 
 		#endregion
 
@@ -34,7 +34,7 @@ namespace Nathandelane.Net.Spider
 
 		public Uri Referrer
 		{
-			get { return _referrer; }
+			get { return new Uri(_url.Referrer); }
 		}
 
 		public string UserAgent
@@ -67,9 +67,9 @@ namespace Nathandelane.Net.Spider
 			_elapsedTime = new TimeSpan();
 			_documentTitle = String.Empty;
 			_urls = new List<string>();
-			_referrer = new Uri(address.Target, UriKind.Absolute);
+			_url = address;
 
-			SetupWebRequest(address);
+			SetupWebRequest();
 		}
 
 		#endregion
@@ -101,9 +101,12 @@ namespace Nathandelane.Net.Spider
 				}
 			}
 
-			_documentTitle = (from el in xDocument.Root.Descendants()
-							 where el.Name.LocalName.Equals("title")
-							 select el).FirstOrDefault<XElement>().Value;
+			if (!_url.IsImage)
+			{
+				_documentTitle = (from el in xDocument.Root.Descendants()
+								  where el.Name.LocalName.Equals("title")
+								  select el).FirstOrDefault<XElement>().Value;
+			}
 
 			GatherUrls(xDocument);
 		}
@@ -112,9 +115,9 @@ namespace Nathandelane.Net.Spider
 
 		#region Private Methods
 
-		private void SetupWebRequest(SpiderUrl uri)
+		private void SetupWebRequest()
 		{
-			_webRequest = WebRequest.Create(uri.Target) as HttpWebRequest;
+			_webRequest = WebRequest.Create(_url.Target) as HttpWebRequest;
 			_webRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
 			_webRequest.AllowAutoRedirect = bool.Parse(ConfigurationManager.AppSettings["allowAutoRedirects"]);
 			_webRequest.AllowWriteStreamBuffering = true;
@@ -125,7 +128,7 @@ namespace Nathandelane.Net.Spider
 			_webRequest.ImpersonationLevel = TokenImpersonationLevel.Impersonation;
 			_webRequest.KeepAlive = true;
 			_webRequest.Method = "GET";
-			_webRequest.Referer = uri.Referrer;
+			_webRequest.Referer = _url.Referrer;
 			_webRequest.Timeout = 30000;
 			_webRequest.UseDefaultCredentials = true;
 			_webRequest.UserAgent = UserAgent;
