@@ -73,50 +73,50 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			{
 				SpiderUrl nextUrl = _urls.Dequeue();
 
-				if (!nextUrl.IsJavascript && !nextUrl.IsMailto)
+				if ((bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]) && nextUrl.Target.Contains(ConfigurationManager.AppSettings["website"])) || !bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]))
 				{
-					if ((bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]) && nextUrl.Target.Contains(ConfigurationManager.AppSettings["website"])) || !bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]))
+					Agent nextAgent = new Agent(nextUrl, DefaultCookies);
+
+					if (!_visitedUrls.Contains(nextAgent.Hash))
 					{
-						Agent nextAgent = new Agent(nextUrl, DefaultCookies);
+						nextAgent.Run();
+						/*
+						ThreadStart threadStart = new ThreadStart(nextAgent.Run);
+						Thread thread = new Thread(threadStart);
+						thread.Start();*/
 
-						if (!_visitedUrls.Contains(nextAgent.Hash))
-						{
-							nextAgent.Run();
-							/*
-							ThreadStart threadStart = new ThreadStart(nextAgent.Run);
-							Thread thread = new Thread(threadStart);
-							thread.Start();*/
+						AddUrls(nextAgent.Urls.ToArray(), nextAgent.Referrer.AbsoluteUri);
 
-							AddUrls(nextAgent.Urls.ToArray(), nextAgent.Referrer.AbsoluteUri);
+						_visitedUrls.Add(nextAgent.Hash);
 
-							_visitedUrls.Add(nextAgent.Hash);
+						Logger.LogMessage(nextAgent.ToString(), LoggingType.Both);
 
-							Logger.LogMessage(nextAgent.ToString(), LoggingType.Both);
-
-							_cookies = nextAgent.Cookies;
-						}
-						else
-						{
-							nextAgent = null;
-						}
+						_cookies = nextAgent.Cookies;
 					}
 					else
 					{
-						nextUrl = null;
+						nextAgent = null;
 					}
 				}
-
-				Thread.Sleep(250);
+				else
+				{
+					nextUrl = null;
+				}
 			}
+
+			Thread.Sleep(250);
 		}
 
 		private void AddUrls(string[] urls, string referrer)
 		{
-			foreach (string next_target in urls)
+			foreach (string nextTarget in urls)
 			{
-				SpiderUrl spiderUrl = new SpiderUrl(next_target, referrer);
+				SpiderUrl spiderUrl = new SpiderUrl(nextTarget, referrer);
 
-				_urls.Enqueue(spiderUrl);
+				if (!spiderUrl.IsJavascript && !spiderUrl.IsMailto && !spiderUrl.Target.Contains("#"))
+				{
+					_urls.Enqueue(spiderUrl);
+				}
 			}
 		}
 
