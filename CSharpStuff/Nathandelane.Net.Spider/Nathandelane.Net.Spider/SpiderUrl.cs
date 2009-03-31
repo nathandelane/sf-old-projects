@@ -52,5 +52,14 @@ namespace Nathandelane.Net.Spider
 		}
 
 		#endregion
+
+		#region Override Methods
+
+		public override string ToString()
+		{
+			return String.Format("Target={0};Referrer={1};IsImage={2}", Target, Referrer, IsImage);
+		}
+
+		#endregion
 	}
 }

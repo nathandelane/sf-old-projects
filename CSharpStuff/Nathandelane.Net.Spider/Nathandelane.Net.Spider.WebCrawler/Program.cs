@@ -20,7 +20,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 		private Program()
 		{
-			string startingUrl = ConfigurationManager.AppSettings["startingUrl"];
+			string startingUrl = String.Concat(ConfigurationManager.AppSettings["startingUrl"], ConfigurationManager.AppSettings["path"]);
 
 			_urls = new UrlCollection();
 			_urls.Enqueue(new SpiderUrl(startingUrl, startingUrl));
@@ -32,28 +32,85 @@ namespace Nathandelane.Net.Spider.WebCrawler
 		{
 			while (_urls.Count > 0)
 			{
-				Agent nextAgent = new Agent(_urls.Dequeue());
+				SpiderUrl nextUrl = _urls.Dequeue();
 
-				if (!_visitedUrls.Contains(nextAgent.Hash))
+				if ((bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]) && nextUrl.Target.Contains(ConfigurationManager.AppSettings["website"])) || !bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]))
 				{
-					nextAgent.Run();
-					/*
-					ThreadStart threadStart = new ThreadStart(nextAgent.Run);
-					Thread thread = new Thread(threadStart);
-					thread.Start();*/
+					Agent nextAgent = new Agent(nextUrl);
 
-					foreach (string nextUrl in nextAgent.Urls)
+					if (!_visitedUrls.Contains(nextAgent.Hash))
 					{
-						SpiderUrl spiderUrl = new SpiderUrl(nextUrl, nextAgent.Referrer.AbsolutePath);
+						nextAgent.Run();
+						/*
+						ThreadStart threadStart = new ThreadStart(nextAgent.Run);
+						Thread thread = new Thread(threadStart);
+						thread.Start();*/
 
-						_urls.Enqueue(spiderUrl);
+						AddUrls(nextAgent.Urls.ToArray(), nextAgent.Referrer.AbsoluteUri);
+
+						_visitedUrls.Add(nextAgent.Hash);
+					}
+					else
+					{
+						nextAgent = null;
 					}
 				}
 				else
 				{
-					nextAgent = null;
+					nextUrl = null;
 				}
 			}
+		}
+
+		private void AddUrls(string[] urls, string referrer)
+		{
+			foreach (string nextAddress in urls)
+			{
+				SpiderUrl spiderUrl = SanitizeAddress(nextAddress, referrer);
+
+				_urls.Enqueue(spiderUrl);
+			}
+		}
+
+		private SpiderUrl SanitizeAddress(string address, string referrer)
+		{
+			SpiderUrl spiderUrl = null;
+
+			if (address.StartsWith("http://") || address.StartsWith("https://"))
+			{
+				spiderUrl = new SpiderUrl(address, referrer);
+			}
+			else
+			{
+				if (address.StartsWith("/"))
+				{
+					address = String.Concat(ConfigurationManager.AppSettings["startingUrl"], address);
+					spiderUrl = new SpiderUrl(address, referrer);
+				}
+				else if (address.StartsWith("../"))
+				{
+					string relativeLocation = referrer.Substring(0, (referrer.LastIndexOf('/')));
+					string actualLocation = relativeLocation;
+
+					while (address.StartsWith("../"))
+					{
+						actualLocation = actualLocation.Substring(0, (referrer.LastIndexOf('/')));
+						address = address.Substring("../".Length);
+					}
+
+					address = String.Concat(actualLocation, "/", address);
+					spiderUrl = new SpiderUrl(address, referrer);
+				}
+				else
+				{
+					string relativeLocation = referrer.Substring(0, (referrer.LastIndexOf('/') + 1));
+
+					address = String.Concat(relativeLocation, address);
+					spiderUrl = new SpiderUrl(address, referrer);
+				}
+			}
+
+			return spiderUrl;
 		}
 
 		#endregion

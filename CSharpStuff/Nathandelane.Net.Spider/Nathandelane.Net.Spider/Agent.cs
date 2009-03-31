@@ -17,11 +17,14 @@ namespace Nathandelane.Net.Spider
 	{
 		#region Fields
 
+		private static long __id = 0L;
+
 		private HttpWebRequest _webRequest;
 		private TimeSpan _elapsedTime;
 		private string _documentTitle;
 		private List<string> _urls;
 		private SpiderUrl _url;
+		private string _message;
 
 		#endregion
 
@@ -78,6 +81,8 @@ namespace Nathandelane.Net.Spider
 
 		public Agent(SpiderUrl address)
 		{
+			__id++;
+
 			_webRequest = null;
 			_elapsedTime = new TimeSpan();
 			_documentTitle = String.Empty;
@@ -95,35 +100,44 @@ namespace Nathandelane.Net.Spider
 		{
 			long startingTicks = Ticks;
 
-			HttpWebResponse response = _webRequest.GetResponse() as HttpWebResponse;
-
-			long mark = Ticks;
-
-			_elapsedTime = new TimeSpan(mark - startingTicks);
-
-			XDocument xDocument = new XDocument();
-			using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+			try
 			{
-				HtmlAgilityPack.HtmlDocument document = new HtmlAgilityPack.HtmlDocument();
-				document.LoadHtml(reader.ReadToEnd());
-				document.OptionOutputAsXml = true;
+				HttpWebResponse response = _webRequest.GetResponse() as HttpWebResponse;
 
-				using (StringWriter sw = new StringWriter())
+				long mark = Ticks;
+
+				_elapsedTime = new TimeSpan(mark - startingTicks);
+
+				XDocument xDocument = new XDocument();
+				using (StreamReader reader = new StreamReader(response.GetResponseStream()))
 				{
-					document.Save(sw);
+					HtmlAgilityPack.HtmlDocument document = new HtmlAgilityPack.HtmlDocument();
+					document.LoadHtml(reader.ReadToEnd());
+					document.OptionOutputAsXml = true;
 
-					xDocument = XDocument.Parse(sw.GetStringBuilder().ToString());
+					using (StringWriter sw = new StringWriter())
+					{
+						document.Save(sw);
+
+						xDocument = XDocument.Parse(sw.GetStringBuilder().ToString());
+					}
 				}
-			}
 
-			if (!_url.IsImage)
+				if (!_url.IsImage)
+				{
+					_documentTitle = (from el in xDocument.Root.Descendants()
+									  where el.Name.LocalName.Equals("title")
+									  select el).FirstOrDefault<XElement>().Value.Trim();
+				}
+
+				GatherUrls(xDocument);
+
+				_message = "HTTP 200 OK";
+			}
+			catch (Exception ex)
 			{
-				_documentTitle = (from el in xDocument.Root.Descendants()
-								  where el.Name.LocalName.Equals("title")
-								  select el).FirstOrDefault<XElement>().Value;
+				_message = ex.Message;
 			}
-
-			GatherUrls(xDocument);
 		}
 
 		#endregion
@@ -138,7 +152,6 @@ namespace Nathandelane.Net.Spider
 			_webRequest.AllowWriteStreamBuffering = true;
 			_webRequest.AuthenticationLevel = AuthenticationLevel.None;
 			_webRequest.AutomaticDecompression = DecompressionMethods.GZip;
-			_webRequest.Connection = "keep-alive";
 			_webRequest.CookieContainer = new CookieContainer();
 			_webRequest.ImpersonationLevel = TokenImpersonationLevel.Impersonation;
 			_webRequest.KeepAlive = true;
@@ -176,6 +189,16 @@ namespace Nathandelane.Net.Spider
 
 				_urls.AddRange(images);
 			}
+		}
+
+		#endregion
+
+		#region Override Methods
+
+		public override string ToString()
+		{
+			// Id, Message, Target, Referrer, Title, Time
+			return String.Format("{0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5}", __id, _message, _url.Target, _url.Referrer, _documentTitle, _elapsedTime);
 		}
 
 		#endregion
