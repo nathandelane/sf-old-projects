@@ -36,6 +36,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 						if (keyValue.Length == 2)
 						{
 							Cookie cookie = new Cookie(keyValue[0], keyValue[1]);
+							cookie.Domain = ConfigurationManager.AppSettings["cookieDomain"];
 
 							cookies.Add(cookie);
 						}
