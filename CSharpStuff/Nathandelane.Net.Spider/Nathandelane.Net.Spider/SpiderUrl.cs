@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 
@@ -64,6 +65,41 @@ namespace Nathandelane.Net.Spider
 			else
 			{
 				_isImage = false;
+			}
+
+			Sanitize_target();
+		}
+
+		#endregion
+
+		#region Private Members
+
+		private void Sanitize_target()
+		{
+			if (!_target.StartsWith("http://") && !_target.StartsWith("https://"))
+			{
+				if (_target.StartsWith("/"))
+				{
+					_target = String.Concat(ConfigurationManager.AppSettings["startingUrl"], _target);
+				}
+				else if (_target.StartsWith("../"))
+				{
+					string relativeLocation = _referrer.Substring(0, (_referrer.LastIndexOf('/')));
+
+					while (_target.StartsWith("../"))
+					{
+						relativeLocation = relativeLocation.Substring(0, (relativeLocation.LastIndexOf('/')));
+						_target = _target.Substring("../".Length);
+					}
+
+					_target = String.Concat(relativeLocation, "/", _target);
+				}
+				else
+				{
+					string relativeLocation = _referrer.Substring(0, (_referrer.LastIndexOf('/') + 1));
+
+					_target = String.Concat(relativeLocation, _target);
+				}
 			}
 		}
 

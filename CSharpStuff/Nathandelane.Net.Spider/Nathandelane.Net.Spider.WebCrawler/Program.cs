@@ -71,53 +71,12 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 		private void AddUrls(string[] urls, string referrer)
 		{
-			foreach (string nextAddress in urls)
+			foreach (string next_target in urls)
 			{
-				SpiderUrl spiderUrl = SanitizeAddress(nextAddress, referrer);
+				SpiderUrl spiderUrl = new SpiderUrl(next_target, referrer);
 
 				_urls.Enqueue(spiderUrl);
 			}
-		}
-
-		private SpiderUrl SanitizeAddress(string address, string referrer)
-		{
-			SpiderUrl spiderUrl = null;
-
-			if (address.StartsWith("http://") || address.StartsWith("https://"))
-			{
-				spiderUrl = new SpiderUrl(address, referrer);
-			}
-			else
-			{
-				if (address.StartsWith("/"))
-				{
-					address = String.Concat(ConfigurationManager.AppSettings["startingUrl"], address);
-					spiderUrl = new SpiderUrl(address, referrer);
-				}
-				else if (address.StartsWith("../"))
-				{
-					string relativeLocation = referrer.Substring(0, (referrer.LastIndexOf('/')));
-					string actualLocation = relativeLocation;
-
-					while (address.StartsWith("../"))
-					{
-						actualLocation = actualLocation.Substring(0, (referrer.LastIndexOf('/')));
-						address = address.Substring("../".Length);
-					}
-
-					address = String.Concat(actualLocation, "/", address);
-					spiderUrl = new SpiderUrl(address, referrer);
-				}
-				else
-				{
-					string relativeLocation = referrer.Substring(0, (referrer.LastIndexOf('/') + 1));
-
-					address = String.Concat(relativeLocation, address);
-					spiderUrl = new SpiderUrl(address, referrer);
-				}
-			}
-
-			return spiderUrl;
 		}
 
 		#endregion

@@ -79,13 +79,13 @@ namespace Nathandelane.Net.Spider
 
 		#region Constructors
 
-		public Agent(SpiderUrl address)
+		public Agent(SpiderUrl _target)
 		{
 			_webRequest = null;
 			_elapsedTime = new TimeSpan();
 			_documentTitle = String.Empty;
 			_urls = new List<string>();
-			_url = address;
+			_url = _target;
 
 			SetupWebRequest();
 		}
