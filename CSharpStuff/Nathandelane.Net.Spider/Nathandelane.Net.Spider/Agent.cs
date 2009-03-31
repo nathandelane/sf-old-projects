@@ -81,8 +81,6 @@ namespace Nathandelane.Net.Spider
 
 		public Agent(SpiderUrl address)
 		{
-			__id++;
-
 			_webRequest = null;
 			_elapsedTime = new TimeSpan();
 			_documentTitle = String.Empty;
@@ -98,6 +96,8 @@ namespace Nathandelane.Net.Spider
 
 		public void Run()
 		{
+			__id++;
+
 			long startingTicks = Ticks;
 
 			try
