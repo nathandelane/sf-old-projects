@@ -15,7 +15,6 @@ namespace Nathandelane.Net.Spider.WebCrawler
 		private UrlCollection _urls;
 		private List<string> _visitedUrls;
 		private CookieCollection _cookies;
-		private WebHeaderCollection _headers;
 
 		#endregion
 
@@ -52,34 +51,6 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			}
 		}
 
-		private WebHeaderCollection DefaultHeaders
-		{
-			get
-			{
-				if (_headers == null)
-				{
-					_headers = new WebHeaderCollection();
-
-					if (ConfigurationManager.AppSettings["defaultheaders"] != null)
-					{
-						string[] headerPairs = ConfigurationManager.AppSettings["defaultheaders"].Split(new char[] { '&' });
-
-						foreach (string pair in headerPairs)
-						{
-							string[] keyValue = pair.Split(new char[] { '=' });
-
-							if (keyValue.Length == 2)
-							{
-								_headers.Add(keyValue[0], keyValue[1]);
-							}
-						}
-					}
-				}
-
-				return _headers;
-			}
-		}
-
 		#endregion
 
 		#region Constructor
@@ -106,7 +77,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 				{
 					if ((bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]) && nextUrl.Target.Contains(ConfigurationManager.AppSettings["website"])) || !bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]))
 					{
-						Agent nextAgent = new Agent(nextUrl, DefaultCookies, DefaultHeaders);
+						Agent nextAgent = new Agent(nextUrl, DefaultCookies);
 
 						if (!_visitedUrls.Contains(nextAgent.Hash))
 						{
@@ -123,7 +94,6 @@ namespace Nathandelane.Net.Spider.WebCrawler
 							Logger.LogMessage(nextAgent.ToString(), LoggingType.Both);
 
 							_cookies = nextAgent.Cookies;
-							_headers = nextAgent.Headers;
 						}
 						else
 						{

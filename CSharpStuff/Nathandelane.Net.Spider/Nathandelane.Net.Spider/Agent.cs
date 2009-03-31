@@ -21,7 +21,6 @@ namespace Nathandelane.Net.Spider
 
 		private HttpWebRequest _webRequest;
 		private CookieCollection _cookies;
-		private WebHeaderCollection _headers;
 		private TimeSpan _elapsedTime;
 		private string _documentTitle;
 		private List<string> _urls;
@@ -35,11 +34,6 @@ namespace Nathandelane.Net.Spider
 		public CookieCollection Cookies
 		{
 			get { return _cookies; }
-		}
-
-		public WebHeaderCollection Headers
-		{
-			get { return _headers; }
 		}
 
 		public List<string> Urls
@@ -91,7 +85,7 @@ namespace Nathandelane.Net.Spider
 
 		#region Constructors
 
-		public Agent(SpiderUrl target, CookieCollection cookies, WebHeaderCollection headers)
+		public Agent(SpiderUrl target, CookieCollection cookies)
 		{
 			_elapsedTime = new TimeSpan();
 			_documentTitle = String.Empty;
@@ -101,7 +95,6 @@ namespace Nathandelane.Net.Spider
 			_webRequest = WebRequest.Create(_url.Target) as HttpWebRequest;
 			_webRequest.CookieContainer = new CookieContainer();
 			_webRequest.CookieContainer.Add(cookies);
-			_webRequest.Headers = headers;
 
 			SetupWebRequest();
 		}
@@ -149,7 +142,6 @@ namespace Nathandelane.Net.Spider
 				GatherUrls(xDocument);
 
 				_cookies = response.Cookies;
-				_headers = response.Headers;
 				_message = "HTTP 200 OK";
 			}
 			catch (Exception ex)
