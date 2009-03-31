@@ -12,6 +12,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 		#region Fields
 
 		private UrlCollection _urls;
+		private List<string> _visitedUrls;
 
 		#endregion
 
@@ -23,6 +24,8 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 			_urls = new UrlCollection();
 			_urls.Enqueue(new SpiderUrl(startingUrl, startingUrl));
+
+			_visitedUrls = new List<string>();
 		}
 
 		private void Crawl()
@@ -30,17 +33,25 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			while (_urls.Count > 0)
 			{
 				Agent nextAgent = new Agent(_urls.Dequeue());
-				nextAgent.Run();
-				/*
-				ThreadStart threadStart = new ThreadStart(nextAgent.Run);
-				Thread thread = new Thread(threadStart);
-				thread.Start();*/
 
-				foreach(string nextUrl in nextAgent.Urls)
+				if (!_visitedUrls.Contains(nextAgent.Hash))
 				{
-					SpiderUrl spiderUrl = new SpiderUrl(nextUrl, nextAgent.Referrer.AbsolutePath);
+					nextAgent.Run();
+					/*
+					ThreadStart threadStart = new ThreadStart(nextAgent.Run);
+					Thread thread = new Thread(threadStart);
+					thread.Start();*/
 
-					_urls.Enqueue(spiderUrl);
+					foreach (string nextUrl in nextAgent.Urls)
+					{
+						SpiderUrl spiderUrl = new SpiderUrl(nextUrl, nextAgent.Referrer.AbsolutePath);
+
+						_urls.Enqueue(spiderUrl);
+					}
+				}
+				else
+				{
+					nextAgent = null;
 				}
 			}
 		}

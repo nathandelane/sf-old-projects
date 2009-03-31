@@ -37,6 +37,21 @@ namespace Nathandelane.Net.Spider
 			get { return new Uri(_url.Referrer); }
 		}
 
+		public string Hash
+		{
+			get
+			{
+				string hash = String.Empty;
+
+				byte[] buffer = Encoding.ASCII.GetBytes(_url.Target);
+				SHA1CryptoServiceProvider provider = new SHA1CryptoServiceProvider();
+
+				hash = BitConverter.ToString(provider.ComputeHash(buffer)).Replace("-", String.Empty);
+
+				return hash;
+			}
+		}
+
 		public string UserAgent
 		{
 			get
