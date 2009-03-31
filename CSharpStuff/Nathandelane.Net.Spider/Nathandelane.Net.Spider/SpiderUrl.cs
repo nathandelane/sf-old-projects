@@ -82,16 +82,20 @@ namespace Nathandelane.Net.Spider
 				{
 					_target = String.Concat(ConfigurationManager.AppSettings["startingUrl"], _target);
 				}
+				else if (_target.ToLower().StartsWith("../../"))
+				{
+					string relativeLocation = _referrer.Substring(0, (_referrer.LastIndexOf('/')));
+
+					relativeLocation = relativeLocation.Substring(0, (relativeLocation.LastIndexOf('/')));
+					_target = _target.Substring("../../".Length);
+					_target = String.Concat(relativeLocation, "/", _target);
+				}
 				else if (_target.StartsWith("../"))
 				{
 					string relativeLocation = _referrer.Substring(0, (_referrer.LastIndexOf('/')));
 
-					while (_target.StartsWith("../"))
-					{
-						relativeLocation = relativeLocation.Substring(0, (relativeLocation.LastIndexOf('/')));
-						_target = _target.Substring("../".Length);
-					}
-
+					relativeLocation = relativeLocation.Substring(0, (relativeLocation.LastIndexOf('/')));
+					_target = _target.Substring("../".Length);
 					_target = String.Concat(relativeLocation, "/", _target);
 				}
 				else
