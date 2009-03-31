@@ -51,6 +51,21 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			}
 		}
 
+		private int MagicWaitPeriod
+		{
+			get
+			{
+				int magicWaitPeriod = 150;
+
+				if (ConfigurationManager.AppSettings["magicWaitPeriod"] != null)
+				{
+					magicWaitPeriod = int.Parse(ConfigurationManager.AppSettings["magicWaitPeriod"]);
+				}
+
+				return magicWaitPeriod;
+			}
+		}
+
 		#endregion
 
 		#region Constructor
@@ -104,7 +119,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 				}
 			}
 
-			Thread.Sleep(250);
+			Thread.Sleep(MagicWaitPeriod);
 		}
 
 		private void AddUrls(string[] urls, string referrer)
