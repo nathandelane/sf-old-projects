@@ -66,6 +66,8 @@ namespace Nathandelane.Net.Spider.WebCrawler
 						nextUrl = null;
 					}
 				}
+
+				Thread.Sleep(250);
 			}
 		}
 
