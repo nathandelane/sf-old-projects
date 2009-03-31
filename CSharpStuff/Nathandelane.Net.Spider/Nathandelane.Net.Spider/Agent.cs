@@ -37,6 +37,21 @@ namespace Nathandelane.Net.Spider
 			get { return _referrer; }
 		}
 
+		public string UserAgent
+		{
+			get
+			{
+				string retVal = "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.0.8) Gecko/2009032609 Firefox/3.0.8 (.NET CLR 3.5.30729) Vehix Spider";
+
+				if (ConfigurationManager.AppSettings["overrideUserAgent"] != null)
+				{
+					retVal = ConfigurationManager.AppSettings["overrideUserAgent"];
+				}
+
+				return retVal;
+			}
+		}
+
 		private long Ticks
 		{
 			get { return DateTime.Now.Ticks; }
@@ -46,15 +61,15 @@ namespace Nathandelane.Net.Spider
 
 		#region Constructors
 
-		public Agent(string address)
+		public Agent(SpiderUrl address)
 		{
 			_webRequest = null;
 			_elapsedTime = new TimeSpan();
 			_documentTitle = String.Empty;
 			_urls = new List<string>();
-			_referrer = new Uri(address, UriKind.Absolute);
+			_referrer = new Uri(address.Target, UriKind.Absolute);
 
-			SetupWebRequest(_referrer);
+			SetupWebRequest(address);
 		}
 
 		#endregion
@@ -97,9 +112,9 @@ namespace Nathandelane.Net.Spider
 
 		#region Private Methods
 
-		private void SetupWebRequest(Uri uri)
+		private void SetupWebRequest(SpiderUrl uri)
 		{
-			_webRequest = WebRequest.CreateDefault(uri) as HttpWebRequest;
+			_webRequest = WebRequest.Create(uri.Target) as HttpWebRequest;
 			_webRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
 			_webRequest.AllowAutoRedirect = bool.Parse(ConfigurationManager.AppSettings["allowAutoRedirects"]);
 			_webRequest.AllowWriteStreamBuffering = true;
@@ -110,9 +125,10 @@ namespace Nathandelane.Net.Spider
 			_webRequest.ImpersonationLevel = TokenImpersonationLevel.Impersonation;
 			_webRequest.KeepAlive = true;
 			_webRequest.Method = "GET";
+			_webRequest.Referer = uri.Referrer;
 			_webRequest.Timeout = 30000;
 			_webRequest.UseDefaultCredentials = true;
-			_webRequest.UserAgent = "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.0.8) Gecko/2009032609 Firefox/3.0.8 (.NET CLR 3.5.30729)";
+			_webRequest.UserAgent = UserAgent;
 
 			if (bool.Parse(ConfigurationManager.AppSettings["ignoreBadCertificates"]))
 			{
