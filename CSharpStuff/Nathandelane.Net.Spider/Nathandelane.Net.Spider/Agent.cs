@@ -15,10 +15,17 @@ namespace Nathandelane.Net.Spider
 		#region Fields
 
 		private HttpWebRequest _webRequest;
+		private TimeSpan _elapsedTime;
 
 		#endregion
 
 		#region Properties
+
+		private long Ticks
+		{
+			get { return DateTime.Now.Ticks; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -28,6 +35,21 @@ namespace Nathandelane.Net.Spider
 			Uri uri = new Uri(address, UriKind.Absolute);
 
 			SetupWebRequest(uri);
+		}
+
+		#endregion
+
+		#region Public Methods
+
+		public void Run()
+		{
+			long startingTicks = Ticks;
+
+			HttpWebResponse response = _webRequest.GetResponse() as HttpWebResponse;
+
+			long mark = Ticks;
+
+			_elapsedTime = new TimeSpan(mark - startingTicks);
 		}
 
 		#endregion
