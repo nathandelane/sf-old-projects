@@ -23,8 +23,6 @@ namespace Nathandelane.Net.Spider.WebCrawler
 				File.Delete(__logFileName);
 			}
 
-			File.Create(__logFileName);
-
 			LogToFile(header);
 		}
 
