@@ -32,6 +32,22 @@ namespace Nathandelane.Net.Spider
 			get { return _isImage; }
 		}
 
+		public bool IsJavascript
+		{
+			get
+			{
+				return _target.ToLower().Contains("javascript");
+			}
+		}
+
+		public bool IsMailto
+		{
+			get
+			{
+				return _target.ToLower().Contains("mailto");
+			}
+		}
+
 		#endregion
 
 		#region Constructors

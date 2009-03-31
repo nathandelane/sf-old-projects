@@ -36,32 +36,35 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			{
 				SpiderUrl nextUrl = _urls.Dequeue();
 
-				if ((bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]) && nextUrl.Target.Contains(ConfigurationManager.AppSettings["website"])) || !bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]))
+				if (!nextUrl.IsJavascript && !nextUrl.IsMailto)
 				{
-					Agent nextAgent = new Agent(nextUrl);
-
-					if (!_visitedUrls.Contains(nextAgent.Hash))
+					if ((bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]) && nextUrl.Target.Contains(ConfigurationManager.AppSettings["website"])) || !bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]))
 					{
-						nextAgent.Run();
-						/*
-						ThreadStart threadStart = new ThreadStart(nextAgent.Run);
-						Thread thread = new Thread(threadStart);
-						thread.Start();*/
+						Agent nextAgent = new Agent(nextUrl);
 
-						AddUrls(nextAgent.Urls.ToArray(), nextAgent.Referrer.AbsoluteUri);
+						if (!_visitedUrls.Contains(nextAgent.Hash))
+						{
+							nextAgent.Run();
+							/*
+							ThreadStart threadStart = new ThreadStart(nextAgent.Run);
+							Thread thread = new Thread(threadStart);
+							thread.Start();*/
 
-						_visitedUrls.Add(nextAgent.Hash);
+							AddUrls(nextAgent.Urls.ToArray(), nextAgent.Referrer.AbsoluteUri);
 
-						Logger.LogMessage(nextAgent.ToString(), LoggingType.Both);
+							_visitedUrls.Add(nextAgent.Hash);
+
+							Logger.LogMessage(nextAgent.ToString(), LoggingType.Both);
+						}
+						else
+						{
+							nextAgent = null;
+						}
 					}
 					else
 					{
-						nextAgent = null;
+						nextUrl = null;
 					}
-				}
-				else
-				{
-					nextUrl = null;
 				}
 			}
 		}
