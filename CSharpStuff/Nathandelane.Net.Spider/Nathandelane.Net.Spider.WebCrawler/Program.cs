@@ -14,6 +14,8 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 		private UrlCollection _urls;
 		private List<string> _visitedUrls;
+		private CookieCollection _cookies;
+		private WebHeaderCollection _headers;
 
 		#endregion
 
@@ -23,27 +25,30 @@ namespace Nathandelane.Net.Spider.WebCrawler
 		{
 			get
 			{
-				CookieCollection cookies = new CookieCollection();
-
-				if (ConfigurationManager.AppSettings["defaultCookies"] != null)
+				if (_cookies == null)
 				{
-					string[] cookiePairs = ConfigurationManager.AppSettings["defaultCookies"].Split(new char[] { '&' });
+					_cookies = new CookieCollection();
 
-					foreach (string pair in cookiePairs)
+					if (ConfigurationManager.AppSettings["defaultCookies"] != null)
 					{
-						string[] keyValue = pair.Split(new char[] { '=' });
+						string[] cookiePairs = ConfigurationManager.AppSettings["defaultCookies"].Split(new char[] { '&' });
 
-						if (keyValue.Length == 2)
+						foreach (string pair in cookiePairs)
 						{
-							Cookie cookie = new Cookie(keyValue[0], keyValue[1]);
-							cookie.Domain = ConfigurationManager.AppSettings["cookieDomain"];
+							string[] keyValue = pair.Split(new char[] { '=' });
 
-							cookies.Add(cookie);
+							if (keyValue.Length == 2)
+							{
+								Cookie cookie = new Cookie(keyValue[0], keyValue[1]);
+								cookie.Domain = ConfigurationManager.AppSettings["cookieDomain"];
+
+								_cookies.Add(cookie);
+							}
 						}
 					}
 				}
 
-				return cookies;
+				return _cookies;
 			}
 		}
 
@@ -51,24 +56,27 @@ namespace Nathandelane.Net.Spider.WebCrawler
 		{
 			get
 			{
-				WebHeaderCollection headers = new WebHeaderCollection();
-
-				if (ConfigurationManager.AppSettings["defaultheaders"] != null)
+				if (_headers == null)
 				{
-					string[] headerPairs = ConfigurationManager.AppSettings["defaultheaders"].Split(new char[] { '&' });
+					_headers = new WebHeaderCollection();
 
-					foreach (string pair in headerPairs)
+					if (ConfigurationManager.AppSettings["defaultheaders"] != null)
 					{
-						string[] keyValue = pair.Split(new char[] { '=' });
+						string[] headerPairs = ConfigurationManager.AppSettings["defaultheaders"].Split(new char[] { '&' });
 
-						if (keyValue.Length == 2)
+						foreach (string pair in headerPairs)
 						{
-							headers.Add(keyValue[0], keyValue[1]);
+							string[] keyValue = pair.Split(new char[] { '=' });
+
+							if (keyValue.Length == 2)
+							{
+								_headers.Add(keyValue[0], keyValue[1]);
+							}
 						}
 					}
 				}
 
-				return headers;
+				return _headers;
 			}
 		}
 
@@ -113,6 +121,9 @@ namespace Nathandelane.Net.Spider.WebCrawler
 							_visitedUrls.Add(nextAgent.Hash);
 
 							Logger.LogMessage(nextAgent.ToString(), LoggingType.Both);
+
+							_cookies = nextAgent.Cookies;
+							_headers = nextAgent.Headers;
 						}
 						else
 						{

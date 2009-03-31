@@ -21,7 +21,7 @@ namespace Nathandelane.Net.Spider
 
 		private HttpWebRequest _webRequest;
 		private CookieCollection _cookies;
-
+		private WebHeaderCollection _headers;
 		private TimeSpan _elapsedTime;
 		private string _documentTitle;
 		private List<string> _urls;
@@ -31,6 +31,16 @@ namespace Nathandelane.Net.Spider
 		#endregion
 
 		#region Properties
+
+		public CookieCollection Cookies
+		{
+			get { return _cookies; }
+		}
+
+		public WebHeaderCollection Headers
+		{
+			get { return _headers; }
+		}
 
 		public List<string> Urls
 		{
@@ -138,6 +148,8 @@ namespace Nathandelane.Net.Spider
 
 				GatherUrls(xDocument);
 
+				_cookies = response.Cookies;
+				_headers = response.Headers;
 				_message = "HTTP 200 OK";
 			}
 			catch (Exception ex)
