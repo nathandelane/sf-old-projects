@@ -65,7 +65,7 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 						Thread thread = new Thread(threadStart);
 						thread.Start();
 
-						_resourceListBox.Items.Add(name);
+						_resourceListBox.Items.Add(String.Format("({0}) {1}", _urlTextBox.Text.Substring(_urlTextBox.Text.LastIndexOf('/') + 1), name));
 
 						ResetForm(sender, e);
 					}
