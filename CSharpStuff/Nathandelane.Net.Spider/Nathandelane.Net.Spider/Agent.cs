@@ -146,7 +146,6 @@ namespace Nathandelane.Net.Spider
 		private void SetupWebRequest()
 		{
 			_webRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-			_webRequest.AllowAutoRedirect = bool.Parse(ConfigurationManager.AppSettings["allowAutoRedirects"]);
 			_webRequest.AllowWriteStreamBuffering = true;
 			_webRequest.AuthenticationLevel = AuthenticationLevel.None;
 			_webRequest.AutomaticDecompression = DecompressionMethods.GZip;
