@@ -50,7 +50,7 @@ namespace Nathandelane.IO.CopyFiles
 		{
 			bool result = false;
 
-			using (Impersonator impersonator = new Impersonator(ConfigurationManager.AppSettings["userName"], ConfigurationManager.AppSettings["domainName"], ConfigurationManager.AppSettings["password"]))
+			using (Impersonator impersonator = new Impersonator())
 			{
 				foreach (string source in sources)
 				{
@@ -72,7 +72,7 @@ namespace Nathandelane.IO.CopyFiles
 		{
 			bool result = true;
 
-			using (Impersonator impersonator = new Impersonator(ConfigurationManager.AppSettings["userName"], ConfigurationManager.AppSettings["domainName"], ConfigurationManager.AppSettings["password"]))
+			using (Impersonator impersonator = new Impersonator())
 			{
 				foreach (string destination in distinations)
 				{

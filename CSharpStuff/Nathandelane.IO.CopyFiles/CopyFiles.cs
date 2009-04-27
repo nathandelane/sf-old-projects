@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using System.Configuration;
+using System.Linq;
 
 namespace Nathandelane.IO.CopyFiles
 {
@@ -55,10 +52,18 @@ namespace Nathandelane.IO.CopyFiles
 
 			if (sourceFsi != null && destinationFsi != null)
 			{
-				
+				if (sourceFsi is DirectoryInfo)
+				{
+					DirectoryInfo[] directories = ((DirectoryInfo)sourceFsi).GetDirectories();
+					FileInfo[] files = ((DirectoryInfo)sourceFsi).GetFiles();
+				}
 			}
 			else if (destinationFsi == null)
 			{
+				if (TryCreateDestination(destination, DestinationType.File))
+				{
+					destinationFsi = GetFileOrDirectory(destination);
+				}
 			}
 			else if (sourceFsi == null)
 			{
@@ -87,7 +92,7 @@ namespace Nathandelane.IO.CopyFiles
 		{
 			FileSystemInfo fsInfo = null;
 
-			using (Impersonator impersonator = new Impersonator(ConfigurationManager.AppSettings["userName"], ConfigurationManager.AppSettings["domainName"], ConfigurationManager.AppSettings["password"]))
+			using (Impersonator impersonator = new Impersonator())
 			{
 				if (File.Exists(descriptor))
 				{
@@ -102,9 +107,29 @@ namespace Nathandelane.IO.CopyFiles
 			return fsInfo;
 		}
 
-		private static bool TryCreateDestination(string destination)
+		private static bool TryCreateDestination(string destination, DestinationType type)
 		{
-			bool result = false;
+			bool result = true;
+
+			using (Impersonator impersonator = new Impersonator())
+			{
+				try
+				{
+					switch (type)
+					{
+						case DestinationType.File:
+							File.Create(destination);
+							break;
+						case DestinationType.Directory:
+							Directory.CreateDirectory(destination);
+							break;
+					}
+				}
+				catch (Exception)
+				{
+					result = false;
+				}
+			}
 
 			return result;
 		}

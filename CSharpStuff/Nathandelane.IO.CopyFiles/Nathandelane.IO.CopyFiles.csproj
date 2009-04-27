@@ -51,6 +51,7 @@
     <Compile Include="ArchiveMethod.cs" />
     <Compile Include="CopyFiles.cs" />
     <Compile Include="CopyResult.cs" />
+    <Compile Include="DestinationType.cs" />
     <Compile Include="Impersonator.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Program.cs" />

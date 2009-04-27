@@ -5,6 +5,7 @@ using System.Text;
 using System.Security.Principal;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using System.Configuration;
 
 namespace Nathandelane.IO.CopyFiles
 {
@@ -34,12 +35,12 @@ namespace Nathandelane.IO.CopyFiles
 
 		#region Constructors
 
-		public Impersonator(string userName, string domainName, string password)
+		public Impersonator()
 		{
 			_token = IntPtr.Zero;
 			_tokenDuplicate = IntPtr.Zero;
 
-			ImpersonateValidUser(userName, domainName, password);
+			ImpersonateValidUser(ConfigurationManager.AppSettings["userName"], ConfigurationManager.AppSettings["domainName"], ConfigurationManager.AppSettings["password"]);
 		}
 
 		#endregion
