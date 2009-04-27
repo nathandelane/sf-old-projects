@@ -20,6 +20,16 @@ namespace Nathandelane.IO.CopyFiles
 			{
 				if (ArgsAreValid(args))
 				{
+					ArchiveMethod unpackMethod = ArchiveMethod.Null;
+
+					if (args.Length == 3)
+					{
+						unpackMethod = (ArchiveMethod)Enum.Parse(typeof(ArchiveMethod), args[2]);
+					}
+
+					CopyResult result = CopyFiles.Copy(args[0], args[1], unpackMethod);
+
+					Console.WriteLine("{0}", result.ToString());
 				}
 			}
 		}
