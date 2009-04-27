@@ -52,18 +52,27 @@ namespace Nathandelane.IO.CopyFiles
 
 			if (sourceFsi != null && destinationFsi != null)
 			{
-				if (sourceFsi is DirectoryInfo)
-				{
-					DirectoryInfo[] directories = ((DirectoryInfo)sourceFsi).GetDirectories();
-					FileInfo[] files = ((DirectoryInfo)sourceFsi).GetFiles();
-				}
+				result = ProcessCopy(sourceFsi, destinationFsi);
 			}
 			else if (destinationFsi == null)
 			{
-				if (TryCreateDestination(destination, DestinationType.File))
+				DestinationType type = DestinationType.File;
+
+				if (sourceFsi is DirectoryInfo)
 				{
-					destinationFsi = GetFileOrDirectory(destination);
+					type = DestinationType.Directory;
+
+					TryCreateDestination(destination, type);
 				}
+
+				destinationFsi = GetFileOrDirectory(destination);
+
+				if (destinationFsi == null)
+				{
+					destinationFsi = new FileInfo(destination);
+				}
+
+				result = ProcessCopy(sourceFsi, destinationFsi);
 			}
 			else if (sourceFsi == null)
 			{
@@ -76,16 +85,12 @@ namespace Nathandelane.IO.CopyFiles
 
 		private static CopyResult CopyMultiple(string[] sources, string[] destinations)
 		{
-			CopyResult result = CopyResult.Default;
-
-			return result;
+			throw new NotImplementedException("CopyMultiple");
 		}
 
 		private static CopyResult CopyFromMultiple(string[] sources, string destination)
 		{
-			CopyResult result = CopyResult.Default;
-
-			return result;
+			throw new NotImplementedException("CopyFromMultiple");
 		}
 
 		private static FileSystemInfo GetFileOrDirectory(string descriptor)
@@ -128,6 +133,44 @@ namespace Nathandelane.IO.CopyFiles
 				catch (Exception)
 				{
 					result = false;
+				}
+			}
+
+			return result;
+		}
+
+		private static CopyResult ProcessCopy(FileSystemInfo source, FileSystemInfo destination)
+		{
+			CopyResult result = CopyResult.Default;
+
+			if (source is FileInfo && destination is FileInfo)
+			{
+				using (Impersonator impersonator = new Impersonator())
+				{
+					File.Copy(source.FullName, destination.FullName, true);
+
+					if (GetFileOrDirectory(destination.FullName) != null)
+					{
+						result = CopyResult.Success;
+						result.Description = String.Format("{0} was successfully copied", destination);
+					}
+					else
+					{
+						result = CopyResult.Failure;
+						result.Description = String.Format("{0} could not be copied", destination);
+					}
+				}
+			}
+			else if (source is DirectoryInfo && destination is DirectoryInfo)
+			{
+				using (Impersonator impersonator = new Impersonator())
+				{
+					FileInfo[] files = ((DirectoryInfo)source).GetFiles();
+
+					foreach (FileInfo file in files)
+					{
+						File.Copy(file.FullName, String.Format("{0}{1}{2}", destination.FullName, Path.PathSeparator, file.Name));
+					}
 				}
 			}
 

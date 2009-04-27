@@ -70,17 +70,17 @@ namespace Nathandelane.IO.CopyFiles
 
 		private static bool DestinationIsValid(string[] distinations)
 		{
-			bool result = true;
+			bool result = false;
 
 			using (Impersonator impersonator = new Impersonator())
 			{
 				foreach (string destination in distinations)
 				{
-					if (File.Exists(destination))
+					if (!File.Exists(destination) && !Directory.Exists(destination))
 					{
 						result = true;
 					}
-					else if (Directory.Exists(destination))
+					else
 					{
 						result = true;
 					}
