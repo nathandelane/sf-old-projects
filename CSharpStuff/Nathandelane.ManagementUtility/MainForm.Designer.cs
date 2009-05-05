@@ -69,6 +69,7 @@
 			this.fileWatcherToolStripMenuItem.Name = "fileWatcherToolStripMenuItem";
 			this.fileWatcherToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.fileWatcherToolStripMenuItem.Text = "File Watcher...";
+			this.fileWatcherToolStripMenuItem.Click += new System.EventHandler(this.DisplayNewFileWatcherForm);
 			// 
 			// exitToolStripMenuItem
 			// 

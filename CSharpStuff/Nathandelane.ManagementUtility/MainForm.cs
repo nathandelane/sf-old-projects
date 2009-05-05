@@ -34,5 +34,10 @@ namespace Nathandelane.ManagementUtility
 		}
 
 		#endregion
+
+		private void DisplayNewFileWatcherForm(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
