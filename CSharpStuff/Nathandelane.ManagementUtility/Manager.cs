@@ -7,12 +7,6 @@ namespace Nathandelane.ManagementUtility
 {
 	internal abstract class Manager
 	{
-		#region Fields
-
-		private static long __id = 0;
-
-		#endregion
-
 		#region Properties
 
 		public string Name { get; set; }
@@ -24,6 +18,8 @@ namespace Nathandelane.ManagementUtility
 		#region Abstract Methods
 
 		public abstract void Run();
+
+		public abstract void Stop();
 
 		#endregion
 	}

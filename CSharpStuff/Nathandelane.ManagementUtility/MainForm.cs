@@ -11,14 +11,28 @@ namespace Nathandelane.ManagementUtility
 {
 	public partial class MainForm : Form
 	{
+		#region Fields
+
+		private ManagerCollection _managerCollection;
+
+		#endregion
+
+		#region Constructors
+
 		public MainForm()
 		{
 			InitializeComponent();
 		}
 
+		#endregion
+
+		#region Event Handlers
+
 		private void ExitManagementUtility(object sender, EventArgs e)
 		{
 			Environment.Exit(0);
 		}
+
+		#endregion
 	}
 }
