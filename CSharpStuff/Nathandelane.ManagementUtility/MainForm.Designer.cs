@@ -33,6 +33,7 @@
 			this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.fileWatcherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this._managerListBox = new System.Windows.Forms.ListBox();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -42,7 +43,7 @@
             this.managementToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(706, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(684, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -76,13 +77,23 @@
 			this.exitToolStripMenuItem.Text = "Exit";
 			this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitManagementUtility);
 			// 
+			// _managerListBox
+			// 
+			this._managerListBox.FormattingEnabled = true;
+			this._managerListBox.Location = new System.Drawing.Point(12, 27);
+			this._managerListBox.Name = "_managerListBox";
+			this._managerListBox.Size = new System.Drawing.Size(660, 303);
+			this._managerListBox.TabIndex = 1;
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(706, 395);
+			this.ClientSize = new System.Drawing.Size(684, 344);
+			this.Controls.Add(this._managerListBox);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
+			this.MinimumSize = new System.Drawing.Size(700, 380);
 			this.Name = "MainForm";
 			this.Text = "Management Utility";
 			this.menuStrip1.ResumeLayout(false);
@@ -99,6 +110,7 @@
 		private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem fileWatcherToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+		private System.Windows.Forms.ListBox _managerListBox;
 	}
 }
 
