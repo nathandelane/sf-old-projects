@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nathandelane.ManagementUtility
 {
-	internal abstract class Manager
+	public abstract class Manager
 	{
 		#region Properties
 

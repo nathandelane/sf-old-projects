@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nathandelane.ManagementUtility
 {
-	internal class ManagerCollection : Dictionary<string, Manager>
+	public class ManagerCollection : Dictionary<string, Manager>
 	{
 	}
 }

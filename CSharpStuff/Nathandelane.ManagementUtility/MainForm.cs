@@ -14,6 +14,7 @@ namespace Nathandelane.ManagementUtility
 		#region Fields
 
 		private ManagerCollection _managerCollection;
+		private NewFileWatcherForm _newFileWatcherForm;
 
 		#endregion
 
@@ -21,6 +22,9 @@ namespace Nathandelane.ManagementUtility
 
 		public MainForm()
 		{
+			_managerCollection = new ManagerCollection();
+			_newFileWatcherForm = new NewFileWatcherForm(_managerCollection);
+
 			InitializeComponent();
 		}
 
@@ -37,7 +41,7 @@ namespace Nathandelane.ManagementUtility
 
 		private void DisplayNewFileWatcherForm(object sender, EventArgs e)
 		{
-
+			_newFileWatcherForm.ShowDialog(this);
 		}
 	}
 }

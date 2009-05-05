@@ -37,6 +37,7 @@
 			this._browseButton = new System.Windows.Forms.Button();
 			this._okButton = new System.Windows.Forms.Button();
 			this._cancelButton = new System.Windows.Forms.Button();
+			this._openFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -103,6 +104,7 @@
 			this._browseButton.TabIndex = 2;
 			this._browseButton.Text = "Browse...";
 			this._browseButton.UseVisualStyleBackColor = true;
+			this._browseButton.Click += new System.EventHandler(this.BrowseForFileToWatch);
 			// 
 			// _okButton
 			// 
@@ -112,6 +114,7 @@
 			this._okButton.TabIndex = 4;
 			this._okButton.Text = "OK";
 			this._okButton.UseVisualStyleBackColor = true;
+			this._okButton.Click += new System.EventHandler(this.ValidateAndCreateManager);
 			// 
 			// _cancelButton
 			// 
@@ -121,6 +124,11 @@
 			this._cancelButton.TabIndex = 5;
 			this._cancelButton.Text = "Cancel";
 			this._cancelButton.UseVisualStyleBackColor = true;
+			this._cancelButton.Click += new System.EventHandler(this.HideDialog);
+			// 
+			// _openFileDialog
+			// 
+			this._openFileDialog.FileName = "openFileDialog1";
 			// 
 			// NewFileWatcherForm
 			// 
@@ -141,6 +149,7 @@
 			this.MinimumSize = new System.Drawing.Size(323, 175);
 			this.Name = "NewFileWatcherForm";
 			this.Text = "New File Watcher";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CloseNewFileWatcherDialog);
 			this.groupBox1.ResumeLayout(false);
 			this.groupBox1.PerformLayout();
 			this.ResumeLayout(false);
@@ -159,5 +168,6 @@
 		private System.Windows.Forms.Button _browseButton;
 		private System.Windows.Forms.Button _okButton;
 		private System.Windows.Forms.Button _cancelButton;
+		private System.Windows.Forms.OpenFileDialog _openFileDialog;
 	}
 }

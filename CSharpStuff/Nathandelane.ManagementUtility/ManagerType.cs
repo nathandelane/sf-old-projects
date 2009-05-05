@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nathandelane.ManagementUtility
 {
-	internal enum ManagerType
+	public enum ManagerType
 	{
 		File,
 		Directory,
