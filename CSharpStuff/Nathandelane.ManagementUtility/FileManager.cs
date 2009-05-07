@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Timers;
+using System.Windows.Forms;
 
 namespace Nathandelane.ManagementUtility
 {
@@ -17,7 +18,7 @@ namespace Nathandelane.ManagementUtility
 		private long _fileSize;
 		private DateTime _modifiedDate;
 		private bool _wasModified;
-		private Timer _timer;
+		private System.Timers.Timer _timer;
 
 		#endregion
 
@@ -79,7 +80,7 @@ namespace Nathandelane.ManagementUtility
 
 		public override void Run()
 		{
-			_timer = new Timer(MonitorInterval.Milliseconds);
+			_timer = new System.Timers.Timer(MonitorInterval.TotalMilliseconds);
 			_timer.Elapsed += new ElapsedEventHandler(CheckState);
 			_timer.Start();
 		}
@@ -87,6 +88,11 @@ namespace Nathandelane.ManagementUtility
 		public override void Stop()
 		{
 			_timer.Stop();
+		}
+
+		public override string ToString()
+		{
+			return String.Format("{0} [{1}]", this.Name, _file.Name);
 		}
 
 		#endregion
@@ -103,6 +109,8 @@ namespace Nathandelane.ManagementUtility
 				{
 					_wasModified = true;
 					_modifiedDate = currentModifiedDate;
+
+					MessageBox.Show(String.Format("{0} was modified.", this.Name));
 				}
 			}
 		}

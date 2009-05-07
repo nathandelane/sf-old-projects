@@ -11,9 +11,9 @@ namespace Nathandelane.ManagementUtility
 {
 	public partial class NewFileWatcherForm : Form
 	{
-		private ManagerCollection _managerCollection;
+		private ListBox _managerCollection;
 
-		public NewFileWatcherForm(ManagerCollection managerCollection)
+		public NewFileWatcherForm(ListBox managerCollection)
 		{
 			InitializeComponent();
 
@@ -46,7 +46,22 @@ namespace Nathandelane.ManagementUtility
 			{
 				FileManager manager = new FileManager(_nameTextBox.Text, _fileNameTextBox.Text);
 
-				_managerCollection.Add(_nameTextBox.Text, manager);
+				if (_modifiedDateCheckBox.Checked)
+				{
+					manager.CheckModifiedDate = true;
+				}
+
+				manager.MonitorInterval = new TimeSpan(0, 0, _intervalComboBox.SelectedIndex * 5 * 1000);
+
+				int index = _managerCollection.Items.Add(manager);
+
+				((Manager)_managerCollection.Items[index]).Run();
+
+				this.Hide();
+			}
+			else
+			{
+				MessageBox.Show("A new File Watcher must have a name, a file associated with it, and a watch interval.");
 			}
 		}
 
@@ -59,6 +74,10 @@ namespace Nathandelane.ManagementUtility
 				result = false;
 			}
 			else if (String.IsNullOrEmpty(_fileNameTextBox.Text))
+			{
+				result = false;
+			}
+			else if (_intervalComboBox.SelectedIndex == 0)
 			{
 				result = false;
 			}

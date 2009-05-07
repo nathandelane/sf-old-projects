@@ -13,7 +13,6 @@ namespace Nathandelane.ManagementUtility
 	{
 		#region Fields
 
-		private ManagerCollection _managerCollection;
 		private NewFileWatcherForm _newFileWatcherForm;
 
 		#endregion
@@ -22,10 +21,9 @@ namespace Nathandelane.ManagementUtility
 
 		public MainForm()
 		{
-			_managerCollection = new ManagerCollection();
-			_newFileWatcherForm = new NewFileWatcherForm(_managerCollection);
-
 			InitializeComponent();
+
+			_newFileWatcherForm = new NewFileWatcherForm(_managerListBox);
 		}
 
 		#endregion
@@ -42,6 +40,25 @@ namespace Nathandelane.ManagementUtility
 		private void DisplayNewFileWatcherForm(object sender, EventArgs e)
 		{
 			_newFileWatcherForm.ShowDialog(this);
+		}
+
+		private void RemoveManager(object sender, EventArgs e)
+		{
+			int index = _managerListBox.SelectedIndex;
+
+			_managerListBox.Items.RemoveAt(index);
+		}
+
+		private void ValidateItem(object sender, EventArgs e)
+		{
+			if (_managerListBox.SelectedItem is Manager)
+			{
+				_removeButton.Enabled = true;
+			}
+			else
+			{
+				_removeButton.Enabled = false;
+			}
 		}
 	}
 }
