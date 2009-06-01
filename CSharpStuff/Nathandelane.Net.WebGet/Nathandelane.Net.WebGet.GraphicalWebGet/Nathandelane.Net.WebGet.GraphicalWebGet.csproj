@@ -81,6 +81,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nathandelane.Net.WebGet\Nathandelane.Net.WebGet.csproj">
+      <Project>{D496EED1-0F1F-41C8-A10F-B576BFCD3312}</Project>
+      <Name>Nathandelane.Net.WebGet</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
