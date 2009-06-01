@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.WebGet.Con
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.WebGet.GraphicalWebGet", "Nathandelane.Net.WebGet.GraphicalWebGet\Nathandelane.Net.WebGet.GraphicalWebGet.csproj", "{AD92E255-9A6E-47E9-9651-3160909D3AED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.WebGet", "Nathandelane.Net.WebGet\Nathandelane.Net.WebGet.csproj", "{C1ABC48A-A5FA-40A6-8BC8-EDAE0E44C1C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.WebGet", "Nathandelane.Net.WebGet\Nathandelane.Net.WebGet.csproj", "{D496EED1-0F1F-41C8-A10F-B576BFCD3312}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +21,10 @@ Global
 		{AD92E255-9A6E-47E9-9651-3160909D3AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD92E255-9A6E-47E9-9651-3160909D3AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD92E255-9A6E-47E9-9651-3160909D3AED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C1ABC48A-A5FA-40A6-8BC8-EDAE0E44C1C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C1ABC48A-A5FA-40A6-8BC8-EDAE0E44C1C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C1ABC48A-A5FA-40A6-8BC8-EDAE0E44C1C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C1ABC48A-A5FA-40A6-8BC8-EDAE0E44C1C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D496EED1-0F1F-41C8-A10F-B576BFCD3312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D496EED1-0F1F-41C8-A10F-B576BFCD3312}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D496EED1-0F1F-41C8-A10F-B576BFCD3312}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D496EED1-0F1F-41C8-A10F-B576BFCD3312}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
