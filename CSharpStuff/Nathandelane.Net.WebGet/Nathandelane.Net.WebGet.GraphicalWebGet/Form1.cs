@@ -55,19 +55,32 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 				{
 					try
 					{
-						Agent nextAgent = new Agent(_urlTextBox.Text, name);
-						nextAgent.FileName = String.Format("{0}{1}{2}", _outputDirectory, '\\', nextAgent.FileName);
-						nextAgent.Client.DownloadFileCompleted += new AsyncCompletedEventHandler(OnDownloadCompleted);
+                        string fileName = String.Format("{0}{1}{2}", _outputDirectory, '\\', name);
+                        DialogResult result = DialogResult.None;
 
-						_agents.Add(name, nextAgent);
+                        if (File.Exists(fileName))
+                        {
+                            result = MessageBox.Show(this, String.Format("There already exists a file by the name of {0}. Would you like to continue? If you would like to try and continue using this output filename, then please click Yes. Otherwise click on No and rename your output file.", fileName), "Warning! File Already Exists!", MessageBoxButtons.YesNo);
+                        }
 
-						ThreadStart threadStart = new ThreadStart(_agents[name].Run);
-						Thread thread = new Thread(threadStart);
-						thread.Start();
+                        if((File.Exists(fileName) && result == DialogResult.Yes) || !File.Exists(fileName))
+                        {
+                            Agent nextAgent = new Agent(_urlTextBox.Text, name);
+                            nextAgent.FileName = fileName;
+                            nextAgent.Client.DownloadFileCompleted += new AsyncCompletedEventHandler(OnDownloadCompleted);
 
-						_resourceListBox.Items.Add(String.Format("({0}) {1}", _urlTextBox.Text.Substring(_urlTextBox.Text.LastIndexOf('/') + 1), name));
+                            _agents.Add(name, nextAgent);
 
-						ResetForm(sender, e);
+                            ThreadStart threadStart = new ThreadStart(_agents[name].Run);
+                            Thread thread = new Thread(threadStart);
+                            thread.Start();
+
+                            _resourceListBox.Items.Add(String.Format("({0}) {1}", _urlTextBox.Text.Substring(_urlTextBox.Text.LastIndexOf('/') + 1), name));
+                            _resourceListBox.SetSelected(_resourceListBox.Items.Count - 1, true);
+                            _resourceListBox.SetSelected(_resourceListBox.Items.Count - 1, false);
+
+                            ResetForm(sender, e);
+                        }
 					}
 					catch (Exception ex)
 					{
