@@ -171,6 +171,7 @@
             this.Controls.Add(this._resourceListBox);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this._topPanel);
+            this.MinimumSize = new System.Drawing.Size(698, 546);
             this.Name = "Form1";
             this.Text = "Graphical WGet";
             this._topPanel.ResumeLayout(false);
