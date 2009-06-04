@@ -87,7 +87,7 @@ namespace Nathandelane.Net.WebGet
 			{
 				Uri uri = new Uri(Url);
 
-				Client.DownloadFile(uri, FileName);
+				_client.DownloadFile(uri, FileName);
 			}
 			catch (Exception e)
 			{
