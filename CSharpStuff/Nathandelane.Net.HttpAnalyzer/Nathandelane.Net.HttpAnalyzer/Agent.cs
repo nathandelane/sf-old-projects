@@ -160,6 +160,8 @@ namespace Nathandelane.Net.HttpAnalyzer
 				toString = String.Concat(toString, key, "=", Headers[key], "&");
 			}
 
+			toString = toString.Substring(0, toString.Length - 1);
+
 			return toString;
 		}
 
