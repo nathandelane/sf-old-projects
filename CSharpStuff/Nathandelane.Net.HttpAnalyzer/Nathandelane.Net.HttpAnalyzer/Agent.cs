@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using System.Text;
 using HtmlAgilityPack;
-using System.IO;
+using ICSharpCode.SharpZipLib.GZip;
 
 namespace Nathandelane.Net.HttpAnalyzer
 {
@@ -122,11 +123,23 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 			_document = new HtmlDocument();
 
-			using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+			if (response.ContentEncoding.ToLower().Equals("gzip"))
 			{
-				string data = reader.ReadToEnd();
+				using (StreamReader reader = new StreamReader(new GZipInputStream(response.GetResponseStream())))
+				{
+					string data = reader.ReadToEnd();
 
-				_document.LoadHtml(data);
+					_document.LoadHtml(data);
+				}
+			}
+			else
+			{
+				using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+				{
+					string data = reader.ReadToEnd();
+
+					_document.LoadHtml(data);
+				}
 			}
 
 			Cookies = response.Cookies;
