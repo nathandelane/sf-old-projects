@@ -22,14 +22,15 @@ namespace Nathandelane.Net.HttpAnalyzer
 						{
 							agent.Run();
 
-							if (!parsedArguments.Contains("s"))
+							if (!parsedArguments.Contains("suppress"))
 							{
 								Console.WriteLine("Response: {0}", agent);
 							}
 
 							if (parsedArguments.Contains("find"))
 							{
-								string innerHtml = agent.Document.DocumentNode.SelectSingleNode(parsedArguments["find"]).InnerHtml;
+								string value = agent.Document.DocumentNode.SelectSingleNode(parsedArguments["find"]).InnerHtml;
+								Console.WriteLine("Find Results: {0}", value);
 							}
 						}
 					}

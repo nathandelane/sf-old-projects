@@ -103,7 +103,7 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 
 				if (!String.IsNullOrEmpty(nextParameterName))
 				{
-					if (_parameters.ContainsKey(nextParameterName))
+					if (!_parameters.ContainsKey(nextParameterName))
 					{
 						_parameters.Add(nextParameterName, "true");
 					}
