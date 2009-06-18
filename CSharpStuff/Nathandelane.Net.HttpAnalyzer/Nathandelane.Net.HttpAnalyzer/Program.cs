@@ -24,13 +24,28 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 							if (!parsedArguments.Contains("suppress"))
 							{
-								Console.WriteLine("Response: {0}", agent);
+								if (!parsedArguments.Contains("scrub"))
+								{
+									Console.WriteLine("Response: {0}", agent);
+								}
+								else
+								{
+									Console.WriteLine("{0}", agent);
+								}
 							}
 
 							if (parsedArguments.Contains("find"))
 							{
 								string value = agent.Document.DocumentNode.SelectSingleNode(parsedArguments["find"]).InnerHtml;
-								Console.WriteLine("Find Results: {0}", value);
+
+								if (!parsedArguments.Contains("scrub"))
+								{
+									Console.WriteLine("Find Results: {0}", value);
+								}
+								else
+								{
+									Console.WriteLine("{0}", value);
+								}
 							}
 						}
 					}
