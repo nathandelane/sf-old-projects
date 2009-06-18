@@ -22,6 +22,11 @@ namespace Nathandelane.Net.HttpAnalyzer
 						{
 							agent.Run();
 
+							if (!parsedArguments.Contains("s"))
+							{
+								Console.WriteLine("Response: {0}", agent);
+							}
+
 							if (parsedArguments.Contains("find"))
 							{
 								string innerHtml = agent.Document.DocumentNode.SelectSingleNode(parsedArguments["find"]).InnerHtml;
