@@ -111,6 +111,8 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 				_document.LoadHtml(data);
 			}
+
+			Cookies = response.Cookies;
 		}
 
 		public static void DisplayHelp()
