@@ -13,10 +13,28 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 			try
 			{
-				 Uri.TryCreate(parsedArguments["uri"], UriKind.Absolute, out uri);
+				if (parsedArguments.Contains("uri"))
+				{
+					if (Uri.TryCreate(parsedArguments["uri"], UriKind.Absolute, out uri))
+					{
+						using (Agent agent = new Agent(uri))
+						{
+						}
+					}
+				}
+				else
+				{
+					throw new ArgumentNullException("uri");
+				}
+			}
+			catch (ArgumentNullException ex)
+			{
+				Console.WriteLine("The parameter named {0} is required and could not be found on the command line. Please use --{0} -{0} or /{0}", ex.ParamName);
 			}
 			catch (Exception ex)
 			{
+				Console.WriteLine("Exception caught! {0}", ex.Message);
+				Console.WriteLine("{0}", ex.StackTrace);
 			}
 		}
 
@@ -24,7 +42,14 @@ namespace Nathandelane.Net.HttpAnalyzer
 		{
 			Arguments parsedArguments = Arguments.Parse(args);
 
-			new Program(parsedArguments);
+			if (parsedArguments.Contains("help"))
+			{
+				Agent.DisplayHelp();
+			}
+			else
+			{
+				new Program(parsedArguments);
+			}
 		}
 	}
 }
