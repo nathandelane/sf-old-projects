@@ -15,6 +15,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 		private Uri _destination;
 		private HtmlDocument _document;
 		private CookieCollection _cookies;
+		private WebHeaderCollection _headers;
 
 		#endregion
 
@@ -61,7 +62,17 @@ namespace Nathandelane.Net.HttpAnalyzer
 		/// <summary>
 		/// Gets or sets the cookie collection to use in the request. Also gets the response cookies after run.
 		/// </summary>
-		public CookieCollection Cookies { get; set; }
+		public CookieCollection Cookies
+		{
+			get { return _cookies; }
+			set { _cookies = value; }
+		}
+
+		public WebHeaderCollection Headers
+		{
+			get { return _headers; }
+			set { _headers = value; }
+		}
 
 		/// <summary>
 		/// Gets HtmlDocument from response after run.
@@ -91,6 +102,12 @@ namespace Nathandelane.Net.HttpAnalyzer
 			request.KeepAlive = true;
 			request.UserAgent = UserAgentHeader ?? AgentDefaults.UserAgentHeader;
 			request.Timeout = (int)(Timeout ?? AgentDefaults.TimeoutHeader);
+
+			if(Headers != null)
+			{
+				request.Headers = Headers;
+			}
+
 			request.Headers.Add("Accept-Language", AcceptLanguageHeader ?? AgentDefaults.AcceptLanguageHeader);
 			request.Headers.Add("Accept-Encoding", AcceptEncodingHeader ?? AgentDefaults.AcceptEncodingHeader);
 			request.Headers.Add("Accept-Charset", AcceptCharsetHeader ?? AgentDefaults.AcceptCharsetHeader);
@@ -113,6 +130,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 			}
 
 			Cookies = response.Cookies;
+			Headers = response.Headers;
 		}
 
 		public static void DisplayHelp()

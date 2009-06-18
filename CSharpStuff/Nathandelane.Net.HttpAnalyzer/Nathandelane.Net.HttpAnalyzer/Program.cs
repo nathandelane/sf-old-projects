@@ -19,6 +19,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 					{
 						using (Agent agent = new Agent(uri))
 						{
+							agent.Run();
 						}
 					}
 				}

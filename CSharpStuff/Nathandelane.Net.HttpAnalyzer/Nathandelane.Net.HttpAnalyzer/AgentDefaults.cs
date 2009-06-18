@@ -13,7 +13,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 		public static readonly string AcceptLanguageHeader = "en-us,en;q=0.5";
 		public static readonly string AcceptEncodingHeader = "gzip,deflate";
 		public static readonly string AcceptCharsetHeader = "ISO-8859-1,utf-8;q=0.7,*;q=0.7";
-		public static readonly int? TimeoutHeader = 300;
+		public static readonly int? TimeoutHeader = 30000;
 
 		#endregion
 	}
