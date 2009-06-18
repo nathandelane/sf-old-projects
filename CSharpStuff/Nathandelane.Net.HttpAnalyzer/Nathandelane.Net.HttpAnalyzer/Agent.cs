@@ -151,6 +151,18 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 		}
 
+		public override string ToString()
+		{
+			string toString = String.Empty;
+
+			foreach (string key in Headers.AllKeys)
+			{
+				toString = String.Concat(toString, key, "=", Headers[key], "&");
+			}
+
+			return toString;
+		}
+
 		#endregion
 
 		#region IDisposable Members

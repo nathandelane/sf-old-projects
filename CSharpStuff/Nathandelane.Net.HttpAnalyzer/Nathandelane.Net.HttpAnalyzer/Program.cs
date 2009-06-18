@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Nathandelane.Net.HttpAnalyzer.Utility;
+using HtmlAgilityPack;
 
 namespace Nathandelane.Net.HttpAnalyzer
 {
@@ -20,6 +21,11 @@ namespace Nathandelane.Net.HttpAnalyzer
 						using (Agent agent = new Agent(uri))
 						{
 							agent.Run();
+
+							if (parsedArguments.Contains("find"))
+							{
+								string innerHtml = agent.Document.DocumentNode.SelectSingleNode(parsedArguments["find"]).InnerHtml;
+							}
 						}
 					}
 				}
