@@ -15,6 +15,11 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 
 		#region Properties
 
+		/// <summary>
+		/// Gets a parameter by name.
+		/// </summary>
+		/// <param name="parameterName"></param>
+		/// <returns></returns>
 		public string this[string parameterName]
 		{
 			get { return _parameters[parameterName]; }
@@ -33,6 +38,11 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 
 		#region Methods
 
+		/// <summary>
+		/// Parses an argument list passed in as an array of strings.
+		/// </summary>
+		/// <param name="args"></param>
+		/// <returns></returns>
 		public static Arguments Parse(string[] args)
 		{
 			Arguments argumentsObject = new Arguments();
@@ -101,6 +111,16 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 			}
 
 			return argumentsObject;
+		}
+
+		/// <summary>
+		/// Returns whether the collection of arguments contains a specific parameter.
+		/// </summary>
+		/// <param name="parameterName"></param>
+		/// <returns></returns>
+		public bool Contains(string parameterName)
+		{
+			return _parameters.ContainsKey(parameterName);
 		}
 
 		#endregion
