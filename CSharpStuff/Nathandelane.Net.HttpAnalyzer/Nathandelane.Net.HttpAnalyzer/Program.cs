@@ -87,7 +87,11 @@ namespace Nathandelane.Net.HttpAnalyzer
 				Console.Write("{0}> ", Environment.NewLine);
 				userInput = Console.ReadLine();
 
-				if (!userInput.Equals("q"))
+				if (userInput.Equals("help"))
+				{
+					Agent.DisplayHelp();
+				}
+				else if (!userInput.Equals("q"))
 				{
 					string[] args = userInput.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -116,7 +120,13 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 							if (parsedArguments.Contains("find"))
 							{
-								string value = agent.Document.DocumentNode.SelectSingleNode(parsedArguments["find"]).InnerHtml;
+								HtmlNodeCollection nodes = Find(agent.Document, parsedArguments["find"]);
+								string value = String.Empty;
+
+								foreach (HtmlNode node in nodes)
+								{
+									value = String.Concat(value, node.InnerHtml, Environment.NewLine);
+								}
 
 								if (!parsedArguments.Contains("scrub"))
 								{
@@ -135,6 +145,13 @@ namespace Nathandelane.Net.HttpAnalyzer
 					}
 				}
 			}
+		}
+
+		private HtmlNodeCollection Find(HtmlDocument document, string xpath)
+		{
+			HtmlNodeCollection nodes = document.DocumentNode.SelectNodes(xpath);
+
+			return nodes;
 		}
 
 		#region Entry Point

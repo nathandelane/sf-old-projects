@@ -148,7 +148,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 		public static void DisplayHelp()
 		{
-
+			Console.WriteLine("HttpAnalyzer [--uri=<absolulte-url> [--suppress] [--scrub] [--find=<xpath-expression>]]");
 		}
 
 		public override string ToString()
