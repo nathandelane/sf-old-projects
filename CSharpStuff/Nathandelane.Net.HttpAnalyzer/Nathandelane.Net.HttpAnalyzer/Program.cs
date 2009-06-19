@@ -125,7 +125,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 								for (int nodesIndex = 0; nodesIndex < nodes.Count; nodesIndex++)
 								{
-									value = String.Concat(String.Format("{0}: ", nodesIndex), value, nodes[nodesIndex].InnerHtml, Environment.NewLine);
+									value = String.Concat(value, String.Format("{0}: {1}{2}", nodesIndex, nodes[nodesIndex].InnerHtml, Environment.NewLine));
 								}
 
 								if (!parsedArguments.Contains("scrub"))
