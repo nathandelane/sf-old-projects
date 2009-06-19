@@ -15,44 +15,48 @@ namespace Nathandelane.Net.HttpAnalyzer.InteractiveConsole
 
 			while (!userInput.Equals("q"))
 			{
+				Console.Write("{0}> ", Environment.NewLine);
 				userInput = Console.ReadLine();
 
-				string[] args = userInput.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-
-				Arguments parsedArguments = Arguments.Parse(args);
-				Uri uri = null;
-
-				if (parsedArguments.Contains("uri"))
+				if (!userInput.Equals("q"))
 				{
-					Uri.TryCreate(parsedArguments["uri"], UriKind.Absolute, out uri);
+					string[] args = userInput.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
 
-					using (agent = new Agent(uri))
+					Arguments parsedArguments = Arguments.Parse(args);
+					Uri uri = null;
+
+					if (parsedArguments.Contains("uri"))
 					{
-						agent.Run();
+						Uri.TryCreate(parsedArguments["uri"], UriKind.Absolute, out uri);
 
-						if (!parsedArguments.Contains("suppress"))
+						using (agent = new Agent(uri))
 						{
-							if (!parsedArguments.Contains("scrub"))
-							{
-								Console.WriteLine("Response: {0}", agent);
-							}
-							else
-							{
-								Console.WriteLine("{0}", agent);
-							}
-						}
+							agent.Run();
 
-						if (parsedArguments.Contains("find"))
-						{
-							string value = agent.Document.DocumentNode.SelectSingleNode(parsedArguments["find"]).InnerHtml;
-
-							if (!parsedArguments.Contains("scrub"))
+							if (!parsedArguments.Contains("suppress"))
 							{
-								Console.WriteLine("Find Results: {0}", value);
+								if (!parsedArguments.Contains("scrub"))
+								{
+									Console.WriteLine("Response: {0}", agent);
+								}
+								else
+								{
+									Console.WriteLine("{0}", agent);
+								}
 							}
-							else
+
+							if (parsedArguments.Contains("find"))
 							{
-								Console.WriteLine("{0}", value);
+								string value = agent.Document.DocumentNode.SelectSingleNode(parsedArguments["find"]).InnerHtml;
+
+								if (!parsedArguments.Contains("scrub"))
+								{
+									Console.WriteLine("Find Results: {0}", value);
+								}
+								else
+								{
+									Console.WriteLine("{0}", value);
+								}
 							}
 						}
 					}
