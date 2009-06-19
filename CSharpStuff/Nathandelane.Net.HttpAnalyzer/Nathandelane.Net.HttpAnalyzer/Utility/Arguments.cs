@@ -9,7 +9,17 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 	{
 		#region Fields
 
-		private static Dictionary<string, string> _parameters;
+		private static readonly List<string> __allowedArguments = new List<string>()
+		{
+			String.Empty,
+			"find",
+			"help",
+			"suppress",
+			"scrub",
+			"uri"
+		};
+
+		private static Dictionary<string, string> __parameters;
 
 		#endregion
 
@@ -22,7 +32,7 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 		/// <returns></returns>
 		public string this[string parameterName]
 		{
-			get { return _parameters[parameterName]; }
+			get { return __parameters[parameterName]; }
 		}
 
 		#endregion
@@ -31,7 +41,7 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 
 		private Arguments()
 		{
-			_parameters = new Dictionary<string, string>();
+			__parameters = new Dictionary<string, string>();
 		}
 
 		#endregion
@@ -59,11 +69,11 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 				{
 					if (!String.IsNullOrEmpty(nextParameterName))
 					{
-						if (!_parameters.ContainsKey(nextParameterName))
+						if (!__parameters.ContainsKey(nextParameterName))
 						{
 							parameterParts[0] = remover.Replace(parameterParts[0], "$1");
 
-							_parameters.Add(nextParameterName, parameterParts[0]);
+							__parameters.Add(nextParameterName, parameterParts[0]);
 						}
 					}
 				}
@@ -71,31 +81,41 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 				{
 					if (!String.IsNullOrEmpty(nextParameterName))
 					{
-						if (!_parameters.ContainsKey(nextParameterName))
+						if (!__parameters.ContainsKey(nextParameterName))
 						{
-							_parameters.Add(nextParameterName, "true");
+							__parameters.Add(nextParameterName, "true");
 						}
 					}
 
 					nextParameterName = parameterParts[1];
+
+					if (!IsValidArgument(nextParameterName))
+					{
+						Console.WriteLine("Warning! {0} is not recognized as a valid argument", nextParameterName);
+					}
 				}
 				else if (parameterParts.Length == 3)
 				{
 					if (!String.IsNullOrEmpty(nextParameterName))
 					{
-						if (!_parameters.ContainsKey(nextParameterName))
+						if (!__parameters.ContainsKey(nextParameterName))
 						{
-							_parameters.Add(nextParameterName, "true");
+							__parameters.Add(nextParameterName, "true");
 						}
 					}
 
 					nextParameterName = parameterParts[1];
 
-					if (!_parameters.ContainsKey(nextParameterName))
+					if (!IsValidArgument(nextParameterName))
+					{
+						Console.WriteLine("Warning! {0} is not recognized as a valid argument", nextParameterName);
+					}
+
+					if (!__parameters.ContainsKey(nextParameterName))
 					{
 						parameterParts[2] = remover.Replace(parameterParts[2], "$1");
 
-						_parameters.Add(nextParameterName, parameterParts[2]);
+						__parameters.Add(nextParameterName, parameterParts[2]);
 					}
 
 					nextParameterName = String.Empty;
@@ -103,9 +123,9 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 
 				if (!String.IsNullOrEmpty(nextParameterName))
 				{
-					if (!_parameters.ContainsKey(nextParameterName))
+					if (!__parameters.ContainsKey(nextParameterName))
 					{
-						_parameters.Add(nextParameterName, "true");
+						__parameters.Add(nextParameterName, "true");
 					}
 				}
 			}
@@ -116,11 +136,28 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 		/// <summary>
 		/// Returns whether the collection of arguments contains a specific parameter.
 		/// </summary>
-		/// <param name="parameterName"></param>
+		/// <param name="parameterName">Name of the parameter to find</param>
 		/// <returns></returns>
 		public bool Contains(string parameterName)
 		{
-			return _parameters.ContainsKey(parameterName);
+			return __parameters.ContainsKey(parameterName);
+		}
+
+		/// <summary>
+		/// Returns whether the argument is contained in the allowed arguments list.
+		/// </summary>
+		/// <param name="key">Parameter Name</param>
+		/// <returns></returns>
+		private static bool IsValidArgument(string key)
+		{
+			bool result = false;
+
+			if (__allowedArguments.Contains(key))
+			{
+				result = true;
+			}
+
+			return result;
 		}
 
 		#endregion
