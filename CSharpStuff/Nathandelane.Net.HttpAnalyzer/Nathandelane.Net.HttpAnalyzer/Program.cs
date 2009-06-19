@@ -130,7 +130,16 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 								for (int nodesIndex = 0; nodesIndex < nodes.Count; nodesIndex++)
 								{
-									value = String.Concat(value, String.Format("{0}: {1}{2}", nodesIndex, nodes[nodesIndex].InnerHtml, Environment.NewLine));
+									string attributes = "(";
+
+									for (int attributesIndex = 0; attributesIndex < nodes[nodesIndex].Attributes.Count; attributesIndex++)
+									{
+										attributes = String.Concat(attributes, String.Format("{0}={1};", nodes[nodesIndex].Attributes[attributesIndex].Name, nodes[nodesIndex].Attributes[attributesIndex].Value));
+									}
+
+									attributes = String.Format("{0}) ", attributes);
+
+									value = String.Concat(value, String.Format("{0}:{1} {2}{3}", attributes, nodesIndex, nodes[nodesIndex].InnerHtml, Environment.NewLine));
 								}
 
 								if (!parsedArguments.Contains("scrub"))
