@@ -139,7 +139,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 									attributes = String.Format("{0}) ", attributes);
 
-									value = String.Concat(value, String.Format("{0}:{1} {2}{3}", attributes, nodesIndex, nodes[nodesIndex].InnerHtml, Environment.NewLine));
+									value = String.Concat(value, String.Format("{0}:{1} {2}{3}", nodesIndex, attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
 								}
 
 								if (!parsedArguments.Contains("scrub"))
