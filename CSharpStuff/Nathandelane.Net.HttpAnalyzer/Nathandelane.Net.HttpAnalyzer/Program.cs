@@ -8,60 +8,11 @@ namespace Nathandelane.Net.HttpAnalyzer
 {
 	class Program
 	{
+		#region Constructors
+
 		private Program()
 		{
-			Agent agent = null;
-			string userInput = String.Empty;
-
-			while (!userInput.Equals("q"))
-			{
-				Console.Write("{0}> ", Environment.NewLine);
-				userInput = Console.ReadLine();
-
-				if (!userInput.Equals("q"))
-				{
-					string[] args = userInput.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-
-					Arguments parsedArguments = Arguments.Parse(args);
-					Uri uri = null;
-
-					if (parsedArguments.Contains("uri"))
-					{
-						Uri.TryCreate(parsedArguments["uri"], UriKind.Absolute, out uri);
-
-						using (agent = new Agent(uri))
-						{
-							agent.Run();
-
-							if (!parsedArguments.Contains("suppress"))
-							{
-								if (!parsedArguments.Contains("scrub"))
-								{
-									Console.WriteLine("Response: {0}", agent);
-								}
-								else
-								{
-									Console.WriteLine("{0}", agent);
-								}
-							}
-
-							if (parsedArguments.Contains("find"))
-							{
-								string value = agent.Document.DocumentNode.SelectSingleNode(parsedArguments["find"]).InnerHtml;
-
-								if (!parsedArguments.Contains("scrub"))
-								{
-									Console.WriteLine("Find Results: {0}", value);
-								}
-								else
-								{
-									Console.WriteLine("{0}", value);
-								}
-							}
-						}
-					}
-				}
-			}
+			Run();
 		}
 		
 		private Program(Arguments parsedArguments)
@@ -122,6 +73,72 @@ namespace Nathandelane.Net.HttpAnalyzer
 			}
 		}
 
+		#endregion
+
+		#region Methods
+
+		private void Run()
+		{
+			Agent agent = null;
+			string userInput = String.Empty;
+
+			while (!userInput.Equals("q"))
+			{
+				Console.Write("{0}> ", Environment.NewLine);
+				userInput = Console.ReadLine();
+
+				if (!userInput.Equals("q"))
+				{
+					string[] args = userInput.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+
+					Arguments parsedArguments = Arguments.Parse(args);
+					Uri uri = null;
+
+					if (parsedArguments.Contains("uri"))
+					{
+						Uri.TryCreate(parsedArguments["uri"], UriKind.Absolute, out uri);
+
+						using (agent = new Agent(uri))
+						{
+							agent.Run();
+
+							if (!parsedArguments.Contains("suppress"))
+							{
+								if (!parsedArguments.Contains("scrub"))
+								{
+									Console.WriteLine("Response: {0}", agent);
+								}
+								else
+								{
+									Console.WriteLine("{0}", agent);
+								}
+							}
+
+							if (parsedArguments.Contains("find"))
+							{
+								string value = agent.Document.DocumentNode.SelectSingleNode(parsedArguments["find"]).InnerHtml;
+
+								if (!parsedArguments.Contains("scrub"))
+								{
+									Console.WriteLine("Find Results: {0}", value);
+								}
+								else
+								{
+									Console.WriteLine("{0}", value);
+								}
+							}
+						}
+					}
+					else
+					{
+						Console.WriteLine("The parameter named uri is required and could not be found on the command line. Please use --uri -uri or /uri{0}", Environment.NewLine);
+					}
+				}
+			}
+		}
+
+		#region Entry Point
+
 		static void Main(string[] args)
 		{
 			if (args.Length > 0)
@@ -142,5 +159,9 @@ namespace Nathandelane.Net.HttpAnalyzer
 				new Program();
 			}
 		}
+
+		#endregion
+
+		#endregion
 	}
 }
