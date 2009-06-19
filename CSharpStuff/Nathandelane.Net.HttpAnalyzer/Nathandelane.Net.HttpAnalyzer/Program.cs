@@ -81,6 +81,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 		{
 			Agent agent = null;
 			string userInput = String.Empty;
+			ClearConsole clearConsole = new ClearConsole();
 
 			while (!userInput.Equals("q"))
 			{
@@ -90,6 +91,10 @@ namespace Nathandelane.Net.HttpAnalyzer
 				if (userInput.Equals("help") || userInput.Equals("--help") || userInput.Equals("-help") || userInput.Equals("/help"))
 				{
 					Agent.DisplayHelp();
+				}
+				else if (userInput.Equals("clear"))
+				{
+					clearConsole.Clear();
 				}
 				else if (!userInput.Equals("q"))
 				{
