@@ -8,6 +8,62 @@ namespace Nathandelane.Net.HttpAnalyzer
 {
 	class Program
 	{
+		private Program()
+		{
+			Agent agent = null;
+			string userInput = String.Empty;
+
+			while (!userInput.Equals("q"))
+			{
+				Console.Write("{0}> ", Environment.NewLine);
+				userInput = Console.ReadLine();
+
+				if (!userInput.Equals("q"))
+				{
+					string[] args = userInput.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+
+					Arguments parsedArguments = Arguments.Parse(args);
+					Uri uri = null;
+
+					if (parsedArguments.Contains("uri"))
+					{
+						Uri.TryCreate(parsedArguments["uri"], UriKind.Absolute, out uri);
+
+						using (agent = new Agent(uri))
+						{
+							agent.Run();
+
+							if (!parsedArguments.Contains("suppress"))
+							{
+								if (!parsedArguments.Contains("scrub"))
+								{
+									Console.WriteLine("Response: {0}", agent);
+								}
+								else
+								{
+									Console.WriteLine("{0}", agent);
+								}
+							}
+
+							if (parsedArguments.Contains("find"))
+							{
+								string value = agent.Document.DocumentNode.SelectSingleNode(parsedArguments["find"]).InnerHtml;
+
+								if (!parsedArguments.Contains("scrub"))
+								{
+									Console.WriteLine("Find Results: {0}", value);
+								}
+								else
+								{
+									Console.WriteLine("{0}", value);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
 		private Program(Arguments parsedArguments)
 		{
 			Uri uri = null;
@@ -68,15 +124,22 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 		static void Main(string[] args)
 		{
-			Arguments parsedArguments = Arguments.Parse(args);
-
-			if (parsedArguments.Contains("help"))
+			if (args.Length > 0)
 			{
-				Agent.DisplayHelp();
+				Arguments parsedArguments = Arguments.Parse(args);
+
+				if (parsedArguments.Contains("help"))
+				{
+					Agent.DisplayHelp();
+				}
+				else
+				{
+					new Program(parsedArguments);
+				}
 			}
 			else
 			{
-				new Program(parsedArguments);
+				new Program();
 			}
 		}
 	}

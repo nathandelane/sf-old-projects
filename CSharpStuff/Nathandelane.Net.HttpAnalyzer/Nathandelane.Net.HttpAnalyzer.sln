@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.HttpAnalyzer", "Nathandelane.Net.HttpAnalyzer\Nathandelane.Net.HttpAnalyzer.csproj", "{7ED5D38C-3A20-495E-A4EE-2FE30111B274}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.HttpAnalyzer.InteractiveConsole", "Nathandelane.Net.HttpAnalyzer.InteractiveConsole\Nathandelane.Net.HttpAnalyzer.InteractiveConsole.csproj", "{8BFDF1D4-3E6F-4A41-9430-67244CC94B25}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,10 +13,6 @@ Global
 		{7ED5D38C-3A20-495E-A4EE-2FE30111B274}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ED5D38C-3A20-495E-A4EE-2FE30111B274}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ED5D38C-3A20-495E-A4EE-2FE30111B274}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8BFDF1D4-3E6F-4A41-9430-67244CC94B25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8BFDF1D4-3E6F-4A41-9430-67244CC94B25}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8BFDF1D4-3E6F-4A41-9430-67244CC94B25}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8BFDF1D4-3E6F-4A41-9430-67244CC94B25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
