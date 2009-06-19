@@ -87,7 +87,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 				Console.Write("{0}> ", Environment.NewLine);
 				userInput = Console.ReadLine();
 
-				if (userInput.Equals("help"))
+				if (userInput.Equals("help") || userInput.Equals("--help") || userInput.Equals("-help") || userInput.Equals("/help"))
 				{
 					Agent.DisplayHelp();
 				}
@@ -123,9 +123,9 @@ namespace Nathandelane.Net.HttpAnalyzer
 								HtmlNodeCollection nodes = Find(agent.Document, parsedArguments["find"]);
 								string value = String.Empty;
 
-								foreach (HtmlNode node in nodes)
+								for (int nodesIndex = 0; nodesIndex < nodes.Count; nodesIndex++)
 								{
-									value = String.Concat(value, node.InnerHtml, Environment.NewLine);
+									value = String.Concat(String.Format("{0}: ", nodesIndex), value, nodes[nodesIndex].InnerHtml, Environment.NewLine);
 								}
 
 								if (!parsedArguments.Contains("scrub"))
