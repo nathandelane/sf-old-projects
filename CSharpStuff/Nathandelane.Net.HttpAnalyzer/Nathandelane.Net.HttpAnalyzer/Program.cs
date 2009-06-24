@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Nathandelane.Net.HttpAnalyzer.Utility;
 using HtmlAgilityPack;
+using System.IO;
 
 namespace Nathandelane.Net.HttpAnalyzer
 {
@@ -38,43 +39,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 						{
 							agent.Run();
 
-							if (!parsedArguments.Contains("suppress"))
-							{
-								if (!parsedArguments.Contains("scrub"))
-								{
-									Console.WriteLine("Response: {0}", agent);
-								}
-								else
-								{
-									Console.WriteLine("{0}", agent);
-								}
-							}
-
-							if (parsedArguments.Contains("find"))
-							{
-								string value = agent.Document.DocumentNode.SelectSingleNode(parsedArguments["find"]).InnerHtml;
-
-								if (!parsedArguments.Contains("scrub"))
-								{
-									Console.WriteLine("Find Results: {0}", value);
-								}
-								else
-								{
-									Console.WriteLine("{0}", value);
-								}
-							}
-
-							if (parsedArguments.Contains("data"))
-							{
-								if (!parsedArguments.Contains("scrub"))
-								{
-									Console.WriteLine("Data: {0}", agent.Document.ToString());
-								}
-								else
-								{
-									Console.WriteLine("{0}", agent.Document.ToString());
-								}
-							}
+							HandleArguments(parsedArguments, agent);
 						}
 					}
 				}
@@ -128,52 +93,79 @@ namespace Nathandelane.Net.HttpAnalyzer
 						{
 							agent.Run();
 
-							if (!parsedArguments.Contains("suppress"))
-							{
-								if (!parsedArguments.Contains("scrub"))
-								{
-									Console.WriteLine("Response: {0}", agent);
-								}
-								else
-								{
-									Console.WriteLine("{0}", agent);
-								}
-							}
-
-							if (parsedArguments.Contains("find"))
-							{
-								HtmlNodeCollection nodes = Find(agent.Document, parsedArguments["find"]);
-								string value = String.Empty;
-
-								for (int nodesIndex = 0; nodesIndex < nodes.Count; nodesIndex++)
-								{
-									string attributes = "(";
-
-									for (int attributesIndex = 0; attributesIndex < nodes[nodesIndex].Attributes.Count; attributesIndex++)
-									{
-										attributes = String.Concat(attributes, String.Format("{0}={1};", nodes[nodesIndex].Attributes[attributesIndex].Name, nodes[nodesIndex].Attributes[attributesIndex].Value));
-									}
-
-									attributes = String.Format("{0}) ", attributes);
-
-									value = String.Concat(value, String.Format("{0}:{1} {2}{3}", nodesIndex, attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
-								}
-
-								if (!parsedArguments.Contains("scrub"))
-								{
-									Console.WriteLine("Find Results: {0}", value);
-								}
-								else
-								{
-									Console.WriteLine("{0}", value);
-								}
-							}
+							HandleArguments(parsedArguments, agent);
 						}
 					}
 					else
 					{
 						Console.WriteLine("The parameter named uri is required and could not be found on the command line. Please use --uri -uri or /uri{0}", Environment.NewLine);
 					}
+				}
+			}
+		}
+
+		private void HandleArguments(Arguments parsedArguments, Agent agent)
+		{
+			if (!parsedArguments.Contains("suppress"))
+			{
+				if (!parsedArguments.Contains("scrub"))
+				{
+					Console.WriteLine("Response: {0}", agent);
+				}
+				else
+				{
+					Console.WriteLine("{0}", agent);
+				}
+			}
+
+			if (parsedArguments.Contains("find"))
+			{
+				HtmlNodeCollection nodes = Find(agent.Document, parsedArguments["find"]);
+				string value = String.Empty;
+
+				for (int nodesIndex = 0; nodesIndex < nodes.Count; nodesIndex++)
+				{
+					string attributes = "(";
+
+					for (int attributesIndex = 0; attributesIndex < nodes[nodesIndex].Attributes.Count; attributesIndex++)
+					{
+						attributes = String.Concat(attributes, String.Format("{0}={1};", nodes[nodesIndex].Attributes[attributesIndex].Name, nodes[nodesIndex].Attributes[attributesIndex].Value));
+					}
+
+					attributes = String.Format("{0}) ", attributes);
+
+					value = String.Concat(value, String.Format("{0}:{1} {2}{3}", nodesIndex, attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
+				}
+
+				if (!parsedArguments.Contains("scrub"))
+				{
+					Console.WriteLine("Find Results: {0}", value);
+				}
+				else
+				{
+					Console.WriteLine("{0}", value);
+				}
+			}
+
+			if (parsedArguments.Contains("data"))
+			{
+				string data = String.Empty;
+				
+				using(StringWriter writer = new StringWriter())
+				{
+					agent.Document.OptionOutputAsXml = true;
+					agent.Document.Save(writer);
+
+					data = writer.GetStringBuilder().ToString();
+				}
+
+				if (!parsedArguments.Contains("scrub"))
+				{
+					Console.WriteLine("Data: {0}", data);
+				}
+				else
+				{
+					Console.WriteLine("{0}", data);
 				}
 			}
 		}

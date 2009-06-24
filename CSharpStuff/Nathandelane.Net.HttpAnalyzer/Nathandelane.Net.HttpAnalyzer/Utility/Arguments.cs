@@ -12,6 +12,7 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 		private static readonly List<string> __allowedArguments = new List<string>()
 		{
 			String.Empty,
+			"data",
 			"find",
 			"help",
 			"suppress",
