@@ -17,6 +17,15 @@ namespace Nathandelane.Net.HttpAnalyzer
 		
 		private Program(Arguments parsedArguments)
 		{
+			Run(parsedArguments);
+		}
+
+		#endregion
+
+		#region Methods
+
+		private void Run(Arguments parsedArguments)
+		{
 			Uri uri = null;
 
 			try
@@ -54,6 +63,18 @@ namespace Nathandelane.Net.HttpAnalyzer
 									Console.WriteLine("{0}", value);
 								}
 							}
+
+							if (parsedArguments.Contains("data"))
+							{
+								if (!parsedArguments.Contains("scrub"))
+								{
+									Console.WriteLine("Data: {0}", agent.Document.ToString());
+								}
+								else
+								{
+									Console.WriteLine("{0}", agent.Document.ToString());
+								}
+							}
 						}
 					}
 				}
@@ -72,10 +93,6 @@ namespace Nathandelane.Net.HttpAnalyzer
 				Console.WriteLine("{0}", ex.StackTrace);
 			}
 		}
-
-		#endregion
-
-		#region Methods
 
 		private void Run()
 		{
