@@ -134,7 +134,14 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 					attributes = String.Format("{0}) ", attributes);
 
-					value = String.Concat(value, String.Format("{0}:{1} {2}{3}", nodesIndex, attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
+					if (!parsedArguments.Contains("scrub"))
+					{
+						value = String.Concat(value, String.Format("{0}:{1} {2}{3}", nodesIndex, attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
+					}
+					else
+					{
+						value = String.Concat(value, String.Format("{1} {2}{3}", attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
+					}
 				}
 
 				if (!parsedArguments.Contains("scrub"))
