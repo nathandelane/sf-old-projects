@@ -15,6 +15,7 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 			"data",
 			"find",
 			"help",
+			"no-attributes",
 			"suppress",
 			"scrub",
 			"uri"

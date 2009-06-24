@@ -122,25 +122,29 @@ namespace Nathandelane.Net.HttpAnalyzer
 			{
 				HtmlNodeCollection nodes = Find(agent.Document, parsedArguments["find"]);
 				string value = String.Empty;
+				string attributes = String.Empty;
 
 				for (int nodesIndex = 0; nodesIndex < nodes.Count; nodesIndex++)
 				{
-					string attributes = "(";
-
-					for (int attributesIndex = 0; attributesIndex < nodes[nodesIndex].Attributes.Count; attributesIndex++)
+					if (!parsedArguments.Contains("no-attributes"))
 					{
-						attributes = String.Concat(attributes, String.Format("{0}={1};", nodes[nodesIndex].Attributes[attributesIndex].Name, nodes[nodesIndex].Attributes[attributesIndex].Value));
-					}
+						attributes = "(";
 
-					attributes = String.Format("{0}) ", attributes);
+						for (int attributesIndex = 0; attributesIndex < nodes[nodesIndex].Attributes.Count; attributesIndex++)
+						{
+							attributes = String.Concat(attributes, String.Format("{0}={1};", nodes[nodesIndex].Attributes[attributesIndex].Name, nodes[nodesIndex].Attributes[attributesIndex].Value));
+						}
+
+						attributes = String.Format("{0}) ", attributes);
+					}
 
 					if (!parsedArguments.Contains("scrub"))
 					{
-						value = String.Concat(value, String.Format("{0}:{1} {2}{3}", nodesIndex, attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
+						value = String.Concat(value, String.Format("{0}:{1}{2}{3}", nodesIndex, attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
 					}
 					else
 					{
-						value = String.Concat(value, String.Format("{0} {1}{2}", attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
+						value = String.Concat(value, String.Format("{0}{1}{2}", attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
 					}
 				}
 
