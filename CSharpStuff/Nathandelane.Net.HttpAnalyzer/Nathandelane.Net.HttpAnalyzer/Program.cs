@@ -140,7 +140,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 					}
 					else
 					{
-						value = String.Concat(value, String.Format("{1} {2}{3}", attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
+						value = String.Concat(value, String.Format("{0} {1}{2}", attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
 					}
 				}
 
