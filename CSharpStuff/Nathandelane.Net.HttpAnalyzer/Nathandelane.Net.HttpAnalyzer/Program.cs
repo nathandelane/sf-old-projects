@@ -128,14 +128,44 @@ namespace Nathandelane.Net.HttpAnalyzer
 				{
 					if (!parsedArguments.Contains("no-attributes"))
 					{
-						attributes = "(";
-
-						for (int attributesIndex = 0; attributesIndex < nodes[nodesIndex].Attributes.Count; attributesIndex++)
+						if (parsedArguments.Contains("attributes"))
 						{
-							attributes = String.Concat(attributes, String.Format("{0}={1};", nodes[nodesIndex].Attributes[attributesIndex].Name, nodes[nodesIndex].Attributes[attributesIndex].Value));
-						}
+							attributes = "(";
 
-						attributes = String.Format("{0}) ", attributes);
+							string[] attribNames = parsedArguments["attributes"].Split(new char[] { ',' });
+							foreach (string attribName in attribNames)
+							{
+								if (attribName.ToLower().Equals("innerhtml") || attribName.ToLower().Equals("innertext"))
+								{
+									switch (attribName.ToLower())
+									{
+										case "innerhtml":
+											attributes = String.Concat(attributes, String.Format("innerhtml={0};", nodes[nodesIndex].InnerHtml));
+											break;
+										case "innertext":
+											attributes = String.Concat(attributes, String.Format("innertext={1};", nodes[nodesIndex].InnerText));
+											break;
+									}
+								}
+								else
+								{
+									attributes = String.Concat(attributes, String.Format("{0}={1};", nodes[nodesIndex].Attributes[attribName].Name, nodes[nodesIndex].Attributes[attribName].Value));
+								}
+							}
+
+							attributes = String.Format("{0}) ", attributes);
+						}
+						else
+						{
+							attributes = "(";
+
+							for (int attributesIndex = 0; attributesIndex < nodes[nodesIndex].Attributes.Count; attributesIndex++)
+							{
+								attributes = String.Concat(attributes, String.Format("{0}={1};", nodes[nodesIndex].Attributes[attributesIndex].Name, nodes[nodesIndex].Attributes[attributesIndex].Value));
+							}
+
+							attributes = String.Format("{0}) ", attributes);
+						}
 					}
 
 					if (!parsedArguments.Contains("scrub"))
