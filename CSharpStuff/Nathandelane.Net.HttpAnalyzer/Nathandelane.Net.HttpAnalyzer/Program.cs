@@ -4,6 +4,7 @@ using System.Text;
 using Nathandelane.Net.HttpAnalyzer.Utility;
 using HtmlAgilityPack;
 using System.IO;
+using System.Net;
 
 namespace Nathandelane.Net.HttpAnalyzer
 {
@@ -91,6 +92,34 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 						using (agent = new Agent(uri))
 						{
+							if (parsedArguments.Contains("headers"))
+							{
+								agent.Headers = new WebHeaderCollection();
+								string[] headers = parsedArguments["headers"].Split(new char[] { '&' });
+								foreach (string header in headers)
+								{
+									string[] pair = header.Split(new char[] { '=' });
+									if (pair.Length == 2)
+									{
+										agent.Headers.Add(pair[0], pair[1]);
+									}
+								}
+							}
+
+							if (parsedArguments.Contains("cookies"))
+							{
+								agent.Cookies = new CookieCollection();
+								string[] cookies = parsedArguments["cookies"].Split(new char[] { '&' });
+								foreach (string cookie in cookies)
+								{
+									string[] pair = cookie.Split(new char[] { '=' });
+									if (pair.Length == 2)
+									{
+										agent.Cookies.Add(new Cookie(pair[0], pair[1]));
+									}
+								}
+							}
+
 							agent.Run();
 
 							HandleArguments(parsedArguments, agent);
@@ -168,13 +197,27 @@ namespace Nathandelane.Net.HttpAnalyzer
 						}
 					}
 
-					if (!parsedArguments.Contains("scrub"))
+					if (!parsedArguments.Contains("no-innerhtml"))
 					{
-						value = String.Concat(value, String.Format("{0}:{1}{2}{3}", nodesIndex, attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
+						if (!parsedArguments.Contains("scrub"))
+						{
+							value = String.Concat(value, String.Format("{0}:{1}{2}{3}", nodesIndex, attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
+						}
+						else
+						{
+							value = String.Concat(value, String.Format("{0}{1}{2}", attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
+						}
 					}
 					else
 					{
-						value = String.Concat(value, String.Format("{0}{1}{2}", attributes, nodes[nodesIndex].InnerHtml, Environment.NewLine));
+						if (!parsedArguments.Contains("scrub"))
+						{
+							value = String.Concat(value, String.Format("{0}:{1}{2}", nodesIndex, attributes, Environment.NewLine));
+						}
+						else
+						{
+							value = String.Concat(value, String.Format("{0}{1}", attributes, Environment.NewLine));
+						}
 					}
 				}
 

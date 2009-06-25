@@ -13,10 +13,13 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 		{
 			String.Empty,
 			"attributes",
+			"cookies",
 			"data",
 			"find",
+			"headers",
 			"help",
 			"no-attributes",
+			"no-innerhtml",
 			"suppress",
 			"scrub",
 			"uri"
