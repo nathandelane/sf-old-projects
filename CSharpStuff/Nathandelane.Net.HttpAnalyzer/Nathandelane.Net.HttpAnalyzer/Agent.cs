@@ -103,63 +103,70 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 		public void Run()
 		{
-			HttpWebRequest request = WebRequest.Create(_destination) as HttpWebRequest;
-			request.Accept = AcceptHeader ?? AgentDefaults.AcceptHeader;
-			request.KeepAlive = true;
-			request.UserAgent = UserAgentHeader ?? AgentDefaults.UserAgentHeader;
-			request.Timeout = (int)(Timeout ?? AgentDefaults.TimeoutHeader);
-
-			if(Headers != null)
-			{
-				request.Headers = Headers;
-			}
-
-			request.Headers.Add("Accept-Language", AcceptLanguageHeader ?? AgentDefaults.AcceptLanguageHeader);
-			request.Headers.Add("Accept-Encoding", AcceptEncodingHeader ?? AgentDefaults.AcceptEncodingHeader);
-			request.Headers.Add("Accept-Charset", AcceptCharsetHeader ?? AgentDefaults.AcceptCharsetHeader);
-
-			if (Cookies != null)
-			{
-				request.CookieContainer = new CookieContainer();
-				request.CookieContainer.Add(Cookies);
-			}
-
-			if (Proxy != null)
-			{
-				request.Proxy = Proxy;
-			}
-
 			try
 			{
-				HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+				HttpWebRequest request = WebRequest.Create(_destination) as HttpWebRequest;
+				request.Accept = AcceptHeader ?? AgentDefaults.AcceptHeader;
+				request.KeepAlive = true;
+				request.UserAgent = UserAgentHeader ?? AgentDefaults.UserAgentHeader;
+				request.Timeout = (int)(Timeout ?? AgentDefaults.TimeoutHeader);
 
-				_document = new HtmlDocument();
-
-				if (response.ContentEncoding.ToLower().Equals("gzip"))
+				if (Headers != null)
 				{
-					using (StreamReader reader = new StreamReader(new GZipInputStream(response.GetResponseStream())))
-					{
-						string data = reader.ReadToEnd();
-
-						_document.LoadHtml(data);
-					}
-				}
-				else
-				{
-					using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-					{
-						string data = reader.ReadToEnd();
-
-						_document.LoadHtml(data);
-					}
+					request.Headers = Headers;
 				}
 
-				Cookies = response.Cookies;
-				Headers = response.Headers;
+				request.Headers.Add("Accept-Language", AcceptLanguageHeader ?? AgentDefaults.AcceptLanguageHeader);
+				request.Headers.Add("Accept-Encoding", AcceptEncodingHeader ?? AgentDefaults.AcceptEncodingHeader);
+				request.Headers.Add("Accept-Charset", AcceptCharsetHeader ?? AgentDefaults.AcceptCharsetHeader);
+
+				if (Cookies != null)
+				{
+					request.CookieContainer = new CookieContainer();
+					request.CookieContainer.Add(Cookies);
+				}
+
+				if (Proxy != null)
+				{
+					request.Proxy = Proxy;
+				}
+
+				try
+				{
+					HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+
+					_document = new HtmlDocument();
+
+					if (response.ContentEncoding.ToLower().Equals("gzip"))
+					{
+						using (StreamReader reader = new StreamReader(new GZipInputStream(response.GetResponseStream())))
+						{
+							string data = reader.ReadToEnd();
+
+							_document.LoadHtml(data);
+						}
+					}
+					else
+					{
+						using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+						{
+							string data = reader.ReadToEnd();
+
+							_document.LoadHtml(data);
+						}
+					}
+
+					Cookies = response.Cookies;
+					Headers = response.Headers;
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("Exception caught! {0}", ex.Message);
+				}
 			}
-			catch (Exception ex)
+			catch (Exception outerEx)
 			{
-				Console.WriteLine("Exception caught! {0}", ex.Message);
+				Console.WriteLine("Outer exception caught! {0}", outerEx.Message);
 			}
 		}
 
