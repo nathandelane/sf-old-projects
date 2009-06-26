@@ -129,31 +129,38 @@ namespace Nathandelane.Net.HttpAnalyzer
 				request.Proxy = Proxy;
 			}
 
-			HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-
-			_document = new HtmlDocument();
-
-			if (response.ContentEncoding.ToLower().Equals("gzip"))
+			try
 			{
-				using (StreamReader reader = new StreamReader(new GZipInputStream(response.GetResponseStream())))
-				{
-					string data = reader.ReadToEnd();
+				HttpWebResponse response = request.GetResponse() as HttpWebResponse;
 
-					_document.LoadHtml(data);
+				_document = new HtmlDocument();
+
+				if (response.ContentEncoding.ToLower().Equals("gzip"))
+				{
+					using (StreamReader reader = new StreamReader(new GZipInputStream(response.GetResponseStream())))
+					{
+						string data = reader.ReadToEnd();
+
+						_document.LoadHtml(data);
+					}
 				}
+				else
+				{
+					using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+					{
+						string data = reader.ReadToEnd();
+
+						_document.LoadHtml(data);
+					}
+				}
+
+				Cookies = response.Cookies;
+				Headers = response.Headers;
 			}
-			else
+			catch (Exception ex)
 			{
-				using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-				{
-					string data = reader.ReadToEnd();
-
-					_document.LoadHtml(data);
-				}
+				Console.WriteLine("Exception caught! {0}", ex.Message);
 			}
-
-			Cookies = response.Cookies;
-			Headers = response.Headers;
 		}
 
 		public static void DisplayHelp()
