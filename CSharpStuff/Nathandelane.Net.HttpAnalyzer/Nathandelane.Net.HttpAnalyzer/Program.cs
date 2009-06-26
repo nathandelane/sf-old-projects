@@ -38,6 +38,43 @@ namespace Nathandelane.Net.HttpAnalyzer
 					{
 						using (Agent agent = new Agent(uri))
 						{
+							if (parsedArguments.Contains("headers"))
+							{
+								agent.Headers = new WebHeaderCollection();
+								string[] headers = parsedArguments["headers"].Split(new char[] { '&' });
+								foreach (string header in headers)
+								{
+									string[] pair = header.Split(new char[] { '=' });
+									if (pair.Length == 2)
+									{
+										agent.Headers.Add(pair[0], pair[1]);
+									}
+								}
+							}
+
+							if (parsedArguments.Contains("cookies"))
+							{
+								agent.Cookies = new CookieCollection();
+								string[] cookies = parsedArguments["cookies"].Split(new char[] { '&' });
+								foreach (string cookie in cookies)
+								{
+									string[] pair = cookie.Split(new char[] { '=' });
+									if (pair.Length == 2)
+									{
+										agent.Cookies.Add(new Cookie(pair[0], pair[1]));
+									}
+								}
+							}
+
+							if (parsedArguments.Contains("proxy"))
+							{
+								string[] parts = parsedArguments["proxy"].Split(new char[] { ':' });
+								if (parts.Length == 2)
+								{
+									agent.Proxy = new WebProxy(parts[0], int.Parse(parts[1]));
+								}
+							}
+
 							agent.Run();
 
 							HandleArguments(parsedArguments, agent);

@@ -61,6 +61,11 @@ namespace Nathandelane.Net.HttpAnalyzer
 		public int? Timeout { get; set; }
 
 		/// <summary>
+		/// Gets or sets the proxy to use for the request if required.
+		/// </summary>
+		public WebProxy Proxy { get; set; }
+
+		/// <summary>
 		/// Gets or sets the cookie collection to use in the request. Also gets the response cookies after run.
 		/// </summary>
 		public CookieCollection Cookies
@@ -119,6 +124,11 @@ namespace Nathandelane.Net.HttpAnalyzer
 				request.CookieContainer.Add(Cookies);
 			}
 
+			if (Proxy != null)
+			{
+				request.Proxy = Proxy;
+			}
+
 			HttpWebResponse response = request.GetResponse() as HttpWebResponse;
 
 			_document = new HtmlDocument();
@@ -148,7 +158,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 		public static void DisplayHelp()
 		{
-			Console.WriteLine("HttpAnalyzer [--help | --uri=<absolulte-url> [--suppress] [--scrub] [--find=<xpath-expression>] [--no-attributes] [no-innerhtml] [--data] [--attributes=attr1,attrN] [--headers=hnm0=hval0&hnmN=hvalN] [--cookies=hcok0=hval0&hcokN=hvalN]]");
+			Console.WriteLine("HttpAnalyzer [--help | --uri=<absolulte-url> [--suppress] [--scrub] [--find=<xpath-expression>] [--no-attributes] [no-innerhtml] [--data] [--attributes=attr1,attrN] [--headers=hnm0=hval0&hnmN=hvalN] [--cookies=hcok0=hval0&hcokN=hvalN] [--proxy=host:port]]");
 		}
 
 		public override string ToString()

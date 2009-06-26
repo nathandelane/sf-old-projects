@@ -20,6 +20,7 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 			"help",
 			"no-attributes",
 			"no-innerhtml",
+			"proxy",
 			"suppress",
 			"scrub",
 			"uri"
