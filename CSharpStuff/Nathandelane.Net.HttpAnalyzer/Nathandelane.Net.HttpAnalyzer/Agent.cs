@@ -172,12 +172,19 @@ namespace Nathandelane.Net.HttpAnalyzer
 		{
 			string toString = String.Empty;
 
-			foreach (string key in Headers.AllKeys)
+			if (Headers != null)
 			{
-				toString = String.Concat(toString, key, "=", Headers[key], "&");
-			}
+				foreach (string key in Headers.AllKeys)
+				{
+					toString = String.Concat(toString, key, "=", Headers[key], "&");
+				}
 
-			toString = toString.Substring(0, toString.Length - 1);
+				toString = toString.Substring(0, toString.Length - 1);
+			}
+			else
+			{
+				toString = "Headers is null";
+			}
 
 			return toString;
 		}
