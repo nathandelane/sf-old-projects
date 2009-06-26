@@ -62,6 +62,7 @@
 			this._resetButton.TabIndex = 13;
 			this._resetButton.Text = "Reset";
 			this._resetButton.UseVisualStyleBackColor = true;
+			this._resetButton.Click += new System.EventHandler(this.ResetForm);
 			// 
 			// _goButton
 			// 
@@ -72,6 +73,7 @@
 			this._goButton.TabIndex = 12;
 			this._goButton.Text = "Go";
 			this._goButton.UseVisualStyleBackColor = true;
+			this._goButton.Click += new System.EventHandler(this.StartWget);
 			// 
 			// _saveAsTextBox
 			// 
@@ -81,6 +83,7 @@
 			this._saveAsTextBox.Name = "_saveAsTextBox";
 			this._saveAsTextBox.Size = new System.Drawing.Size(602, 20);
 			this._saveAsTextBox.TabIndex = 11;
+			this._saveAsTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FilterEnterKey);
 			// 
 			// label2
 			// 
@@ -100,6 +103,7 @@
 			this._urlClearButton.TabIndex = 9;
 			this._urlClearButton.Text = "Clear";
 			this._urlClearButton.UseVisualStyleBackColor = true;
+			this._urlClearButton.Click += new System.EventHandler(this.ClearUrlTextBox);
 			// 
 			// _urlTextBox
 			// 
@@ -109,6 +113,7 @@
 			this._urlTextBox.Name = "_urlTextBox";
 			this._urlTextBox.Size = new System.Drawing.Size(543, 20);
 			this._urlTextBox.TabIndex = 8;
+			this._urlTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FilterEnterKey);
 			// 
 			// label1
 			// 
@@ -128,6 +133,7 @@
 			this._clearListButton.TabIndex = 14;
 			this._clearListButton.Text = "Clear List";
 			this._clearListButton.UseVisualStyleBackColor = true;
+			this._clearListButton.Click += new System.EventHandler(this.ClearList);
 			// 
 			// Form1
 			// 
