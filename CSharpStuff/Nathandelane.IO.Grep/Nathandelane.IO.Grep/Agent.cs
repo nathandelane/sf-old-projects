@@ -90,7 +90,12 @@ namespace Nathandelane.IO.Grep
 					{
 						if (_regex.IsMatch(line))
 						{
-							Console.WriteLine("{0}: {1}", lineCounter, line);
+							MatchCollection matches = _regex.Matches(line);
+
+							foreach (Match nextMatch in matches)
+							{
+								Console.WriteLine("{0}: {1}", lineCounter, nextMatch.Value);
+							}
 						}
 						lineCounter++;
 					}

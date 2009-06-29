@@ -36,7 +36,7 @@ namespace Nathandelane.IO.Grep
 
 				for(int i = 1; i < args.Length; i++)
 				{
-					fileNames.Add(fileNames[i]);
+					fileNames.Add(args[i]);
 				}
 
 				new Program(args[0], fileNames.ToArray());
