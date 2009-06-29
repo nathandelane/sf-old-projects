@@ -32,6 +32,7 @@
 			this.monitorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this._monitorListBox = new System.Windows.Forms.ListBox();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -60,6 +61,7 @@
 			this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
 			this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.newToolStripMenuItem.Text = "New...";
+			this.newToolStripMenuItem.Click += new System.EventHandler(this.OpenNewMonitorForm);
 			// 
 			// exitToolStripMenuItem
 			// 
@@ -68,14 +70,26 @@
 			this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.exitToolStripMenuItem.Text = "Exit";
 			// 
-			// Form1
+			// _monitorListBox
+			// 
+			this._monitorListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
+			this._monitorListBox.FormattingEnabled = true;
+			this._monitorListBox.Location = new System.Drawing.Point(12, 27);
+			this._monitorListBox.Name = "_monitorListBox";
+			this._monitorListBox.Size = new System.Drawing.Size(581, 225);
+			this._monitorListBox.TabIndex = 1;
+			// 
+			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(605, 264);
+			this.Controls.Add(this._monitorListBox);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
-			this.Name = "Form1";
+			this.Name = "MainForm";
 			this.Text = "Monitor Vehix Servers";
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
@@ -90,6 +104,7 @@
 		private System.Windows.Forms.ToolStripMenuItem monitorToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+		private System.Windows.Forms.ListBox _monitorListBox;
 	}
 }
 

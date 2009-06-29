@@ -15,5 +15,16 @@ namespace Nathandelane.Vehix.MonitorServers
 		{
 			InitializeComponent();
 		}
+
+		private void OpenNewMonitorForm(object sender, EventArgs e)
+		{
+			using (NewMonitorForm newMonitorForm = new NewMonitorForm())
+			{
+				if (!String.IsNullOrEmpty(newMonitorForm.MonitorName) && newMonitorForm.MonitorURI != null)
+				{
+					_monitorListBox.Items.Add(new Agent(newMonitorForm.MonitorName, newMonitorForm.MonitorURI));
+				}
+			}
+		}
 	}
 }
