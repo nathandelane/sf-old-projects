@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Timers;
 
 namespace Nathandelane.Vehix.MonitorServers
 {
@@ -68,6 +69,11 @@ namespace Nathandelane.Vehix.MonitorServers
 			{
 				_isAvailable = false;
 			}
+		}
+
+		public void Update(object source, ElapsedEventArgs e)
+		{
+			Run();
 		}
 
 		public override string ToString()
