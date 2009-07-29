@@ -101,6 +101,8 @@ namespace Nathandelane.Net.Spider
 
 		#endregion
 
+		#region Methods
+
 		#region Public Methods
 
 		public void Run()
@@ -195,6 +197,8 @@ namespace Nathandelane.Net.Spider
 			// Id, Message, Target, Referrer, Title, Time
 			return String.Format("{0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5}", __id, _message, _url.Target, _url.Referrer, _documentTitle, _elapsedTime);
 		}
+
+		#endregion
 
 		#endregion
 	}
