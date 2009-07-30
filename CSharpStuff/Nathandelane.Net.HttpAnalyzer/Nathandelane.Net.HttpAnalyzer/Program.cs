@@ -38,6 +38,11 @@ namespace Nathandelane.Net.HttpAnalyzer
 					{
 						using (Agent agent = new Agent(uri))
 						{
+							if (parsedArguments.Contains("ignore-bad-certs"))
+							{
+								agent.IgnoreBadCerts = true;
+							}
+
 							if (parsedArguments.Contains("headers"))
 							{
 								agent.Headers = new WebHeaderCollection();
