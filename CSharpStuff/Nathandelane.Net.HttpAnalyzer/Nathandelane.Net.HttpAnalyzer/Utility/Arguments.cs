@@ -18,6 +18,7 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 			"find",
 			"headers",
 			"help",
+			"ignore-bad-certs",
 			"no-attributes",
 			"no-innerhtml",
 			"proxy",

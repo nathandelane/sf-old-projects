@@ -17,6 +17,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 		private HtmlDocument _document;
 		private CookieCollection _cookies;
 		private WebHeaderCollection _headers;
+		public bool _ignoreBadCerts;
 
 		#endregion
 
@@ -80,6 +81,12 @@ namespace Nathandelane.Net.HttpAnalyzer
 			set { _headers = value; }
 		}
 
+		public bool IgnoreBadCerts
+		{
+			get { return _ignoreBadCerts; }
+			set { _ignoreBadCerts = value; }
+		}
+
 		/// <summary>
 		/// Gets HtmlDocument from response after run.
 		/// </summary>
@@ -95,6 +102,12 @@ namespace Nathandelane.Net.HttpAnalyzer
 		public Agent(Uri uri)
 		{
 			_destination = uri;
+		}
+
+		public Agent(Uri uri, bool ignoreBadCerts)
+		{
+			_destination = uri;
+			_ignoreBadCerts = ignoreBadCerts;
 		}
 
 		#endregion
@@ -119,6 +132,11 @@ namespace Nathandelane.Net.HttpAnalyzer
 				request.Headers.Add("Accept-Language", AcceptLanguageHeader ?? AgentDefaults.AcceptLanguageHeader);
 				request.Headers.Add("Accept-Encoding", AcceptEncodingHeader ?? AgentDefaults.AcceptEncodingHeader);
 				request.Headers.Add("Accept-Charset", AcceptCharsetHeader ?? AgentDefaults.AcceptCharsetHeader);
+
+				if (IgnoreBadCerts)
+				{
+					ServicePointManager.CertificatePolicy = new AcceptAllCertsPolicy();
+				}
 
 				if (Cookies != null)
 				{
@@ -172,7 +190,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 		public static void DisplayHelp()
 		{
-			Console.WriteLine("HttpAnalyzer [--help | --uri=<absolulte-url> [--suppress] [--scrub] [--find=<xpath-expression>] [--no-attributes] [no-innerhtml] [--data] [--attributes=attr1,attrN] [--headers=hnm0=hval0&hnmN=hvalN] [--cookies=hcok0=hval0&hcokN=hvalN] [--proxy=host:port]]");
+			Console.WriteLine("HttpAnalyzer [--help | --uri=<absolulte-url> [--suppress] [--scrub] [--find=<xpath-expression>] [--no-attributes] [no-innerhtml] [--data] [--attributes=attr1,attrN] [--headers=hnm0=hval0&hnmN=hvalN] [--cookies=hcok0=hval0&hcokN=hvalN] [--proxy=host:port] [--ignore-bad-certs]]");
 		}
 
 		public override string ToString()
