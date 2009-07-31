@@ -38,6 +38,11 @@ namespace Nathandelane.Net.HttpAnalyzer
 					{
 						using (Agent agent = new Agent(uri))
 						{
+							if (parsedArguments.Contains("post"))
+							{
+								agent.PostData = parsedArguments["post"];
+							}
+
 							if (parsedArguments.Contains("ignore-bad-certs"))
 							{
 								agent.IgnoreBadCerts = true;
@@ -137,6 +142,11 @@ namespace Nathandelane.Net.HttpAnalyzer
 							if (parsedArguments.Contains("ignore-bad-certs"))
 							{
 								agent.IgnoreBadCerts = true;
+							}
+
+							if (parsedArguments.Contains("post"))
+							{
+								agent.PostData = parsedArguments["post"];
 							}
 
 							if (parsedArguments.Contains("headers"))

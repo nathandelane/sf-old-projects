@@ -21,6 +21,7 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 			"ignore-bad-certs",
 			"no-attributes",
 			"no-innerhtml",
+			"post",
 			"proxy",
 			"suppress",
 			"scrub",
@@ -69,7 +70,9 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 			string nextParameterName = String.Empty;
 			string[] parameterParts;
 
-			foreach (string parameter in args)
+			string[] normalizedArgs = NormalizeParameters(args);
+
+			foreach (string parameter in normalizedArgs)
 			{
 				parameterParts = splitter.Split(parameter, 3);
 
@@ -166,6 +169,30 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 			}
 
 			return result;
+		}
+
+		private static string[] NormalizeParameters(string[] args)
+		{
+			List<string> normalizedArgs = new List<string>();
+
+			foreach (string arg in args)
+			{
+				if (arg.Contains(" "))
+				{
+					string[] norm = arg.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+
+					foreach (string nextNorm in norm)
+					{
+						normalizedArgs.Add(nextNorm);
+					}
+				}
+				else
+				{
+					normalizedArgs.Add(arg);
+				}
+			}
+
+			return normalizedArgs.ToArray();
 		}
 
 		#endregion

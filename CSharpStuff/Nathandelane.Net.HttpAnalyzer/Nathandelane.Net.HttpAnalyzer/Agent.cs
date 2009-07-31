@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Web;
 using HtmlAgilityPack;
 using ICSharpCode.SharpZipLib.GZip;
 
@@ -67,6 +68,11 @@ namespace Nathandelane.Net.HttpAnalyzer
 		public WebProxy Proxy { get; set; }
 
 		/// <summary>
+		/// Gets or sets the form post data.
+		/// </summary>
+		public string PostData { get; set; }
+
+		/// <summary>
 		/// Gets or sets the cookie collection to use in the request. Also gets the response cookies after run.
 		/// </summary>
 		public CookieCollection Cookies
@@ -119,6 +125,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 			try
 			{
 				HttpWebRequest request = WebRequest.Create(_destination) as HttpWebRequest;
+				request.Method = "get";
 				request.Accept = AcceptHeader ?? AgentDefaults.AcceptHeader;
 				request.KeepAlive = true;
 				request.UserAgent = UserAgentHeader ?? AgentDefaults.UserAgentHeader;
@@ -147,6 +154,19 @@ namespace Nathandelane.Net.HttpAnalyzer
 				if (Proxy != null)
 				{
 					request.Proxy = Proxy;
+				}
+
+				if (!String.IsNullOrEmpty(PostData))
+				{
+					request.Method = "post";
+
+					using (StreamWriter writer = new StreamWriter(request.GetRequestStream()))
+					{
+						char[] encodedPostData = HttpUtility.UrlEncode(PostData).ToCharArray();
+
+						writer.Write(encodedPostData);
+						writer.Flush();
+					}
 				}
 
 				try
