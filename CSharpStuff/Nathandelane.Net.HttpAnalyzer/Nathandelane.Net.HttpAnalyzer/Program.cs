@@ -194,14 +194,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 		{
 			if (!parsedArguments.Contains("suppress"))
 			{
-				if (!parsedArguments.Contains("scrub"))
-				{
-					Console.WriteLine("Response: {0}", agent);
-				}
-				else
-				{
-					Console.WriteLine("{0}", agent);
-				}
+				Console.WriteLine("{0}", agent);
 			}
 
 			if (parsedArguments.Contains("find"))

@@ -162,7 +162,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 					using (StreamWriter writer = new StreamWriter(request.GetRequestStream()))
 					{
-						char[] encodedPostData = HttpUtility.UrlEncode(PostData).ToCharArray();
+						char[] encodedPostData = PostData.ToCharArray();//HttpUtility.UrlEncode(PostData).ToCharArray();
 
 						writer.Write(encodedPostData);
 						writer.Flush();
@@ -210,7 +210,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 		public static void DisplayHelp()
 		{
-			Console.WriteLine("HttpAnalyzer [--help | --uri=<absolulte-url> [--suppress] [--scrub] [--find=<xpath-expression>] [--no-attributes] [no-innerhtml] [--data] [--attributes=attr1,attrN] [--headers=hnm0=hval0&hnmN=hvalN] [--cookies=hcok0=hval0&hcokN=hvalN] [--proxy=host:port] [--ignore-bad-certs]]");
+			Console.WriteLine("HttpAnalyzer [--help | --uri=<absolulte-url> [--suppress] [--find=<xpath-expression>] [--no-attributes] [--no-innerhtml] [--data] [--attributes=attr1,attrN] [--headers=hnm0=hval0&hnmN=hvalN] [--cookies=hcok0=hval0&hcokN=hvalN] [--proxy=host:port] [--ignore-bad-certs]]");
 		}
 
 		public override string ToString()
@@ -219,6 +219,8 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 			if (Headers != null)
 			{
+				toString = "--headers=";
+
 				foreach (string key in Headers.AllKeys)
 				{
 					toString = String.Concat(toString, key, "=", Headers[key], "&");

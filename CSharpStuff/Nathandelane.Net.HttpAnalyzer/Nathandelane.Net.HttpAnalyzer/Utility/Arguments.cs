@@ -24,7 +24,6 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 			"post",
 			"proxy",
 			"suppress",
-			"scrub",
 			"uri"
 		};
 
