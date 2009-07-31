@@ -173,22 +173,37 @@ namespace Nathandelane.Net.HttpAnalyzer.Utility
 		private static string[] NormalizeParameters(string[] args)
 		{
 			List<string> normalizedArgs = new List<string>();
+			Regex regex = new Regex("[\\s]{1}(--|/|-)");
 
 			foreach (string arg in args)
 			{
-				if (arg.Contains(" "))
-				{
-					string[] norm = arg.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+				string argToBeNormalized = arg;
 
-					foreach (string nextNorm in norm)
+				if (regex.IsMatch(argToBeNormalized))
+				{
+					while (regex.IsMatch(argToBeNormalized))
 					{
-						normalizedArgs.Add(nextNorm);
+						int index = argToBeNormalized.IndexOf(" --");
+
+						if (index > -1)
+						{
+							string newArg = argToBeNormalized.Substring(0, index);
+
+							argToBeNormalized = argToBeNormalized.Substring(index + 1);
+
+							normalizedArgs.Add(newArg);
+						}
+						else
+						{
+							if (!normalizedArgs.Contains(argToBeNormalized))
+							{
+								normalizedArgs.Add(argToBeNormalized);
+							}
+						}
 					}
 				}
-				else
-				{
-					normalizedArgs.Add(arg);
-				}
+
+				normalizedArgs.Add(argToBeNormalized);
 			}
 
 			return normalizedArgs.ToArray();
