@@ -106,11 +106,41 @@ namespace Nathandelane.Net.HGrep
 					HtmlAttributeCollection attributes = nextNode.Attributes;
 					foreach (HtmlAttribute nextAttribute in attributes)
 					{
-						nodeValue.Append(String.Concat("[", nextAttribute.Name, "='", nextAttribute.Value, "']"));
+						if (_arguments.ContainsKey("return-attributes"))
+						{
+							foreach (string attr in (string[])_arguments["return-attributes"])
+							{
+								if (nextAttribute.Name.Equals(attr))
+								{
+									nodeValue.Append(String.Concat("[", nextAttribute.Name, "='", nextAttribute.Value, "']"));
+								}
+							}
+						}
+						else
+						{
+							nodeValue.Append(String.Concat("[", nextAttribute.Name, "='", nextAttribute.Value, "']"));
+						}
 					}
 
 					nodeValue.Append("] = ");
-					nodeValue.Append(nextNode.InnerHtml);
+					if (_arguments.ContainsKey("return-attributes"))
+					{
+						foreach (string attr in (string[])_arguments["return-attributes"])
+						{
+							if (attr.Equals("inner-html"))
+							{
+								nodeValue.Append(String.Concat(nextNode.InnerHtml, " "));
+							}
+							else if (attr.Equals("inner-text"))
+							{
+								nodeValue.Append(String.Concat(nextNode.InnerText, " "));
+							}
+						}
+					}
+					else
+					{
+						nodeValue.Append(nextNode.InnerHtml);
+					}
 
 					Console.WriteLine("{0}", nodeValue);
 				}

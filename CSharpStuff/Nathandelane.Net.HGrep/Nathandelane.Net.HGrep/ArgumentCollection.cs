@@ -14,7 +14,7 @@ namespace Nathandelane.Net.HGrep
 			{ "uri", ArgumentType.String },
 			{ "find", ArgumentType.String },
 			{ "help", ArgumentType.Null },
-			{ "return_attributes", ArgumentType.StringArray },
+			{ "return-attributes", ArgumentType.StringArray },
 			{ "return-headers", ArgumentType.Null }
 		};
 
