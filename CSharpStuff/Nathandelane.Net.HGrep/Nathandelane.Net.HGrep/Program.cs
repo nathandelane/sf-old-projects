@@ -90,6 +90,7 @@ namespace Nathandelane.Net.HGrep
 
 		private void DisplayFind()
 		{
+			Console.WriteLine("Nodes Found:");
 			HtmlDocument document = new HtmlDocument();
 			document.LoadHtml(_data);
 
@@ -108,7 +109,8 @@ namespace Nathandelane.Net.HGrep
 						nodeValue.Append(String.Concat("[", nextAttribute.Name, "='", nextAttribute.Value, "']"));
 					}
 
-					nodeValue.Append("]");
+					nodeValue.Append("] = ");
+					nodeValue.Append(nextNode.InnerHtml);
 
 					Console.WriteLine("{0}", nodeValue);
 				}
@@ -123,7 +125,14 @@ namespace Nathandelane.Net.HGrep
 
 		static void Main(string[] args)
 		{
-			new Program(args);
+			try
+			{
+				new Program(args);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine("Exception caught: {0}", e.Message);
+			}
 		}
 	}
 }
