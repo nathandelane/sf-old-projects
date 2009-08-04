@@ -105,19 +105,16 @@ namespace Nathandelane.Net.HGrep
 					nodeValue.Append(" [");
 
 					HtmlAttributeCollection attributes = nextNode.Attributes;
-					foreach (HtmlAttribute nextAttribute in attributes)
+					if (_arguments.ContainsKey("return-attributes"))
 					{
-						if (_arguments.ContainsKey("return-attributes"))
+						foreach (string attr in (string[])_arguments["return-attributes"])
 						{
-							foreach (string attr in (string[])_arguments["return-attributes"])
-							{
-								if (nextAttribute.Name.Equals(attr))
-								{
-									nodeValue.Append(String.Concat("[", nextAttribute.Name, "='", nextAttribute.Value, "']"));
-								}
-							}
+							nodeValue.Append(String.Concat("[", attr, "='", attributes[attr].Value, "']"));
 						}
-						else
+					}
+					else
+					{
+						foreach (HtmlAttribute nextAttribute in attributes)
 						{
 							nodeValue.Append(String.Concat("[", nextAttribute.Name, "='", nextAttribute.Value, "']"));
 						}
