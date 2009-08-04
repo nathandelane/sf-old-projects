@@ -162,7 +162,7 @@ namespace Nathandelane.Net.HttpAnalyzer
 
 					using (StreamWriter writer = new StreamWriter(request.GetRequestStream()))
 					{
-						char[] encodedPostData = PostData.ToCharArray();//HttpUtility.UrlEncode(PostData).ToCharArray();
+						char[] encodedPostData = HttpUtility.UrlEncode(PostData).ToCharArray();
 
 						writer.Write(encodedPostData);
 						writer.Flush();
