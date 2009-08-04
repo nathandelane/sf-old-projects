@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nathandelane.Net.HGrep
 {
-	public class ArgumentCollection : List<Argument>
+	public class ArgumentCollection : Dictionary<string, object>
 	{
 		#region Fields
 
@@ -13,7 +13,8 @@ namespace Nathandelane.Net.HGrep
 		{
 			{ "uri", ArgumentType.String },
 			{ "find", ArgumentType.String },
-			{ "help", ArgumentType.Null }
+			{ "help", ArgumentType.Null },
+			{ "return-headers", ArgumentType.Null }
 		};
 
 		#endregion
@@ -42,7 +43,7 @@ namespace Nathandelane.Net.HGrep
 				if (currentArg.Contains("="))
 				{
 					int indexOfEqualsSign = currentArg.IndexOf("=");
-					argName = currentArg.Substring(0, (indexOfEqualsSign - 1));
+					argName = currentArg.Substring(0, indexOfEqualsSign);
 
 					if (__map.ContainsKey(argName))
 					{
@@ -55,7 +56,7 @@ namespace Nathandelane.Net.HGrep
 							argValue = (string)currentArg.Substring(indexOfEqualsSign + 1);
 						}
 
-						collection.Add(new Argument(argName, argValue));
+						collection.Add(argName, argValue);
 					}
 					else
 					{

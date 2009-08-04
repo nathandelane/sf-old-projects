@@ -34,7 +34,7 @@ namespace Nathandelane.Net.HGrep
 
 		#region Constructors
 
-		private Agent(Uri requestUri)
+		public Agent(Uri requestUri)
 		{
 			_request = HttpWebRequest.CreateDefault(requestUri) as HttpWebRequest;
 			_request.Accept = ConfigurationManager.AppSettings["Accept"];
