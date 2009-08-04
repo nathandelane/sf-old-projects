@@ -7,6 +7,7 @@ namespace Nathandelane.Net.HGrep
 {
 	public enum ArgumentType
 	{
+		Null,
 		String
 	}
 }

@@ -12,7 +12,8 @@ namespace Nathandelane.Net.HGrep
 		private static readonly Dictionary<string, ArgumentType> __map = new Dictionary<string, ArgumentType>()
 		{
 			{ "uri", ArgumentType.String },
-			{ "find", ArgumentType.String }
+			{ "find", ArgumentType.String },
+			{ "help", ArgumentType.Null }
 		};
 
 		#endregion
@@ -28,7 +29,7 @@ namespace Nathandelane.Net.HGrep
 
 		#region Methods
 
-		public ArgumentCollection Parse(string[] args)
+		public static ArgumentCollection Parse(string[] args)
 		{
 			ArgumentCollection collection = new ArgumentCollection();
 
@@ -45,12 +46,16 @@ namespace Nathandelane.Net.HGrep
 
 					if (__map.ContainsKey(argName))
 					{
-						if (__map[argName] == ArgumentType.String)
+						if (__map[argName] == ArgumentType.Null)
+						{
+							argValue = null;
+						}
+						else if (__map[argName] == ArgumentType.String)
 						{
 							argValue = (string)currentArg.Substring(indexOfEqualsSign + 1);
 						}
 
-						this.Add(new Argument(argName, argValue));
+						collection.Add(new Argument(argName, argValue));
 					}
 					else
 					{
@@ -66,7 +71,7 @@ namespace Nathandelane.Net.HGrep
 			return collection;
 		}
 
-		private string StripArgumentIdentifyer(string arg)
+		private static string StripArgumentIdentifyer(string arg)
 		{
 			if (arg.StartsWith("--"))
 			{
