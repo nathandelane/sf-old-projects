@@ -4,6 +4,7 @@ using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Configuration;
 
 namespace Nathandelane.Net.Catcher
 {
@@ -13,8 +14,8 @@ namespace Nathandelane.Net.Catcher
 		{
 			try
 			{
-				Int32 portNumber = 80;
-				IPAddress localAddress = IPAddress.Parse("127.0.0.1");
+				Int32 portNumber = Int32.Parse(ConfigurationManager.AppSettings["ListeningPort"]);
+				IPAddress localAddress = IPAddress.Parse(ConfigurationManager.AppSettings["ListeningHost"]);
 
 				TcpListener server = new TcpListener(localAddress, portNumber);
 				server.Start();
