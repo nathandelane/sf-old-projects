@@ -94,6 +94,22 @@ namespace Nathandelane.Net.HGrep
 			document.LoadHtml(_data);
 
 			HtmlNodeCollection nodes = document.DocumentNode.SelectNodes(_arguments["find"] as string);
+			foreach (HtmlNode nextNode in nodes)
+			{
+				StringBuilder nodeValue = new StringBuilder();
+				nodeValue.Append(nextNode.Name);
+				nodeValue.Append(" [");
+
+				HtmlAttributeCollection attributes = nextNode.Attributes;
+				foreach (HtmlAttribute nextAttribute in attributes)
+				{
+					nodeValue.Append(String.Concat("[", nextAttribute.Name, "='", nextAttribute.Value, "']"));
+				}
+
+				nodeValue.Append("]");
+
+				Console.WriteLine("{0}", nodeValue);
+			}
 		}
 
 		#endregion
