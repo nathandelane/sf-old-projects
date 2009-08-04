@@ -32,6 +32,7 @@ namespace Nathandelane.Net.HGrep
 				Console.WriteLine("The available options include:");
 				Console.WriteLine("{0,-20}XPath expression used to find a specific element of elements in the document.", "find");
 				Console.WriteLine("{0,-20}Displays this help.", "help");
+				Console.WriteLine("{0,-20}Returns only the specified attributes of an XPath query", "return-attributes");
 				Console.WriteLine("{0,-20}Displays the response headers of the request.", "return-headers");
 			}
 			else if (_arguments.ContainsKey("uri"))
