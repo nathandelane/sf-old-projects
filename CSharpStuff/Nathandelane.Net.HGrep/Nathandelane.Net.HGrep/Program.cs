@@ -94,21 +94,28 @@ namespace Nathandelane.Net.HGrep
 			document.LoadHtml(_data);
 
 			HtmlNodeCollection nodes = document.DocumentNode.SelectNodes(_arguments["find"] as string);
-			foreach (HtmlNode nextNode in nodes)
+			if (nodes != null)
 			{
-				StringBuilder nodeValue = new StringBuilder();
-				nodeValue.Append(nextNode.Name);
-				nodeValue.Append(" [");
-
-				HtmlAttributeCollection attributes = nextNode.Attributes;
-				foreach (HtmlAttribute nextAttribute in attributes)
+				foreach (HtmlNode nextNode in nodes)
 				{
-					nodeValue.Append(String.Concat("[", nextAttribute.Name, "='", nextAttribute.Value, "']"));
+					StringBuilder nodeValue = new StringBuilder();
+					nodeValue.Append(nextNode.Name);
+					nodeValue.Append(" [");
+
+					HtmlAttributeCollection attributes = nextNode.Attributes;
+					foreach (HtmlAttribute nextAttribute in attributes)
+					{
+						nodeValue.Append(String.Concat("[", nextAttribute.Name, "='", nextAttribute.Value, "']"));
+					}
+
+					nodeValue.Append("]");
+
+					Console.WriteLine("{0}", nodeValue);
 				}
-
-				nodeValue.Append("]");
-
-				Console.WriteLine("{0}", nodeValue);
+			}
+			else
+			{
+				Console.WriteLine("No elements were found using {0}.", _arguments["find"] as string);
 			}
 		}
 
