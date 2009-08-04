@@ -18,6 +18,11 @@ namespace Nathandelane.Net.HGrep
 		private Program(string[] args)
 		{
 			_arguments = ArgumentCollection.Parse(args);
+
+			if (_arguments.Contains(Argument.Help))
+			{
+				Console.WriteLine("HGrep --url=<fully qualified url> [--find=<xpath expression>]");
+			}
 		}
 
 		#endregion

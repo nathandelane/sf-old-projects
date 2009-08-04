@@ -37,5 +37,20 @@ namespace Nathandelane.Net.HGrep
 		}
 
 		#endregion
+
+		#region Methods
+
+		public bool Equals(Argument argument)
+		{
+			return (argument.Name.Equals(this.Name) && (argument.Value == argument.Value));
+		}
+
+		#endregion
+
+		#region Static Members
+
+		public static readonly Argument Help = new Argument("help", null);
+
+		#endregion
 	}
 }
