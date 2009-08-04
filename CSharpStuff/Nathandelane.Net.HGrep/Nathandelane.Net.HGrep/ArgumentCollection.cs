@@ -14,6 +14,7 @@ namespace Nathandelane.Net.HGrep
 			{ "uri", ArgumentType.String },
 			{ "find", ArgumentType.String },
 			{ "help", ArgumentType.Null },
+			{ "return_attributes", ArgumentType.StringArray },
 			{ "return-headers", ArgumentType.Null }
 		};
 
@@ -53,7 +54,11 @@ namespace Nathandelane.Net.HGrep
 						}
 						else if (__map[argName] == ArgumentType.String)
 						{
-							argValue = (string)currentArg.Substring(indexOfEqualsSign + 1);
+							argValue = currentArg.Substring(indexOfEqualsSign + 1);
+						}
+						else if (__map[argName] == ArgumentType.StringArray)
+						{
+							argValue = currentArg.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 						}
 
 						collection.Add(argName, argValue);

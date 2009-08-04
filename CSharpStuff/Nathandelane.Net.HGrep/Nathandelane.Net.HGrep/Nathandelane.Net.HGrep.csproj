@@ -55,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agent.cs" />
-    <Compile Include="Argument.cs" />
     <Compile Include="ArgumentCollection.cs" />
     <Compile Include="ArgumentType.cs" />
     <Compile Include="Program.cs" />
