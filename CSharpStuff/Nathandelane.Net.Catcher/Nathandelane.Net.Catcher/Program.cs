@@ -25,7 +25,7 @@ namespace Nathandelane.Net.Catcher
 
 				while (true)
 				{
-					Console.WriteLine("Waiting for a connection...");
+					Console.WriteLine("Waiting for a connection on port {0}...", portNumber);
 
 					TcpClient client = server.AcceptTcpClient();
 					Console.WriteLine("Connected.");
