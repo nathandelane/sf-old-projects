@@ -231,7 +231,7 @@ namespace Nathandelane.Net.HGrep
 							{
 								if (attr.Equals("inner-html"))
 								{
-									if (!_arguments.ContainsKey(ArgumentCollection.NoInnerHtmlArg))
+									if (!_arguments.ContainsKey(ArgumentCollection.NoInnerHtmlArg) && !String.IsNullOrEmpty(nextNode.InnerHtml))
 									{
 										nodeValue.Append(" = ");
 										nodeValue.Append(String.Concat(nextNode.InnerHtml, " "));
@@ -239,8 +239,11 @@ namespace Nathandelane.Net.HGrep
 								}
 								else if (attr.Equals("inner-text"))
 								{
-									nodeValue.Append(" = ");
-									nodeValue.Append(String.Concat(nextNode.InnerText, " "));
+									if (!String.IsNullOrEmpty(nextNode.InnerText))
+									{
+										nodeValue.Append(" = ");
+										nodeValue.Append(String.Concat(nextNode.InnerText, " "));
+									}
 								}
 							}
 						}
