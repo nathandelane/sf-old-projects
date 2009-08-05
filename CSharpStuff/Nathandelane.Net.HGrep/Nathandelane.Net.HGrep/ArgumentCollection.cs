@@ -22,7 +22,7 @@ namespace Nathandelane.Net.HGrep
 			{ UriArg, ArgumentType.String },
 			{ FindArg, ArgumentType.String },
 			{ FindRegexpArg, ArgumentType.String },
-			{ HelpArg, ArgumentType.Null },
+			{ HelpArg, ArgumentType.String },
 			{ ReturnAttributesArg, ArgumentType.StringArray },
 			{ ReturnHeadersArg, ArgumentType.Null },
 			{ ScrubArg, ArgumentType.Null }

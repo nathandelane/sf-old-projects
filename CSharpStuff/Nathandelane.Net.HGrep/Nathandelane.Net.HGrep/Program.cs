@@ -26,17 +26,13 @@ namespace Nathandelane.Net.HGrep
 
 			_arguments = ArgumentCollection.Parse(args);
 
-			if (_arguments.ContainsKey(ArgumentCollection.HelpArg) || _arguments.Count == 0)
+			if (_arguments.Count == 0)
 			{
-				Console.WriteLine("HGrep --url=<fully qualified url> [options]");
-				Console.WriteLine("Options may be qualified by --, -, or /");
-				Console.WriteLine("The available options include:");
-				Console.WriteLine("{0,-20}XPath expression used to find a specific element of elements in the document.", "find");
-				Console.WriteLine("{0,-20}Regular expression used to find a specific element of elements in the document. (This is experimental)", "find-regexp");
-				Console.WriteLine("{0,-20}Displays this help.", "help");
-				Console.WriteLine("{0,-20}Returns only the specified attributes of an XPath query", "return-attributes");
-				Console.WriteLine("{0,-20}Displays the response headers of the request.", "return-headers");
-				Console.WriteLine("{0,-20}Removes or scrubs the data headers.", "scrub");
+				Help.GetHelpFor(String.Empty);
+			}
+			if (_arguments.ContainsKey(ArgumentCollection.HelpArg))
+			{
+				Help.GetHelpFor(_arguments[ArgumentCollection.HelpArg] as string);
 			}
 			else if (_arguments.ContainsKey(ArgumentCollection.UriArg))
 			{
