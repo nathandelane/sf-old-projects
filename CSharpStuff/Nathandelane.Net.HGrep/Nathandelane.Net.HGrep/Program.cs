@@ -22,9 +22,18 @@ namespace Nathandelane.Net.HGrep
 
 		private Program(string[] args)
 		{
-			Uri uri = null;
-
 			_arguments = ArgumentCollection.Parse(args);
+
+			Run();
+		}
+
+		#endregion
+
+		#region Methods
+
+		private void Run()
+		{
+			Uri uri = null;
 
 			if (_arguments.Count == 0)
 			{
@@ -46,6 +55,8 @@ namespace Nathandelane.Net.HGrep
 						using (StreamReader reader = new StreamReader(new GZipInputStream(agent.Response.GetResponseStream())))
 						{
 							_data = reader.ReadToEnd();
+
+							FormatData();
 						}
 					}
 					else
@@ -53,23 +64,12 @@ namespace Nathandelane.Net.HGrep
 						using (StreamReader reader = new StreamReader(agent.Response.GetResponseStream()))
 						{
 							_data = reader.ReadToEnd();
+
+							FormatData();
 						}
 					}
 
-					if (_arguments.ContainsKey(ArgumentCollection.ReturnHeadersArg) || _arguments.Count == 1)
-					{
-						DisplayResponseHeaders(agent);
-					}
-
-					if (_arguments.ContainsKey(ArgumentCollection.FindArg))
-					{
-						DisplayFind();
-					}
-
-					if (_arguments.ContainsKey(ArgumentCollection.FindRegexpArg))
-					{
-						DisplayRegexpFind();
-					}
+					DispatchPostProcessing(agent);
 				}
 			}
 			else
@@ -78,9 +78,47 @@ namespace Nathandelane.Net.HGrep
 			}
 		}
 
-		#endregion
+		private void FormatData()
+		{
+			HtmlDocument document = new HtmlDocument();
+			document.LoadHtml(_data);
 
-		#region Methods
+			using (StringWriter writer = new StringWriter())
+			{
+				document.OptionOutputAsXml = true;
+				document.Save(writer);
+
+				_data = writer.GetStringBuilder().ToString();
+			}
+		}
+
+		private void DispatchPostProcessing(Agent agent)
+		{
+			if (_arguments.ContainsKey(ArgumentCollection.ReturnHeadersArg) || _arguments.Count == 1)
+			{
+				DisplayResponseHeaders(agent);
+			}
+
+			if (_arguments.ContainsKey(ArgumentCollection.FindArg))
+			{
+				DisplayFind();
+			}
+
+			if (_arguments.ContainsKey(ArgumentCollection.FindRegexpArg))
+			{
+				DisplayRegexpFind();
+			}
+
+			if (_arguments.ContainsKey(ArgumentCollection.ReturnData))
+			{
+				DisplayResponseData();
+			}
+		}
+
+		private void DisplayResponseData()
+		{
+
+		}
 
 		private void DisplayResponseHeaders(Agent agent)
 		{
