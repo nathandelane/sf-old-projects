@@ -68,8 +68,6 @@ namespace Nathandelane.Net.HGrep
 						{
 							argValue = currentArg.Substring(indexOfEqualsSign + 1).Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 						}
-
-						collection.Add(argName, argValue);
 					}
 					else
 					{
@@ -80,6 +78,8 @@ namespace Nathandelane.Net.HGrep
 				{
 					argName = currentArg;
 				}
+
+				collection.Add(argName, argValue);
 			}
 
 			return collection;
