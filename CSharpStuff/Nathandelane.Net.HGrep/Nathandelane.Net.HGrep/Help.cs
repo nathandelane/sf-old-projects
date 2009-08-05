@@ -51,7 +51,7 @@ namespace Nathandelane.Net.HGrep
 		private static void DisplayBasicHelp()
 		{
 			Console.WriteLine("HGrep --url=<fully qualified url> [options]");
-			Console.WriteLine("Options may be qualified by --, -, or /");
+			Console.WriteLine("Options may be qualified by --, -, or / and in some terminals and cases you may need to qualify complete arguments with \"..\"");
 			Console.WriteLine("The available options include:");
 			Console.WriteLine("{0,-30}XPath expression used to find a specific element of elements in the document.", "find=<xpath>");
 			Console.WriteLine("{0,-30}Regular expression used to find a specific element of elements in the document. (This is experimental)", "find-regexp=<regex>");
