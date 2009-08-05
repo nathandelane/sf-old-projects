@@ -32,7 +32,7 @@ namespace Nathandelane.Net.HGrep
 				Console.WriteLine("Options may be qualified by --, -, or /");
 				Console.WriteLine("The available options include:");
 				Console.WriteLine("{0,-20}XPath expression used to find a specific element of elements in the document.", "find");
-				Console.WriteLine("{0,-20}Regular expression used to find a specific element of elements in the document.", "find-regexp");
+				Console.WriteLine("{0,-20}Regular expression used to find a specific element of elements in the document. (This is experimental)", "find-regexp");
 				Console.WriteLine("{0,-20}Displays this help.", "help");
 				Console.WriteLine("{0,-20}Returns only the specified attributes of an XPath query", "return-attributes");
 				Console.WriteLine("{0,-20}Displays the response headers of the request.", "return-headers");
@@ -171,7 +171,7 @@ namespace Nathandelane.Net.HGrep
 		{
 			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg))
 			{
-				Console.WriteLine("Matches Found:");
+				Console.WriteLine("Matches Found (Experimental):");
 			}
 
 			RegexpEvaluator evaluator = new RegexpEvaluator(_data);
