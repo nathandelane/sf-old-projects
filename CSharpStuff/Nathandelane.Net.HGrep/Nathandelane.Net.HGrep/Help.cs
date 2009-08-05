@@ -77,6 +77,8 @@ namespace Nathandelane.Net.HGrep
 			Console.WriteLine("{0,-30}Ignores when a bad SSL/TLS certificate is being used by a server.", ArgumentCollection.IgnoreBadCertsArg);
 			Console.WriteLine("{0,-30}Suppresses output of attributes from find option.", ArgumentCollection.NoAttributesArg);
 			Console.WriteLine("{0,-30}Suppresses output of inner-html from find option.", ArgumentCollection.NoInnerHtmlArg);
+			Console.WriteLine("{0,-30}Suppresses numbering from find-regexp option.", ArgumentCollection.NoNumberingArg);
+			Console.WriteLine("{0,-30}Causes the request to post form data.", String.Concat(ArgumentCollection.PostBodyArg, "=<querystring>"));
 			Console.WriteLine("{0,-30}Returns only the specified attributes of an XPath query", String.Concat(ArgumentCollection.ReturnAttributesArg, "=<attributes>"));
 			Console.WriteLine("{0,-30}Displays the response headers of the request.", ArgumentCollection.ReturnHeadersArg);
 			Console.WriteLine("{0,-30}Diaplys the resulting URL from automatic redirects.", ArgumentCollection.ReturnUrlArg);

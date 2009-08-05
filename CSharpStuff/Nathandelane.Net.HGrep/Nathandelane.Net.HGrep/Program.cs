@@ -265,15 +265,22 @@ namespace Nathandelane.Net.HGrep
 			}
 
 			RegexpEvaluator evaluator = new RegexpEvaluator(_data);
-			MatchCollection matches = evaluator.Select(_arguments[ArgumentCollection.FindRegexpArg] as string);
+			IList<string> matches = evaluator.Select(_arguments[ArgumentCollection.FindRegexpArg] as string);
 
-			if (matches != null)
+			if(matches.Count > 0)
 			{
 				Console.WriteLine("/{0}/", _arguments[ArgumentCollection.FindRegexpArg] as string);
 
-				foreach (Match nextMatch in matches)
+				for(int matchesIndex = 0; matchesIndex < matches.Count; matchesIndex++)
 				{
-					Console.WriteLine("{0}", nextMatch);
+					if (_arguments.ContainsKey(ArgumentCollection.NoNumberingArg))
+					{
+						Console.WriteLine("{0}", matches[matchesIndex].Trim());
+					}
+					else
+					{
+						Console.WriteLine("{0} {1}", matchesIndex, matches[matchesIndex].Trim());
+					}
 				}
 			}
 			else

@@ -16,6 +16,7 @@ namespace Nathandelane.Net.HGrep
 		public static readonly string IgnoreBadCertsArg = "ignore-bad-certs";
 		public static readonly string NoAttributesArg = "no-attributes";
 		public static readonly string NoInnerHtmlArg = "no-inner-html";
+		public static readonly string NoNumberingArg = "no-numbering";
 		public static readonly string PostBodyArg = "post-body";
 		public static readonly string ReturnAttributesArg = "return-attributes";
 		public static readonly string ReturnDataArg = "return-data";
@@ -33,6 +34,7 @@ namespace Nathandelane.Net.HGrep
 			{ IgnoreBadCertsArg, ArgumentType.Null },
 			{ NoAttributesArg, ArgumentType.Null },
 			{ NoInnerHtmlArg, ArgumentType.Null },
+			{ NoNumberingArg, ArgumentType.Null },
 			{ PostBodyArg, ArgumentType.String },
 			{ ReturnAttributesArg, ArgumentType.StringArray },
 			{ ReturnDataArg, ArgumentType.Null },

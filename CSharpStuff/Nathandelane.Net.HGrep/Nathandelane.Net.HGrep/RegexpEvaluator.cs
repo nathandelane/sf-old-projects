@@ -25,17 +25,21 @@ namespace Nathandelane.Net.HGrep
 
 		#region Methods
 
-		public MatchCollection Select(string regularExpression)
+		public IList<string> Select(string regularExpression)
 		{
-			MatchCollection matches = null;
+			IList<string> results = new List<string>();
 			Regex regex = new Regex(regularExpression);
+			string[] documentLines = _document.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
-			if (regex.IsMatch(_document))
+			foreach (string line in documentLines)
 			{
-				matches = regex.Matches(regularExpression);
+				if (regex.IsMatch(line))
+				{
+					results.Add(line);
+				}
 			}
 
-			return matches;
+			return results;
 		}
 
 		#endregion

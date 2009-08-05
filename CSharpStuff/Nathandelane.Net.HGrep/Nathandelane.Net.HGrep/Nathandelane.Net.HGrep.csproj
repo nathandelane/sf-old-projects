@@ -54,7 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AcceptAllCertificatesPolicy.cs" />
     <Compile Include="Agent.cs" />
     <Compile Include="ArgumentCollection.cs" />
     <Compile Include="ArgumentType.cs" />
