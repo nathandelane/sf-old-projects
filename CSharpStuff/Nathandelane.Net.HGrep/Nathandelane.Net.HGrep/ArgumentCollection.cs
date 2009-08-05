@@ -91,6 +91,10 @@ namespace Nathandelane.Net.HGrep
 			{
 				arg = arg.Substring(1);
 			}
+			else
+			{
+				arg = arg;
+			}
 
 			return arg;
 		}
