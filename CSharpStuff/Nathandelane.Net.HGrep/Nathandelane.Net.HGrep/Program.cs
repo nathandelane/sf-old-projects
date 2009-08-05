@@ -109,7 +109,10 @@ namespace Nathandelane.Net.HGrep
 					{
 						foreach (string attr in (string[])_arguments["return-attributes"])
 						{
-							nodeValue.Append(String.Concat("[", attr, "='", attributes[attr].Value, "']"));
+							if (!attr.Equals("inner-text") && !attr.Equals("inner-html"))
+							{
+								nodeValue.Append(String.Concat("[", attr, "='", attributes[attr].Value, "']"));
+							}
 						}
 					}
 					else
