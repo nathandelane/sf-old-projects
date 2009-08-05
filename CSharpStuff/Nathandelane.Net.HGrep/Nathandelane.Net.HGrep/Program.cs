@@ -47,7 +47,31 @@ namespace Nathandelane.Net.HGrep
 			{
 				if (Uri.TryCreate(_arguments[ArgumentCollection.UriArg] as string, UriKind.Absolute, out uri))
 				{
-					Agent agent = new Agent(uri);
+					Agent agent = null;
+
+					if (_arguments.ContainsKey(ArgumentCollection.IgnoreBadCertsArg))
+					{
+						if (_arguments.ContainsKey(ArgumentCollection.PostBodyArg))
+						{
+							agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, true);
+						}
+						else
+						{
+							agent = new Agent(uri, true);
+						}
+					}
+					else
+					{
+						if (_arguments.ContainsKey(ArgumentCollection.PostBodyArg))
+						{
+							agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string);
+						}
+						else
+						{
+							agent = new Agent(uri);
+						}
+					}
+
 					agent.Run();
 
 					if (agent.Response.ContentEncoding.ToLower().Equals("gzip"))
@@ -109,10 +133,21 @@ namespace Nathandelane.Net.HGrep
 				DisplayRegexpFind();
 			}
 
-			if (_arguments.ContainsKey(ArgumentCollection.ReturnData))
+			if (_arguments.ContainsKey(ArgumentCollection.ReturnDataArg))
 			{
 				DisplayResponseData();
 			}
+
+			if (_arguments.ContainsKey(ArgumentCollection.ReturnUrlArg))
+			{
+				DisplayResponseUrl(agent);
+			}
+		}
+
+		private void DisplayResponseUrl(Agent agent)
+		{
+			Console.WriteLine("Response URL:");
+			Console.WriteLine("{0}", agent.Response.ResponseUri);
 		}
 
 		private void DisplayResponseData()
@@ -152,52 +187,68 @@ namespace Nathandelane.Net.HGrep
 
 			if (nodes != null)
 			{
-				foreach (HtmlNode nextNode in nodes)
+				if (_arguments.ContainsKey(ArgumentCollection.CountOnlyArg))
 				{
-					StringBuilder nodeValue = new StringBuilder();
-					nodeValue.Append(nextNode.Name);
-					nodeValue.Append(" [");
-
-					HtmlAttributeCollection attributes = nextNode.Attributes;
-					if (_arguments.ContainsKey(ArgumentCollection.ReturnAttributesArg))
+					Console.WriteLine("{0}", nodes.Count);
+				}
+				else
+				{
+					foreach (HtmlNode nextNode in nodes)
 					{
-						foreach (string attr in (string[])_arguments[ArgumentCollection.ReturnAttributesArg])
+						StringBuilder nodeValue = new StringBuilder();
+						nodeValue.Append(nextNode.Name);
+						nodeValue.Append(" [");
+
+						HtmlAttributeCollection attributes = nextNode.Attributes;
+						if (_arguments.ContainsKey(ArgumentCollection.ReturnAttributesArg) && !_arguments.ContainsKey(ArgumentCollection.NoAttributesArg))
 						{
-							if (!attr.Equals("inner-text") && !attr.Equals("inner-html"))
+							foreach (string attr in (string[])_arguments[ArgumentCollection.ReturnAttributesArg])
 							{
-								nodeValue.Append(String.Concat("[", attr, "='", attributes[attr].Value, "']"));
+								if (!attr.Equals("inner-text") && !attr.Equals("inner-html"))
+								{
+									nodeValue.Append(String.Concat("[", attr, "='", attributes[attr].Value, "']"));
+								}
 							}
 						}
-					}
-					else
-					{
-						foreach (HtmlAttribute nextAttribute in attributes)
+						else
 						{
-							nodeValue.Append(String.Concat("[", nextAttribute.Name, "='", nextAttribute.Value, "']"));
-						}
-					}
-
-					nodeValue.Append("] = ");
-					if (_arguments.ContainsKey(ArgumentCollection.ReturnAttributesArg))
-					{
-						foreach (string attr in (string[])_arguments[ArgumentCollection.ReturnAttributesArg])
-						{
-							if (attr.Equals("inner-html"))
+							foreach (HtmlAttribute nextAttribute in attributes)
 							{
-								nodeValue.Append(String.Concat(nextNode.InnerHtml, " "));
-							}
-							else if (attr.Equals("inner-text"))
-							{
-								nodeValue.Append(String.Concat(nextNode.InnerText, " "));
+								nodeValue.Append(String.Concat("[", nextAttribute.Name, "='", nextAttribute.Value, "']"));
 							}
 						}
-					}
-					else
-					{
-						nodeValue.Append(nextNode.InnerHtml);
-					}
 
-					Console.WriteLine("{0}", nodeValue);
+						nodeValue.Append("]");
+						if (_arguments.ContainsKey(ArgumentCollection.ReturnAttributesArg))
+						{
+							foreach (string attr in (string[])_arguments[ArgumentCollection.ReturnAttributesArg])
+							{
+								if (attr.Equals("inner-html"))
+								{
+									if (!_arguments.ContainsKey(ArgumentCollection.NoInnerHtmlArg))
+									{
+										nodeValue.Append(" = ");
+										nodeValue.Append(String.Concat(nextNode.InnerHtml, " "));
+									}
+								}
+								else if (attr.Equals("inner-text"))
+								{
+									nodeValue.Append(" = ");
+									nodeValue.Append(String.Concat(nextNode.InnerText, " "));
+								}
+							}
+						}
+						else
+						{
+							if (!_arguments.ContainsKey(ArgumentCollection.NoInnerHtmlArg))
+							{
+								nodeValue.Append(" = ");
+								nodeValue.Append(nextNode.InnerHtml);
+							}
+						}
+
+						Console.WriteLine("{0}", nodeValue);
+					}
 				}
 			}
 			else

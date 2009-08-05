@@ -11,18 +11,35 @@ namespace Nathandelane.Net.HGrep
 
 		public static void GetHelpFor(string helpTopic)
 		{
-			switch (helpTopic)
+			if (String.IsNullOrEmpty(helpTopic))
 			{
-				case "find":
-					DisplayHelpForFind();
-					break;
-				case "find-regexp":
-					DisplayHelpForFindRegexp();
-					break;
-				default:
-					DisplayBasicHelp();
-					break;
+				DisplayBasicHelp();
 			}
+			else
+			{
+				switch (helpTopic)
+				{
+					case "find":
+						DisplayHelpForFind();
+						break;
+					case "find-regexp":
+						DisplayHelpForFindRegexp();
+						break;
+					case "post-body":
+						DisplayHelpForPostBody();
+						break;
+					default:
+						Console.WriteLine("No specific help available for {0}.", helpTopic);
+						break;
+				}
+			}
+		}
+
+		private static void DisplayHelpForPostBody()
+		{
+			Console.WriteLine("Post-Body");
+			Console.WriteLine("Causes the request to post a querystring-formatted body of data as in form data");
+			Console.WriteLine("As stated the format of this data is a querystring format as in, key1=value1&key2=value2, and so on.");
 		}
 
 		private static void DisplayHelpForFindRegexp()
@@ -53,12 +70,17 @@ namespace Nathandelane.Net.HGrep
 			Console.WriteLine("HGrep url=<fully qualified url> [options]");
 			Console.WriteLine("Options may be qualified by --, -, or / and in some terminals and cases you may need to qualify complete arguments with \"..\"");
 			Console.WriteLine("The available options include:");
-			Console.WriteLine("{0,-30}XPath expression used to find a specific element of elements in the document.", "find=<xpath>");
-			Console.WriteLine("{0,-30}Regular expression used to find a specific element of elements in the document. (This is experimental)", "find-regexp=<regex>");
-			Console.WriteLine("{0,-30}Displays this help.", "help[=<topic>]");
-			Console.WriteLine("{0,-30}Returns only the specified attributes of an XPath query", "return-attributes=<attributes>");
-			Console.WriteLine("{0,-30}Displays the response headers of the request.", "return-headers");
-			Console.WriteLine("{0,-30}Removes or scrubs the data headers.", "scrub");
+			Console.WriteLine("{0,-30}Displays only the number of nodes that would be returned from find option.", ArgumentCollection.CountOnlyArg);
+			Console.WriteLine("{0,-30}XPath expression used to find a specific element of elements in the document.", String.Concat(ArgumentCollection.FindArg, "<xpath>"));
+			Console.WriteLine("{0,-30}Regular expression used to find a specific element of elements in the document. (This is experimental)", String.Concat(ArgumentCollection.FindRegexpArg, "=<regex>"));
+			Console.WriteLine("{0,-30}Displays this help.", String.Concat(ArgumentCollection.HelpArg, "[=<topic>]"));
+			Console.WriteLine("{0,-30}Ignores when a bad SSL/TLS certificate is being used by a server.", ArgumentCollection.IgnoreBadCertsArg);
+			Console.WriteLine("{0,-30}Suppresses output of attributes from find option.", ArgumentCollection.NoAttributesArg);
+			Console.WriteLine("{0,-30}Suppresses output of inner-html from find option.", ArgumentCollection.NoInnerHtmlArg);
+			Console.WriteLine("{0,-30}Returns only the specified attributes of an XPath query", String.Concat(ArgumentCollection.ReturnAttributesArg, "=<attributes>"));
+			Console.WriteLine("{0,-30}Displays the response headers of the request.", ArgumentCollection.ReturnHeadersArg);
+			Console.WriteLine("{0,-30}Diaplys the resulting URL from automatic redirects.", ArgumentCollection.ReturnUrlArg);
+			Console.WriteLine("{0,-30}Removes or scrubs the data headers.", ArgumentCollection.ScrubArg);
 		}
 
 		#endregion

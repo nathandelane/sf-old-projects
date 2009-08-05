@@ -9,25 +9,37 @@ namespace Nathandelane.Net.HGrep
 	{
 		#region Fields
 
-		public static readonly string UriArg = "uri";
+		public static readonly string CountOnlyArg = "count-only";
 		public static readonly string FindArg = "find";
 		public static readonly string FindRegexpArg = "find-regexp";
 		public static readonly string HelpArg = "help";
+		public static readonly string IgnoreBadCertsArg = "ignore-bad-certs";
+		public static readonly string NoAttributesArg = "no-attributes";
+		public static readonly string NoInnerHtmlArg = "no-inner-html";
+		public static readonly string PostBodyArg = "post-body";
 		public static readonly string ReturnAttributesArg = "return-attributes";
-		public static readonly string ReturnData = "return-data";
+		public static readonly string ReturnDataArg = "return-data";
 		public static readonly string ReturnHeadersArg = "return-headers";
+		public static readonly string ReturnUrlArg = "return-url";
 		public static readonly string ScrubArg = "scrub";
+		public static readonly string UriArg = "uri";
 
 		private static readonly Dictionary<string, ArgumentType> __map = new Dictionary<string, ArgumentType>()
 		{
-			{ UriArg, ArgumentType.String },
+			{ CountOnlyArg, ArgumentType.Null },
 			{ FindArg, ArgumentType.String },
 			{ FindRegexpArg, ArgumentType.String },
 			{ HelpArg, ArgumentType.String },
+			{ IgnoreBadCertsArg, ArgumentType.Null },
+			{ NoAttributesArg, ArgumentType.Null },
+			{ NoInnerHtmlArg, ArgumentType.Null },
+			{ PostBodyArg, ArgumentType.String },
 			{ ReturnAttributesArg, ArgumentType.StringArray },
-			{ ReturnData, ArgumentType.Null },
+			{ ReturnDataArg, ArgumentType.Null },
 			{ ReturnHeadersArg, ArgumentType.Null },
-			{ ScrubArg, ArgumentType.Null }
+			{ ReturnUrlArg, ArgumentType.Null },
+			{ ScrubArg, ArgumentType.Null },
+			{ UriArg, ArgumentType.String }
 		};
 
 		#endregion
