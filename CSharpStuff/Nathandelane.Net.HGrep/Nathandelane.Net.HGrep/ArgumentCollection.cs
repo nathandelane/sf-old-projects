@@ -15,7 +15,8 @@ namespace Nathandelane.Net.HGrep
 			{ "find", ArgumentType.String },
 			{ "help", ArgumentType.Null },
 			{ "return-attributes", ArgumentType.StringArray },
-			{ "return-headers", ArgumentType.Null }
+			{ "return-headers", ArgumentType.Null },
+			{ "scrub", ArgumentType.Null }
 		};
 
 		#endregion
@@ -90,10 +91,6 @@ namespace Nathandelane.Net.HGrep
 			else if (arg.StartsWith("/"))
 			{
 				arg = arg.Substring(1);
-			}
-			else
-			{
-				arg = arg;
 			}
 
 			return arg;

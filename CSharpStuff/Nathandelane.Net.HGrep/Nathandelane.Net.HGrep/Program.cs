@@ -82,7 +82,11 @@ namespace Nathandelane.Net.HGrep
 		{
 			string[] keys = agent.Response.Headers.AllKeys;
 
-			Console.WriteLine("Response Headers:");
+			if (!_arguments.ContainsKey("scrub"))
+			{
+				Console.WriteLine("Response Headers:");
+			}
+
 			foreach (string key in keys)
 			{
 				Console.WriteLine("{0,-40}{1}", key, agent.Response.Headers[key]);
@@ -91,7 +95,11 @@ namespace Nathandelane.Net.HGrep
 
 		private void DisplayFind()
 		{
-			Console.WriteLine("Nodes Found:");
+			if (!_arguments.ContainsKey("scrub"))
+			{
+				Console.WriteLine("Nodes Found:");
+			}
+
 			HtmlDocument document = new HtmlDocument();
 			document.LoadHtml(_data);
 
