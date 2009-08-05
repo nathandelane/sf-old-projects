@@ -25,7 +25,7 @@ namespace Nathandelane.Net.HGrep
 
 			_arguments = ArgumentCollection.Parse(args);
 
-			if (_arguments.ContainsKey("help") || _arguments.Count == 0)
+			if (_arguments.ContainsKey(ArgumentCollection.HelpArg) || _arguments.Count == 0)
 			{
 				Console.WriteLine("HGrep --url=<fully qualified url> [options]");
 				Console.WriteLine("Options may be qualified by --, -, or /");
@@ -35,9 +35,9 @@ namespace Nathandelane.Net.HGrep
 				Console.WriteLine("{0,-20}Returns only the specified attributes of an XPath query", "return-attributes");
 				Console.WriteLine("{0,-20}Displays the response headers of the request.", "return-headers");
 			}
-			else if (_arguments.ContainsKey("uri"))
+			else if (_arguments.ContainsKey(ArgumentCollection.UriArg))
 			{
-				if (Uri.TryCreate(_arguments["uri"] as string, UriKind.Absolute, out uri))
+				if (Uri.TryCreate(_arguments[ArgumentCollection.UriArg] as string, UriKind.Absolute, out uri))
 				{
 					Agent agent = new Agent(uri);
 					agent.Run();
@@ -57,12 +57,12 @@ namespace Nathandelane.Net.HGrep
 						}
 					}
 
-					if (_arguments.ContainsKey("return-headers") || _arguments.Count == 1)
+					if (_arguments.ContainsKey(ArgumentCollection.ReturnHeadersArg) || _arguments.Count == 1)
 					{
 						DisplayResponseHeaders(agent);
 					}
 
-					if (_arguments.ContainsKey("find"))
+					if (_arguments.ContainsKey(ArgumentCollection.FindArg))
 					{
 						DisplayFind();
 					}
@@ -82,7 +82,7 @@ namespace Nathandelane.Net.HGrep
 		{
 			string[] keys = agent.Response.Headers.AllKeys;
 
-			if (!_arguments.ContainsKey("scrub"))
+			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg))
 			{
 				Console.WriteLine("Response Headers:");
 			}
@@ -95,7 +95,7 @@ namespace Nathandelane.Net.HGrep
 
 		private void DisplayFind()
 		{
-			if (!_arguments.ContainsKey("scrub"))
+			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg))
 			{
 				Console.WriteLine("Nodes Found:");
 			}
@@ -103,7 +103,7 @@ namespace Nathandelane.Net.HGrep
 			HtmlDocument document = new HtmlDocument();
 			document.LoadHtml(_data);
 
-			HtmlNodeCollection nodes = document.DocumentNode.SelectNodes(_arguments["find"] as string);
+			HtmlNodeCollection nodes = document.DocumentNode.SelectNodes(_arguments[ArgumentCollection.FindArg] as string);
 			if (nodes != null)
 			{
 				foreach (HtmlNode nextNode in nodes)
@@ -113,9 +113,9 @@ namespace Nathandelane.Net.HGrep
 					nodeValue.Append(" [");
 
 					HtmlAttributeCollection attributes = nextNode.Attributes;
-					if (_arguments.ContainsKey("return-attributes"))
+					if (_arguments.ContainsKey(ArgumentCollection.ReturnAttributesArg))
 					{
-						foreach (string attr in (string[])_arguments["return-attributes"])
+						foreach (string attr in (string[])_arguments[ArgumentCollection.ReturnAttributesArg])
 						{
 							if (!attr.Equals("inner-text") && !attr.Equals("inner-html"))
 							{
@@ -132,9 +132,9 @@ namespace Nathandelane.Net.HGrep
 					}
 
 					nodeValue.Append("] = ");
-					if (_arguments.ContainsKey("return-attributes"))
+					if (_arguments.ContainsKey(ArgumentCollection.ReturnAttributesArg))
 					{
-						foreach (string attr in (string[])_arguments["return-attributes"])
+						foreach (string attr in (string[])_arguments[ArgumentCollection.ReturnAttributesArg])
 						{
 							if (attr.Equals("inner-html"))
 							{
@@ -156,7 +156,7 @@ namespace Nathandelane.Net.HGrep
 			}
 			else
 			{
-				Console.WriteLine("No elements were found using {0}.", _arguments["find"] as string);
+				Console.WriteLine("No elements were found using {0}.", _arguments[ArgumentCollection.FindArg] as string);
 			}
 		}
 

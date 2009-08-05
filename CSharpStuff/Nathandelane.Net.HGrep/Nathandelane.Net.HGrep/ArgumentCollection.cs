@@ -9,14 +9,21 @@ namespace Nathandelane.Net.HGrep
 	{
 		#region Fields
 
+		public static readonly string UriArg = "uri";
+		public static readonly string FindArg = "find";
+		public static readonly string HelpArg = "help";
+		public static readonly string ReturnAttributesArg = "return-attributes";
+		public static readonly string ReturnHeadersArg = "return-headers";
+		public static readonly string ScrubArg = "scrub";
+
 		private static readonly Dictionary<string, ArgumentType> __map = new Dictionary<string, ArgumentType>()
 		{
-			{ "uri", ArgumentType.String },
-			{ "find", ArgumentType.String },
-			{ "help", ArgumentType.Null },
-			{ "return-attributes", ArgumentType.StringArray },
-			{ "return-headers", ArgumentType.Null },
-			{ "scrub", ArgumentType.Null }
+			{ UriArg, ArgumentType.String },
+			{ FindArg, ArgumentType.String },
+			{ HelpArg, ArgumentType.Null },
+			{ ReturnAttributesArg, ArgumentType.StringArray },
+			{ ReturnHeadersArg, ArgumentType.Null },
+			{ ScrubArg, ArgumentType.Null }
 		};
 
 		#endregion
