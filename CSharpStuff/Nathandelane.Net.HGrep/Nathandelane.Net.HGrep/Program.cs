@@ -267,7 +267,7 @@ namespace Nathandelane.Net.HGrep
 						}
 						else
 						{
-							if (!_arguments.ContainsKey(ArgumentCollection.NoInnerHtmlArg))
+							if (!_arguments.ContainsKey(ArgumentCollection.NoInnerHtmlArg) && !String.IsNullOrEmpty(nextNode.InnerHtml))
 							{
 								nodeValue.Append(" = ");
 								nodeValue.Append(nextNode.InnerHtml);
