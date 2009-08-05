@@ -24,6 +24,7 @@ namespace Nathandelane.Net.HGrep
 		public static readonly string ReturnUrlArg = "return-url";
 		public static readonly string ScrubArg = "scrub";
 		public static readonly string UriArg = "uri";
+		public static readonly string VersionArg = "version";
 
 		private static readonly Dictionary<string, ArgumentType> __map = new Dictionary<string, ArgumentType>()
 		{
@@ -41,7 +42,8 @@ namespace Nathandelane.Net.HGrep
 			{ ReturnHeadersArg, ArgumentType.Null },
 			{ ReturnUrlArg, ArgumentType.Null },
 			{ ScrubArg, ArgumentType.Null },
-			{ UriArg, ArgumentType.String }
+			{ UriArg, ArgumentType.String },
+			{ VersionArg, ArgumentType.Null }
 		};
 
 		#endregion
