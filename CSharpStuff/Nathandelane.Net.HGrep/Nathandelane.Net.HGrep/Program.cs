@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using ICSharpCode.SharpZipLib.GZip;
-using HtmlAgilityPack;
+using System.Linq;
+using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
+using HtmlAgilityPack;
+using ICSharpCode.SharpZipLib.GZip;
 
 namespace Nathandelane.Net.HGrep
 {
@@ -39,9 +40,14 @@ namespace Nathandelane.Net.HGrep
 			{
 				Help.GetHelpFor(String.Empty);
 			}
-			if (_arguments.ContainsKey(ArgumentCollection.HelpArg))
+			else if (_arguments.ContainsKey(ArgumentCollection.HelpArg))
 			{
 				Help.GetHelpFor(_arguments[ArgumentCollection.HelpArg] as string);
+			}
+			else if (_arguments.ContainsKey(ArgumentCollection.VersionArg))
+			{
+				Console.WriteLine("HGrep version {0} Copyright (C) 2009, Nathandelane, HGrep", Assembly.GetEntryAssembly().GetName().Version);
+				Console.WriteLine("For help type HGrep -help");
 			}
 			else if (_arguments.ContainsKey(ArgumentCollection.UriArg))
 			{
