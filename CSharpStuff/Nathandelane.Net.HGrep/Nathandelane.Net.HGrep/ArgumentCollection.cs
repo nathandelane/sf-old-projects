@@ -58,7 +58,7 @@ namespace Nathandelane.Net.HGrep
 						}
 						else if (__map[argName] == ArgumentType.StringArray)
 						{
-							argValue = currentArg.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+							argValue = currentArg.Substring(indexOfEqualsSign + 1).Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
 						}
 
 						collection.Add(argName, argValue);
