@@ -117,7 +117,12 @@ namespace Nathandelane.Net.HGrep
 
 		private void DisplayResponseData()
 		{
+			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg))
+			{
+				Console.WriteLine("Response Data:");
+			}
 
+			Console.WriteLine(_data);
 		}
 
 		private void DisplayResponseHeaders(Agent agent)
