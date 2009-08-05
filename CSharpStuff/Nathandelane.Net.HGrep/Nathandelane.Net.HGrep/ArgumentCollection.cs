@@ -11,6 +11,7 @@ namespace Nathandelane.Net.HGrep
 
 		public static readonly string UriArg = "uri";
 		public static readonly string FindArg = "find";
+		public static readonly string FindRegexpArg = "find-regexp";
 		public static readonly string HelpArg = "help";
 		public static readonly string ReturnAttributesArg = "return-attributes";
 		public static readonly string ReturnHeadersArg = "return-headers";
@@ -20,6 +21,7 @@ namespace Nathandelane.Net.HGrep
 		{
 			{ UriArg, ArgumentType.String },
 			{ FindArg, ArgumentType.String },
+			{ FindRegexpArg, ArgumentType.String },
 			{ HelpArg, ArgumentType.Null },
 			{ ReturnAttributesArg, ArgumentType.StringArray },
 			{ ReturnHeadersArg, ArgumentType.Null },

@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using ICSharpCode.SharpZipLib.GZip;
 using HtmlAgilityPack;
+using System.Text.RegularExpressions;
 
 namespace Nathandelane.Net.HGrep
 {
@@ -31,9 +32,11 @@ namespace Nathandelane.Net.HGrep
 				Console.WriteLine("Options may be qualified by --, -, or /");
 				Console.WriteLine("The available options include:");
 				Console.WriteLine("{0,-20}XPath expression used to find a specific element of elements in the document.", "find");
+				Console.WriteLine("{0,-20}Regular expression used to find a specific element of elements in the document.", "find-regexp");
 				Console.WriteLine("{0,-20}Displays this help.", "help");
 				Console.WriteLine("{0,-20}Returns only the specified attributes of an XPath query", "return-attributes");
 				Console.WriteLine("{0,-20}Displays the response headers of the request.", "return-headers");
+				Console.WriteLine("{0,-20}Removes or scrubs the data headers.", "scrub");
 			}
 			else if (_arguments.ContainsKey(ArgumentCollection.UriArg))
 			{
@@ -65,6 +68,11 @@ namespace Nathandelane.Net.HGrep
 					if (_arguments.ContainsKey(ArgumentCollection.FindArg))
 					{
 						DisplayFind();
+					}
+
+					if (_arguments.ContainsKey(ArgumentCollection.FindRegexpArg))
+					{
+						DisplayRegexpFind();
 					}
 				}
 			}
@@ -100,10 +108,9 @@ namespace Nathandelane.Net.HGrep
 				Console.WriteLine("Nodes Found:");
 			}
 
-			HtmlDocument document = new HtmlDocument();
-			document.LoadHtml(_data);
+			XPathEvaluator evaluator = new XPathEvaluator(_data);
+			HtmlNodeCollection nodes = evaluator.Select(_arguments[ArgumentCollection.FindArg] as string);
 
-			HtmlNodeCollection nodes = document.DocumentNode.SelectNodes(_arguments[ArgumentCollection.FindArg] as string);
 			if (nodes != null)
 			{
 				foreach (HtmlNode nextNode in nodes)
@@ -157,6 +164,31 @@ namespace Nathandelane.Net.HGrep
 			else
 			{
 				Console.WriteLine("No elements were found using {0}.", _arguments[ArgumentCollection.FindArg] as string);
+			}
+		}
+
+		private void DisplayRegexpFind()
+		{
+			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg))
+			{
+				Console.WriteLine("Matches Found:");
+			}
+
+			RegexpEvaluator evaluator = new RegexpEvaluator(_data);
+			MatchCollection matches = evaluator.Select(_arguments[ArgumentCollection.FindRegexpArg] as string);
+
+			if (matches != null)
+			{
+				Console.WriteLine("/{0}/", _arguments[ArgumentCollection.FindRegexpArg] as string);
+
+				foreach (Match nextMatch in matches)
+				{
+					Console.WriteLine("{0}", nextMatch);
+				}
+			}
+			else
+			{
+				Console.WriteLine("No matches were found using {0}.", _arguments[ArgumentCollection.FindRegexpArg] as string);
 			}
 		}
 
