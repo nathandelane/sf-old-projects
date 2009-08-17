@@ -34,6 +34,7 @@ namespace Nathandelane.Net.HGrep
 
 		private HttpWebRequest _request;
 		private HttpWebResponse _response;
+		private int _timeout;
 
 		#endregion
 
@@ -80,6 +81,32 @@ namespace Nathandelane.Net.HGrep
 			AddPostBody(postBody);
 		}
 
+		public Agent(Uri requestUri, int timeout)
+		{
+			InitializeRequest(requestUri);
+			SetGlobalCertficateDefaultPolicy();
+		}
+
+		public Agent(Uri requestUri, bool ignoreBadCertificates, int timeout)
+		{
+			InitializeRequest(requestUri);
+			SetGlobalCertificatePolicyAlwaysTrue();
+		}
+
+		public Agent(Uri requestUri, string postBody, int timeout)
+		{
+			InitializeRequest(requestUri);
+			SetGlobalCertficateDefaultPolicy();
+			AddPostBody(postBody);
+		}
+
+		public Agent(Uri requestUri, string postBody, bool ignoreBadCertificates, int timeout)
+		{
+			InitializeRequest(requestUri);
+			SetGlobalCertificatePolicyAlwaysTrue();
+			AddPostBody(postBody);
+		}
+
 		#endregion
 
 		#region Methods
@@ -93,7 +120,7 @@ namespace Nathandelane.Net.HGrep
 		{
 			_request = HttpWebRequest.CreateDefault(requestUri) as HttpWebRequest;
 			_request.Accept = ConfigurationManager.AppSettings["Accept"];
-			_request.Timeout = int.Parse(ConfigurationManager.AppSettings["Timeout"]);
+			_request.Timeout = ((_timeout == 0) ? int.Parse(ConfigurationManager.AppSettings["Timeout"]) : _timeout);
 			_request.UserAgent = ConfigurationManager.AppSettings["UserAgentString"];
 			_request.Headers.Add("Accept-Language", ConfigurationManager.AppSettings["AcceptLanguage"]);
 			_request.Headers.Add("Accept-Encoding", ConfigurationManager.AppSettings["AcceptEncoding"]);

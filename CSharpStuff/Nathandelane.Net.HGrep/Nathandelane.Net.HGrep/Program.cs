@@ -77,22 +77,50 @@ namespace Nathandelane.Net.HGrep
 					{
 						if (_arguments.ContainsKey(ArgumentCollection.PostBodyArg))
 						{
-							agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, true);
+							if (_arguments.ContainsKey(ArgumentCollection.TimeoutArg))
+							{
+								agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, true, Int32.Parse(_arguments[ArgumentCollection.TimeoutArg] as string));
+							}
+							else
+							{
+								agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, true);
+							}
 						}
 						else
 						{
-							agent = new Agent(uri, true);
+							if (_arguments.ContainsKey(ArgumentCollection.TimeoutArg))
+							{
+								agent = new Agent(uri, true, Int32.Parse(_arguments[ArgumentCollection.TimeoutArg] as string));
+							}
+							else
+							{
+								agent = new Agent(uri, true);
+							}
 						}
 					}
 					else
 					{
 						if (_arguments.ContainsKey(ArgumentCollection.PostBodyArg))
 						{
-							agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string);
+							if (_arguments.ContainsKey(ArgumentCollection.TimeoutArg))
+							{
+								agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, Int32.Parse(_arguments[ArgumentCollection.TimeoutArg] as string));
+							}
+							else
+							{
+								agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string);
+							}
 						}
 						else
 						{
-							agent = new Agent(uri);
+							if (_arguments.ContainsKey(ArgumentCollection.TimeoutArg))
+							{
+								agent = new Agent(uri, Int32.Parse(_arguments[ArgumentCollection.TimeoutArg] as string));
+							}
+							else
+							{
+								agent = new Agent(uri);
+							}
 						}
 					}
 

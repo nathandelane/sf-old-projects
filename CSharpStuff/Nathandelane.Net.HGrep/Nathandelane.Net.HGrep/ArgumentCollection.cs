@@ -42,6 +42,7 @@ namespace Nathandelane.Net.HGrep
 		public static readonly string ReturnHeadersArg = "return-headers";
 		public static readonly string ReturnUrlArg = "return-url";
 		public static readonly string ScrubArg = "scrub";
+		public static readonly string TimeoutArg = "timeout";
 		public static readonly string UriArg = "uri";
 		public static readonly string VersionArg = "version";
 
@@ -62,6 +63,7 @@ namespace Nathandelane.Net.HGrep
 			{ ReturnHeadersArg, ArgumentType.Null },
 			{ ReturnUrlArg, ArgumentType.Null },
 			{ ScrubArg, ArgumentType.Null },
+			{ TimeoutArg, ArgumentType.Int },
 			{ UriArg, ArgumentType.String },
 			{ VersionArg, ArgumentType.Null }
 		};
@@ -107,6 +109,18 @@ namespace Nathandelane.Net.HGrep
 						else if (__map[argName] == ArgumentType.StringArray)
 						{
 							argValue = currentArg.Substring(indexOfEqualsSign + 1).Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+						}
+						else if (__map[argName] == ArgumentType.Int)
+						{
+							int outValue = 0;
+							if (Int32.TryParse(currentArg, out outValue))
+							{
+								argValue = outValue;
+							}
+							else
+							{
+								throw new ArgumentException(String.Format("Argument {0} must be of int (Int32) type", argName));
+							}
 						}
 					}
 					else
