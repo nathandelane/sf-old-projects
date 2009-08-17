@@ -87,6 +87,7 @@ namespace Nathandelane.Net.HGrep
 			Console.WriteLine("HGrep url=<fully qualified url> [options]");
 			Console.WriteLine("Options may be qualified by --, -, or / and in some terminals and cases you may need to qualify complete arguments with \"..\"");
 			Console.WriteLine("The available options include:");
+			Console.WriteLine("{0,-30}Removes the information headers of each section.", ArgumentCollection.CleanArg);
 			Console.WriteLine("{0,-30}Displays only the number of nodes that would be returned from find option.", ArgumentCollection.CountOnlyArg);
 			Console.WriteLine("{0,-30}XPath expression used to find a specific element of elements in the document.", String.Concat(ArgumentCollection.FindArg, "<xpath>"));
 			Console.WriteLine("{0,-30}Regular expression used to find a specific element of elements in the document. (This is experimental)", String.Concat(ArgumentCollection.FindRegexpArg, "=<regex>"));

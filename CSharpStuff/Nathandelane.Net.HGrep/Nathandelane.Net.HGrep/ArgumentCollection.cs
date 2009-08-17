@@ -27,6 +27,7 @@ namespace Nathandelane.Net.HGrep
 	{
 		#region Fields
 
+		public static readonly string CleanArg = "clean";
 		public static readonly string CountOnlyArg = "count-only";
 		public static readonly string FindArg = "find";
 		public static readonly string FindRegexpArg = "find-regexp";
@@ -46,6 +47,7 @@ namespace Nathandelane.Net.HGrep
 
 		private static readonly Dictionary<string, ArgumentType> __map = new Dictionary<string, ArgumentType>()
 		{
+			{ CleanArg, ArgumentType.Null },
 			{ CountOnlyArg, ArgumentType.Null },
 			{ FindArg, ArgumentType.String },
 			{ FindRegexpArg, ArgumentType.String },

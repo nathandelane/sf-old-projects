@@ -175,13 +175,17 @@ namespace Nathandelane.Net.HGrep
 
 		private void DisplayResponseUrl(Agent agent)
 		{
-			Console.WriteLine("Response URL:");
+			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg) && !_arguments.ContainsKey(ArgumentCollection.CleanArg))
+			{
+				Console.WriteLine("Response URL:");
+			
+			}
 			Console.WriteLine("{0}", agent.Response.ResponseUri);
 		}
 
 		private void DisplayResponseData()
 		{
-			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg))
+			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg) && !_arguments.ContainsKey(ArgumentCollection.CleanArg))
 			{
 				Console.WriteLine("Response Data:");
 			}
@@ -193,7 +197,7 @@ namespace Nathandelane.Net.HGrep
 		{
 			string[] keys = agent.Response.Headers.AllKeys;
 
-			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg))
+			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg) && !_arguments.ContainsKey(ArgumentCollection.CleanArg))
 			{
 				Console.WriteLine("Response Headers:");
 			}
@@ -206,7 +210,7 @@ namespace Nathandelane.Net.HGrep
 
 		private void DisplayFind()
 		{
-			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg))
+			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg) && !_arguments.ContainsKey(ArgumentCollection.CleanArg))
 			{
 				Console.WriteLine("Nodes Found:");
 			}
@@ -291,7 +295,7 @@ namespace Nathandelane.Net.HGrep
 
 		private void DisplayRegexpFind()
 		{
-			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg))
+			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg) && !_arguments.ContainsKey(ArgumentCollection.CleanArg))
 			{
 				Console.WriteLine("Matches Found (Experimental):");
 			}
@@ -318,6 +322,7 @@ namespace Nathandelane.Net.HGrep
 			else
 			{
 				Console.WriteLine("No matches were found using {0}.", _arguments[ArgumentCollection.FindRegexpArg] as string);
+				Environment.Exit(2);
 			}
 		}
 
