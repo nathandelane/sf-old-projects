@@ -79,7 +79,7 @@ namespace Nathandelane.Net.HGrep
 						{
 							if (_arguments.ContainsKey(ArgumentCollection.TimeoutArg))
 							{
-								agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, true, Int32.Parse(_arguments[ArgumentCollection.TimeoutArg] as string));
+								agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, true, (int)_arguments[ArgumentCollection.TimeoutArg]);
 							}
 							else
 							{
@@ -90,7 +90,7 @@ namespace Nathandelane.Net.HGrep
 						{
 							if (_arguments.ContainsKey(ArgumentCollection.TimeoutArg))
 							{
-								agent = new Agent(uri, true, Int32.Parse(_arguments[ArgumentCollection.TimeoutArg] as string));
+								agent = new Agent(uri, true, (int)_arguments[ArgumentCollection.TimeoutArg]);
 							}
 							else
 							{
@@ -104,7 +104,7 @@ namespace Nathandelane.Net.HGrep
 						{
 							if (_arguments.ContainsKey(ArgumentCollection.TimeoutArg))
 							{
-								agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, Int32.Parse(_arguments[ArgumentCollection.TimeoutArg] as string));
+								agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, (int)_arguments[ArgumentCollection.TimeoutArg]);
 							}
 							else
 							{
@@ -115,7 +115,7 @@ namespace Nathandelane.Net.HGrep
 						{
 							if (_arguments.ContainsKey(ArgumentCollection.TimeoutArg))
 							{
-								agent = new Agent(uri, Int32.Parse(_arguments[ArgumentCollection.TimeoutArg] as string));
+								agent = new Agent(uri, (int)_arguments[ArgumentCollection.TimeoutArg]);
 							}
 							else
 							{

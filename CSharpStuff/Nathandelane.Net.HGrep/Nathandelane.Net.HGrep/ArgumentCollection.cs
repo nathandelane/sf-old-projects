@@ -113,7 +113,7 @@ namespace Nathandelane.Net.HGrep
 						else if (__map[argName] == ArgumentType.Int)
 						{
 							int outValue = 0;
-							if (Int32.TryParse(currentArg, out outValue))
+							if (Int32.TryParse(currentArg.Substring(indexOfEqualsSign + 1), out outValue))
 							{
 								argValue = outValue;
 							}
