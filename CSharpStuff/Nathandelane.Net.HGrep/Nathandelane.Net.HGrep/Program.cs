@@ -175,7 +175,11 @@ namespace Nathandelane.Net.HGrep
 
 		private void DispatchPostProcessing(Agent agent)
 		{
-			if (_arguments.ContainsKey(ArgumentCollection.ReturnHeadersArg) || _arguments.Count == 1)
+			if (_arguments.ContainsKey(ArgumentCollection.ReturnHeadersArg) && !_arguments.ContainsKey(ArgumentCollection.ScrubArg))
+			{
+				DisplayResponseHeaders(agent);
+			}
+			else if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg))
 			{
 				DisplayResponseHeaders(agent);
 			}
@@ -203,7 +207,7 @@ namespace Nathandelane.Net.HGrep
 
 		private void DisplayResponseUrl(Agent agent)
 		{
-			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg) && !_arguments.ContainsKey(ArgumentCollection.CleanArg))
+			if (!_arguments.ContainsKey(ArgumentCollection.CleanArg))
 			{
 				Console.WriteLine("Response URL:");
 			
@@ -213,7 +217,7 @@ namespace Nathandelane.Net.HGrep
 
 		private void DisplayResponseData()
 		{
-			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg) && !_arguments.ContainsKey(ArgumentCollection.CleanArg))
+			if (!_arguments.ContainsKey(ArgumentCollection.CleanArg))
 			{
 				Console.WriteLine("Response Data:");
 			}
@@ -225,7 +229,7 @@ namespace Nathandelane.Net.HGrep
 		{
 			string[] keys = agent.Response.Headers.AllKeys;
 
-			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg) && !_arguments.ContainsKey(ArgumentCollection.CleanArg))
+			if (!_arguments.ContainsKey(ArgumentCollection.CleanArg))
 			{
 				Console.WriteLine("Response Headers:");
 			}
@@ -238,7 +242,7 @@ namespace Nathandelane.Net.HGrep
 
 		private void DisplayFind()
 		{
-			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg) && !_arguments.ContainsKey(ArgumentCollection.CleanArg))
+			if (!_arguments.ContainsKey(ArgumentCollection.CleanArg))
 			{
 				Console.WriteLine("Nodes Found:");
 			}
@@ -323,7 +327,7 @@ namespace Nathandelane.Net.HGrep
 
 		private void DisplayRegexpFind()
 		{
-			if (!_arguments.ContainsKey(ArgumentCollection.ScrubArg) && !_arguments.ContainsKey(ArgumentCollection.CleanArg))
+			if (!_arguments.ContainsKey(ArgumentCollection.CleanArg))
 			{
 				Console.WriteLine("Matches Found (Experimental):");
 			}

@@ -87,7 +87,7 @@ namespace Nathandelane.Net.HGrep
 			Console.WriteLine("HGrep url=<fully qualified url> [options]");
 			Console.WriteLine("Options may be qualified by --, -, or / and in some terminals and cases you may need to qualify complete arguments with \"..\"");
 			Console.WriteLine("The available options include:");
-			Console.WriteLine("{0,-30}Removes the information headers of each section.", ArgumentCollection.CleanArg);
+			Console.WriteLine("{0,-30}Removes titles from results.", ArgumentCollection.CleanArg);
 			Console.WriteLine("{0,-30}Displays only the number of nodes that would be returned from find option.", ArgumentCollection.CountOnlyArg);
 			Console.WriteLine("{0,-30}XPath expression used to find a specific element of elements in the document.", String.Concat(ArgumentCollection.FindArg, "<xpath>"));
 			Console.WriteLine("{0,-30}Regular expression used to find a specific element of elements in the document. (This is experimental)", String.Concat(ArgumentCollection.FindRegexpArg, "=<regex>"));
@@ -100,7 +100,7 @@ namespace Nathandelane.Net.HGrep
 			Console.WriteLine("{0,-30}Returns only the specified attributes of an XPath query", String.Concat(ArgumentCollection.ReturnAttributesArg, "=<attributes>"));
 			Console.WriteLine("{0,-30}Displays the response headers of the request.", ArgumentCollection.ReturnHeadersArg);
 			Console.WriteLine("{0,-30}Diaplys the resulting URL from automatic redirects.", ArgumentCollection.ReturnUrlArg);
-			Console.WriteLine("{0,-30}Removes or scrubs the data headers.", ArgumentCollection.ScrubArg);
+			Console.WriteLine("{0,-30}Disables automatic display of response headers.", ArgumentCollection.ScrubArg);
 			Console.WriteLine("{0,-30}Overrides the default timeout setting in the config file.", ArgumentCollection.TimeoutArg);
 		}
 
