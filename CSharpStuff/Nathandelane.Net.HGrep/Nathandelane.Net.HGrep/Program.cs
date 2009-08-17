@@ -327,6 +327,7 @@ namespace Nathandelane.Net.HGrep
 			catch (Exception e)
 			{
 				Console.WriteLine("Exception caught: {0}", e.Message);
+				Environment.Exit(1);
 			}
 		}
 	}
