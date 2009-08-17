@@ -119,6 +119,11 @@ namespace Nathandelane.Net.HGrep
 
 					DispatchPostProcessing(agent);
 				}
+				else
+				{
+					Console.WriteLine("Exception occurred! Uri is malformed");
+					Environment.Exit(1);
+				}
 			}
 			else
 			{
