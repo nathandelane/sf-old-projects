@@ -298,7 +298,12 @@ namespace Nathandelane.Net.HGrep
 
 										if (_arguments.ContainsKey(ArgumentCollection.EncodeLineBreaksArg))
 										{
-											innerHtml = innerHtml.Trim().Replace("\n", "\\n").Replace("\r", "\\r");
+											int? numberReplaces = (int?)_arguments[ArgumentCollection.DecodeEntitiesArg] ?? 1;
+
+											for (int counter = 0; counter < numberReplaces; counter++)
+											{
+												innerHtml = innerHtml.Trim().Replace("\n", "\\n").Replace("\r", "\\r");
+											}
 										}
 
 										if (_arguments.ContainsKey(ArgumentCollection.DecodeEntitiesArg))
@@ -319,7 +324,12 @@ namespace Nathandelane.Net.HGrep
 
 										if (_arguments.ContainsKey(ArgumentCollection.EncodeLineBreaksArg))
 										{
-											innerText = innerText.Trim().Replace("\n", "\\n").Replace("\r", "\\r");
+											int? numberReplaces = (int?)_arguments[ArgumentCollection.DecodeEntitiesArg] ?? 1;
+
+											for (int counter = 0; counter < numberReplaces; counter++)
+											{
+												innerText = innerText.Trim().Replace("\n", "\\n").Replace("\r", "\\r");
+											}
 										}
 
 										if (_arguments.ContainsKey(ArgumentCollection.DecodeEntitiesArg))

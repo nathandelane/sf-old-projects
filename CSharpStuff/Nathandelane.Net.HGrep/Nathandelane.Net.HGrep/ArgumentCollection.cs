@@ -53,7 +53,7 @@ namespace Nathandelane.Net.HGrep
 			{ CleanArg, ArgumentType.Null },
 			{ CountOnlyArg, ArgumentType.Null },
 			{ EncodeLineBreaksArg, ArgumentType.Null },
-			{ DecodeEntitiesArg, ArgumentType.Null },
+			{ DecodeEntitiesArg, ArgumentType.Int },
 			{ FindArg, ArgumentType.String },
 			{ FindRegexpArg, ArgumentType.String },
 			{ HelpArg, ArgumentType.String },
