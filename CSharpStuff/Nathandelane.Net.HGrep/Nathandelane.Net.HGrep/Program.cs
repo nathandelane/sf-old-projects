@@ -306,7 +306,7 @@ namespace Nathandelane.Net.HGrep
 											innerHtml = XCharacterEntityDecoder.Decode(innerHtml);
 										}
 
-										nodeValue.Append(String.Concat(nextNode.InnerHtml.Trim(), " "));
+										nodeValue.Append(String.Concat(innerHtml, " "));
 									}
 								}
 								else if (attr.Equals("inner-text"))
@@ -327,7 +327,7 @@ namespace Nathandelane.Net.HGrep
 											innerText = XCharacterEntityDecoder.Decode(innerText);
 										}
 
-										nodeValue.Append(String.Concat(nextNode.InnerHtml.Trim(), " "));
+										nodeValue.Append(String.Concat(innerText, " "));
 									}
 								}
 							}
