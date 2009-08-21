@@ -298,17 +298,17 @@ namespace Nathandelane.Net.HGrep
 
 										if (_arguments.ContainsKey(ArgumentCollection.EncodeLineBreaksArg))
 										{
-											int? numberReplaces = (int?)_arguments[ArgumentCollection.DecodeEntitiesArg] ?? 1;
-
-											for (int counter = 0; counter < numberReplaces; counter++)
-											{
 												innerHtml = innerHtml.Trim().Replace("\n", "\\n").Replace("\r", "\\r");
-											}
 										}
 
 										if (_arguments.ContainsKey(ArgumentCollection.DecodeEntitiesArg))
 										{
-											innerHtml = XCharacterEntityDecoder.Decode(innerHtml);
+											int? numberReplaces = (int?)_arguments[ArgumentCollection.DecodeEntitiesArg] ?? 1;
+
+											for (int counter = 0; counter < numberReplaces; counter++)
+											{
+												innerHtml = XCharacterEntityDecoder.Decode(innerHtml);
+											}
 										}
 
 										nodeValue.Append(String.Concat(innerHtml, " "));
@@ -324,17 +324,17 @@ namespace Nathandelane.Net.HGrep
 
 										if (_arguments.ContainsKey(ArgumentCollection.EncodeLineBreaksArg))
 										{
-											int? numberReplaces = (int?)_arguments[ArgumentCollection.DecodeEntitiesArg] ?? 1;
-
-											for (int counter = 0; counter < numberReplaces; counter++)
-											{
 												innerText = innerText.Trim().Replace("\n", "\\n").Replace("\r", "\\r");
-											}
 										}
 
 										if (_arguments.ContainsKey(ArgumentCollection.DecodeEntitiesArg))
 										{
-											innerText = XCharacterEntityDecoder.Decode(innerText);
+											int? numberReplaces = (int?)_arguments[ArgumentCollection.DecodeEntitiesArg] ?? 1;
+
+											for (int counter = 0; counter < numberReplaces; counter++)
+											{
+												innerText = XCharacterEntityDecoder.Decode(innerText);
+											}
 										}
 
 										nodeValue.Append(String.Concat(innerText, " "));
