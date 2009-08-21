@@ -293,7 +293,15 @@ namespace Nathandelane.Net.HGrep
 									if (!_arguments.ContainsKey(ArgumentCollection.NoInnerHtmlArg) && !String.IsNullOrEmpty(nextNode.InnerHtml))
 									{
 										nodeValue.Append(" = ");
-										nodeValue.Append(String.Concat(nextNode.InnerHtml.Trim(), " "));
+
+										if (_arguments.ContainsKey(ArgumentCollection.EncodeLineBreaksArg))
+										{
+											nodeValue.Append(String.Concat(nextNode.InnerHtml.Trim().Replace("\n", "\\n").Replace("\r", "\\r"), " "));
+										}
+										else
+										{
+											nodeValue.Append(String.Concat(nextNode.InnerHtml.Trim(), " "));
+										}
 									}
 								}
 								else if (attr.Equals("inner-text"))
@@ -301,7 +309,15 @@ namespace Nathandelane.Net.HGrep
 									if (!String.IsNullOrEmpty(nextNode.InnerText))
 									{
 										nodeValue.Append(" = ");
-										nodeValue.Append(String.Concat(nextNode.InnerText.Trim(), " "));
+
+										if (_arguments.ContainsKey(ArgumentCollection.EncodeLineBreaksArg))
+										{
+											nodeValue.Append(String.Concat(nextNode.InnerText.Trim().Replace("\n", "\\n").Replace("\r", "\\r"), " "));
+										}
+										else
+										{
+											nodeValue.Append(String.Concat(nextNode.InnerText.Trim(), " "));
+										}
 									}
 								}
 							}
