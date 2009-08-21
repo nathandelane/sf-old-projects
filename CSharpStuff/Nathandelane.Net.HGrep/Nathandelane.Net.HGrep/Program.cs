@@ -294,14 +294,19 @@ namespace Nathandelane.Net.HGrep
 									{
 										nodeValue.Append(" = ");
 
+										string innerHtml = nextNode.InnerHtml.Trim();
+
 										if (_arguments.ContainsKey(ArgumentCollection.EncodeLineBreaksArg))
 										{
-											nodeValue.Append(String.Concat(nextNode.InnerHtml.Trim().Replace("\n", "\\n").Replace("\r", "\\r"), " "));
+											innerHtml = innerHtml.Trim().Replace("\n", "\\n").Replace("\r", "\\r");
 										}
-										else
+
+										if (_arguments.ContainsKey(ArgumentCollection.DecodeEntitiesArg))
 										{
-											nodeValue.Append(String.Concat(nextNode.InnerHtml.Trim(), " "));
+											innerHtml = XCharacterEntityDecoder.Decode(innerHtml);
 										}
+
+										nodeValue.Append(String.Concat(nextNode.InnerHtml.Trim(), " "));
 									}
 								}
 								else if (attr.Equals("inner-text"))
@@ -310,14 +315,19 @@ namespace Nathandelane.Net.HGrep
 									{
 										nodeValue.Append(" = ");
 
+										string innerText = nextNode.InnerText.Trim();
+
 										if (_arguments.ContainsKey(ArgumentCollection.EncodeLineBreaksArg))
 										{
-											nodeValue.Append(String.Concat(nextNode.InnerText.Trim().Replace("\n", "\\n").Replace("\r", "\\r"), " "));
+											innerText = innerText.Trim().Replace("\n", "\\n").Replace("\r", "\\r");
 										}
-										else
+
+										if (_arguments.ContainsKey(ArgumentCollection.DecodeEntitiesArg))
 										{
-											nodeValue.Append(String.Concat(nextNode.InnerText.Trim(), " "));
+											innerText = XCharacterEntityDecoder.Decode(innerText);
 										}
+
+										nodeValue.Append(String.Concat(nextNode.InnerHtml.Trim(), " "));
 									}
 								}
 							}
