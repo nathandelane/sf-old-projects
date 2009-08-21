@@ -253,7 +253,7 @@ namespace Nathandelane.Net.HGrep
 					Console.WriteLine("Objects Found Matching /{0}/:", _arguments[ArgumentCollection.ExtractObjectsArg]);
 				}
 
-				Regex regex = new Regex(_arguments[ArgumentCollection.ExtractObjectsArg] as string, RegexOptions.Compiled);
+				Regex regex = new Regex(_arguments[ArgumentCollection.ExtractObjectsArg] as string, RegexOptions.Compiled | RegexOptions.CultureInvariant);
 				int subStringStartIndex = 0;
 
 				if (regex.IsMatch(_data))
