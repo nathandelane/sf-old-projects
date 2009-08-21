@@ -293,7 +293,7 @@ namespace Nathandelane.Net.HGrep
 									if (!_arguments.ContainsKey(ArgumentCollection.NoInnerHtmlArg) && !String.IsNullOrEmpty(nextNode.InnerHtml))
 									{
 										nodeValue.Append(" = ");
-										nodeValue.Append(String.Concat(nextNode.InnerHtml, " "));
+										nodeValue.Append(String.Concat(nextNode.InnerHtml.Trim(), " "));
 									}
 								}
 								else if (attr.Equals("inner-text"))
@@ -301,7 +301,7 @@ namespace Nathandelane.Net.HGrep
 									if (!String.IsNullOrEmpty(nextNode.InnerText))
 									{
 										nodeValue.Append(" = ");
-										nodeValue.Append(String.Concat(nextNode.InnerText, " "));
+										nodeValue.Append(String.Concat(nextNode.InnerText.Trim(), " "));
 									}
 								}
 							}
@@ -322,6 +322,7 @@ namespace Nathandelane.Net.HGrep
 			else
 			{
 				Console.WriteLine("No elements were found using {0}.", _arguments[ArgumentCollection.FindArg] as string);
+				Environment.Exit(1);
 			}
 		}
 
