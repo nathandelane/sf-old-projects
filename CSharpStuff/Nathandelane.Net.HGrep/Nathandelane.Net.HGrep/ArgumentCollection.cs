@@ -30,6 +30,7 @@ namespace Nathandelane.Net.HGrep
 		public static readonly string CleanArg = "clean";
 		public static readonly string CountOnlyArg = "count-only";
 		public static readonly string EncodeLineBreaksArg = "encode-line-breaks";
+		public static readonly string ExtractObjectsArg = "extract-object";
 		public static readonly string DecodeEntitiesArg = "decode-entities";
 		public static readonly string FindArg = "find";
 		public static readonly string FindRegexpArg = "find-regexp";
@@ -52,8 +53,9 @@ namespace Nathandelane.Net.HGrep
 		{
 			{ CleanArg, ArgumentType.Null },
 			{ CountOnlyArg, ArgumentType.Null },
-			{ EncodeLineBreaksArg, ArgumentType.Null },
 			{ DecodeEntitiesArg, ArgumentType.Int },
+			{ EncodeLineBreaksArg, ArgumentType.Null },
+			{ ExtractObjectsArg, ArgumentType.String },
 			{ FindArg, ArgumentType.String },
 			{ FindRegexpArg, ArgumentType.String },
 			{ HelpArg, ArgumentType.String },

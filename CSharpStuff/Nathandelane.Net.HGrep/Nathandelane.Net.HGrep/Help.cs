@@ -89,8 +89,9 @@ namespace Nathandelane.Net.HGrep
 			Console.WriteLine("The available options include:");
 			Console.WriteLine("{0,-30}Removes titles from results.", ArgumentCollection.CleanArg);
 			Console.WriteLine("{0,-30}Displays only the number of nodes that would be returned from find option.", ArgumentCollection.CountOnlyArg);
-			Console.WriteLine("{0,-30}Replaces \\n and \\r with textual representations.", ArgumentCollection.EncodeLineBreaksArg);
 			Console.WriteLine("{0,-30}Decodes XHTML character entities, n times when supplied.", String.Concat(ArgumentCollection.DecodeEntitiesArg, "[=n]"));
+			Console.WriteLine("{0,-30}Replaces \\n and \\r with textual representations.", ArgumentCollection.EncodeLineBreaksArg);
+			Console.WriteLine("{0,-30}Extracts objects from the response using a regular expression.", String.Concat(ArgumentCollection.ExtractObjectsArg, "=regex"));
 			Console.WriteLine("{0,-30}XPath expression used to find a specific element of elements in the document.", String.Concat(ArgumentCollection.FindArg, "<xpath>"));
 			Console.WriteLine("{0,-30}Regular expression used to find a specific element of elements in the document. (This is experimental)", String.Concat(ArgumentCollection.FindRegexpArg, "=<regex>"));
 			Console.WriteLine("{0,-30}Displays this help.", String.Concat(ArgumentCollection.HelpArg, "[=<topic>]"));

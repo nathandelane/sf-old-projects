@@ -85,12 +85,16 @@ namespace Nathandelane.Net.HGrep
 		{
 			InitializeRequest(requestUri);
 			SetGlobalCertficateDefaultPolicy();
+
+			_timeout = timeout;
 		}
 
 		public Agent(Uri requestUri, bool ignoreBadCertificates, int timeout)
 		{
 			InitializeRequest(requestUri);
 			SetGlobalCertificatePolicyAlwaysTrue();
+
+			_timeout = timeout;
 		}
 
 		public Agent(Uri requestUri, string postBody, int timeout)
@@ -98,6 +102,8 @@ namespace Nathandelane.Net.HGrep
 			InitializeRequest(requestUri);
 			SetGlobalCertficateDefaultPolicy();
 			AddPostBody(postBody);
+
+			_timeout = timeout;
 		}
 
 		public Agent(Uri requestUri, string postBody, bool ignoreBadCertificates, int timeout)
@@ -105,6 +111,8 @@ namespace Nathandelane.Net.HGrep
 			InitializeRequest(requestUri);
 			SetGlobalCertificatePolicyAlwaysTrue();
 			AddPostBody(postBody);
+
+			_timeout = timeout;
 		}
 
 		#endregion

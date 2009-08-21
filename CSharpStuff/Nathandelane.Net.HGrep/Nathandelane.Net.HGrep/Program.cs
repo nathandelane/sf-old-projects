@@ -25,6 +25,7 @@ using System.Reflection;
 using System.Text;
 using HtmlAgilityPack;
 using ICSharpCode.SharpZipLib.GZip;
+using System.Text.RegularExpressions;
 
 namespace Nathandelane.Net.HGrep
 {
@@ -188,10 +189,13 @@ namespace Nathandelane.Net.HGrep
 			{
 				DisplayFind();
 			}
-
-			if (_arguments.ContainsKey(ArgumentCollection.FindRegexpArg))
+			else if (_arguments.ContainsKey(ArgumentCollection.FindRegexpArg))
 			{
 				DisplayRegexpFind();
+			}
+			else if (_arguments.ContainsKey(ArgumentCollection.ExtractObjectsArg))
+			{
+				DisplayExtraction();
 			}
 
 			if (_arguments.ContainsKey(ArgumentCollection.ReturnDataArg))
@@ -240,125 +244,172 @@ namespace Nathandelane.Net.HGrep
 			}
 		}
 
+		private void DisplayExtraction()
+		{
+			if (!String.IsNullOrEmpty(_data))
+			{
+				if (!_arguments.ContainsKey(ArgumentCollection.CleanArg))
+				{
+					Console.WriteLine("Objects Found Matching /{0}/:", _arguments[ArgumentCollection.ExtractObjectsArg]);
+				}
+
+				Regex regex = new Regex(_arguments[ArgumentCollection.ExtractObjectsArg] as string, RegexOptions.Compiled);
+				int subStringStartIndex = 0;
+
+				if (regex.IsMatch(_data))
+				{
+					Match match = regex.Match(_data, subStringStartIndex);
+					int matchCounter = 0;
+
+					while(match.Success)
+					{
+						string extraction = _data.Substring(match.Index, match.Length);
+
+						if (!String.IsNullOrEmpty(extraction))
+						{
+							Console.WriteLine("{0} {1}", matchCounter, extraction);
+
+							matchCounter++;
+						}
+
+						match = match.NextMatch();
+					}
+				}
+
+
+			}
+			else
+			{
+				throw new HttpException("No data could be found in the response");
+			}
+		}
+
 		private void DisplayFind()
 		{
-			if (!_arguments.ContainsKey(ArgumentCollection.CleanArg))
+			if (!String.IsNullOrEmpty(_data))
 			{
-				Console.WriteLine("Nodes Found:");
-			}
-
-			XPathEvaluator evaluator = new XPathEvaluator(_data);
-			HtmlNodeCollection nodes = evaluator.Select(_arguments[ArgumentCollection.FindArg] as string);
-
-			if (nodes != null)
-			{
-				if (_arguments.ContainsKey(ArgumentCollection.CountOnlyArg))
+				if (!_arguments.ContainsKey(ArgumentCollection.CleanArg))
 				{
-					Console.WriteLine("{0}", nodes.Count);
+					Console.WriteLine("Nodes Found:");
+				}
+
+				XPathEvaluator evaluator = new XPathEvaluator(_data);
+				HtmlNodeCollection nodes = evaluator.Select(_arguments[ArgumentCollection.FindArg] as string);
+
+				if (nodes != null)
+				{
+					if (_arguments.ContainsKey(ArgumentCollection.CountOnlyArg))
+					{
+						Console.WriteLine("{0}", nodes.Count);
+					}
+					else
+					{
+						foreach (HtmlNode nextNode in nodes)
+						{
+							StringBuilder nodeValue = new StringBuilder();
+							nodeValue.Append(nextNode.Name);
+							nodeValue.Append(" [");
+
+							HtmlAttributeCollection attributes = nextNode.Attributes;
+							if (_arguments.ContainsKey(ArgumentCollection.ReturnAttributesArg) && !_arguments.ContainsKey(ArgumentCollection.NoAttributesArg))
+							{
+								foreach (string attr in (string[])_arguments[ArgumentCollection.ReturnAttributesArg])
+								{
+									if (!attr.Equals("inner-text") && !attr.Equals("inner-html"))
+									{
+										nodeValue.Append(String.Concat("[", attr, "='", attributes[attr].Value, "']"));
+									}
+								}
+							}
+							else
+							{
+								foreach (HtmlAttribute nextAttribute in attributes)
+								{
+									nodeValue.Append(String.Concat("[", nextAttribute.Name, "='", nextAttribute.Value, "']"));
+								}
+							}
+
+							nodeValue.Append("]");
+							if (_arguments.ContainsKey(ArgumentCollection.ReturnAttributesArg))
+							{
+								foreach (string attr in (string[])_arguments[ArgumentCollection.ReturnAttributesArg])
+								{
+									if (attr.Equals("inner-html"))
+									{
+										if (!_arguments.ContainsKey(ArgumentCollection.NoInnerHtmlArg) && !String.IsNullOrEmpty(nextNode.InnerHtml))
+										{
+											nodeValue.Append(" = ");
+
+											string innerHtml = nextNode.InnerHtml.Trim();
+
+											if (_arguments.ContainsKey(ArgumentCollection.EncodeLineBreaksArg))
+											{
+												innerHtml = innerHtml.Trim().Replace("\n", "\\n").Replace("\r", "\\r");
+											}
+
+											if (_arguments.ContainsKey(ArgumentCollection.DecodeEntitiesArg))
+											{
+												int? numberReplaces = (int?)_arguments[ArgumentCollection.DecodeEntitiesArg] ?? 1;
+
+												for (int counter = 0; counter < numberReplaces; counter++)
+												{
+													innerHtml = XCharacterEntityDecoder.Decode(innerHtml);
+												}
+											}
+
+											nodeValue.Append(String.Concat(innerHtml, " "));
+										}
+									}
+									else if (attr.Equals("inner-text"))
+									{
+										if (!String.IsNullOrEmpty(nextNode.InnerText))
+										{
+											nodeValue.Append(" = ");
+
+											string innerText = nextNode.InnerText.Trim();
+
+											if (_arguments.ContainsKey(ArgumentCollection.EncodeLineBreaksArg))
+											{
+												innerText = innerText.Trim().Replace("\n", "\\n").Replace("\r", "\\r");
+											}
+
+											if (_arguments.ContainsKey(ArgumentCollection.DecodeEntitiesArg))
+											{
+												int? numberReplaces = (int?)_arguments[ArgumentCollection.DecodeEntitiesArg] ?? 1;
+
+												for (int counter = 0; counter < numberReplaces; counter++)
+												{
+													innerText = XCharacterEntityDecoder.Decode(innerText);
+												}
+											}
+
+											nodeValue.Append(String.Concat(innerText, " "));
+										}
+									}
+								}
+							}
+							else
+							{
+								if (!_arguments.ContainsKey(ArgumentCollection.NoInnerHtmlArg) && !String.IsNullOrEmpty(nextNode.InnerHtml))
+								{
+									nodeValue.Append(" = ");
+									nodeValue.Append(nextNode.InnerHtml);
+								}
+							}
+
+							Console.WriteLine("{0}", nodeValue);
+						}
+					}
 				}
 				else
 				{
-					foreach (HtmlNode nextNode in nodes)
-					{
-						StringBuilder nodeValue = new StringBuilder();
-						nodeValue.Append(nextNode.Name);
-						nodeValue.Append(" [");
-
-						HtmlAttributeCollection attributes = nextNode.Attributes;
-						if (_arguments.ContainsKey(ArgumentCollection.ReturnAttributesArg) && !_arguments.ContainsKey(ArgumentCollection.NoAttributesArg))
-						{
-							foreach (string attr in (string[])_arguments[ArgumentCollection.ReturnAttributesArg])
-							{
-								if (!attr.Equals("inner-text") && !attr.Equals("inner-html"))
-								{
-									nodeValue.Append(String.Concat("[", attr, "='", attributes[attr].Value, "']"));
-								}
-							}
-						}
-						else
-						{
-							foreach (HtmlAttribute nextAttribute in attributes)
-							{
-								nodeValue.Append(String.Concat("[", nextAttribute.Name, "='", nextAttribute.Value, "']"));
-							}
-						}
-
-						nodeValue.Append("]");
-						if (_arguments.ContainsKey(ArgumentCollection.ReturnAttributesArg))
-						{
-							foreach (string attr in (string[])_arguments[ArgumentCollection.ReturnAttributesArg])
-							{
-								if (attr.Equals("inner-html"))
-								{
-									if (!_arguments.ContainsKey(ArgumentCollection.NoInnerHtmlArg) && !String.IsNullOrEmpty(nextNode.InnerHtml))
-									{
-										nodeValue.Append(" = ");
-
-										string innerHtml = nextNode.InnerHtml.Trim();
-
-										if (_arguments.ContainsKey(ArgumentCollection.EncodeLineBreaksArg))
-										{
-												innerHtml = innerHtml.Trim().Replace("\n", "\\n").Replace("\r", "\\r");
-										}
-
-										if (_arguments.ContainsKey(ArgumentCollection.DecodeEntitiesArg))
-										{
-											int? numberReplaces = (int?)_arguments[ArgumentCollection.DecodeEntitiesArg] ?? 1;
-
-											for (int counter = 0; counter < numberReplaces; counter++)
-											{
-												innerHtml = XCharacterEntityDecoder.Decode(innerHtml);
-											}
-										}
-
-										nodeValue.Append(String.Concat(innerHtml, " "));
-									}
-								}
-								else if (attr.Equals("inner-text"))
-								{
-									if (!String.IsNullOrEmpty(nextNode.InnerText))
-									{
-										nodeValue.Append(" = ");
-
-										string innerText = nextNode.InnerText.Trim();
-
-										if (_arguments.ContainsKey(ArgumentCollection.EncodeLineBreaksArg))
-										{
-												innerText = innerText.Trim().Replace("\n", "\\n").Replace("\r", "\\r");
-										}
-
-										if (_arguments.ContainsKey(ArgumentCollection.DecodeEntitiesArg))
-										{
-											int? numberReplaces = (int?)_arguments[ArgumentCollection.DecodeEntitiesArg] ?? 1;
-
-											for (int counter = 0; counter < numberReplaces; counter++)
-											{
-												innerText = XCharacterEntityDecoder.Decode(innerText);
-											}
-										}
-
-										nodeValue.Append(String.Concat(innerText, " "));
-									}
-								}
-							}
-						}
-						else
-						{
-							if (!_arguments.ContainsKey(ArgumentCollection.NoInnerHtmlArg) && !String.IsNullOrEmpty(nextNode.InnerHtml))
-							{
-								nodeValue.Append(" = ");
-								nodeValue.Append(nextNode.InnerHtml);
-							}
-						}
-
-						Console.WriteLine("{0}", nodeValue);
-					}
+					Console.WriteLine("No elements were found using {0}.", _arguments[ArgumentCollection.FindArg] as string);
+					Environment.Exit(1);
 				}
 			}
 			else
 			{
-				Console.WriteLine("No elements were found using {0}.", _arguments[ArgumentCollection.FindArg] as string);
-				Environment.Exit(1);
+				throw new HttpException("No data could be found in the response");
 			}
 		}
 
