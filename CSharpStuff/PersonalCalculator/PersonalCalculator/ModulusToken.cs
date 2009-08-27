@@ -5,12 +5,12 @@ using System.Text.RegularExpressions;
 
 namespace Nathandelane.Math.PersonalCalculator
 {
-    internal class PowerToken : Token
-    {
-        #region Constructors
+	internal class ModulusToken : Token
+	{
+	        #region Constructors
 
-        public PowerToken()
-            : base("**", TokenType.Power)
+		public ModulusToken()
+            : base("%", TokenType.Division)
         {
         }
 
@@ -21,7 +21,7 @@ namespace Nathandelane.Math.PersonalCalculator
         public static bool Matches(string value)
         {
             bool result = false;
-            Regex regex = new Regex("(**){1}");
+            Regex regex = new Regex("(%){1}");
 
             if (regex.IsMatch(value))
             {
@@ -32,5 +32,5 @@ namespace Nathandelane.Math.PersonalCalculator
         }
 
         #endregion
-    }
+}
 }

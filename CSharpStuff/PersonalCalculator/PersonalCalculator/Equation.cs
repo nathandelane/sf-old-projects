@@ -62,13 +62,11 @@ namespace Nathandelane.Math.PersonalCalculator
                         if (String.Format("{0}", parts[index + 1]).Equals("="))
                         {
                             lastToken = new ConditionalOperatorToken(String.Format("{0}=", tokenValue));
-                            AddComponent(lastToken);
                             index++;
                         }
                         else
                         {
                             lastToken = new AssignmentOperatorToken();
-                            AddComponent(lastToken);
                         }
                     }
                     else if (tokenValue.Equals("!")) // Could either be a conditional or factorial
@@ -76,13 +74,11 @@ namespace Nathandelane.Math.PersonalCalculator
                         if (String.Format("{0}", parts[index + 1]).Equals("="))
                         {
                             lastToken = new ConditionalOperatorToken(String.Format("{0}=", tokenValue));
-                            AddComponent(lastToken);
                             index++;
                         }
                         else
                         {
                             lastToken = new FactorialToken();
-                            AddComponent(lastToken);
                         }
                     }
                     else // It is a conditional that is either one or two characters long, i.e. <, >, <=, >=
@@ -90,13 +86,11 @@ namespace Nathandelane.Math.PersonalCalculator
                         if (String.Format("{0}", parts[index + 1]).Equals("="))
                         {
                             lastToken = new ConditionalOperatorToken(String.Format("{0}=", tokenValue));
-                            AddComponent(lastToken);
                             index++;
                         }
                         else
                         {
                             lastToken = new ConditionalOperatorToken(tokenValue);
-                            AddComponent(lastToken);
                         }
                     }
                 }
@@ -122,7 +116,6 @@ namespace Nathandelane.Math.PersonalCalculator
                     while (FunctionToken.Matches(strPart));
 
                     lastToken = new SpecialNumberToken(tokenValue);
-                    AddComponent(lastToken);
                     index = tokenIndex - 1;
                 }
                 else if (NumberToken.Matches(tokenValue)) // Common case, where the token is a number
@@ -147,46 +140,42 @@ namespace Nathandelane.Math.PersonalCalculator
                     while (NumberToken.Matches(strPart));
 
                     lastToken = new NumberToken(tokenValue);
-                    AddComponent(lastToken);
                     index = tokenIndex - 1;
                 }
                 else if (AdditionToken.Matches(tokenValue))
                 {
                     lastToken = new AdditionToken();
-                    AddComponent(lastToken);
                 }
                 else if (SubtractionToken.Matches(tokenValue) || NegationToken.Matches(tokenValue))
                 {
                     if (lastToken.Type == TokenType.Number || lastToken.Type == TokenType.RightPerenthesis)
                     {
                         lastToken = new SubtractionToken();
-                        AddComponent(lastToken);
                     }
                     else
                     {
                         lastToken = new NegationToken();
-                        AddComponent(lastToken);
                     }
                 }
                 else if (MultiplicationToken.Matches(tokenValue))
                 {
                     lastToken = new MultiplicationToken();
-                    AddComponent(lastToken);
                 }
                 else if (DivisionToken.Matches(tokenValue))
                 {
                     lastToken = new DivisionToken();
-                    AddComponent(lastToken);
                 }
+				else if(ModulusToken.Matches(tokenValue))
+				{
+					lastToken = new ModulusToken();
+				}
                 else if (LeftPerenthesisToken.Matches(tokenValue))
                 {
                     lastToken = new LeftPerenthesisToken();
-                    AddComponent(lastToken);
                 }
                 else if (RightPerenthesisToken.Matches(tokenValue))
                 {
                     lastToken = new RightPerenthesisToken();
-                    AddComponent(lastToken);
                 }
                 else if (FunctionToken.Matches(tokenValue))
                 {
@@ -210,7 +199,6 @@ namespace Nathandelane.Math.PersonalCalculator
                     while (FunctionToken.Matches(strPart));
 
                     lastToken = new FunctionToken(tokenValue);
-                    AddComponent(lastToken);
                     index = tokenIndex - 1;
                 }
                 else if (BooleanToken.Matches(tokenValue))
@@ -244,30 +232,31 @@ namespace Nathandelane.Math.PersonalCalculator
                             break;
                     }
 
-                    AddComponent(lastToken);
                     index = tokenIndex - 1;
                 }
                 else if (FactorialToken.Matches(tokenValue))
                 {
                     lastToken = new FactorialToken();
-                    AddComponent(lastToken);
                 }
                 else if (PowerToken.Matches(tokenValue))
                 {
                     lastToken = new PowerToken();
-                    AddComponent(lastToken);
                 }
                 else if (BitwiseOperationToken.Matches(tokenValue))
                 {
                     lastToken = new BitwiseOperationToken(tokenValue);
-                    AddComponent(lastToken);
                 }
                 else // This case is that we are probably dealing with a variable, but for now I'm going to throw an exception.
                 {
                     // TODO: fix this to handle variables.
                     throw new TokenUnrecognizedException(tokenValue);
                 }
-            }
+
+				if (!lastToken.Equals(Token.CreateNullToken()))
+				{
+					AddComponent(lastToken);
+				}
+			}
 
             // Need to transform the equation into a postfix equation so that I can evaluate it more easily.
             _tokens = ReverseTokens(_tokens);
