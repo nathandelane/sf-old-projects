@@ -10,7 +10,7 @@ namespace Nathandelane.Math.PersonalCalculator
 	        #region Constructors
 
 		public ModulusToken()
-            : base("%", TokenType.Division)
+            : base("%", TokenType.Modulus)
         {
         }
 

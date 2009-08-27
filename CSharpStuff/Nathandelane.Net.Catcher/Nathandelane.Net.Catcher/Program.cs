@@ -40,14 +40,14 @@ namespace Nathandelane.Net.Catcher
 						{
 							data = ASCIIEncoding.ASCII.GetString(bytes, 0, i);
 							Console.WriteLine("Received:\n\n{0}", data);
-							/*
+							
 							data.ToUpper();
 
 							byte[] message = ASCIIEncoding.ASCII.GetBytes(data);
 
 							stream.Write(message, 0, message.Length);
 							Console.WriteLine("Sent:\n\n{0}", data);
-							 */
+							
 						}
 					}
 				}

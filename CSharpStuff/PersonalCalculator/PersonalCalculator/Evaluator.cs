@@ -97,18 +97,6 @@ namespace Nathandelane.Math.PersonalCalculator
             return result;
         }
 
-		public static string Modulus(string dividend, string divisor)
-		{
-			string result = String.Empty;
-			double dend = double.Parse(dividend);
-			double div = double.Parse(divisor);
-			double internalResult = dend % div;
-
-			result = String.Format("{0}", internalResult);
-
-			return result;
-		}
-
 		public static string Sine(string right)
         {
             string result = String.Empty;

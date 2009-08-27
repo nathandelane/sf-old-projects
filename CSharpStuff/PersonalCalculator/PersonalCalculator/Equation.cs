@@ -375,7 +375,18 @@ namespace Nathandelane.Math.PersonalCalculator
                             operationStack.Push(nextToken);
                         }
                         break;
-                    case TokenType.Multiplication:
+					case TokenType.Modulus:
+						if (operationStack.Count > 0 && (operationStack.Peek().Type < nextToken.Type && operationStack.Peek().Type != TokenType.LeftPerenthesis))
+						{
+							newEquation.Push(operationStack.Pop());
+							operationStack.Push(nextToken);
+						}
+						else
+						{
+							operationStack.Push(nextToken);
+						}
+						break;
+					case TokenType.Multiplication:
                         if (operationStack.Count > 0 && (operationStack.Peek().Type < nextToken.Type && operationStack.Peek().Type != TokenType.LeftPerenthesis))
                         {
                             newEquation.Push(operationStack.Pop());

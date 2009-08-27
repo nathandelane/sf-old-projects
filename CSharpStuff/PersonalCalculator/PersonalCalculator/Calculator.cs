@@ -280,7 +280,22 @@ namespace Nathandelane.Math.PersonalCalculator
                             Console.WriteLine("Could not evaluate division because not enough operands were present. This may be an internal error. {0}", ex.Message);
                         }
                         break;
-                    case TokenType.Multiplication:
+					case TokenType.Modulus:
+						equation.Pop();
+						try
+						{
+							string right = unusedTokens.Pop().Value;
+							string left = unusedTokens.Pop().Value;
+							string result = Evaluator.Modulus(left, right);
+
+							unusedTokens.Push(new NumberToken(result));
+						}
+						catch (InvalidOperationException ex)
+						{
+							Console.WriteLine("Could not evaluate modulus because not enough operands were present. This may be an internal error. {0}", ex.Message);
+						}
+						break;
+					case TokenType.Multiplication:
                         equation.Pop();
                         try
                         {

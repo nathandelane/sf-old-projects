@@ -23,6 +23,7 @@ namespace Nathandelane.Math.PersonalCalculator
         Subtraction,        // Subtraction is the difference between two numbers, the minuend minus the subtrahend.
         Addition,           // Addition is the sum of two addends.
         Division,           // Division is the quotient of two numbers, the dividend divided by the divisor.
+		Modulus,			// Modulus is the remainder of the quotient.
         Multiplication,     // Multiplication is the product of two numbers, the multiplier and the multiplicand, or factors.
         Function,           // A function my be trigonometrical, analytical, algebraic, or a calculus function. It may also be user defined. It is not limited to mathematically provable functions.
         Factorial,          // Factorial is a special function in Algebra the multiplies descending children of a value together.
