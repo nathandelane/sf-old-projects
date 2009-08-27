@@ -45,7 +45,7 @@ namespace Nathandelane.System.PersonalCalculator
 					SubExpression exp = TokenMatcher.Match(expression);
 					string subExp = exp.Expression;
 					TokenType type = exp.Operator;
-					if (type == TokenType.Addition || type == TokenType.Division || type == TokenType.Multiplication || type == TokenType.Negation || type == TokenType.Subtraction)
+					if (type == TokenType.Modulus || type == TokenType.Power || type == TokenType.And || type == TokenType.Or || type == TokenType.Xor || type == TokenType.Addition || type == TokenType.Division || type == TokenType.Multiplication || type == TokenType.Negation || type == TokenType.Subtraction)
 					{
 						expression = PerformOperation(expression, type, subExp);
 					}
@@ -109,6 +109,21 @@ namespace Nathandelane.System.PersonalCalculator
 						break;
 					case TokenType.Multiplication:
 						result = double.Parse(left) * double.Parse(right);
+						break;
+					case TokenType.And:
+						result = int.Parse(left) & int.Parse(right);
+						break;
+					case TokenType.Or:
+						result = int.Parse(left) | int.Parse(right);
+						break;
+					case TokenType.Xor:
+						result = int.Parse(left) ^ int.Parse(right);
+						break;
+					case TokenType.Modulus:
+						result = double.Parse(left) % double.Parse(right);
+						break;
+					case TokenType.Power:
+						result = Math.Pow(double.Parse(left), double.Parse(right));
 						break;
 				}
 				int index = expression.IndexOf(subExp);

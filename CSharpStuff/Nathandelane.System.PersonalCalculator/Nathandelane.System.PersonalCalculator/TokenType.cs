@@ -8,16 +8,22 @@ namespace Nathandelane.System.PersonalCalculator
 	public enum TokenType
 	{
 		Addition,
+		And,
+		ConversionFunction,
 		Division,
 		DollarSign,
 		E,
 		LastResult,
+		Modulus,
 		Multiplication,
 		Negation,
 		Number,
+		Or,
 		Pi,
+		Power,
 		SubExpression,
 		Subtraction,
-		Undefined
+		Undefined,
+		Xor
 	}
 }
