@@ -55,30 +55,37 @@ namespace Nathandelane.System.PersonalCalculator
 			{
 				calc = new Calculator();
 
-				string userInput = String.Empty;
-				while (!userInput.Equals(__quitOperation))
+				string expression = String.Empty;
+				while (true)
 				{
 					Console.Write("> ");
-					userInput = Console.ReadLine();
-					userInput = String.Join("", userInput.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+					expression = Console.ReadLine();
+					expression = String.Join("", expression.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
 
-					if (!TokenMatcher.IsExpression(userInput) && !TokenMatcher.ExtractionTable[TokenType.NumericResult].IsMatch(userInput))
+					if (expression.Equals(__quitOperation))
 					{
-						Console.WriteLine("I do not understand the expression {0}. Perhaps you have malformatted something in it.", userInput);
-						userInput = "0";
+						break;
 					}
 
-					if (SpecialNumber.IsMatch(userInput))
+					if (!TokenMatcher.IsExpression(expression) && !TokenMatcher.ExtractionTable[TokenType.NumericResult].IsMatch(expression))
 					{
-						userInput = SpecialNumber.Inject(userInput);
+						Console.WriteLine("I do not understand the expression `{0}`.", expression);
+						expression = "0";
 					}
 
-					calc._evaluator = Evaluator.Evaluate(userInput);
+					if (SpecialNumber.IsMatch(expression))
+					{
+						expression = SpecialNumber.Inject(expression);
+					}
+
+					calc._evaluator = Evaluator.Evaluate(expression);
 
 					__state["$"] = calc._evaluator.Result;
 
 					Console.WriteLine("{0}{1}", __state["$"], Environment.NewLine);
 				}
+
+				Console.WriteLine("Thank you for using PC.NET");
 			}
 		}
 

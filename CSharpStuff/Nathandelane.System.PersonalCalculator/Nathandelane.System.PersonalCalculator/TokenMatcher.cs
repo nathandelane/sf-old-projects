@@ -110,7 +110,7 @@ namespace Nathandelane.System.PersonalCalculator
 		{
 			bool result = false;
 
-			Regex regexExpression = new Regex("^([\\(]|-|([\\d]+([.]{0,1}[\\d]+){0,1}))+(([\\d]+([.]{0,1}[\\d]+){0,1})|(\\*\\*|[+-/*()^%&|])|(([\\d]+([.]{0,1}[\\d]+){0,1})[bohd]{1})|(e|pi)|(([bohd]|tan|sin|cos){1}[\\(]{1}([\\d]+([.]{0,1}[\\d]+){0,1}|\\*\\*|[+-/*\\(\\)^%&|])+[\\)]{1}))+[\\)]{0,1}");
+			Regex regexExpression = new Regex("^([\\(]|-|(pi|e|\\$)|([bohd]|sin|cos|tan)|([\\d]+([.]{0,1}[\\d]+){0,1}))+(([\\d]+([.]{0,1}[\\d]+){0,1})|(\\*\\*|[+-/*()^%&|])|(([\\d]+([.]{0,1}[\\d]+){0,1})[bohd]{1})|((e|pi|\\$){1})|(([bohd]|tan|sin|cos){1}[\\(]{1}([\\d]+([.]{0,1}[\\d]+){0,1}|\\*\\*|[+-/*\\(\\)^%&|])+[\\)]{1}))*[\\)]{0,1}$");
 			if (regexExpression.IsMatch(expression))
 			{
 				result = true;
