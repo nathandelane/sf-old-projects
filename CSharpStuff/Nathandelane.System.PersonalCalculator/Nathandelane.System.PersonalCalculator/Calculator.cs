@@ -10,8 +10,18 @@ namespace Nathandelane.System.PersonalCalculator
 		#region Fields
 
 		private static readonly string __quitOperation = "q";
+		private static State __state;
 
-		private Equation _equation;
+		private Evaluator _evaluator;
+
+		#endregion
+
+		#region Properties
+
+		public static State State
+		{
+			get { return __state; }
+		}
 
 		#endregion
 
@@ -19,11 +29,12 @@ namespace Nathandelane.System.PersonalCalculator
 
 		private Calculator()
 		{
+			__state = new State();
 		}
 
 		private Calculator(string[] args)
 		{
-			_equation = Equation.Parse(String.Join("", args));
+			_evaluator = Evaluator.Evaluate(String.Join("", args));
 		}
 
 		#endregion
@@ -38,7 +49,7 @@ namespace Nathandelane.System.PersonalCalculator
 			{
 				calc = new Calculator(args);
 
-				Console.WriteLine("{0}", calc.Evaluate());
+				Console.WriteLine("{0}", calc._evaluator.Result);
 			}
 			else
 			{
@@ -47,15 +58,22 @@ namespace Nathandelane.System.PersonalCalculator
 				string userInput = String.Empty;
 				while (!userInput.Equals(__quitOperation))
 				{
+					Console.Write("> ");
+					userInput = Console.ReadLine();
+					userInput = String.Join("", userInput.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
+
+					if (SpecialNumber.IsMatch(userInput))
+					{
+						userInput = SpecialNumber.Inject(userInput);
+					}
+
+					calc._evaluator = Evaluator.Evaluate(userInput);
+
+					__state["$"] = calc._evaluator.Result;
+
+					Console.WriteLine("{0}{1}", __state["$"], Environment.NewLine);
 				}
 			}
-		}
-
-		private double Evaluate()
-		{
-			double result = 0.0d;
-
-			return result;
 		}
 
 		#endregion
