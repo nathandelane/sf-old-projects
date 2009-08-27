@@ -120,7 +120,7 @@ namespace Nathandelane.Math.PersonalCalculator
         /// </summary>
         public static void DisplayHelp()
         {
-            string availableFunctionsAndOperators = @"+ -(subtraction and negation) * / mod %(which is xor) & | ^(which is power) > < == != <= >= pi e sin cos tan arcsin arccos arctan log ln bin hex oct round ceil floor sinh cosh tanh rad deg";
+            string availableFunctionsAndOperators = @"+ -(subtraction and negation) * / % %%(which is xor) & | ^(which is power) > < == != <= >= pi e sin cos tan arcsin arccos arctan log ln bin hex oct round ceil floor sinh cosh tanh rad deg";
 
             Console.WriteLine("Available functions and operators are {0}", availableFunctionsAndOperators);
         }

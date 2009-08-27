@@ -10,7 +10,7 @@ namespace Nathandelane.Math.PersonalCalculator
 	        #region Constructors
 
 		public ModulusToken()
-            : base("%", TokenType.Modulus)
+            : base("%%", TokenType.Modulus)
         {
         }
 
@@ -21,7 +21,7 @@ namespace Nathandelane.Math.PersonalCalculator
         public static bool Matches(string value)
         {
             bool result = false;
-            Regex regex = new Regex("(%){1}");
+            Regex regex = new Regex("(%%){1}");
 
             if (regex.IsMatch(value))
             {

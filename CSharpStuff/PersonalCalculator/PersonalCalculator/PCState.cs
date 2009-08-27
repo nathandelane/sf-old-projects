@@ -23,10 +23,10 @@ namespace Nathandelane.Math.PersonalCalculator
             {
                 object retVal = null;
 
-                if (_states.ContainsKey(key))
-                {
-                    retVal = _states[key];
-                }
+				if (_states.ContainsKey(key))
+				{
+					retVal = _states[key];
+				}
 
                 return retVal;
             }
