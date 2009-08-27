@@ -26,6 +26,7 @@ namespace Nathandelane.System.PersonalCalculator
 			{ TokenType.Modulus, new Regex(String.Format("{0}(%){{1}}{0}", __numberFormat)) },
 			{ TokenType.Negation, new Regex(String.Format("(-){{1}}{0}", __numberFormat)) },
 			{ TokenType.Number, new Regex(__numberFormat) },
+			{ TokenType.NumericResult, new Regex(String.Format("^[-]{{0,1}}{0}$", __numberFormat)) },
 			{ TokenType.Or, new Regex(String.Format("{0}(\\|){{1}}{0}", __numberFormat)) },
 			{ TokenType.Power, new Regex(String.Format("{0}(\\*\\*){{1}}{0}", __numberFormat)) },
 			{ TokenType.SubExpression, new Regex(__subExpressionFormat) },
@@ -109,7 +110,7 @@ namespace Nathandelane.System.PersonalCalculator
 		{
 			bool result = false;
 
-			Regex regexExpression = new Regex("^([\\(]|-|([\\d]+([.]{0,1}[\\d]+){0,1}))+(([\\d]+([.]{0,1}[\\d]+){0,1})|(\\*\\*|[+-/*()^%&|])|(([\\d]+([.]{0,1}[\\d]+){0,1})[bohd]{1})|(([bohd]|tan|sin|cos){1}[\\(]{1}([\\d]+([.]{0,1}[\\d]+){0,1}|\\*\\*|[+-/*\\(\\)^%&|])+[\\)]{1}))+[\\)]{0,1}");
+			Regex regexExpression = new Regex("^([\\(]|-|([\\d]+([.]{0,1}[\\d]+){0,1}))+(([\\d]+([.]{0,1}[\\d]+){0,1})|(\\*\\*|[+-/*()^%&|])|(([\\d]+([.]{0,1}[\\d]+){0,1})[bohd]{1})|(e|pi)|(([bohd]|tan|sin|cos){1}[\\(]{1}([\\d]+([.]{0,1}[\\d]+){0,1}|\\*\\*|[+-/*\\(\\)^%&|])+[\\)]{1}))+[\\)]{0,1}");
 			if (regexExpression.IsMatch(expression))
 			{
 				result = true;

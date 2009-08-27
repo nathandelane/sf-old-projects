@@ -55,12 +55,6 @@ namespace Nathandelane.System.PersonalCalculator
 					}
 				}
 
-				if (!TokenMatcher.IsExpression(expression))
-				{
-					Console.WriteLine("I do not understand the expression {0}. Perhaps you have malformatted something in it.", expression);
-					expression = "0";
-				}
-
 				evaluation._result = expression;
 			}
 			else

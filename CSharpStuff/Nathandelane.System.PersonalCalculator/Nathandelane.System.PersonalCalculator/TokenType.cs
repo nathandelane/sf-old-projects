@@ -18,6 +18,7 @@ namespace Nathandelane.System.PersonalCalculator
 		Multiplication,
 		Negation,
 		Number,
+		NumericResult,
 		Or,
 		Pi,
 		Power,

@@ -62,6 +62,12 @@ namespace Nathandelane.System.PersonalCalculator
 					userInput = Console.ReadLine();
 					userInput = String.Join("", userInput.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries));
 
+					if (!TokenMatcher.IsExpression(userInput) && !TokenMatcher.ExtractionTable[TokenType.NumericResult].IsMatch(userInput))
+					{
+						Console.WriteLine("I do not understand the expression {0}. Perhaps you have malformatted something in it.", userInput);
+						userInput = "0";
+					}
+
 					if (SpecialNumber.IsMatch(userInput))
 					{
 						userInput = SpecialNumber.Inject(userInput);
