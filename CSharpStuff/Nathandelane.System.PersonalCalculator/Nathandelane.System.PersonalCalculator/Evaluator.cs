@@ -173,7 +173,7 @@ namespace Nathandelane.System.PersonalCalculator
 					value = Convert.ToInt32(expression, 2);
 					break;
 				case OutputType.Decimal:
-					value = Convert.ToInt32(expression, 10);
+					value = int.Parse(expression);
 					break;
 				case OutputType.Hexadecimal:
 					value = Convert.ToInt32(expression, 16);
@@ -240,6 +240,11 @@ namespace Nathandelane.System.PersonalCalculator
 				case OutputType.Octal:
 					value = value.EndsWith("o") ? value.Substring(0, value.Length - 1) : value;
 					value = Convert.ToInt32(value, 8).ToString();
+					break;
+				case OutputType.Decimal:
+					value = value.EndsWith("d") ? value.Substring(0, value.Length - 1) : value;
+					value = Convert.ToInt32(value, 8).ToString();
+					break;
 					break;
 			}
 
