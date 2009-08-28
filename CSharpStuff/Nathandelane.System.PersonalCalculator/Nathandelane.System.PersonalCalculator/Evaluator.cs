@@ -82,19 +82,19 @@ namespace Nathandelane.System.PersonalCalculator
 
 			if (subExp.Contains("b"))
 			{
-				expression = Convert.ToString(int.Parse(result), 2);
+				expression = String.Concat(Convert.ToString(int.Parse(result), 2), "b");
 			}
 			else if (subExp.Contains("o"))
 			{
-				expression = Convert.ToString(int.Parse(result), 8);
+				expression = String.Concat(Convert.ToString(int.Parse(result), 8), "o");
 			}
 			else if (subExp.Contains("h"))
 			{
-				expression = Convert.ToString(int.Parse(result), 16);
+				expression = String.Concat(Convert.ToString(int.Parse(result), 16).ToUpper(), "h");
 			}
 			else if (subExp.Contains("d"))
 			{
-				expression = Convert.ToString(int.Parse(result), 10);
+				expression = String.Concat(Convert.ToString(int.Parse(result), 10), "d");
 			}
 
 			return expression;
@@ -189,36 +189,51 @@ namespace Nathandelane.System.PersonalCalculator
 		private static string GetNumber(string subExp, int index)
 		{
 			Regex regex = TokenMatcher.ExtractionTable[TokenType.Number];
-			string value = "0";
+			MatchCollection mc = null;
+			string value = String.Empty;
+			if ((mc = regex.Matches(subExp)).Count >= index + 1)
+			{
+				value = mc[index].Value;
+			}
+
 			string dec = regex.Matches(subExp)[index].Value;
 
 			regex = TokenMatcher.ExtractionTable[TokenType.HexNumber];
 			if (regex.IsMatch(subExp))
 			{
-				value = regex.Matches(subExp)[index].Value;
-				if (value.Substring(0, dec.Length).Equals(dec))
+				if ((mc = regex.Matches(subExp)).Count >= index + 1)
 				{
-					return value;
+					value = mc[index].Value;
+					if (value.Substring(0, dec.Length).Equals(dec))
+					{
+						return value;
+					}
 				}
 			}
 
 			regex = TokenMatcher.ExtractionTable[TokenType.OctalNumber];
 			if (regex.IsMatch(subExp))
 			{
-				value = regex.Matches(subExp)[index].Value;
-				if (value.Substring(0, dec.Length).Equals(dec))
+				if ((mc = regex.Matches(subExp)).Count >= index + 1)
 				{
-					return value;
+					value = mc[index].Value;
+					if (value.Substring(0, dec.Length).Equals(dec))
+					{
+						return value;
+					}
 				}
 			}
 
 			regex = TokenMatcher.ExtractionTable[TokenType.BinaryNumber];
 			if (regex.IsMatch(subExp))
 			{
-				value = regex.Matches(subExp)[index].Value;
-				if (value.Substring(0, dec.Length).Equals(dec))
+				if ((mc = regex.Matches(subExp)).Count >= index + 1)
 				{
-					return value;
+					value = mc[index].Value;
+					if (value.Substring(0, dec.Length).Equals(dec))
+					{
+						return value;
+					}
 				}
 			}
 
@@ -243,8 +258,6 @@ namespace Nathandelane.System.PersonalCalculator
 					break;
 				case OutputType.Decimal:
 					value = value.EndsWith("d") ? value.Substring(0, value.Length - 1) : value;
-					value = Convert.ToInt32(value, 8).ToString();
-					break;
 					break;
 			}
 
@@ -257,11 +270,13 @@ namespace Nathandelane.System.PersonalCalculator
 			Regex regex = TokenMatcher.ExtractionTable[TokenType.Number];
 			if (regex.Matches(subExp).Count == 2)
 			{
-				outputType = SetOutputType(GetNumber(subExp, 0));
-				string left = ConvertToDecimal(outputType, regex.Matches(subExp)[0].Value);
+				string left = String.IsNullOrEmpty(GetNumber(subExp, 0)) ? "0" : GetNumber(subExp, 0);
+				outputType = SetOutputType(left);
+				left = ConvertToDecimal(outputType, left);
 
-				outputType = SetOutputType(GetNumber(subExp, 1));
-				string right = ConvertToDecimal(outputType, regex.Matches(subExp)[1].Value);
+				string right = String.IsNullOrEmpty(GetNumber(subExp, 1)) ? "0" : GetNumber(subExp, 1);
+				outputType = SetOutputType(right);
+				right = ConvertToDecimal(outputType, right);
 
 				double result = 0.0d;
 				string strResult = String.Format("{0}", result);
