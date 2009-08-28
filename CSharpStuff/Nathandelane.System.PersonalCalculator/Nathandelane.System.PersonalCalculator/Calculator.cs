@@ -67,9 +67,9 @@ namespace Nathandelane.System.PersonalCalculator
 						break;
 					}
 
-					if (!TokenMatcher.IsExpression(expression) && !TokenMatcher.ExtractionTable[TokenType.NumericResult].IsMatch(expression))
+					if (!TokenMatcher.IsExpression(expression) && !TokenMatcher.ExtractionTable[TokenType.Number].IsMatch(expression))
 					{
-						Console.WriteLine("I do not understand the expression `{0}`.", expression);
+						Console.WriteLine("I do not understand the expression `{0}`. Suffix binary, octal, and hex numbers with b, o, or h respectively.", expression);
 						expression = "0";
 					}
 

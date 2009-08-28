@@ -10,23 +10,31 @@ namespace Nathandelane.System.PersonalCalculator
 	{
 		#region Fields
 
-		private static readonly string __numberFormat = "([\\d]+([.]{0,1}[\\d]+){0,1}){1}";
-		private static readonly string __baseNumberFormat = "(([\\d]+([.]{0,1}[\\d]+){0,1})[bohd]{1}){1}";
+		private static readonly string __decimalNumberFormat = "(([\\d]+([.]{0,1}[\\d]+){0,1})[d]{1}|([\\d]+([.]{0,1}[\\d]+){0,1})){1}";
+		private static readonly string __binaryNumberFormat = "([01]+[b]{1})";
+		private static readonly string __hexNumberFormat = "([\\dABCDEF]+[h]{1})";
+		private static readonly string __octalNumberFormat = "([012345678]+[o]{1})";
+		private static readonly string __numberFormat = String.Format("({0}|{1}|{2}|{3})+", __binaryNumberFormat, __octalNumberFormat, __decimalNumberFormat, __hexNumberFormat);
 		private static readonly string __operatorFormat = "(\\*\\*|[+-/*()^%&|]){1}";
-		private static readonly string __subExpressionFormat = "[\\(]{1}([\\d]+([.]{0,1}[\\d]+){0,1}|\\*\\*|[+-/*\\(\\)^%&|])+[\\)]{1}";
-		private static readonly string __functionFormat = "(([bohd]|tan|sin|cos){1}[\\(]{1}([\\d]+([.]{0,1}[\\d]+){0,1}|\\*\\*|[+-/*\\(\\)^%&|])+[\\)]{1}){1}";
+		private static readonly string __subExpressionFormat = String.Format("[\\(]{{1}}({0}|\\*\\*|[+-/*\\(\\)^%&|])+[\\)]{{1}}", __numberFormat);
+		private static readonly string __functionFormat = String.Format("(([bohd]|tan|sin|cos){{1}}[\\(]{{1}}({0}|\\*\\*|[+-/*\\(\\)^%&|])+[\\)]{{1}}){{1}}", __numberFormat);
 		public static readonly Dictionary<TokenType, Regex> ExtractionTable = new Dictionary<TokenType, Regex>()
 		{
 			{ TokenType.Addition, new Regex(String.Format("{0}(\\+){{1}}{0}", __numberFormat)) },
 			{ TokenType.And, new Regex(String.Format("{0}(&){{1}}{0}", __numberFormat)) },
-			{ TokenType.ConversionFunction, new Regex(String.Format("(b|h|o|d){{1}}(\\(){{1}}{0}(\\)){{1}}", __subExpressionFormat)) },
+			{ TokenType.BinaryNumber, new Regex(String.Format("{0}", __binaryNumberFormat)) },
+			{ TokenType.ConversionFunction, new Regex(String.Format("[bohd]{{1}}{0}", __subExpressionFormat)) },
+			{ TokenType.DecimalNumber, new Regex(String.Format("{0}", __decimalNumberFormat)) },
 			{ TokenType.Division, new Regex(String.Format("{0}(/){{1}}{0}", __numberFormat)) },
+			{ TokenType.Function, new Regex(String.Format("{0}", __functionFormat)) },
+			{ TokenType.HexNumber, new Regex(String.Format("{0}", __hexNumberFormat)) },
 			{ TokenType.LastResult, new Regex("[\\$]{1}") },
 			{ TokenType.Multiplication, new Regex(String.Format("{0}(\\*){{1}}{0}", __numberFormat)) },
 			{ TokenType.Modulus, new Regex(String.Format("{0}(%){{1}}{0}", __numberFormat)) },
 			{ TokenType.Negation, new Regex(String.Format("(-){{1}}{0}", __numberFormat)) },
 			{ TokenType.Number, new Regex(__numberFormat) },
 			{ TokenType.NumericResult, new Regex(String.Format("^[-]{{0,1}}{0}$", __numberFormat)) },
+			{ TokenType.OctalNumber, new Regex(String.Format("{0}", __octalNumberFormat)) },
 			{ TokenType.Or, new Regex(String.Format("{0}(\\|){{1}}{0}", __numberFormat)) },
 			{ TokenType.Power, new Regex(String.Format("{0}(\\*\\*){{1}}{0}", __numberFormat)) },
 			{ TokenType.SubExpression, new Regex(__subExpressionFormat) },
@@ -42,13 +50,16 @@ namespace Nathandelane.System.PersonalCalculator
 		{
 			SubExpression subExpression = new SubExpression(String.Empty, TokenType.Undefined);
 
-			if (ExtractionTable[TokenType.SubExpression].IsMatch(expression))
+			if (ExtractionTable[TokenType.Function].IsMatch(expression))
+			{
+				if (ExtractionTable[TokenType.ConversionFunction].IsMatch(expression))
+				{
+					subExpression = GetMatch(TokenType.ConversionFunction, expression);
+				}
+			}
+			else if (ExtractionTable[TokenType.SubExpression].IsMatch(expression))
 			{
 				subExpression = GetMatch(TokenType.SubExpression, expression);
-			}
-			else if(ExtractionTable[TokenType.ConversionFunction].IsMatch(expression))
-			{
-				subExpression = GetMatch(TokenType.ConversionFunction, expression);
 			}
 			else if (ExtractionTable[TokenType.Modulus].IsMatch(expression) || ExtractionTable[TokenType.Power].IsMatch(expression))
 			{
@@ -61,7 +72,7 @@ namespace Nathandelane.System.PersonalCalculator
 					subExpression = GetMatch(TokenType.Power, expression);
 				}
 			}
-			else if(ExtractionTable[TokenType.And].IsMatch(expression) || ExtractionTable[TokenType.Or].IsMatch(expression) || ExtractionTable[TokenType.Xor].IsMatch(expression))
+			else if (ExtractionTable[TokenType.And].IsMatch(expression) || ExtractionTable[TokenType.Or].IsMatch(expression) || ExtractionTable[TokenType.Xor].IsMatch(expression))
 			{
 				if (ExtractionTable[TokenType.And].IsMatch(expression))
 				{
@@ -110,7 +121,7 @@ namespace Nathandelane.System.PersonalCalculator
 		{
 			bool result = false;
 
-			Regex regexExpression = new Regex("^([\\(]|-|(pi|e|\\$)|([bohd]|sin|cos|tan)|([\\d]+([.]{0,1}[\\d]+){0,1}))+(([\\d]+([.]{0,1}[\\d]+){0,1})|(\\*\\*|[+-/*()^%&|])|(([\\d]+([.]{0,1}[\\d]+){0,1})[bohd]{1})|((e|pi|\\$){1})|(([bohd]|tan|sin|cos){1}[\\(]{1}([\\d]+([.]{0,1}[\\d]+){0,1}|\\*\\*|[+-/*\\(\\)^%&|])+[\\)]{1}))*[\\)]{0,1}$");
+			Regex regexExpression = new Regex(String.Format("^([\\(]|-|(pi|e|\\$)|([bohd]|sin|cos|tan)|{0})+({0}|{1}|(([\\d]+([.]{{0,1}}[\\d]+){{0,1}})[bohd]{{1}})|((e|pi|\\$){{1}})|(([bohd]|tan|sin|cos){{1}}[\\(]{{1}}([\\d]+([.]{{0,1}}[\\d]+){{0,1}}|\\*\\*|[+-/*\\(\\)^%&|])+[\\)]{{1}}))*[\\)]{{0,1}}$", __numberFormat, __operatorFormat));
 			if (regexExpression.IsMatch(expression))
 			{
 				result = true;
