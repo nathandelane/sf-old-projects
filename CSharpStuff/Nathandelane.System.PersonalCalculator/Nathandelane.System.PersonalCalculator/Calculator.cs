@@ -71,15 +71,16 @@ namespace Nathandelane.System.PersonalCalculator
 					{
 						Console.WriteLine("I do not understand the expression `{0}`. Suffix binary, octal, and hex numbers with b, o, or h respectively.", expression);
 						expression = "0";
-					}
-
-					if (SpecialNumber.IsMatch(expression))
-					{
-						expression = SpecialNumber.Inject(expression);
+						continue;
 					}
 
 					try
 					{
+						if (expression.Contains("$"))
+						{
+							expression = expression.Replace("$", __state["$"]);
+						}
+
 						calc._evaluator = Evaluator.Evaluate(expression);
 					}
 					catch (Exception e)

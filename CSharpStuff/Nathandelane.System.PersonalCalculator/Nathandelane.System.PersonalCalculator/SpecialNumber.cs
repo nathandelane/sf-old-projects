@@ -12,8 +12,8 @@ namespace Nathandelane.System.PersonalCalculator
 
 		public static readonly Dictionary<TokenType, Regex> ExtractionTable = new Dictionary<TokenType, Regex>()
 		{
-			{ TokenType.DollarSign, new Regex("(\\$){1}") },
-			{ TokenType.E, new Regex("(e){1}") },
+			{ TokenType.DollarSign, new Regex("([\\$]{1})") },
+			{ TokenType.E, new Regex("([e]{1})") },
 			{ TokenType.Pi, new Regex("(pi){1}") }
 		};
 

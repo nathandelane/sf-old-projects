@@ -78,6 +78,10 @@ namespace Nathandelane.System.PersonalCalculator
 							expression = Calculator.State[expression];
 						}
 					}
+					else if (type == TokenType.SpecialNumber)
+					{
+						expression = InjectSpecialNumbers(expression, subExp);
+					}
 					else if (type == TokenType.Undefined)
 					{
 						break;
@@ -256,6 +260,47 @@ namespace Nathandelane.System.PersonalCalculator
 			}
 
 			return value;
+		}
+
+		private static string InjectSpecialNumbers(string expression, string subExp)
+		{
+			Match nextMatch = TokenMatcher.ExtractionTable[TokenType.SpecialNumber].Matches(expression)[0];
+			if (nextMatch.Value.Equals("e"))
+			{
+				int index = expression.IndexOf(subExp);
+				int length = subExp.Length;
+
+				if (index > 0)
+				{
+					string subStrLeft = expression.Substring(0, index);
+					string subStrRight = expression.Substring(index + subExp.Length);
+					expression = String.Concat(subStrLeft, Math.E, subStrRight);
+				}
+				else
+				{
+					expression = expression.Remove(index, length);
+					expression = String.Concat(Math.E, expression);
+				}
+			}
+			else if (nextMatch.Value.Equals("pi"))
+			{
+				int index = expression.IndexOf(subExp);
+				int length = subExp.Length;
+
+				if (index > 0)
+				{
+					string subStrLeft = expression.Substring(0, index);
+					string subStrRight = expression.Substring(index + subExp.Length);
+					expression = String.Concat(subStrLeft, Math.PI, subStrRight);
+				}
+				else
+				{
+					expression = expression.Remove(index, length);
+					expression = String.Concat(Math.PI, expression);
+				}
+			}
+
+			return expression;
 		}
 
 		private static string PerformTrigOperation(string expression, string subExp)

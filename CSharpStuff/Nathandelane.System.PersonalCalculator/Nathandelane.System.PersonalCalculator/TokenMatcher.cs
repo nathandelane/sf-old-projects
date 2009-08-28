@@ -10,23 +10,23 @@ namespace Nathandelane.System.PersonalCalculator
 	{
 		#region Fields
 
-		private static readonly string __decimalNumberFormat = "(([\\d]+([.]{0,1}[\\d]+){0,1})[d]{1}|([\\d]+([.]{0,1}[\\d]+){0,1})){1}";
-		private static readonly string __binaryNumberFormat = "([01]+[b]{1})";
-		private static readonly string __hexNumberFormat = "([\\dABCDEF]+[h]{1})";
-		private static readonly string __octalNumberFormat = "([012345678]+[o]{1})";
-		private static readonly string __numberFormat = String.Format("({0}|{1}|{2}|{3})+", __hexNumberFormat, __binaryNumberFormat, __octalNumberFormat, __decimalNumberFormat);
-		private static readonly string __operatorFormat = "(\\*\\*|[+-/*()^%&|]){1}";
-		private static readonly string __functionFormat = String.Format("(([bohd]|tan|sin|cos|rad|deg){{1}}[\\(]{{1}}({0}|\\*\\*|[+-/*\\(\\)^%&|])+[\\)]{{1}}){{1}}", __numberFormat);
-		private static readonly string __variableFormat = "(([A-Za-z_]+[\\d_]*)|mode)+";
-		private static readonly string __specialNumberFormat = "(e|pi|\\$){1}";
-		private static readonly string __subExpressionFormat = String.Format("[\\(]{{1}}({0}|{1}|{2}|{3})+[\\)]{{1}}", __numberFormat, __operatorFormat, __functionFormat, __variableFormat);
+		private static readonly string __decimalNumberFormat = "(([-]{0,1}[\\d]+([.]{0,1}[\\d]+){0,1})([d]{0,1}))";
+		private static readonly string __binaryNumberFormat = "(([-]{0,1}[01]+)([b]{1}))";
+		private static readonly string __hexNumberFormat = "(([-]{0,1}[\\dABCDEF]+)([h]{1}))";
+		private static readonly string __octalNumberFormat = "(([-]{0,1}[01234567]+)([o]{1}))";
+		private static readonly string __numberFormat = String.Format("(({0}|{1}|{2}|{3})+)", __hexNumberFormat, __decimalNumberFormat, __octalNumberFormat, __binaryNumberFormat);
+		private static readonly string __operatorFormat = "((\\*\\*|[+-/*\\(\\)^%&|]){1})";
+		private static readonly string __functionFormat = "(([-]{0,1}([bdho]|cos|deg|rad|sin|tan){1})([\\(]{1})((([-]{0,1}[\\dABCDEF]+)([h]{1}))|(([-]{0,1}[\\d]+([.]{0,1}[\\d]+){0,1})([d]{0,1}))|(([-]{0,1}[01234567]+)([o]{1}))|(([-]{0,1}[01]+)([b]{1}))|((\\*\\*|[+-/*\\(\\)^%&|]){1})|([-]{0,1}([bdho]{1}|cos|sin|tan){1})|([-]{0,1}(e|pi|\\$){1}))+([\\)]{1}))";
+		private static readonly string __variableFormat = "((([A-Za-z_]+[\\d_]*)|mode)+)";
+		private static readonly string __specialNumberFormat = "((e|pi){1})";
+		private static readonly string __subExpressionFormat = "([\\(]{1})((([-]{0,1}[\\dABCDEF]+)([h]{1}))|(([-]{0,1}[\\d]+([.]{0,1}[\\d]+){0,1})([d]{0,1}))|(([-]{0,1}[01234567]+)([o]{1}))|(([-]{0,1}[01]+)([b]{1}))|((\\*\\*|[+-/*\\(\\)^%&|]){1})|([-]{0,1}(e|pi|\\$){1})|(([-]{0,1}([bdho]|cos|sin|tan){1})([\\(]{1})((([-]{0,1}[\\dABCDEF]+)([h]{1}))|(([-]{0,1}[\\d]+([.]{0,1}[\\d]+){0,1})([d]{0,1}))|(([-]{0,1}[01234567]+)([o]{1}))|(([-]{0,1}[01]+)([b]{1}))|((\\*\\*|[+-/*\\(\\)^%&|]){1})|([-]{0,1}([bdho]{1}|cos|sin|tan){1})|([-]{0,1}(e|pi|\\$){1}))+([\\)]{1})))+([\\)]{1})";
 		public static readonly Dictionary<TokenType, Regex> ExtractionTable = new Dictionary<TokenType, Regex>()
 		{
 			{ TokenType.Addition, new Regex(String.Format("{0}(\\+){{1}}{0}", __numberFormat)) },
 			{ TokenType.And, new Regex(String.Format("{0}(&){{1}}{0}", __numberFormat)) },
 			{ TokenType.Assignment, new Regex(String.Format("{0}[=]{{1}}{1}", __variableFormat, __numberFormat)) },
 			{ TokenType.BinaryNumber, new Regex(String.Format("{0}", __binaryNumberFormat)) },
-			{ TokenType.ConversionFunction, new Regex(String.Format("([bohd]|rad|deg){{1}}{0}", __subExpressionFormat)) },
+			{ TokenType.ConversionFunction, new Regex(String.Format("([bohd]|rad|deg){{1}}{0}", __subExpressionFormat), RegexOptions.Compiled) },
 			{ TokenType.DecimalNumber, new Regex(String.Format("{0}", __decimalNumberFormat)) },
 			{ TokenType.Division, new Regex(String.Format("{0}(/){{1}}{0}", __numberFormat)) },
 			{ TokenType.Function, new Regex(String.Format("{0}", __functionFormat)) },
@@ -35,14 +35,15 @@ namespace Nathandelane.System.PersonalCalculator
 			{ TokenType.Multiplication, new Regex(String.Format("{0}(\\*){{1}}{0}", __numberFormat)) },
 			{ TokenType.Modulus, new Regex(String.Format("{0}(%){{1}}{0}", __numberFormat)) },
 			{ TokenType.Negation, new Regex(String.Format("(-){{1}}{0}", __numberFormat)) },
-			{ TokenType.Number, new Regex(__numberFormat) },
+			{ TokenType.Number, new Regex(__numberFormat, RegexOptions.Compiled) },
 			{ TokenType.NumericResult, new Regex(String.Format("^[-]{{0,1}}{0}$", __numberFormat)) },
 			{ TokenType.OctalNumber, new Regex(String.Format("{0}", __octalNumberFormat)) },
 			{ TokenType.Or, new Regex(String.Format("{0}(\\|){{1}}{0}", __numberFormat)) },
 			{ TokenType.Power, new Regex(String.Format("{0}(\\*\\*){{1}}{0}", __numberFormat)) },
-			{ TokenType.SubExpression, new Regex(__subExpressionFormat) },
+			{ TokenType.SpecialNumber, new Regex(__specialNumberFormat) },
+			{ TokenType.SubExpression, new Regex(__subExpressionFormat, RegexOptions.Compiled) },
 			{ TokenType.Subtraction, new Regex(String.Format("{0}(-){{1}}{0}", __numberFormat)) },
-			{ TokenType.TrigFunction, new Regex(String.Format("(sin|cos|tan){{1}}{0}", __subExpressionFormat)) },
+			{ TokenType.TrigFunction, new Regex(String.Format("((sin|cos|tan){{1}}){0}", __subExpressionFormat), RegexOptions.Compiled) },
 			{ TokenType.Variable, new Regex(String.Format("{0}", __variableFormat)) },
 			{ TokenType.Xor, new Regex(String.Format("{0}(\\^){{1}}{0}", __numberFormat)) },
 		};
@@ -122,6 +123,10 @@ namespace Nathandelane.System.PersonalCalculator
 					subExpression = GetMatch(TokenType.Negation, expression);
 				}
 			}
+			else if (ExtractionTable[TokenType.SpecialNumber].IsMatch(expression))
+			{
+				subExpression = GetMatch(TokenType.SpecialNumber, expression);
+			}
 			else if (ExtractionTable[TokenType.Assignment].IsMatch(expression) || ExtractionTable[TokenType.Variable].IsMatch(expression))
 			{
 				if (ExtractionTable[TokenType.Assignment].IsMatch(expression))
@@ -141,7 +146,7 @@ namespace Nathandelane.System.PersonalCalculator
 		{
 			bool result = false;
 
-			Regex regexExpression = new Regex(String.Format("^([\\(]|-|(pi|e|\\$)|([bohd]|sin|cos|tan)|{0})+({0}|{1}|(([\\d]+([.]{{0,1}}[\\d]+){{0,1}})[bohd]{{1}})|((e|pi|\\$){{1}})|(([bohd]|tan|sin|cos){{1}}[\\(]{{1}}([\\d]+([.]{{0,1}}[\\d]+){{0,1}}|\\*\\*|[+-/*\\(\\)^%&|])+[\\)]{{1}}))*[\\)]{{0,1}}$", __numberFormat, __operatorFormat));
+			Regex regexExpression = new Regex(String.Format("^({0}|{1}|{2}|{3}|{4})+$", __subExpressionFormat, __functionFormat, __specialNumberFormat, __numberFormat, __operatorFormat), RegexOptions.Compiled);
 			if (regexExpression.IsMatch(expression))
 			{
 				result = true;

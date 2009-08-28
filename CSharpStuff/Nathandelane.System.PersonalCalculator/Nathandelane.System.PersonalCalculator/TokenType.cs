@@ -28,6 +28,7 @@ namespace Nathandelane.System.PersonalCalculator
 		Or,
 		Pi,
 		Power,
+		SpecialNumber,
 		SubExpression,
 		Subtraction,
 		TrigFunction,
