@@ -78,7 +78,14 @@ namespace Nathandelane.System.PersonalCalculator
 						expression = SpecialNumber.Inject(expression);
 					}
 
-					calc._evaluator = Evaluator.Evaluate(expression);
+					try
+					{
+						calc._evaluator = Evaluator.Evaluate(expression);
+					}
+					catch (Exception e)
+					{
+						Console.WriteLine("An exception was caught! {0} {1}", e.Message, e.StackTrace);
+					}
 
 					__state["$"] = calc._evaluator.Result;
 

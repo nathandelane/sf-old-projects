@@ -14,16 +14,19 @@ namespace Nathandelane.System.PersonalCalculator
 		private static readonly string __binaryNumberFormat = "([01]+[b]{1})";
 		private static readonly string __hexNumberFormat = "([\\dABCDEF]+[h]{1})";
 		private static readonly string __octalNumberFormat = "([012345678]+[o]{1})";
-		private static readonly string __numberFormat = String.Format("({0}|{1}|{2}|{3})+", __binaryNumberFormat, __octalNumberFormat, __decimalNumberFormat, __hexNumberFormat);
+		private static readonly string __numberFormat = String.Format("({0}|{1}|{2}|{3})+", __hexNumberFormat, __binaryNumberFormat, __octalNumberFormat, __decimalNumberFormat);
 		private static readonly string __operatorFormat = "(\\*\\*|[+-/*()^%&|]){1}";
-		private static readonly string __subExpressionFormat = String.Format("[\\(]{{1}}({0}|\\*\\*|[+-/*\\(\\)^%&|])+[\\)]{{1}}", __numberFormat);
-		private static readonly string __functionFormat = String.Format("(([bohd]|tan|sin|cos){{1}}[\\(]{{1}}({0}|\\*\\*|[+-/*\\(\\)^%&|])+[\\)]{{1}}){{1}}", __numberFormat);
+		private static readonly string __functionFormat = String.Format("(([bohd]|tan|sin|cos|rad|deg){{1}}[\\(]{{1}}({0}|\\*\\*|[+-/*\\(\\)^%&|])+[\\)]{{1}}){{1}}", __numberFormat);
+		private static readonly string __variableFormat = "(([A-Za-z_]+[\\d_]*)|mode)+";
+		private static readonly string __specialNumberFormat = "(e|pi|\\$){1}";
+		private static readonly string __subExpressionFormat = String.Format("[\\(]{{1}}({0}|{1}|{2}|{3})+[\\)]{{1}}", __numberFormat, __operatorFormat, __functionFormat, __variableFormat);
 		public static readonly Dictionary<TokenType, Regex> ExtractionTable = new Dictionary<TokenType, Regex>()
 		{
 			{ TokenType.Addition, new Regex(String.Format("{0}(\\+){{1}}{0}", __numberFormat)) },
 			{ TokenType.And, new Regex(String.Format("{0}(&){{1}}{0}", __numberFormat)) },
+			{ TokenType.Assignment, new Regex(String.Format("{0}[=]{{1}}{1}", __variableFormat, __numberFormat)) },
 			{ TokenType.BinaryNumber, new Regex(String.Format("{0}", __binaryNumberFormat)) },
-			{ TokenType.ConversionFunction, new Regex(String.Format("[bohd]{{1}}{0}", __subExpressionFormat)) },
+			{ TokenType.ConversionFunction, new Regex(String.Format("([bohd]|rad|deg){{1}}{0}", __subExpressionFormat)) },
 			{ TokenType.DecimalNumber, new Regex(String.Format("{0}", __decimalNumberFormat)) },
 			{ TokenType.Division, new Regex(String.Format("{0}(/){{1}}{0}", __numberFormat)) },
 			{ TokenType.Function, new Regex(String.Format("{0}", __functionFormat)) },
@@ -39,6 +42,8 @@ namespace Nathandelane.System.PersonalCalculator
 			{ TokenType.Power, new Regex(String.Format("{0}(\\*\\*){{1}}{0}", __numberFormat)) },
 			{ TokenType.SubExpression, new Regex(__subExpressionFormat) },
 			{ TokenType.Subtraction, new Regex(String.Format("{0}(-){{1}}{0}", __numberFormat)) },
+			{ TokenType.TrigFunction, new Regex(String.Format("(sin|cos|tan){{1}}{0}", __subExpressionFormat)) },
+			{ TokenType.Variable, new Regex(String.Format("{0}", __variableFormat)) },
 			{ TokenType.Xor, new Regex(String.Format("{0}(\\^){{1}}{0}", __numberFormat)) },
 		};
 
@@ -55,6 +60,10 @@ namespace Nathandelane.System.PersonalCalculator
 				if (ExtractionTable[TokenType.ConversionFunction].IsMatch(expression))
 				{
 					subExpression = GetMatch(TokenType.ConversionFunction, expression);
+				}
+				else if (ExtractionTable[TokenType.TrigFunction].IsMatch(expression))
+				{
+					subExpression = GetMatch(TokenType.TrigFunction, expression);
 				}
 			}
 			else if (ExtractionTable[TokenType.SubExpression].IsMatch(expression))
@@ -113,6 +122,17 @@ namespace Nathandelane.System.PersonalCalculator
 					subExpression = GetMatch(TokenType.Negation, expression);
 				}
 			}
+			else if (ExtractionTable[TokenType.Assignment].IsMatch(expression) || ExtractionTable[TokenType.Variable].IsMatch(expression))
+			{
+				if (ExtractionTable[TokenType.Assignment].IsMatch(expression))
+				{
+					subExpression = GetMatch(TokenType.Assignment, expression);
+				}
+				else if (ExtractionTable[TokenType.Variable].IsMatch(expression))
+				{
+					subExpression = GetMatch(TokenType.Variable, expression);
+				}
+			}
 
 			return subExpression;
 		}
@@ -164,9 +184,13 @@ namespace Nathandelane.System.PersonalCalculator
 			if (type == TokenType.SubExpression)
 			{
 				int index = subExp.IndexOf(")");
-				if (index < subExp.Length - 1)
+				if (index != -1 && index < subExp.Length - 1)
 				{
 					subExp = subExp.Substring(0, index + 1);
+				}
+				else if (index == -1)
+				{
+					throw new ArgumentException("Your expression was malformed and appeared to be missing a closing parenthesis.");
 				}
 
 				subExpression = new SubExpression(subExp, TokenType.SubExpression);

@@ -25,6 +25,10 @@ namespace Nathandelane.System.PersonalCalculator
 				{
 					result = __variables[key];
 				}
+				else
+				{
+					Console.WriteLine("The variable {0} does not exists.", key);
+				}
 
 				return result;
 			}

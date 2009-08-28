@@ -50,13 +50,33 @@ namespace Nathandelane.System.PersonalCalculator
 					{
 						expression = PerformOperation(expression, type, subExp);
 					}
-					else if (type == TokenType.ConversionFunction)
+					else if (type == TokenType.ConversionFunction || type == TokenType.TrigFunction)
 					{
-						expression = PerformConversion(expression, subExp);
+						if (type == TokenType.ConversionFunction)
+						{
+							expression = PerformConversion(expression, subExp);
+						}
+						else if (type == TokenType.TrigFunction)
+						{
+							expression = PerformTrigOperation(expression, subExp);
+						}
 					}
 					else if (type == TokenType.SubExpression)
 					{
 						expression = EvaluateSubExpression(expression, subExp);
+					}
+					else if (type == TokenType.Assignment || type == TokenType.Variable)
+					{
+						if (type == TokenType.Assignment)
+						{
+							string[] parts = expression.Split(new string[] { "=" }, StringSplitOptions.RemoveEmptyEntries);
+							expression = Evaluate(expression)._result;
+							Calculator.State[parts[0]] = expression;
+						}
+						else if (type == TokenType.Variable)
+						{
+							expression = Calculator.State[expression];
+						}
 					}
 					else if (type == TokenType.Undefined)
 					{
@@ -72,32 +92,6 @@ namespace Nathandelane.System.PersonalCalculator
 			}
 
 			return evaluation;
-		}
-
-		private static string PerformConversion(string expression, string subExp)
-		{
-			string fixedSubExp = subExp.Substring(2, subExp.Length - 3);
-			Evaluator innerEvaluation = Evaluate(fixedSubExp);
-			string result = innerEvaluation._result;
-
-			if (subExp.Contains("b"))
-			{
-				expression = String.Concat(Convert.ToString(int.Parse(result), 2), "b");
-			}
-			else if (subExp.Contains("o"))
-			{
-				expression = String.Concat(Convert.ToString(int.Parse(result), 8), "o");
-			}
-			else if (subExp.Contains("h"))
-			{
-				expression = String.Concat(Convert.ToString(int.Parse(result), 16).ToUpper(), "h");
-			}
-			else if (subExp.Contains("d"))
-			{
-				expression = String.Concat(Convert.ToString(int.Parse(result), 10), "d");
-			}
-
-			return expression;
 		}
 
 		private static string EvaluateSubExpression(string expression, string subExp)
@@ -262,6 +256,62 @@ namespace Nathandelane.System.PersonalCalculator
 			}
 
 			return value;
+		}
+
+		private static string PerformTrigOperation(string expression, string subExp)
+		{
+			string fixedSubExp = subExp.Substring(4, subExp.Length - 5);
+			Evaluator innerEvaluation = Evaluate(fixedSubExp);
+			string result = ConvertToDecimal(SetOutputType(innerEvaluation._result), innerEvaluation._result);
+
+			if (subExp.StartsWith("sin"))
+			{
+				expression = Math.Sin(double.Parse(result)).ToString();
+			}
+			else if (subExp.StartsWith("cos"))
+			{
+				expression = Math.Cos(double.Parse(result)).ToString();
+			}
+			else if (subExp.StartsWith("tan"))
+			{
+				expression = Math.Tan(double.Parse(result)).ToString();
+			}
+
+			return expression;
+		}
+
+		private static string PerformConversion(string expression, string subExp)
+		{
+			string fixedSubExp = subExp.Substring(2, subExp.Length - 3);
+			Evaluator innerEvaluation = Evaluate(fixedSubExp);
+			string result = ConvertToDecimal(SetOutputType(innerEvaluation._result), innerEvaluation._result);
+
+			if(subExp.StartsWith("deg"))
+			{
+				expression = (double.Parse(result) * (180 / Math.PI)).ToString();
+			}
+			else if(subExp.StartsWith("rad"))
+			{
+				expression = (double.Parse(result) * (Math.PI / 180)).ToString();
+			}
+			else if (subExp.StartsWith("b"))
+			{
+				expression = String.Concat(Convert.ToString(int.Parse(result), 2), "b");
+			}
+			else if (subExp.StartsWith("o"))
+			{
+				expression = String.Concat(Convert.ToString(int.Parse(result), 8), "o");
+			}
+			else if (subExp.StartsWith("h"))
+			{
+				expression = String.Concat(Convert.ToString(int.Parse(result), 16).ToUpper(), "h");
+			}
+			else if (subExp.StartsWith("d"))
+			{
+				expression = String.Concat(result, "d");
+			}
+
+			return expression;
 		}
 
 		private static string PerformOperation(string expression, TokenType type, string subExp)

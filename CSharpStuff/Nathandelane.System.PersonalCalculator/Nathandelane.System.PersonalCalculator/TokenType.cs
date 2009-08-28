@@ -9,6 +9,7 @@ namespace Nathandelane.System.PersonalCalculator
 	{
 		Addition,
 		And,
+		Assignment,
 		BinaryNumber,
 		ConversionFunction,
 		DecimalNumber,
@@ -29,7 +30,9 @@ namespace Nathandelane.System.PersonalCalculator
 		Power,
 		SubExpression,
 		Subtraction,
+		TrigFunction,
 		Undefined,
+		Variable,
 		Xor
 	}
 }
