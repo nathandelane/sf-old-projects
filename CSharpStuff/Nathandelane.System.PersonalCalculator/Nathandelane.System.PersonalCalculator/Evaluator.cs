@@ -41,7 +41,7 @@ namespace Nathandelane.System.PersonalCalculator
 
 			if (expression.Length > 0)
 			{
-				while (TokenMatcher.IsExpression(expression) && TokenMatcher.IsNotSimpleNegation(expression))
+				while (!TokenMatcher.ExtractionTable[TokenType.NumericResult].IsMatch(expression))//TokenMatcher.IsExpression(expression) && TokenMatcher.IsNotSimpleNegation(expression))
 				{
 					SubExpression exp = TokenMatcher.Match(expression);
 					string subExp = exp.Expression;
