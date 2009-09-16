@@ -35,6 +35,16 @@ namespace Nathandelane.Net.HGrep
 		#region Fields
 
 		private static readonly Regex __number = new Regex("^[\\d]+$");
+		private static string __licenseText = "\r\nThis program is free software: you can redistribute it and/or modify\r\n" +
+			"it under the terms of the GNU General Public License as published by\r\n" +
+			"the Free Software Foundation, either version 3 of the License, or\r\n" +
+			"(at your option) any later version.\r\n\r\n" +
+			"This program is distributed in the hope that it will be useful,\r\n" +
+			"but WITHOUT ANY WARRANTY; without even the implied warranty of\r\n" +
+			"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\r\n" +
+			"GNU General Public License for more details.\r\n\r\n" +
+			"You should have received a copy of the GNU General Public License\r\n" +
+			"along with this program.  If not, see <http://www.gnu.org/licenses/>.\r\n";
 
 		private ArgumentCollection _arguments;
 		private string _data;
@@ -69,7 +79,36 @@ namespace Nathandelane.Net.HGrep
 			else if (_arguments.ContainsKey(ArgumentCollection.VersionArg))
 			{
 				Console.WriteLine("HGrep version {0} Copyright (C) 2009, Nathandelane, HGrep", Assembly.GetEntryAssembly().GetName().Version);
+				Console.WriteLine(__licenseText);
 				Console.WriteLine("For help type HGrep -help");
+			}
+			else if (_arguments.ContainsKey(ArgumentCollection.LicenseArg))
+			{
+				string licenseArg = _arguments[ArgumentCollection.LicenseArg] as string;
+
+				if (File.Exists("License\\gpl.txt"))
+				{
+					using (StreamReader reader = new StreamReader("License\\gpl.txt"))
+					{
+						__licenseText = reader.ReadToEnd();
+					}
+				}
+
+				if (String.IsNullOrEmpty(licenseArg))
+				{
+					if (licenseArg.ToLower().Equals("graphical") || licenseArg.ToLower().Equals("g"))
+					{
+						AboutForm aboutForm = new AboutForm(__licenseText);
+						aboutForm.ShowDialog(null);
+					}
+					else if (licenseArg.ToLower().Equals("console") || licenseArg.ToLower().Equals("c"))
+					{
+						Console.WriteLine(__licenseText);
+					}
+				}
+				else
+				{
+				}
 			}
 			else if (_arguments.ContainsKey(ArgumentCollection.UriArg))
 			{

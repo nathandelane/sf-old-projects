@@ -36,6 +36,7 @@ namespace Nathandelane.Net.HGrep
 		public static readonly string FindRegexpArg = "find-regexp";
 		public static readonly string HelpArg = "help";
 		public static readonly string IgnoreBadCertsArg = "ignore-bad-certs";
+		public static readonly string LicenseArg = "license";
 		public static readonly string NoAttributesArg = "no-attributes";
 		public static readonly string NoInnerHtmlArg = "no-inner-html";
 		public static readonly string NoNumberingArg = "no-numbering";
@@ -60,6 +61,7 @@ namespace Nathandelane.Net.HGrep
 			{ FindRegexpArg, ArgumentType.String },
 			{ HelpArg, ArgumentType.String },
 			{ IgnoreBadCertsArg, ArgumentType.Null },
+			{ LicenseArg, ArgumentType.String },
 			{ NoAttributesArg, ArgumentType.Null },
 			{ NoInnerHtmlArg, ArgumentType.Null },
 			{ NoNumberingArg, ArgumentType.Null },
