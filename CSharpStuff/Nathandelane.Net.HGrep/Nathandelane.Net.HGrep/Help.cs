@@ -104,7 +104,7 @@ namespace Nathandelane.Net.HGrep
 			Console.WriteLine("{0,-30}Displays the response headers of the request.", ArgumentCollection.ReturnHeadersArg);
 			Console.WriteLine("{0,-30}Diaplys the resulting URL from automatic redirects.", ArgumentCollection.ReturnUrlArg);
 			Console.WriteLine("{0,-30}Disables automatic display of response headers.", ArgumentCollection.ScrubArg);
-			Console.WriteLine("{0,-30}Overrides the default timeout setting in the config file.", ArgumentCollection.TimeoutArg);
+			Console.WriteLine("{0,-30}Overrides the default timeout setting in the config file (in milliseconds, -1, or infinite).", ArgumentCollection.TimeoutArg);
 		}
 
 		#endregion

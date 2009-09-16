@@ -26,6 +26,7 @@ using System.Text;
 using HtmlAgilityPack;
 using ICSharpCode.SharpZipLib.GZip;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace Nathandelane.Net.HGrep
 {
@@ -80,7 +81,17 @@ namespace Nathandelane.Net.HGrep
 						{
 							if (_arguments.ContainsKey(ArgumentCollection.TimeoutArg))
 							{
-								agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, true, (int)_arguments[ArgumentCollection.TimeoutArg]);
+								string timeout = _arguments[ArgumentCollection.TimeoutArg] as string;
+								Regex number = new Regex("^[\\d]+$");
+
+								if (number.IsMatch(timeout))
+								{
+									agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, true, int.Parse(timeout));
+								}
+								else if (timeout.ToLower().Equals("infinite") || timeout.Equals("-1"))
+								{
+									agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, true, Timeout.Infinite);
+								}
 							}
 							else
 							{
