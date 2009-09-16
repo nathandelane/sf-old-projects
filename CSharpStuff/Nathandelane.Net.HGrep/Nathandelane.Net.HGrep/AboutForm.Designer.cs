@@ -69,12 +69,15 @@
 			// 
 			this.linkLabel1.AutoSize = true;
 			this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.linkLabel1.LinkColor = System.Drawing.SystemColors.Highlight;
 			this.linkLabel1.Location = new System.Drawing.Point(109, 82);
 			this.linkLabel1.Name = "linkLabel1";
 			this.linkLabel1.Size = new System.Drawing.Size(232, 20);
 			this.linkLabel1.TabIndex = 3;
 			this.linkLabel1.TabStop = true;
 			this.linkLabel1.Text = "http://code.google.com/p/hgrep/";
+			this.linkLabel1.VisitedLinkColor = System.Drawing.SystemColors.Highlight;
+			this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OpenBrowser);
 			// 
 			// label3
 			// 

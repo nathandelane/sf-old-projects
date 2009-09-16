@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace Nathandelane.Net.HGrep
 {
@@ -29,5 +30,11 @@ namespace Nathandelane.Net.HGrep
 		}
 
 		#endregion
+
+		private void OpenBrowser(object sender, LinkLabelLinkClickedEventArgs e)
+		{
+			e.Link.Visited = true;
+			Process.Start((string)e.Link.LinkData);
+		}
 	}
 }
