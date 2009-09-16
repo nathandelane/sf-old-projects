@@ -27,6 +27,7 @@ using HtmlAgilityPack;
 using ICSharpCode.SharpZipLib.GZip;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Xml;
 
 namespace Nathandelane.Net.HGrep
 {
@@ -416,11 +417,11 @@ namespace Nathandelane.Net.HGrep
 								{
 									if (attr.Equals("inner-html"))
 									{
-										if (!_arguments.ContainsKey(ArgumentCollection.NoInnerHtmlArg) && !String.IsNullOrEmpty(nextNode.InnerHtml))
+										if (!_arguments.ContainsKey(ArgumentCollection.NoInnerHtmlArg) && !String.IsNullOrEmpty(nextNode.InnerText))
 										{
 											nodeValue.Append(" = ");
 
-											string innerHtml = nextNode.InnerHtml.Trim();
+											string innerHtml = nextNode.InnerText.Trim();
 
 											if (_arguments.ContainsKey(ArgumentCollection.EncodeLineBreaksArg))
 											{

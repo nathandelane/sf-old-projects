@@ -18,7 +18,11 @@
 	02111-1307, USA.
 */
 
+using System;
+using System.IO;
+using System.Xml;
 using HtmlAgilityPack;
+using Sgml;
 
 namespace Nathandelane.Net.HGrep
 {
@@ -36,11 +40,6 @@ namespace Nathandelane.Net.HGrep
 		{
 			_document = new HtmlDocument();
 			_document.LoadHtml(document);
-		}
-
-		public XPathEvaluator(HtmlDocument document)
-		{
-			_document = document;
 		}
 
 		#endregion
