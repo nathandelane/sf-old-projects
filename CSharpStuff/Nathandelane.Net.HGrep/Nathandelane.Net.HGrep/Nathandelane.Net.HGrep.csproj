@@ -67,7 +67,6 @@
     <Compile Include="ArgumentType.cs" />
     <Compile Include="Help.cs" />
     <Compile Include="HttpException.cs" />
-    <Compile Include="JavaScriptEvaluator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexpEvaluator.cs" />

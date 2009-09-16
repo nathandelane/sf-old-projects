@@ -22,7 +22,6 @@ using System;
 using System.IO;
 using System.Xml;
 using HtmlAgilityPack;
-using Sgml;
 
 namespace Nathandelane.Net.HGrep
 {
