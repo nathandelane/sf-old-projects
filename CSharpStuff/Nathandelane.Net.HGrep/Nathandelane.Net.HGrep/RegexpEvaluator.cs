@@ -21,6 +21,9 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Xml;
+using HtmlAgilityPack;
+using System.IO;
 
 namespace Nathandelane.Net.HGrep
 {
@@ -28,7 +31,7 @@ namespace Nathandelane.Net.HGrep
 	{
 		#region Fields
 
-		private string _document;
+		private XmlDocument _document;
 
 		#endregion
 
@@ -36,7 +39,16 @@ namespace Nathandelane.Net.HGrep
 
 		public RegexpEvaluator(string document)
 		{
-			_document = document;
+			using (StringWriter sw = new StringWriter())
+			{
+				HtmlDocument htmlDocument = new HtmlDocument();
+				htmlDocument.LoadHtml(document);
+				htmlDocument.OptionOutputAsXml = true;
+				htmlDocument.Save(sw);
+
+				_document = new XmlDocument();
+				_document.LoadXml(sw.GetStringBuilder().ToString());
+			}
 		}
 
 		#endregion
@@ -47,7 +59,7 @@ namespace Nathandelane.Net.HGrep
 		{
 			IList<string> results = new List<string>();
 			Regex regex = new Regex(regularExpression);
-			string[] documentLines = _document.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+			string[] documentLines = _document.DocumentElement.InnerXml.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
 			foreach (string line in documentLines)
 			{
