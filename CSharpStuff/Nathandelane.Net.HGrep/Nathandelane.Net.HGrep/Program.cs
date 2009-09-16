@@ -96,6 +96,10 @@ namespace Nathandelane.Net.HGrep
 
 				if (String.IsNullOrEmpty(licenseArg))
 				{
+					Console.WriteLine(__licenseText);
+				}
+				else
+				{
 					if (licenseArg.ToLower().Equals("graphical") || licenseArg.ToLower().Equals("g"))
 					{
 						AboutForm aboutForm = new AboutForm(__licenseText);
@@ -105,10 +109,6 @@ namespace Nathandelane.Net.HGrep
 					{
 						Console.WriteLine(__licenseText);
 					}
-				}
-				else
-				{
-					Console.WriteLine(__licenseText);
 				}
 			}
 			else if (_arguments.ContainsKey(ArgumentCollection.UriArg))
