@@ -108,6 +108,7 @@ namespace Nathandelane.Net.HGrep
 				}
 				else
 				{
+					Console.WriteLine(__licenseText);
 				}
 			}
 			else if (_arguments.ContainsKey(ArgumentCollection.UriArg))
