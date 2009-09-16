@@ -39,6 +39,7 @@
 			this._licenseTextBox.Location = new System.Drawing.Point(12, 142);
 			this._licenseTextBox.Multiline = true;
 			this._licenseTextBox.Name = "_licenseTextBox";
+			this._licenseTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this._licenseTextBox.Size = new System.Drawing.Size(457, 217);
 			this._licenseTextBox.TabIndex = 0;
 			// 
