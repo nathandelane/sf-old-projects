@@ -34,6 +34,8 @@ namespace Nathandelane.Net.HGrep
 	{
 		#region Fields
 
+		private static readonly Regex __number = new Regex("^[\\d]+$");
+
 		private ArgumentCollection _arguments;
 		private string _data;
 
@@ -82,9 +84,8 @@ namespace Nathandelane.Net.HGrep
 							if (_arguments.ContainsKey(ArgumentCollection.TimeoutArg))
 							{
 								string timeout = _arguments[ArgumentCollection.TimeoutArg] as string;
-								Regex number = new Regex("^[\\d]+$");
 
-								if (number.IsMatch(timeout))
+								if (__number.IsMatch(timeout))
 								{
 									agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, true, int.Parse(timeout));
 								}
@@ -102,7 +103,16 @@ namespace Nathandelane.Net.HGrep
 						{
 							if (_arguments.ContainsKey(ArgumentCollection.TimeoutArg))
 							{
-								agent = new Agent(uri, true, (int)_arguments[ArgumentCollection.TimeoutArg]);
+								string timeout = _arguments[ArgumentCollection.TimeoutArg] as string;
+
+								if (__number.IsMatch(timeout))
+								{
+									agent = new Agent(uri, true, int.Parse(timeout));
+								}
+								else if (timeout.ToLower().Equals("infinite") || timeout.Equals("-1"))
+								{
+									agent = new Agent(uri, true, Timeout.Infinite);
+								}
 							}
 							else
 							{
@@ -116,7 +126,16 @@ namespace Nathandelane.Net.HGrep
 						{
 							if (_arguments.ContainsKey(ArgumentCollection.TimeoutArg))
 							{
-								agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, (int)_arguments[ArgumentCollection.TimeoutArg]);
+								string timeout = _arguments[ArgumentCollection.TimeoutArg] as string;
+
+								if (__number.IsMatch(timeout))
+								{
+									agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, int.Parse(timeout));
+								}
+								else if (timeout.ToLower().Equals("infinite") || timeout.Equals("-1"))
+								{
+									agent = new Agent(uri, _arguments[ArgumentCollection.PostBodyArg] as string, Timeout.Infinite);
+								}
 							}
 							else
 							{
@@ -127,7 +146,16 @@ namespace Nathandelane.Net.HGrep
 						{
 							if (_arguments.ContainsKey(ArgumentCollection.TimeoutArg))
 							{
-								agent = new Agent(uri, (int)_arguments[ArgumentCollection.TimeoutArg]);
+								string timeout = _arguments[ArgumentCollection.TimeoutArg] as string;
+
+								if (__number.IsMatch(timeout))
+								{
+									agent = new Agent(uri, int.Parse(timeout));
+								}
+								else if (timeout.ToLower().Equals("infinite") || timeout.Equals("-1"))
+								{
+									agent = new Agent(uri, Timeout.Infinite);
+								}
 							}
 							else
 							{

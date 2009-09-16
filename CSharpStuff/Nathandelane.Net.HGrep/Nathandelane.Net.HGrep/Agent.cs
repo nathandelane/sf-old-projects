@@ -25,6 +25,7 @@ using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 
 namespace Nathandelane.Net.HGrep
 {
@@ -126,9 +127,19 @@ namespace Nathandelane.Net.HGrep
 
 		private void InitializeRequest(Uri requestUri)
 		{
+			int timeout = 0;
+
+			if (!int.TryParse(ConfigurationManager.AppSettings["Timeout"], out timeout))
+			{
+				if (ConfigurationManager.AppSettings["Timeout"].ToLower().Equals("infinite"))
+				{
+					timeout = Timeout.Infinite;
+				}
+			}
+
 			_request = HttpWebRequest.CreateDefault(requestUri) as HttpWebRequest;
 			_request.Accept = ConfigurationManager.AppSettings["Accept"];
-			_request.Timeout = ((_timeout == 0) ? int.Parse(ConfigurationManager.AppSettings["Timeout"]) : _timeout);
+			_request.Timeout = ((_timeout == 0) ? timeout : _timeout);
 			_request.UserAgent = ConfigurationManager.AppSettings["UserAgentString"];
 			_request.Headers.Add("Accept-Language", ConfigurationManager.AppSettings["AcceptLanguage"]);
 			_request.Headers.Add("Accept-Encoding", ConfigurationManager.AppSettings["AcceptEncoding"]);
