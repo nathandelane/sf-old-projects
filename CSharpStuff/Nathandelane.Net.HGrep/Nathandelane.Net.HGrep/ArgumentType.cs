@@ -23,6 +23,7 @@ namespace Nathandelane.Net.HGrep
 	public enum ArgumentType
 	{
 		Int,
+		IntOrString,
 		Null,
 		String,
 		StringArray
