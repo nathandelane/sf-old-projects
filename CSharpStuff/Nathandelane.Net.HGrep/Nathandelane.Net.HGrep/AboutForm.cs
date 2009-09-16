@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Diagnostics;
+using Microsoft.Win32;
 
 namespace Nathandelane.Net.HGrep
 {
@@ -34,7 +35,11 @@ namespace Nathandelane.Net.HGrep
 		private void OpenBrowser(object sender, LinkLabelLinkClickedEventArgs e)
 		{
 			e.Link.Visited = true;
-			Process.Start((string)e.Link.LinkData);
+
+			RegistryKey registryKey = Registry.ClassesRoot.OpenSubKey(@"htmlfile\shell\open\command", false);
+			string defaultBrowserPath = (registryKey.GetValue(null, null) as string).Split(new char[] { '"' })[1];
+
+			Process.Start(defaultBrowserPath, "http://code.google.com/p/hgrep");
 		}
 	}
 }
