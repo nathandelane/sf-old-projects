@@ -85,10 +85,11 @@ namespace Nathandelane.Net.HGrep
 			else if (_arguments.ContainsKey(ArgumentCollection.LicenseArg))
 			{
 				string licenseArg = _arguments[ArgumentCollection.LicenseArg] as string;
+				string licenseLocation = String.Concat(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), Path.DirectorySeparatorChar, String.Format("License{0}gpl.txt", Path.DirectorySeparatorChar));
 
-				if (File.Exists("License\\gpl.txt"))
+				if (File.Exists(licenseLocation))
 				{
-					using (StreamReader reader = new StreamReader("License\\gpl.txt"))
+					using (StreamReader reader = new StreamReader(licenseLocation))
 					{
 						__licenseText = reader.ReadToEnd();
 					}
