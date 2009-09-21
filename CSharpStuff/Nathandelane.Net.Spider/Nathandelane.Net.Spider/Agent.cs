@@ -194,8 +194,8 @@ namespace Nathandelane.Net.Spider
 
 		public override string ToString()
 		{
-			// Id, Message, Target, Referrer, Title, Time
-			return String.Format("{0},\"{1}\",\"{2}\",\"{3}\",\"{4}\",{5}", __id, _message, _url.Target, _url.Referrer, _documentTitle, _elapsedTime);
+			// Id, Current Time, Message, Target, Referrer, Title, Time
+			return String.Format("{0},{1},\"{2}\",\"{3}\",\"{4}\",\"{5}\",{6}", __id, DateTime.Now.ToString("hh:mm:ss.fff"), _message, _url.Target, _url.Referrer, _documentTitle, _elapsedTime);
 		}
 
 		#endregion
