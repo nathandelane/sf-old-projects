@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nathandelane.Net.Spider.WebCrawler</RootNamespace>
-    <AssemblyName>Nathandelane.Net.Spider.WebCrawler</AssemblyName>
+    <AssemblyName>VehixWebCrawler</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -50,6 +50,7 @@
     <Compile Include="LoggingType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RamCounter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nathandelane.Net.Spider\Nathandelane.Net.Spider.csproj">

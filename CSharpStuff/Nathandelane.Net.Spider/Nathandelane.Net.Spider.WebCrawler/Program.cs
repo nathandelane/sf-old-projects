@@ -15,6 +15,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 		private UrlCollection _urls;
 		private List<string> _visitedUrls;
 		private CookieCollection _cookies;
+		private DateTime _startTime;
 
 		#endregion
 
@@ -66,12 +67,61 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			}
 		}
 
+		private long AllowedRuntimeInMinutes
+		{
+			get
+			{
+				long allowedRuntimeInMinutes = -1;
+
+				if (ConfigurationManager.AppSettings["limitRunTime"] != null)
+				{
+					allowedRuntimeInMinutes = long.Parse(ConfigurationManager.AppSettings["limitRunTime"]);
+				}
+
+				return allowedRuntimeInMinutes;
+			}
+		}
+
+		private long RuntimeInMinutes
+		{
+			get
+			{
+				long runtimeInMinutes = -1;
+
+				if (AllowedRuntimeInMinutes != -1)
+				{
+					DateTime now = DateTime.Now;
+					TimeSpan difference = now.Subtract(_startTime);
+					runtimeInMinutes = (difference.Days * 24 * 60) + (difference.Hours * 60) + difference.Minutes;
+				}
+
+				return runtimeInMinutes;
+			}
+		}
+
+		private float AllowedMemoryRemainingInMegabytes
+		{
+			get
+			{
+				float allowedMemoryRemainingInMegabytes = -1;
+
+				if (ConfigurationManager.AppSettings["limitMemoryUsage"] != null)
+				{
+					allowedMemoryRemainingInMegabytes = float.Parse(ConfigurationManager.AppSettings["limitMemoryUsage"]);
+				}
+
+				return allowedMemoryRemainingInMegabytes;
+			}
+		}
+
 		#endregion
 
 		#region Constructor
 
 		private Program()
 		{
+			_startTime = DateTime.Now;
+
 			string startingUrl = String.Concat(ConfigurationManager.AppSettings["startingUrl"], ConfigurationManager.AppSettings["path"]);
 
 			_urls = new UrlCollection();
@@ -79,7 +129,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 			_visitedUrls = new List<string>();
 
-			Logger.InitializeLogFile("Id, Message, Target, Referrer, Title, Time");
+			Logger.InitializeLogFile("Id, Start Time, Message, Target, Referrer, Title, Time");
 		}
 
 		private void Crawl()
@@ -95,10 +145,6 @@ namespace Nathandelane.Net.Spider.WebCrawler
 					if (!_visitedUrls.Contains(nextAgent.Hash))
 					{
 						nextAgent.Run();
-						/*
-						ThreadStart threadStart = new ThreadStart(nextAgent.Run);
-						Thread thread = new Thread(threadStart);
-						thread.Start();*/
 
 						AddUrls(nextAgent.Urls.ToArray(), nextAgent.Referrer.AbsoluteUri);
 
@@ -116,6 +162,22 @@ namespace Nathandelane.Net.Spider.WebCrawler
 				else
 				{
 					nextUrl = null;
+				}
+
+				if (RuntimeInMinutes != -1)
+				{
+					if (RuntimeInMinutes >= AllowedRuntimeInMinutes)
+					{
+						return;
+					}
+				}
+
+				if (AllowedMemoryRemainingInMegabytes != -1)
+				{
+					if (RamCounter.MegabytesAvailable < AllowedMemoryRemainingInMegabytes)
+					{
+						return;
+					}
 				}
 			}
 
