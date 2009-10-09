@@ -8,7 +8,7 @@ namespace Nathandelane.System
 {
 	public static class StringExtensions
 	{
-		public static string Tokenize(this string s, string[] patterns)
+		public static string[] Tokenize(this string s, string[] patterns)
 		{
 			Regex[] regexPatterns = new Regex[patterns.Length];
 			for (int index = 0; index < patterns.Length; index++)
@@ -17,11 +17,25 @@ namespace Nathandelane.System
 			}
 
 			List<string> tokens = new List<string>();
-			foreach (Regex pattern in regexPatterns)
+
+			while (!String.IsNullOrEmpty(s))
 			{
-				while (pattern.IsMatch(s))
+				foreach (Regex pattern in regexPatterns)
 				{
-					tokens.Add(pattern.Matches(s)[0]);
+					if (!String.IsNullOrEmpty(s))
+					{
+						while (pattern.IsMatch(s))
+						{
+							string match = pattern.Matches(s)[0].Value;
+							tokens.Add(match);
+							s = s.Substring(match.Length);
+							break;
+						}
+					}
+					else
+					{
+						break;
+					}
 				}
 			}
 
