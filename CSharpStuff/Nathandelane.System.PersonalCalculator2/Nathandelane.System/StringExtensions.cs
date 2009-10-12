@@ -75,5 +75,47 @@ namespace Nathandelane.System
 
 			return source;
 		}
+
+		/// <summary>
+		/// Joins an array of strings by String.Empty.
+		/// </summary>
+		/// <param name="s"></param>
+		/// <returns>string</returns>
+		public static string Join(this string[] s)
+		{
+			return String.Join(String.Empty, s);
+		}
+
+		/// <summary>
+		/// Indicates whether string is null or empty.
+		/// </summary>
+		/// <param name="s"></param>
+		/// <returns></returns>
+		public static bool IsNullOrEmpty(this string s)
+		{
+			return String.IsNullOrEmpty(s);
+		}
+
+		/// <summary>
+		/// Appends a list of objects to string.
+		/// </summary>
+		/// <param name="s"></param>
+		/// <param name="args"></param>
+		/// <returns></returns>
+		public static string Append(this string s, params object[] args)
+		{
+			return String.Concat(s, args);
+		}
+
+		/// <summary>
+		/// Prepends a list of objects to string.
+		/// </summary>
+		/// <param name="s"></param>
+		/// <param name="args"></param>
+		/// <returns></returns>
+		public static string Prepend(this string s, params object[] args)
+		{
+			return String.Concat(args, s);
+		}
 	}
 }

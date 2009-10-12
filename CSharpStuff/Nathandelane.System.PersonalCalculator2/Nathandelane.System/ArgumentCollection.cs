@@ -21,139 +21,107 @@
 using System;
 using System.Collections.Generic;
 
-namespace Nathandelane.Net.HGrep
+namespace Nathandelane.System
 {
 	public class ArgumentCollection : Dictionary<string, object>
 	{
 		#region Fields
 
-		public static readonly string CleanArg = "clean";
-		public static readonly string CountOnlyArg = "count-only";
-		public static readonly string EncodeLineBreaksArg = "encode-line-breaks";
-		public static readonly string ExtractObjectsArg = "extract-object";
-		public static readonly string DecodeEntitiesArg = "decode-entities";
-		public static readonly string FindArg = "find";
-		public static readonly string FindRegexpArg = "find-regexp";
-		public static readonly string HelpArg = "help";
-		public static readonly string IgnoreBadCertsArg = "ignore-bad-certs";
-		public static readonly string LicenseArg = "license";
-		public static readonly string NoAttributesArg = "no-attributes";
-		public static readonly string NoInnerHtmlArg = "no-inner-html";
-		public static readonly string NoNumberingArg = "no-numbering";
-		public static readonly string PostBodyArg = "post-body";
-		public static readonly string ReturnAttributesArg = "return-attributes";
-		public static readonly string ReturnDataArg = "return-data";
-		public static readonly string ReturnHeadersArg = "return-headers";
-		public static readonly string ReturnUrlArg = "return-url";
-		public static readonly string ScrubArg = "scrub";
-		public static readonly string TimeoutArg = "timeout";
-		public static readonly string UriArg = "uri";
-		public static readonly string VersionArg = "version";
+		public static readonly string Delimiter = "--";
 
-		private static readonly Dictionary<string, ArgumentType> __map = new Dictionary<string, ArgumentType>()
+		private static ArgumentMap __argumentMap;
+
+		#endregion
+
+		#region Properties
+
+		public ArgumentMap Map
 		{
-			{ CleanArg, ArgumentType.Null },
-			{ CountOnlyArg, ArgumentType.Null },
-			{ DecodeEntitiesArg, ArgumentType.Int },
-			{ EncodeLineBreaksArg, ArgumentType.Null },
-			{ ExtractObjectsArg, ArgumentType.String },
-			{ FindArg, ArgumentType.String },
-			{ FindRegexpArg, ArgumentType.String },
-			{ HelpArg, ArgumentType.String },
-			{ IgnoreBadCertsArg, ArgumentType.Null },
-			{ LicenseArg, ArgumentType.String },
-			{ NoAttributesArg, ArgumentType.Null },
-			{ NoInnerHtmlArg, ArgumentType.Null },
-			{ NoNumberingArg, ArgumentType.Null },
-			{ PostBodyArg, ArgumentType.String },
-			{ ReturnAttributesArg, ArgumentType.StringArray },
-			{ ReturnDataArg, ArgumentType.Null },
-			{ ReturnHeadersArg, ArgumentType.Null },
-			{ ReturnUrlArg, ArgumentType.Null },
-			{ ScrubArg, ArgumentType.Null },
-			{ TimeoutArg, ArgumentType.IntOrString },
-			{ UriArg, ArgumentType.String },
-			{ VersionArg, ArgumentType.Null }
-		};
+			get { return __argumentMap; }
+		}
 
 		#endregion
 
 		#region Constructors
 
-		private ArgumentCollection()
+		private ArgumentCollection(ArgumentMap argumentMap)
 			: base()
 		{
+			__argumentMap = argumentMap;
 		}
 
 		#endregion
 
 		#region Methods
 
-		public static ArgumentCollection Parse(string[] args)
+		public static ArgumentCollection Parse(string[] args, ArgumentMap argumentMap)
 		{
-			ArgumentCollection collection = new ArgumentCollection();
+			ArgumentCollection collection = new ArgumentCollection(argumentMap);
 
 			foreach (string nextArg in args)
 			{
-				string currentArg = StripArgumentIdentifyer(nextArg);
+				string currentArg = nextArg;
 				string argName = String.Empty;
 				object argValue = null;
 
-				if (currentArg.Contains("="))
+				if (currentArg.StartsWith(ArgumentCollection.Delimiter))
 				{
-					int indexOfEqualsSign = currentArg.IndexOf("=");
-					argName = currentArg.Substring(0, indexOfEqualsSign);
-
-					if (__map.ContainsKey(argName))
+					if (currentArg.Contains("="))
 					{
-						if (__map[argName] == ArgumentType.Null)
+						int indexOfEqualsSign = currentArg.IndexOf("=");
+						argName = StripArgumentIdentifyer(currentArg).Substring(0, indexOfEqualsSign);
+
+						if (collection.Map.ContainsKey(argName))
 						{
-							argValue = null;
-						}
-						else if (__map[argName] == ArgumentType.String)
-						{
-							argValue = currentArg.Substring(indexOfEqualsSign + 1);
-						}
-						else if (__map[argName] == ArgumentType.StringArray)
-						{
-							argValue = currentArg.Substring(indexOfEqualsSign + 1).Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
-						}
-						else if (__map[argName] == ArgumentType.Int)
-						{
-							int outValue = 0;
-							if (Int32.TryParse(currentArg.Substring(indexOfEqualsSign + 1), out outValue))
+							if (collection.Map[argName] == ArgumentType.Null)
 							{
-								argValue = outValue;
+								argValue = null;
 							}
-							else
-							{
-								throw new ArgumentException(String.Format("Argument {0} must be of int (Int32) type", argName));
-							}
-						}
-						else if (__map[argName] == ArgumentType.IntOrString)
-						{
-							int outValue = 0;
-							if (Int32.TryParse(currentArg.Substring(indexOfEqualsSign + 1), out outValue))
-							{
-								argValue = outValue;
-							}
-							else
+							else if (collection.Map[argName] == ArgumentType.String)
 							{
 								argValue = currentArg.Substring(indexOfEqualsSign + 1);
 							}
+							else if (collection.Map[argName] == ArgumentType.StringArray)
+							{
+								argValue = currentArg.Substring(indexOfEqualsSign + 1).Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
+							}
+							else if (collection.Map[argName] == ArgumentType.Int)
+							{
+								int outValue = 0;
+								if (Int32.TryParse(currentArg.Substring(indexOfEqualsSign + 1), out outValue))
+								{
+									argValue = outValue;
+								}
+								else
+								{
+									throw new ArgumentException(String.Format("Argument {0} must be of int (Int32) type", argName));
+								}
+							}
+							else if (collection.Map[argName] == ArgumentType.IntOrString)
+							{
+								int outValue = 0;
+								if (Int32.TryParse(currentArg.Substring(indexOfEqualsSign + 1), out outValue))
+								{
+									argValue = outValue;
+								}
+								else
+								{
+									argValue = currentArg.Substring(indexOfEqualsSign + 1);
+								}
+							}
+						}
+						else
+						{
+							throw new ArgumentException(String.Format("{0} is not recognized as a valid argument", argName));
 						}
 					}
 					else
 					{
-						throw new ArgumentException(String.Format("{0} is not recognized as a valid argument", argName));
+						argName = StripArgumentIdentifyer(currentArg);
 					}
-				}
-				else
-				{
-					argName = currentArg;
-				}
 
-				collection.Add(argName, argValue);
+					collection.Add(argName, argValue);
+				}
 			}
 
 			return collection;
@@ -161,20 +129,7 @@ namespace Nathandelane.Net.HGrep
 
 		private static string StripArgumentIdentifyer(string arg)
 		{
-			if (arg.StartsWith("--"))
-			{
-				arg = arg.Substring(2);
-			}
-			else if (arg.StartsWith("-"))
-			{
-				arg = arg.Substring(1);
-			}
-			else if (arg.StartsWith("/"))
-			{
-				arg = arg.Substring(1);
-			}
-
-			return arg;
+			return arg.Substring(ArgumentCollection.Delimiter.Length);
 		}
 
 		#endregion

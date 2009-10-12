@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArgumentCollection.cs" />
+    <Compile Include="ArgumentMap.cs" />
     <Compile Include="ArgumentType.cs" />
     <Compile Include="CharExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -18,7 +18,7 @@
 	02111-1307, USA.
 */
 
-namespace Nathandelane.Net.HGrep
+namespace Nathandelane.System
 {
 	public enum ArgumentType
 	{
