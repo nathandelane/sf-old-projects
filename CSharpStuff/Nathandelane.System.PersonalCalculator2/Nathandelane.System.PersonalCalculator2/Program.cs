@@ -8,11 +8,24 @@ namespace Nathandelane.System.PersonalCalculator2
 {
 	class Program
 	{
+		#region Methods
+
+		private void Run(string[] tokens)
+		{
+		}
+
+		#region Main Method
+
 		static void Main(string[] args)
 		{
-			string expression = "156+23.2--27";
-			string[] patterns = new string[] { "^[-]{0,1}[\\d]+([.]{1}[\\d]+){0,1}", "^[+]{1}", "^[-]{1}" };
-
+			string[] patterns = new string[] { 
+				"^[-]{0,1}[\\d]+([.]{1}[\\d]+){0,1}", 
+				"^[+]{1}", 
+				"^[-]{1}", 
+				"^(\\*\\*){1}",
+				"^[*]{1}",
+				"^[/]{1}"
+			};
 			string[] tokens = expression.Tokenize(patterns);
 
 			foreach (string token in tokens)
@@ -22,5 +35,9 @@ namespace Nathandelane.System.PersonalCalculator2
 
 			Console.ReadLine();
 		}
+
+		#endregion
+
+		#endregion
 	}
 }
