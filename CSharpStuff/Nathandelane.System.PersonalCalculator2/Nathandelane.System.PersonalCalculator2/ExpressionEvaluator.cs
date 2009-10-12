@@ -52,16 +52,16 @@ namespace Nathandelane.System.PersonalCalculator2
 			{
 				string nextToken = postfixatedExpression.Pop();
 
-				if (GetTokenType(nextToken) == TokenType.DecimalNumber)
-				{
-					resultStack.Push(nextToken);
-				}
-				else
+				if (GetTokenType(nextToken) != TokenType.DecimalNumber)
 				{
 					string right = resultStack.Pop();
 					string left = resultStack.Pop();
 
 					resultStack.Push(DispatchOperation(GetTokenType(nextToken), left, right));
+				}
+				else
+				{
+					resultStack.Push(nextToken);
 				}
 			}
 
@@ -90,7 +90,7 @@ namespace Nathandelane.System.PersonalCalculator2
 				{
 					if (lastTokenType == TokenType.Negation)
 					{
-						currentToken = currentToken.Prepend("-");
+						currentToken = String.Concat("-", currentToken);
 					}
 
 					postfixatedExpression.Push(currentToken);
@@ -133,9 +133,9 @@ namespace Nathandelane.System.PersonalCalculator2
 								operatorStack.Push(currentToken);
 							}
 						}
-					}
 
-					lastTokenType = GetTokenType(currentToken);
+						lastTokenType = GetTokenType(currentToken);
+					}
 				}
 			}
 
@@ -197,7 +197,11 @@ namespace Nathandelane.System.PersonalCalculator2
 		{
 			TokenType type = TokenType.DecimalNumber;
 
-			if ((new Regex(TokenPatterns.AdditionKey)).IsMatch(token))
+			if ((new Regex(TokenPatterns.NegativeDecimalNumberKey)).IsMatch(token))
+			{
+				type = TokenType.DecimalNumber;
+			}
+			else if ((new Regex(TokenPatterns.AdditionKey)).IsMatch(token))
 			{
 				type = TokenType.Add;
 			}

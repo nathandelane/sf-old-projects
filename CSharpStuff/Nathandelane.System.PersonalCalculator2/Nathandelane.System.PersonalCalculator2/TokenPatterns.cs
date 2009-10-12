@@ -12,6 +12,7 @@ namespace Nathandelane.System.PersonalCalculator2
 		#region Fields
 
 		public static readonly string DecimalNumberKey = "^[\\d]+([.]{1}[\\d]+){0,1}";
+		public static readonly string NegativeDecimalNumberKey = "^[-]{0,1}[\\d]+([.]{1}[\\d]+){0,1}";
 		public static readonly string AdditionKey = "^[+]{1}";
 		public static readonly string SubtractionKey = "^[-]{1}";
 		public static readonly string PowerKey = "^(\\*\\*){1}";

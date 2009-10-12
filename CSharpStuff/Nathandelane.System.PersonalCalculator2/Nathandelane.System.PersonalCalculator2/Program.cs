@@ -64,7 +64,7 @@ namespace Nathandelane.System.PersonalCalculator2
 				string userInput = String.Empty;
 
 				Console.WriteLine("BPC - Better Personal Calculator, Copyright (C) 2009 Nathandelane, Version {0}", Version);
-				while (!userInput.Equals("quit"))
+				while (!userInput.Equals("quit") && !userInput.Equals("q"))
 				{
 					Console.Write(">>> ");
 					

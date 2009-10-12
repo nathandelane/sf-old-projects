@@ -97,6 +97,28 @@ namespace Nathandelane.System
 		}
 
 		/// <summary>
+		/// Appends a list of strings to string.
+		/// </summary>
+		/// <param name="s"></param>
+		/// <param name="args"></param>
+		/// <returns></returns>
+		public static string Append(this string s, params string[] args)
+		{
+			return String.Concat(s, args);
+		}
+
+		/// <summary>
+		/// Prepends a list of strings to string.
+		/// </summary>
+		/// <param name="s"></param>
+		/// <param name="args"></param>
+		/// <returns></returns>
+		public static string Prepend(this string s, params string[] args)
+		{
+			return String.Concat(args, s);
+		}
+
+		/// <summary>
 		/// Appends a list of objects to string.
 		/// </summary>
 		/// <param name="s"></param>
