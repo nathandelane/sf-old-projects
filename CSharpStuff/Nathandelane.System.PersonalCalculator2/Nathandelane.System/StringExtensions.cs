@@ -10,31 +10,24 @@ namespace Nathandelane.System
 	{
 		public static string[] Tokenize(this string s, string[] patterns)
 		{
-			Regex[] regexPatterns = new Regex[patterns.Length];
-			for (int index = 0; index < patterns.Length; index++)
-			{
-				regexPatterns[index] = new Regex(patterns[index]);
-			}
-
 			List<string> tokens = new List<string>();
-
-			while (!String.IsNullOrEmpty(s))
+			bool noMatchesFound = false;
+			while (!String.IsNullOrEmpty(s) && !noMatchesFound)
 			{
-				foreach (Regex pattern in regexPatterns)
+				for(int index = 0; index < patterns.Length; index++)
 				{
-					if (!String.IsNullOrEmpty(s))
+					Regex pattern = new Regex(patterns[index]);
+					if (pattern.IsMatch(s))
 					{
-						while (pattern.IsMatch(s))
-						{
-							string match = pattern.Matches(s)[0].Value;
-							tokens.Add(match);
-							s = s.Substring(match.Length);
-							break;
-						}
+						string match = pattern.Matches(s)[0].Value;
+						tokens.Add(match);
+						s = s.Substring(match.Length);
+						index = 0;
 					}
-					else
+
+					if (index == patterns.Length - 1)
 					{
-						break;
+						noMatchesFound = true;
 					}
 				}
 			}
