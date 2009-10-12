@@ -55,23 +55,44 @@ namespace Nathandelane.System.PersonalCalculator2
 
 			if (tokens.Length > 0)
 			{
-				Console.WriteLine("{0}", ExpressionEvaluator.Evaluate(tokens));
-
-				Console.ReadLine();
+				try
+				{
+					Console.WriteLine("{0}", ExpressionEvaluator.Evaluate(tokens));
+				}
+				catch (Exception e)
+				{
+					Console.WriteLine("Error occurred: {0}", e.Message);
+					Logger.Error(String.Format("{0}", e.StackTrace));
+				}
 			}
 			else
 			{
 				string userInput = String.Empty;
 
 				Console.WriteLine("BPC - Better Personal Calculator, Copyright (C) 2009 Nathandelane, Version {0}", Version);
-				while (!userInput.Equals("quit") && !userInput.Equals("q"))
+				while (true)
 				{
 					Console.Write(">>> ");
-					
+
 					userInput = Console.ReadLine();
 					tokens = userInput.Tokenize(Enumerable.ToArray<string>(Calculator.Patterns.Keys));
 
-					Console.WriteLine("{0}", ExpressionEvaluator.Evaluate(tokens));
+					if (userInput.Equals("quit") || userInput.Equals("q"))
+					{
+						break;
+					}
+					else
+					{
+						try
+						{
+							Console.WriteLine("{0}", ExpressionEvaluator.Evaluate(tokens));
+						}
+						catch (Exception e)
+						{
+							Console.WriteLine("Error occurred: {0}", e.Message);
+							Logger.Error(String.Format("{0}", e.StackTrace));
+						}
+					}
 				}
 			}
 		}
