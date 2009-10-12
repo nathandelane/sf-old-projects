@@ -55,7 +55,9 @@ namespace Nathandelane.System.PersonalCalculator2
 
 			if (tokens.Length > 0)
 			{
-				Console.WriteLine("{0}", ExpressionEvaluator.Evaluate(tokens).Value);
+				Console.WriteLine("{0}", ExpressionEvaluator.Evaluate(tokens));
+
+				Console.ReadLine();
 			}
 			else
 			{
@@ -69,7 +71,7 @@ namespace Nathandelane.System.PersonalCalculator2
 					userInput = Console.ReadLine();
 					tokens = userInput.Tokenize(Enumerable.ToArray<string>(Calculator.Patterns.Keys));
 
-					Console.WriteLine("{0}", ExpressionEvaluator.Evaluate(tokens).Value);
+					Console.WriteLine("{0}", ExpressionEvaluator.Evaluate(tokens));
 				}
 			}
 		}

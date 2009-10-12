@@ -7,11 +7,15 @@ namespace Nathandelane.System.PersonalCalculator2
 {
 	public enum TokenType
 	{
+		Null,
 		DecimalNumber,
 		Add,
 		Subtract,
+		Negation,
 		Power,
 		Multiply,
-		Divide
+		Divide,
+		OpeningParenthesis,
+		ClosingParenthesis
 	}
 }

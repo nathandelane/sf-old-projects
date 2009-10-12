@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculator.cs" />
+    <Compile Include="PrecedenceMap.cs" />
     <Compile Include="TokenPatterns.cs" />
     <Compile Include="ExpressionEvaluator.cs" />
     <Compile Include="Program.cs" />

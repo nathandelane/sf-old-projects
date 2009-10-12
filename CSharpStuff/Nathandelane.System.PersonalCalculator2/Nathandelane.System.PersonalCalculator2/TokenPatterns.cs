@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Collections;
+using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.PersonalCalculator2
 {
@@ -10,7 +11,7 @@ namespace Nathandelane.System.PersonalCalculator2
 	{
 		#region Fields
 
-		public static readonly string DecimalNumberKey = "^[-]{0,1}[\\d]+([.]{1}[\\d]+){0,1}";
+		public static readonly string DecimalNumberKey = "^[\\d]+([.]{1}[\\d]+){0,1}";
 		public static readonly string AdditionKey = "^[+]{1}";
 		public static readonly string SubtractionKey = "^[-]{1}";
 		public static readonly string PowerKey = "^(\\*\\*){1}";
