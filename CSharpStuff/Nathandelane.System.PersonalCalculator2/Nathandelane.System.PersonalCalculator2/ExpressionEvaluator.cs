@@ -25,6 +25,11 @@ namespace Nathandelane.System.PersonalCalculator2
 
 		#region Methods
 
+		/// <summary>
+		/// Evaluates a series of tokens.
+		/// </summary>
+		/// <param name="tokens"></param>
+		/// <returns>ExpressionEvaluator</returns>
 		public static ExpressionEvaluator Evaluate(string[] tokens)
 		{
 			Stack<string> postfixatedExpression = PostfixateExpression(tokens);
@@ -33,6 +38,11 @@ namespace Nathandelane.System.PersonalCalculator2
 			return evaluator;
 		}
 
+		/// <summary>
+		/// Evaluates a postfixated expression.
+		/// </summary>
+		/// <param name="postfixatedExpression"></param>
+		/// <returns>string</returns>
 		private static string EvaluateExpression(Stack<string> postfixatedExpression)
 		{
 			string result = "0";
@@ -60,6 +70,11 @@ namespace Nathandelane.System.PersonalCalculator2
 			return result;
 		}
 
+		/// <summary>
+		/// Transforms the infix formatted expression into a postfix formatted expression.
+		/// </summary>
+		/// <param name="tokens"></param>
+		/// <returns>Stack&lt;string&gt;</returns>
 		private static Stack<string> PostfixateExpression(string[] tokens)
 		{
 			PrecedenceMap precedenceMap = new PrecedenceMap();
@@ -138,6 +153,13 @@ namespace Nathandelane.System.PersonalCalculator2
 			return expression;
 		}
 
+		/// <summary>
+		/// Dispatches the operation given for the pair of numbers given.
+		/// </summary>
+		/// <param name="nextOperator"></param>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
+		/// <returns>string</returns>
 		private static string DispatchOperation(TokenType nextOperator, string left, string right)
 		{
 			string result = left;
@@ -166,6 +188,11 @@ namespace Nathandelane.System.PersonalCalculator2
 			return result;
 		}
 
+		/// <summary>
+		/// Gets the type of a token.
+		/// </summary>
+		/// <param name="token"></param>
+		/// <returns>TokenType</returns>
 		private static TokenType GetTokenType(string token)
 		{
 			TokenType type = TokenType.DecimalNumber;
@@ -194,6 +221,10 @@ namespace Nathandelane.System.PersonalCalculator2
 			return type;
 		}
 
+		/// <summary>
+		/// Returns a string representation of ExpressionEvaluator.
+		/// </summary>
+		/// <returns></returns>
 		public override string ToString()
 		{
 			return _value;
