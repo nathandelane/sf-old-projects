@@ -34,6 +34,7 @@ namespace Nathandelane.System.PersonalCalculator2
 		private static readonly string ModeDegreesArg = "mode-degrees";
 		private static readonly string ModeRadiansArg = "mode-radians";
 		private static readonly string HelpArg = "help";
+		private static readonly string VersionArg = "version";
 		private static readonly ArgumentMap __argumentMap = new ArgumentMap()
 		{
 			{ ModeDegreesArg, ArgumentType.Null },
@@ -115,7 +116,9 @@ namespace Nathandelane.System.PersonalCalculator2
 --mode-degrees        Sets the calculator in degree mode.
 --mode-radians        Sets the calculator in radian mode (default).
 --help                Displays this help message.
---version             Displays the version of BCP currently running.");
+--version             Displays the version of BCP currently running.
+
+Supported functionality: +; -; *; /; ** (power); // (div); % (mod); cos; sin; tan");
 		}
 
 		private static void DisplayVersion()
@@ -160,18 +163,29 @@ namespace Nathandelane.System.PersonalCalculator2
 
 		static void Main(string[] args)
 		{
+			ArgumentCollection argumentCollection = null;
 			Calculator.Heap.Add("$", "0");
 
 			string arguments = args.Join();
 
 			if (!arguments.IsNullOrEmpty())
 			{
-				ArgumentCollection argumentCollection = ArgumentCollection.Parse(args, __argumentMap);
-
+				argumentCollection = ArgumentCollection.Parse(args, __argumentMap);
 				arguments = RemoveKnownArguments(arguments, argumentCollection);
 			}
 
-			Run(arguments.Trim());
+			if (argumentCollection.ContainsKey(HelpArg))
+			{
+				DisplayHelp();
+			}
+			else if (argumentCollection.ContainsKey(VersionArg))
+			{
+				DisplayVersion();
+			}
+			else
+			{
+				Run(arguments.Trim());
+			}
 		}
 
 		#endregion
