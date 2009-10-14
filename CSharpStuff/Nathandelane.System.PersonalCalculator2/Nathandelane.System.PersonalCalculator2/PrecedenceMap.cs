@@ -15,7 +15,9 @@ namespace Nathandelane.System.PersonalCalculator2
 			{ TokenType.Add, 1 },
 			{ TokenType.Subtract, 1},
 			{ TokenType.Multiply, 2 },
-			{ TokenType.Divide, 2 }
+			{ TokenType.Divide, 2 },
+			{ TokenType.OpeningParenthesis, 3 },
+			{ TokenType.ClosingParenthesis, -1 }
 		};
 
 		#endregion

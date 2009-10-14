@@ -108,7 +108,23 @@ namespace Nathandelane.System.PersonalCalculator2
 					}
 					else
 					{
-						if (operatorStack.Count == 0)
+						if (GetTokenType(currentToken) == TokenType.OpeningParenthesis)
+						{
+							operatorStack.Push(currentToken);
+						}
+						else if (GetTokenType(currentToken) == TokenType.ClosingParenthesis)
+						{
+							while (GetTokenType(operatorStack.Peek()) != TokenType.OpeningParenthesis)
+							{
+								postfixatedExpression.Push(operatorStack.Pop());
+							}
+
+							if (GetTokenType(operatorStack.Peek()) == TokenType.OpeningParenthesis)
+							{
+								operatorStack.Pop();
+							}
+						}
+						else if (operatorStack.Count == 0)
 						{
 							operatorStack.Push(currentToken);
 						}
@@ -220,6 +236,14 @@ namespace Nathandelane.System.PersonalCalculator2
 			else if ((new Regex(TokenPatterns.DivisionKey)).IsMatch(token))
 			{
 				type = TokenType.Divide;
+			}
+			else if ((new Regex(TokenPatterns.LeftParenthesisKey)).IsMatch(token))
+			{
+				type = TokenType.OpeningParenthesis;
+			}
+			else if ((new Regex(TokenPatterns.RightParenthesisKey)).IsMatch(token))
+			{
+				type = TokenType.ClosingParenthesis;
 			}
 
 			return type;
