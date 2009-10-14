@@ -86,7 +86,10 @@ namespace Nathandelane.System.PersonalCalculator2
 					{
 						try
 						{
-							Console.WriteLine("{0}", ExpressionEvaluator.Evaluate(tokens));
+							ExpressionEvaluator result = ExpressionEvaluator.Evaluate(tokens);
+							Calculator.Heap["$"] = result.ToString();
+
+							Console.WriteLine("{0}", Calculator.Heap["$"]);
 						}
 						catch (Exception e)
 						{
@@ -154,6 +157,8 @@ namespace Nathandelane.System.PersonalCalculator2
 
 		static void Main(string[] args)
 		{
+			Calculator.Heap.Add("$", "0");
+
 			string arguments = args.Join();
 
 			if (!arguments.IsNullOrEmpty())

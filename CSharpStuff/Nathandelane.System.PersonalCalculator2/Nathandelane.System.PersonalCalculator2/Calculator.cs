@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
 
 namespace Nathandelane.System.PersonalCalculator2
 {
 	public static class Calculator
 	{
+		#region Fields
+
+		#region ReadOnly Fields
+
 		public static readonly TokenPatterns Patterns = new TokenPatterns()
 		{ 
 			{ TokenPatterns.DecimalNumberKey, TokenType.DecimalNumber },
@@ -20,5 +25,11 @@ namespace Nathandelane.System.PersonalCalculator2
 			{ TokenPatterns.LeftParenthesisKey, TokenType.OpeningParenthesis },
 			{ TokenPatterns.RightParenthesisKey, TokenType.ClosingParenthesis }
 		};
+
+		#endregion
+
+		public static Hashtable Heap = new Hashtable();
+
+		#endregion
 	}
 }

@@ -53,6 +53,10 @@ namespace Nathandelane.System
 					{
 						noMatchesFound = true;
 					}
+					else if (s.IsNullOrEmpty())
+					{
+						noMatchesFound = true;
+					}
 				}
 			}
 
