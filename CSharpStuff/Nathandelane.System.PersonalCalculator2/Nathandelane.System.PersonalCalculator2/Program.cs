@@ -75,7 +75,10 @@ namespace Nathandelane.System.PersonalCalculator2
 					Console.Write(">>> ");
 
 					userInput = Console.ReadLine();
+
 					userInput = userInput.Replace(" ", String.Empty);
+					userInput = userInput.Replace("$", Calculator.Heap["$"].ToString());
+
 					tokens = userInput.Tokenize(Enumerable.ToArray<string>(Calculator.Patterns.Keys));
 
 					if (userInput.Equals("quit") || userInput.Equals("q"))

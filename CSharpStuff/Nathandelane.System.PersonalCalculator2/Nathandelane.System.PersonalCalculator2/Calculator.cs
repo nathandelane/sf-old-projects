@@ -23,12 +23,17 @@ namespace Nathandelane.System.PersonalCalculator2
 			{ TokenPatterns.DivKey, TokenType.Div },
 			{ TokenPatterns.DivisionKey, TokenType.Divide },
 			{ TokenPatterns.LeftParenthesisKey, TokenType.OpeningParenthesis },
-			{ TokenPatterns.RightParenthesisKey, TokenType.ClosingParenthesis }
+			{ TokenPatterns.RightParenthesisKey, TokenType.ClosingParenthesis },
+			{ TokenPatterns.FunctionKey, TokenType.Function }
 		};
 
 		#endregion
 
+		#region ReadWrite Fields
+
 		public static Hashtable Heap = new Hashtable();
+
+		#endregion
 
 		#endregion
 	}

@@ -54,10 +54,19 @@ namespace Nathandelane.System.PersonalCalculator2
 
 				if (GetTokenType(nextToken) != TokenType.DecimalNumber)
 				{
-					string right = resultStack.Pop();
-					string left = resultStack.Pop();
+					if (GetTokenType(nextToken) == TokenType.Function)
+					{
+						string value = resultStack.Pop();
 
-					resultStack.Push(DispatchOperation(GetTokenType(nextToken), left, right));
+						resultStack.Push(DispatchFunction(nextToken, value));
+					}
+					else
+					{
+						string right = resultStack.Pop();
+						string left = resultStack.Pop();
+
+						resultStack.Push(DispatchOperation(GetTokenType(nextToken), left, right));
+					}
 				}
 				else
 				{
@@ -66,6 +75,32 @@ namespace Nathandelane.System.PersonalCalculator2
 			}
 
 			result = resultStack.Pop();
+
+			return result;
+		}
+
+		/// <summary>
+		/// Returns the result of a function.
+		/// </summary>
+		/// <param name="nextToken">string</param>
+		/// <param name="value">string</param>
+		/// <returns></returns>
+		private static string DispatchFunction(string nextToken, string value)
+		{
+			string result = value;
+
+			if (nextToken.Equals("sin"))
+			{
+				result = Math.Sin(double.Parse(value)).ToString();
+			}
+			else if (nextToken.Equals("cos"))
+			{
+				result = Math.Cos(double.Parse(value)).ToString();
+			}
+			else if (nextToken.Equals("tan"))
+			{
+				result = Math.Tan(double.Parse(value)).ToString();
+			}
 
 			return result;
 		}
@@ -108,7 +143,11 @@ namespace Nathandelane.System.PersonalCalculator2
 					}
 					else
 					{
-						if (GetTokenType(currentToken) == TokenType.OpeningParenthesis)
+						if (GetTokenType(currentToken) == TokenType.Function)
+						{
+							operatorStack.Push(currentToken);
+						}
+						else if (GetTokenType(currentToken) == TokenType.OpeningParenthesis)
 						{
 							operatorStack.Push(currentToken);
 						}
@@ -122,6 +161,11 @@ namespace Nathandelane.System.PersonalCalculator2
 							if (GetTokenType(operatorStack.Peek()) == TokenType.OpeningParenthesis)
 							{
 								operatorStack.Pop();
+							}
+
+							if (GetTokenType(operatorStack.Peek()) == TokenType.Function)
+							{
+								postfixatedExpression.Push(operatorStack.Pop());
 							}
 						}
 						else if (operatorStack.Count == 0)
@@ -260,6 +304,10 @@ namespace Nathandelane.System.PersonalCalculator2
 			else if ((new Regex(TokenPatterns.RightParenthesisKey)).IsMatch(token))
 			{
 				type = TokenType.ClosingParenthesis;
+			}
+			else if ((new Regex(TokenPatterns.FunctionKey)).IsMatch(token))
+			{
+				type = TokenType.Function;
 			}
 
 			return type;

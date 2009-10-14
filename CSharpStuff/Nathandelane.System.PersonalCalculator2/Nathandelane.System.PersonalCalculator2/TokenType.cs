@@ -18,6 +18,7 @@ namespace Nathandelane.System.PersonalCalculator2
 		OpeningParenthesis,
 		ClosingParenthesis,
 		Modulus,
-		Div
+		Div,
+		Function
 	}
 }
