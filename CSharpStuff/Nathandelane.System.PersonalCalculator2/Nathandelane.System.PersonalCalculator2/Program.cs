@@ -75,6 +75,7 @@ namespace Nathandelane.System.PersonalCalculator2
 					Console.Write(">>> ");
 
 					userInput = Console.ReadLine();
+					userInput = userInput.Replace(" ", String.Empty);
 					tokens = userInput.Tokenize(Enumerable.ToArray<string>(Calculator.Patterns.Keys));
 
 					if (userInput.Equals("quit") || userInput.Equals("q"))
