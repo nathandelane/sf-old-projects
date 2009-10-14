@@ -196,6 +196,14 @@ namespace Nathandelane.System.PersonalCalculator2
 			{
 				result = (double.Parse(left) * double.Parse(right)).ToString();
 			}
+			else if (nextOperator == TokenType.Modulus)
+			{
+				result = (double.Parse(left) % double.Parse(right)).ToString();
+			}
+			else if (nextOperator == TokenType.Div)
+			{
+				result = Math.Floor((double.Parse(left) / double.Parse(right))).ToString();
+			}
 			else if (nextOperator == TokenType.Divide)
 			{
 				result = (double.Parse(left) / double.Parse(right)).ToString();
@@ -232,6 +240,14 @@ namespace Nathandelane.System.PersonalCalculator2
 			else if ((new Regex(TokenPatterns.MultiplicationKey)).IsMatch(token))
 			{
 				type = TokenType.Multiply;
+			}
+			else if ((new Regex(TokenPatterns.ModulusKey)).IsMatch(token))
+			{
+				type = TokenType.Modulus;
+			}
+			else if ((new Regex(TokenPatterns.DivKey)).IsMatch(token))
+			{
+				type = TokenType.Div;
 			}
 			else if ((new Regex(TokenPatterns.DivisionKey)).IsMatch(token))
 			{

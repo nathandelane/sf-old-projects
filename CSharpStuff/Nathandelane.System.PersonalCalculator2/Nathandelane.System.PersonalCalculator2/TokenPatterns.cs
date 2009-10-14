@@ -17,6 +17,8 @@ namespace Nathandelane.System.PersonalCalculator2
 		public static readonly string SubtractionKey = "^[-]{1}";
 		public static readonly string PowerKey = "^(\\*\\*){1}";
 		public static readonly string MultiplicationKey = "^[*]{1}";
+		public static readonly string ModulusKey = "^[%]{1}";
+		public static readonly string DivKey = "^(//){1}";
 		public static readonly string DivisionKey = "^[/]{1}";
 		public static readonly string LeftParenthesisKey = "^[(]{1}";
 		public static readonly string RightParenthesisKey = "^[)]{1}";

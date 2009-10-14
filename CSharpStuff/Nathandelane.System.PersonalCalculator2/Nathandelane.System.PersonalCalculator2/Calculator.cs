@@ -14,6 +14,8 @@ namespace Nathandelane.System.PersonalCalculator2
 			{ TokenPatterns.SubtractionKey, TokenType.Subtract },
 			{ TokenPatterns.PowerKey, TokenType.Power },
 			{ TokenPatterns.MultiplicationKey, TokenType.Multiply },
+			{ TokenPatterns.ModulusKey, TokenType.Modulus },
+			{ TokenPatterns.DivKey, TokenType.Div },
 			{ TokenPatterns.DivisionKey, TokenType.Divide },
 			{ TokenPatterns.LeftParenthesisKey, TokenType.OpeningParenthesis },
 			{ TokenPatterns.RightParenthesisKey, TokenType.ClosingParenthesis }
