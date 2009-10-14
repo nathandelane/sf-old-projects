@@ -116,6 +116,7 @@ namespace Nathandelane.System.PersonalCalculator2
 			Stack<string> postfixatedExpression = new Stack<string>();
 			Stack<string> operatorStack = new Stack<string>();
 			TokenType lastTokenType = TokenType.Null;
+			bool distributeNegation = false;
 
 			foreach (string nextToken in tokens)
 			{
@@ -123,7 +124,7 @@ namespace Nathandelane.System.PersonalCalculator2
 
 				if (GetTokenType(currentToken) == TokenType.DecimalNumber)
 				{
-					if (lastTokenType == TokenType.Negation)
+					if (lastTokenType == TokenType.Negation || distributeNegation)
 					{
 						currentToken = String.Concat("-", currentToken);
 					}
@@ -149,21 +150,31 @@ namespace Nathandelane.System.PersonalCalculator2
 						}
 						else if (GetTokenType(currentToken) == TokenType.OpeningParenthesis)
 						{
+							if (lastTokenType == TokenType.Negation)
+							{
+								distributeNegation = true;
+							}
+
 							operatorStack.Push(currentToken);
 						}
 						else if (GetTokenType(currentToken) == TokenType.ClosingParenthesis)
 						{
+							if (distributeNegation)
+							{
+								distributeNegation = false;
+							}
+
 							while (GetTokenType(operatorStack.Peek()) != TokenType.OpeningParenthesis)
 							{
 								postfixatedExpression.Push(operatorStack.Pop());
 							}
 
-							if (GetTokenType(operatorStack.Peek()) == TokenType.OpeningParenthesis)
+							if (operatorStack.Count > 0 && GetTokenType(operatorStack.Peek()) == TokenType.OpeningParenthesis)
 							{
 								operatorStack.Pop();
 							}
 
-							if (GetTokenType(operatorStack.Peek()) == TokenType.Function)
+							if (operatorStack.Count > 0 && GetTokenType(operatorStack.Peek()) == TokenType.Function)
 							{
 								postfixatedExpression.Push(operatorStack.Pop());
 							}
