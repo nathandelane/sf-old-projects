@@ -124,7 +124,14 @@ namespace Nathandelane.System.PersonalCalculator2
 
 				if (GetTokenType(currentToken) == TokenType.DecimalNumber)
 				{
-					if (lastTokenType == TokenType.Negation || distributeNegation)
+					if (lastTokenType == TokenType.Negation)
+					{
+						if (!distributeNegation)
+						{
+							currentToken = String.Concat("-", currentToken);
+						}
+					}
+					else if (distributeNegation)
 					{
 						currentToken = String.Concat("-", currentToken);
 					}

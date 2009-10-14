@@ -174,17 +174,24 @@ Supported functionality: +; -; *; /; ** (power); // (div); % (mod); cos; sin; ta
 				arguments = RemoveKnownArguments(arguments, argumentCollection);
 			}
 
-			if (argumentCollection.ContainsKey(HelpArg))
+			if (!argumentCollection.IsNull())
 			{
-				DisplayHelp();
-			}
-			else if (argumentCollection.ContainsKey(VersionArg))
-			{
-				DisplayVersion();
+				if (argumentCollection.ContainsKey(HelpArg))
+				{
+					DisplayHelp();
+				}
+				else if (argumentCollection.ContainsKey(VersionArg))
+				{
+					DisplayVersion();
+				}
+				else
+				{
+					Run(arguments.Trim());
+				}
 			}
 			else
 			{
-				Run(arguments.Trim());
+				Run(String.Empty);
 			}
 		}
 
