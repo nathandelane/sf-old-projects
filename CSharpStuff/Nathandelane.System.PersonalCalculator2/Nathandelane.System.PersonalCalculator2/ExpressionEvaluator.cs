@@ -101,6 +101,18 @@ namespace Nathandelane.System.PersonalCalculator2
 			{
 				result = Math.Tan(double.Parse(value)).ToString();
 			}
+			else if (nextToken.Equals("asin"))
+			{
+				result = Math.Asin(double.Parse(value)).ToString();
+			}
+			else if (nextToken.Equals("acos"))
+			{
+				result = Math.Acos(double.Parse(value)).ToString();
+			}
+			else if (nextToken.Equals("atan"))
+			{
+				result = Math.Atan(double.Parse(value)).ToString();
+			}
 
 			return result;
 		}

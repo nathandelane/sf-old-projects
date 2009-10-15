@@ -22,7 +22,7 @@ namespace Nathandelane.System.PersonalCalculator2
 		public static readonly string DivisionKey = "^[/]{1}";
 		public static readonly string LeftParenthesisKey = "^[(]{1}";
 		public static readonly string RightParenthesisKey = "^[)]{1}";
-		public static readonly string FunctionKey = "^(sin|cos|tan){1}";
+		public static readonly string FunctionKey = "^(sin|cos|tan|asin|acos|atan){1}";
 
 		#endregion
 

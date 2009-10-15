@@ -75,11 +75,7 @@ namespace Nathandelane.System.PersonalCalculator2
 				{
 					Console.Write(">>> ");
 
-					userInput = Console.ReadLine();
-
-					userInput = userInput.Replace(" ", String.Empty);
-					userInput = userInput.Replace("$", Calculator.Heap["$"].ToString());
-
+					userInput = ReplaceSymbols(Console.ReadLine());
 					tokens = userInput.Tokenize(Enumerable.ToArray<string>(Calculator.Patterns.Keys));
 
 					if (userInput.Equals("quit") || userInput.Equals("q"))
@@ -105,6 +101,18 @@ namespace Nathandelane.System.PersonalCalculator2
 			}
 		}
 
+		private static string ReplaceSymbols(string userInput)
+		{
+			string result = userInput;
+
+			result = result.Replace(" ", String.Empty);
+			result = result.Replace("$", Calculator.Heap["$"].ToString());
+			result = result.Replace("pi", Math.PI.ToString());
+			result = result.Replace("e", Math.E.ToString());
+
+			return result;
+		}
+
 		/// <summary>
 		/// Displays system help.
 		/// </summary>
@@ -118,7 +126,7 @@ namespace Nathandelane.System.PersonalCalculator2
 --help                Displays this help message.
 --version             Displays the version of BCP currently running.
 
-Supported functionality: +; -; *; /; ** (power); // (div); % (mod); cos; sin; tan");
+Supported functionality: +; -; *; /; ** (power); // (div); % (mod); cos; sin; tan; pi; e; $ (last result)");
 		}
 
 		private static void DisplayVersion()
@@ -164,7 +172,9 @@ Supported functionality: +; -; *; /; ** (power); // (div); % (mod); cos; sin; ta
 		static void Main(string[] args)
 		{
 			ArgumentCollection argumentCollection = null;
+
 			Calculator.Heap.Add("$", "0");
+			Calculator.Heap.Add("mode", "rad");
 
 			string arguments = args.Join();
 
@@ -186,6 +196,15 @@ Supported functionality: +; -; *; /; ** (power); // (div); % (mod); cos; sin; ta
 				}
 				else
 				{
+					if (argumentCollection.ContainsKey(ModeDegreesArg))
+					{
+						Calculator.Heap["mode"] = "deg";
+					}
+					else if (argumentCollection.ContainsKey(ModeRadiansArg))
+					{
+						Calculator.Heap["mode"] = "rad";
+					}
+
 					Run(arguments.Trim());
 				}
 			}
