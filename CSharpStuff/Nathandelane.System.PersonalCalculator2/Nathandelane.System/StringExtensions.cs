@@ -43,17 +43,21 @@ namespace Nathandelane.System
 					Regex pattern = new Regex(patterns[index]);
 					if (pattern.IsMatch(s))
 					{
-						string match = pattern.Matches(s)[0].Value;
-						tokens.Add(match);
-						s = s.Substring(match.Length);
+						MatchCollection matches = pattern.Matches(s);
+						foreach (Match match in matches)
+						{
+							tokens.Add(match.Value);
+							s = s.Replace(match.Value, String.Empty);
+						}
+
 						index = -1;
 					}
-
-					if (index == patterns.Length - 1)
+					else
 					{
 						noMatchesFound = true;
 					}
-					else if (s.IsNullOrEmpty())
+
+					if (index == patterns.Length - 1)
 					{
 						noMatchesFound = true;
 					}
