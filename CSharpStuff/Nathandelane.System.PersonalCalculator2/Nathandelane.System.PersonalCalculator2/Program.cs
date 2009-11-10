@@ -140,7 +140,7 @@ Arithmetic operators: +, -, *, /
 Functions: ** (power), // (div), % (mod), cos, acos, sin, asin, tan, atan
 Constants: pi, e, $ (last result)
 Parentheses: (, )
-Reserved: ?, help (displays help); ver, version, v (displays version)
+Reserved: ? (displays help); v (displays version); q (quits)
 ");
 		}
 
