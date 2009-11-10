@@ -72,7 +72,7 @@ namespace Nathandelane.System.PersonalCalculator2
 
 				Program.DisplayCopyright();
 				Program.DisplayVersion();
-				Console.WriteLine("Type ? or help to get help");
+				Console.WriteLine("Type ? or help to get help{0}", Environment.NewLine);
 
 				while (true)
 				{
@@ -100,7 +100,7 @@ namespace Nathandelane.System.PersonalCalculator2
 							ExpressionEvaluator result = ExpressionEvaluator.Evaluate(tokens);
 							Calculator.Heap["$"] = result.ToString();
 
-							Console.WriteLine("{0}", Calculator.Heap["$"]);
+							Console.WriteLine("{0}{1}", Calculator.Heap["$"], Environment.NewLine);
 						}
 						catch (Exception e)
 						{

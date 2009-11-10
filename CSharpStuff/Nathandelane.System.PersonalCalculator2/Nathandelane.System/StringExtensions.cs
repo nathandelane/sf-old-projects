@@ -47,7 +47,7 @@ namespace Nathandelane.System
 						foreach (Match match in matches)
 						{
 							tokens.Add(match.Value);
-							s = s.Replace(match.Value, String.Empty);
+							s = s.Replace(match, String.Empty);
 						}
 
 						index = -1;
@@ -65,6 +65,26 @@ namespace Nathandelane.System
 			}
 
 			return tokens.ToArray();
+		}
+
+		/// <summary>
+		/// Replaces all pattern in a string with a string.
+		/// </summary>
+		/// <param name="match">Match regex pattern match</param>
+		/// <param name="value">String value</param>
+		/// <returns></returns>
+		public static string Replace(this string s, Match match, string value)
+		{
+			if (match.Index > 0)
+			{
+				s = String.Concat(s.Substring(0, match.Index), value, s.Substring(match.Index + match.Length));
+			}
+			else
+			{
+				s = String.Concat(value, s.Substring(match.Index + match.Length));
+			}
+
+			return s;
 		}
 
 		/// <summary>
