@@ -72,7 +72,7 @@ namespace Nathandelane.System.PersonalCalculator2
 
 				Program.DisplayCopyright();
 				Program.DisplayVersion();
-				Console.WriteLine("Type ? or help to get help{0}", Environment.NewLine);
+				Console.WriteLine("Type ? to get help; q to quit.{0}", Environment.NewLine);
 
 				while (true)
 				{
@@ -81,15 +81,15 @@ namespace Nathandelane.System.PersonalCalculator2
 					userInput = ReplaceSymbols(Console.ReadLine());
 					tokens = userInput.Tokenize(Enumerable.ToArray<string>(Calculator.Patterns.Keys));
 
-					if (userInput.Equals("quit") || userInput.Equals("q"))
+					if (userInput.Equals("q"))
 					{
 						break;
 					}
-					else if (userInput.Equals("help") || userInput.Equals("?"))
+					else if (userInput.Equals("?"))
 					{
 						Program.DisplayHelp();
 					}
-					else if (userInput.Equals("ver") || userInput.Equals("version") || userInput.Equals("v"))
+					else if (userInput.Equals("v"))
 					{
 						Program.DisplayVersion();
 					}
