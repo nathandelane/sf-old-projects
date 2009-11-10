@@ -253,7 +253,7 @@ Reserved: ? (displays help); v (displays version); q (quits)");
 						Calculator.Heap["mode"] = "rad";
 					}
 
-					Run(arguments.Trim());
+					Run(arguments.Trim().Replace(" ", String.Empty));
 				}
 			}
 			else
