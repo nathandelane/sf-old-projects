@@ -78,29 +78,31 @@ namespace Nathandelane.System.PersonalCalculator2
 				{
 					Console.Write(">>> ");
 
-					userInput = ReplaceSymbols(Console.ReadLine());
-					tokens = userInput.Tokenize(Enumerable.ToArray<string>(Calculator.Patterns.Keys));
+					userInput = Console.ReadLine();
 
-					if (userInput.Equals("q"))
+					if (userInput.Equals("q") || userInput.Equals("quit"))
 					{
 						break;
 					}
-					else if (userInput.Equals("?"))
+					else if (userInput.Equals("?") || userInput.Equals("help"))
 					{
 						Program.DisplayHelp();
 					}
-					else if (userInput.Equals("v"))
+					else if (userInput.Equals("v") || userInput.Equals("ver") || userInput.Equals("version"))
 					{
 						Program.DisplayVersion();
 					}
 					else
 					{
+						userInput = ReplaceSymbols(userInput);
+						tokens = userInput.Tokenize(Enumerable.ToArray<string>(Calculator.Patterns.Keys));
+
 						try
 						{
 							ExpressionEvaluator result = ExpressionEvaluator.Evaluate(tokens);
 							Calculator.Heap["$"] = result.ToString();
 
-							Console.WriteLine("{0}{1}", Calculator.Heap["$"], Environment.NewLine);
+							Console.WriteLine("{0}", Calculator.Heap["$"]);
 						}
 						catch (Exception e)
 						{
@@ -108,6 +110,8 @@ namespace Nathandelane.System.PersonalCalculator2
 							Logger.Error(String.Format("{0}", e.StackTrace));
 						}
 					}
+
+					Console.WriteLine(String.Empty);
 				}
 			}
 		}
@@ -140,8 +144,7 @@ Arithmetic operators: +, -, *, /
 Functions: ** (power), // (div), % (mod), cos, acos, sin, asin, tan, atan
 Constants: pi, e, $ (last result)
 Parentheses: (, )
-Reserved: ? (displays help); v (displays version); q (quits)
-");
+Reserved: ? (displays help); v (displays version); q (quits)");
 		}
 
 		/// <summary>
@@ -212,6 +215,8 @@ Reserved: ? (displays help); v (displays version); q (quits)
 
 		static void Main(string[] args)
 		{
+			Console.Title = "BPC.NET - Better Personal Calculator";
+
 			ArgumentCollection argumentCollection = null;
 
 			Calculator.Heap.Add("$", "0");
