@@ -276,7 +276,11 @@ namespace Nathandelane.System.PersonalCalculator2
 			}
 			else if (nextOperator == TokenType.Div)
 			{
-				result = Math.Floor((double.Parse(left) / double.Parse(right))).ToString();
+				long rem = 0L;
+				
+				Math.DivRem(long.Parse(left), long.Parse(right), out rem);
+
+				result = rem.ToString();
 			}
 			else if (nextOperator == TokenType.Divide)
 			{
