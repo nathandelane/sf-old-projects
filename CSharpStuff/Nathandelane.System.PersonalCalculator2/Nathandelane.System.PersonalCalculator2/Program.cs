@@ -217,10 +217,6 @@ Reserved: ? (displays help); v (displays version); q (quits)");
 
 		static void Main(string[] args)
 		{
-			string title = Console.Title;
-
-			Console.Title = "BPC.NET - Better Personal Calculator";
-
 			ArgumentCollection argumentCollection = null;
 
 			Calculator.Heap.Add("$", "0");
@@ -261,10 +257,14 @@ Reserved: ? (displays help); v (displays version); q (quits)");
 			}
 			else
 			{
-				Run(String.Empty);
-			}
+				string title = Console.Title;
 
-			Console.Title = title;
+				Console.Title = "BPC.NET - Better Personal Calculator";
+
+				Run(String.Empty);
+
+				Console.Title = title;
+			}
 		}
 
 		#endregion
