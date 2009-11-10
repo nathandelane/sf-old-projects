@@ -32,8 +32,9 @@ namespace Nathandelane.System.PersonalCalculator2
 		/// <returns>ExpressionEvaluator</returns>
 		public static ExpressionEvaluator Evaluate(string[] tokens)
 		{
-			Stack<string> postfixatedExpression = PostfixateExpression(tokens);
-			ExpressionEvaluator evaluator = new ExpressionEvaluator(EvaluateExpression(postfixatedExpression));
+			Stack<string> postfixatedExpression = ExpressionEvaluator.PostfixateExpression(tokens);
+			string result = ExpressionEvaluator.EvaluateExpression(postfixatedExpression);
+			ExpressionEvaluator evaluator = new ExpressionEvaluator(result);
 			
 			return evaluator;
 		}
@@ -80,6 +81,26 @@ namespace Nathandelane.System.PersonalCalculator2
 		}
 
 		/// <summary>
+		/// Converts a radian value to degrees.
+		/// </summary>
+		/// <param name="angle"></param>
+		/// <returns></returns>
+		private static string RadiansToDegrees(string angle)
+		{
+			return (double.Parse(angle) * (180.0 / Math.PI)).ToString();
+		}
+
+		/// <summary>
+		/// Converts a degree value to radians.
+		/// </summary>
+		/// <param name="angle"></param>
+		/// <returns></returns>
+		private static string DegreesToRadians(string angle)
+		{
+			return (Math.PI * double.Parse(angle) / 180).ToString();
+		}
+
+		/// <summary>
 		/// Returns the result of a function.
 		/// </summary>
 		/// <param name="nextToken">string</param>
@@ -89,29 +110,61 @@ namespace Nathandelane.System.PersonalCalculator2
 		{
 			string result = value;
 
-			if (nextToken.Equals("sin"))
+			if (Calculator.Heap["mode"].Equals("deg"))
 			{
-				result = Math.Sin(double.Parse(value)).ToString();
+				value = DegreesToRadians(value);
+
+				if (nextToken.Equals("sin"))
+				{
+					result = Math.Sin(double.Parse(value)).ToString();
+				}
+				else if (nextToken.Equals("cos"))
+				{
+					result = Math.Cos(double.Parse(value)).ToString();
+				}
+				else if (nextToken.Equals("tan"))
+				{
+					result = Math.Tan(double.Parse(value)).ToString();
+				}
+				else if (nextToken.Equals("asin"))
+				{
+					result = Math.Asin(double.Parse(value)).ToString();
+				}
+				else if (nextToken.Equals("acos"))
+				{
+					result = Math.Acos(double.Parse(value)).ToString();
+				}
+				else if (nextToken.Equals("atan"))
+				{
+					result = Math.Atan(double.Parse(value)).ToString();
+				}
 			}
-			else if (nextToken.Equals("cos"))
+			else
 			{
-				result = Math.Cos(double.Parse(value)).ToString();
-			}
-			else if (nextToken.Equals("tan"))
-			{
-				result = Math.Tan(double.Parse(value)).ToString();
-			}
-			else if (nextToken.Equals("asin"))
-			{
-				result = Math.Asin(double.Parse(value)).ToString();
-			}
-			else if (nextToken.Equals("acos"))
-			{
-				result = Math.Acos(double.Parse(value)).ToString();
-			}
-			else if (nextToken.Equals("atan"))
-			{
-				result = Math.Atan(double.Parse(value)).ToString();
+				if (nextToken.Equals("sin"))
+				{
+					result = Math.Sin(double.Parse(value)).ToString();
+				}
+				else if (nextToken.Equals("cos"))
+				{
+					result = Math.Cos(double.Parse(value)).ToString();
+				}
+				else if (nextToken.Equals("tan"))
+				{
+					result = Math.Tan(double.Parse(value)).ToString();
+				}
+				else if (nextToken.Equals("asin"))
+				{
+					result = Math.Asin(double.Parse(value)).ToString();
+				}
+				else if (nextToken.Equals("acos"))
+				{
+					result = Math.Acos(double.Parse(value)).ToString();
+				}
+				else if (nextToken.Equals("atan"))
+				{
+					result = Math.Atan(double.Parse(value)).ToString();
+				}
 			}
 
 			return result;
