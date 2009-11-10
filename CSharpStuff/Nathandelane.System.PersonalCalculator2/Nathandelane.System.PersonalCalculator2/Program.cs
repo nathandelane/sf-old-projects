@@ -215,8 +215,6 @@ Reserved: ? (displays help); v (displays version); q (quits)");
 
 		static void Main(string[] args)
 		{
-			Console.Title = "BPC.NET - Better Personal Calculator";
-
 			ArgumentCollection argumentCollection = null;
 
 			Calculator.Heap.Add("$", "0");
@@ -243,6 +241,8 @@ Reserved: ? (displays help); v (displays version); q (quits)");
 				}
 				else
 				{
+					Console.Title = "BPC.NET - Better Personal Calculator";
+
 					if (argumentCollection.ContainsKey(ModeDegreesArg))
 					{
 						Calculator.Heap["mode"] = "deg";
