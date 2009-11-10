@@ -53,6 +53,7 @@ namespace Nathandelane.System.PersonalCalculator2
 		/// <param name="expression"></param>
 		private static void Run(string expression)
 		{
+			expression = ReplaceSymbols(expression);
 			string[] tokens = expression.Tokenize(Enumerable.ToArray<string>(Calculator.Patterns.Keys));
 
 			if (tokens.Length > 0)
