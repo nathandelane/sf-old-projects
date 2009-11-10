@@ -112,31 +112,35 @@ namespace Nathandelane.System.PersonalCalculator2
 
 			if (Calculator.Heap["mode"].Equals("deg"))
 			{
-				value = DegreesToRadians(value);
-
 				if (nextToken.Equals("sin"))
 				{
+					value = DegreesToRadians(value);
 					result = Math.Sin(double.Parse(value)).ToString();
 				}
 				else if (nextToken.Equals("cos"))
 				{
+					value = DegreesToRadians(value);
 					result = Math.Cos(double.Parse(value)).ToString();
 				}
 				else if (nextToken.Equals("tan"))
 				{
+					value = DegreesToRadians(value);
 					result = Math.Tan(double.Parse(value)).ToString();
 				}
 				else if (nextToken.Equals("asin"))
 				{
 					result = Math.Asin(double.Parse(value)).ToString();
+					result = RadiansToDegrees(result);
 				}
 				else if (nextToken.Equals("acos"))
 				{
 					result = Math.Acos(double.Parse(value)).ToString();
+					result = RadiansToDegrees(result);
 				}
 				else if (nextToken.Equals("atan"))
 				{
 					result = Math.Atan(double.Parse(value)).ToString();
+					result = RadiansToDegrees(result);
 				}
 			}
 			else
