@@ -70,7 +70,10 @@ namespace Nathandelane.System.PersonalCalculator2
 			{
 				string userInput = String.Empty;
 
-				Console.WriteLine("BPC - Better Personal Calculator, Copyright (C) 2009 Nathandelane, Version {0}", Version);
+				Program.DisplayCopyright();
+				Program.DisplayVersion();
+				Console.WriteLine("Type ? or help to get help");
+
 				while (true)
 				{
 					Console.Write(">>> ");
@@ -81,6 +84,14 @@ namespace Nathandelane.System.PersonalCalculator2
 					if (userInput.Equals("quit") || userInput.Equals("q"))
 					{
 						break;
+					}
+					else if (userInput.Equals("help") || userInput.Equals("?"))
+					{
+						Program.DisplayHelp();
+					}
+					else if (userInput.Equals("ver") || userInput.Equals("version") || userInput.Equals("v"))
+					{
+						Program.DisplayVersion();
 					}
 					else
 					{
@@ -101,10 +112,16 @@ namespace Nathandelane.System.PersonalCalculator2
 			}
 		}
 
+		/// <summary>
+		/// Replaces special constant symbols and other meaningless symbols.
+		/// </summary>
+		/// <param name="userInput"></param>
+		/// <returns>expression without constant symbols</returns>
 		private static string ReplaceSymbols(string userInput)
 		{
 			string result = userInput;
 
+			result = result.Replace("\t", String.Empty);
 			result = result.Replace(" ", String.Empty);
 			result = result.Replace("$", Calculator.Heap["$"].ToString());
 			result = result.Replace("pi", Math.PI.ToString());
@@ -118,6 +135,20 @@ namespace Nathandelane.System.PersonalCalculator2
 		/// </summary>
 		private static void DisplayHelp()
 		{
+			Console.WriteLine(@"Supported functionality: 
+Arithmetic operators: +, -, *, /
+Functions: ** (power), // (div), % (mod), cos, acos, sin, asin, tan, atan
+Constants: pi, e, $ (last result)
+Parentheses: (, )
+Reserved: ?, help (displays help); ver, version, v (displays version)
+");
+		}
+
+		/// <summary>
+		/// Displays the usage of the system when run in commandline mode rather than interactive mode.
+		/// </summary>
+		private static void DisplayUsage()
+		{
 			Console.WriteLine("Usage: {0} [OPTIONS] <expression>", Name);
 			Console.WriteLine("Version: {0}", Version);
 			Console.WriteLine(@"Options:
@@ -125,13 +156,23 @@ namespace Nathandelane.System.PersonalCalculator2
 --mode-radians        Sets the calculator in radian mode (default).
 --help                Displays this help message.
 --version             Displays the version of BCP currently running.
-
-Supported functionality: +; -; *; /; ** (power); // (div); % (mod); cos; sin; tan; pi; e; $ (last result)");
+");
 		}
 
+		/// <summary>
+		/// Displays the version.
+		/// </summary>
 		private static void DisplayVersion()
 		{
 			Console.WriteLine("Version: {0}", Version);
+		}
+
+		/// <summary>
+		/// Displays copyright information.
+		/// </summary>
+		private static void DisplayCopyright()
+		{
+			Console.WriteLine("BPC - Better Personal Calculator, Copyright (C) 2009 Nathandelane");
 		}
 
 		/// <summary>
@@ -188,6 +229,7 @@ Supported functionality: +; -; *; /; ** (power); // (div); % (mod); cos; sin; ta
 			{
 				if (argumentCollection.ContainsKey(HelpArg))
 				{
+					DisplayUsage();
 					DisplayHelp();
 				}
 				else if (argumentCollection.ContainsKey(VersionArg))

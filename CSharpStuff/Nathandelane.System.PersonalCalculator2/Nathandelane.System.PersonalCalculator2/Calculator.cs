@@ -13,7 +13,7 @@ namespace Nathandelane.System.PersonalCalculator2
 		#region ReadOnly Fields
 
 		public static readonly TokenPatterns Patterns = new TokenPatterns()
-		{ 
+		{
 			{ TokenPatterns.DecimalNumberKey, TokenType.DecimalNumber },
 			{ TokenPatterns.AdditionKey, TokenType.Add },
 			{ TokenPatterns.SubtractionKey, TokenType.Subtract },
