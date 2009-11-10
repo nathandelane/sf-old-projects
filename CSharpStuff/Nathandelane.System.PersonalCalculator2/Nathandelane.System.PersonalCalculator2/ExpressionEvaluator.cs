@@ -61,6 +61,12 @@ namespace Nathandelane.System.PersonalCalculator2
 
 						resultStack.Push(DispatchFunction(nextToken, value));
 					}
+					else if (GetTokenType(nextToken) == TokenType.Factorial)
+					{
+						string left = resultStack.Pop();
+
+						resultStack.Push(DispatchFunction(nextToken, left));
+					}
 					else
 					{
 						string right = resultStack.Pop();
@@ -110,65 +116,104 @@ namespace Nathandelane.System.PersonalCalculator2
 		{
 			string result = value;
 
-			if (Calculator.Heap["mode"].Equals("deg"))
+			if (nextToken.Equals("!"))
 			{
-				if (nextToken.Equals("sin"))
+				long res = long.Parse(value);
+				long index = res;
+
+				while (index > 1)
+				{
+					index--;
+
+					res *= index;
+				}
+
+				result = res.ToString();
+			}
+			if (nextToken.Equals("sin"))
+			{
+				if (Calculator.Heap["mode"].Equals("deg"))
 				{
 					value = DegreesToRadians(value);
-					result = Math.Sin(double.Parse(value)).ToString();
 				}
-				else if (nextToken.Equals("cos"))
+
+				result = Math.Sin(double.Parse(value)).ToString();
+			}
+			else if (nextToken.Equals("cos"))
+			{
+				if (Calculator.Heap["mode"].Equals("deg"))
 				{
 					value = DegreesToRadians(value);
-					result = Math.Cos(double.Parse(value)).ToString();
 				}
-				else if (nextToken.Equals("tan"))
+
+				result = Math.Cos(double.Parse(value)).ToString();
+			}
+			else if (nextToken.Equals("tan"))
+			{
+				if (Calculator.Heap["mode"].Equals("deg"))
 				{
 					value = DegreesToRadians(value);
-					result = Math.Tan(double.Parse(value)).ToString();
 				}
-				else if (nextToken.Equals("asin"))
+
+				result = Math.Tan(double.Parse(value)).ToString();
+			}
+			else if (nextToken.Equals("asin"))
+			{
+				result = Math.Asin(double.Parse(value)).ToString();
+
+				if (Calculator.Heap["mode"].Equals("deg"))
 				{
-					result = Math.Asin(double.Parse(value)).ToString();
-					result = RadiansToDegrees(result);
-				}
-				else if (nextToken.Equals("acos"))
-				{
-					result = Math.Acos(double.Parse(value)).ToString();
-					result = RadiansToDegrees(result);
-				}
-				else if (nextToken.Equals("atan"))
-				{
-					result = Math.Atan(double.Parse(value)).ToString();
 					result = RadiansToDegrees(result);
 				}
 			}
-			else
+			else if (nextToken.Equals("acos"))
 			{
-				if (nextToken.Equals("sin"))
+				result = Math.Acos(double.Parse(value)).ToString();
+
+				if (Calculator.Heap["mode"].Equals("deg"))
 				{
-					result = Math.Sin(double.Parse(value)).ToString();
+					result = RadiansToDegrees(result);
 				}
-				else if (nextToken.Equals("cos"))
+			}
+			else if (nextToken.Equals("atan"))
+			{
+				result = Math.Atan(double.Parse(value)).ToString();
+
+				if (Calculator.Heap["mode"].Equals("deg"))
 				{
-					result = Math.Cos(double.Parse(value)).ToString();
+					result = RadiansToDegrees(result);
 				}
-				else if (nextToken.Equals("tan"))
+			}
+			else if (nextToken.Equals("sinh"))
+			{
+				if (Calculator.Heap["mode"].Equals("deg"))
 				{
-					result = Math.Tan(double.Parse(value)).ToString();
+					value = DegreesToRadians(value);
 				}
-				else if (nextToken.Equals("asin"))
+
+				result = Math.Sinh(double.Parse(value)).ToString();
+			}
+			else if (nextToken.Equals("cosh"))
+			{
+				if (Calculator.Heap["mode"].Equals("deg"))
 				{
-					result = Math.Asin(double.Parse(value)).ToString();
+					value = DegreesToRadians(value);
 				}
-				else if (nextToken.Equals("acos"))
+
+				result = Math.Cosh(double.Parse(value)).ToString();
+			}
+			else if (nextToken.Equals("tanh"))
+			{
+				if (Calculator.Heap["mode"].Equals("deg"))
 				{
-					result = Math.Acos(double.Parse(value)).ToString();
+					value = DegreesToRadians(value);
 				}
-				else if (nextToken.Equals("atan"))
-				{
-					result = Math.Atan(double.Parse(value)).ToString();
-				}
+
+				result = Math.Tanh(double.Parse(value)).ToString();
+			}
+			else if (nextToken.Equals("sqrt"))
+			{
+				result = Math.Sqrt(double.Parse(value)).ToString();
 			}
 
 			return result;
@@ -214,13 +259,17 @@ namespace Nathandelane.System.PersonalCalculator2
 					TokenType nextTokenType = GetTokenType(currentToken);
 					TokenType nextOperator = (operatorStack.Count > 0) ? GetTokenType(operatorStack.Peek()) : TokenType.Null;
 
-					if (GetTokenType(currentToken) == TokenType.Subtract && lastTokenType != TokenType.DecimalNumber)
+					if (GetTokenType(currentToken) == TokenType.Subtract && lastTokenType != TokenType.DecimalNumber && lastTokenType != TokenType.Factorial)
 					{
 						lastTokenType = TokenType.Negation;
 					}
 					else
 					{
 						if (GetTokenType(currentToken) == TokenType.Function)
+						{
+							operatorStack.Push(currentToken);
+						}
+						else if (GetTokenType(currentToken) == TokenType.Factorial)
 						{
 							operatorStack.Push(currentToken);
 						}
@@ -366,6 +415,10 @@ namespace Nathandelane.System.PersonalCalculator2
 			else if ((new Regex(TokenPatterns.SubtractionKey)).IsMatch(token))
 			{
 				type = TokenType.Subtract;
+			}
+			else if ((new Regex(TokenPatterns.FactorialKey)).IsMatch(token))
+			{
+				type = TokenType.Factorial;
 			}
 			else if ((new Regex(TokenPatterns.PowerKey)).IsMatch(token))
 			{

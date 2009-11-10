@@ -143,7 +143,7 @@ namespace Nathandelane.System.PersonalCalculator2
 		{
 			Console.WriteLine(@"Supported functionality: 
 Arithmetic operators: +, -, *, /
-Functions: ** (power), // (div), % (mod), cos, acos, sin, asin, tan, atan
+Functions: ** (power), // (div), % (mod), ! (factorial), cos, acos, cosh, sin, asin, sinh, tan, atan, tanh, sqrt
 Constants: pi, e, $ (last result)
 Parentheses: (, )
 Reserved: ? (displays help); v (displays version); q (quits)");

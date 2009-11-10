@@ -12,6 +12,7 @@ namespace Nathandelane.System.PersonalCalculator2
 		Add,
 		Subtract,
 		Negation,
+		Factorial,
 		Power,
 		Multiply,
 		Divide,
