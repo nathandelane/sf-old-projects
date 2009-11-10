@@ -17,5 +17,62 @@
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 # 02111-1307, USA.
 
-# This script comprises a series of tests to be run against BPC - Better Personal Calculator.
-# This script's version is 1.0 and should be used against builds 1.2.0.0 and higher of BPC.
+Write-Output "BPC Tests - PC.NET"
+Write-Output "This script comprises a series of tests to be run against BPC - Better Personal Calculator."
+Write-Output "This script's version is 1.0 and should be used against builds 1.2.0.0 and higher of BPC."
+
+$anyFailed = $False
+$numberFailed = 0
+$expressions = "12 + 1", "19 - 4", "9 * 8", "13 / 2", "-1 + 2", "-(1 + 2)", "-(-53 + -17)", "21 / 3", "9 // 8"
+$expected = 13, 15, 72, 6.5, 1, -3, 70, 7, 1
+
+function AssertEquals([int]$expected, [int]$actual)
+{	
+	if($actual -eq $expected)
+	{
+		return "Passed"
+	}
+	
+	return "Failed"
+}
+
+if($expressions.Length -eq $expected.Length)
+{
+	Write-Output ""
+
+	$bpcVersion = (bpc --version).Split(":")[1].Trim()
+
+	Write-Output "Current version of PC.NET is $bpcVersion"
+	Write-Output "Running command-line test suite for PC.NET..."
+	Write-Output ""
+
+	$numberOfTests = $expressions.Length
+	$expressionIndex = 0
+
+	do
+	{
+		$expr = $expressions[$expressionIndex]
+		$bpcResult = (bpc $expr)
+		$expct = $expected[$expressionIndex]
+		$result = AssertEquals $expct $bpcResult
+		Write-Output "bpc $expr = $expct ($bpcResult)...$result"
+		
+		$expressionIndex++
+	}
+	while($expressionIndex -lt $numberOfTests)
+
+	Write-Output ""
+	Write-Output "Tests completed."
+	Write-Output "$numberOfTests tests were run."
+	Write-Output ""
+
+	$numberPassed = $expressions.Length - $numberFailed
+
+	Write-Output "$numberPassed tests passed."
+	Write-Output "$numberFailed tests failed."
+	Write-Output ""
+}
+else
+{
+	Write-Output "An error occurred: the number of expected results do not match the number of expressions available."
+}
