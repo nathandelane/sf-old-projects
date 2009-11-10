@@ -39,7 +39,8 @@ namespace Nathandelane.System.PersonalCalculator2
 		{
 			{ ModeDegreesArg, ArgumentType.Null },
 			{ ModeRadiansArg, ArgumentType.Null },
-			{ HelpArg, ArgumentType.Null }
+			{ HelpArg, ArgumentType.Null },
+			{ VersionArg, ArgumentType.Null }
 		};
 
 		#endregion
