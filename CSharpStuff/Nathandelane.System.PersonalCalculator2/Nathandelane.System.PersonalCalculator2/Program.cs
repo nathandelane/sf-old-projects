@@ -118,7 +118,7 @@ namespace Nathandelane.System.PersonalCalculator2
 
 							if (e.Message.Contains("Stack empty"))
 							{
-								Console.WriteLine("For some reason there wer not enough operands (numbers) to complete the calculation. Perhaps you forgot to suffix a hex number with 'h' or need a second number for an arithmetic operation such as +.");
+								Console.WriteLine("For some reason there were not enough operands (numbers) to complete the calculation. Perhaps you forgot to suffix a hex number with 'h' or need a second number for an arithmetic operation such as +.");
 							}
 
 							Logger.Error(String.Format("{0}", e.StackTrace));
