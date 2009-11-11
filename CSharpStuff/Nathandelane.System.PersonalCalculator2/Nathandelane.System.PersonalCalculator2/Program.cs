@@ -21,6 +21,7 @@
 using System;
 using System.Reflection;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.PersonalCalculator2
 {
@@ -149,6 +150,7 @@ or need a second number for an arithmetic operation such as +.");
 		{
 			string result = userInput;
 
+			result = result.Replace(new Regex("(#){1}[A-Za-z.\\d\\s,]+"), String.Empty);
 			result = result.Replace("\t", String.Empty);
 			result = result.Replace(" ", String.Empty);
 			result = result.Replace("$", Calculator.Heap["$"].ToString());

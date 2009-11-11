@@ -68,8 +68,9 @@ namespace Nathandelane.System
 		}
 
 		/// <summary>
-		/// Replaces all pattern in a string with a string.
+		/// Replaces all matches in a string with value.
 		/// </summary>
+		/// <param name="s"></param>
 		/// <param name="match">Match regex pattern match</param>
 		/// <param name="value">String value</param>
 		/// <returns></returns>
@@ -82,6 +83,26 @@ namespace Nathandelane.System
 			else
 			{
 				s = String.Concat(value, s.Substring(match.Index + match.Length));
+			}
+
+			return s;
+		}
+
+		/// <summary>
+		/// Replaces all pattern matches in a string with value.
+		/// </summary>
+		/// <param name="s"></param>
+		/// <param name="pattern"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		public static string Replace(this string s, Regex pattern, string value)
+		{
+			if (pattern.IsMatch(s))
+			{
+				foreach (Match match in pattern.Matches(s))
+				{
+					s = s.Replace(match, value);
+				}
 			}
 
 			return s;
