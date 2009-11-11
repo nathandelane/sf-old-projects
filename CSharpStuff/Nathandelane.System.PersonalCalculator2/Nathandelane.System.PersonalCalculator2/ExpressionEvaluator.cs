@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Nathandelane.System.PersonalCalculator2
 {
@@ -53,7 +54,7 @@ namespace Nathandelane.System.PersonalCalculator2
 			{
 				string nextToken = postfixatedExpression.Pop();
 
-				if (GetTokenType(nextToken) != TokenType.DecimalNumber)
+				if (GetTokenType(nextToken) != TokenType.DecimalNumber && GetTokenType(nextToken) != TokenType.HexadecimalNumber)
 				{
 					if (GetTokenType(nextToken) == TokenType.Function)
 					{
@@ -115,6 +116,13 @@ namespace Nathandelane.System.PersonalCalculator2
 		private static string DispatchFunction(string nextToken, string value)
 		{
 			string result = value;
+			bool resultWillBeHexadecimal = false;
+
+			if ((new Regex(TokenPatterns.NegativeHexadecimalNumberKey)).IsMatch(value))
+			{
+				resultWillBeHexadecimal = true;
+				value = long.Parse(value.Substring(0, value.Length - 1), NumberStyles.HexNumber).ToString();
+			}
 
 			if (nextToken.Equals("!"))
 			{
@@ -215,6 +223,26 @@ namespace Nathandelane.System.PersonalCalculator2
 			{
 				result = Math.Sqrt(double.Parse(value)).ToString();
 			}
+			else if (nextToken.Equals("tohx"))
+			{
+				if (!resultWillBeHexadecimal)
+				{
+					resultWillBeHexadecimal = true;
+				}
+			}
+			else if (nextToken.Equals("todc"))
+			{
+				if (resultWillBeHexadecimal)
+				{
+					result = value;
+					resultWillBeHexadecimal = false;
+				}
+			}
+
+			if (resultWillBeHexadecimal)
+			{
+				result = String.Concat(long.Parse(result).ToString("x"), "h");
+			}
 
 			return result;
 		}
@@ -236,7 +264,7 @@ namespace Nathandelane.System.PersonalCalculator2
 			{
 				string currentToken = nextToken;
 
-				if (GetTokenType(currentToken) == TokenType.DecimalNumber)
+				if (GetTokenType(currentToken) == TokenType.DecimalNumber || GetTokenType(currentToken) == TokenType.HexadecimalNumber)
 				{
 					if (lastTokenType == TokenType.Negation)
 					{
@@ -252,14 +280,14 @@ namespace Nathandelane.System.PersonalCalculator2
 
 					postfixatedExpression.Push(currentToken);
 
-					lastTokenType = TokenType.DecimalNumber;
+					lastTokenType = GetTokenType(currentToken);
 				}
 				else
 				{
 					TokenType nextTokenType = GetTokenType(currentToken);
 					TokenType nextOperator = (operatorStack.Count > 0) ? GetTokenType(operatorStack.Peek()) : TokenType.Null;
 
-					if (GetTokenType(currentToken) == TokenType.Subtract && lastTokenType != TokenType.DecimalNumber && lastTokenType != TokenType.Factorial)
+					if (GetTokenType(currentToken) == TokenType.Subtract && lastTokenType != TokenType.DecimalNumber && lastTokenType != TokenType.HexadecimalNumber && lastTokenType != TokenType.Factorial)
 					{
 						lastTokenType = TokenType.Negation;
 					}
@@ -359,6 +387,19 @@ namespace Nathandelane.System.PersonalCalculator2
 		private static string DispatchOperation(TokenType nextOperator, string left, string right)
 		{
 			string result = left;
+			bool resultWillBeHexadecimal = false;
+
+			if ((new Regex(TokenPatterns.NegativeHexadecimalNumberKey)).IsMatch(left))
+			{
+				resultWillBeHexadecimal = true;
+				left = long.Parse(left.Substring(0, left.Length - 1), NumberStyles.HexNumber).ToString();
+			}
+
+			if ((new Regex(TokenPatterns.NegativeHexadecimalNumberKey)).IsMatch(right))
+			{
+				resultWillBeHexadecimal = true;
+				right = long.Parse(right.Substring(0, right.Length - 1), NumberStyles.HexNumber).ToString();
+			}
 
 			if (nextOperator == TokenType.Add)
 			{
@@ -392,6 +433,11 @@ namespace Nathandelane.System.PersonalCalculator2
 				result = (double.Parse(left) / double.Parse(right)).ToString();
 			}
 
+			if (resultWillBeHexadecimal)
+			{
+				result = String.Concat(long.Parse(result).ToString("x"), "h");
+			}
+
 			return result;
 		}
 
@@ -407,6 +453,14 @@ namespace Nathandelane.System.PersonalCalculator2
 			if ((new Regex(TokenPatterns.NegativeDecimalNumberKey)).IsMatch(token))
 			{
 				type = TokenType.DecimalNumber;
+			}
+			else if ((new Regex(TokenPatterns.HexadecimalNumberKey)).IsMatch(token))
+			{
+				type = TokenType.HexadecimalNumber;
+			}
+			else if ((new Regex(TokenPatterns.NegativeHexadecimalNumberKey)).IsMatch(token))
+			{
+				type = TokenType.HexadecimalNumber;
 			}
 			else if ((new Regex(TokenPatterns.AdditionKey)).IsMatch(token))
 			{

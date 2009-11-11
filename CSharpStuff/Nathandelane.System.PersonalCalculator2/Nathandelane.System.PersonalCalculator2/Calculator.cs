@@ -14,6 +14,7 @@ namespace Nathandelane.System.PersonalCalculator2
 
 		public static readonly TokenPatterns Patterns = new TokenPatterns()
 		{
+			{ TokenPatterns.HexadecimalNumberKey, TokenType.HexadecimalNumber },
 			{ TokenPatterns.DecimalNumberKey, TokenType.DecimalNumber },
 			{ TokenPatterns.AdditionKey, TokenType.Add },
 			{ TokenPatterns.SubtractionKey, TokenType.Subtract },

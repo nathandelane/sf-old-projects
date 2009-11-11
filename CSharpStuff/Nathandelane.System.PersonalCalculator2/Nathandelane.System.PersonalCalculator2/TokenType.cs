@@ -9,6 +9,7 @@ namespace Nathandelane.System.PersonalCalculator2
 	{
 		Null,
 		DecimalNumber,
+		HexadecimalNumber,
 		Add,
 		Subtract,
 		Negation,

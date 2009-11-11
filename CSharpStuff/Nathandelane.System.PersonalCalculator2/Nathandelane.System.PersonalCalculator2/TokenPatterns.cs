@@ -11,6 +11,8 @@ namespace Nathandelane.System.PersonalCalculator2
 	{
 		#region Fields
 
+		public static readonly string HexadecimalNumberKey = "^[\\dA-Fa-f]+(h){1}";
+		public static readonly string NegativeHexadecimalNumberKey = "^[-]{0,1}[\\dA-Fa-f]+(h){1}";
 		public static readonly string DecimalNumberKey = "^[\\d]+([.]{1}[\\d]+){0,1}";
 		public static readonly string NegativeDecimalNumberKey = "^[-]{0,1}[\\d]+([.]{1}[\\d]+){0,1}";
 		public static readonly string AdditionKey = "^[+]{1}";
@@ -23,7 +25,7 @@ namespace Nathandelane.System.PersonalCalculator2
 		public static readonly string DivisionKey = "^[/]{1}";
 		public static readonly string LeftParenthesisKey = "^[(]{1}";
 		public static readonly string RightParenthesisKey = "^[)]{1}";
-		public static readonly string FunctionKey = "^(sinh|cosh|tanh|sin|cos|tan|asin|acos|atan|sqrt){1}";
+		public static readonly string FunctionKey = "^(sinh|cosh|tanh|sin|cos|tan|asin|acos|atan|sqrt|tohx|todc){1}";
 
 		#endregion
 

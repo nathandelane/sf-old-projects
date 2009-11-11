@@ -142,8 +142,9 @@ namespace Nathandelane.System.PersonalCalculator2
 		private static void DisplayHelp()
 		{
 			Console.WriteLine(@"Supported functionality: 
+Decimal numbers; hexadecimal numbers ending with h like Fh or 23h
 Arithmetic operators: +, -, *, /
-Functions: ** (power), // (div), % (mod), ! (factorial), cos, acos, cosh, sin, asin, sinh, tan, atan, tanh, sqrt
+Functions: ** (power), // (div), % (mod), ! (factorial), cos, acos, cosh, sin, asin, sinh, tan, atan, tanh, sqrt, tohx, todc
 Constants: pi, e, $ (last result)
 Parentheses: (, )
 Reserved: ? (displays help); v (displays version); q (quits)");
