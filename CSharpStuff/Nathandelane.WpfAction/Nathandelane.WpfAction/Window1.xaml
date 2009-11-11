@@ -3,6 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="Window1" Height="300" Width="300">
     <Grid>
-        
-    </Grid>
+		<InkCanvas Margin="9,9,9,68" Name="inkCanvas1" Background="LightYellow" />
+		<Button Height="23" HorizontalAlignment="Left" Margin="9,0,0,24" Name="button1" VerticalAlignment="Bottom" Width="117" Click="button1_Click">Clear</Button>
+		<Button Height="23" HorizontalAlignment="Right" Margin="0,0,12,24" Name="button2" VerticalAlignment="Bottom" Width="114" Click="ButtonCloseClicked">Close</Button>
+	</Grid>
 </Window>

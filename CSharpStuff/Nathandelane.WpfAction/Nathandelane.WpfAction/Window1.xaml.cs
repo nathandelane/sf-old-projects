@@ -23,5 +23,15 @@ namespace Nathandelane.WpfAction
 		{
 			InitializeComponent();
 		}
+
+		private void button1_Click(object sender, RoutedEventArgs e)
+		{
+			this.inkCanvas1.Strokes.Clear();
+		}
+
+		private void ButtonCloseClicked(object sender, RoutedEventArgs e)
+		{
+			this.Close();
+		}
 	}
 }
