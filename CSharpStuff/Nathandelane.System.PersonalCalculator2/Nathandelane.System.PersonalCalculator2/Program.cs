@@ -35,12 +35,14 @@ namespace Nathandelane.System.PersonalCalculator2
 		private static readonly string ModeRadiansArg = "mode-radians";
 		private static readonly string HelpArg = "help";
 		private static readonly string VersionArg = "version";
+		private static readonly string LicenseArg = "license";
 		private static readonly ArgumentMap __argumentMap = new ArgumentMap()
 		{
 			{ ModeDegreesArg, ArgumentType.Null },
 			{ ModeRadiansArg, ArgumentType.Null },
 			{ HelpArg, ArgumentType.Null },
-			{ VersionArg, ArgumentType.Null }
+			{ VersionArg, ArgumentType.Null },
+			{ LicenseArg, ArgumentType.Null }
 		};
 
 		#endregion
@@ -74,7 +76,7 @@ namespace Nathandelane.System.PersonalCalculator2
 
 				Program.DisplayCopyright();
 				Program.DisplayVersion();
-				Console.WriteLine("Type ? to get help; q to quit.{0}", Environment.NewLine);
+				Console.WriteLine("Type ? to get help; l to view license; q to quit.{0}", Environment.NewLine);
 
 				while (true)
 				{
@@ -93,6 +95,10 @@ namespace Nathandelane.System.PersonalCalculator2
 					else if (userInput.Equals("v") || userInput.Equals("ver") || userInput.Equals("version"))
 					{
 						Program.DisplayVersion();
+					}
+					else if (userInput.Equals("l") || userInput.Equals("license"))
+					{
+						Program.DisplayLicense();
 					}
 					else
 					{
@@ -137,6 +143,33 @@ namespace Nathandelane.System.PersonalCalculator2
 		}
 
 		/// <summary>
+		/// Displays the license.
+		/// </summary>
+		private static void DisplayLicense()
+		{
+			Console.WriteLine(@"PC.NET, BPC, and Better Personal Calculator are all names used to describe this software which is copyrighted by 
+Nathan Lane, Nathandelane Copyright (C) 2009, Nathandelane.
+
+Copyright 1992, 1997-1999, 2000 Free Software Foundation, Inc.
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 3, or (at your option)
+any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+02111-1307, USA.
+");
+		}
+
+		/// <summary>
 		/// Displays system help.
 		/// </summary>
 		private static void DisplayHelp()
@@ -147,7 +180,7 @@ Arithmetic operators: +, -, *, /
 Functions: ** (power), // (div), % (mod), ! (factorial), cos, acos, cosh, sin, asin, sinh, tan, atan, tanh, sqrt, tohx, todc
 Constants: pi, e, $ (last result)
 Parentheses: (, )
-Reserved: ? (displays help); v (displays version); q (quits)");
+Reserved: ? (displays help); v (displays version); l (displays license); q (quits)");
 		}
 
 		/// <summary>
@@ -162,6 +195,7 @@ Reserved: ? (displays help); v (displays version); q (quits)");
 --mode-radians        Sets the calculator in radian mode (default).
 --help                Displays this help message.
 --version             Displays the version of BCP currently running.
+--license             Displays the current license information for BPC.
 ");
 		}
 
@@ -241,6 +275,10 @@ Reserved: ? (displays help); v (displays version); q (quits)");
 				else if (argumentCollection.ContainsKey(VersionArg))
 				{
 					DisplayVersion();
+				}
+				else if (argumentCollection.ContainsKey(LicenseArg))
+				{
+					DisplayLicense();
 				}
 				else
 				{
