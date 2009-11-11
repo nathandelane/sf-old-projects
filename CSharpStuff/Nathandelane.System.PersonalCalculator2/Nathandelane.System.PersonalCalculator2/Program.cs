@@ -29,9 +29,12 @@ namespace Nathandelane.System.PersonalCalculator2
 	{
 		#region Fields
 
-		private static readonly string Name = Assembly.GetEntryAssembly().GetName().Name;
-		private static readonly string Version = Assembly.GetEntryAssembly().GetName().Version.ToString();
+		public static readonly string Name = Assembly.GetEntryAssembly().GetName().Name;
+		public static readonly string Version = Assembly.GetEntryAssembly().GetName().Version.ToString();
 
+		private static readonly string PromptKey = "prompt";
+		private static readonly string ModeKey = "mode";
+		private static readonly string LastResultKey = "$";
 		private static readonly string ModeDegreesArg = "mode-degrees";
 		private static readonly string ModeRadiansArg = "mode-radians";
 		private static readonly string HelpArg = "help";
@@ -71,9 +74,7 @@ namespace Nathandelane.System.PersonalCalculator2
 
 					if (e.Message.Contains("Stack empty"))
 					{
-						Console.WriteLine(@"For some reason there were not enough operands (numbers) to complete 
-the calculation. Perhaps you forgot to suffix a hex number with 'h' 
-or need a second number for an arithmetic operation such as +.");
+						Console.WriteLine(Messages.StackEmptyException);
 					}
 
 					Logger.Error(String.Format("{0}", e.StackTrace));
@@ -85,11 +86,11 @@ or need a second number for an arithmetic operation such as +.");
 
 				Program.DisplayCopyright();
 				Program.DisplayVersion();
-				Console.WriteLine("Type ? to get help; l to view license; q to quit.{0}", Environment.NewLine);
+				Console.WriteLine(Messages.InteractiveBriefHelp);
 
 				while (true)
 				{
-					Console.Write(">>> ");
+					Console.Write("{0} ", Calculator.Heap[Program.PromptKey]);
 
 					userInput = Console.ReadLine();
 
@@ -117,9 +118,9 @@ or need a second number for an arithmetic operation such as +.");
 						try
 						{
 							ExpressionEvaluator result = ExpressionEvaluator.Evaluate(tokens);
-							Calculator.Heap["$"] = result.ToString();
+							Calculator.Heap[Program.LastResultKey] = result.ToString();
 
-							Console.WriteLine("{0}", Calculator.Heap["$"]);
+							Console.WriteLine("{0}", Calculator.Heap[Program.LastResultKey]);
 						}
 						catch (Exception e)
 						{
@@ -127,9 +128,7 @@ or need a second number for an arithmetic operation such as +.");
 
 							if (e.Message.Contains("Stack empty"))
 							{
-								Console.WriteLine(@"For some reason there were not enough operands (numbers) to complete 
-the calculation. Perhaps you forgot to suffix a hex number with 'h' 
-or need a second number for an arithmetic operation such as +.");
+								Console.WriteLine(Messages.StackEmptyException);
 							}
 
 							Logger.Error(String.Format("{0}", e.StackTrace));
@@ -153,7 +152,7 @@ or need a second number for an arithmetic operation such as +.");
 			result = result.Replace(new Regex("(#){1}[A-Za-z.\\d\\s,]+"), String.Empty);
 			result = result.Replace("\t", String.Empty);
 			result = result.Replace(" ", String.Empty);
-			result = result.Replace("$", Calculator.Heap["$"].ToString());
+			result = result.Replace("$", Calculator.Heap[Program.LastResultKey].ToString());
 			result = result.Replace("pi", Math.PI.ToString());
 			result = result.Replace("e", Math.E.ToString());
 
@@ -165,26 +164,7 @@ or need a second number for an arithmetic operation such as +.");
 		/// </summary>
 		private static void DisplayLicense()
 		{
-			Console.WriteLine(@"PC.NET, BPC, and Better Personal Calculator are all names used to describe this software which is copyrighted by 
-Nathan Lane, Nathandelane Copyright (C) 2009, Nathandelane.
-
-Copyright 1992, 1997-1999, 2000 Free Software Foundation, Inc.
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
-02111-1307, USA.
-");
+			Console.WriteLine(Messages.ShortLicense);
 		}
 
 		/// <summary>
@@ -192,13 +172,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 		/// </summary>
 		private static void DisplayHelp()
 		{
-			Console.WriteLine(@"Supported functionality: 
-Decimal numbers; hexadecimal numbers ending with h like Fh or 23h
-Arithmetic operators: +, -, *, /
-Functions: ** (power), // (div), % (mod), ! (factorial), cos, acos, cosh, sin, asin, sinh, tan, atan, tanh, sqrt, tohx, todc
-Constants: pi, e, $ (last result)
-Parentheses: (, )
-Reserved: ? (displays help); v (displays version); l (displays license); q (quits)");
+			Console.WriteLine(Messages.Help);
 		}
 
 		/// <summary>
@@ -206,15 +180,7 @@ Reserved: ? (displays help); v (displays version); l (displays license); q (quit
 		/// </summary>
 		private static void DisplayUsage()
 		{
-			Console.WriteLine("Usage: {0} [OPTIONS] <expression>", Name);
-			Console.WriteLine("Version: {0}", Version);
-			Console.WriteLine(@"Options:
---mode-degrees        Sets the calculator in degree mode.
---mode-radians        Sets the calculator in radian mode (default).
---help                Displays this help message.
---version             Displays the version of BCP currently running.
---license             Displays the current license information for BPC.
-");
+			Console.WriteLine(Messages.Usage);
 		}
 
 		/// <summary>
@@ -222,7 +188,7 @@ Reserved: ? (displays help); v (displays version); l (displays license); q (quit
 		/// </summary>
 		private static void DisplayVersion()
 		{
-			Console.WriteLine("Version: {0}", Version);
+			Console.WriteLine(Messages.ShortVersion);
 		}
 
 		/// <summary>
@@ -230,7 +196,7 @@ Reserved: ? (displays help); v (displays version); l (displays license); q (quit
 		/// </summary>
 		private static void DisplayCopyright()
 		{
-			Console.WriteLine("BPC - Better Personal Calculator, Copyright (C) 2009 Nathandelane");
+			Console.WriteLine(Messages.Copyright);
 		}
 
 		/// <summary>
@@ -272,8 +238,9 @@ Reserved: ? (displays help); v (displays version); l (displays license); q (quit
 		{
 			ArgumentCollection argumentCollection = null;
 
-			Calculator.Heap.Add("$", "0");
-			Calculator.Heap.Add("mode", "rad");
+			Calculator.Heap.Add(Program.LastResultKey, "0");
+			Calculator.Heap.Add(Program.ModeKey, "rad");
+			Calculator.Heap.Add(Program.PromptKey, ">>>");
 
 			string arguments = args.Join();
 
@@ -316,7 +283,7 @@ Reserved: ? (displays help); v (displays version); l (displays license); q (quit
 			{
 				string title = Console.Title;
 
-				Console.Title = "BPC.NET - Better Personal Calculator";
+				Console.Title = Messages.BpcConsoleTitle;
 
 				Run(String.Empty);
 
