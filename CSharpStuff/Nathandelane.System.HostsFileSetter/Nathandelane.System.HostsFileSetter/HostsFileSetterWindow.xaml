@@ -41,7 +41,7 @@
 					<RowDefinition Height="Auto" />
 				</Grid.RowDefinitions>
 				<Label Grid.Row="0" Content="Click on a server to change Hosts file." VerticalAlignment="Top" />
-				<ListBox Grid.Row="1" VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="5,0">
+				<ListBox Name="_serversListBox" Grid.Row="1" VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="5,0">
 					<ListBoxItem Content="Restore Original" />
 					<ListBoxItem Content="Blank" />
 				</ListBox>
