@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Configuration;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,14 +21,43 @@ namespace Nathandelane.HostsFileSetter
 	/// </summary>
 	public partial class HostsFileSetterWindow : Window
 	{
+		#region Runtime Interop
+
+		[DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
+		private static extern UInt32 DnsFlushResolverCache();
+
+		#endregion
+
+		#region Fields
+
+		private static readonly string __hostsFileLocation = "hostFileLocation";
+
+		#endregion
+
+		#region Constructor
+
 		public HostsFileSetterWindow()
 		{
 			InitializeComponent();
 		}
 
+		#endregion
+
+		#region Methods
+
 		private void LoadInitHostsFile(object sender, RoutedEventArgs e)
 		{
-
+			LoadHostsFile();
 		}
+
+		private void LoadHostsFile()
+		{
+			using (StreamReader reader = new StreamReader(ConfigurationManager.AppSettings[HostsFileSetterWindow.__hostsFileLocation]))
+			{
+				_hostsFileTextBox.Text = reader.ReadToEnd();
+			}
+		}
+
+		#endregion
 	}
 }
