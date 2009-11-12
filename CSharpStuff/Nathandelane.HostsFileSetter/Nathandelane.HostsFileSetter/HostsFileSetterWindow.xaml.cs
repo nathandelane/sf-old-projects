@@ -17,11 +17,16 @@ namespace Nathandelane.HostsFileSetter
 	/// <summary>
 	/// Interaction logic for Window1.xaml
 	/// </summary>
-	public partial class Window1 : Window
+	public partial class HostsFileSetterWindow : Window
 	{
-		public Window1()
+		public HostsFileSetterWindow()
 		{
 			InitializeComponent();
+		}
+
+		private void LoadInitHostsFile(object sender, RoutedEventArgs e)
+		{
+
 		}
 	}
 }
