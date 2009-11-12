@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.System.HostsFileSetter", "Nathandelane.System.HostsFileSetter\Nathandelane.System.HostsFileSetter.csproj", "{1BB5F7C4-B5E6-4F51-A5A8-6349981234D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.HostsFileSetter", "Nathandelane.System.HostsFileSetter\Nathandelane.HostsFileSetter.csproj", "{1BB5F7C4-B5E6-4F51-A5A8-6349981234D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

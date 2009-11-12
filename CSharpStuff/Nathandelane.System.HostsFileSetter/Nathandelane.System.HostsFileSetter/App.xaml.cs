@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace Nathandelane.System.HostsFileSetter
+namespace Nathandelane.HostsFileSetter
 {
 	/// <summary>
 	/// Interaction logic for App.xaml

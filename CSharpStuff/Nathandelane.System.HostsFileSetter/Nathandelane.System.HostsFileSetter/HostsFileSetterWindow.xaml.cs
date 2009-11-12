@@ -12,14 +12,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Nathandelane.System.HostsFileSetter
+namespace Nathandelane.HostsFileSetter
 {
 	/// <summary>
-	/// Interaction logic for Window1.xaml
+	/// Interaction logic for HostsFileSetterWindow.xaml
 	/// </summary>
-	public partial class Window1 : Window
+	public partial class HostsFileSetterWindow : Window
 	{
-		public Window1()
+		public HostsFileSetterWindow()
 		{
 			InitializeComponent();
 		}
