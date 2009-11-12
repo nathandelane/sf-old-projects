@@ -7,21 +7,29 @@
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-		<Menu Grid.Row="0" IsMainMenu="True" VerticalAlignment="Top">
+		<Menu Grid.Row="0" IsMainMenu="True" VerticalAlignment="Top" Foreground="White">
+			<Menu.Background>
+				<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+					<GradientStop Color="#ADBBBF" Offset="0" />
+					<GradientStop Color="#6E7774" Offset="0.49" />
+					<GradientStop Color="#0A0E0A" Offset="0.5" />
+					<GradientStop Color="#0A080E" Offset="1" />
+				</LinearGradientBrush>
+			</Menu.Background>
 			<MenuItem Header="Hosts _File Setter">
-				<MenuItem Header="_New">
+				<MenuItem Header="_New" Foreground="Black">
 					<MenuItem Header="_Custom Hosts File..." />
 				</MenuItem>
-				<MenuItem Header="_Import..." />
-				<MenuItem Header="_Preferences..." />
+				<MenuItem Header="_Import..." Foreground="Black" />
+				<MenuItem Header="_Preferences..." Foreground="Black" />
 				<Separator />
-				<MenuItem Header="E_xit" />
+				<MenuItem Header="E_xit" Foreground="Black" />
 			</MenuItem>
 			<MenuItem Header="_Help">
-				<MenuItem Header="_About..." />
+				<MenuItem Header="_About..." Foreground="Black" />
 			</MenuItem>
 		</Menu>
-		<Grid Grid.Row="1">
+		<Grid Grid.Row="1" Margin="0,2,0,0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="240" />
 				<ColumnDefinition Width="*" />
@@ -41,8 +49,50 @@
 						<ColumnDefinition Width="*" />
 						<ColumnDefinition Width="*" />
 					</Grid.ColumnDefinitions>
-					<Button Grid.Column="0" Content="Edit Config" Width="Auto" HorizontalAlignment="Stretch" Margin="5" />
-					<Button Grid.Column="1" Content="Remove Config" Width="Auto" HorizontalAlignment="Stretch" Margin="5" />
+					<Button Grid.Column="0" Content="Edit Config" Width="Auto" HorizontalAlignment="Stretch" Margin="5" IsEnabled="False">
+						<Button.Style>
+							<Style TargetType="{x:Type Button}">
+								<Style.Triggers>
+									<Trigger Property="IsEnabled" Value="False">
+										<Setter Property="Foreground" Value="LightGray" />
+									</Trigger>
+									<Trigger Property="IsEnabled" Value="True">
+										<Setter Property="Foreground" Value="White" />
+									</Trigger>
+								</Style.Triggers>
+							</Style>
+						</Button.Style>
+						<Button.Background>
+							<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+								<GradientStop Color="#ADBBBF" Offset="0" />
+								<GradientStop Color="#6E7774" Offset="0.49" />
+								<GradientStop Color="#0A0E0A" Offset="0.5" />
+								<GradientStop Color="#0A080E" Offset="1" />
+							</LinearGradientBrush>
+						</Button.Background>
+					</Button>
+					<Button Grid.Column="1" Content="Remove Config" Width="Auto" HorizontalAlignment="Stretch" Margin="5" IsEnabled="False">
+						<Button.Style>
+							<Style TargetType="{x:Type Button}">
+								<Style.Triggers>
+									<Trigger Property="IsEnabled" Value="False">
+										<Setter Property="Foreground" Value="LightGray" />
+									</Trigger>
+									<Trigger Property="IsEnabled" Value="True">
+										<Setter Property="Foreground" Value="White" />
+									</Trigger>
+								</Style.Triggers>
+							</Style>
+						</Button.Style>
+						<Button.Background>
+							<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+								<GradientStop Color="#ADBBBF" Offset="0" />
+								<GradientStop Color="#6E7774" Offset="0.49" />
+								<GradientStop Color="#0A0E0A" Offset="0.5" />
+								<GradientStop Color="#0A080E" Offset="1" />
+							</LinearGradientBrush>
+						</Button.Background>
+					</Button>
 				</Grid>
 			</Grid>
 			<Grid Grid.Column="1">
@@ -57,6 +107,14 @@
 					</Grid.ColumnDefinitions>
 					<Label Grid.Column="0" Content="Below is what your Hosts file currently contains." HorizontalAlignment="Left" />
 					<Button Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,5,5" Width="22" Height="22" ToolTip="Refresh DNS Cache">
+						<Button.Background>
+							<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+								<GradientStop Color="#ADBBBF" Offset="0" />
+								<GradientStop Color="#6E7774" Offset="0.49" />
+								<GradientStop Color="#0A0E0A" Offset="0.5" />
+								<GradientStop Color="#0A080E" Offset="1" />
+							</LinearGradientBrush>
+						</Button.Background>
 						<Image Source="Images/RudiRfreshIcon.png"/>
 					</Button>
 				</Grid>
