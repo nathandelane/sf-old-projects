@@ -261,7 +261,8 @@ namespace Nathandelane.System.PersonalCalculator2
 
 			if (resultWillBeHexadecimal)
 			{
-				result = String.Concat(long.Parse(result).ToString("x"), "h");
+				long res = long.Parse(result.Split(new char[] { '.' })[0]);
+				result = String.Concat(res.ToString("x"), "h");
 			}
 
 			return result;
