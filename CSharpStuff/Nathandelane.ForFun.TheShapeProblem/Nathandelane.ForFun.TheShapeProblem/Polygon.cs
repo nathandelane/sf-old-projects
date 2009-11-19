@@ -16,6 +16,9 @@ namespace Nathandelane.ForFun.TheShapeProblem
 
 		#region Properties
 
+		/// <summary>
+		/// Gets the corners.
+		/// </summary>
 		public Corners CornerPoints
 		{
 			get { return _corners; }
