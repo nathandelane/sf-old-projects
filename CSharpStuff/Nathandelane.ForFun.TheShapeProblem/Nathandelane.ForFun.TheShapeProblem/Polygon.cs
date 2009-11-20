@@ -10,7 +10,6 @@ namespace Nathandelane.ForFun.TheShapeProblem
 	{
 		#region Fields
 
-		private List<double> _segmentLengths;
 
 		#endregion
 
@@ -36,6 +35,9 @@ namespace Nathandelane.ForFun.TheShapeProblem
 
 		#region Methods
 
+		/// <summary>
+		/// Parse any expected .NET attributes.
+		/// </summary>
 		private void ParseAttributes()
 		{
 			Attribute[] attributes = Attribute.GetCustomAttributes(this.GetType());
@@ -55,19 +57,6 @@ namespace Nathandelane.ForFun.TheShapeProblem
 					}
 				}
 			}
-		}
-
-		/// <summary>
-		/// Calculates a segment's length
-		/// </summary>
-		/// <param name="lastPoint"></param>
-		/// <param name="currentPoint"></param>
-		/// <returns></returns>
-		private double CalculateSegmentLength(Point lastPoint, Point currentPoint)
-		{
-			double segmentLength = 0.0;
-
-			return segmentLength;
 		}
 
 		#endregion

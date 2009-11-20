@@ -11,6 +11,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		#region Fields
 
 		private List<Point> _points;
+		private List<double> _segmentLengths;
 
 		#endregion
 
@@ -42,11 +43,25 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		{
 			_points = new List<Point>();
 			_points.Add(startPoint);
+			_segmentLengths = new List<double>();
 		}
 
 		public Primitive(IEnumerable<Point> points)
 		{
 			_points = new List<Point>(points);
+			_segmentLengths = new List<double>();
+
+			if (_points.Count > 1)
+			{
+				Point lastPoint = _points[0];
+				for (int pointsIndex = 1; pointsIndex < _points.Count; pointsIndex++)
+				{
+					_segmentLengths.Add(CalculateSegmentLength(lastPoint, _points[pointsIndex]));
+
+					lastPoint = _points[pointsIndex];
+				}
+				_segmentLengths.Add(CalculateSegmentLength(lastPoint, _points[0]));
+			}
 		}
 
 		#endregion
@@ -60,6 +75,24 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		public void AddCorner(Point point)
 		{
 			_points.Add(point);
+
+			if (_points.Count > 1)
+			{
+
+			}
+		}
+
+		/// <summary>
+		/// Calculates a segment's length
+		/// </summary>
+		/// <param name="lastPoint"></param>
+		/// <param name="currentPoint"></param>
+		/// <returns></returns>
+		private double CalculateSegmentLength(Point lastPoint, Point currentPoint)
+		{
+			double segmentLength = 0.0;
+
+			return segmentLength;
 		}
 
 		#endregion
