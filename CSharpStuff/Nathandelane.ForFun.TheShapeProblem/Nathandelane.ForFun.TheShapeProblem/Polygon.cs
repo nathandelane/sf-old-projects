@@ -24,6 +24,16 @@ namespace Nathandelane.ForFun.TheShapeProblem
 			get { return _corners; }
 		}
 
+		/// <summary>
+		/// Gets a specific point of the Polygon.
+		/// </summary>
+		/// <param name="index"></param>
+		/// <returns></returns>
+		public Point this[int index]
+		{
+			get { return _corners[index]; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -42,7 +52,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// Adds a point to the polygon.
 		/// </summary>
 		/// <param name="point"></param>
-		public void AddCorner(GeneralPoint point)
+		public virtual void AddCorner(Point point)
 		{
 			_corners.Add(point);
 		}
@@ -50,7 +60,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// <summary>
 		/// Draws the polygon.
 		/// </summary>
-		public void Draw()
+		public override void Draw()
 		{
 			// TODO: implement this method
 		}

@@ -13,6 +13,13 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// </summary>
 		Corners CornerPoints { get; }
 
+		/// <summary>
+		/// Gets a specific corner of the IPolyoganol.
+		/// </summary>
+		/// <param name="index"></param>
+		/// <returns></returns>
+		Point this[int index] { get; }
+
 		void AddCorner(Point point);
 	}
 }

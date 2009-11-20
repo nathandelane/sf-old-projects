@@ -6,7 +6,7 @@ using System.Drawing;
 
 namespace Nathandelane.ForFun.TheShapeProblem
 {
-	public class Primitive : IGeometric
+	public abstract class Primitive : IGeometric
 	{
 		#region Fields
 
@@ -37,10 +37,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 
 		#region Methods
 
-		public abstract void Draw()
-		{
-			// TODO: Implement this
-		}
+		public abstract void Draw();
 
 		#endregion
 	}

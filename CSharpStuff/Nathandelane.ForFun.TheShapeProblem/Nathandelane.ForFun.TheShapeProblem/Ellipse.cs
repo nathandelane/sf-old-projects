@@ -45,5 +45,14 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		}
 
 		#endregion
+
+		#region Methods
+
+		public override void Draw()
+		{
+			throw new NotImplementedException();
+		}
+
+		#endregion
 	}
 }
