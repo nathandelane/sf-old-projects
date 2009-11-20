@@ -26,6 +26,14 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		}
 
 		/// <summary>
+		/// Gets the segment lengths.
+		/// </summary>
+		public List<double> SegmentLengths
+		{
+			get { return _segmentLengths; }
+		}
+
+		/// <summary>
 		/// Gets a specific point of the Primitive.
 		/// </summary>
 		/// <param name="index"></param>
@@ -78,7 +86,9 @@ namespace Nathandelane.ForFun.TheShapeProblem
 
 			if (_points.Count > 1)
 			{
+				int newestPointIndex = _points.Count - 1;
 
+				_segmentLengths.Add(CalculateSegmentLength(_points[newestPointIndex - 1], _points[newestPointIndex]));
 			}
 		}
 
@@ -88,9 +98,9 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// <param name="lastPoint"></param>
 		/// <param name="currentPoint"></param>
 		/// <returns></returns>
-		private double CalculateSegmentLength(Point lastPoint, Point currentPoint)
+		public double CalculateSegmentLength(Point lastPoint, Point currentPoint)
 		{
-			double segmentLength = 0.0;
+			double segmentLength = Math.Sqrt(Math.Pow((currentPoint.X - lastPoint.X), 2.0) + Math.Pow((currentPoint.Y - lastPoint.Y), 2.0));
 
 			return segmentLength;
 		}
