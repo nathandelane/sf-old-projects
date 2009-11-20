@@ -6,23 +6,22 @@ using System.Drawing;
 
 namespace Nathandelane.ForFun.TheShapeProblem
 {
-	[AnglesMustEqual(360)]
-	public class Quadrilateral : Polygon
+	[AnglesMustEqual(180)]
+	public class Triangle : Polygon
 	{
 		#region Fields
 
-		public static readonly int NumberOfSides = 4;
+		public static readonly int NumberOfSides = 3;
 
 		#endregion
 
 		#region Constructors
 
-		public Quadrilateral(Point startPoint, Point endOfSide1, Point endOfSide2, Point endOfSide3)
+		public Triangle(Point startPoint, Point endOfSide1, Point endOfSide2)
 			: base(startPoint)
 		{
 			base.AddCorner(endOfSide1);
 			base.AddCorner(endOfSide2);
-			base.AddCorner(endOfSide3);
 		}
 
 		#endregion

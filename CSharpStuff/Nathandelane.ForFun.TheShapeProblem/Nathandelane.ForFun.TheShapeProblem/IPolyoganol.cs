@@ -11,7 +11,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// <summary>
 		/// Gets the corner points of the the IPolyoganol.
 		/// </summary>
-		Corners CornerPoints { get; }
+		List<Point> CornerPoints { get; }
 
 		/// <summary>
 		/// Gets a specific corner of the IPolyoganol.

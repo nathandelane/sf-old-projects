@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnglesMustEqualAttribute.cs" />
     <Compile Include="Circle.cs" />
     <Compile Include="Ellipse.cs" />
     <Compile Include="IElliptical.cs" />
@@ -54,9 +55,9 @@
     <Compile Include="Polygon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Corners.cs" />
     <Compile Include="Primitive.cs" />
     <Compile Include="Quadrilateral.cs" />
+    <Compile Include="Triangle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

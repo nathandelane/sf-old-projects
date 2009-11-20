@@ -10,7 +10,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 	{
 		#region Fields
 
-		private Corners _corners;
+		private List<Point> _corners;
 
 		#endregion
 
@@ -19,7 +19,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// <summary>
 		/// Gets the corners.
 		/// </summary>
-		public Corners CornerPoints
+		public List<Point> CornerPoints
 		{
 			get { return _corners; }
 		}
@@ -41,7 +41,13 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		public Polygon(Point startPoint)
 			: base(startPoint)
 		{
-			_corners = new Corners();
+			_corners = new List<Point>();
+		}
+
+		public Polygon(Point startPoint, List<Point> corners)
+			: base(startPoint)
+		{
+			_corners = corners;
 		}
 
 		#endregion
