@@ -10,18 +10,28 @@ namespace Nathandelane.ForFun.TheShapeProblem
 	{
 		#region Fields
 
-		private Point _startPoint;
+		private List<Point> _points;
 
 		#endregion
 
 		#region Properties
 
 		/// <summary>
-		/// Gets the start point.
+		/// Gets the points.
 		/// </summary>
-		public Point StartPoint
+		public List<Point> Points
 		{
-			get { return _startPoint; }
+			get { return _points; }
+		}
+
+		/// <summary>
+		/// Gets a specific point of the Primitive.
+		/// </summary>
+		/// <param name="index"></param>
+		/// <returns></returns>
+		public Point this[int index]
+		{
+			get { return _points[index]; }
 		}
 
 		#endregion
@@ -30,14 +40,27 @@ namespace Nathandelane.ForFun.TheShapeProblem
 
 		public Primitive(Point startPoint)
 		{
-			_startPoint = startPoint;
+			_points = new List<Point>();
+			_points.Add(startPoint);
+		}
+
+		public Primitive(IEnumerable<Point> points)
+		{
+			_points = new List<Point>(points);
 		}
 
 		#endregion
 
 		#region Methods
 
-		public abstract void Draw();
+		/// <summary>
+		/// Adds a point to the primitive.
+		/// </summary>
+		/// <param name="point"></param>
+		public void AddCorner(Point point)
+		{
+			_points.Add(point);
+		}
 
 		#endregion
 	}

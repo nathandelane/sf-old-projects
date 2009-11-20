@@ -8,8 +8,9 @@ namespace Nathandelane.ForFun.TheShapeProblem
 {
 	public interface IGeometric
 	{
-		Point StartPoint { get; }
-
-		void Draw();
+		/// <summary>
+		/// Gets all of the points defined in the IGeometric.
+		/// </summary>
+		List<Point> Points { get; }
 	}
 }

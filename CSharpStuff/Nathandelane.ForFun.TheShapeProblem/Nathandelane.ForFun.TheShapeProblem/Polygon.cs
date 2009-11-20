@@ -10,29 +10,12 @@ namespace Nathandelane.ForFun.TheShapeProblem
 	{
 		#region Fields
 
-		private List<Point> _corners;
+		private List<double> _segmentLengths;
 
 		#endregion
 
 		#region Properties
 
-		/// <summary>
-		/// Gets the corners.
-		/// </summary>
-		public List<Point> CornerPoints
-		{
-			get { return _corners; }
-		}
-
-		/// <summary>
-		/// Gets a specific point of the Polygon.
-		/// </summary>
-		/// <param name="index"></param>
-		/// <returns></returns>
-		public Point this[int index]
-		{
-			get { return _corners[index]; }
-		}
 
 		#endregion
 
@@ -41,8 +24,20 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		public Polygon(Point startPoint)
 			: base(startPoint)
 		{
-			_corners = new List<Point>();
+			ParseAttributes();
+		}
 
+		public Polygon(IEnumerable<Point> points)
+			: base(points)
+		{
+		}
+
+		#endregion
+
+		#region Methods
+
+		private void ParseAttributes()
+		{
 			Attribute[] attributes = Attribute.GetCustomAttributes(this.GetType());
 			if (attributes.Length > 0)
 			{
@@ -51,7 +46,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 					if (nextAttribute is AnglesMustEqualAttribute)
 					{
 						AnglesMustEqualAttribute attr = (AnglesMustEqualAttribute)nextAttribute;
-						int totalDegress = CalculateTotalDegrees();
+						int totalDegress = 0;
 
 						if (totalDegress != attr.Degrees)
 						{
@@ -62,50 +57,17 @@ namespace Nathandelane.ForFun.TheShapeProblem
 			}
 		}
 
-		public Polygon(Point startPoint, List<Point> corners)
-			: this(startPoint)
-		{
-			_corners = corners;
-		}
-
-		#endregion
-
-		#region Methods
-
 		/// <summary>
-		/// Adds a point to the polygon.
+		/// Calculates a segment's length
 		/// </summary>
-		/// <param name="point"></param>
-		public virtual void AddCorner(Point point)
+		/// <param name="lastPoint"></param>
+		/// <param name="currentPoint"></param>
+		/// <returns></returns>
+		private double CalculateSegmentLength(Point lastPoint, Point currentPoint)
 		{
-			_corners.Add(point);
-		}
+			double segmentLength = 0.0;
 
-		/// <summary>
-		/// Draws the polygon.
-		/// </summary>
-		public override void Draw()
-		{
-			// TODO: implement this method
-		}
-
-		public int CalculateTotalDegrees()
-		{
-			int result = 0;
-
-			if (_corners.Count > 1)
-			{
-				if (_corners.Count == 2)
-				{
-					result = 180;
-				}
-				else
-				{
-					// TODO: calculate all points, convex = +, concave = -
-				}
-			}
-
-			return result;
+			return segmentLength;
 		}
 
 		#endregion
