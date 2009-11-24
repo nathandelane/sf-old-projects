@@ -20,8 +20,8 @@ namespace Nathandelane.ForFun.TheShapeProblem
 
 		#region Constructors
 
-		public Polygon(Point startPoint)
-			: base(startPoint)
+		public Polygon(Point origin)
+			: base(origin)
 		{
 			ParseAttributes();
 		}
@@ -29,6 +29,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		public Polygon(IEnumerable<Point> points)
 			: base(points)
 		{
+			ParseAttributes();
 		}
 
 		#endregion
@@ -66,7 +67,34 @@ namespace Nathandelane.ForFun.TheShapeProblem
 
 						if (totalDegress != attr.Degrees)
 						{
-							throw new Exception(String.Format("Angles must equal {0} but equal {1}", attr.Degrees, totalDegress));
+							throw new Exception(String.Format("Angles must equal {0} but equal {1}.", attr.Degrees, totalDegress));
+						}
+					}
+					else if (nextAttribute is AllSidesMustBeEqualAttribute)
+					{
+						AllSidesMustBeEqualAttribute attr = (AllSidesMustBeEqualAttribute)nextAttribute;
+						bool sidesAreEqual = true;
+						double initialSideLength = 0.0;
+
+						foreach (double sideLength in SegmentLengths)
+						{
+							if (initialSideLength == 0.0)
+							{
+								initialSideLength = sideLength;
+							}
+							else
+							{
+								if (sideLength != initialSideLength)
+								{
+									sidesAreEqual = false;
+									break;
+								}
+							}
+
+							if (!sidesAreEqual)
+							{
+								throw new Exception(String.Format("All sides must be equal to {0}.", initialSideLength));
+							}
 						}
 					}
 				}

@@ -17,8 +17,8 @@ namespace Nathandelane.ForFun.TheShapeProblem
 
 		#region Constructors
 
-		public Quadrilateral(Point startPoint, Point endOfSide1, Point endOfSide2, Point endOfSide3)
-			: base(startPoint)
+		public Quadrilateral(Point origin, Point endOfSide1, Point endOfSide2, Point endOfSide3)
+			: base(origin)
 		{
 			base.AddPoint(endOfSide1);
 			base.AddPoint(endOfSide2);
