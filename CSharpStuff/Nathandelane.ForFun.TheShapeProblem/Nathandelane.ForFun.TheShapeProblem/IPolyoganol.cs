@@ -10,7 +10,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// <summary>
 		/// Gets the segment lengths.
 		/// </summary>
-		IList<double> SegmentLengths { get; }
+		IList<double> Segments { get; }
 
 		/// <summary>
 		/// Gets the angles.

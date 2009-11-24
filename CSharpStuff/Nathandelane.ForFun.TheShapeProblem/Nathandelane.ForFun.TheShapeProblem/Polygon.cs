@@ -10,7 +10,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 	{
 		#region Fields
 		
-		private List<double> _segmentLengths;
+		private List<double> _segment;
 		private List<double> _angles;
 		
 		#endregion
@@ -20,9 +20,9 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// <summary>
 		/// Gets the segment lengths.
 		/// </summary>
-		public IList<double> SegmentLengths
+		public IList<double> Segments
 		{
-			get { return _segmentLengths; }
+			get { return _segment; }
 		}
 
 		/// <summary>
@@ -51,10 +51,10 @@ namespace Nathandelane.ForFun.TheShapeProblem
 					}
 				}
 
-				double initialSide = _segmentLengths[0];
-				for(int sidesIndex = 1; sidesIndex < _segmentLengths.Count; sidesIndex++)
+				double initialSide = _segment[0];
+				for(int sidesIndex = 1; sidesIndex < _segment.Count; sidesIndex++)
 				{
-					if (_segmentLengths[sidesIndex] != initialSide)
+					if (_segment[sidesIndex] != initialSide)
 					{
 						anglesAndSidesAreEqual = false;
 					}
@@ -76,7 +76,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		public Polygon(IEnumerable<Point> points)
 			: base(points)
 		{
-			_segmentLengths = new List<double>();
+			_segment = new List<double>();
 			_angles = new List<double>();
 
 			if (Points.Count > 1)
@@ -84,11 +84,11 @@ namespace Nathandelane.ForFun.TheShapeProblem
 				Point lastPoint = Points[0];
 				for (int pointsIndex = 1; pointsIndex < Points.Count; pointsIndex++)
 				{
-					_segmentLengths.Add(CalculateSegmentLength(lastPoint, Points[pointsIndex]));
+					_segment.Add(CalculateSegmentLength(lastPoint, Points[pointsIndex]));
 
 					lastPoint = Points[pointsIndex];
 				}
-				_segmentLengths.Add(CalculateSegmentLength(lastPoint, Points[0]));
+				_segment.Add(CalculateSegmentLength(lastPoint, Points[0]));
 			}
 
 			ParseAttributes();
@@ -109,7 +109,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 			int newestPointIndex = Points.Count - 1;
 			if (Points.Count > 1)
 			{
-				_segmentLengths.Add(CalculateSegmentLength(Points[newestPointIndex - 1], Points[newestPointIndex]));
+				_segment.Add(CalculateSegmentLength(Points[newestPointIndex - 1], Points[newestPointIndex]));
 			}
 			else if (Points.Count > 2)
 			{
@@ -148,7 +148,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 						bool sidesAreEqual = true;
 						double initialSideLength = 0.0;
 
-						foreach (double sideLength in SegmentLengths)
+						foreach (double sideLength in Segments)
 						{
 							if (initialSideLength == 0.0)
 							{
@@ -175,7 +175,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 						bool anglesAreEqual = true;
 						double initialAngle = 0.0;
 
-						foreach (double angle in SegmentLengths)
+						foreach (double angle in Segments)
 						{
 							if (initialAngle == 0.0)
 							{
