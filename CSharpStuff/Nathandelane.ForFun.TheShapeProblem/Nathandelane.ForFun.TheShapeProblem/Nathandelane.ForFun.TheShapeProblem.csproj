@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllAnglesMustBeEqualAttribute.cs" />
     <Compile Include="AllSidesMustBeEqualAttribute.cs" />
     <Compile Include="AnglesMustEqualAttribute.cs" />
     <Compile Include="Circle.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Primitive.cs" />
     <Compile Include="Quadrilateral.cs" />
     <Compile Include="Rhombus.cs" />
+    <Compile Include="Square.cs" />
     <Compile Include="Triangle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -97,6 +97,33 @@ namespace Nathandelane.ForFun.TheShapeProblem
 							}
 						}
 					}
+					else if (nextAttribute is AllAnglesMustBeEqualAttribute)
+					{
+						AllAnglesMustBeEqualAttribute attr = (AllAnglesMustBeEqualAttribute)nextAttribute;
+						bool anglesAreEqual = true;
+						double initialAngle = 0.0;
+
+						foreach (double angle in SegmentLengths)
+						{
+							if (initialAngle == 0.0)
+							{
+								initialAngle = angle;
+							}
+							else
+							{
+								if (angle != initialAngle)
+								{
+									anglesAreEqual = false;
+									break;
+								}
+							}
+
+							if (!anglesAreEqual)
+							{
+								throw new Exception(String.Format("All angles must be equal to {0}.", initialAngle));
+							}
+						}
+					}
 				}
 			}
 		}
