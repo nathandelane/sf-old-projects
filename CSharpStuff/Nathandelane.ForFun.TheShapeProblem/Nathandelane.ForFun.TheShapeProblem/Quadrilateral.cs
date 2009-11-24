@@ -20,16 +20,16 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		public Quadrilateral(Point startPoint, Point endOfSide1, Point endOfSide2, Point endOfSide3)
 			: base(startPoint)
 		{
-			base.AddCorner(endOfSide1);
-			base.AddCorner(endOfSide2);
-			base.AddCorner(endOfSide3);
+			base.AddPoint(endOfSide1);
+			base.AddPoint(endOfSide2);
+			base.AddPoint(endOfSide3);
 		}
 
 		#endregion
 
 		#region Methods
 
-		public override void AddCorner(Point point)
+		public override void AddPoint(Point point)
 		{
 			throw new NotSupportedException("Not allowed.");
 		}

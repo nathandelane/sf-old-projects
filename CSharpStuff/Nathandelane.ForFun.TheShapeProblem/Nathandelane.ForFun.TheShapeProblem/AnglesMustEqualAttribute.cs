@@ -10,7 +10,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 	{
 		#region Fields
 
-		private int _degrees;
+		private double _degrees;
 
 		#endregion
 
@@ -19,7 +19,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// <summary>
 		/// Gets the number of degrees the angles must be equal to.
 		/// </summary>
-		public int Degrees
+		public double Degrees
 		{
 			get { return _degrees; }
 		}
@@ -28,7 +28,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 
 		#region Constructors
 
-		public AnglesMustEqualAttribute(int degrees)
+		public AnglesMustEqualAttribute(double degrees)
 		{
 			_degrees = degrees;
 		}

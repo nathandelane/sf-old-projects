@@ -36,6 +36,15 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		#region Methods
 
 		/// <summary>
+		/// Adds a point to the Polygon.
+		/// </summary>
+		/// <param name="point"></param>
+		public override void AddPoint(Point point)
+		{
+			base.AddPoint(point);
+		}
+
+		/// <summary>
 		/// Parse any expected .NET attributes.
 		/// </summary>
 		private void ParseAttributes()
@@ -48,7 +57,12 @@ namespace Nathandelane.ForFun.TheShapeProblem
 					if (nextAttribute is AnglesMustEqualAttribute)
 					{
 						AnglesMustEqualAttribute attr = (AnglesMustEqualAttribute)nextAttribute;
-						int totalDegress = 0;
+						double totalDegress = 0;
+
+						foreach (double angle in Angles)
+						{
+							totalDegress += angle;
+						}
 
 						if (totalDegress != attr.Degrees)
 						{

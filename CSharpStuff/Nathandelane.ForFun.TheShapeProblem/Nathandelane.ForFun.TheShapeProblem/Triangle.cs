@@ -20,15 +20,15 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		public Triangle(Point startPoint, Point endOfSide1, Point endOfSide2)
 			: base(startPoint)
 		{
-			base.AddCorner(endOfSide1);
-			base.AddCorner(endOfSide2);
+			base.AddPoint(endOfSide1);
+			base.AddPoint(endOfSide2);
 		}
 
 		#endregion
 
 		#region Methods
 
-		public override void AddCorner(Point point)
+		public override void AddPoint(Point point)
 		{
 			throw new NotSupportedException("Not allowed.");
 		}

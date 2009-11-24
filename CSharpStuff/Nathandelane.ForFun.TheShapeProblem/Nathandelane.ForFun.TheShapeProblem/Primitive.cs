@@ -88,20 +88,11 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		#region Methods
 
 		/// <summary>
-		/// Gets the enumerator for the points collection.
-		/// </summary>
-		/// <returns></returns>
-		public IEnumerator<Point> GetEnumerator()
-		{
-			return _points.GetEnumerator();
-		}
-
-		/// <summary>
 		/// Adds a point to the primitive. Also calculates the length between the last point and the newest point, as well as any 
 		/// angles between two line segments.
 		/// </summary>
 		/// <param name="point">Point Point defining a corner of the primitive.</param>
-		public void AddCorner(Point point)
+		public virtual void AddPoint(Point point)
 		{
 			_points.Add(point);
 
