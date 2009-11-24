@@ -12,6 +12,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 
 		private List<Point> _points;
 		private List<double> _segmentLengths;
+		private List<double> _angles;
 
 		#endregion
 
@@ -34,6 +35,14 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		}
 
 		/// <summary>
+		/// Gets the angles.
+		/// </summary>
+		public List<double> Angles
+		{
+			get { return _angles; }
+		}
+
+		/// <summary>
 		/// Gets a specific point of the Primitive.
 		/// </summary>
 		/// <param name="index"></param>
@@ -52,12 +61,14 @@ namespace Nathandelane.ForFun.TheShapeProblem
 			_points = new List<Point>();
 			_points.Add(startPoint);
 			_segmentLengths = new List<double>();
+			_angles = new List<double>();
 		}
 
 		public Primitive(IEnumerable<Point> points)
 		{
 			_points = new List<Point>(points);
 			_segmentLengths = new List<double>();
+			_angles = new List<double>();
 
 			if (_points.Count > 1)
 			{
