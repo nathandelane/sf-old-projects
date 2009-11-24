@@ -97,7 +97,8 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		}
 
 		/// <summary>
-		/// Adds a point to the primitive.
+		/// Adds a point to the primitive. Also calculates the length between the last point and the newest point, as well as any 
+		/// angles between two line segments.
 		/// </summary>
 		/// <param name="point">Point Point defining a corner of the primitive.</param>
 		public void AddCorner(Point point)
@@ -109,6 +110,13 @@ namespace Nathandelane.ForFun.TheShapeProblem
 				int newestPointIndex = _points.Count - 1;
 
 				_segmentLengths.Add(CalculateSegmentLength(_points[newestPointIndex - 1], _points[newestPointIndex]));
+			}
+
+			if (_points.Count > 2)
+			{
+				int newestPointIndex = _points.Count - 1;
+
+				_angles.Add(CalculateAngle(_points[newestPointIndex - 1], _points[newestPointIndex - 2], _points[newestPointIndex]));
 			}
 		}
 
