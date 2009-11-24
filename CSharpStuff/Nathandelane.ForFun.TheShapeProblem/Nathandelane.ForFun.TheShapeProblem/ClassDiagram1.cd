@@ -59,27 +59,6 @@
       <FileName>Square.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Nathandelane.ForFun.TheShapeProblem.AllAnglesMustBeEqualAttribute" Collapsed="true">
-    <Position X="0.5" Y="8" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
-      <FileName>AllAnglesMustBeEqualAttribute.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Nathandelane.ForFun.TheShapeProblem.AllSidesMustBeEqualAttribute" Collapsed="true">
-    <Position X="3.25" Y="8" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAg=</HashCode>
-      <FileName>AllSidesMustBeEqualAttribute.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Nathandelane.ForFun.TheShapeProblem.AnglesMustEqualAttribute" Collapsed="true">
-    <Position X="6" Y="8" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
-      <FileName>AnglesMustEqualAttribute.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Interface Name="Nathandelane.ForFun.TheShapeProblem.IElliptical">
     <Position X="0.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
