@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nathandelane.ForFun.TheShapeProblem
 {
-	public interface IElliptical : IGeometric
+	public interface IElliptical
 	{
 		/// <summary>
 		/// Gets the SemiMinor Radius of the IElliptical.
