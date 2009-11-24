@@ -6,7 +6,6 @@
       <HashCode>AAAAAAAAAAAQAwAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Ellipse.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.179" />
   </Class>
   <Class Name="Nathandelane.ForFun.TheShapeProblem.Primitive" Collapsed="true">
     <Position X="3.25" Y="3" Width="1.5" />
@@ -19,7 +18,7 @@
   <Class Name="Nathandelane.ForFun.TheShapeProblem.Polygon" Collapsed="true">
     <Position X="6" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAEQAEAEAAAAAAAAAAAAAAAAAECAAAAAAgA=</HashCode>
+      <HashCode>AAAAAAAAAAEQAEAAAAAAAAAAACAAAAAAAECAAAQAAAA=</HashCode>
       <FileName>Polygon.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -59,13 +58,6 @@
       <FileName>Square.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Interface Name="Nathandelane.ForFun.TheShapeProblem.IElliptical">
-    <Position X="0.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>IElliptical.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
   <Interface Name="Nathandelane.ForFun.TheShapeProblem.IGeometric">
     <Position X="3.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
@@ -76,7 +68,7 @@
   <Interface Name="Nathandelane.ForFun.TheShapeProblem.IPolyoganol">
     <Position X="6" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAEAAAAEAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAACAAAAAAAEAAAAAAAAA=</HashCode>
       <FileName>IPolyoganol.cs</FileName>
     </TypeIdentifier>
   </Interface>
