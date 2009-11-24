@@ -46,7 +46,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// Gets a specific point of the Primitive.
 		/// </summary>
 		/// <param name="index"></param>
-		/// <returns></returns>
+		/// <returns>Point</returns>
 		public Point this[int index]
 		{
 			get { return _points[index]; }
@@ -88,9 +88,18 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		#region Methods
 
 		/// <summary>
+		/// Gets the enumerator for the points collection.
+		/// </summary>
+		/// <returns></returns>
+		public IEnumerator<Point> GetEnumerator()
+		{
+			return _points.GetEnumerator();
+		}
+
+		/// <summary>
 		/// Adds a point to the primitive.
 		/// </summary>
-		/// <param name="point"></param>
+		/// <param name="point">Point Point defining a corner of the primitive.</param>
 		public void AddCorner(Point point)
 		{
 			_points.Add(point);
@@ -106,14 +115,30 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// <summary>
 		/// Calculates a segment's length
 		/// </summary>
-		/// <param name="lastPoint"></param>
-		/// <param name="currentPoint"></param>
-		/// <returns></returns>
-		public double CalculateSegmentLength(Point lastPoint, Point currentPoint)
+		/// <param name="origin">Point First point of the line segment.</param>
+		/// <param name="endPoint">Point End point of the line segment.</param>
+		/// <returns>double length</returns>
+		public double CalculateSegmentLength(Point origin, Point endPoint)
 		{
-			double segmentLength = Math.Sqrt(Math.Pow((currentPoint.X - lastPoint.X), 2.0) + Math.Pow((currentPoint.Y - lastPoint.Y), 2.0));
+			double segmentLength = Math.Sqrt(Math.Pow((endPoint.X - origin.X), 2.0) + Math.Pow((endPoint.Y - origin.Y), 2.0));
 
 			return segmentLength;
+		}
+
+		/// <summary>
+		/// Calculates the angle between two line segments.
+		/// </summary>
+		/// <param name="origin">Point Point shared by both vectors.</param>
+		/// <param name="firstSide">Point End point of first side.</param>
+		/// <param name="secondSide">Point End point of second side.</param>
+		/// <returns>double angle</returns>
+		public double CalculateAngle(Point origin, Point firstSide, Point secondSide)
+		{
+			Point newFirstSide = new Point((firstSide.X - origin.X), (firstSide.Y - origin.Y));
+			Point newSecondSide = new Point((secondSide.X - origin.X), (secondSide.Y - origin.Y));
+			double dotProduct = (newFirstSide.X * newSecondSide.X) + (newFirstSide.Y * newSecondSide.Y);
+
+			return Math.Acos(dotProduct / (CalculateSegmentLength(origin, firstSide) * CalculateSegmentLength(origin, secondSide)));
 		}
 
 		#endregion
