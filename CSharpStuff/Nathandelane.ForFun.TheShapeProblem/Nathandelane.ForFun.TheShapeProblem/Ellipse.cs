@@ -9,7 +9,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 	/// <summary>
 	/// Creates an Ellipse, which may be vertically and horizontally aligned, or based on its radial points, transformed radially.
 	/// </summary>
-	public class Ellipse : Primitive, IElliptical
+	public class Ellipse : Primitive
 	{
 		#region Fields
 
