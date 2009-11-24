@@ -35,7 +35,6 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -51,9 +50,9 @@
     <Compile Include="AnglesMustEqualAttribute.cs" />
     <Compile Include="Circle.cs" />
     <Compile Include="Ellipse.cs" />
-    <Compile Include="IElliptical.cs" />
     <Compile Include="IGeometric.cs" />
     <Compile Include="IPolyoganol.cs" />
+    <Compile Include="Point.cs" />
     <Compile Include="Polygon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

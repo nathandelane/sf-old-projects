@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
 
 namespace Nathandelane.ForFun.TheShapeProblem
 {
@@ -11,62 +10,22 @@ namespace Nathandelane.ForFun.TheShapeProblem
 	/// </summary>
 	public class Ellipse : Primitive
 	{
-		#region Fields
-
-		private double _radius1;
-		private double _radius2;
-
-		#endregion
-
 		#region Properties
 
-		/// <summary>
-		/// Gets the semiminor radius of the Ellipse.
-		/// </summary>
-		public double SemiMinorRadius
+		public Point Center
 		{
 			get
 			{
-				Point origin = Points[0];
-				Point radialPoint1 = Points[1];
-				Point radialPoint2 = Points[2];
-				double semiMinorRadius = 0.0;
+				Point center = new Point();
+				double greaterX = Math.Max(Points[0].X, Points[1].X);
+				double lesserX = Math.Min(Points[0].X, Points[1].X);
+				double greaterY = Math.Max(Points[0].Y, Points[1].Y);
+				double lesserY = Math.Min(Points[0].Y, Points[1].Y);
 
-				if (_radius1 < _radius2 || _radius1 == _radius2)
-				{
-					semiMinorRadius = _radius1;
-				}
-				else
-				{
-					semiMinorRadius = _radius2;
-				}
+				center.X = greaterX - ((greaterX - lesserX) / 2);
+				center.Y = greaterY - ((greaterY - lesserY) / 2);
 
-				return semiMinorRadius;
-			}
-		}
-
-		/// <summary>
-		/// Gets the semimajor radius of the Ellipse.
-		/// </summary>
-		public double SemiMajorRadius
-		{
-			get
-			{
-				Point origin = Points[0];
-				Point radialPoint1 = Points[1];
-				Point radialPoint2 = Points[2];
-				double semiMinorRadius = 0.0;
-
-				if (_radius1 > _radius2 || _radius1 == _radius2)
-				{
-					semiMinorRadius = _radius1;
-				}
-				else
-				{
-					semiMinorRadius = _radius2;
-				}
-
-				return semiMinorRadius;
+				return center;
 			}
 		}
 
@@ -74,11 +33,9 @@ namespace Nathandelane.ForFun.TheShapeProblem
 
 		#region Constructors
 
-		public Ellipse(Point origin, Point radialPoint1, Point radialPoint2)
-			: base(new Point[] { origin, radialPoint1, radialPoint2 })
+		public Ellipse(Point focus1, Point focus2)
+			: base(new Point[] { focus1, focus2 })
 		{
-			_radius1 = CalculateSegmentLength(origin, radialPoint1);
-			_radius2 = CalculateSegmentLength(origin, radialPoint2);
 		}
 
 		#endregion
