@@ -11,17 +11,17 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// <summary>
 		/// Gets the points.
 		/// </summary>
-		List<Point> Points { get; }
+		IEnumerable<Point> Points { get; }
 
 		/// <summary>
 		/// Gets the segment lengths.
 		/// </summary>
-		List<double> SegmentLengths { get; }
+		IEnumerable<double> SegmentLengths { get; }
 
 		/// <summary>
 		/// Gets the angles.
 		/// </summary>
-		List<double> Angles { get; }
+		IEnumerable<double> Angles { get; }
 		
 		/// <summary>
 		/// Gets a specific point.

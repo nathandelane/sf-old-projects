@@ -21,7 +21,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// <summary>
 		/// Gets the points.
 		/// </summary>
-		public List<Point> Points
+		public IEnumerable<Point> Points
 		{
 			get { return _points; }
 		}
@@ -29,7 +29,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// <summary>
 		/// Gets the segment lengths.
 		/// </summary>
-		public List<double> SegmentLengths
+		public IEnumerable<double> SegmentLengths
 		{
 			get { return _segmentLengths; }
 		}
@@ -37,7 +37,7 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// <summary>
 		/// Gets the angles.
 		/// </summary>
-		public List<double> Angles
+		public IEnumerable<double> Angles
 		{
 			get { return _angles; }
 		}

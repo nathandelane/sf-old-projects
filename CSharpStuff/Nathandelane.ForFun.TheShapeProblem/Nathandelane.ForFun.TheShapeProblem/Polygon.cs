@@ -6,18 +6,8 @@ using System.Drawing;
 
 namespace Nathandelane.ForFun.TheShapeProblem
 {
-	public class Polygon : Primitive, IPolyoganol
+	public class Polygon : Primitive
 	{
-		#region Fields
-
-
-		#endregion
-
-		#region Properties
-
-
-		#endregion
-
 		#region Constructors
 
 		public Polygon(Point origin)
