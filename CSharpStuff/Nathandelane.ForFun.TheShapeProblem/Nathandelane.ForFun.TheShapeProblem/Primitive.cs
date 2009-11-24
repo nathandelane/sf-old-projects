@@ -11,8 +11,6 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		#region Fields
 
 		private List<Point> _points;
-		private List<double> _segmentLengths;
-		private List<double> _angles;
 
 		#endregion
 
@@ -21,25 +19,9 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// <summary>
 		/// Gets the points.
 		/// </summary>
-		public IEnumerable<Point> Points
+		public IList<Point> Points
 		{
 			get { return _points; }
-		}
-
-		/// <summary>
-		/// Gets the segment lengths.
-		/// </summary>
-		public IEnumerable<double> SegmentLengths
-		{
-			get { return _segmentLengths; }
-		}
-
-		/// <summary>
-		/// Gets the angles.
-		/// </summary>
-		public IEnumerable<double> Angles
-		{
-			get { return _angles; }
 		}
 
 		/// <summary>
@@ -56,31 +38,14 @@ namespace Nathandelane.ForFun.TheShapeProblem
 
 		#region Constructors
 
-		public Primitive(Point startPoint)
+		public Primitive(Point origin)
+			: this(new Point[] { origin })
 		{
-			_points = new List<Point>();
-			_points.Add(startPoint);
-			_segmentLengths = new List<double>();
-			_angles = new List<double>();
 		}
 
 		public Primitive(IEnumerable<Point> points)
 		{
 			_points = new List<Point>(points);
-			_segmentLengths = new List<double>();
-			_angles = new List<double>();
-
-			if (_points.Count > 1)
-			{
-				Point lastPoint = _points[0];
-				for (int pointsIndex = 1; pointsIndex < _points.Count; pointsIndex++)
-				{
-					_segmentLengths.Add(CalculateSegmentLength(lastPoint, _points[pointsIndex]));
-
-					lastPoint = _points[pointsIndex];
-				}
-				_segmentLengths.Add(CalculateSegmentLength(lastPoint, _points[0]));
-			}
 		}
 
 		#endregion
@@ -95,24 +60,10 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		public virtual void AddPoint(Point point)
 		{
 			_points.Add(point);
-
-			if (_points.Count > 1)
-			{
-				int newestPointIndex = _points.Count - 1;
-
-				_segmentLengths.Add(CalculateSegmentLength(_points[newestPointIndex - 1], _points[newestPointIndex]));
-			}
-
-			if (_points.Count > 2)
-			{
-				int newestPointIndex = _points.Count - 1;
-
-				_angles.Add(CalculateAngle(_points[newestPointIndex - 1], _points[newestPointIndex - 2], _points[newestPointIndex]));
-			}
 		}
 
 		/// <summary>
-		/// Calculates a segment's length
+		/// Calculates a segment's length.
 		/// </summary>
 		/// <param name="origin">Point First point of the line segment.</param>
 		/// <param name="endPoint">Point End point of the line segment.</param>

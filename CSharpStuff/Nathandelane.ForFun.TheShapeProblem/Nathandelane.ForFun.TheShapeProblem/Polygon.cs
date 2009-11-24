@@ -6,19 +6,60 @@ using System.Drawing;
 
 namespace Nathandelane.ForFun.TheShapeProblem
 {
-	public class Polygon : Primitive
+	public class Polygon : Primitive, IPolyoganol
 	{
+		#region Fields
+		
+		private List<double> _segmentLengths;
+		private List<double> _angles;
+		
+		#endregion
+
+		#region Properties
+
+		/// <summary>
+		/// Gets the segment lengths.
+		/// </summary>
+		public IList<double> SegmentLengths
+		{
+			get { return _segmentLengths; }
+		}
+
+		/// <summary>
+		/// Gets the angles.
+		/// </summary>
+		public IList<double> Angles
+		{
+			get { return _angles; }
+		}
+
+		#endregion
+
 		#region Constructors
 
 		public Polygon(Point origin)
-			: base(origin)
+			: this(new Point[] { origin })
 		{
-			ParseAttributes();
 		}
 
 		public Polygon(IEnumerable<Point> points)
 			: base(points)
 		{
+			_segmentLengths = new List<double>();
+			_angles = new List<double>();
+
+			if (Points.Count > 1)
+			{
+				Point lastPoint = Points[0];
+				for (int pointsIndex = 1; pointsIndex < Points.Count; pointsIndex++)
+				{
+					_segmentLengths.Add(CalculateSegmentLength(lastPoint, Points[pointsIndex]));
+
+					lastPoint = Points[pointsIndex];
+				}
+				_segmentLengths.Add(CalculateSegmentLength(lastPoint, Points[0]));
+			}
+
 			ParseAttributes();
 		}
 
@@ -33,6 +74,16 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		public override void AddPoint(Point point)
 		{
 			base.AddPoint(point);
+
+			int newestPointIndex = Points.Count - 1;
+			if (Points.Count > 1)
+			{
+				_segmentLengths.Add(CalculateSegmentLength(Points[newestPointIndex - 1], Points[newestPointIndex]));
+			}
+			else if (Points.Count > 2)
+			{
+				_angles.Add(CalculateAngle(Points[newestPointIndex - 1], Points[newestPointIndex - 2], Points[newestPointIndex]));
+			}
 		}
 
 		/// <summary>

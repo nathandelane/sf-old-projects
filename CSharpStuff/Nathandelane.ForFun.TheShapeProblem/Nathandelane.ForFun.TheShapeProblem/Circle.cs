@@ -15,15 +15,15 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// </summary>
 		public double Radius
 		{
-			get { return base.HorizontalRadius; }
+			get { return base.SemiMinorRadius; }
 		}
 
 		#endregion
 
 		#region Constructors
 
-		public Circle(Point startPoint, double radius)
-			: base(startPoint, radius, radius)
+		public Circle(Point origin, Point radialPoint)
+			: base(origin, radialPoint, radialPoint)
 		{
 		}
 

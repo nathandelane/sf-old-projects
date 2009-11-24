@@ -8,13 +8,13 @@ namespace Nathandelane.ForFun.TheShapeProblem
 	public interface IElliptical : IGeometric
 	{
 		/// <summary>
-		/// Gets the Horizontal Radius of the IElliptical.
+		/// Gets the SemiMinor Radius of the IElliptical.
 		/// </summary>
-		double HorizontalRadius { get; }
+		double SemiMinorRadius { get; }
 
 		/// <summary>
-		///  Gets the Vertical Radiius of the IElliptical.
+		///  Gets the SemiMajor Radiius of the IElliptical.
 		/// </summary>
-		double VerticalRadius { get; }
+		double SemiMajorRadius { get; }
 	}
 }

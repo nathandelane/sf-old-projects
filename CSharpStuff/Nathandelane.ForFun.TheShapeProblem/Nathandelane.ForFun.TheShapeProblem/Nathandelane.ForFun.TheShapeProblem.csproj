@@ -53,6 +53,7 @@
     <Compile Include="Ellipse.cs" />
     <Compile Include="IElliptical.cs" />
     <Compile Include="IGeometric.cs" />
+    <Compile Include="IPolyoganol.cs" />
     <Compile Include="Polygon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
