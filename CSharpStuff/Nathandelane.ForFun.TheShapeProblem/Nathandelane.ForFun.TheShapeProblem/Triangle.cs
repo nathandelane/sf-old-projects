@@ -30,7 +30,14 @@ namespace Nathandelane.ForFun.TheShapeProblem
 
 		public override void AddPoint(Point point)
 		{
-			throw new NotSupportedException("Not allowed.");
+			if (Points.Count == Triangle.NumberOfSides)
+			{
+				throw new NotSupportedException("Not allowed.");
+			}
+			else
+			{
+				base.AddPoint(point);
+			}
 		}
 
 		#endregion
