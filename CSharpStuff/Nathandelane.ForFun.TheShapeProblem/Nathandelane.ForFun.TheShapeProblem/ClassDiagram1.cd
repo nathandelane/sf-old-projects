@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Nathandelane.ForFun.TheShapeProblem.Ellipse" Collapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAwAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Ellipse.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.179" />
+  </Class>
+  <Class Name="Nathandelane.ForFun.TheShapeProblem.Primitive" Collapsed="true">
+    <Position X="3.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQgAAAiAAAAAAAAgAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Primitive.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Nathandelane.ForFun.TheShapeProblem.Polygon" Collapsed="true">
+    <Position X="6" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEQAEAEAAAAAAAAAAAAAAAAAECAAAAAAgA=</HashCode>
+      <FileName>Polygon.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Nathandelane.ForFun.TheShapeProblem.Circle" Collapsed="true">
+    <Position X="0.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Circle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nathandelane.ForFun.TheShapeProblem.Quadrilateral" Collapsed="true">
+    <Position X="4.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Quadrilateral.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nathandelane.ForFun.TheShapeProblem.Triangle" Collapsed="true">
+    <Position X="6" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Triangle.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nathandelane.ForFun.TheShapeProblem.Rhombus" Collapsed="true">
+    <Position X="4.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rhombus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nathandelane.ForFun.TheShapeProblem.Square" Collapsed="true">
+    <Position X="4.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Square.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nathandelane.ForFun.TheShapeProblem.AllAnglesMustBeEqualAttribute" Collapsed="true">
+    <Position X="0.5" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>AllAnglesMustBeEqualAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nathandelane.ForFun.TheShapeProblem.AllSidesMustBeEqualAttribute" Collapsed="true">
+    <Position X="3.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>AllSidesMustBeEqualAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Nathandelane.ForFun.TheShapeProblem.AnglesMustEqualAttribute" Collapsed="true">
+    <Position X="6" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>AnglesMustEqualAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Nathandelane.ForFun.TheShapeProblem.IElliptical">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IElliptical.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Nathandelane.ForFun.TheShapeProblem.IGeometric">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQgAAACAAAAAAAAgAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>IGeometric.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Nathandelane.ForFun.TheShapeProblem.IPolyoganol">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAEAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>IPolyoganol.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

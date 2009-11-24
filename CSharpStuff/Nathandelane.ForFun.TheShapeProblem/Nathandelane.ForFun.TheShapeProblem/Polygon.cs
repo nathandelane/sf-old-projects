@@ -33,6 +33,37 @@ namespace Nathandelane.ForFun.TheShapeProblem
 			get { return _angles; }
 		}
 
+		/// <summary>
+		/// Gets whether the Polygon is equilateral.
+		/// </summary>
+		public bool IsEquilateral
+		{
+			get
+			{
+				bool anglesAndSidesAreEqual = true;
+
+				double initialAngle = _angles[0];
+				for(int anglesIndex = 1; anglesIndex < _angles.Count; anglesIndex++)
+				{
+					if (_angles[anglesIndex] != initialAngle)
+					{
+						anglesAndSidesAreEqual = false;
+					}
+				}
+
+				double initialSide = _segmentLengths[0];
+				for(int sidesIndex = 1; sidesIndex < _segmentLengths.Count; sidesIndex++)
+				{
+					if (_segmentLengths[sidesIndex] != initialSide)
+					{
+						anglesAndSidesAreEqual = false;
+					}
+				}
+
+				return anglesAndSidesAreEqual;
+			}
+		}
+
 		#endregion
 
 		#region Constructors

@@ -12,9 +12,14 @@ namespace Nathandelane.ForFun.TheShapeProblem
 		/// </summary>
 		IList<double> SegmentLengths { get; }
 
-		// <summary>
+		/// <summary>
 		/// Gets the angles.
 		/// </summary>
 		IList<double> Angles { get; }
+
+		/// <summary>
+		/// Gets whether the IPolyoganol is equilateral.
+		/// </summary>
+		bool IsEquilateral { get; }
 	}
 }
