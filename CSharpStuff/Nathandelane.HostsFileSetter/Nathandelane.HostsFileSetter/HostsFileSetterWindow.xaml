@@ -34,11 +34,11 @@
 		</Grid.RowDefinitions>
 		<Menu Grid.Row="0" IsMainMenu="True" VerticalAlignment="Top" Style="{StaticResource BlackGradientBackgroundStyle}">
 			<MenuItem Header="Hosts _File Setter">
-				<MenuItem Header="_New" Style="{StaticResource MenuItemStyle}">
+				<MenuItem Header="_New" Style="{StaticResource MenuItemStyle}" IsEnabled="False">
 					<MenuItem Header="_Custom Hosts File..." />
 				</MenuItem>
-				<MenuItem Header="_Import..." Style="{StaticResource MenuItemStyle}" />
-				<MenuItem Header="_Preferences..." Style="{StaticResource MenuItemStyle}" />
+				<MenuItem Header="_Import..." Style="{StaticResource MenuItemStyle}" IsEnabled="False" />
+				<MenuItem Header="_Preferences..." Style="{StaticResource MenuItemStyle}" IsEnabled="False" />
 				<Separator />
 				<MenuItem Header="E_xit" Style="{StaticResource MenuItemStyle}" Click="ExitHostsFileSetter" />
 			</MenuItem>
@@ -79,7 +79,7 @@
 					<Label Grid.Column="0" Content="Below is what your Hosts file currently contains." HorizontalAlignment="Left" />
 					<Button Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,5,5" Width="22" Height="22" ToolTip="Refresh DNS Cache" Focusable="False" Style="{StaticResource BlackGradientBackgroundStyle}" Click="FlushDnsCache" />
 				</Grid>
-				<TextBox Name="_hostsFileTextBox" Grid.Row="1" Margin="0,0,5,5" ScrollViewer.VerticalScrollBarVisibility="Visible" FontFamily="Lucida Console" FontSize="8.25pt" IsUndoEnabled="False" IsTabStop="False" IsEnabled="False" Focusable="True" />
+				<TextBox Name="_hostsFileTextBox" Grid.Row="1" Margin="0,0,5,5" ScrollViewer.VerticalScrollBarVisibility="Visible" FontFamily="Lucida Console" FontSize="8.25pt" IsUndoEnabled="False" IsTabStop="False" Focusable="True" IsReadOnly="True" />
 			</Grid>
 		</Grid>
 	</Grid>

@@ -10,6 +10,14 @@ namespace Nathandelane.HostsFileSetter.Models
 {
 	public class HostsFileCollectionModel : ObservableCollection<AbstractHostsFileConfiguration>
 	{
+		#region Fields
+
+		private string _domain;
+		private string _defaultIp;
+		private bool _includeWww;
+
+		#endregion
+
 		#region Constructors
 
 		public HostsFileCollectionModel()
@@ -28,6 +36,10 @@ namespace Nathandelane.HostsFileSetter.Models
 		/// </summary>
 		private void LoadServerConfiguration()
 		{
+			_domain = ConfigurationManager.AppSettings["domain"];
+			_defaultIp = ConfigurationManager.AppSettings["defaultIp"];
+			_includeWww = (ConfigurationManager.AppSettings["includeWww"].Equals("true", StringComparison.InvariantCultureIgnoreCase)) ? true : false;
+
 			ServerConfigurationSection servers = (ServerConfigurationSection)ConfigurationManager.GetSection("serverConfigSection");
 
 			if (servers != null)
@@ -51,8 +63,15 @@ namespace Nathandelane.HostsFileSetter.Models
 
 			foreach (HatElement hat in hats.Elements)
 			{
-				dnsEntries.Add(new DnsEntry() { Name = hat.Name, IpAddress = ipMask.Replace("n", hat.Value) });
+				dnsEntries.Add(new DnsEntry() { Name = String.Format("{0}.{1}", hat.Name, _domain), IpAddress = ipMask.Replace("n", hat.Value) });
 			}
+
+			if (_includeWww)
+			{
+				dnsEntries.Add(new DnsEntry() { Name = String.Format("www.{0}", _domain), IpAddress = ipMask.Replace("n", _defaultIp) });
+			}
+
+			dnsEntries.Add(new DnsEntry() { Name = _domain, IpAddress = ipMask.Replace("n", _defaultIp) });
 
 			return dnsEntries;
 		}
