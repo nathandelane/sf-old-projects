@@ -58,13 +58,7 @@
 					<RowDefinition Height="Auto" />
 				</Grid.RowDefinitions>
 				<Label Grid.Row="0" Content="Click on a server to change Hosts file." VerticalAlignment="Top" />
-				<ListBox Name="_serversListBox" Grid.Row="1" VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="5,0,5,5" SelectionChanged="UpdateHostsFile">
-					<ListBox.Style>
-						<Style TargetType="{x:Type ListBox}">
-							<Setter Property="SelectedIndex" Value="0" />
-						</Style>
-					</ListBox.Style>
-				</ListBox>
+				<ListBox Name="_serversListBox" Grid.Row="1" VerticalAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="5,0,5,5" SelectionChanged="UpdateHostsFile" />
 			</Grid>
 			<Grid Grid.Column="1">
 				<Grid.RowDefinitions>
