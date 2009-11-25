@@ -12,9 +12,9 @@ namespace Nathandelane.HostsFileSetter.Configuration
 
 		[ConfigurationProperty("admin", IsDefaultCollection = false)]
 		[ConfigurationCollection(typeof(AdminElementCollection), AddItemName = "addAdmin", ClearItemsName = "clearAdmin", RemoveItemName = "removeAdmin")]
-		public HatCollection Elements
+		public AdminElementCollection Elements
 		{
-			get { return (HatCollection)base["admin"]; }
+			get { return (AdminElementCollection)base["admin"]; }
 		}
 
 		#endregion
