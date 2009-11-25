@@ -1,32 +1,39 @@
 ﻿<Window x:Class="Nathandelane.HostsFileSetter.HostsFileSetterWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="Hosts File Setter" MinWidth="800" Width="800" MinHeight="450" Height="450" Padding="0" Loaded="LoadInitHostsFile">
+    Title="Hosts File Setter" MinWidth="800" Width="800" MinHeight="450" Height="450" Padding="0">
+	<Window.Resources>
+		<LinearGradientBrush x:Key="BlackGradient" StartPoint="0.5,0" EndPoint="0.5,1">
+			<GradientStop Color="#ADBBBF" Offset="0" />
+			<GradientStop Color="#6E7774" Offset="0.49" />
+			<GradientStop Color="#0A0E0A" Offset="0.5" />
+			<GradientStop Color="#0A080E" Offset="1" />
+		</LinearGradientBrush>
+		<Style x:Key="BlackGradientBackgroundStyle" TargetType="{x:Type Control}">
+			<Setter Property="Control.Background" Value="{StaticResource BlackGradient}" />
+			<Setter Property="Control.Foreground" Value="White" />
+		</Style>
+		<Style x:Key="MenuItemStyle" TargetType="{x:Type MenuItem}">
+			<Setter Property="Control.Foreground" Value="Black" />
+		</Style>
+	</Window.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto" />
 			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-		<Menu Grid.Row="0" IsMainMenu="True" VerticalAlignment="Top" Foreground="White">
-			<Menu.Background>
-				<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-					<GradientStop Color="#ADBBBF" Offset="0" />
-					<GradientStop Color="#6E7774" Offset="0.49" />
-					<GradientStop Color="#0A0E0A" Offset="0.5" />
-					<GradientStop Color="#0A080E" Offset="1" />
-				</LinearGradientBrush>
-			</Menu.Background>
+		<Menu Grid.Row="0" IsMainMenu="True" VerticalAlignment="Top" Style="{StaticResource BlackGradientBackgroundStyle}">
 			<MenuItem Header="Hosts _File Setter">
-				<MenuItem Header="_New" Foreground="Black">
+				<MenuItem Header="_New" Style="{StaticResource MenuItemStyle}">
 					<MenuItem Header="_Custom Hosts File..." />
 				</MenuItem>
-				<MenuItem Header="_Import..." Foreground="Black" />
-				<MenuItem Header="_Preferences..." Foreground="Black" />
+				<MenuItem Header="_Import..." Style="{StaticResource MenuItemStyle}" />
+				<MenuItem Header="_Preferences..." Style="{StaticResource MenuItemStyle}" />
 				<Separator />
-				<MenuItem Header="E_xit" Foreground="Black" />
+				<MenuItem Header="E_xit" Style="{StaticResource MenuItemStyle}" />
 			</MenuItem>
 			<MenuItem Header="_Help">
-				<MenuItem Header="_About..." Foreground="Black" />
+				<MenuItem Header="_About..." Style="{StaticResource MenuItemStyle}" />
 			</MenuItem>
 		</Menu>
 		<Grid Grid.Row="1" Margin="0,2,0,0">
@@ -62,16 +69,7 @@
 						<ColumnDefinition Width="Auto" />
 					</Grid.ColumnDefinitions>
 					<Label Grid.Column="0" Content="Below is what your Hosts file currently contains." HorizontalAlignment="Left" />
-					<Button Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,5,5" Width="22" Height="22" ToolTip="Refresh DNS Cache" Focusable="False">
-						<Button.Background>
-							<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-								<GradientStop Color="#ADBBBF" Offset="0" />
-								<GradientStop Color="#6E7774" Offset="0.49" />
-								<GradientStop Color="#0A0E0A" Offset="0.5" />
-								<GradientStop Color="#0A080E" Offset="1" />
-							</LinearGradientBrush>
-						</Button.Background>
-					</Button>
+					<Button Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,5,5" Width="22" Height="22" ToolTip="Refresh DNS Cache" Focusable="False" Style="{StaticResource BlackGradientBackgroundStyle}" />
 				</Grid>
 				<TextBox Name="_hostsFileTextBox" Grid.Row="1" Margin="0,0,5,5" ScrollViewer.VerticalScrollBarVisibility="Visible" FontFamily="Lucida Console" FontSize="8.25pt" IsUndoEnabled="False" IsTabStop="False" IsEnabled="False" Focusable="False" />
 			</Grid>

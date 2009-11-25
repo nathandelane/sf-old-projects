@@ -46,19 +46,6 @@ namespace Nathandelane.HostsFileSetter
 
 		#region Methods
 
-		private void LoadInitHostsFile(object sender, RoutedEventArgs e)
-		{
-			LoadHostsFile();
-		}
-
-		private void LoadHostsFile()
-		{
-			using (StreamReader reader = new StreamReader(ConfigurationManager.AppSettings[HostsFileSetterWindow.__hostsFileLocation]))
-			{
-				_hostsFileTextBox.Text = reader.ReadToEnd();
-			}
-		}
-
 		#endregion
 	}
 }
