@@ -7,11 +7,27 @@ namespace Nathandelane.HostsFileSetter
 {
 	public class ServerHostsFileConfiguration : AbstractHostsFileConfiguration
 	{
+		#region Fields
+
+		private string _serverName;
+
+		#endregion
+
+		#region Properties
+
+		public string ServerName
+		{
+			get { return _serverName; }
+		}
+
+		#endregion
+
 		#region Constructors
 
 		public ServerHostsFileConfiguration(string serverName, IEnumerable<DnsEntry> entries)
 			: base(String.Format(StringTable.DefaultHostsFileHeader, String.Format(StringTable.ServerComments, serverName)), entries)
 		{
+			_serverName = serverName;
 		}
 
 		#endregion
