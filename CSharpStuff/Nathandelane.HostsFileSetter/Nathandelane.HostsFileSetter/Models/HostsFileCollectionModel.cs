@@ -28,20 +28,14 @@ namespace Nathandelane.HostsFileSetter.Models
 		/// </summary>
 		private void LoadServerConfiguration()
 		{
-			try
-			{
-				ServerConfigurationSection servers = (ServerConfigurationSection)ConfigurationManager.GetSection("serverConfigSection");
+			ServerConfigurationSection servers = (ServerConfigurationSection)ConfigurationManager.GetSection("serverConfigSection");
 
-				if (servers != null)
-				{
-					foreach (ServerElement element in servers.Elements)
-					{
-						this.Add(new ServerHostsFileConfiguration(element.Name, GenerateDnsEntries(element.IpMask)));
-					}
-				}
-			}
-			catch (Exception ex)
+			if (servers != null)
 			{
+				foreach (ServerElement element in servers.Elements)
+				{
+					this.Add(new ServerHostsFileConfiguration(element.Name, GenerateDnsEntries(element.IpMask)));
+				}
 			}
 		}
 

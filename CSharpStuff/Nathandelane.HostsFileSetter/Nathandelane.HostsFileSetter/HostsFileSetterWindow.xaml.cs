@@ -42,17 +42,8 @@ namespace Nathandelane.HostsFileSetter
 		public HostsFileSetterWindow()
 		{
 			InitializeComponent();
-		}
 
-		#endregion
-
-		#region Methods
-
-		private void Window_Loaded(object sender, RoutedEventArgs e)
-		{
-			HostsFileSetterWindow.__servers = new HostsFileCollectionModel();
-
-			_serversListBox.ItemsSource = HostsFileSetterWindow.__servers;
+			_serversListBox.ItemsSource = new HostsFileCollectionModel();
 		}
 
 		#endregion

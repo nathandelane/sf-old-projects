@@ -22,5 +22,14 @@ namespace Nathandelane.HostsFileSetter
 		}
 
 		#endregion
+
+		#region Methods
+
+		public override string ToString()
+		{
+			return "Blank";
+		}
+
+		#endregion
 	}
 }
