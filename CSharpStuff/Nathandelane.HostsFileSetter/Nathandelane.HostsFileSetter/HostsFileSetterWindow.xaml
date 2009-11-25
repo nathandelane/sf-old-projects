@@ -31,7 +31,7 @@
 				<MenuItem Header="_Import..." Style="{StaticResource MenuItemStyle}" />
 				<MenuItem Header="_Preferences..." Style="{StaticResource MenuItemStyle}" />
 				<Separator />
-				<MenuItem Header="E_xit" Style="{StaticResource MenuItemStyle}" />
+				<MenuItem Header="E_xit" Style="{StaticResource MenuItemStyle}" Click="ExitHostsFileSetter" />
 			</MenuItem>
 			<MenuItem Header="_Help">
 				<MenuItem Header="_About..." Style="{StaticResource MenuItemStyle}" />

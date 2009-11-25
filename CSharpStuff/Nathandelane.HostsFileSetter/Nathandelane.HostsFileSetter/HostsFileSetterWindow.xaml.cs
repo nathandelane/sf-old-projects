@@ -30,13 +30,6 @@ namespace Nathandelane.HostsFileSetter
 
 		#endregion
 
-		#region Fields
-
-		private static readonly string __hostsFileLocation = "hostFileLocation";
-		private static HostsFileCollectionModel __servers;
-
-		#endregion
-
 		#region Constructor
 
 		public HostsFileSetterWindow()
@@ -44,6 +37,17 @@ namespace Nathandelane.HostsFileSetter
 			InitializeComponent();
 
 			_serversListBox.ItemsSource = new HostsFileCollectionModel();
+		}
+
+		#endregion
+
+		#region Methods
+
+		private void ExitHostsFileSetter(object sender, RoutedEventArgs e)
+		{
+			this.Close();
+
+			Environment.Exit(0);
 		}
 
 		#endregion
