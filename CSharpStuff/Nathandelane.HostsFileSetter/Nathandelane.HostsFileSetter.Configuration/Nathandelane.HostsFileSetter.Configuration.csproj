@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminElementCollection.cs" />
+    <Compile Include="AdminConfigurationSection.cs" />
+    <Compile Include="AdminElement.cs" />
     <Compile Include="HatConfigurationSection.cs" />
     <Compile Include="HatCollection.cs" />
     <Compile Include="HatElement.cs" />
