@@ -17,6 +17,15 @@
 		<Style x:Key="MenuItemStyle" TargetType="{x:Type MenuItem}">
 			<Setter Property="Control.Foreground" Value="Black" />
 		</Style>
+		<Style x:Key="HostsFileTextBox" TargetType="{x:Type TextBox}">
+			<Setter Property="OverridesDefaultStyle" Value="true" />
+			<Style.Triggers>
+				<Trigger Property="IsEnabled" Value="false">
+					<Setter Property="Background" Value="White" />
+					<Setter Property="Foreground" Value="Black" />
+				</Trigger>
+			</Style.Triggers>
+		</Style>
 	</Window.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
@@ -34,7 +43,7 @@
 				<MenuItem Header="E_xit" Style="{StaticResource MenuItemStyle}" Click="ExitHostsFileSetter" />
 			</MenuItem>
 			<MenuItem Header="_Help">
-				<MenuItem Header="_About..." Style="{StaticResource MenuItemStyle}" />
+				<MenuItem Header="_About..." Style="{StaticResource MenuItemStyle}" Click="ShowAboutDialog" />
 			</MenuItem>
 		</Menu>
 		<Grid Grid.Row="1" Margin="0,2,0,0">
@@ -70,7 +79,7 @@
 					<Label Grid.Column="0" Content="Below is what your Hosts file currently contains." HorizontalAlignment="Left" />
 					<Button Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,5,5" Width="22" Height="22" ToolTip="Refresh DNS Cache" Focusable="False" Style="{StaticResource BlackGradientBackgroundStyle}" />
 				</Grid>
-				<TextBox Name="_hostsFileTextBox" Grid.Row="1" Margin="0,0,5,5" ScrollViewer.VerticalScrollBarVisibility="Visible" FontFamily="Lucida Console" FontSize="8.25pt" IsUndoEnabled="False" IsTabStop="False" IsEnabled="False" Focusable="False" />
+				<TextBox Name="_hostsFileTextBox" Grid.Row="1" Margin="0,0,5,5" ScrollViewer.VerticalScrollBarVisibility="Visible" FontFamily="Lucida Console" FontSize="8.25pt" IsUndoEnabled="False" IsTabStop="False" IsEnabled="False" Focusable="True" Style="{StaticResource HostsFileTextBox}" />
 			</Grid>
 		</Grid>
 	</Grid>

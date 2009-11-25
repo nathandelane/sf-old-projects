@@ -1,0 +1,13 @@
+﻿<Window x:Class="Nathandelane.HostsFileSetter.AboutDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="About Hosts File Setter" Height="177" Width="224" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Closing="Hide">
+	<StackPanel>
+		<TextBlock TextWrapping="WrapWithOverflow" TextAlignment="Justify" Margin="6,6,6,0"  VerticalAlignment="Top">
+			Hosts File Setter is copyrighted by Nathan Lane (Nathandelane) © 2009, Nathandelane.
+		</TextBlock>
+		<TextBlock TextWrapping="WrapWithOverflow" TextAlignment="Justify" Margin="6,6,6,0"  VerticalAlignment="Top">
+			This program has been developer using .NET 3.5 and WPF.
+		</TextBlock>
+	</StackPanel>
+</Window>

@@ -23,13 +23,6 @@ namespace Nathandelane.HostsFileSetter
 	/// </summary>
 	public partial class HostsFileSetterWindow : Window
 	{
-		#region Runtime Interop
-
-		[DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
-		private static extern UInt32 DnsFlushResolverCache();
-
-		#endregion
-
 		#region Constructor
 
 		public HostsFileSetterWindow()
@@ -43,11 +36,24 @@ namespace Nathandelane.HostsFileSetter
 
 		#region Methods
 
+		#region Runtime Interop
+
+		[DllImport("dnsapi.dll", EntryPoint = "DnsFlushResolverCache")]
+		private static extern UInt32 DnsFlushResolverCache();
+
+		#endregion
+
 		private void ExitHostsFileSetter(object sender, RoutedEventArgs e)
 		{
 			this.Close();
 
 			Environment.Exit(0);
+		}
+
+		private void ShowAboutDialog(object sender, RoutedEventArgs e)
+		{
+			AboutDialog aboutDialog = new AboutDialog();
+			aboutDialog.Show();
 		}
 
 		#endregion
