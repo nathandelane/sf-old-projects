@@ -12,6 +12,7 @@ namespace Nathandelane.HostsFileSetter
 	{
 		#region Fields
 
+		private string _name;
 		private string _comments;
 		private IList<DnsEntry> _entries;
 
@@ -20,18 +21,25 @@ namespace Nathandelane.HostsFileSetter
 		#region Properties
 
 		/// <summary>
+		/// Gets the name of this configuration.
+		/// </summary>
+		public string Name
+		{
+			get { return _name; }
+		}
+
+		/// <summary>
 		/// Gets any comments that will appear at the top of the hosts file configuration.
 		/// </summary>
-		string Comments
+		public string Comments
 		{
 			get { return _comments; }
-			set { _comments = value; }
 		}
 
 		/// <summary>
 		/// Gets a list of Dns Entries that will appear in the hosts file configuration.
 		/// </summary>
-		IList<DnsEntry> Entries
+		public IList<DnsEntry> Entries
 		{
 			get { return _entries; }
 		}
@@ -40,26 +48,30 @@ namespace Nathandelane.HostsFileSetter
 
 		#region Constructors
 
-		public AbstractHostsFileConfiguration()
+		public AbstractHostsFileConfiguration(string name)
 		{
+			_name = name;
 			_comments = String.Empty;
 			_entries = new List<DnsEntry>();
 		}
 
-		public AbstractHostsFileConfiguration(string comments)
+		public AbstractHostsFileConfiguration(string name, string comments)
 		{
+			_name = name;
 			_comments = comments;
 			_entries = new List<DnsEntry>();
 		}
 
-		public AbstractHostsFileConfiguration(IEnumerable<DnsEntry> entries)
+		public AbstractHostsFileConfiguration(string name, IEnumerable<DnsEntry> entries)
 		{
+			_name = name;
 			_comments = String.Empty;
 			_entries = new List<DnsEntry>(entries);
 		}
 
-		public AbstractHostsFileConfiguration(string comments, IEnumerable<DnsEntry> entries)
+		public AbstractHostsFileConfiguration(string name, string comments, IEnumerable<DnsEntry> entries)
 		{
+			_name = name;
 			_comments = comments;
 			_entries = new List<DnsEntry>(entries);
 		}
@@ -75,6 +87,11 @@ namespace Nathandelane.HostsFileSetter
 		public void AddEntry(DnsEntry entry)
 		{
 			_entries.Add(entry);
+		}
+
+		public override string ToString()
+		{
+			return _name;
 		}
 
 		#endregion

@@ -89,6 +89,7 @@
     <Compile Include="DnsEntry.cs" />
     <Compile Include="AbstractHostsFileConfiguration.cs" />
     <Compile Include="Models\HostsFileCollectionModel.cs" />
+    <Compile Include="Models\HostsFileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

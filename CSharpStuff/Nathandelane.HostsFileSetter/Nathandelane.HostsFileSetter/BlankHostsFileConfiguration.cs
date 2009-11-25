@@ -17,7 +17,7 @@ namespace Nathandelane.HostsFileSetter
 		#region Constructors
 
 		public BlankHostsFileConfiguration()
-			: base(String.Format(StringTable.DefaultHostsFileHeader, BlankHostsFileConfiguration.__message))
+			: base("Blank", String.Format(StringTable.DefaultHostsFileHeader, BlankHostsFileConfiguration.__message))
 		{
 		}
 

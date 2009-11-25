@@ -43,6 +43,16 @@ namespace Nathandelane.HostsFileSetter
 
 		#endregion
 
+		private void Window_Loaded(object sender, RoutedEventArgs e)
+		{
+			ReloadHostsFile();
+		}
+
+		private void FlushDnsCache(object sender, RoutedEventArgs e)
+		{
+			DnsFlushResolverCache();
+		}
+
 		private void ExitHostsFileSetter(object sender, RoutedEventArgs e)
 		{
 			this.Close();
@@ -54,6 +64,35 @@ namespace Nathandelane.HostsFileSetter
 		{
 			AboutDialog aboutDialog = new AboutDialog();
 			aboutDialog.Show();
+		}
+
+		private void UpdateHostsFile(object sender, SelectionChangedEventArgs e)
+		{
+			if (sender is ListBox)
+			{
+				AbstractHostsFileConfiguration selectedConfig = (AbstractHostsFileConfiguration)((ListBox)sender).SelectedItem;
+
+				using (StreamWriter writer = new StreamWriter(new FileStream(ConfigurationManager.AppSettings["hostFileLocation"], FileMode.Truncate)))
+				{
+					writer.Write(selectedConfig.Comments);
+					writer.Write(String.Format("{0}{0}", Environment.NewLine));
+
+					foreach (DnsEntry dnsEntry in selectedConfig.Entries)
+					{
+						writer.WriteLine(String.Format("{0}\t\t\t{1}", dnsEntry.IpAddress, dnsEntry.Name));
+					}
+				}
+
+				ReloadHostsFile();
+				DnsFlushResolverCache();
+			}
+		}
+
+		private void ReloadHostsFile()
+		{
+			HostsFileModel model = new HostsFileModel();
+
+			_hostsFileTextBox.Text = model.FileContents;
 		}
 
 		#endregion
