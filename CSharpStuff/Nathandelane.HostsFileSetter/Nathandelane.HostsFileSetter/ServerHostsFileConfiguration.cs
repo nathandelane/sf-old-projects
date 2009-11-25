@@ -10,7 +10,7 @@ namespace Nathandelane.HostsFileSetter
 		#region Constructors
 
 		public ServerHostsFileConfiguration(string serverName, IEnumerable<DnsEntry> entries)
-			: base(serverName, String.Format(StringTable.DefaultHostsFileHeader, String.Format(StringTable.ServerComments, serverName)), entries)
+			: base(serverName, String.Format(StringTable.DefaultHostsFileHeader, serverName), entries)
 		{
 		}
 
