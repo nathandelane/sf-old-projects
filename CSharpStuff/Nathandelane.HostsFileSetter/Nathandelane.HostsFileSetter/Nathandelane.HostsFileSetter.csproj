@@ -78,6 +78,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DnsEntry.cs" />
+    <Compile Include="IHostsFileConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
