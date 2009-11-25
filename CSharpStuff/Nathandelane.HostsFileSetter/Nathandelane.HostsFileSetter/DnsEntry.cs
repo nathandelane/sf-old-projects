@@ -8,6 +8,6 @@ namespace Nathandelane.HostsFileSetter
 	public struct DnsEntry
 	{
 		public string Name;
-		public long IpAddress;
+		public string IpAddress;
 	}
 }

@@ -6,12 +6,12 @@ using System.Configuration;
 
 namespace Nathandelane.HostsFileSetter
 {
-	[ConfigurationCollection(typeof(ServerCollection), AddItemName = "addServer", ClearItemsName = "clearServers", RemoveItemName = "removeServer")]
-	public class ServerCollection : ConfigurationElementCollection
+	[ConfigurationCollection(typeof(ServerCollection), AddItemName = "addHat", ClearItemsName = "clearHats", RemoveItemName = "removeHat")]
+	public class HatCollection : ConfigurationElementCollection
 	{
 		#region Methods
 
-		public void Add(ServerElement element)
+		public void Add(HatElement element)
 		{
 			BaseAdd(element);
 		}
@@ -21,7 +21,7 @@ namespace Nathandelane.HostsFileSetter
 			BaseClear();
 		}
 
-		public void Remove(ServerElement element)
+		public void Remove(HatElement element)
 		{
 			BaseRemove(element.Name);
 		}
@@ -37,12 +37,12 @@ namespace Nathandelane.HostsFileSetter
 		}
 
 		/// <summary>
-		/// Creates a new ServerElement.
+		/// Creates a new HatElement.
 		/// </summary>
 		/// <returns></returns>
 		protected override ConfigurationElement CreateNewElement()
 		{
-			return new ServerElement();
+			return new HatElement();
 		}
 
 		/// <summary>
@@ -52,7 +52,7 @@ namespace Nathandelane.HostsFileSetter
 		/// <returns></returns>
 		protected override object GetElementKey(ConfigurationElement element)
 		{
-			return ((ServerElement)element).Name;
+			return ((HatElement)element).Name;
 		}
 
 		#endregion
