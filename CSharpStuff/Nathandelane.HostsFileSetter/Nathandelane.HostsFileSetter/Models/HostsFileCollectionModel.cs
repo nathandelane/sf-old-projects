@@ -46,7 +46,7 @@ namespace Nathandelane.HostsFileSetter.Models
 			{
 				foreach (ServerElement element in servers.Elements)
 				{
-					this.Add(new ServerHostsFileConfiguration(element.Name, GenerateDnsEntries(element.IpMask)));
+					this.Add(new ServerHostsFileConfiguration(element.Name, GenerateDnsEntries(element.IpMask, element.Pool)));
 				}
 			}
 		}
@@ -56,22 +56,36 @@ namespace Nathandelane.HostsFileSetter.Models
 		/// </summary>
 		/// <param name="ipMask"></param>
 		/// <returns></returns>
-		private IList<DnsEntry> GenerateDnsEntries(string ipMask)
+		private IList<DnsEntry> GenerateDnsEntries(string ipMask, string pool)
 		{
 			IList<DnsEntry> dnsEntries = new List<DnsEntry>();
-			HatConfigurationSection hats = (HatConfigurationSection)ConfigurationManager.GetSection("hatConfigSection");
 
-			foreach (HatElement hat in hats.Elements)
+			if (pool.Contains("consumer"))
 			{
-				dnsEntries.Add(new DnsEntry() { Name = String.Format("{0}.{1}", hat.Name, _domain), IpAddress = ipMask.Replace("n", hat.Value) });
+				HatConfigurationSection hats = (HatConfigurationSection)ConfigurationManager.GetSection("hatConfigSection");
+
+				foreach (HatElement hat in hats.Elements)
+				{
+					dnsEntries.Add(new DnsEntry() { Name = String.Format("{0}.{1}", hat.Name, _domain), IpAddress = ipMask.Replace("n", hat.Value) });
+				}
+
+				if (_includeWww)
+				{
+					dnsEntries.Add(new DnsEntry() { Name = String.Format("www.{0}", _domain), IpAddress = ipMask.Replace("n", _defaultIp) });
+				}
+
+				dnsEntries.Add(new DnsEntry() { Name = _domain, IpAddress = ipMask.Replace("n", _defaultIp) });
 			}
 
-			if (_includeWww)
+			if (pool.Contains("admin"))
 			{
-				dnsEntries.Add(new DnsEntry() { Name = String.Format("www.{0}", _domain), IpAddress = ipMask.Replace("n", _defaultIp) });
-			}
+				AdminConfigurationSection admin = (AdminConfigurationSection)ConfigurationManager.GetSection("adminConfigSection");
 
-			dnsEntries.Add(new DnsEntry() { Name = _domain, IpAddress = ipMask.Replace("n", _defaultIp) });
+				foreach (AdminElement nextAdmin in admin.Elements)
+				{
+					dnsEntries.Add(new DnsEntry() { Name = String.Format("{0}.{1}", nextAdmin.Name, _domain), IpAddress = ipMask.Replace("n", nextAdmin.Value) });
+				}
+			}
 
 			return dnsEntries;
 		}
