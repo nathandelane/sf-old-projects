@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 
-namespace Nathandelane.HostsFileSetter
+namespace Nathandelane.HostsFileSetter.Configuration
 {
-	[ConfigurationCollection(typeof(ServerCollection), AddItemName = "addHat", ClearItemsName = "clearHats", RemoveItemName = "removeHat")]
+	[ConfigurationCollection(typeof(HatCollection), AddItemName = "addHat", ClearItemsName = "clearHats", RemoveItemName = "removeHat")]
 	public class HatCollection : ConfigurationElementCollection
 	{
 		#region Methods

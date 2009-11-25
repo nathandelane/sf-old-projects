@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Nathandelane.HostsFileSetter.Models;
 
 namespace Nathandelane.HostsFileSetter
 {
@@ -32,6 +33,7 @@ namespace Nathandelane.HostsFileSetter
 		#region Fields
 
 		private static readonly string __hostsFileLocation = "hostFileLocation";
+		private static HostsFileCollectionModel __servers;
 
 		#endregion
 
@@ -45,6 +47,13 @@ namespace Nathandelane.HostsFileSetter
 		#endregion
 
 		#region Methods
+
+		private void Window_Loaded(object sender, RoutedEventArgs e)
+		{
+			HostsFileSetterWindow.__servers = new HostsFileCollectionModel();
+
+			_serversListBox.ItemsSource = HostsFileSetterWindow.__servers;
+		}
 
 		#endregion
 	}

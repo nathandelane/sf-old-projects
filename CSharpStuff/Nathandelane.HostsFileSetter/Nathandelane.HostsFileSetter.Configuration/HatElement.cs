@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 
-namespace Nathandelane.HostsFileSetter
+namespace Nathandelane.HostsFileSetter.Configuration
 {
-	public class ServerElement : ConfigurationElement
+	public class HatElement : ConfigurationElement
 	{
 		#region Properties
 
@@ -17,25 +17,25 @@ namespace Nathandelane.HostsFileSetter
 			set { this["name"] = value; }
 		}
 
-		[ConfigurationProperty("ipMask", IsRequired = true)]
-		public string IpMask
+		[ConfigurationProperty("value", IsRequired = true)]
+		public string Value
 		{
-			get { return (string)this["ipMask"]; }
-			set { this["ipMask"] = value; }
+			get { return (string)this["value"]; }
+			set { this["value"] = value; }
 		}
 
 		#endregion
 
 		#region Constructors
 
-		public ServerElement()
+		public HatElement()
 		{
 		}
 
-		public ServerElement(string name, string ipMask)
+		public HatElement(string name, string ipMask)
 		{
 			this.Name = name;
-			this.IpMask = ipMask;
+			this.Value = ipMask;
 		}
 
 		#endregion

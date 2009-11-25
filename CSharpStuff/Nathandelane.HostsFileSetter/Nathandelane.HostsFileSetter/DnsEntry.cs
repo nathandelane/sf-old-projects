@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Nathandelane.HostsFileSetter
 {
-	public struct DnsEntry
+	public class DnsEntry
 	{
-		public string Name;
-		public string IpAddress;
+		public string Name { get; set; }
+		public string IpAddress { get; set; }
 	}
 }

@@ -79,8 +79,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlankHostsFileConfiguration.cs" />
-    <Compile Include="HatCollection.cs" />
-    <Compile Include="HatElement.cs" />
     <Compile Include="DnsEntry.cs" />
     <Compile Include="AbstractHostsFileConfiguration.cs" />
     <Compile Include="Models\HostsFileCollectionModel.cs" />
@@ -97,8 +95,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ServerCollection.cs" />
-    <Compile Include="ServerElement.cs" />
     <Compile Include="ServerHostsFileConfiguration.cs" />
     <Compile Include="StringTable.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -114,6 +110,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\RudiRfreshIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nathandelane.HostsFileSetter.Configuration\Nathandelane.HostsFileSetter.Configuration.csproj">
+      <Project>{D9117355-9F2D-4031-AD50-E5F508984092}</Project>
+      <Name>Nathandelane.HostsFileSetter.Configuration</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

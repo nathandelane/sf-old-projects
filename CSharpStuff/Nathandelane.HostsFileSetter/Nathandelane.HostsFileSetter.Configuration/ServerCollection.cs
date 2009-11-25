@@ -4,11 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Configuration;
 
-namespace Nathandelane.HostsFileSetter
+namespace Nathandelane.HostsFileSetter.Configuration
 {
-	[ConfigurationCollection(typeof(ServerCollection), AddItemName = "addServer", ClearItemsName = "clearServers", RemoveItemName = "removeServer")]
 	public class ServerCollection : ConfigurationElementCollection
 	{
+		#region Properties
+
+		public override ConfigurationElementCollectionType CollectionType
+		{
+			get { return ConfigurationElementCollectionType.AddRemoveClearMap; }
+		}
+
+		public ServerElement this[int index]
+		{
+			get { return (ServerElement)BaseGet(index); }
+			set
+			{
+				if(BaseGet(index) != null)
+				{
+					BaseRemoveAt(index);
+				}
+
+				BaseAdd(index, value);
+			}
+		}
+
+		#endregion
+
+		#region Constructors
+
+		public ServerCollection()
+		{
+		}
+
+		#endregion
+
 		#region Methods
 
 		public void Add(ServerElement element)
@@ -19,6 +49,11 @@ namespace Nathandelane.HostsFileSetter
 		public void Clear()
 		{
 			BaseClear();
+		}
+
+		public int IndexOf(ServerElement element)
+		{
+			return BaseIndexOf(element);
 		}
 
 		public void Remove(ServerElement element)
