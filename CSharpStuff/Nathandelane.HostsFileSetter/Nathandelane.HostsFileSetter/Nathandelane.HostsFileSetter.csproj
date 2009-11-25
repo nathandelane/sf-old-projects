@@ -95,6 +95,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ServerCollection.cs" />
+    <Compile Include="ServerElement.cs" />
     <Compile Include="ServerHostsFileConfiguration.cs" />
     <Compile Include="StringTable.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
