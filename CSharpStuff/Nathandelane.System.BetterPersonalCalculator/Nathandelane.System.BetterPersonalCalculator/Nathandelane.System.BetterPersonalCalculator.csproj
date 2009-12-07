@@ -51,10 +51,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Addition.cs" />
+    <Compile Include="Division.cs" />
     <Compile Include="IExpression.cs" />
+    <Compile Include="Multiplication.cs" />
+    <Compile Include="NonNumeric.cs" />
     <Compile Include="Numeric.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subtraction.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
