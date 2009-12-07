@@ -52,7 +52,7 @@
   <ItemGroup>
     <Compile Include="Addition.cs" />
     <Compile Include="Division.cs" />
-    <Compile Include="IExpression.cs" />
+    <Compile Include="AbstractExpression.cs" />
     <Compile Include="Multiplication.cs" />
     <Compile Include="NonNumeric.cs" />
     <Compile Include="Numeric.cs" />

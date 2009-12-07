@@ -6,11 +6,11 @@ using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
-	public class Numeric : IExpression
+	public class Numeric : AbstractExpression
 	{
 		#region Fields
 
-		private static readonly Regex __matchExpression = new Regex("^(-){0,1}([\\d]+((.){0,1}[\\d]+){0,1}|[\\dA-Fa-f]+(h|H){1}|[0-7]+(o|O){1}|[01]+(b|B){1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly string __matchExpression =  "^(-){0,1}([\\d]+((.){0,1}[\\d]+){0,1}|[\\dA-Fa-f]+(h|H){1}|[0-7]+(o|O){1}|[01]+(b|B){1}){1}";
 
 		private string _value;
 
@@ -18,7 +18,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		#region Properties
 
-		public Regex MatchExpression
+		public static string MatchExpression
 		{
 			get { return Numeric.__matchExpression; }
 		}
@@ -36,12 +36,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		#region Methods
 
-		public string Calculate()
-		{
-			return _value;
-		}
-
-		public override string ToString()
+		public override string Calculate()
 		{
 			return _value;
 		}

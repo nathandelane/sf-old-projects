@@ -6,11 +6,11 @@ using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
-	public class NonNumeric : IExpression
+	public class NonNumeric : AbstractExpression
 	{
 		#region Properties
 
-		public Regex MatchExpression
+		public static Regex MatchExpression
 		{
 			get { throw new NotImplementedException(); }
 		}
@@ -19,7 +19,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		#region Methods
 
-		public string Calculate()
+		public override string Calculate()
 		{
 			return "i";
 		}

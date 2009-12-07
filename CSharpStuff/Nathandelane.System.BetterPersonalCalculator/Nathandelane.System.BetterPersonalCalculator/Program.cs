@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
+using Nathandelane.System.ClassExtensions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
@@ -9,11 +11,24 @@ namespace Nathandelane.System.BetterPersonalCalculator
 	{
 		static void Main(string[] args)
 		{
-			IExpression leftNumber = new Numeric("12");
-			IExpression rightNumber = new Numeric("13");
-			IExpression additionExp = new Addition(leftNumber, rightNumber);
+			string[] regularExpressionList = new string[]
+			{
+				Numeric.MatchExpression,
+				Multiplication.MatchExpression,
+				Division.MatchExpression,
+				Subtraction.MatchExpression,
+				Addition.MatchExpression
+			};
 
-			Console.WriteLine("{0} + {1} = {2}", leftNumber.Calculate(), rightNumber.Calculate(), additionExp.Calculate());
+			Console.WriteLine("Please enter a mathematical expression");
+
+			string userInput = Console.ReadLine();
+			string[] tokens = userInput.Tokenize(regularExpressionList);
+
+			foreach (string next in tokens)
+			{
+				
+			}
 		}
 	}
 }
