@@ -45,16 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractExpression.cs" />
-    <Compile Include="Tokens\IToken.cs" />
-    <Compile Include="Tokens\NotANumber.cs" />
-    <Compile Include="Tokens\Number.cs" />
+    <Compile Include="Expressions\AbstractExpression.cs" />
+    <Compile Include="Expressions\AdditionExpression.cs" />
+    <Compile Include="Expressions\NumericExpression.cs" />
+    <Compile Include="Expressions\Number.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tokens\Operators\Addition.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Tokens\Functions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
