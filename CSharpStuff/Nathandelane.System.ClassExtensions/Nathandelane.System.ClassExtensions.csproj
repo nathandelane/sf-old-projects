@@ -8,14 +8,18 @@
     <ProjectGuid>{27AD8D75-D05F-4839-90C2-B31B56E36EFA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Vehix.QA.Common.ClassExtensions</RootNamespace>
-    <AssemblyName>Vehix.QA.Common.ClassExtensions</AssemblyName>
+    <RootNamespace>Nathandelane.System.ClassExtensions</RootNamespace>
+    <AssemblyName>Nathandelane.System.ClassExtensions</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
