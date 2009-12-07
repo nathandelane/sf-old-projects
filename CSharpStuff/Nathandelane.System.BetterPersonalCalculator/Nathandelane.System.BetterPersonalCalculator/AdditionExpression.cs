@@ -5,8 +5,14 @@ using System.Text;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
-	public class AdditionExpression : AbstractExpression
+	public class AdditionExpression
 	{
+		#region Fields
+
+		private 
+
+		#endregion
+
 		#region Constructors
 
 		public AdditionExpression(IToken left, IToken right)

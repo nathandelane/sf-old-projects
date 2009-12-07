@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nathandelane.System.BetterPersonalCalculator.Expressions
 {
-	class NumericExpression
+	public class NumericExpression
 	{
 	}
 }

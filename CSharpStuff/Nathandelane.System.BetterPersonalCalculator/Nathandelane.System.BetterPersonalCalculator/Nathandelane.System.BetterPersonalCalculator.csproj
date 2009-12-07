@@ -45,10 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Expressions\AbstractExpression.cs" />
-    <Compile Include="Expressions\AdditionExpression.cs" />
-    <Compile Include="Expressions\NumericExpression.cs" />
-    <Compile Include="Expressions\Number.cs" />
+    <Compile Include="AdditionExpression.cs" />
+    <Compile Include="NumericExpression.cs" />
+    <Compile Include="Number.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
