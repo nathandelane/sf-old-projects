@@ -14,7 +14,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		private static readonly int __binaryBase = 2;
 		private static readonly int __octalBase = 8;
 		private static readonly int __hexadecimalBase = 16;
-		private static readonly Regex __matchExpression = new Regex("(-){0,1}([\\d]+((.){0,1}[\\d]+){0,1}|[\\dA-Fa-f]+(h|H){1}|[0-7]+(o|O){1}|[01]+(b|B){1})", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __matchExpression = new Regex("/^(-){0,1}([\\d]+((.){0,1}[\\d]+){0,1}|[\\dA-Fa-f]+(h|H){1}|[0-7]+(o|O){1}|[01]+(b|B){1})/", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		private string _value;
 
