@@ -11,7 +11,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 	{
 		#region Fields
 
-		private static readonly Regex __matchExpression = new Regex("/^(+){1}/");
+		private static readonly Regex __matchExpression = new Regex("^[+]{1}");
 
 		private IExpression _left;
 		private IExpression _right;
@@ -42,6 +42,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		public string Calculate()
 		{
 			return (double.Parse(_left.Calculate(), CultureInfo.CurrentCulture) + double.Parse(_right.Calculate(), CultureInfo.CurrentCulture)).ToString();
+		}
+
+		public override string ToString()
+		{
+			return Calculate();
 		}
 
 		#endregion
