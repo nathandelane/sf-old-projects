@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
@@ -35,6 +36,47 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#endregion
 
 		#region Methods
+
+		public string WholePart()
+		{
+			string value = _value;
+			int decimalIndex = -1;
+
+			if ((decimalIndex = value.IndexOf(".", StringComparison.InvariantCultureIgnoreCase)) > -1)
+			{
+				value = _value.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries)[0];
+			}
+
+			return value;
+		}
+
+		public string FractionalPart()
+		{
+			string value = "0";
+			int decimalIndex = -1;
+
+			if ((decimalIndex = value.IndexOf(".", StringComparison.InvariantCultureIgnoreCase)) > -1)
+			{
+				value = _value.Split(new string[] { "." }, StringSplitOptions.RemoveEmptyEntries)[1];
+			}
+
+			return value;
+		}
+
+		public string AsHexadecimal()
+		{
+			return String.Concat(Convert.ToString(long.Parse(WholePart()), 16), "h");
+		}
+
+		public string AsOctal()
+		{
+			return String.Concat(Convert.ToString(long.Parse(WholePart()), 8), "o");
+		}
+
+		public string AsBinary()
+		{
+			return String.Concat(Convert.ToString(long.Parse(WholePart()), 2), "b");
+		}
 
 		public override string Calculate()
 		{
