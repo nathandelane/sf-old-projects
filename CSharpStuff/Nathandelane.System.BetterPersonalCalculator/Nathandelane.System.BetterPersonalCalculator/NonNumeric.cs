@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
-	public class NonNumeric : AbstractExpression
+	public class NonNumeric : IExpression
 	{
 		#region Properties
 
@@ -19,9 +19,9 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		#region Methods
 
-		public override string Calculate()
+		public IExpression Calculate(IEnumerable<IExpression> operands)
 		{
-			return "i";
+			return null;
 		}
 
 		#endregion

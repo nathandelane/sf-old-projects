@@ -6,17 +6,8 @@ using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
-	public abstract class AbstractExpression
+	public interface IExpression
 	{
-		#region Methods
-
-		public abstract string Calculate();
-
-		public override string ToString()
-		{
-			return Calculate();
-		}
-
-		#endregion
+		IExpression Calculate(IEnumerable<IExpression> operands);
 	}
 }

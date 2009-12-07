@@ -7,14 +7,14 @@ using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
-	public class Addition : AbstractExpression
+	public class Addition : IExpression
 	{
 		#region Fields
 
 		private static readonly string __matchExpression = "^[+]{1}";
 
-		private AbstractExpression _left;
-		private AbstractExpression _right;
+		private IExpression _left;
+		private IExpression _right;
 
 		#endregion
 
@@ -29,7 +29,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		#region Constructors
 
-		public Addition(AbstractExpression left, AbstractExpression right)
+		public Addition(IExpression left, IExpression right)
 		{
 			_left = left;
 			_right = right;
@@ -39,9 +39,16 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		#region Methods
 
-		public override string Calculate()
+		public IExpression Calculate(IEnumerable<IExpression> operands)
 		{
-			return (double.Parse(_left.Calculate(), CultureInfo.CurrentCulture) + double.Parse(_right.Calculate(), CultureInfo.CurrentCulture)).ToString();
+			IExpression result = new Numeric("0");
+
+			return result;
+		}
+
+		public override string ToString()
+		{
+			return String.Concat(_left.ToString(), " + ", _right.ToString());
 		}
 
 		#endregion
