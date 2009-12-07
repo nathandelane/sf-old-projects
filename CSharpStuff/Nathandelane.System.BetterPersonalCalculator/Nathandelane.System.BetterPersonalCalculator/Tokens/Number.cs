@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
@@ -13,6 +14,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		private static readonly int __binaryBase = 2;
 		private static readonly int __octalBase = 8;
 		private static readonly int __hexadecimalBase = 16;
+		private static readonly Regex __matchExpression = new Regex("(-){0,1}([\\d]+((.){0,1}[\\d]+){0,1}|[\\dA-Fa-f]+(h|H){1}|[0-7]+(o|O){1}|[01]+(b|B){1})", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		private string _value;
 
@@ -21,11 +23,19 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#region Properties
 
 		/// <summary>
-		/// Gets the value of NotANumber which is String.Empty.
+		/// Gets the value of Number.
 		/// </summary>
 		public string Value
 		{
 			get { return _value; }
+		}
+
+		/// <summary>
+		/// Gets the match expression of Number.
+		/// </summary>
+		public Regex MatchExpression
+		{
+			get { return Number.__matchExpression; }
 		}
 
 		#endregion

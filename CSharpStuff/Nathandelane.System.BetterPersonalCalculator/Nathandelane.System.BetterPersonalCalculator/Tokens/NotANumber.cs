@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
@@ -15,6 +16,14 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		public string Value
 		{
 			get { return String.Empty; }
+		}
+
+		/// <summary>
+		/// Gets the match expression of NotANumber which is null.
+		/// </summary>
+		public Regex MatchExpression
+		{
+			get { return null; }
 		}
 
 		#endregion
