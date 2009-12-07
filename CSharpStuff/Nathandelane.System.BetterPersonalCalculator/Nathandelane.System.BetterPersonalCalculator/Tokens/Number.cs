@@ -6,7 +6,7 @@ using System.Globalization;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
-	public class Number : AbstractToken
+	public class Number : IToken
 	{
 		#region Fields
 
@@ -14,13 +14,27 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		private static readonly int __octalBase = 8;
 		private static readonly int __hexadecimalBase = 16;
 
+		private string _value;
+
+		#endregion
+
+		#region Properties
+
+		/// <summary>
+		/// Gets the value of NotANumber which is String.Empty.
+		/// </summary>
+		public string Value
+		{
+			get { return _value; }
+		}
+
 		#endregion
 
 		#region Constructors
 
 		public Number(string value)
-			: base(value)
 		{
+			_value = value;
 		}
 
 		#endregion
@@ -33,7 +47,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// <returns></returns>
 		public string GetWholePart()
 		{
-			string wholePart = Value;
+			string wholePart = _value;
 			int decimalSeparatorIndex = -1;
 
 			if ((decimalSeparatorIndex = wholePart.IndexOf(".", StringComparison.InvariantCultureIgnoreCase) + 1) > 0)

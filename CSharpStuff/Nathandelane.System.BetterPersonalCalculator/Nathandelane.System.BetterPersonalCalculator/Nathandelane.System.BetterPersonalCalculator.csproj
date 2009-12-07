@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tokens\IToken.cs" />
     <Compile Include="Tokens\NotANumber.cs" />
     <Compile Include="Tokens\Number.cs" />
     <Compile Include="Program.cs" />
