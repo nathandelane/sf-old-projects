@@ -2,23 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
-	public class AdditionExpression
+	public interface IExpression
 	{
-		#region Fields
+		#region Properties
 
-		private 
+		Regex MatchExpression { get; }
 
 		#endregion
 
-		#region Constructors
+		#region Methods
 
-		public AdditionExpression(IToken left, IToken right)
-		{
-
-		}
+		string Calculate();
 
 		#endregion
 	}
