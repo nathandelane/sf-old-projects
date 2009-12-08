@@ -7,6 +7,15 @@ namespace Nathandelane.System.BetterPersonalCalculator
 {
 	public class NotANumberToken : Token
 	{
+		#region Properties
+
+		public override TokenType Type
+		{
+			get { return TokenType.NotANumber; }
+		}
+
+		#endregion
+
 		#region Constructors
 
 		public NotANumberToken()

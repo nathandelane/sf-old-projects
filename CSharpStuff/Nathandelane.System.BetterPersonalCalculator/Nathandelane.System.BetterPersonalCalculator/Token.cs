@@ -13,6 +13,12 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		#endregion
 
+		#region Properties
+
+		public abstract TokenType Type { get; }
+
+		#endregion
+
 		#region Constructors
 
 		protected Token(string value)
