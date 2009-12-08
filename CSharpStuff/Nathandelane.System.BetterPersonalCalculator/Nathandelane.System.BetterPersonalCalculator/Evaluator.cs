@@ -37,7 +37,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		public Evaluator(string expression)
 		{
 			Stack<IExpression> expressionStack = new Stack<IExpression>();
-			string[] tokens = expression.Tokenize(Evaluator.__regexStrings);
+			IEnumerable<IToken> tokens = Tokenize(expression);
 
 			foreach (string nextToken in tokens)
 			{
@@ -73,6 +73,13 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#endregion
 
 		#region Methods
+
+		private IEnumerable<IToken> Tokenize(string expression)
+		{
+			IEnumerable<IToken> tokens = new List<IToken>();
+
+			return tokens;
+		}
 
 		public IExpression evaluate(IDictionary<string, IExpression> context)
 		{
