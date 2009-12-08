@@ -19,14 +19,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			Subtraction.MatchExpression,
 			Addition.MatchExpression
 		};
-		private static readonly IDictionary<string, Regex> __regexes = new Dictionary<string, Regex>()
-		{
-			{ "numeric", new Regex(Numeric.MatchExpression, RegexOptions.Compiled | RegexOptions.CultureInvariant) },
-			{ "division", new Regex(Division.MatchExpression, RegexOptions.Compiled | RegexOptions.CultureInvariant) },
-			{ "multiplication", new Regex(Multiplication.MatchExpression, RegexOptions.Compiled | RegexOptions.CultureInvariant) },
-			{ "subtraction", new Regex(Subtraction.MatchExpression, RegexOptions.Compiled | RegexOptions.CultureInvariant) },
-			{ "addition", new Regex(Addition.MatchExpression, RegexOptions.Compiled | RegexOptions.CultureInvariant) }
-		};
 
 		private IExpression _expressionTree;
 
@@ -36,38 +28,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		public Evaluator(string expression)
 		{
-			Stack<IExpression> expressionStack = new Stack<IExpression>();
-			IEnumerable<IToken> tokens = Tokenize(expression);
-
-			foreach (string nextToken in tokens)
-			{
-				if (Evaluator.__regexes["numeric"].IsMatch(nextToken))
-				{
-					expressionStack.Push(new Numeric(new NumberToken(nextToken)));
-				}
-				else if (Evaluator.__regexes["division"].IsMatch(nextToken))
-				{
-					IExpression subExpression = new Division(expressionStack.Pop(), expressionStack.Pop());
-					expressionStack.Push(subExpression);
-				}
-				else if (Evaluator.__regexes["multiplication"].IsMatch(nextToken))
-				{
-					IExpression subExpression = new Multiplication(expressionStack.Pop(), expressionStack.Pop());
-					expressionStack.Push(subExpression);
-				}
-				else if (Evaluator.__regexes["subtraction"].IsMatch(nextToken))
-				{
-					IExpression subExpression = new Subtraction(expressionStack.Pop(), expressionStack.Pop());
-					expressionStack.Push(subExpression);
-				}
-				else if (Evaluator.__regexes["addition"].IsMatch(nextToken))
-				{
-					IExpression subExpression = new Addition(expressionStack.Pop(), expressionStack.Pop());
-					expressionStack.Push(subExpression);
-				}
-			}
-
-			_expressionTree = expressionStack.Pop();
 		}
 
 		#endregion

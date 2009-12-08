@@ -55,6 +55,7 @@
     <Compile Include="DivideToken.cs" />
     <Compile Include="Expressions\Division.cs" />
     <Compile Include="Evaluator.cs" />
+    <Compile Include="Expressions\ExpressionPrecedence.cs" />
     <Compile Include="Expressions\IExpression.cs" />
     <Compile Include="IToken.cs" />
     <Compile Include="Expressions\Multiplication.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Expressions\Subtraction.cs" />
     <Compile Include="SubtractToken.cs" />
     <Compile Include="Expressions\Variable.cs" />
+    <Compile Include="TokenYard.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
