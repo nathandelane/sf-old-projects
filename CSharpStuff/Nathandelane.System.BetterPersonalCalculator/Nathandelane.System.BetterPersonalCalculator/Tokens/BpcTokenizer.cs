@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
-	public class BpcTokenizer
+	public class BpcTokenizer : ITokenizer
 	{
 		#region Fields
 
