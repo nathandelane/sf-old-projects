@@ -17,6 +17,16 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		public abstract TokenType Type { get; }
 
+		public abstract ExpressionPrecedence Precedence { get; }
+
+		/// <summary>
+		/// Gets the length of the token value.
+		/// </summary>
+		public int Length
+		{
+			get { return _value.Length; }
+		}
+
 		#endregion
 
 		#region Constructors

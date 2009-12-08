@@ -21,6 +21,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			get { return TokenType.Number; }
 		}
 
+		public override ExpressionPrecedence Precedence
+		{
+			get { return ExpressionPrecedence.Number; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -46,7 +51,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// <returns></returns>
 		public static Token Parse(string line)
 		{
-			Token token = new NotANumberToken();
+			Token token = new NullToken();
 
 			if (NumberToken.__numberPattern.IsMatch(line))
 			{

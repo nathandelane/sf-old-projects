@@ -14,12 +14,17 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			get { return TokenType.NotANumber; }
 		}
 
+		public override ExpressionPrecedence Precedence
+		{
+			get { return ExpressionPrecedence.Number; }
+		}
+
 		#endregion
 
 		#region Constructors
 
 		public NotANumberToken()
-			: base(String.Empty)
+			: base("i")
 		{
 		}
 
