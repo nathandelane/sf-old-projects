@@ -80,6 +80,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				{
 					tokenIsValid = true;
 				}
+				else if ((token = PerenthesisToken.Parse(internalLine)) is PerenthesisToken)
+				{
+					tokenIsValid = true;
+				}
 				else
 				{
 					throw new UnrecognizedTokenException(String.Format("Unrecognized token at {0}.", internalLine));

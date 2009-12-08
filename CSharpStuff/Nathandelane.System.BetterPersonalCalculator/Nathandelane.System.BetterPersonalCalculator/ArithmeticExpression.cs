@@ -10,7 +10,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#region Constructors
 
 		public ArithmeticExpression(Token operation, Expression left, Expression right)
-			: base(ExpressionPrecedence.Variable, new NullToken(), new List<Expression>() { left, right })
+			: base(DeterminePrecedence(operation), operation, new List<Expression>() { left, right })
 		{
 		}
 
