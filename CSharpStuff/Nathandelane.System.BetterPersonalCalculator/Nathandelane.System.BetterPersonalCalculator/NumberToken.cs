@@ -63,6 +63,40 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			return token;
 		}
 
+		/// <summary>
+		/// Gets the whole part of the number.
+		/// </summary>
+		/// <returns></returns>
+		public string WholePart()
+		{
+			string value = this.ToString();
+			int index = -1;
+
+			if ((index = value.IndexOf(".", StringComparison.InvariantCultureIgnoreCase)) > -1)
+			{
+				value = value.Substring(0, index);
+			}
+
+			return value;
+		}
+
+		/// <summary>
+		/// Gets the fractional part of the number.
+		/// </summary>
+		/// <returns></returns>
+		public string FractionalPart()
+		{
+			string value = this.ToString();
+			int index = -1;
+
+			if ((index = value.IndexOf(".", StringComparison.InvariantCultureIgnoreCase)) > -1)
+			{
+				value = value.Substring(index + 1);
+			}
+
+			return value;
+		}
+
 		#endregion
 	}
 }
