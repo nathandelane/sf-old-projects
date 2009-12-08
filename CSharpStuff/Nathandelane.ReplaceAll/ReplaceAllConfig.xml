@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<config>
-	<add name="Replace All Qa-Web-XX" oldValue="qa-web-xx" newValue="qa-web-01">
-		<file path="D:\Services\Microsoft Internet Information Service\Vehix Consumer Portal\Web.config" />
-		<file path="D:\Services\Microsoft Internet Information Service\Vehix Widgets Portal\Web.config" />
-	</add>
-</config>
