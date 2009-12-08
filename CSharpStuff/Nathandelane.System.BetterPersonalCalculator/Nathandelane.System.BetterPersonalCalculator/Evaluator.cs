@@ -43,7 +43,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			{
 				if (Evaluator.__regexes["numeric"].IsMatch(nextToken))
 				{
-					expressionStack.Push(new Numeric(nextToken));
+					expressionStack.Push(new Numeric(new NumberToken(nextToken)));
 				}
 				else if (Evaluator.__regexes["division"].IsMatch(nextToken))
 				{

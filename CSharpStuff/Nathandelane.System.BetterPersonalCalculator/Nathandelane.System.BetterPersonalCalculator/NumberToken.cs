@@ -24,6 +24,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		#region Constructors
 
+		public NumberToken()
+		{
+			_value = "0";
+		}
+
 		public NumberToken(string value)
 		{
 			_value = value;

@@ -40,11 +40,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		public IExpression Calculate(IDictionary<string, IExpression> context)
 		{
-			IExpression result = new Numeric("0");
+			IExpression result = new Numeric(new NumberToken());
 			double left = double.Parse(_left.Calculate(context).ToString());
 			double right = double.Parse(_right.Calculate(context).ToString());
 
-			result = new Numeric((left / right).ToString());
+			result = new Numeric(new NumberToken((left / right).ToString()));
 
 			return result;
 		}
