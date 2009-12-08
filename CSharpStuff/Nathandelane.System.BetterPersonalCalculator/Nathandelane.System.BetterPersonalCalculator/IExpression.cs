@@ -8,6 +8,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 {
 	public interface IExpression
 	{
-		IExpression Calculate(IEnumerable<IExpression> operands);
+		IExpression Calculate(IDictionary<string, IExpression> context);
 	}
 }

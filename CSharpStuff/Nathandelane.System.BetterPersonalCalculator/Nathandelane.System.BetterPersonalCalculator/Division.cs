@@ -38,9 +38,13 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		#region Methods
 
-		public IExpression Calculate(IEnumerable<IExpression> operands)
+		public IExpression Calculate(IDictionary<string, IExpression> context)
 		{
 			IExpression result = new Numeric("0");
+			double left = double.Parse(_left.Calculate(context).ToString());
+			double right = double.Parse(_right.Calculate(context).ToString());
+
+			result = new Numeric((left / right).ToString());
 
 			return result;
 		}

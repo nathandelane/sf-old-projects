@@ -19,9 +19,14 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		#region Methods
 
-		public IExpression Calculate(IEnumerable<IExpression> operands)
+		public IExpression Calculate(IDictionary<string, IExpression> context)
 		{
 			return null;
+		}
+
+		public override string ToString()
+		{
+			return "i";
 		}
 
 		#endregion

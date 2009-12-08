@@ -78,7 +78,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			return String.Concat(Convert.ToString(long.Parse(WholePart()), 2), "b");
 		}
 
-		public IExpression Calculate(IEnumerable<IExpression> operands)
+		public IExpression Calculate(IDictionary<string, IExpression> context)
 		{
 			return this;
 		}
