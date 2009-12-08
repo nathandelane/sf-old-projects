@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tokens\CommentToken.cs" />
     <Compile Include="Expressions\ArithmeticExpression.cs" />
     <Compile Include="Tokens\BpcTokenizer.cs" />
     <Compile Include="CalculatorContext.cs" />

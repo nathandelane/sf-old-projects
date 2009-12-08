@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Configuration;
+using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
@@ -54,45 +55,60 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		private void ParseTokens(string line)
 		{
 			Token lastToken = new NullToken();
-			string internalLine = line.Replace(" ", String.Empty);
+			string internalLine = line;
+			Regex spaceRegex = new Regex("^[\\s]+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 			while (!String.IsNullOrEmpty(internalLine))
 			{
 				Token token = new NullToken();
 				bool tokenIsValid = false;
 
-				if (lastToken is NullToken || !(lastToken is NumberToken))
+				if (spaceRegex.IsMatch(internalLine))
 				{
-					if ((token = NumberToken.Parse(internalLine)) is NumberToken)
-					{
-						tokenIsValid = true;
-					}
-				}
-				else if ((token = OperatorToken.Parse(internalLine)) is OperatorToken)
-				{
-					tokenIsValid = true;
-				}
-				else if ((token = ConstantToken.Parse(internalLine)) is ConstantToken)
-				{
-					tokenIsValid = true;
-				}
-				else if ((token = FunctionToken.Parse(internalLine)) is FunctionToken)
-				{
-					tokenIsValid = true;
-				}
-				else if ((token = PerenthesisToken.Parse(internalLine)) is PerenthesisToken)
-				{
-					tokenIsValid = true;
+					int length = spaceRegex.Matches(internalLine)[0].Value.Length;
+
+					internalLine = RemoveToken(length, internalLine);
 				}
 				else
 				{
-					throw new UnrecognizedTokenException(String.Format("Unrecognized token at {0}.", internalLine));
-				}
+					if (lastToken is NullToken || !(lastToken is NumberToken))
+					{
+						if ((token = NumberToken.Parse(internalLine)) is NumberToken)
+						{
+							tokenIsValid = true;
+						}
+					}
+					else if ((token = OperatorToken.Parse(internalLine)) is OperatorToken)
+					{
+						tokenIsValid = true;
+					}
+					else if ((token = ConstantToken.Parse(internalLine)) is ConstantToken)
+					{
+						tokenIsValid = true;
+					}
+					else if ((token = FunctionToken.Parse(internalLine)) is FunctionToken)
+					{
+						tokenIsValid = true;
+					}
+					else if ((token = PerenthesisToken.Parse(internalLine)) is PerenthesisToken)
+					{
+						tokenIsValid = true;
+					}
+					else if ((token = CommentToken.Parse(internalLine)) is CommentToken)
+					{
+						tokenIsValid = false;
+						internalLine = RemoveToken(token.Length, internalLine);
+					}
+					else
+					{
+						throw new UnrecognizedTokenException(String.Format("Unrecognized token at {0}.", internalLine));
+					}
 
-				if (tokenIsValid)
-				{
-					internalLine = AddTokenToCollection(token, internalLine);
-					lastToken = token;
+					if (tokenIsValid)
+					{
+						internalLine = AddTokenToCollection(token, internalLine);
+						lastToken = token;
+					}
 				}
 			}
 		}
@@ -107,11 +123,22 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		{
 			string internalLine = line;
 
-			internalLine = internalLine.Substring(token.Length);
+			internalLine = RemoveToken(token.Length, line);
 
 			_tokens.Add(token);
 
 			return internalLine;
+		}
+
+		/// <summary>
+		/// Removes the token from the line.
+		/// </summary>
+		/// <param name="length"></param>
+		/// <param name="line"></param>
+		/// <returns></returns>
+		private string RemoveToken(int length, string line)
+		{
+			return line.Substring(length);
 		}
 
 		#endregion

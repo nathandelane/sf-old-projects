@@ -14,7 +14,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		{
 			_context = CalculatorContext.GetInstance();
 
-			BpcTokenizer tokenizer = new BpcTokenizer("-24 + 12 - 13 +42--14");
+			BpcTokenizer tokenizer = new BpcTokenizer("-24 + 12 - 13 +42--14 # This is a comment.");
 		}
 
 		static void Main(string[] args)
