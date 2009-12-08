@@ -66,12 +66,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArithmeticExpression.cs" />
     <Compile Include="BpcTokenizer.cs" />
     <Compile Include="CalculatorContext.cs" />
+    <Compile Include="ConstantExpression.cs" />
     <Compile Include="ConstantToken.cs" />
     <Compile Include="Expression.cs" />
     <Compile Include="FunctionToken.cs" />
+    <Compile Include="NumericExpression.cs" />
     <Compile Include="OperatorToken.cs" />
     <Compile Include="NotANumberToken.cs" />
     <Compile Include="NullToken.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="ExpressionPrecedence.cs" />
     <Compile Include="TokenType.cs" />
     <Compile Include="UnrecognizedTokenException.cs" />
+    <Compile Include="VariableExpression.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
