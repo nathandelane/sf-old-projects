@@ -66,23 +66,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BpcTokenizer.cs" />
+    <Compile Include="ArithmeticExpression.cs" />
+    <Compile Include="Tokens\BpcTokenizer.cs" />
     <Compile Include="CalculatorContext.cs" />
     <Compile Include="ConstantExpression.cs" />
-    <Compile Include="ConstantToken.cs" />
+    <Compile Include="Tokens\ConstantToken.cs" />
     <Compile Include="Expression.cs" />
-    <Compile Include="FunctionToken.cs" />
+    <Compile Include="FunctionExpression.cs" />
+    <Compile Include="Tokens\FunctionToken.cs" />
+    <Compile Include="MalformedExpressionException.cs" />
     <Compile Include="NumericExpression.cs" />
-    <Compile Include="OperatorToken.cs" />
-    <Compile Include="NotANumberToken.cs" />
-    <Compile Include="NullToken.cs" />
-    <Compile Include="NumberToken.cs" />
+    <Compile Include="Tokens\OperatorToken.cs" />
+    <Compile Include="Tokens\NotANumberToken.cs" />
+    <Compile Include="Tokens\NullToken.cs" />
+    <Compile Include="Tokens\NumberToken.cs" />
+    <Compile Include="Tokens\PerenthesisToken.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Token.cs" />
+    <Compile Include="Tokens\Token.cs" />
     <Compile Include="ExpressionPrecedence.cs" />
-    <Compile Include="TokenType.cs" />
-    <Compile Include="UnrecognizedTokenException.cs" />
+    <Compile Include="Tokens\TokenType.cs" />
+    <Compile Include="Tokens\UnrecognizedTokenException.cs" />
     <Compile Include="VariableExpression.cs" />
   </ItemGroup>
   <ItemGroup>
