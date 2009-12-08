@@ -16,7 +16,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#region Constructors
 
 		public ConstantExpression(Token value)
-			: base(ExpressionPrecedence.Constant, new NullToken(), new List<Token>())
+			: base(ExpressionPrecedence.Constant, new NullToken(), new List<Expression>())
 		{
 			_value = value;
 		}

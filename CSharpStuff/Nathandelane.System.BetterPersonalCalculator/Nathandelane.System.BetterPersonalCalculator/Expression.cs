@@ -11,7 +11,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		private ExpressionPrecedence _precedence;
 		private Token _operation;
-		private IList<Token> _operands;
+		private IList<Expression> _operands;
 
 		#endregion
 
@@ -27,7 +27,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			get { return _operation; }
 		}
 
-		public IList<Token> Operands
+		public IList<Expression> Operands
 		{
 			get { return _operands; }
 		}
@@ -36,7 +36,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		#region Constructors
 
-		protected Expression(ExpressionPrecedence precedence, Token operation, IList<Token> operands)
+		protected Expression(ExpressionPrecedence precedence, Token operation, IList<Expression> operands)
 		{
 			_precedence = precedence;
 			_operation = operation;

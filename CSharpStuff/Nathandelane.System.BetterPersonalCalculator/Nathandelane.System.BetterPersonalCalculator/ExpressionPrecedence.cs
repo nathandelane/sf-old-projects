@@ -10,6 +10,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 	/// </summary>
 	public enum ExpressionPrecedence
 	{
+		Null,
 		Constant,
 		Number,
 		Variable,

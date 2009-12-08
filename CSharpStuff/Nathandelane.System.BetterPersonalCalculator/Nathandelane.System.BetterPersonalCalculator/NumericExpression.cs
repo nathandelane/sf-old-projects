@@ -16,7 +16,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#region Constructors
 
 		public NumericExpression(Token value)
-			: base(ExpressionPrecedence.Number, new NullToken(), new List<Token>())
+			: base(ExpressionPrecedence.Number, new NullToken(), new List<Expression>())
 		{
 			_value = value;
 		}
