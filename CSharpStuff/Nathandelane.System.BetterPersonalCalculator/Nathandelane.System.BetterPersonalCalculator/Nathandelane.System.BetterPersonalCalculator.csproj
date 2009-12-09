@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nathandelane.System.BetterPersonalCalculator</RootNamespace>
-    <AssemblyName>Nathandelane.System.BetterPersonalCalculator</AssemblyName>
+    <AssemblyName>bpc</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>

@@ -10,18 +10,30 @@ namespace Nathandelane.System.BetterPersonalCalculator
 	{
 		private CalculatorContext _context;
 
-		private Program()
+		private Program(string[] args)
 		{
-			_context = CalculatorContext.GetInstance();
+			if (args.Length > 0)
+			{
+				_context = CalculatorContext.GetInstance();
 
-			ITokenizer tokenizer = new BpcTokenizer("3 + 4 * 2 / (1 - 5) ** 2 ** 3 # This is an example from Wikipedia.");
-			Expression expression = ExpressionYard.Formulate(tokenizer);
-			Token result = expression.Evaluate();
+				ITokenizer tokenizer = new BpcTokenizer("3 + 4 * 2 / (1 - 5) ** 2 ** 3 # This is an example from Wikipedia.");
+				Expression expression = ExpressionYard.Formulate(tokenizer);
+				Token result = expression.Evaluate();
+			}
+			else
+			{
+				DisplayUsage();
+			}
+		}
+
+		private void DisplayUsage()
+		{
+			Console.WriteLine("Usage: bpc <options> <mathematical-expression>");
 		}
 
 		static void Main(string[] args)
 		{
-			Program program = new Program();
+			Program program = new Program(args);
 		}
 	}
 }
