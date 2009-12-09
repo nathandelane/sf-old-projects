@@ -32,6 +32,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		public const string LastResult = "$";
 		public const string DisplayBase = "base";
+		public const string Mode = "mode";
 
 		private static CalculatorContext __instance = new CalculatorContext();
 		private static Object __lockObject = new Object();
@@ -90,6 +91,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 			this[CalculatorContext.LastResult] = new NumberToken();
 			this[CalculatorContext.DisplayBase] = new NumberToken("10");
+			this[CalculatorContext.Mode] = new VariableToken("rad");
 		}
 
 		#endregion

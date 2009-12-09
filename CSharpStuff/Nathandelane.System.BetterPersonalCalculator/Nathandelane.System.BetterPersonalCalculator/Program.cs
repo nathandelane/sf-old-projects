@@ -139,7 +139,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 		private void DisplayGreeting()
 		{
 			Console.WriteLine("BPC - Better Personal Calculator, Copyright (C) 2009 Nathandelane");
-			Console.WriteLine("Version: {0}", Assembly.GetEntryAssembly().GetName().Version);
+
+			DisplayVersion();
+
 			Console.WriteLine("Type ? to get help; l to view license; q to quit.{0}", Environment.NewLine);
 		}
 
@@ -160,11 +162,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 			Console.WriteLine(@"Version: 1.2.2.0
 Options:
+--help                Displays this help message.
+--license             Displays the current license information for BPC.
 --mode-degrees        Sets the calculator in degree mode.
 --mode-radians        Sets the calculator in radian mode (default).
---help                Displays this help message.
---version             Displays the version of BCP currently running.
---license             Displays the current license information for BPC.{0}", Environment.NewLine);
+--version             Displays the version of BCP currently running.{0}", Environment.NewLine);
 
 			DisplayHelp();
 		}
@@ -184,6 +186,14 @@ Reserved: ? (displays help); v (displays version); l (displays license); q (quit
 		}
 
 		/// <summary>
+		/// Displays the version.
+		/// </summary>
+		private void DisplayVersion()
+		{
+			Console.WriteLine("Version: {0}", Assembly.GetEntryAssembly().GetName().Version);
+		}
+
+		/// <summary>
 		/// Handle any program arguments.
 		/// </summary>
 		/// <param name="args"></param>
@@ -191,6 +201,31 @@ Reserved: ? (displays help); v (displays version); l (displays license); q (quit
 		private bool HandleArguments(IEnumerable<string> args)
 		{
 			bool continueExecution = true;
+
+			foreach (string nextArg in args)
+			{
+				if (nextArg.Equals("mode-degrees", StringComparison.InvariantCultureIgnoreCase))
+				{
+					_context[CalculatorContext.Mode] = new VariableToken("deg");
+				}
+				else if (nextArg.Equals("help", StringComparison.InvariantCultureIgnoreCase))
+				{
+					DisplayHelp();
+
+					continueExecution = false;
+				}
+				else if (nextArg.Equals("version", StringComparison.InvariantCultureIgnoreCase))
+				{
+					DisplayVersion();
+
+					continueExecution = false;
+				}
+				else if (nextArg.Equals("license", StringComparison.InvariantCultureIgnoreCase))
+				{
+					DisplayLicense();
+					continueExecution = false;
+				}
+			}
 
 			return continueExecution;
 		}
