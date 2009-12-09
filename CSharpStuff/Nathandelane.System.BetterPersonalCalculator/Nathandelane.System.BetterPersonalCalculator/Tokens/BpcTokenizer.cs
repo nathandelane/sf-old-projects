@@ -85,16 +85,16 @@ namespace Nathandelane.System.BetterPersonalCalculator
 						{
 							tokenIsValid = true;
 						}
-						else if ((token = NumberToken.Parse(internalLine)) is NumberToken)
-						{
-							tokenIsValid = true;
-						}
 						else if ((token = CommentToken.Parse(internalLine)) is CommentToken)
 						{
 							tokenIsValid = false;
 							internalLine = RemoveToken(token.Length, internalLine);
 						}
 						else if ((token = VariableToken.Parse(internalLine)) is VariableToken)
+						{
+							tokenIsValid = true;
+						}
+						else if ((token = NumberToken.Parse(internalLine)) is NumberToken)
 						{
 							tokenIsValid = true;
 						}
