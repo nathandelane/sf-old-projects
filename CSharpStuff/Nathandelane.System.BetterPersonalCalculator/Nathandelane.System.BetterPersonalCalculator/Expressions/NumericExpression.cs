@@ -30,6 +30,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			return _value;
 		}
 
+		public override string ToString()
+		{
+			return _value.ToString();
+		}
+
 		#endregion
 	}
 }

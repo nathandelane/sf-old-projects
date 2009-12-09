@@ -53,6 +53,18 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// <returns></returns>
 		public abstract Token Evaluate();
 
+		public override string ToString()
+		{
+			string[] strOperands = new string[_operands.Count];
+
+			for(int counter = 0; counter < strOperands.Length; counter++)
+			{
+				strOperands[counter] = _operands[counter].ToString();
+			}
+
+			return String.Concat(Operation.ToString(), " ", String.Join(", ", strOperands));
+		}
+
 		#endregion
 	}
 }
