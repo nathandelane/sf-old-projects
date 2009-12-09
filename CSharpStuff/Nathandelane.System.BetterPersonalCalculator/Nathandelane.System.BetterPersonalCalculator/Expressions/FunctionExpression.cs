@@ -93,8 +93,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 			else if (op.Equals("//", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token left = Operands[0].Evaluate();
-				Token right = Operands[1].Evaluate();
+				Token left = Operands[1].Evaluate();
+				Token right = Operands[0].Evaluate();
 
 				if (left is NumberToken && right is NumberToken)
 				{
@@ -113,8 +113,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 			else if (op.Equals("%", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token left = Operands[0].Evaluate();
-				Token right = Operands[1].Evaluate();
+				Token left = Operands[1].Evaluate();
+				Token right = Operands[0].Evaluate();
 
 				result = new NumberToken((double.Parse(left.ToString()) % double.Parse(right.ToString())).ToString());
 			}

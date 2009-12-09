@@ -99,6 +99,16 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			return (Token)this[LastResult];
 		}
 
+		/// <summary>
+		/// Determines whether a certain key is contained in the context.
+		/// </summary>
+		/// <param name="key"></param>
+		/// <returns></returns>
+		public bool ContainsKey(string key)
+		{
+			return _values.ContainsKey(key);
+		}
+
 		#endregion
 	}
 }

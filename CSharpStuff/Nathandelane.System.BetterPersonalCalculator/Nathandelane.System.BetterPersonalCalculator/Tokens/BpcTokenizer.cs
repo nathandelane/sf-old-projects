@@ -77,16 +77,41 @@ namespace Nathandelane.System.BetterPersonalCalculator
 						{
 							tokenIsValid = true;
 						}
-					}
-					else if ((token = OperatorToken.Parse(internalLine)) is OperatorToken)
-					{
-						tokenIsValid = true;
+						else if ((token = ConstantToken.Parse(internalLine)) is ConstantToken)
+						{
+							tokenIsValid = true;
+						}
+						else if ((token = FunctionToken.Parse(internalLine)) is FunctionToken)
+						{
+							tokenIsValid = true;
+						}
+						else if ((token = PerenthesisToken.Parse(internalLine)) is PerenthesisToken)
+						{
+							tokenIsValid = true;
+						}
+						else if ((token = CommentToken.Parse(internalLine)) is CommentToken)
+						{
+							tokenIsValid = false;
+							internalLine = RemoveToken(token.Length, internalLine);
+						}
+						else if ((token = VariableToken.Parse(internalLine)) is VariableToken)
+						{
+							tokenIsValid = true;
+						}
+						else
+						{
+							throw new UnrecognizedTokenException(String.Format("Unrecognized token at {0}.", internalLine));
+						}
 					}
 					else if ((token = ConstantToken.Parse(internalLine)) is ConstantToken)
 					{
 						tokenIsValid = true;
 					}
 					else if ((token = FunctionToken.Parse(internalLine)) is FunctionToken)
+					{
+						tokenIsValid = true;
+					}
+					else if ((token = OperatorToken.Parse(internalLine)) is OperatorToken)
 					{
 						tokenIsValid = true;
 					}
@@ -98,6 +123,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					{
 						tokenIsValid = false;
 						internalLine = RemoveToken(token.Length, internalLine);
+					}
+					else if ((token = VariableToken.Parse(internalLine)) is VariableToken)
+					{
+						tokenIsValid = true;
 					}
 					else
 					{

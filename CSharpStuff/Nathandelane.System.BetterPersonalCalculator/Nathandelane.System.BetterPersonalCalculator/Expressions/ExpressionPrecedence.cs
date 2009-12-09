@@ -16,8 +16,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		Variable,
 		Add,
 		Subtract,
-		Multiply,
-		Divide,
+		MultiplyOrDivide,
 		Function,
 		Perenthesis
 	}

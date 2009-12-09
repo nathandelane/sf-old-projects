@@ -79,11 +79,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 			else if (value.Equals("*"))
 			{
-				_precedence = ExpressionPrecedence.Multiply;
+				_precedence = ExpressionPrecedence.MultiplyOrDivide;
 			}
 			else if (value.Equals("/"))
 			{
-				_precedence = ExpressionPrecedence.Divide;
+				_precedence = ExpressionPrecedence.MultiplyOrDivide;
 			}
 		}
 

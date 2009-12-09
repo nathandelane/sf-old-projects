@@ -37,11 +37,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 			else if (operation.ToString().Equals("*"))
 			{
-				precedence = ExpressionPrecedence.Multiply;
+				precedence = ExpressionPrecedence.MultiplyOrDivide;
 			}
 			else if (operation.ToString().Equals("/"))
 			{
-				precedence = ExpressionPrecedence.Divide;
+				precedence = ExpressionPrecedence.MultiplyOrDivide;
 			}
 
 			return precedence;
@@ -54,29 +54,33 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		public override Token Evaluate()
 		{
 			Token result = new NullToken();
-			Token left = Operands[0].Evaluate();
-			Token right = Operands[1].Evaluate();
+			Token left = Operands[1].Evaluate();
+			Token right = Operands[0].Evaluate();
 
 			switch (Precedence)
 			{
 				case ExpressionPrecedence.Add:
 					result = new NumberToken((double.Parse(left.ToString()) + double.Parse(right.ToString())).ToString());
 					break;
-				case ExpressionPrecedence.Divide:
-					if (right.ToString().Equals("0", StringComparison.InvariantCulture))
-					{
-						throw new DivideByZeroException();
-					}
-					else
-					{
-						result = new NumberToken((double.Parse(left.ToString()) / double.Parse(right.ToString())).ToString());
-					}
-					break;
-				case ExpressionPrecedence.Multiply:
-					result = new NumberToken((double.Parse(left.ToString()) * double.Parse(right.ToString())).ToString());
-					break;
 				case ExpressionPrecedence.Subtract:
 					result = new NumberToken((double.Parse(left.ToString()) - double.Parse(right.ToString())).ToString());
+					break;
+				case ExpressionPrecedence.MultiplyOrDivide:
+					if (Operation.ToString().Equals("/"))
+					{
+						if (right.ToString().Equals("0", StringComparison.InvariantCulture))
+						{
+							throw new DivideByZeroException();
+						}
+						else
+						{
+							result = new NumberToken((double.Parse(left.ToString()) / double.Parse(right.ToString())).ToString());
+						}
+					}
+					else if (Operation.ToString().Equals("*"))
+					{
+						result = new NumberToken((double.Parse(left.ToString()) * double.Parse(right.ToString())).ToString());
+					}
 					break;
 			}
 
