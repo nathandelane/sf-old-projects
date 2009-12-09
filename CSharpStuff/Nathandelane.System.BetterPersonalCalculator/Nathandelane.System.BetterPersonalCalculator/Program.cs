@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Reflection;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
@@ -38,6 +39,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					string userInput = String.Empty;
 					bool userWantsToQuit = false;
 
+					DisplayGreeting();
+
 					while (!userWantsToQuit)
 					{
 						Console.Write(">>> ");
@@ -54,7 +57,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 						Console.WriteLine("{0}", PerformEvaluation(userInput));
 					}
 
-					Console.WriteLine("Thank you for using Better Personal Calculator.");
+					DisplayThankYou();
 				}
 			}
 		}
@@ -69,6 +72,24 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		private void DisplayUsage()
 		{
 			Console.WriteLine("Usage: bpc <options> <mathematical-expression>{0}Using BPC without any arguments enters into interactive mode.", Environment.NewLine);
+		}
+
+		/// <summary>
+		/// Displays the greeting.
+		/// </summary>
+		private void DisplayGreeting()
+		{
+			Console.WriteLine("BPC - Better Personal Calculator, Copyright (C) 2009 Nathandelane");
+			Console.WriteLine("Version: {0}", Assembly.GetEntryAssembly().GetName().Version);
+			Console.WriteLine("Type ? to get help; l to view license; q to quit.{0}", Environment.NewLine);
+		}
+
+		/// <summary>
+		/// Displays the thank you message.
+		/// </summary>
+		private void DisplayThankYou()
+		{
+			Console.WriteLine("Thank you for using Better Personal Calculator.");
 		}
 
 		/// <summary>
