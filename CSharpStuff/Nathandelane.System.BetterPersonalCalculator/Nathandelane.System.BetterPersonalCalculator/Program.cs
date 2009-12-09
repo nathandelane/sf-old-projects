@@ -107,6 +107,8 @@ describe this software which is copyrighted by:
 
 Nathan Lane, Nathandelane Copyright (C) 2009, Nathandelane.
 
+GNU General Public Licence, version 3.
+
 Copyright 1992, 1997-1999, 2000 Free Software Foundation, Inc.
 
 This program is free software; you can redistribute it and/or modify
