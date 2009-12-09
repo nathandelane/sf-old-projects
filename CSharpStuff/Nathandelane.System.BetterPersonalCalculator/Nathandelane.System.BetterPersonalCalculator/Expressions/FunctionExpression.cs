@@ -24,6 +24,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		{
 		}
 
+		public FunctionExpression(Token function, IList<Expression> operands)
+			: base(ExpressionPrecedence.Function, function, operands)
+		{
+		}
+
 		#endregion
 
 		#region Methods

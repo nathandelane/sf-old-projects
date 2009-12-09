@@ -6,11 +6,11 @@ using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
-	public class PerenthesisToken : Token
+	public class VariableToken : NumberToken
 	{
 		#region Fields
 
-		private static readonly Regex __perenPattern = new Regex("^[()]{1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __variablePattern = new Regex("^[A-Za-z_]{1}[A-Za-z_\\d]+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		#endregion
 
@@ -18,25 +18,20 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		public override TokenType Type
 		{
-			get { return TokenType.Number; }
+			get { return TokenType.Variable; }
 		}
 
 		public override ExpressionPrecedence Precedence
 		{
-			get { return ExpressionPrecedence.Number; }
+			get { return ExpressionPrecedence.Variable; }
 		}
 
 		#endregion
 
 		#region Constructors
 
-		public PerenthesisToken(string value)
+		public VariableToken(string value)
 			: base(value)
-		{
-		}
-
-		public PerenthesisToken(Token other)
-			: base(other)
 		{
 		}
 
@@ -45,19 +40,19 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#region Methods
 
 		/// <summary>
-		/// Gets a Token of type PerenthesisToken from the beginning of a line of text.
+		/// Gets a Token of type NumberToken from the beginning of a line of text.
 		/// </summary>
 		/// <param name="line"></param>
 		/// <returns></returns>
-		public static Token Parse(string line)
+		public new static Token Parse(string line)
 		{
 			Token token = new NullToken();
 
-			if (PerenthesisToken.__perenPattern.IsMatch(line))
+			if (VariableToken.__variablePattern.IsMatch(line))
 			{
-				string matchText = PerenthesisToken.__perenPattern.Matches(line)[0].Value;
+				string matchText = VariableToken.__variablePattern.Matches(line)[0].Value;
 
-				token = new PerenthesisToken(matchText);
+				token = new VariableToken(matchText);
 			}
 
 			return token;

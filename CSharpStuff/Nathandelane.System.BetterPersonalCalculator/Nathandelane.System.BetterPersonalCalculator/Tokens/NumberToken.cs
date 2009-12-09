@@ -40,6 +40,12 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		{
 		}
 
+
+		public NumberToken(Token other)
+			: base(other)
+		{
+		}
+
 		#endregion
 
 		#region Methods

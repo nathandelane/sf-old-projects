@@ -35,22 +35,13 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		public OperatorToken(string value)
 			: base(value)
 		{
-			if (value.Equals("+"))
-			{
-				_precedence = ExpressionPrecedence.Add;
-			}
-			else if(value.Equals("-"))
-			{
-				_precedence = ExpressionPrecedence.Subtract;
-			}
-			else if (value.Equals("*"))
-			{
-				_precedence = ExpressionPrecedence.Multiply;
-			}
-			else if (value.Equals("/"))
-			{
-				_precedence = ExpressionPrecedence.Divide;
-			}
+			DeterminePrecedence(value);
+		}
+
+		public OperatorToken(Token other)
+			: base(other)
+		{
+			DeterminePrecedence(other.ToString());
 		}
 
 		#endregion
@@ -74,6 +65,26 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 
 			return token;
+		}
+
+		private void DeterminePrecedence(string value)
+		{
+			if (value.Equals("+"))
+			{
+				_precedence = ExpressionPrecedence.Add;
+			}
+			else if(value.Equals("-"))
+			{
+				_precedence = ExpressionPrecedence.Subtract;
+			}
+			else if (value.Equals("*"))
+			{
+				_precedence = ExpressionPrecedence.Multiply;
+			}
+			else if (value.Equals("/"))
+			{
+				_precedence = ExpressionPrecedence.Divide;
+			}
 		}
 
 		#endregion

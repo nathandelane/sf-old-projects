@@ -36,6 +36,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			_value = value;
 		}
 
+		protected Token(Token other)
+		{
+			_value = other._value;
+		}
+
 		#endregion
 
 		#region Methods

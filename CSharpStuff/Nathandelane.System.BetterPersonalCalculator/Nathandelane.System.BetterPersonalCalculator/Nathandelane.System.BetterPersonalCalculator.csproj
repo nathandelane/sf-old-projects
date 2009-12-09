@@ -71,7 +71,6 @@
     <Compile Include="Expressions\ArithmeticExpression.cs" />
     <Compile Include="Tokens\BpcTokenizer.cs" />
     <Compile Include="CalculatorContext.cs" />
-    <Compile Include="Expressions\ConstantExpression.cs" />
     <Compile Include="Tokens\ConstantToken.cs" />
     <Compile Include="Expressions\Expression.cs" />
     <Compile Include="Expressions\FunctionExpression.cs" />
@@ -90,7 +89,7 @@
     <Compile Include="Expressions\ExpressionPrecedence.cs" />
     <Compile Include="Tokens\TokenType.cs" />
     <Compile Include="Tokens\UnrecognizedTokenException.cs" />
-    <Compile Include="Expressions\VariableExpression.cs" />
+    <Compile Include="Tokens\VariableToken.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

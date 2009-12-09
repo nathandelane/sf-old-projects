@@ -35,6 +35,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		{
 		}
 
+		public CommentToken(Token other)
+			: base(other)
+		{
+		}
+
 		#endregion
 
 		#region Methods

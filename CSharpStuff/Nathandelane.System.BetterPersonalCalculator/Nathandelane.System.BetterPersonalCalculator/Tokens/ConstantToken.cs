@@ -35,6 +35,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		{
 		}
 
+		public ConstantToken(Token other)
+			: base(other)
+		{
+		}
+
 		#endregion
 
 		#region Methods
@@ -62,6 +67,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				}
 				else if (matchText.Equals("$", StringComparison.InvariantCultureIgnoreCase))
 				{
+					token = new ConstantToken(CalculatorContext.GetInstance().GetLastResult());
 				}
 			}
 

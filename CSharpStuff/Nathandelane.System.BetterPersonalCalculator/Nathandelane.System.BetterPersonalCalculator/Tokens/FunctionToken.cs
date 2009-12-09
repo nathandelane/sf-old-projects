@@ -54,14 +54,15 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		{
 			_precedence = ExpressionPrecedence.Function;
 
-			if (FunctionToken.__singleArgFunction.IsMatch(value))
-			{
-				_numArguments = 1;
-			}
-			else if (FunctionToken.__twoArgFunction.IsMatch(value))
-			{
-				_numArguments = 2;
-			}
+			DetermineArgumentCount(value);
+		}
+
+		public FunctionToken(Token other)
+			: base(other)
+		{
+			_precedence = ExpressionPrecedence.Function;
+
+			DetermineArgumentCount(other.ToString());
 		}
 
 		#endregion
@@ -85,6 +86,18 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 
 			return token;
+		}
+
+		private void DetermineArgumentCount(string value)
+		{
+			if (FunctionToken.__singleArgFunction.IsMatch(value))
+			{
+				_numArguments = 1;
+			}
+			else if (FunctionToken.__twoArgFunction.IsMatch(value))
+			{
+				_numArguments = 2;
+			}
 		}
 
 		#endregion
