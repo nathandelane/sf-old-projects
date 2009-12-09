@@ -100,9 +100,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				{
 					long lLeft = long.Parse(((NumberToken)left).WholePart());
 					long lRight = long.Parse(((NumberToken)right).WholePart()); ;
-					long whole = 0;
-
-					Math.DivRem(lLeft, lRight, out whole);
+					long rem = 0;
+					long whole = Math.DivRem(lLeft, lRight, out rem);
 
 					result = new NumberToken(whole.ToString());
 				}

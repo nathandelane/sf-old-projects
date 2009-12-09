@@ -35,13 +35,13 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				}
 				else
 				{
-					Console.Write(">>> ");
-
 					string userInput = String.Empty;
 					bool userWantsToQuit = false;
 
 					while (!userWantsToQuit)
 					{
+						Console.Write(">>> ");
+
 						userInput = Console.ReadLine();
 						userInput = userInput.Trim();
 
