@@ -73,11 +73,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				{
 					if (lastToken is NullToken || !(lastToken is NumberToken))
 					{
-						if ((token = NumberToken.Parse(internalLine)) is NumberToken)
-						{
-							tokenIsValid = true;
-						}
-						else if ((token = ConstantToken.Parse(internalLine)) is ConstantToken)
+						if ((token = ConstantToken.Parse(internalLine)) is ConstantToken)
 						{
 							tokenIsValid = true;
 						}
@@ -86,6 +82,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 							tokenIsValid = true;
 						}
 						else if ((token = PerenthesisToken.Parse(internalLine)) is PerenthesisToken)
+						{
+							tokenIsValid = true;
+						}
+						else if ((token = NumberToken.Parse(internalLine)) is NumberToken)
 						{
 							tokenIsValid = true;
 						}

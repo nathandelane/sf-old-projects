@@ -10,6 +10,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#region Fields
 
 		public const string LastResult = "$";
+		public const string DisplayBase = "base";
 
 		private static CalculatorContext __instance = new CalculatorContext();
 		private static Object __lockObject = new Object();
@@ -66,7 +67,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		{
 			_values = new Dictionary<string, Token>();
 
-			this["$"] = new NumberToken();
+			this[CalculatorContext.LastResult] = new NumberToken();
+			this[CalculatorContext.DisplayBase] = new NumberToken("10");
 		}
 
 		#endregion

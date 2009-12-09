@@ -10,8 +10,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 	{
 		#region Fields
 
-		private static readonly Regex __functionPattern = new Regex("^(cos|sin|tan|acos|asin|atan|sqrt|[*]{2}|[/]{2}|[%]{1}|[!]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
-		private static readonly Regex __singleArgFunction = new Regex("^(cos|sin|tan|acos|asin|atan|sqrt|[!]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __functionPattern = new Regex("^(cos|sin|tan|acos|asin|atan|sqrt|tod|toh|too|tob|[*]{2}|[/]{2}|[%]{1}|[!]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __singleArgFunction = new Regex("^(cos|sin|tan|acos|asin|atan|sqrt|tod|toh|too|tob|[!]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 		private static readonly Regex __twoArgFunction = new Regex("^([*]{2}|[/]{2}|[%]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		private ExpressionPrecedence _precedence;

@@ -84,6 +84,34 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 				result = new NumberToken((Math.Sqrt(double.Parse(val.ToString()))).ToString());
 			}
+			else if (op.Equals("too", StringComparison.InvariantCultureIgnoreCase))
+			{
+				Token val = Operands[0].Evaluate();
+				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("8");
+
+				result = new NumberToken(val);
+			}
+			else if (op.Equals("tod", StringComparison.InvariantCultureIgnoreCase))
+			{
+				Token val = Operands[0].Evaluate();
+				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("10");
+
+				result = new NumberToken(val);
+			}
+			else if (op.Equals("toh", StringComparison.InvariantCultureIgnoreCase))
+			{
+				Token val = Operands[0].Evaluate();
+				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("16");
+
+				result = new NumberToken(val);
+			}
+			else if (op.Equals("tob", StringComparison.InvariantCultureIgnoreCase))
+			{
+				Token val = Operands[0].Evaluate();
+				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("2");
+
+				result = new NumberToken(val);
+			}
 			else if (op.Equals("**", StringComparison.InvariantCultureIgnoreCase))
 			{
 				Token left = Operands[1].Evaluate();

@@ -11,6 +11,9 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#region Fields
 
 		private static readonly Regex __numberPattern = new Regex("^(-){0,1}([\\d]+([.]{1}[\\d]+){0,1}|[\\dA-Za-z]+(H|h){1}|[0-7]+(O|o){1}|[01]+(B|b){1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __hexNumberPattern = new Regex("^(-){0,1}[\\dA-Za-z]+(H|h){1}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __octNumberPattern = new Regex("^(-){0,1}[0-7]+(O|o){1}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __binNumberPattern = new Regex("^(-){0,1}[01]+(B|b){1}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		#endregion
 
@@ -62,11 +65,38 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			if (NumberToken.__numberPattern.IsMatch(line))
 			{
 				string matchText = NumberToken.__numberPattern.Matches(line)[0].Value;
+				string value = AsDecimal(matchText);
 
-				token = new NumberToken(matchText);
+				token = new NumberToken(value);
 			}
 
 			return token;
+		}
+
+		/// <summary>
+		/// Converts a non decimal number to decimal.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <returns></returns>
+		private static string AsDecimal(string value)
+		{
+			string number = value;
+			int length = number.Length - 1;
+
+			if (NumberToken.__binNumberPattern.IsMatch(number))
+			{
+				number = Convert.ToInt64(number.Substring(0, length), 2).ToString();
+			}
+			else if (NumberToken.__hexNumberPattern.IsMatch(number))
+			{
+				number = Convert.ToInt64(number.Substring(0, length), 16).ToString();
+			}
+			else if (NumberToken.__octNumberPattern.IsMatch(number))
+			{
+				number = Convert.ToInt64(number.Substring(0, length), 8).ToString();
+			}
+
+			return number;
 		}
 
 		/// <summary>
@@ -101,6 +131,21 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 
 			return value;
+		}
+
+		public string AsHex()
+		{
+			return String.Concat(Convert.ToString(long.Parse(WholePart()), 16), "h");
+		}
+
+		public string AsOct()
+		{
+			return String.Concat(Convert.ToString(long.Parse(WholePart()), 8), "o");
+		}
+
+		public string AsBin()
+		{
+			return String.Concat(Convert.ToString(long.Parse(WholePart()), 2), "b");
 		}
 
 		#endregion

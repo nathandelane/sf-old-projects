@@ -79,6 +79,7 @@
     <Compile Include="Expressions\MalformedExpressionException.cs" />
     <Compile Include="Expressions\NumericExpression.cs" />
     <Compile Include="Tokens\ITokenizer.cs" />
+    <Compile Include="Tokens\NumberTokenType.cs" />
     <Compile Include="Tokens\OperatorToken.cs" />
     <Compile Include="Tokens\NotANumberToken.cs" />
     <Compile Include="Tokens\NullToken.cs" />
