@@ -37,11 +37,21 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				{
 					Console.Write(">>> ");
 
-					string userInput = Console.ReadLine();
-					userInput = userInput.Trim();
+					string userInput = String.Empty;
+					bool userWantsToQuit = false;
 
-					while (!userInput.Equals("q", StringComparison.InvariantCultureIgnoreCase))
+					while (!userWantsToQuit)
 					{
+						userInput = Console.ReadLine();
+						userInput = userInput.Trim();
+
+						if (userInput.Equals("q", StringComparison.InvariantCultureIgnoreCase))
+						{
+							userWantsToQuit = true;
+							continue;
+						}
+
+						Console.WriteLine("{0}", PerformEvaluation(userInput));
 					}
 
 					Console.WriteLine("Thank you for using Better Personal Calculator.");
