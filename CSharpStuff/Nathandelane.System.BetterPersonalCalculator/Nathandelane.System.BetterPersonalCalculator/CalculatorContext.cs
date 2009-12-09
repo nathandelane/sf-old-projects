@@ -10,12 +10,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#region Fields
 
 		public const string LastResult = "$";
-		public const string FunctionOperandMap = "fom";
 
 		private static CalculatorContext __instance = new CalculatorContext();
 		private static Object __lockObject = new Object();
 
-		private Dictionary<string, object> _values;
+		private Dictionary<string, Token> _values;
 
 		#endregion
 
@@ -26,7 +25,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
-		public object this[string key]
+		public Token this[string key]
 		{
 			get
 			{
@@ -65,22 +64,9 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		private CalculatorContext()
 		{
-			_values = new Dictionary<string, object>();
+			_values = new Dictionary<string, Token>();
 
 			this["$"] = new NumberToken();
-			this["fom"] = new Dictionary<string, int>
-			{
-				{ "cos", 1},
-				{ "sin", 1},
-				{ "tan", 1},
-				{ "acos", 1},
-				{ "asin", 1},
-				{ "atan", 1},
-				{ "sqrt", 1},
-				{ "**", 1},
-				{ "//", 1},
-				{ "%", 1}
-			};
 		}
 
 		#endregion
@@ -104,15 +90,13 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			return CalculatorContext.__instance;
 		}
 
-
+		/// <summary>
+		/// Gets the last result.
+		/// </summary>
+		/// <returns></returns>
 		public Token GetLastResult()
 		{
 			return (Token)this[LastResult];
-		}
-
-		public Dictionary<string, int> GetFunctionOperandMap()
-		{
-			return (Dictionary<string, int>)this[FunctionOperandMap];
 		}
 
 		#endregion

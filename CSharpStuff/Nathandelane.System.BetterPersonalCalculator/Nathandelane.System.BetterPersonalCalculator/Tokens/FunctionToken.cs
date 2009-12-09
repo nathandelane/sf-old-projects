@@ -11,21 +11,38 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#region Fields
 
 		private static readonly Regex __functionPattern = new Regex("^(cos|sin|tan|acos|asin|atan|sqrt|[*]{2}|[/]{2}|[%]{1}|[!]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __singleArgFunction = new Regex("^(cos|sin|tan|acos|asin|atan|sqrt|[!]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __twoArgFunction = new Regex("^([*]{2}|[/]{2}|[%]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		private ExpressionPrecedence _precedence;
+		private int _numArguments;
 
 		#endregion
 
 		#region Properties
 
+		/// <summary>
+		/// Gets the TokenType.
+		/// </summary>
 		public override TokenType Type
 		{
-			get { return TokenType.Operator; }
+			get { return TokenType.Function; }
 		}
 
+		/// <summary>
+		/// Gets the ExpressionPrecedence.
+		/// </summary>
 		public override ExpressionPrecedence Precedence
 		{
 			get { return _precedence; }
+		}
+
+		/// <summary>
+		/// Gets the number of arguments required for the function.
+		/// </summary>
+		public int NumArguments
+		{
+			get { return _numArguments; }
 		}
 
 		#endregion
@@ -36,6 +53,15 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			: base(value)
 		{
 			_precedence = ExpressionPrecedence.Function;
+
+			if (FunctionToken.__singleArgFunction.IsMatch(value))
+			{
+				_numArguments = 1;
+			}
+			else if (FunctionToken.__twoArgFunction.IsMatch(value))
+			{
+				_numArguments = 2;
+			}
 		}
 
 		#endregion
