@@ -57,38 +57,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				}
 				else
 				{
-					string userInput = String.Empty;
-					bool userWantsToQuit = false;
-
-					DisplayGreeting();
-
-					while (!userWantsToQuit)
-					{
-						Console.Write("{0}>>> ", Environment.NewLine);
-
-						userInput = Console.ReadLine();
-						userInput = userInput.Trim();
-
-						if (userInput.Equals("q", StringComparison.InvariantCultureIgnoreCase))
-						{
-							userWantsToQuit = true;
-							continue;
-						}
-						else if (userInput.Equals("?", StringComparison.InvariantCultureIgnoreCase))
-						{
-							DisplayHelp();
-							continue;
-						}
-						else if (userInput.Equals("l", StringComparison.InvariantCultureIgnoreCase))
-						{
-							DisplayLicense();
-							continue;
-						}
-
-						Console.WriteLine("{0}", PerformEvaluation(userInput));
-					}
-
-					DisplayThankYou();
+					Interact();
 				}
 			}
 		}
@@ -96,6 +65,45 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#endregion
 
 		#region Methods
+
+		/// <summary>
+		/// Interactive mode program loop.
+		/// </summary>
+		private void Interact()
+		{
+			string userInput = String.Empty;
+			bool userWantsToQuit = false;
+
+			DisplayGreeting();
+
+			while (!userWantsToQuit)
+			{
+				Console.Write("{0}>>> ", Environment.NewLine);
+
+				userInput = Console.ReadLine();
+				userInput = userInput.Trim();
+
+				if (userInput.Equals("q", StringComparison.InvariantCultureIgnoreCase))
+				{
+					userWantsToQuit = true;
+					continue;
+				}
+				else if (userInput.Equals("?", StringComparison.InvariantCultureIgnoreCase))
+				{
+					DisplayHelp();
+					continue;
+				}
+				else if (userInput.Equals("l", StringComparison.InvariantCultureIgnoreCase))
+				{
+					DisplayLicense();
+					continue;
+				}
+
+				Console.WriteLine("{0}", PerformEvaluation(userInput));
+			}
+
+			DisplayThankYou();
+		}
 
 		/// <summary>
 		/// Displays the license.
