@@ -8,32 +8,94 @@ namespace Nathandelane.System.BetterPersonalCalculator
 {
 	class Program
 	{
+		#region Fields
+
 		private CalculatorContext _context;
 
-		private Program(string[] args)
-		{
-			if (args.Length > 0)
-			{
-				_context = CalculatorContext.GetInstance();
+		#endregion
 
-				ITokenizer tokenizer = new BpcTokenizer("3 + 4 * 2 / (1 - 5) ** 2 ** 3 # This is an example from Wikipedia.");
-				Expression expression = ExpressionYard.Formulate(tokenizer);
-				Token result = expression.Evaluate();
-			}
-			else
+		#region Constructors
+
+		private Program(ProgramArguments args)
+		{
+			bool continueExecution = true;
+
+			_context = CalculatorContext.GetInstance();
+
+			if (args.Args.Count > 0)
 			{
-				DisplayUsage();
+				continueExecution = HandleArguments(args.Args);
+			}
+
+			if (continueExecution)
+			{
+				if (!String.IsNullOrEmpty(args.Expression))
+				{
+					Console.WriteLine("{0}", PerformEvaluation(args.Expression));
+				}
+				else
+				{
+					Console.Write(">>> ");
+
+					string userInput = Console.ReadLine();
+					userInput = userInput.Trim();
+
+					while (!userInput.Equals("q", StringComparison.InvariantCultureIgnoreCase))
+					{
+					}
+
+					Console.WriteLine("Thank you for using Better Personal Calculator.");
+				}
 			}
 		}
 
+		#endregion
+
+		#region Methods
+
+		/// <summary>
+		/// Displays how to use BPC.
+		/// </summary>
 		private void DisplayUsage()
 		{
-			Console.WriteLine("Usage: bpc <options> <mathematical-expression>");
+			Console.WriteLine("Usage: bpc <options> <mathematical-expression>{0}Using BPC without any arguments enters into interactive mode.", Environment.NewLine);
 		}
 
+		/// <summary>
+		/// Handle any program arguments.
+		/// </summary>
+		/// <param name="args"></param>
+		/// <returns>Whether or not to continue program execution.</returns>
+		private bool HandleArguments(IEnumerable<string> args)
+		{
+			bool continueExecution = true;
+
+			return continueExecution;
+		}
+
+		/// <summary>
+		/// Performs an evaluation on an expression.
+		/// </summary>
+		/// <param name="expression"></param>
+		/// <returns></returns>
+		private string PerformEvaluation(string strExpression)
+		{
+			ITokenizer tokenizer = new BpcTokenizer(strExpression);
+			Expression expression = ExpressionYard.Formulate(tokenizer);
+			Token result = expression.Evaluate();
+
+			return String.Format("{0}", result);
+		}
+
+		/// <summary>
+		/// Entry point for the program.
+		/// </summary>
+		/// <param name="args"></param>
 		static void Main(string[] args)
 		{
-			Program program = new Program(args);
+			Program program = new Program(ProgramArguments.ParseArgs(args));
 		}
+
+		#endregion
 	}
 }

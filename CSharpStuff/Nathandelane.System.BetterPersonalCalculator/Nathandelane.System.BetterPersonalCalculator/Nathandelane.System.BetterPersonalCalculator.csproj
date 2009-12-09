@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Expressions\ExpressionYard.cs" />
+    <Compile Include="ProgramArguments.cs" />
     <Compile Include="Tokens\CommentToken.cs" />
     <Compile Include="Expressions\ArithmeticExpression.cs" />
     <Compile Include="Tokens\BpcTokenizer.cs" />
