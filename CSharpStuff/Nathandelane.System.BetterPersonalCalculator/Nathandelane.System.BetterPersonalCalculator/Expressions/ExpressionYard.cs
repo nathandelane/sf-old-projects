@@ -14,7 +14,22 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// <returns></returns>
 		public static Expression Formulate(ITokenizer tokenizer)
 		{
-			Expression expression = null;
+			Expression expression = default(Expression);
+
+			if (tokenizer.HasTokens)
+			{
+				foreach (Token token in tokenizer.Tokens)
+				{
+					if (token is NumberToken || token is ConstantToken)
+					{
+						
+					}
+					else if (token is OperatorToken)
+					{
+						
+					}
+				}
+			}
 
 			return expression;
 		}

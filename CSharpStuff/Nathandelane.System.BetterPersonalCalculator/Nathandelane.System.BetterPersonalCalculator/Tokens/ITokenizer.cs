@@ -7,8 +7,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 {
 	public interface ITokenizer
 	{
-		IList<Token> Tokens;
+		IList<Token> Tokens { get; }
 
-		bool HasTokens;
+		bool HasTokens { get; }
 	}
 }
