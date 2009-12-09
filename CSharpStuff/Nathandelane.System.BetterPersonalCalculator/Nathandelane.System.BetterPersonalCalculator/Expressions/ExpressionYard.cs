@@ -18,15 +18,32 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 			if (tokenizer.HasTokens)
 			{
+				Queue<Expression> output = new Queue<Expression>();
+				Token operation = new NullToken();
+
 				foreach (Token token in tokenizer.Tokens)
 				{
 					if (token is NumberToken || token is ConstantToken)
 					{
-						
+						output.Enqueue(new NumericExpression(token));
+
+						if (!(operation is NullToken))
+						{
+							if (operation is OperatorToken && output.Count >= 2)
+							{
+								Expression subExp = new ArithmeticExpression(operation, output.Dequeue(), output.Dequeue());
+							}
+							else if (operation is FunctionToken && output.Count >= 1)
+							{
+								
+							}
+
+							operation = new NullToken();
+						}
 					}
 					else if (token is OperatorToken)
 					{
-						
+						operation = token;
 					}
 				}
 			}
