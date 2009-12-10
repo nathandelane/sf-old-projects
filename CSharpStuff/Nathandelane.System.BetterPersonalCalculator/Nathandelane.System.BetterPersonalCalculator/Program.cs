@@ -71,8 +71,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// </summary>
 		private void Interact()
 		{
+			string consoleTitle = Console.Title;
 			string userInput = String.Empty;
 			bool userWantsToQuit = false;
+			
+			Console.Title = "BPC.NET - Better Personal Calculator";
 
 			DisplayGreeting();
 
@@ -103,6 +106,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 
 			DisplayThankYou();
+
+			Console.Title = consoleTitle;
 		}
 
 		/// <summary>
