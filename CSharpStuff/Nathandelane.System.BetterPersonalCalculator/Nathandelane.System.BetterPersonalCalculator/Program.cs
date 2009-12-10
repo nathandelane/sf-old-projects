@@ -289,6 +289,7 @@ Reserved: ? (displays help); v (displays version); l (displays license); q (quit
 			catch (Exception ex)
 			{
 				Console.WriteLine("{0}", ex.Message);
+				Environment.ExitCode = 1;
 			}
 
 			return strResult;
