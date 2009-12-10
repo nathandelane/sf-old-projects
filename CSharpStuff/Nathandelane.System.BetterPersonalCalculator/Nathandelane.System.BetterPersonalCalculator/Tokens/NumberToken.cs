@@ -127,14 +127,20 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			if (NumberToken.__binNumberPattern.IsMatch(number))
 			{
 				number = Convert.ToInt64(number.Substring(0, length), 2).ToString();
+
+				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("2");
 			}
 			else if (NumberToken.__hexNumberPattern.IsMatch(number))
 			{
 				number = Convert.ToInt64(number.Substring(0, length), 16).ToString();
+
+				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("16");
 			}
 			else if (NumberToken.__octNumberPattern.IsMatch(number))
 			{
 				number = Convert.ToInt64(number.Substring(0, length), 8).ToString();
+
+				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("8");
 			}
 
 			return number;
