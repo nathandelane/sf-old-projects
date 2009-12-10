@@ -181,6 +181,12 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 				result = new NumberToken(total.ToString());
 			}
+			else if (op.Equals("-", StringComparison.InvariantCultureIgnoreCase))
+			{
+				Token val = Operands[0].Evaluate();
+
+				result = new NumberToken((double.Parse(val.ToString()) * (-1)).ToString());
+			}
 
 			return result;
 		}

@@ -31,8 +31,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 	{
 		#region Fields
 
-		private static readonly Regex __functionPattern = new Regex("^(cos|sin|tan|acos|asin|atan|sqrt|tod|toh|too|tob|[*]{2}|[/]{2}|[%]{1}|[!]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
-		private static readonly Regex __singleArgFunction = new Regex("^(cos|sin|tan|acos|asin|atan|sqrt|tod|toh|too|tob|[!]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __functionPattern = new Regex("^(cos|sin|tan|acos|asin|atan|sqrt|tod|toh|too|tob|[*]{2}|[/]{2}|[%]{1}|[!]{1}|-\\(){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __singleArgFunction = new Regex("^(cos|sin|tan|acos|asin|atan|sqrt|tod|toh|too|tob|[!]{1}|[-]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 		private static readonly Regex __twoArgFunction = new Regex("^([*]{2}|[/]{2}|[%]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		private ExpressionPrecedence _precedence;
@@ -103,12 +103,21 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			{
 				string matchText = FunctionToken.__functionPattern.Matches(line)[0].Value;
 
+				if (matchText.Equals("-(", StringComparison.InvariantCultureIgnoreCase))
+				{
+					matchText = "-";
+				}
+
 				token = new FunctionToken(matchText);
 			}
 
 			return token;
 		}
 
+		/// <summary>
+		/// Determine the number of arguments a function needs.
+		/// </summary>
+		/// <param name="value"></param>
 		private void DetermineArgumentCount(string value)
 		{
 			if (FunctionToken.__singleArgFunction.IsMatch(value))
