@@ -56,6 +56,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		{
 		}
 
+		public VariableToken(string value, string rep)
+			: base(value, rep)
+		{
+		}
+
 		#endregion
 
 		#region Methods

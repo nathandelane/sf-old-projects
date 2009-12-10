@@ -31,10 +31,12 @@ namespace Nathandelane.System.BetterPersonalCalculator
 	{
 		#region Fields
 
-		private static readonly Regex __numberPattern = new Regex("^(-){0,1}([\\d]+([.]{1}[\\d]+){0,1}|[\\dA-Za-z]+(H|h){1}|[0-7]+(O|o){1}|[01]+(B|b){1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __numberPattern = new Regex("^(-){0,1}([\\dA-Za-z]+(H|h){1}|[0-7]+(O|o){1}|[01]+(B|b){1}|[\\d]+([.]{1}[\\d]+){0,1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 		private static readonly Regex __hexNumberPattern = new Regex("^(-){0,1}[\\dA-Za-z]+(H|h){1}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 		private static readonly Regex __octNumberPattern = new Regex("^(-){0,1}[0-7]+(O|o){1}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 		private static readonly Regex __binNumberPattern = new Regex("^(-){0,1}[01]+(B|b){1}$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
+		private string _representation;
 
 		#endregion
 
@@ -50,6 +52,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			get { return ExpressionPrecedence.Number; }
 		}
 
+		public string Representation
+		{
+			get { return _representation; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -62,12 +69,25 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		public NumberToken(string value)
 			: base(value)
 		{
+			_representation = value;
 		}
-
 
 		public NumberToken(Token other)
 			: base(other)
 		{
+			_representation = other.ToString();
+		}
+
+		public NumberToken(string value, string rep)
+			: base(value)
+		{
+			_representation = rep;
+		}
+
+		public NumberToken(Token other, string rep)
+			: base(other)
+		{
+			_representation = rep;
 		}
 
 		#endregion
@@ -88,7 +108,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				string matchText = NumberToken.__numberPattern.Matches(line)[0].Value;
 				string value = AsDecimal(matchText);
 
-				token = new NumberToken(value);
+				token = new NumberToken(value, matchText);
 			}
 
 			return token;

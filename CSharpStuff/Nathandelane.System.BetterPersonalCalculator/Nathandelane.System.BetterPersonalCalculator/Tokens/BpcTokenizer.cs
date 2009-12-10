@@ -173,9 +173,9 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		{
 			string internalLine = line;
 
-			if (token is ConstantToken)
+			if (token is NumberToken)
 			{
-				internalLine = RemoveToken(((ConstantToken)token).Representation.Length, internalLine);
+				internalLine = RemoveToken(((NumberToken)token).Representation.Length, internalLine);
 			}
 			else
 			{

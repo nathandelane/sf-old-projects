@@ -289,7 +289,7 @@ Reserved: ? (displays help); v (displays version); l (displays license); q (quit
 		/// </summary>
 		private void ResetDisplayBase()
 		{
-			_context[CalculatorContext.DisplayBase] = new NumberToken("10");
+			_context[CalculatorContext.DisplayBase] = new NumberToken("10", "10");
 		}
 
 		/// <summary>

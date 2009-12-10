@@ -33,8 +33,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		private static readonly Regex __constantPattern = new Regex("^(e|E|pi|PI|[$]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
-		private string _representation;
-
 		#endregion
 
 		#region Properties
@@ -49,25 +47,18 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			get { return ExpressionPrecedence.Constant; }
 		}
 
-		public string Representation
-		{
-			get { return _representation; }
-		}
-
 		#endregion
 
 		#region Constructors
 
 		public ConstantToken(string value, string rep)
-			: base(value)
+			: base(value, rep)
 		{
-			_representation = rep;
 		}
 
 		public ConstantToken(Token other, string rep)
-			: base(other)
+			: base(other, rep)
 		{
-			_representation = rep;
 		}
 
 		#endregion
