@@ -76,13 +76,18 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 			foreach (string nextArg in args)
 			{
-				if (argRegex.IsMatch(nextArg))
+				string[] subArgs = nextArg.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+
+				foreach (string sub in subArgs)
 				{
-					programArguments._args.Add(RemoveArgDelimiters(nextArg));
-				}
-				else
-				{
-					expressionBuilder.Append(nextArg);
+					if (argRegex.IsMatch(sub))
+					{
+						programArguments._args.Add(RemoveArgDelimiters(nextArg));
+					}
+					else
+					{
+						expressionBuilder.Append(sub);
+					}
 				}
 			}
 
