@@ -279,6 +279,8 @@ Reserved: ? (displays help); v (displays version); l (displays license); q (quit
 				ResetDisplayBase();
 			}
 
+			_context[CalculatorContext.LastResult] = result;
+
 			return strResult;
 		}
 
