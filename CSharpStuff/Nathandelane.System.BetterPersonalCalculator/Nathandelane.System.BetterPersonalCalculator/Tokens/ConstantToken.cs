@@ -33,6 +33,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		private static readonly Regex __constantPattern = new Regex("^(e|E|pi|PI|[$]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
+		private string _representation;
+
 		#endregion
 
 		#region Properties
@@ -47,18 +49,25 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			get { return ExpressionPrecedence.Constant; }
 		}
 
+		public string Representation
+		{
+			get { return _representation; }
+		}
+
 		#endregion
 
 		#region Constructors
 
-		public ConstantToken(string value)
+		public ConstantToken(string value, string rep)
 			: base(value)
 		{
+			_representation = rep;
 		}
 
-		public ConstantToken(Token other)
+		public ConstantToken(Token other, string rep)
 			: base(other)
 		{
+			_representation = rep;
 		}
 
 		#endregion
@@ -80,15 +89,15 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 				if (matchText.Equals("e", StringComparison.InvariantCultureIgnoreCase))
 				{
-					token = new ConstantToken(Math.E.ToString());
+					token = new ConstantToken(Math.E.ToString(), matchText);
 				}
 				else if (matchText.Equals("pi", StringComparison.InvariantCultureIgnoreCase))
 				{
-					token = new ConstantToken(Math.PI.ToString());
+					token = new ConstantToken(Math.PI.ToString(), matchText);
 				}
 				else if (matchText.Equals("$", StringComparison.InvariantCultureIgnoreCase))
 				{
-					token = new ConstantToken(CalculatorContext.GetInstance().GetLastResult());
+					token = new ConstantToken(CalculatorContext.GetInstance().GetLastResult(), matchText);
 				}
 			}
 
