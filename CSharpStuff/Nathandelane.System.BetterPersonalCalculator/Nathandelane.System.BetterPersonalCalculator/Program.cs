@@ -157,7 +157,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 
 			DisplayVersion();
 
-			Console.WriteLine("Type ? to get help; l to view license; q to quit.{0}", Environment.NewLine);
+			Console.WriteLine("Type ? to get help; l to view license; q to quit.");
 		}
 
 		/// <summary>
