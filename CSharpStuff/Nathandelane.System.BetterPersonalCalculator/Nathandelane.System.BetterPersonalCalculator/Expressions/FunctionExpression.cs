@@ -69,7 +69,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				Token val = Operands[0].Evaluate();
 				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
 				res = Math.Cos(res);
-				res = modeIsDegrees ? ToDegrees(res) : res;
 
 				result = new NumberToken(res.ToString());
 			}
@@ -78,7 +77,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				Token val = Operands[0].Evaluate();
 				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
 				res = Math.Sin(res);
-				res = modeIsDegrees ? ToDegrees(res) : res;				
 
 				result = new NumberToken(res.ToString());
 			}
@@ -87,7 +85,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				Token val = Operands[0].Evaluate();
 				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
 				res = Math.Tan(res);
-				res = modeIsDegrees ? ToDegrees(res) : res;
 
 				result = new NumberToken(res.ToString());
 			}
@@ -96,7 +93,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				Token val = Operands[0].Evaluate();
 				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
 				res = Math.Acos(res);
-				res = modeIsDegrees ? ToDegrees(res) : res;
 
 				result = new NumberToken(res.ToString());
 			}
@@ -105,7 +101,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				Token val = Operands[0].Evaluate();
 				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
 				res = Math.Asin(res);
-				res = modeIsDegrees ? ToDegrees(res) : res;
 
 				result = new NumberToken(res.ToString());
 			}
@@ -114,7 +109,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				Token val = Operands[0].Evaluate();
 				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
 				res = Math.Atan(res);
-				res = modeIsDegrees ? ToDegrees(res) : res;
 
 				result = new NumberToken(res.ToString());
 			}
