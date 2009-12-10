@@ -85,7 +85,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				}
 				else if (token is PerenthesisToken)
 				{
-					if (openPerenthesisSet > 0)
+					if (openPerenthesisSet > 0 && token.ToString().Equals(")", StringComparison.InvariantCultureIgnoreCase))
 					{
 						while (!(operations.Peek() is PerenthesisToken))
 						{

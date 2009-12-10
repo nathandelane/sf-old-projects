@@ -24,8 +24,8 @@ Write-Output "This script's version is 1.0 and should be used against builds 1.2
 
 $anyFailed = $False
 $numberFailed = 0
-$expressions = '"12 + 1"', '"19 - 4"', '"9 * 8"', '"13 / 2"', '"-1 + 2"', '"-(1 + 2)"', '"-(-53 + -17)"', '"21 / 3"', '"9 // 8"', '"19 // 8"', '"21 * 1.5"', '"2 ** 3"', '"15 ** 2"', '"-6 / 2"', '"-15 / 2"', '"-15 // 2"', '"-15 % 2"', '"100 / 19"', '"100 // 19"', '"100 % 19"', '"(-21 - 1) / 2"', '"e ** 2"', '"4 ** 2"', '"1.5 ** 3"', '--mode-degrees "tan(45)"', '--mode-degrees "cos(35)"', '--mode-degrees "atan(1)"', '"pi"', '"e"', '"4 ** (1 / 2)"', '"sqrt(4)"', '"8 ** (1 / 3)"', '"4!"', '"16! - 13!"', '"((19 + 42 - 12) * 3) ** 2"', '"(19 + 42 - 12 * 3) ** 2"', '"tod(ch)"', '"toh(18)"'
-$expected = 13, 15, 72, 6.5, 1, -3, 70, 7, 1, 2, 31.5, 8, 225, -3, -7.5, -7, -1, 5.26315789473684, 5, 5, -11, 7.38905609893068, 16, 3.375, 1, 0.819152044288992, 45, [System.Math]::PI, [System.Math]::E, 2, 2, 2, 24, 20916562867200, 21609, 625, 12, "12h"
+$expressions = '"12 + 1"', '"19 - 4"', '"9 * 8"', '"13 / 2"', '"-1 + 2"', '"-(1 + 2)"', '"-(-53 + -17)"', '"21 / 3"', '"9 // 8"', '"19 // 8"', '"21 * 1.5"', '"2 ** 3"', '"15 ** 2"', '"-6 / 2"', '"-15 / 2"', '"-15 // 2"', '"-15 % 2"', '"100 / 19"', '"100 // 19"', '"100 % 19"', '"(-21 - 1) / 2"', '"e ** 2"', '"4 ** 2"', '"1.5 ** 3"', '"pi"', '"e"', '"4 ** (1 / 2)"', '"sqrt(4)"', '"8 ** (1 / 3)"', '"4!"', '"16! - 13!"', '"((19 + 42 - 12) * 3) ** 2"', '"(19 + 42 - 12 * 3) ** 2"', '"tod(ch)"', '"toh(18)"'
+$expected = 13, 15, 72, 6.5, 1, -3, 70, 7, 1, 2, 31.5, 8, 225, -3, -7.5, -7, -1, 5.26315789473684, 5, 5, -11, 7.38905609893068, 16, 3.375, [System.Math]::PI, [System.Math]::E, 2, 2, 2, 24, 20916562867200, 21609, 625, 12, "12h"
 
 function AssertEquals([string]$expected, [string]$actual)
 {
@@ -63,15 +63,16 @@ if($expressions.Length -eq $expected.Length)
 
 	do
 	{
-		$expr = $expressions[$expressionIndex]
-		$bpcResult = (bpc $expr)
-		
 		$expct = $expected[$expressionIndex]
 
+		Write-Host "bpc" $expressions[$expressionIndex] "=" $expct -NoNewline
+
+		$bpcResult = (bpc $expressions[$expressionIndex])
+		$result = AssertEquals $expct $bpcResult
+			
 		if($LastExitCode -eq 0)
 		{
-			$result = AssertEquals $expct $bpcResult
-			Write-Output "bpc $expr = $expct ($bpcResult)...$result"
+			Write-Output "($bpcResult)...$result"
 			
 			if($result -eq "Failed")
 			{
@@ -81,7 +82,7 @@ if($expressions.Length -eq $expected.Length)
 		}
 		else
 		{
-			Write-Output "bpc $expr = $expct ($bpcResult)...Failed"
+			Write-Output "($bpcResult)...Failed"
 			$numberFailed++
 		}
 		

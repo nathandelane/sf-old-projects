@@ -102,10 +102,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 						{
 							tokenIsValid = true;
 						}
-						else if ((token = OperatorToken.Parse(internalLine)) is OperatorToken)
-						{
-							tokenIsValid = true;
-						}
 						else if ((token = PerenthesisToken.Parse(internalLine)) is PerenthesisToken)
 						{
 							tokenIsValid = true;
@@ -116,6 +112,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 							internalLine = RemoveToken(token.Length, internalLine);
 						}
 						else if ((token = NumberToken.Parse(internalLine)) is NumberToken)
+						{
+							tokenIsValid = true;
+						}
+						else if ((token = OperatorToken.Parse(internalLine)) is OperatorToken)
 						{
 							tokenIsValid = true;
 						}
@@ -136,10 +136,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					{
 						tokenIsValid = true;
 					}
-					else if ((token = OperatorToken.Parse(internalLine)) is OperatorToken)
-					{
-						tokenIsValid = true;
-					}
 					else if ((token = PerenthesisToken.Parse(internalLine)) is PerenthesisToken)
 					{
 						tokenIsValid = true;
@@ -148,6 +144,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					{
 						tokenIsValid = false;
 						internalLine = RemoveToken(token.Length, internalLine);
+					}
+					else if ((token = OperatorToken.Parse(internalLine)) is OperatorToken)
+					{
+						tokenIsValid = true;
 					}
 					else if ((token = VariableToken.Parse(internalLine)) is VariableToken)
 					{

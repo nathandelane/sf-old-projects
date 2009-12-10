@@ -310,6 +310,7 @@ Reserved: ? (displays help); v (displays version); l (displays license); q (quit
 		static void Main(string[] args)
 		{
 			Program program = new Program(ProgramArguments.ParseArgs(args));
+			Environment.Exit(0);
 		}
 
 		#endregion
