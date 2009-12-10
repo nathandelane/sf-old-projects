@@ -111,11 +111,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 							tokenIsValid = false;
 							internalLine = RemoveToken(token.Length, internalLine);
 						}
-						else if ((token = VariableToken.Parse(internalLine)) is VariableToken)
+						else if ((token = NumberToken.Parse(internalLine)) is NumberToken)
 						{
 							tokenIsValid = true;
 						}
-						else if ((token = NumberToken.Parse(internalLine)) is NumberToken)
+						else if ((token = VariableToken.Parse(internalLine)) is VariableToken)
 						{
 							tokenIsValid = true;
 						}
