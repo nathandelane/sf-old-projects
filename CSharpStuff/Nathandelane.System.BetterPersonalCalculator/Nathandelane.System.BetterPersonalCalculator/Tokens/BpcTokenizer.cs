@@ -111,7 +111,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 							tokenIsValid = false;
 							internalLine = RemoveToken(token.Length, internalLine);
 						}
-						else if ((token = NumberToken.Parse(internalLine)) is NumberToken)
+						else if ((token = NumberToken.Parse(internalLine)) is NumberToken && !((lastToken is FunctionToken) && lastToken.ToString().Equals("!", StringComparison.InvariantCultureIgnoreCase)))
 						{
 							tokenIsValid = true;
 						}
