@@ -130,17 +130,21 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("2");
 			}
+			else if (NumberToken.__octNumberPattern.IsMatch(number))
+			{
+				number = Convert.ToInt64(number.Substring(0, length), 8).ToString();
+
+				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("8");
+			}
 			else if (NumberToken.__hexNumberPattern.IsMatch(number))
 			{
 				number = Convert.ToInt64(number.Substring(0, length), 16).ToString();
 
 				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("16");
 			}
-			else if (NumberToken.__octNumberPattern.IsMatch(number))
+			else
 			{
-				number = Convert.ToInt64(number.Substring(0, length), 8).ToString();
-
-				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("8");
+				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("10");
 			}
 
 			return number;

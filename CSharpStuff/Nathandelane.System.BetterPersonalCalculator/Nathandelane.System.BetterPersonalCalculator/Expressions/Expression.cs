@@ -83,7 +83,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				strOperands[counter] = _operands[counter].ToString();
 			}
 
-			return String.Concat(Operation.ToString(), " ", String.Join(", ", strOperands));
+			return String.Concat(Operation.ToString(), " ", String.Join(" ", strOperands));
 		}
 
 		#endregion
