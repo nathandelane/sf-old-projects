@@ -101,6 +101,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					DisplayLicense();
 					continue;
 				}
+				else if (userInput.Equals("v", StringComparison.InvariantCultureIgnoreCase))
+				{
+					DisplayVersion();
+					continue;
+				}
 
 				if (!String.IsNullOrEmpty(userInput))
 				{
