@@ -111,7 +111,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 							tokenIsValid = false;
 							internalLine = RemoveToken(token.Length, internalLine);
 						}
-						else if ((token = NumberToken.Parse(internalLine)) is NumberToken && !((lastToken is FunctionToken) && lastToken.ToString().Equals("!", StringComparison.InvariantCultureIgnoreCase)))
+						else if ((token = NumberToken.Parse(internalLine)) is NumberToken && !LastTokenWasPostfixFunction(lastToken))
 						{
 							tokenIsValid = true;
 						}
@@ -165,6 +165,23 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					}
 				}
 			}
+		}
+
+		/// <summary>
+		/// Determines whether the last token was an abnormal postfix function
+		/// </summary>
+		/// <param name="lastToken"></param>
+		/// <returns></returns>
+		private bool LastTokenWasPostfixFunction(Token lastToken)
+		{
+			bool result = false;
+
+			if (lastToken.ToString().Equals("!", StringComparison.InvariantCultureIgnoreCase))
+			{
+				result = true;
+			}
+
+			return result;
 		}
 
 		/// <summary>
