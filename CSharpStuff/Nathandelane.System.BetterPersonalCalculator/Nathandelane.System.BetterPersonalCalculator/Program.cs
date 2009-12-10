@@ -51,13 +51,13 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 			if (continueExecution)
 			{
-				if (!String.IsNullOrEmpty(args.Expression))
+				if (String.IsNullOrEmpty(args.Expression))
 				{
-					Console.WriteLine("{0}", PerformEvaluation(args.Expression));
+					Interact();
 				}
 				else
 				{
-					Interact();
+					Console.WriteLine("{0}", PerformEvaluation(args.Expression));
 				}
 			}
 		}
