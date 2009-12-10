@@ -64,7 +64,7 @@ if($expressions.Length -eq $expected.Length)
 	do
 	{
 		$expr = $expressions[$expressionIndex]
-		$bpcResult = (bpc $expr.Split(" "))
+		$bpcResult = (bpc $expr)
 		$expct = $expected[$expressionIndex]
 		$result = AssertEquals $expct $bpcResult
 		Write-Output "bpc $expr = $expct ($bpcResult)...$result"
