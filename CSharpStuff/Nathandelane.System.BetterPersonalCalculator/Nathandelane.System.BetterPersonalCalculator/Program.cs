@@ -102,7 +102,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					continue;
 				}
 
-				Console.WriteLine("{0}", PerformEvaluation(userInput));
+				if (!String.IsNullOrEmpty(userInput))
+				{
+					Console.WriteLine("{0}", PerformEvaluation(userInput));
+				}
 			}
 
 			DisplayThankYou();
