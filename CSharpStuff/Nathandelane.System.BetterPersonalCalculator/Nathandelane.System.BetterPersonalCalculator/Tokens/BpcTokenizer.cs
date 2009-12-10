@@ -102,6 +102,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 						{
 							tokenIsValid = true;
 						}
+						else if ((token = OperatorToken.Parse(internalLine)) is OperatorToken)
+						{
+							tokenIsValid = true;
+						}
 						else if ((token = PerenthesisToken.Parse(internalLine)) is PerenthesisToken)
 						{
 							tokenIsValid = true;
