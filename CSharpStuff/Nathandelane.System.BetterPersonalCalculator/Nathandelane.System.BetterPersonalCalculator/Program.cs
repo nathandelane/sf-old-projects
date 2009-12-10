@@ -255,31 +255,41 @@ Reserved: ? (displays help); v (displays version); l (displays license); q (quit
 		/// <returns></returns>
 		private string PerformEvaluation(string strExpression)
 		{
-			ITokenizer tokenizer = new BpcTokenizer(strExpression);
-			Expression expression = ExpressionYard.Formulate(tokenizer);
-			Token result = expression.Evaluate();
-			string strResult = String.Format("{0}", result);
+			string strResult = "0";
 
-			if (_context[CalculatorContext.DisplayBase].ToString().Equals("2", StringComparison.InvariantCultureIgnoreCase))
+			try
 			{
-				strResult = ((NumberToken)result).AsBin();
+				ITokenizer tokenizer = new BpcTokenizer(strExpression);
+				Expression expression = ExpressionYard.Formulate(tokenizer);
+				Token result = expression.Evaluate();
 
-				ResetDisplayBase();
+				strResult = String.Format("{0}", result);
+
+				if (_context[CalculatorContext.DisplayBase].ToString().Equals("2", StringComparison.InvariantCultureIgnoreCase))
+				{
+					strResult = ((NumberToken)result).AsBin();
+
+					ResetDisplayBase();
+				}
+				else if (_context[CalculatorContext.DisplayBase].ToString().Equals("8", StringComparison.InvariantCultureIgnoreCase))
+				{
+					strResult = ((NumberToken)result).AsOct();
+
+					ResetDisplayBase();
+				}
+				else if (_context[CalculatorContext.DisplayBase].ToString().Equals("16", StringComparison.InvariantCultureIgnoreCase))
+				{
+					strResult = ((NumberToken)result).AsHex();
+
+					ResetDisplayBase();
+				}
+
+				_context[CalculatorContext.LastResult] = result;
 			}
-			else if (_context[CalculatorContext.DisplayBase].ToString().Equals("8", StringComparison.InvariantCultureIgnoreCase))
+			catch (Exception ex)
 			{
-				strResult = ((NumberToken)result).AsOct();
-
-				ResetDisplayBase();
+				Console.WriteLine("{0}", ex.Message);
 			}
-			else if (_context[CalculatorContext.DisplayBase].ToString().Equals("16", StringComparison.InvariantCultureIgnoreCase))
-			{
-				strResult = ((NumberToken)result).AsHex();
-
-				ResetDisplayBase();
-			}
-
-			_context[CalculatorContext.LastResult] = result;
 
 			return strResult;
 		}
