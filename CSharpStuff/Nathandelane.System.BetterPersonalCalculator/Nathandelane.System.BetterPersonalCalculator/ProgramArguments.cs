@@ -71,7 +71,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		public static ProgramArguments ParseArgs(string[] args)
 		{
 			ProgramArguments programArguments = new ProgramArguments();
-			Regex argRegex = new Regex("^([-]{2}|[/]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+			Regex argRegex = new Regex("^([-]{2}|[/]{1}){1}[A-Za-z\\d-=]+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 			StringBuilder expressionBuilder = new StringBuilder();
 
 			foreach (string nextArg in args)
