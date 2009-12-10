@@ -65,13 +65,23 @@ if($expressions.Length -eq $expected.Length)
 	{
 		$expr = $expressions[$expressionIndex]
 		$bpcResult = (bpc $expr)
-		$expct = $expected[$expressionIndex]
-		$result = AssertEquals $expct $bpcResult
-		Write-Output "bpc $expr = $expct ($bpcResult)...$result"
 		
-		if($result -eq "Failed")
+		$expct = $expected[$expressionIndex]
+
+		if($LastExitCode -eq 0)
 		{
-			$anyFailed = $True
+			$result = AssertEquals $expct $bpcResult
+			Write-Output "bpc $expr = $expct ($bpcResult)...$result"
+			
+			if($result -eq "Failed")
+			{
+				$anyFailed = $True
+				$numberFailed++
+			}
+		}
+		else
+		{
+			Write-Output "bpc $expr = $expct ($bpcResult)...Failed"
 			$numberFailed++
 		}
 		
