@@ -140,7 +140,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					}
 					else if (lastToken is PostfixFunctionToken)
 					{
-						if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed) || OperatorToken.TryParse(internalLine, out token) || InfixFunctionToken.TryParse(internalLine, out token) || CommentToken.TryParse(internalLine, out token))
+						if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed) || InfixFunctionToken.TryParse(internalLine, out token) || OperatorToken.TryParse(internalLine, out token) || PostfixFunctionToken.TryParse(internalLine, out token) || CommentToken.TryParse(internalLine, out token))
 						{
 							tokenIsValid = true;
 						}
