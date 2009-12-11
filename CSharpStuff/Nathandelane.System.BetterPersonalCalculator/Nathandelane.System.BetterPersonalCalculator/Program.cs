@@ -192,6 +192,7 @@ Options:
 --version             Displays the version of BCP currently running.{0}", Environment.NewLine);
 
 			DisplayHelp();
+			DisplayReserved();
 		}
 
 		/// <summary>
@@ -203,9 +204,16 @@ Options:
 Decimal numbers; hexadecimal numbers ending with h, octal numbers ending with o, binary numbers ending with b.
 Arithmetic operators: +, -, *, /
 Functions: ** (power), // (div), % (mod), ! (factorial), cos, acos, cosh, sin, asin, sinh, tan, atan, tanh, sqrt, toh, tod, tob, too
-Constants: pi, e, $ (last result)
-Parentheses: (, )
-Reserved: ? (displays help); v (displays version); l (displays license); q (quits)");
+Constants: pi, e, $ (last result, interactive mode only)
+Parentheses: (, )");
+		}
+
+		/// <summary>
+		/// Displays reserved keywords, used only in interactive mode.
+		/// </summary>
+		private void DisplayReserved()
+		{
+			Console.WriteLine("Reserved: ? (displays help); v (displays version); l (displays license); q (quits)");
 		}
 
 		/// <summary>

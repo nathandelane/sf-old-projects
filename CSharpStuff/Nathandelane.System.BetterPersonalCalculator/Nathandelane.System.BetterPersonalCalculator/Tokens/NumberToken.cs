@@ -95,11 +95,31 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#region Methods
 
 		/// <summary>
+		/// Attempts to parse a token and returns success or failure.
+		/// </summary>
+		/// <param name="line">String from which to take the next token.</param>
+		/// <param name="token">Out parameter to send token to if successful.</param>
+		/// <returns></returns>
+		public static bool TryParse(string line, out Token token)
+		{
+			bool parseSuccessful = false;
+
+			token = new NullToken();
+
+			if ((token = Parse(line)) is NumberToken)
+			{
+				parseSuccessful = true;
+			}
+
+			return parseSuccessful;
+		}
+
+		/// <summary>
 		/// Gets a Token of type NumberToken from the beginning of a line of text.
 		/// </summary>
 		/// <param name="line"></param>
 		/// <returns></returns>
-		public static Token Parse(string line)
+		public new static Token Parse(string line)
 		{
 			Token token = new NullToken();
 

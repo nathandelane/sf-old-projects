@@ -39,7 +39,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 			if (tokenizer.HasTokens)
 			{
-				Queue<Token> output = Postfixate(tokenizer);
+				Stack<Token> output = Postfixate(tokenizer);
 
 				expression = CreateExpression(output);
 			}
@@ -52,7 +52,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// </summary>
 		/// <param name="tokenizer"></param>
 		/// <returns></returns>
-		private static Queue<Token> Postfixate(ITokenizer tokenizer)
+		private static Stack<Token> Postfixate(ITokenizer tokenizer)
 		{
 			Stack<Token> output = new Stack<Token>();
 			Stack<Token> operations = new Stack<Token>();
@@ -119,13 +119,14 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				reversed.Push(output.Pop());
 			}
 
-			Queue<Token> tokenQueue = new Queue<Token>();
-			while (reversed.Count > 0)
-			{
-				tokenQueue.Enqueue(reversed.Pop());
-			}
+			//Queue<Token> tokenQueue = new Queue<Token>();
+			//while (reversed.Count > 0)
+			//{
+			//    tokenQueue.Enqueue(reversed.Pop());
+			//}
 
-			return tokenQueue;
+			//return tokenQueue;
+			return reversed;
 		}
 
 		/// <summary>
@@ -133,13 +134,14 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// </summary>
 		/// <param name="output"></param>
 		/// <returns></returns>
-		private static Expression CreateExpression(Queue<Token> output)
+		private static Expression CreateExpression(Stack<Token> output)
 		{
 			Stack<Expression> expressionStack = new Stack<Expression>();
 
 			while (output.Count > 0)
 			{
-				Token nextToken = output.Dequeue();
+				//Token nextToken = output.Dequeue();
+				Token nextToken = output.Pop();
 
 				if (nextToken is NumberToken || nextToken is ConstantToken)
 				{
@@ -158,8 +160,17 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				}
 				else if (nextToken is FunctionToken)
 				{
-					int argCount = ((FunctionToken)nextToken).NumArguments;
+					int argCount = 0;
 					Expression[] operands = new Expression[argCount];
+
+					if (nextToken is PrefixFunctionToken || nextToken is PostfixFunctionToken)
+					{
+						argCount = 1;
+					}
+					else if (nextToken is InfixFunctionToken)
+					{
+						argCount = 2;
+					}
 
 					for (int counter = 0; counter < operands.Length; counter++)
 					{

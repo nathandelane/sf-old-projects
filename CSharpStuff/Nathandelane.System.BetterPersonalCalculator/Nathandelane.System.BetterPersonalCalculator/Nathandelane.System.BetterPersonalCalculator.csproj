@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="Expressions\ExpressionYard.cs" />
     <Compile Include="ProgramArguments.cs" />
+    <Compile Include="Tokens\AssignmentToken.cs" />
     <Compile Include="Tokens\CommentToken.cs" />
     <Compile Include="Expressions\ArithmeticExpression.cs" />
     <Compile Include="Tokens\BpcTokenizer.cs" />
@@ -75,11 +76,17 @@
     <Compile Include="Tokens\ConstantToken.cs" />
     <Compile Include="Expressions\Expression.cs" />
     <Compile Include="Expressions\FunctionExpression.cs" />
+    <Compile Include="Tokens\PerenthesisType.cs" />
+    <Compile Include="Tokens\PostfixFunctionToken.cs" />
     <Compile Include="Tokens\FunctionToken.cs" />
+    <Compile Include="Tokens\InfixFunctionToken.cs" />
+    <Compile Include="Tokens\PrefixFunctionToken.cs" />
     <Compile Include="Expressions\MalformedExpressionException.cs" />
     <Compile Include="Expressions\NumericExpression.cs" />
+    <Compile Include="Tokens\IOperation.cs" />
     <Compile Include="Tokens\ITokenizer.cs" />
     <Compile Include="Tokens\NumberTokenType.cs" />
+    <Compile Include="Tokens\OperationType.cs" />
     <Compile Include="Tokens\OperatorToken.cs" />
     <Compile Include="Tokens\NotANumberToken.cs" />
     <Compile Include="Tokens\NullToken.cs" />
@@ -90,7 +97,7 @@
     <Compile Include="Tokens\Token.cs" />
     <Compile Include="Expressions\ExpressionPrecedence.cs" />
     <Compile Include="Tokens\TokenType.cs" />
-    <Compile Include="Tokens\UnrecognizedTokenException.cs" />
+    <Compile Include="Tokens\InvalidTokenException.cs" />
     <Compile Include="Tokens\VariableToken.cs" />
   </ItemGroup>
   <ItemGroup>

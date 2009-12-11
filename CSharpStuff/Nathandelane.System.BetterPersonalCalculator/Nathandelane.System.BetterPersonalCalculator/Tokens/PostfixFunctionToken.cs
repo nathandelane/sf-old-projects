@@ -27,37 +27,32 @@ using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
-	public class ConstantToken : NumberToken
+	public class PostfixFunctionToken : FunctionToken, IOperation
 	{
 		#region Fields
 
-		private static readonly Regex __constantPattern = new Regex("^(e|E|pi|PI|[$]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __functionPattern = new Regex("^([!]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		#endregion
 
 		#region Properties
 
-		public override TokenType Type
+		public OperationType OperationType
 		{
-			get { return TokenType.Constant; }
-		}
-
-		public override ExpressionPrecedence Precedence
-		{
-			get { return ExpressionPrecedence.Constant; }
+			get { return OperationType.PostfixFunction; }
 		}
 
 		#endregion
 
 		#region Constructors
 
-		public ConstantToken(string value, string rep)
-			: base(value, rep)
+		public PostfixFunctionToken(string value)
+			: base(value)
 		{
 		}
 
-		public ConstantToken(Token other, string rep)
-			: base(other, rep)
+		public PostfixFunctionToken(Token other)
+			: base(other)
 		{
 		}
 
@@ -71,13 +66,13 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// <param name="line">String from which to take the next token.</param>
 		/// <param name="token">Out parameter to send token to if successful.</param>
 		/// <returns></returns>
-		public new static bool TryParse(string line, out Token token)
+		public static bool TryParse(string line, out Token token)
 		{
 			bool parseSuccessful = false;
 
 			token = new NullToken();
 
-			if ((token = Parse(line)) is ConstantToken)
+			if ((token = Parse(line)) is PostfixFunctionToken)
 			{
 				parseSuccessful = true;
 			}
@@ -86,7 +81,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		}
 
 		/// <summary>
-		/// Gets a Token of type NumberToken from the beginning of a line of text.
+		/// Gets a Token of type PostfixFunctionToken from the beginning of a line of text.
 		/// </summary>
 		/// <param name="line"></param>
 		/// <returns></returns>
@@ -94,22 +89,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		{
 			Token token = new NullToken();
 
-			if (ConstantToken.__constantPattern.IsMatch(line))
+			if (PostfixFunctionToken.__functionPattern.IsMatch(line))
 			{
-				string matchText = ConstantToken.__constantPattern.Matches(line)[0].Value;
+				string matchText = PostfixFunctionToken.__functionPattern.Matches(line)[0].Value;
 
-				if (matchText.Equals("e", StringComparison.InvariantCultureIgnoreCase))
-				{
-					token = new ConstantToken(Math.E.ToString(), matchText);
-				}
-				else if (matchText.Equals("pi", StringComparison.InvariantCultureIgnoreCase))
-				{
-					token = new ConstantToken(Math.PI.ToString(), matchText);
-				}
-				else if (matchText.Equals("$", StringComparison.InvariantCultureIgnoreCase))
-				{
-					token = new ConstantToken(CalculatorContext.GetInstance().GetLastResult(), matchText);
-				}
+				token = new PostfixFunctionToken(matchText);
 			}
 
 			return token;

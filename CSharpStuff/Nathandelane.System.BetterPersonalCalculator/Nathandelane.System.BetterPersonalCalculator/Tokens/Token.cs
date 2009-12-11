@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Reflection;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
@@ -65,6 +66,16 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#endregion
 
 		#region Methods
+
+		/// <summary>
+		/// This method must be overridden by the derived type.
+		/// </summary>
+		/// <param name="line"></param>
+		/// <returns></returns>
+		public static Token Parse(string line)
+		{
+			throw new NotImplementedException();
+		}
 
 		public override string ToString()
 		{

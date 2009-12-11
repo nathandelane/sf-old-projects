@@ -92,70 +92,62 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				}
 				else
 				{
-					if (lastToken is NullToken || !(lastToken is NumberToken))
+					if (lastToken is NullToken)
 					{
-						if ((token = ConstantToken.Parse(internalLine)) is ConstantToken)
+						if (GetFirstToken(internalLine, out token))
 						{
 							tokenIsValid = true;
 						}
-						else if ((token = FunctionToken.Parse(internalLine)) is FunctionToken)
+					}
+					else if (lastToken is NumberToken)
+					{
+						if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed) || OperatorToken.TryParse(internalLine, out token) || PostfixFunctionToken.TryParse(internalLine, out token) || InfixFunctionToken.TryParse(internalLine, out token) || CommentToken.TryParse(internalLine, out token))
 						{
 							tokenIsValid = true;
 						}
-						else if ((token = PerenthesisToken.Parse(internalLine)) is PerenthesisToken)
+					}
+					else if (lastToken is PerenthesisToken)
+					{
+						if (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == ((PerenthesisToken)lastToken).PerenthesisType || CommentToken.TryParse(internalLine, out token))
 						{
 							tokenIsValid = true;
 						}
-						else if ((token = CommentToken.Parse(internalLine)) is CommentToken)
+						else if (((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open)
 						{
-							tokenIsValid = false;
-							internalLine = RemoveToken(token.Length, internalLine);
-						}
-						else if ((token = NumberToken.Parse(internalLine)) is NumberToken && !LastTokenWasPostfixFunction(lastToken))
-						{
-							tokenIsValid = true;
-						}
-						else if ((token = OperatorToken.Parse(internalLine)) is OperatorToken)
-						{
-							tokenIsValid = true;
-						}
-						else if ((token = VariableToken.Parse(internalLine)) is VariableToken)
-						{
-							tokenIsValid = true;
+							if (NumberToken.TryParse(internalLine, out token) || ConstantToken.TryParse(internalLine, out token) || VariableToken.TryParse(internalLine, out token) || PrefixFunctionToken.TryParse(internalLine, out token))
+							{
+								tokenIsValid = true;
+							}
 						}
 						else
 						{
-							throw new UnrecognizedTokenException(String.Format("Unrecognized token at {0}.", internalLine));
+							if (OperatorToken.TryParse(internalLine, out token) || InfixFunctionToken.TryParse(internalLine, out token) || PostfixFunctionToken.TryParse(internalLine, out token))
+							{
+								tokenIsValid = true;
+							}
 						}
 					}
-					else if ((token = ConstantToken.Parse(internalLine)) is ConstantToken)
+					else if (lastToken is PrefixFunctionToken && (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open))
 					{
 						tokenIsValid = true;
 					}
-					else if ((token = FunctionToken.Parse(internalLine)) is FunctionToken)
+					else if (lastToken is InfixFunctionToken || lastToken is OperatorToken)
 					{
-						tokenIsValid = true;
+						if (PrefixFunctionToken.TryParse(internalLine, out token) || NumberToken.TryParse(internalLine, out token) || ConstantToken.TryParse(internalLine, out token) || VariableToken.TryParse(internalLine, out token) || (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open))
+						{
+							tokenIsValid = true;
+						}
 					}
-					else if ((token = PerenthesisToken.Parse(internalLine)) is PerenthesisToken)
+					else if (lastToken is PostfixFunctionToken)
 					{
-						tokenIsValid = true;
-					}
-					else if ((token = CommentToken.Parse(internalLine)) is CommentToken)
-					{
-						tokenIsValid = false;
-						internalLine = RemoveToken(token.Length, internalLine);
-					}
-					else if ((token = OperatorToken.Parse(internalLine)) is OperatorToken)
-					{
-						tokenIsValid = true;
-					}
-					else if ((token = VariableToken.Parse(internalLine)) is VariableToken)
-					{
-						tokenIsValid = true;
+						if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed) || OperatorToken.TryParse(internalLine, out token) || InfixFunctionToken.TryParse(internalLine, out token) || CommentToken.TryParse(internalLine, out token))
+						{
+							tokenIsValid = true;
+						}
 					}
 					else
 					{
-						throw new UnrecognizedTokenException(String.Format("Unrecognized token at {0}.", internalLine));
+						throw new InvalidTokenException(String.Format("Invalid token at {0}.", internalLine));
 					}
 
 					if (tokenIsValid)
@@ -165,6 +157,20 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					}
 				}
 			}
+		}
+
+		/// <summary>
+		/// Gets the first Token from the line.
+		/// </summary>
+		/// <param name="internalLine"></param>
+		/// <returns></returns>
+		private bool GetFirstToken(string internalLine, out Token token)
+		{
+			return PerenthesisToken.TryParse(internalLine, out token)
+				|| PrefixFunctionToken.TryParse(internalLine, out token)
+				|| ConstantToken.TryParse(internalLine, out token)
+				|| NumberToken.TryParse(internalLine, out token)
+				|| VariableToken.TryParse(internalLine, out token);
 		}
 
 		/// <summary>

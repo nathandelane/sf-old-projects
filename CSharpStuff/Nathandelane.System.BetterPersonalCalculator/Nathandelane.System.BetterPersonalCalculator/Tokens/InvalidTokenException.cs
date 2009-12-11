@@ -26,11 +26,11 @@ using System.Text;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
-	public class UnrecognizedTokenException : Exception
+	public class InvalidTokenException : Exception
 	{
 		#region Constructors
 
-		public UnrecognizedTokenException(string message)
+		public InvalidTokenException(string message)
 			: base(message)
 		{
 		}

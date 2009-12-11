@@ -27,37 +27,37 @@ using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
-	public class ConstantToken : NumberToken
+	public class AssignmentToken : Token, IOperation
 	{
 		#region Fields
 
-		private static readonly Regex __constantPattern = new Regex("^(e|E|pi|PI|[$]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __assignmentPattern = new Regex("^[=]{1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		#endregion
 
 		#region Properties
 
+		public OperationType OperationType
+		{
+			get { return OperationType.Infix; }
+		}
+
 		public override TokenType Type
 		{
-			get { return TokenType.Constant; }
+			get { return TokenType.Variable; }
 		}
 
 		public override ExpressionPrecedence Precedence
 		{
-			get { return ExpressionPrecedence.Constant; }
+			get { return ExpressionPrecedence.Variable; }
 		}
 
 		#endregion
 
 		#region Constructors
 
-		public ConstantToken(string value, string rep)
-			: base(value, rep)
-		{
-		}
-
-		public ConstantToken(Token other, string rep)
-			: base(other, rep)
+		public AssignmentToken()
+			: base("=")
 		{
 		}
 
@@ -71,13 +71,13 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// <param name="line">String from which to take the next token.</param>
 		/// <param name="token">Out parameter to send token to if successful.</param>
 		/// <returns></returns>
-		public new static bool TryParse(string line, out Token token)
+		public static bool TryParse(string line, out Token token)
 		{
 			bool parseSuccessful = false;
 
 			token = new NullToken();
 
-			if ((token = Parse(line)) is ConstantToken)
+			if ((token = Parse(line)) is AssignmentToken)
 			{
 				parseSuccessful = true;
 			}
@@ -86,7 +86,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		}
 
 		/// <summary>
-		/// Gets a Token of type NumberToken from the beginning of a line of text.
+		/// Gets a Token of type AssignmentToken from the beginning of a line of text.
 		/// </summary>
 		/// <param name="line"></param>
 		/// <returns></returns>
@@ -94,22 +94,9 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		{
 			Token token = new NullToken();
 
-			if (ConstantToken.__constantPattern.IsMatch(line))
+			if (AssignmentToken.__assignmentPattern.IsMatch(line))
 			{
-				string matchText = ConstantToken.__constantPattern.Matches(line)[0].Value;
-
-				if (matchText.Equals("e", StringComparison.InvariantCultureIgnoreCase))
-				{
-					token = new ConstantToken(Math.E.ToString(), matchText);
-				}
-				else if (matchText.Equals("pi", StringComparison.InvariantCultureIgnoreCase))
-				{
-					token = new ConstantToken(Math.PI.ToString(), matchText);
-				}
-				else if (matchText.Equals("$", StringComparison.InvariantCultureIgnoreCase))
-				{
-					token = new ConstantToken(CalculatorContext.GetInstance().GetLastResult(), matchText);
-				}
+				token = new AssignmentToken();
 			}
 
 			return token;

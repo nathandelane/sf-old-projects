@@ -33,9 +33,16 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		private static readonly Regex __perenPattern = new Regex("^[()]{1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
+		private PerenthesisType _perenthesisType;
+
 		#endregion
 
 		#region Properties
+
+		public PerenthesisType PerenthesisType
+		{
+			get { return _perenthesisType; }
+		}
 
 		public override TokenType Type
 		{
@@ -66,11 +73,31 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#region Methods
 
 		/// <summary>
+		/// Attempts to parse a token and returns success or failure.
+		/// </summary>
+		/// <param name="line">String from which to take the next token.</param>
+		/// <param name="token">Out parameter to send token to if successful.</param>
+		/// <returns></returns>
+		public static bool TryParse(string line, out Token token)
+		{
+			bool parseSuccessful = false;
+
+			token = new NullToken();
+
+			if ((token = Parse(line)) is PerenthesisToken)
+			{
+				parseSuccessful = true;
+			}
+
+			return parseSuccessful;
+		}
+
+		/// <summary>
 		/// Gets a Token of type PerenthesisToken from the beginning of a line of text.
 		/// </summary>
 		/// <param name="line"></param>
 		/// <returns></returns>
-		public static Token Parse(string line)
+		public new static Token Parse(string line)
 		{
 			Token token = new NullToken();
 
@@ -79,6 +106,15 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				string matchText = PerenthesisToken.__perenPattern.Matches(line)[0].Value;
 
 				token = new PerenthesisToken(matchText);
+
+				if (matchText.Equals("(", StringComparison.InvariantCultureIgnoreCase))
+				{
+					((PerenthesisToken)token)._perenthesisType = PerenthesisType.Open;
+				}
+				else
+				{
+					((PerenthesisToken)token)._perenthesisType = PerenthesisType.Closed;
+				}
 			}
 
 			return token;
