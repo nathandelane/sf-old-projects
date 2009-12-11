@@ -101,7 +101,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					}
 					else if (lastToken is NumberToken)
 					{
-						if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed) || OperatorToken.TryParse(internalLine, out token) || PostfixFunctionToken.TryParse(internalLine, out token) || InfixFunctionToken.TryParse(internalLine, out token) || CommentToken.TryParse(internalLine, out token))
+						if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed) || InfixFunctionToken.TryParse(internalLine, out token) || OperatorToken.TryParse(internalLine, out token) || PostfixFunctionToken.TryParse(internalLine, out token) || CommentToken.TryParse(internalLine, out token))
 						{
 							tokenIsValid = true;
 						}
@@ -121,7 +121,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 						}
 						else
 						{
-							if (OperatorToken.TryParse(internalLine, out token) || InfixFunctionToken.TryParse(internalLine, out token) || PostfixFunctionToken.TryParse(internalLine, out token))
+							if (InfixFunctionToken.TryParse(internalLine, out token) || OperatorToken.TryParse(internalLine, out token) || PostfixFunctionToken.TryParse(internalLine, out token))
 							{
 								tokenIsValid = true;
 							}
