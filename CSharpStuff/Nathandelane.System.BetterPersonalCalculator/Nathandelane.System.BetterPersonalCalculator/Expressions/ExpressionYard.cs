@@ -119,13 +119,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				reversed.Push(output.Pop());
 			}
 
-			//Queue<Token> tokenQueue = new Queue<Token>();
-			//while (reversed.Count > 0)
-			//{
-			//    tokenQueue.Enqueue(reversed.Pop());
-			//}
-
-			//return tokenQueue;
 			return reversed;
 		}
 
