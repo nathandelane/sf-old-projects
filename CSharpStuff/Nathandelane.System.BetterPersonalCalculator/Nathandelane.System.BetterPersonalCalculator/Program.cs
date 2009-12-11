@@ -280,23 +280,26 @@ Parentheses: (, )");
 
 				strResult = String.Format("{0}", result);
 
-				if (_context[CalculatorContext.DisplayBase].ToString().Equals("2", StringComparison.InvariantCultureIgnoreCase))
+				if (result is NumberToken)
 				{
-					strResult = ((NumberToken)result).AsBin();
+					if (_context[CalculatorContext.DisplayBase].ToString().Equals("2", StringComparison.InvariantCultureIgnoreCase))
+					{
+						strResult = ((NumberToken)result).AsBin();
 
-					ResetDisplayBase();
-				}
-				else if (_context[CalculatorContext.DisplayBase].ToString().Equals("8", StringComparison.InvariantCultureIgnoreCase))
-				{
-					strResult = ((NumberToken)result).AsOct();
+						ResetDisplayBase();
+					}
+					else if (_context[CalculatorContext.DisplayBase].ToString().Equals("8", StringComparison.InvariantCultureIgnoreCase))
+					{
+						strResult = ((NumberToken)result).AsOct();
 
-					ResetDisplayBase();
-				}
-				else if (_context[CalculatorContext.DisplayBase].ToString().Equals("16", StringComparison.InvariantCultureIgnoreCase))
-				{
-					strResult = ((NumberToken)result).AsHex();
+						ResetDisplayBase();
+					}
+					else if (_context[CalculatorContext.DisplayBase].ToString().Equals("16", StringComparison.InvariantCultureIgnoreCase))
+					{
+						strResult = ((NumberToken)result).AsHex();
 
-					ResetDisplayBase();
+						ResetDisplayBase();
+					}
 				}
 
 				_context[CalculatorContext.LastResult] = result;

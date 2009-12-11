@@ -70,7 +70,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					{
 						operations.Push(token);
 					}
-					else if (operations.Peek().Precedence >= token.Precedence && !(token is PerenthesisToken))
+					else if (operations.Peek().Precedence >= token.Precedence && !(operations.Peek() is PerenthesisToken))
 					{
 						if (operations.Peek().Precedence == token.Precedence && operations.Peek().Precedence == ExpressionPrecedence.Function)
 						{
@@ -81,6 +81,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 							output.Push(operations.Pop());
 							operations.Push(token);
 						}
+					}
+					else if(operations.Peek() is PerenthesisToken)
+					{
+						operations.Push(token);
 					}
 				}
 				else if (token is PerenthesisToken)
