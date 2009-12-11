@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Expressions\BinaryExpression.cs" />
+    <Compile Include="Expressions\BooleanValueExpression.cs" />
     <Compile Include="Expressions\BooleanExpression.cs" />
     <Compile Include="Expressions\ExpressionYard.cs" />
     <Compile Include="ProgramArguments.cs" />

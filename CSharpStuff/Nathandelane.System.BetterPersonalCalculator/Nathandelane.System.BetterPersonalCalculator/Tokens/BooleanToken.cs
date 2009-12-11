@@ -77,7 +77,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 			token = new NullToken();
 
-			if ((token = Parse(line)) is NumberToken)
+			if ((token = Parse(line)) is BooleanToken)
 			{
 				parseSuccessful = true;
 			}

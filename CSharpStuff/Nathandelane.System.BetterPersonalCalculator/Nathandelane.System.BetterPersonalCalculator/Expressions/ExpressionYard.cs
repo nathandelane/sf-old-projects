@@ -60,7 +60,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 			foreach (Token token in tokenizer.Tokens)
 			{
-				if (token is NumberToken || token is ConstantToken)
+				if (token is NumberToken || token is BooleanToken)
 				{
 					output.Push(token);
 				}
@@ -135,7 +135,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			{
 				Token nextToken = output.Pop();
 
-				if (nextToken is NumberToken || nextToken is ConstantToken)
+				if (nextToken is BooleanToken)
+				{
+					expressionStack.Push(new BooleanValueExpression(nextToken));
+				}
+				else if (nextToken is ConstantToken || nextToken is NumberToken)
 				{
 					expressionStack.Push(new NumericExpression(nextToken));
 				}
@@ -145,7 +149,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					{
 						expressionStack.Push(new NumericExpression(CalculatorContext.GetInstance()[nextToken.ToString()]));
 					}
-				}
+				} 
 				else if (nextToken is ArithmeticOperatorToken)
 				{
 					expressionStack.Push(new ArithmeticExpression(nextToken, expressionStack.Pop(), expressionStack.Pop()));

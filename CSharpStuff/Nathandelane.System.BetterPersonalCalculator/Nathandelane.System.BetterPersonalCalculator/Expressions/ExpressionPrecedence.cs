@@ -32,11 +32,12 @@ namespace Nathandelane.System.BetterPersonalCalculator
 	public enum ExpressionPrecedence
 	{
 		Null,
+		Binary,
+		Boolean,
 		Constant,
 		Number,
 		Variable,
-		Boolean,
-		Binary,
+		BooleanValue,
 		Add,
 		Subtract,
 		MultiplyOrDivide,
