@@ -48,19 +48,19 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		{
 			ExpressionPrecedence precedence = ExpressionPrecedence.Null;
 
-			if (operation.ToString().Equals("+"))
+			if (operation.ToString().Equals("+", StringComparison.InvariantCultureIgnoreCase))
 			{
 				precedence = ExpressionPrecedence.Add;
 			}
-			else if (operation.ToString().Equals("-"))
+			else if (operation.ToString().Equals("-", StringComparison.InvariantCultureIgnoreCase))
 			{
 				precedence = ExpressionPrecedence.Subtract;
 			}
-			else if (operation.ToString().Equals("*"))
+			else if (operation.ToString().Equals("*", StringComparison.InvariantCultureIgnoreCase))
 			{
 				precedence = ExpressionPrecedence.MultiplyOrDivide;
 			}
-			else if (operation.ToString().Equals("/"))
+			else if (operation.ToString().Equals("/", StringComparison.InvariantCultureIgnoreCase))
 			{
 				precedence = ExpressionPrecedence.MultiplyOrDivide;
 			}
@@ -87,9 +87,9 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					result = new NumberToken((double.Parse(left.ToString()) - double.Parse(right.ToString())).ToString());
 					break;
 				case ExpressionPrecedence.MultiplyOrDivide:
-					if (Operation.ToString().Equals("/"))
+					if (Operation.ToString().Equals("/", StringComparison.InvariantCultureIgnoreCase))
 					{
-						if (right.ToString().Equals("0", StringComparison.InvariantCulture))
+						if (right.ToString().Equals("0", StringComparison.InvariantCultureIgnoreCase))
 						{
 							throw new DivideByZeroException();
 						}

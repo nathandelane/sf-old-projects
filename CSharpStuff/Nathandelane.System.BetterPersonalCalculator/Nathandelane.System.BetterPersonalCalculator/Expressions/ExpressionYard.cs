@@ -146,9 +146,17 @@ namespace Nathandelane.System.BetterPersonalCalculator
 						expressionStack.Push(new NumericExpression(CalculatorContext.GetInstance()[nextToken.ToString()]));
 					}
 				}
-				else if (nextToken is OperatorToken)
+				else if (nextToken is ArithmeticOperatorToken)
 				{
 					expressionStack.Push(new ArithmeticExpression(nextToken, expressionStack.Pop(), expressionStack.Pop()));
+				}
+				else if (nextToken is BinaryOperatorToken)
+				{
+					expressionStack.Push(new BinaryExpression(nextToken, expressionStack.Pop(), expressionStack.Pop()));
+				}
+				else if (nextToken is BooleanOperatorToken)
+				{
+					expressionStack.Push(new BooleanExpression(nextToken, expressionStack.Pop(), expressionStack.Pop()));
 				}
 				else if (nextToken is FunctionToken)
 				{

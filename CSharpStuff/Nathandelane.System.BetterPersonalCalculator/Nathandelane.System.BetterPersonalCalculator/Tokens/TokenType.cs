@@ -37,6 +37,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		Number,
 		Variable,
 		Operator,
+		Boolean,
 		Function
 	}
 }

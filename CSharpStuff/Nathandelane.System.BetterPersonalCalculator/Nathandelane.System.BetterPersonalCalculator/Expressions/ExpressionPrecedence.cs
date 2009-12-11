@@ -35,6 +35,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		Constant,
 		Number,
 		Variable,
+		Boolean,
+		Binary,
 		Add,
 		Subtract,
 		MultiplyOrDivide,

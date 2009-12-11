@@ -203,6 +203,8 @@ Options:
 			Console.WriteLine(@"Supported functionality:
 Decimal numbers; hexadecimal numbers ending with h, octal numbers ending with o, binary numbers ending with b.
 Arithmetic operators: +, -, *, /
+Binary operators: & (and), | (or), ^ (xor)
+Boolean operators (not chainable): ==, <=, >=, !=
 Functions: ** (power), // (div), % (mod), ! (factorial), cos, acos, cosh, sin, asin, sinh, tan, atan, tanh, sqrt, toh, tod, tob, too
 Constants: pi, e, $ (last result, interactive mode only)
 Parentheses: (, )");

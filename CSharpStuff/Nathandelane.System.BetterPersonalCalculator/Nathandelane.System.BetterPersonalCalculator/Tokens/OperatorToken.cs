@@ -1,42 +1,12 @@
-﻿/*
-Nathan Lane, Nathandelane Copyright (C) 2009, Nathandelane.
-
-Copyright 1992, 1997-1999, 2000 Free Software Foundation, Inc.
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 3, or (at your option)
-any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
-02111-1307, USA.
-*/
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
 	public class OperatorToken : Token
 	{
-		#region Fields
-
-		private static readonly Regex __operatorPattern = new Regex("^([-]{1}|[+]{1}|[*]{1}|[/]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
-
-		private ExpressionPrecedence _precedence;
-
-		#endregion
-
 		#region Properties
 
 		public override TokenType Type
@@ -46,23 +16,21 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		public override ExpressionPrecedence Precedence
 		{
-			get { return _precedence; }
+			get { throw new NotImplementedException(); }
 		}
 
 		#endregion
 
 		#region Constructors
 
-		public OperatorToken(string value)
+		protected OperatorToken(string value)
 			: base(value)
 		{
-			DeterminePrecedence(value);
 		}
 
-		public OperatorToken(Token other)
+		protected OperatorToken(Token other)
 			: base(other)
 		{
-			DeterminePrecedence(other.ToString());
 		}
 
 		#endregion
@@ -77,16 +45,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// <returns></returns>
 		public static bool TryParse(string line, out Token token)
 		{
-			bool parseSuccessful = false;
-
-			token = new NullToken();
-
-			if ((token = Parse(line)) is OperatorToken)
-			{
-				parseSuccessful = true;
-			}
-
-			return parseSuccessful;
+			throw new NotImplementedException();
 		}
 
 		/// <summary>
@@ -96,36 +55,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// <returns></returns>
 		public new static Token Parse(string line)
 		{
-			Token token = new NullToken();
-
-			if (OperatorToken.__operatorPattern.IsMatch(line))
-			{
-				string matchText = OperatorToken.__operatorPattern.Matches(line)[0].Value;
-
-				token = new OperatorToken(matchText);
-			}
-
-			return token;
-		}
-
-		private void DeterminePrecedence(string value)
-		{
-			if (value.Equals("+"))
-			{
-				_precedence = ExpressionPrecedence.Add;
-			}
-			else if(value.Equals("-"))
-			{
-				_precedence = ExpressionPrecedence.Subtract;
-			}
-			else if (value.Equals("*"))
-			{
-				_precedence = ExpressionPrecedence.MultiplyOrDivide;
-			}
-			else if (value.Equals("/"))
-			{
-				_precedence = ExpressionPrecedence.MultiplyOrDivide;
-			}
+			throw new NotImplementedException();
 		}
 
 		#endregion
