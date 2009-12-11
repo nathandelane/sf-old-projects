@@ -112,7 +112,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 						{
 							tokenIsValid = true;
 						}
-						else if (((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open)
+						else if (((PerenthesisToken)lastToken).PerenthesisType == PerenthesisType.Open)
 						{
 							if (NumberToken.TryParse(internalLine, out token) || ConstantToken.TryParse(internalLine, out token) || VariableToken.TryParse(internalLine, out token) || PrefixFunctionToken.TryParse(internalLine, out token))
 							{
