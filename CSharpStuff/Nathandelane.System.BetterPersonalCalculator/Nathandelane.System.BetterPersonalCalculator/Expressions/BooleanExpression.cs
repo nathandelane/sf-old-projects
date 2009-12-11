@@ -66,6 +66,14 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				{
 					result = new BooleanToken((dLeft >= rRight).ToString());
 				}
+				else if (Operation.ToString().Equals("<", StringComparison.InvariantCultureIgnoreCase))
+				{
+					result = new BooleanToken((dLeft < rRight).ToString());
+				}
+				else if (Operation.ToString().Equals(">", StringComparison.InvariantCultureIgnoreCase))
+				{
+					result = new BooleanToken((dLeft > rRight).ToString());
+				}
 				else if (Operation.ToString().Equals("!=", StringComparison.InvariantCultureIgnoreCase))
 				{
 					result = new BooleanToken((dLeft != rRight).ToString());

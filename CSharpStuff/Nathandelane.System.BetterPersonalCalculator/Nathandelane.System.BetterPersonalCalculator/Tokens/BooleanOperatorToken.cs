@@ -31,7 +31,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 	{
 		#region Fields
 
-		private static readonly Regex __operatorPattern = new Regex("^(==|<=|>=|!=){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __operatorPattern = new Regex("^(==|<=|>=|<|>|!=){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		#endregion
 
