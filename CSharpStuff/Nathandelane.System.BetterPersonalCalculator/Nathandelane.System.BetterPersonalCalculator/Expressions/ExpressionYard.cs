@@ -133,7 +133,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 			while (output.Count > 0)
 			{
-				//Token nextToken = output.Dequeue();
 				Token nextToken = output.Pop();
 
 				if (nextToken is NumberToken || nextToken is ConstantToken)
