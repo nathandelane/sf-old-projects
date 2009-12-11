@@ -161,7 +161,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				else if (nextToken is FunctionToken)
 				{
 					int argCount = 0;
-					Expression[] operands = new Expression[argCount];
 
 					if (nextToken is PrefixFunctionToken || nextToken is PostfixFunctionToken)
 					{
@@ -171,6 +170,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					{
 						argCount = 2;
 					}
+
+					Expression[] operands = new Expression[argCount];
 
 					for (int counter = 0; counter < operands.Length; counter++)
 					{
