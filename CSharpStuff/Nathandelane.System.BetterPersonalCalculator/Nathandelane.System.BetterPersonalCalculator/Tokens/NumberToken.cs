@@ -100,6 +100,33 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// <param name="line">String from which to take the next token.</param>
 		/// <param name="token">Out parameter to send token to if successful.</param>
 		/// <returns></returns>
+		public static bool TryParse(string line, out Token token, bool isConstant)
+		{
+			bool parseSuccessful = false;
+
+			if(isConstant)
+			{
+				token = ParseAsConstant(line);
+			}
+			else
+			{
+				token = Parse(line);
+			}
+
+			if (token is NumberToken)
+			{
+				parseSuccessful = true;
+			}
+
+			return parseSuccessful;
+		}
+
+		/// <summary>
+		/// Attempts to parse a token and returns success or failure.
+		/// </summary>
+		/// <param name="line">String from which to take the next token.</param>
+		/// <param name="token">Out parameter to send token to if successful.</param>
+		/// <returns></returns>
 		public static bool TryParse(string line, out Token token)
 		{
 			bool parseSuccessful = false;
@@ -129,6 +156,25 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				string value = AsDecimal(matchText);
 
 				token = new NumberToken(value, matchText);
+			}
+
+			return token;
+		}
+
+		/// <summary>
+		/// Gets a Token of type NumberToken from the beginning of a line of text.
+		/// </summary>
+		/// <param name="line"></param>
+		/// <returns></returns>
+		public static Token ParseAsConstant(string line)
+		{
+			Token token = new NullToken();
+
+			if (NumberToken.__numberPattern.IsMatch(line))
+			{
+				string matchText = NumberToken.__numberPattern.Matches(line)[0].Value;
+
+				token = new NumberToken(matchText, "$");
 			}
 
 			return token;

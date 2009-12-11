@@ -33,6 +33,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		private static readonly Regex __booleanPattern = new Regex("^(true|false){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
 
+		private string _representation;
+
 		#endregion
 
 		#region Properties
@@ -47,6 +49,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			get { return ExpressionPrecedence.Binary; }
 		}
 
+		public string Representation
+		{
+			get { return _representation; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -54,16 +61,57 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		public BooleanToken(string value)
 			: base(value.ToLowerInvariant())
 		{
+			_representation = value;
 		}
 
 		public BooleanToken(Token other)
 			: base(other)
 		{
+			_representation = other.ToString();
+		}
+
+		public BooleanToken(string value, string rep)
+			: base(value)
+		{
+			_representation = rep;
+		}
+
+		public BooleanToken(Token other, string rep)
+			: base(other)
+		{
+			_representation = rep;
 		}
 
 		#endregion
 
 		#region Methods
+
+		/// <summary>
+		/// Attempts to parse a token and returns success or failure.
+		/// </summary>
+		/// <param name="line">String from which to take the next token.</param>
+		/// <param name="token">Out parameter to send token to if successful.</param>
+		/// <returns></returns>
+		public static bool TryParse(string line, out Token token, bool isConstant)
+		{
+			bool parseSuccessful = false;
+
+			if(isConstant)
+			{
+				token = ParseAsConstant(line);
+			}
+			else
+			{
+				token = Parse(line);
+			}
+
+			if (token is BooleanToken)
+			{
+				parseSuccessful = true;
+			}
+
+			return parseSuccessful;
+		}
 
 		/// <summary>
 		/// Attempts to parse a token and returns success or failure.
@@ -99,6 +147,25 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				string matchText = BooleanToken.__booleanPattern.Matches(line)[0].Value;
 
 				token = new BooleanToken(matchText);
+			}
+
+			return token;
+		}
+
+		/// <summary>
+		/// Gets a Token of type BooleanToken from the beginning of a line of text.
+		/// </summary>
+		/// <param name="line"></param>
+		/// <returns></returns>
+		public static Token ParseAsConstant(string line)
+		{
+			Token token = new NullToken();
+
+			if (BooleanToken.__booleanPattern.IsMatch(line))
+			{
+				string matchText = BooleanToken.__booleanPattern.Matches(line)[0].Value;
+
+				token = new BooleanToken(matchText, "$");
 			}
 
 			return token;

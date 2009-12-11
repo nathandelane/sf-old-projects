@@ -75,9 +75,9 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		{
 			bool parseSuccessful = false;
 
-			token = new NullToken();
+			token = Parse(line);
 
-			if ((token = Parse(line)) is ConstantToken)
+			if (token is ConstantToken || token is NumberToken || token is BooleanToken)
 			{
 				parseSuccessful = true;
 			}
@@ -109,6 +109,14 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				else if (matchText.Equals("$", StringComparison.InvariantCultureIgnoreCase))
 				{
 					token = new ConstantToken(CalculatorContext.GetInstance().GetLastResult(), matchText);
+
+					Token intermediateToken = new NullToken();
+
+					if (NumberToken.TryParse(token.ToString(), out intermediateToken, true)
+						|| BooleanToken.TryParse(token.ToString(), out intermediateToken, true))
+					{
+						token = intermediateToken;
+					}
 				}
 			}
 

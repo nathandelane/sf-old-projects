@@ -57,7 +57,12 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				}
 				else
 				{
-					Console.WriteLine("{0}", PerformEvaluation(args.Expression));
+					string[] expressions = GetExpressions(args.Expression);
+
+					foreach (string nextExpression in expressions)
+					{
+						Console.WriteLine("{0}", PerformEvaluation(nextExpression));
+					}
 				}
 			}
 		}
@@ -65,6 +70,16 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#endregion
 
 		#region Methods
+
+		/// <summary>
+		///  Gets multiple expressions.
+		/// </summary>
+		/// <param name="wholeExpression"></param>
+		/// <returns></returns>
+		private string[] GetExpressions(string wholeExpression)
+		{
+			return wholeExpression.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+		}
 
 		/// <summary>
 		/// Interactive mode program loop.
@@ -109,7 +124,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 				if (!String.IsNullOrEmpty(userInput))
 				{
-					Console.WriteLine("{0}", PerformEvaluation(userInput));
+					foreach (string nextExpression in GetExpressions(userInput))
+					{
+						Console.WriteLine("{0}", PerformEvaluation(nextExpression));
+					}
 				}
 			}
 
@@ -207,7 +225,8 @@ Binary operators: & (and), | (or), ^ (xor)
 Boolean operators (not chainable): ==, <=, >=, !=
 Functions: ** (power), // (div), % (mod), ! (factorial), cos, acos, cosh, sin, asin, sinh, tan, atan, tanh, sqrt, toh, tod, tob, too
 Constants: pi, e, $ (last result, interactive mode only)
-Parentheses: (, )");
+Parentheses: (, )
+Expression delimiter: ; (separate multiple expressions on teh same line)");
 		}
 
 		/// <summary>
@@ -215,7 +234,7 @@ Parentheses: (, )");
 		/// </summary>
 		private void DisplayReserved()
 		{
-			Console.WriteLine("Reserved: ? (displays help); v (displays version); l (displays license); q (quits)");
+			Console.WriteLine("Reserved: ? (displays help), v (displays version), l (displays license), q (quits)");
 		}
 
 		/// <summary>

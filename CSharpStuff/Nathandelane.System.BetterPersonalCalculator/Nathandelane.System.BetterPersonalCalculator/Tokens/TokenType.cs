@@ -38,6 +38,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		Variable,
 		Operator,
 		Boolean,
-		Function
+		Function,
+		ExpressionDelimiter
 	}
 }
