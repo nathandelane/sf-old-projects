@@ -121,12 +121,12 @@ namespace Nathandelane.System.BetterPersonalCalculator
 						}
 						else if (((PerenthesisToken)lastToken).PerenthesisType == PerenthesisType.Open)
 						{
-							if (BooleanToken.TryParse(internalLine, out token)
+							if (PrefixFunctionToken.TryParse(internalLine, out token) 
+								|| BooleanToken.TryParse(internalLine, out token)
 								|| VariableToken.TryParse(internalLine, out token)
 								|| ConstantToken.TryParse(internalLine, out token) 
 								|| NumberToken.TryParse(internalLine, out token)
-								|| LastResultToken.TryParse(internalLine, out token)
-								|| PrefixFunctionToken.TryParse(internalLine, out token))
+								|| LastResultToken.TryParse(internalLine, out token))
 							{
 								tokenIsValid = true;
 							}

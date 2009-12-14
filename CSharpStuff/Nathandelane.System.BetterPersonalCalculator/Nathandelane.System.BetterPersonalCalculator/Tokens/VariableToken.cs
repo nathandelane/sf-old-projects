@@ -27,11 +27,15 @@ using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
+	/// <summary>
+	/// Variable names must be at least three characters long, including underscores, and moay only begin with 
+	/// underscore or a lowercase or capital letter.
+	/// </summary>
 	public class VariableToken : NumberToken
 	{
 		#region Fields
 
-		private static readonly Regex __variablePattern = new Regex("^[A-Za-z_]{1}[A-Za-z_\\d]+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __variablePattern = new Regex("^[A-Za-z_]{2}[A-Za-z_\\d]+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		#endregion
 
