@@ -28,14 +28,14 @@ using System.Text.RegularExpressions;
 namespace Nathandelane.System.BetterPersonalCalculator
 {
 	/// <summary>
-	/// Variable names must be at least three characters long, including underscores, and moay only begin with 
-	/// underscore or a lowercase or capital letter.
+	/// Variable names must be at least three characters long, including underscores, and may only begin with 
+	/// underscore.
 	/// </summary>
 	public class VariableToken : NumberToken
 	{
 		#region Fields
 
-		private static readonly Regex __variablePattern = new Regex("^[A-Za-z_]{2}[A-Za-z_\\d]+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __variablePattern = new Regex("^[_]{1}[A-Za-z_\\d]+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		#endregion
 
@@ -102,7 +102,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			{
 				string matchText = VariableToken.__variablePattern.Matches(line)[0].Value;
 
-				token = new VariableToken(matchText);
+				throw new TokenNotSupportedException(String.Format("Variables not yet supported. Pattern matched: {0}", matchText));
+				//token = new VariableToken(matchText);
 			}
 
 			return token;
