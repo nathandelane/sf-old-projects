@@ -112,6 +112,30 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 				result = new NumberToken(res.ToString());
 			}
+			else if (op.Equals("log", StringComparison.InvariantCultureIgnoreCase))
+			{
+				Token val = Operands[0].Evaluate();
+
+				result = new NumberToken((Math.Log10(double.Parse(val.ToString()))).ToString());
+			}
+			else if (op.Equals("ln", StringComparison.InvariantCultureIgnoreCase))
+			{
+				Token val = Operands[0].Evaluate();
+
+				result = new NumberToken((Math.Log(double.Parse(val.ToString()))).ToString());
+			}
+			else if (op.Equals("deg", StringComparison.InvariantCultureIgnoreCase))
+			{
+				Token val = Operands[0].Evaluate();
+
+				result = new NumberToken((ToDegrees(double.Parse(val.ToString()))).ToString());
+			}
+			else if (op.Equals("rad", StringComparison.InvariantCultureIgnoreCase))
+			{
+				Token val = Operands[0].Evaluate();
+
+				result = new NumberToken((ToRadians(double.Parse(val.ToString()))).ToString());
+			}
 			else if (op.Equals("sqrt", StringComparison.InvariantCultureIgnoreCase))
 			{
 				Token val = Operands[0].Evaluate();
