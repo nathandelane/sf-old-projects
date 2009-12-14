@@ -195,7 +195,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 		/// </summary>
 		private void DisplayThankYou()
 		{
-			Console.WriteLine("Thank you for using Better Personal Calculator.");
+			Console.WriteLine("Thank you for using Better Personal Calculator.{0}", Environment.NewLine);
 		}
 
 		/// <summary>

@@ -20,13 +20,14 @@
 Write-Output ""
 Write-Output "BPC Tests - PC.NET"
 Write-Output "This script comprises a series of tests to be run against BPC - Better Personal Calculator."
-Write-Output "This script's version is 1.0 and should be used against builds 1.2.0.0 and higher of BPC."
+Write-Output "This script's version is 2.0 and should be used against builds 1.3.0.0 and higher of BPC."
 
 $anyFailed = $False
 $numberFailed = 0
-$expressions = "12 + 1 # Simple Addition", "19 - 4 # Simple Subtraction", "9 * 8 # Simple Multiplication", "13 / 2 # Simple Division", "-1 + 2 # Negative Addition", "-(1 + 2) # Negative Distribution", "-(-53 + -17) # More Complex Negative Distribution", "21 / 3 # Simple Division", "9 // 8 # Simple DivRem", "19 // 8 # Simple DivRem", "21 * 1.5 # Decimal Multiplication", "2 ** 3 # Simple Power", "15 ** 2 # Simple Power", "-6 / 2 # Negative Division", "-15 / 2 # Negative Division", "-15 // 2 # Negative DivRem", "-15 % 2 # Negative Modulus", "100 / 19 # Simple Division", "100 // 19 # Simple DivRem", "100 % 19 # Simple Modulus", "(-21 - 1) / 2 # Perentheses", "e ** 2 # E and Power", "4 ** 2 # Simple Power", "1.5 ** 3 # Fractional Power", "--mode-degrees tan(45) # Mode=degrees and Trig", "--mode-degrees cos(35) # Mode=degrees and Trig", "--mode-degrees atan(1) # Mode=degrees and Trig", "pi # PI", "e # E", "4 ** (1 / 2) # Fractional Power", "sqrt(4) # Square Root", "8 ** (1 / 3) # Fractional Power", "4! # Simple Factorial", "16! - 13! # Factorial Subtraction", "((19 + 42 - 12) * 3) ** 2 # Complex Perentheses", "(19 + 42 - 12 * 3) ** 2 # Complex Order of Operations", "tod(ch) # To Decimal on Hexadecimal", "toh(18) # To Hex on Decimal", "tod(29h + fh) # To Decimal on Hexadecimal Addition", "(fh + 1111b) / 2 # Multiple bases, last base takes hold", "true == false # Simple Boolean", "5 == (8 - 3) # Numeric Boolean", "9 < 5 # Simple Numeric Boolean", "2 | 4 # Simple Binary", "1001b | 0110b # Simple Binary", "tob(36512 ^ 9865) # To Binary and XOR", "true; $ == false # Multiple Expressions and Last Result", "24; / 2.5; + 39 # Muli-expression and Implicit Last Result"
-$expected = 13, 15, 72, 6.5, 1, -3, 70, 7, 1, 2, 31.5, 8, 225, -3, -7.5, -7, -1, 5.26315789473684, 5, 5, -11, 7.38905609893068, 16, 3.375, 1, 0.819152044288992, 45, [System.Math]::PI, [System.Math]::E, 2, 2, 2, 24, 20916562867200, 21609, 625, 12, "12h", 56, 15, "false", "true", "false", 6, "1111b", "1010100000101001b", "true false", "24 9.6 48.6"
+$expressions = "e # Constant E", "pi # Constant PI", "1 + 2 + 3 + 4 + 5 # Simple Addition", "15 - 1 - 2 - 3 - 4 - 5 # Simple Subtraction", "13 / (1 / 2) # Simple Division", "6 * 8 * 2 # Simple Multiplication", "(12 + 2) * 6 / 7 - 3 # Arithmetic", "cos(pi) # Trigonometry - Radians", "--mode-degrees tan(45) # Trigonometry - degrees", "--mode-degrees atan(1)", "237 % 15 # Algebra - Modulus", "237 // 15 # Algrebra - DivMod", "6! # Algebra - Factorial", "log(pi) # Algebra - Logarithm, base-10", "ln(pi) # Natural Logarithm", "lb(pi) # Binary Logarithm, Base-2", "rad(45) # To Radians", "deg(0.785398163397448) # To Degrees", "sqrt(25) # Square Root", "fh + ch # Hexadecimal", "10o - 7o # Octal", "1001b + 101b # Binary", "toh(24) # Conversion - To Hex", "too(24) #Conversion - To Oct", "tob(24) # Conversion - Binary", "tod(18h) # Conversion - To Dec", "-(13 + 19 * 2) # Negative Distribution", "!13 + 19 * 2 # Binary NOT", "1001b ^ 110b # Binary XOR", "110b | 1b # Binary - OR", "true | false # Boolean", "true != false # Boolean Conditional", "false == false # Boolean Conditional", "24 > 13 # Numeric Conditional", "19 <= 20 # Numeric Conditional", "2 != (4 / 2) # Conditional Expressions", "2 ** 3 # Algebra - Power Function", "13 ** 2; / 12 # Multi-expression and Implicit Last Result", "13 ** 2; $ # Last Result, $", "2 ** 2; **2; **2 # Multi-expression and Implicit Last Result"
+$expected = [Math]::E, [Math]::PI, 15, 0, 26, 96, 9, -1, 1, 45, 12, 15, 720, 0.497149872694133, 1.1447298858494, 1.65149612947232, 0.785398163397448, 45, 5, "1bh", "1o", "1110b", "18h", "30o", "11000b", 24, -51, 25, "1111b", "111b", "true", "true", "true", "true", "true", "false", 8, "169 14.0833333333333", "169 169", "4 16 256"
 
+# Assert whether two string values are equal to each other and return a string formatted result.
 function AssertEquals([string]$expected, [string]$actual)
 {
 	$ex = $expected
@@ -44,7 +45,7 @@ if($expressions.Length -eq $expected.Length)
 {
 	Write-Output ""
 
-	$bpcVersion = (bpc --version).Split(":")[1].Trim()
+	$bpcVersion = ([string](bpc --version)).Split(":")[1].Trim()
 
 	Write-Output "Current version of PC.NET is $bpcVersion"
 	Write-Output "Running command-line test suite for PC.NET..."
