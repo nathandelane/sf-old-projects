@@ -223,7 +223,7 @@ Decimal numbers; hexadecimal numbers ending with h, octal numbers ending with o,
 Arithmetic operators: +, -, *, /
 Binary operators: & (and), | (or), ^ (xor)
 Boolean operators (not chainable): ==, <=, >=, !=
-Functions: ** (power), // (div), % (mod), ! (factorial), cos, acos, cosh, sin, asin, sinh, tan, atan, tanh, sqrt, log (base-10), ln
+Functions: ** (power), // (div), % (mod), ! (factorial), cos, acos, cosh, sin, asin, sinh, tan, atan, tanh, sqrt, log (base-10), ln, lb (ld|lg, base-2)
 Conversion: toh (hex), tod (dec), tob (bin), too (oct), deg, rad
 Constants: pi, e, $ (last result, interactive mode only)
 Parentheses: (, )

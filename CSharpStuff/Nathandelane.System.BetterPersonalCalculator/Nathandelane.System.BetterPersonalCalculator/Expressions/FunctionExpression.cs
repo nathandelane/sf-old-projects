@@ -124,6 +124,12 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 				result = new NumberToken((Math.Log(double.Parse(val.ToString()))).ToString());
 			}
+			else if (op.Equals("lb", StringComparison.InvariantCultureIgnoreCase) || op.Equals("ld", StringComparison.InvariantCultureIgnoreCase) || op.Equals("lg", StringComparison.InvariantCultureIgnoreCase))
+			{
+				Token val = Operands[0].Evaluate();
+
+				result = new NumberToken((Math.Log(double.Parse(val.ToString())) / Math.Log(2.0)).ToString());
+			}
 			else if (op.Equals("deg", StringComparison.InvariantCultureIgnoreCase))
 			{
 				Token val = Operands[0].Evaluate();
