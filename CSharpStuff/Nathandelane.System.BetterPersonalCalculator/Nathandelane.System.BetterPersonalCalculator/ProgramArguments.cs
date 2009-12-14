@@ -86,7 +86,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					}
 					else
 					{
-						expressionBuilder.Append(sub);
+						expressionBuilder.Append(String.Concat(sub, " "));
 					}
 				}
 			}
