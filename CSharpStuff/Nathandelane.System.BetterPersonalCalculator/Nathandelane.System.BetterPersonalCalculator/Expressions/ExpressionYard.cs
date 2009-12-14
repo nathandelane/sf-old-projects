@@ -191,6 +191,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				}
 			}
 
+			if (expressionStack.Count > 1)
+			{
+				throw new MalformedExpressionException(String.Format("There were too many expressions still on the stack: {0}", expressionStack.Count));
+			}
+
 			return expressionStack.Pop();
 		}
 	}

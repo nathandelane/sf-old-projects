@@ -303,6 +303,11 @@ Variables: assignment using =, inline usage, names must begin with underscore (_
 				Expression expression = ExpressionYard.Formulate(tokenizer);
 				Token result = expression.Evaluate();
 
+				if (result is VariableToken)
+				{
+					result = _context[result.ToString()];
+				}
+
 				strResult = String.Format("{0}", result);
 
 				if (result is NumberToken)
@@ -325,6 +330,10 @@ Variables: assignment using =, inline usage, names must begin with underscore (_
 
 						ResetDisplayBase();
 					}
+				}
+				else
+				{
+					throw new Exception(String.Format("Unexpected token was returned as result. Type: {0} value: {1}", result.Type, result));
 				}
 
 				_context[CalculatorContext.LastResult] = result;
