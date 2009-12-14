@@ -331,7 +331,7 @@ Variables: assignment using =, inline usage, names must begin with underscore (_
 						ResetDisplayBase();
 					}
 				}
-				else
+				else if(!(result is BooleanToken))
 				{
 					throw new Exception(String.Format("Unexpected token was returned as result. Type: {0} value: {1}", result.Type, result));
 				}
