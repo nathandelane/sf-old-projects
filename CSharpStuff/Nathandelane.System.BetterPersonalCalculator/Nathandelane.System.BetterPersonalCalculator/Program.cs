@@ -227,7 +227,8 @@ Functions: ** (power), // (div), % (mod), ! (factorial), cos, acos, cosh, sin, a
 Conversion: toh (hex), tod (dec), tob (bin), too (oct), deg, rad
 Constants: pi, e, $ (last result, interactive mode only)
 Parentheses: (, )
-Expression delimiter: ; (separate multiple expressions on teh same line)");
+Expression delimiter: ; (separate multiple expressions on teh same line)
+Variables: assignment using =, inline usage, names must begin with underscore (_)");
 		}
 
 		/// <summary>
