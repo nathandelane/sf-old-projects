@@ -229,7 +229,7 @@ Binary operators: & (and), | (or), ^ (xor)
 Boolean operators (not chainable): ==, <=, >=, !=
 Functions: ** (power), // (div), % (mod), ! (factorial), cos, acos, cosh, sin, asin, sinh, tan, atan, tanh, sqrt, log (base-10), ln, lb (ld|lg, base-2)
 Conversion: toh (hex), tod (dec), tob (bin), too (oct), deg, rad
-Constants: pi, e, $ (last result, interactive mode only)
+Constants: pi, e, $ (last result)
 Parentheses: (, )
 Expression delimiter: ; (separate multiple expressions on teh same line)
 Variables: assignment using =, inline usage, names must begin with underscore (_)");
