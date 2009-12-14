@@ -98,6 +98,16 @@ namespace Nathandelane.System.BetterPersonalCalculator
 						{
 							tokenIsValid = true;
 						}
+						else if (InfixFunctionToken.TryParse(internalLine, out token)
+							|| ArithmeticOperatorToken.TryParse(internalLine, out token)
+							|| BinaryOperatorToken.TryParse(internalLine, out token)
+							|| BooleanOperatorToken.TryParse(internalLine, out token)
+							|| PostfixFunctionToken.TryParse(internalLine, out token))
+						{
+							_tokens.Add(CalculatorContext.GetInstance()[CalculatorContext.LastResult]);
+
+							lastToken = _tokens[0];
+						}
 					}
 					else if (lastToken is NumberToken || lastToken is BooleanToken)
 					{
@@ -156,7 +166,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 							|| ConstantToken.TryParse(internalLine, out token)
 							|| NumberToken.TryParse(internalLine, out token)
 							|| LastResultToken.TryParse(internalLine, out token)
-							|| (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open))
+							|| (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open)
+							|| CommentToken.TryParse(internalLine, out token))
 						{
 							tokenIsValid = true;
 						}

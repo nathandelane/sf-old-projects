@@ -101,7 +101,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 				if (matchText.Equals("$", StringComparison.InvariantCultureIgnoreCase))
 				{
-					token = new ConstantToken(CalculatorContext.GetInstance().GetLastResult(), matchText);
+					token = new LastResultToken(CalculatorContext.GetInstance().GetLastResult(), matchText);
 
 					Token intermediateToken = new NullToken();
 
