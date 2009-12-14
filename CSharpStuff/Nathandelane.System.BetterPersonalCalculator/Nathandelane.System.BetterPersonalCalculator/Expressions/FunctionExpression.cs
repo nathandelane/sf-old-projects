@@ -66,7 +66,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 			if (op.Equals("cos", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
 				res = Math.Cos(res);
 
@@ -74,7 +74,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 			else if (op.Equals("sin", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
 				res = Math.Sin(res);
 
@@ -82,7 +82,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 			else if (op.Equals("tan", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
 				res = Math.Tan(res);
 
@@ -90,7 +90,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 			else if (op.Equals("acos", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 				double res = double.Parse(val.ToString());
 				res = modeIsDegrees ? ToDegrees(Math.Acos(res)) : Math.Acos(res);
 
@@ -98,7 +98,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 			else if (op.Equals("asin", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 				double res = double.Parse(val.ToString());
 				res = modeIsDegrees ? ToDegrees(Math.Asin(res)) : Math.Asin(res);
 
@@ -106,7 +106,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 			else if (op.Equals("atan", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 				double res = double.Parse(val.ToString());
 				res = modeIsDegrees ? ToDegrees(Math.Atan(res)) : Math.Atan(res);
 
@@ -114,79 +114,79 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 			else if (op.Equals("log", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 
 				result = new NumberToken((Math.Log10(double.Parse(val.ToString()))).ToString());
 			}
 			else if (op.Equals("ln", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 
 				result = new NumberToken((Math.Log(double.Parse(val.ToString()))).ToString());
 			}
 			else if (op.Equals("lb", StringComparison.InvariantCultureIgnoreCase) || op.Equals("ld", StringComparison.InvariantCultureIgnoreCase) || op.Equals("lg", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 
 				result = new NumberToken((Math.Log(double.Parse(val.ToString())) / Math.Log(2.0)).ToString());
 			}
 			else if (op.Equals("deg", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 
 				result = new NumberToken((ToDegrees(double.Parse(val.ToString()))).ToString());
 			}
 			else if (op.Equals("rad", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 
 				result = new NumberToken((ToRadians(double.Parse(val.ToString()))).ToString());
 			}
 			else if (op.Equals("sqrt", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 
 				result = new NumberToken((Math.Sqrt(double.Parse(val.ToString()))).ToString());
 			}
 			else if (op.Equals("too", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("8");
 
 				result = new NumberToken(val);
 			}
 			else if (op.Equals("tod", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("10");
 
 				result = new NumberToken(val);
 			}
 			else if (op.Equals("toh", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("16");
 
 				result = new NumberToken(val);
 			}
 			else if (op.Equals("tob", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("2");
 
 				result = new NumberToken(val);
 			}
 			else if (op.Equals("**", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token left = Operands[1].Evaluate();
-				Token right = Operands[0].Evaluate();
+				Token left = EvaluateOperand(1);
+				Token right = EvaluateOperand(0);
 
 				result = new NumberToken((Math.Pow(double.Parse(left.ToString()), double.Parse(right.ToString()))).ToString());
 			}
 			else if (op.Equals("//", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token left = Operands[1].Evaluate();
-				Token right = Operands[0].Evaluate();
+				Token left = EvaluateOperand(1);
+				Token right = EvaluateOperand(0);
 
 				if (left is NumberToken && right is NumberToken)
 				{
@@ -204,14 +204,14 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 			else if (op.Equals("%", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token left = Operands[1].Evaluate();
-				Token right = Operands[0].Evaluate();
+				Token left = EvaluateOperand(1);
+				Token right = EvaluateOperand(0);
 
 				result = new NumberToken((double.Parse(left.ToString()) % double.Parse(right.ToString())).ToString());
 			}
 			else if (op.Equals("!", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 				double counter = double.Parse(val.ToString());
 				double total = counter;
 
@@ -226,7 +226,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			}
 			else if (op.Equals("-", StringComparison.InvariantCultureIgnoreCase))
 			{
-				Token val = Operands[0].Evaluate();
+				Token val = EvaluateOperand(0);
 
 				result = new NumberToken((double.Parse(val.ToString()) * (-1)).ToString());
 			}
@@ -234,11 +234,21 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			return result;
 		}
 
+		/// <summary>
+		/// Converts a degree value to radians.
+		/// </summary>
+		/// <param name="deg"></param>
+		/// <returns></returns>
 		private double ToRadians(double deg)
 		{
 			return (Math.PI * deg) / 180.0;
 		}
 
+		/// <summary>
+		/// Converts a radian value to degrees.
+		/// </summary>
+		/// <param name="rad"></param>
+		/// <returns></returns>
 		private double ToDegrees(double rad)
 		{
 			return (180.0 / Math.PI) * rad;

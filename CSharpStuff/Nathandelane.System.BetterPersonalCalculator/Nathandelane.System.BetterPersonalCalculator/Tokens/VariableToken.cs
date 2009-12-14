@@ -102,8 +102,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			{
 				string matchText = VariableToken.__variablePattern.Matches(line)[0].Value;
 
-				throw new TokenNotSupportedException(String.Format("Variables not yet supported. Pattern matched: {0}", matchText));
-				//token = new VariableToken(matchText);
+				token = new VariableToken(matchText);
 			}
 
 			return token;

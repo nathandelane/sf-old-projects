@@ -60,7 +60,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 			foreach (Token token in tokenizer.Tokens)
 			{
-				if (token is NumberToken || token is BooleanToken)
+				if (token is NumberToken || token is BooleanToken || token is VariableToken)
 				{
 					output.Push(token);
 				}
@@ -143,17 +143,14 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				{
 					expressionStack.Push(new BooleanValueExpression(nextToken));
 				}
+				else if (nextToken is VariableToken)
+				{
+					expressionStack.Push(new VariableExpression(nextToken));
+				}
 				else if (nextToken is ConstantToken || nextToken is NumberToken)
 				{
 					expressionStack.Push(new NumericExpression(nextToken));
 				}
-				else if (nextToken is VariableToken)
-				{
-					if (CalculatorContext.GetInstance().ContainsKey(nextToken.ToString()))
-					{
-						expressionStack.Push(new NumericExpression(CalculatorContext.GetInstance()[nextToken.ToString()]));
-					}
-				} 
 				else if (nextToken is ArithmeticOperatorToken)
 				{
 					expressionStack.Push(new ArithmeticExpression(nextToken, expressionStack.Pop(), expressionStack.Pop()));
@@ -165,6 +162,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				else if (nextToken is BooleanOperatorToken)
 				{
 					expressionStack.Push(new BooleanExpression(nextToken, expressionStack.Pop(), expressionStack.Pop()));
+				}
+				else if (nextToken is AssignmentOperatorToken)
+				{
+					expressionStack.Push(new AssignmentExpression(nextToken, expressionStack.Pop(), expressionStack.Pop()));
 				}
 				else if (nextToken is FunctionToken)
 				{

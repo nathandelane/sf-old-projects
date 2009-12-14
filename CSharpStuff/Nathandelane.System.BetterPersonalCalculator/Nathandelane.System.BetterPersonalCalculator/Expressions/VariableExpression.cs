@@ -26,23 +26,36 @@ using System.Text;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
-	/// <summary>
-	/// Represents an order of operations where Number is the lowest evaluation and Perenthesis is the highest order.
-	/// </summary>
-	public enum ExpressionPrecedence
+	public class VariableExpression : Expression
 	{
-		Null,
-		Assignment,
-		Binary,
-		Boolean,
-		Constant,
-		Number,
-		Variable,
-		BooleanValue,
-		Add,
-		Subtract,
-		MultiplyOrDivide,
-		Function,
-		Perenthesis
+		#region Fields
+
+		private Token _value;
+
+		#endregion
+
+		#region Constructors
+
+		public VariableExpression(Token value)
+			: base(ExpressionPrecedence.Variable, new NullToken(), new List<Expression>())
+		{
+			_value = value;
+		}
+
+		#endregion
+
+		#region Methods
+
+		public override Token Evaluate()
+		{
+			return _value;
+		}
+
+		public override string ToString()
+		{
+			return _value.ToString();
+		}
+
+		#endregion
 	}
 }

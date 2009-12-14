@@ -109,6 +109,23 @@ namespace Nathandelane.System.BetterPersonalCalculator
 							lastToken = _tokens[0];
 						}
 					}
+					else if (lastToken is VariableToken)
+					{
+						if (AssignmentOperatorToken.TryParse(internalLine, out token))
+						{
+							tokenIsValid = true;
+						}
+						else if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed)
+							|| InfixFunctionToken.TryParse(internalLine, out token)
+							|| ArithmeticOperatorToken.TryParse(internalLine, out token)
+							|| BinaryOperatorToken.TryParse(internalLine, out token)
+							|| BooleanOperatorToken.TryParse(internalLine, out token)
+							|| PostfixFunctionToken.TryParse(internalLine, out token)
+							|| CommentToken.TryParse(internalLine, out token))
+						{
+							tokenIsValid = true;
+						}
+					}
 					else if (lastToken is NumberToken || lastToken is BooleanToken)
 					{
 						if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed) 

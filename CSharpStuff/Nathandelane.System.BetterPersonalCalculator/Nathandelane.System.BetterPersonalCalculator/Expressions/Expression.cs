@@ -74,6 +74,32 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// <returns></returns>
 		public abstract Token Evaluate();
 
+		/// <summary>
+		/// Evaluates a sub-expression.
+		/// </summary>
+		/// <param name="operandIndex"></param>
+		/// <returns></returns>
+		protected Token EvaluateOperand(int operandIndex)
+		{
+			Token evaluation = _operands[operandIndex].Evaluate();
+
+			if (evaluation is VariableToken)
+			{
+				CalculatorContext context = CalculatorContext.GetInstance();
+
+				if (context.ContainsKey(evaluation.ToString()))
+				{
+					evaluation = context[evaluation.ToString()];
+				}
+				else
+				{
+					throw new MalformedExpressionException(String.Format("Variable named {0} is not defined", evaluation));
+				}
+			}
+
+			return evaluation;
+		}
+
 		public override string ToString()
 		{
 			string[] strOperands = new string[_operands.Count];

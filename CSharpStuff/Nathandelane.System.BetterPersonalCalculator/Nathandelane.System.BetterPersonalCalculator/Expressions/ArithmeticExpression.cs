@@ -75,8 +75,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		public override Token Evaluate()
 		{
 			Token result = new NullToken();
-			Token left = Operands[1].Evaluate();
-			Token right = Operands[0].Evaluate();
+			Token left = EvaluateOperand(1);
+			Token right = EvaluateOperand(0);
 
 			switch (Precedence)
 			{

@@ -66,13 +66,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Expressions\AssignmentExpression.cs" />
     <Compile Include="Expressions\BinaryExpression.cs" />
     <Compile Include="Expressions\BooleanValueExpression.cs" />
     <Compile Include="Expressions\BooleanExpression.cs" />
     <Compile Include="Expressions\ExpressionYard.cs" />
+    <Compile Include="Expressions\VariableExpression.cs" />
     <Compile Include="ProgramArguments.cs" />
     <Compile Include="Tokens\ArithmeticOperatorToken.cs" />
-    <Compile Include="Tokens\AssignmentToken.cs" />
+    <Compile Include="Tokens\AssignmentOperatorToken.cs" />
     <Compile Include="Tokens\BinaryOperatorToken.cs" />
     <Compile Include="Tokens\BooleanOperatorToken.cs" />
     <Compile Include="Tokens\BooleanToken.cs" />

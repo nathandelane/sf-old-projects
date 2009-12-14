@@ -27,7 +27,7 @@ using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.BetterPersonalCalculator
 {
-	public class AssignmentToken : Token, IOperation
+	public class AssignmentOperatorToken : OperatorToken
 	{
 		#region Fields
 
@@ -49,14 +49,14 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 		public override ExpressionPrecedence Precedence
 		{
-			get { return ExpressionPrecedence.Variable; }
+			get { return ExpressionPrecedence.Assignment; }
 		}
 
 		#endregion
 
 		#region Constructors
 
-		public AssignmentToken()
+		public AssignmentOperatorToken()
 			: base("=")
 		{
 		}
@@ -71,13 +71,13 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// <param name="line">String from which to take the next token.</param>
 		/// <param name="token">Out parameter to send token to if successful.</param>
 		/// <returns></returns>
-		public static bool TryParse(string line, out Token token)
+		public new static bool TryParse(string line, out Token token)
 		{
 			bool parseSuccessful = false;
 
 			token = new NullToken();
 
-			if ((token = Parse(line)) is AssignmentToken)
+			if ((token = Parse(line)) is AssignmentOperatorToken)
 			{
 				parseSuccessful = true;
 			}
@@ -94,9 +94,9 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		{
 			Token token = new NullToken();
 
-			if (AssignmentToken.__assignmentPattern.IsMatch(line))
+			if (AssignmentOperatorToken.__assignmentPattern.IsMatch(line))
 			{
-				token = new AssignmentToken();
+				token = new AssignmentOperatorToken();
 			}
 
 			return token;
