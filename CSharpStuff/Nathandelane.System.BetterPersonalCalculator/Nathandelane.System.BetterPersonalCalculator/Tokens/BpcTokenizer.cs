@@ -108,6 +108,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 							lastToken = _tokens[0];
 						}
+						else
+						{
+							throw new InvalidTokenException(String.Format("Invalid or unrecognized token at {0}.", internalLine));
+						}
 					}
 					else if (lastToken is VariableToken)
 					{
@@ -204,15 +208,15 @@ namespace Nathandelane.System.BetterPersonalCalculator
 							tokenIsValid = true;
 						}
 					}
+					else
+					{
+						throw new InvalidTokenException(String.Format("Invalid or unrecognized token at {0}.", internalLine));
+					}
 
 					if (tokenIsValid)
 					{
 						internalLine = AddTokenToCollection(token, internalLine);
 						lastToken = token;
-					}
-					else
-					{
-						throw new InvalidTokenException(String.Format("Invalid or unrecognized token at {0}.", internalLine));
 					}
 				}
 			}
