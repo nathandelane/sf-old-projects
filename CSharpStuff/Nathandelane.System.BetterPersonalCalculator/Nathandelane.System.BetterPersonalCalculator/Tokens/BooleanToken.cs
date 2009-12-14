@@ -171,9 +171,33 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			return token;
 		}
 
+		/// <summary>
+		/// Converts boolean to number.
+		/// </summary>
+		/// <returns></returns>
 		public string AsNumber()
 		{
 			return ToString().Equals("true", StringComparison.InvariantCultureIgnoreCase) ? "1b" : "0b";
+		}
+
+		/// <summary>
+		/// Returns the inverse of this BooleanToken.
+		/// </summary>
+		/// <returns></returns>
+		public Token Not()
+		{
+			Token result = this;
+
+			if (ToString().Equals("true", StringComparison.InvariantCultureIgnoreCase))
+			{
+				result = new BooleanToken("false");
+			}
+			else
+			{
+				result = new BooleanToken("true");
+			}
+
+			return result;
 		}
 
 		#endregion

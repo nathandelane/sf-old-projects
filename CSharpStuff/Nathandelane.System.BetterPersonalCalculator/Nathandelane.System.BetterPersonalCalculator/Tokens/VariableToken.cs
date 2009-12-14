@@ -108,6 +108,27 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			return token;
 		}
 
+		/// <summary>
+		/// Negates the value of this VariableToken.
+		/// </summary>
+		/// <returns></returns>
+		public new Token Negate()
+		{
+			if (CalculatorContext.GetInstance().ContainsKey(ToString()))
+			{
+				Token value = CalculatorContext.GetInstance()[ToString()];
+
+				if (value is NumberToken)
+				{
+					value = ((NumberToken)value).Negate();
+				}
+
+				CalculatorContext.GetInstance()[ToString()] = value;
+			}
+
+			return this;
+		}
+
 		#endregion
 	}
 }

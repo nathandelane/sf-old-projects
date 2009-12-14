@@ -111,16 +111,13 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					}
 					else if (lastToken is VariableToken)
 					{
-						if (AssignmentOperatorToken.TryParse(internalLine, out token))
-						{
-							tokenIsValid = true;
-						}
-						else if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed)
+						if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed)
 							|| InfixFunctionToken.TryParse(internalLine, out token)
 							|| ArithmeticOperatorToken.TryParse(internalLine, out token)
 							|| BinaryOperatorToken.TryParse(internalLine, out token)
 							|| BooleanOperatorToken.TryParse(internalLine, out token)
 							|| PostfixFunctionToken.TryParse(internalLine, out token)
+							|| AssignmentOperatorToken.TryParse(internalLine, out token)
 							|| CommentToken.TryParse(internalLine, out token))
 						{
 							tokenIsValid = true;
@@ -171,7 +168,12 @@ namespace Nathandelane.System.BetterPersonalCalculator
 						}
 					}
 					else if (lastToken is PrefixFunctionToken 
-						&& (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open))
+						&& ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open)
+							|| lastToken.ToString().Equals("!", StringComparison.InvariantCultureIgnoreCase)
+								&& (BooleanToken.TryParse(internalLine, out token)
+								|| VariableToken.TryParse(internalLine, out token)
+								|| ConstantToken.TryParse(internalLine, out token)
+								|| NumberToken.TryParse(internalLine, out token))))
 					{
 						tokenIsValid = true;
 					}

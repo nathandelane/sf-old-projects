@@ -250,19 +250,51 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			return value;
 		}
 
+		/// <summary>
+		/// Gets value as a hexadecimal value with h notation.
+		/// </summary>
+		/// <returns></returns>
 		public string AsHex()
 		{
 			return String.Concat(Convert.ToString(long.Parse(WholePart()), 16), "h");
 		}
 
+		/// <summary>
+		/// Returns value as an octal value with o notation.
+		/// </summary>
+		/// <returns></returns>
 		public string AsOct()
 		{
 			return String.Concat(Convert.ToString(long.Parse(WholePart()), 8), "o");
 		}
 
+		/// <summary>
+		/// Returns value as a binary value with b notation.
+		/// </summary>
+		/// <returns></returns>
 		public string AsBin()
 		{
 			return String.Concat(Convert.ToString(long.Parse(WholePart()), 2), "b");
+		}
+
+		/// <summary>
+		/// Returns the negation of this NumberToken.
+		/// </summary>
+		/// <returns></returns>
+		public Token Negate()
+		{
+			Token result = this;
+
+			if (ToString().StartsWith("-"))
+			{
+				result = new NumberToken(ToString().Substring(1), Representation);
+			}
+			else
+			{
+				result = new NumberToken(String.Concat("-", ToString()), Representation);
+			}
+
+			return result;
 		}
 
 		#endregion

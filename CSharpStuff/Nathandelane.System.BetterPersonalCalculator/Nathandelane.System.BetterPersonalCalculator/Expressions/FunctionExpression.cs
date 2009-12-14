@@ -212,17 +212,36 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			else if (op.Equals("!", StringComparison.InvariantCultureIgnoreCase))
 			{
 				Token val = EvaluateOperand(0);
-				double counter = double.Parse(val.ToString());
-				double total = counter;
 
-				while (counter > 1)
+				if (Operation is PostfixFunctionToken)
 				{
-					counter--;
+					double counter = double.Parse(val.ToString());
+					double total = counter;
 
-					total *= counter;
+					while (counter > 1)
+					{
+						counter--;
+
+						total *= counter;
+					}
+
+					result = new NumberToken(total.ToString());
 				}
+				else if (Operation is PrefixFunctionToken)
+				{
+					if (val is BooleanToken)
+					{
+						result = ((BooleanToken)val).Not();
+					}
+					else if (val is VariableToken)
+					{
 
-				result = new NumberToken(total.ToString());
+					}
+					else if (val is NumberToken)
+					{
+						result = ((NumberToken)val).Negate();
+					}
+				}
 			}
 			else if (op.Equals("-", StringComparison.InvariantCultureIgnoreCase))
 			{
