@@ -31,7 +31,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 	{
 		#region Fields
 
-		private static readonly Regex __constantPattern = new Regex("^(e|E|pi|PI|[$]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __constantPattern = new Regex("^(e|E|pi|PI){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		#endregion
 
@@ -77,7 +77,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 			token = Parse(line);
 
-			if (token is ConstantToken || token is NumberToken || token is BooleanToken)
+			if (token is ConstantToken)
 			{
 				parseSuccessful = true;
 			}
@@ -86,7 +86,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		}
 
 		/// <summary>
-		/// Gets a Token of type NumberToken from the beginning of a line of text.
+		/// Gets a Token of type ConstantToken from the beginning of a line of text.
 		/// </summary>
 		/// <param name="line"></param>
 		/// <returns></returns>
@@ -105,18 +105,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				else if (matchText.Equals("pi", StringComparison.InvariantCultureIgnoreCase))
 				{
 					token = new ConstantToken(Math.PI.ToString(), matchText);
-				}
-				else if (matchText.Equals("$", StringComparison.InvariantCultureIgnoreCase))
-				{
-					token = new ConstantToken(CalculatorContext.GetInstance().GetLastResult(), matchText);
-
-					Token intermediateToken = new NullToken();
-
-					if (NumberToken.TryParse(token.ToString(), out intermediateToken, true)
-						|| BooleanToken.TryParse(token.ToString(), out intermediateToken, true))
-					{
-						token = intermediateToken;
-					}
 				}
 			}
 

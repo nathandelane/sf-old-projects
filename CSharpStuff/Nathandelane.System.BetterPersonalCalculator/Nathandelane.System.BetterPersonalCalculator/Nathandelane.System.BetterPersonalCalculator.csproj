@@ -83,6 +83,7 @@
     <Compile Include="Tokens\ConstantToken.cs" />
     <Compile Include="Expressions\Expression.cs" />
     <Compile Include="Expressions\FunctionExpression.cs" />
+    <Compile Include="Tokens\LastResultToken.cs" />
     <Compile Include="Tokens\OperatorToken.cs" />
     <Compile Include="Tokens\PerenthesisType.cs" />
     <Compile Include="Tokens\PostfixFunctionToken.cs" />

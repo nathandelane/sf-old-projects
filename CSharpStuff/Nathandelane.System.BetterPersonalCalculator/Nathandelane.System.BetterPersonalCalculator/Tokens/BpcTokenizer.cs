@@ -121,9 +121,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 						}
 						else if (((PerenthesisToken)lastToken).PerenthesisType == PerenthesisType.Open)
 						{
-							if (NumberToken.TryParse(internalLine, out token) 
+							if (VariableToken.TryParse(internalLine, out token)
 								|| ConstantToken.TryParse(internalLine, out token) 
-								|| VariableToken.TryParse(internalLine, out token) 
+								|| NumberToken.TryParse(internalLine, out token)
+								|| LastResultToken.TryParse(internalLine, out token)
 								|| PrefixFunctionToken.TryParse(internalLine, out token))
 							{
 								tokenIsValid = true;
@@ -149,10 +150,11 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					else if (lastToken is InfixFunctionToken || lastToken is OperatorToken)
 					{
 						if (PrefixFunctionToken.TryParse(internalLine, out token) 
-							|| NumberToken.TryParse(internalLine, out token) 
-							|| ConstantToken.TryParse(internalLine, out token) 
-							|| BooleanToken.TryParse(internalLine, out token) 
-							|| VariableToken.TryParse(internalLine, out token) 
+							|| VariableToken.TryParse(internalLine, out token)
+							|| ConstantToken.TryParse(internalLine, out token)
+							|| NumberToken.TryParse(internalLine, out token)
+							|| BooleanToken.TryParse(internalLine, out token)
+							|| LastResultToken.TryParse(internalLine, out token)
 							|| (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open))
 						{
 							tokenIsValid = true;
@@ -195,9 +197,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			return PerenthesisToken.TryParse(internalLine, out token)
 				|| PrefixFunctionToken.TryParse(internalLine, out token)
 				|| BooleanToken.TryParse(internalLine, out token)
+				|| VariableToken.TryParse(internalLine, out token)
 				|| ConstantToken.TryParse(internalLine, out token)
 				|| NumberToken.TryParse(internalLine, out token)
-				|| VariableToken.TryParse(internalLine, out token);
+				|| LastResultToken.TryParse(internalLine, out token);
 		}
 
 		/// <summary>
@@ -230,6 +233,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			if (token is NumberToken)
 			{
 				internalLine = RemoveToken(((NumberToken)token).Representation.Length, internalLine);
+			}
+			else if (token is BooleanToken)
+			{
+				internalLine = RemoveToken(((BooleanToken)token).Representation.Length, internalLine);
 			}
 			else
 			{
