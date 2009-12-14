@@ -51,32 +51,32 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 			if (left is NumberToken && right is NumberToken)
 			{
-				double dLeft = long.Parse(((NumberToken)left).WholePart());
-				double rRight = long.Parse(((NumberToken)right).WholePart());
+				double dLeft = long.Parse(((NumberToken)left).ToString());
+				double dRight = long.Parse(((NumberToken)right).ToString());
 
 				if (Operation.ToString().Equals("==", StringComparison.InvariantCultureIgnoreCase))
 				{
-					result = new BooleanToken((dLeft == rRight).ToString());
+					result = new BooleanToken((dLeft == dRight).ToString());
 				}
 				else if (Operation.ToString().Equals("<=", StringComparison.InvariantCultureIgnoreCase))
 				{
-					result = new BooleanToken((dLeft <= rRight).ToString());
+					result = new BooleanToken((dLeft <= dRight).ToString());
 				}
 				else if (Operation.ToString().Equals(">=", StringComparison.InvariantCultureIgnoreCase))
 				{
-					result = new BooleanToken((dLeft >= rRight).ToString());
+					result = new BooleanToken((dLeft >= dRight).ToString());
 				}
 				else if (Operation.ToString().Equals("<", StringComparison.InvariantCultureIgnoreCase))
 				{
-					result = new BooleanToken((dLeft < rRight).ToString());
+					result = new BooleanToken((dLeft < dRight).ToString());
 				}
 				else if (Operation.ToString().Equals(">", StringComparison.InvariantCultureIgnoreCase))
 				{
-					result = new BooleanToken((dLeft > rRight).ToString());
+					result = new BooleanToken((dLeft > dRight).ToString());
 				}
 				else if (Operation.ToString().Equals("!=", StringComparison.InvariantCultureIgnoreCase))
 				{
-					result = new BooleanToken((dLeft != rRight).ToString());
+					result = new BooleanToken((dLeft != dRight).ToString());
 				}
 			}
 			else if (left is BooleanToken && right is BooleanToken)

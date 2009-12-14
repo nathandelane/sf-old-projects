@@ -49,17 +49,45 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			Token left = Operands[1].Evaluate();
 			Token right = Operands[0].Evaluate();
 
-			if (Operation.ToString().Equals("&", StringComparison.InvariantCultureIgnoreCase))
+			if (left is NumberToken && right is NumberToken)
 			{
-				result = new NumberToken((long.Parse(((NumberToken)left).WholePart()) & long.Parse(((NumberToken)right).WholePart())).ToString());
+				long dLeft = long.Parse(((NumberToken)left).WholePart());
+				long dRight = long.Parse(((NumberToken)right).WholePart());
+
+				if (Operation.ToString().Equals("&", StringComparison.InvariantCultureIgnoreCase))
+				{
+					result = new NumberToken((dLeft & dRight).ToString());
+				}
+				else if (Operation.ToString().Equals("|", StringComparison.InvariantCultureIgnoreCase))
+				{
+					result = new NumberToken((dLeft | dRight).ToString());
+				}
+				else if (Operation.ToString().Equals("^", StringComparison.InvariantCultureIgnoreCase))
+				{
+					result = new NumberToken((dLeft ^ dRight).ToString());
+				}
 			}
-			else if (Operation.ToString().Equals("|", StringComparison.InvariantCultureIgnoreCase))
+			else if (left is BooleanToken && right is BooleanToken)
 			{
-				result = new NumberToken((long.Parse(((NumberToken)left).WholePart()) | long.Parse(((NumberToken)right).WholePart())).ToString());
+				bool bLeft = Boolean.Parse(left.ToString());
+				bool bRight = Boolean.Parse(right.ToString());
+
+				if (Operation.ToString().Equals("&", StringComparison.InvariantCultureIgnoreCase))
+				{
+					result = new BooleanToken((bLeft & bRight).ToString());
+				}
+				else if (Operation.ToString().Equals("|", StringComparison.InvariantCultureIgnoreCase))
+				{
+					result = new BooleanToken((bLeft | bRight).ToString());
+				}
+				else if (Operation.ToString().Equals("^", StringComparison.InvariantCultureIgnoreCase))
+				{
+					result = new BooleanToken((bLeft ^ bRight).ToString());
+				}
 			}
-			else if (Operation.ToString().Equals("^", StringComparison.InvariantCultureIgnoreCase))
+			else
 			{
-				result = new NumberToken((long.Parse(((NumberToken)left).WholePart()) ^ long.Parse(((NumberToken)right).WholePart())).ToString());
+				throw new MalformedExpressionException(String.Concat(ToString(), " is not a valid binary expression."));
 			}
 
 			return result;
