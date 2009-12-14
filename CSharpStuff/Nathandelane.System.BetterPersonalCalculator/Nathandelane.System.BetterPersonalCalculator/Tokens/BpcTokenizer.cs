@@ -121,7 +121,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 						}
 						else if (((PerenthesisToken)lastToken).PerenthesisType == PerenthesisType.Open)
 						{
-							if (VariableToken.TryParse(internalLine, out token)
+							if (BooleanToken.TryParse(internalLine, out token)
+								|| VariableToken.TryParse(internalLine, out token)
 								|| ConstantToken.TryParse(internalLine, out token) 
 								|| NumberToken.TryParse(internalLine, out token)
 								|| LastResultToken.TryParse(internalLine, out token)
@@ -150,10 +151,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					else if (lastToken is InfixFunctionToken || lastToken is OperatorToken)
 					{
 						if (PrefixFunctionToken.TryParse(internalLine, out token) 
+							|| BooleanToken.TryParse(internalLine, out token)
 							|| VariableToken.TryParse(internalLine, out token)
 							|| ConstantToken.TryParse(internalLine, out token)
 							|| NumberToken.TryParse(internalLine, out token)
-							|| BooleanToken.TryParse(internalLine, out token)
 							|| LastResultToken.TryParse(internalLine, out token)
 							|| (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open))
 						{
