@@ -65,6 +65,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					}
 				}
 			}
+			else
+			{
+				Console.WriteLine();
+			}
 		}
 
 		#endregion
