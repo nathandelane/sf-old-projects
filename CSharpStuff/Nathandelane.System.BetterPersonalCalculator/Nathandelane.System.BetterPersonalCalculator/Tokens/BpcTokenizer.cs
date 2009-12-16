@@ -75,9 +75,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// <param name="line"></param>
 		private void ParseTokens(string line)
 		{
-			Token lastToken = new NullToken();
 			string internalLine = line;
 			Regex spaceRegex = new Regex("^[\\s]+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+			TokenParseState tokenParseState = new NullTokenParseState();
+			CalculatorContext context = CalculatorContext.GetInstance();
 
 			while (!String.IsNullOrEmpty(internalLine))
 			{
@@ -92,131 +93,143 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				}
 				else
 				{
-					if (lastToken is NullToken)
-					{
-						if (GetFirstToken(internalLine, out token))
-						{
-							tokenIsValid = true;
-						}
-						else if (InfixFunctionToken.TryParse(internalLine, out token)
-							|| ArithmeticOperatorToken.TryParse(internalLine, out token)
-							|| BinaryOperatorToken.TryParse(internalLine, out token)
-							|| BooleanOperatorToken.TryParse(internalLine, out token)
-							|| PostfixFunctionToken.TryParse(internalLine, out token))
-						{
-							_tokens.Add(CalculatorContext.GetInstance()[CalculatorContext.LastResult]);
+					tokenIsValid = tokenParseState.GetNextToken(internalLine, out token, out tokenParseState);
 
-							lastToken = _tokens[0];
-						}
-						else
-						{
-							throw new InvalidTokenException(String.Format("Invalid or unrecognized token at {0}.", internalLine));
-						}
-					}
-					else if (lastToken is VariableToken)
-					{
-						if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed)
-							|| InfixFunctionToken.TryParse(internalLine, out token)
-							|| ArithmeticOperatorToken.TryParse(internalLine, out token)
-							|| BinaryOperatorToken.TryParse(internalLine, out token)
-							|| BooleanOperatorToken.TryParse(internalLine, out token)
-							|| PostfixFunctionToken.TryParse(internalLine, out token)
-							|| AssignmentOperatorToken.TryParse(internalLine, out token)
-							|| CommentToken.TryParse(internalLine, out token))
-						{
-							tokenIsValid = true;
-						}
-					}
-					else if (lastToken is NumberToken || lastToken is BooleanToken)
-					{
-						if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed) 
-							|| InfixFunctionToken.TryParse(internalLine, out token) 
-							|| ArithmeticOperatorToken.TryParse(internalLine, out token) 
-							|| BinaryOperatorToken.TryParse(internalLine, out token) 
-							|| BooleanOperatorToken.TryParse(internalLine, out token) 
-							|| PostfixFunctionToken.TryParse(internalLine, out token) 
-							|| CommentToken.TryParse(internalLine, out token))
-						{
-							tokenIsValid = true;
-						}
-					}
-					else if (lastToken is PerenthesisToken)
-					{
-						if (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == ((PerenthesisToken)lastToken).PerenthesisType 
-							|| CommentToken.TryParse(internalLine, out token))
-						{
-							tokenIsValid = true;
-						}
-						else if (((PerenthesisToken)lastToken).PerenthesisType == PerenthesisType.Open)
-						{
-							if (PrefixFunctionToken.TryParse(internalLine, out token) 
-								|| BooleanToken.TryParse(internalLine, out token)
-								|| VariableToken.TryParse(internalLine, out token)
-								|| ConstantToken.TryParse(internalLine, out token) 
-								|| NumberToken.TryParse(internalLine, out token)
-								|| LastResultToken.TryParse(internalLine, out token))
-							{
-								tokenIsValid = true;
-							}
-						}
-						else
-						{
-							if (InfixFunctionToken.TryParse(internalLine, out token) 
-								|| ArithmeticOperatorToken.TryParse(internalLine, out token) 
-								|| BinaryOperatorToken.TryParse(internalLine, out token) 
-								|| BooleanOperatorToken.TryParse(internalLine, out token)
-								|| PostfixFunctionToken.TryParse(internalLine, out token))
-							{
-								tokenIsValid = true;
-							}
-						}
-					}
-					else if (lastToken is PrefixFunctionToken 
-						&& ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open)
-							|| lastToken.ToString().Equals("!", StringComparison.InvariantCultureIgnoreCase)
-								&& (BooleanToken.TryParse(internalLine, out token)
-								|| VariableToken.TryParse(internalLine, out token)
-								|| ConstantToken.TryParse(internalLine, out token)
-								|| NumberToken.TryParse(internalLine, out token))))
-					{
-						tokenIsValid = true;
-					}
-					else if (lastToken is InfixFunctionToken || lastToken is OperatorToken)
-					{
-						if (PrefixFunctionToken.TryParse(internalLine, out token) 
-							|| BooleanToken.TryParse(internalLine, out token)
-							|| VariableToken.TryParse(internalLine, out token)
-							|| ConstantToken.TryParse(internalLine, out token)
-							|| NumberToken.TryParse(internalLine, out token)
-							|| LastResultToken.TryParse(internalLine, out token)
-							|| (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open)
-							|| CommentToken.TryParse(internalLine, out token))
-						{
-							tokenIsValid = true;
-						}
-					}
-					else if (lastToken is PostfixFunctionToken)
-					{
-						if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed) 
-							|| InfixFunctionToken.TryParse(internalLine, out token) 
-							|| ArithmeticOperatorToken.TryParse(internalLine, out token) 
-							|| BinaryOperatorToken.TryParse(internalLine, out token) 
-							|| BooleanOperatorToken.TryParse(internalLine, out token) 
-							|| PostfixFunctionToken.TryParse(internalLine, out token)
-							|| CommentToken.TryParse(internalLine, out token))
-						{
-							tokenIsValid = true;
-						}
-					}
-					else
-					{
-						throw new InvalidTokenException(String.Format("Invalid or unrecognized token at {0}.", internalLine));
-					}
+					#region Old Conditional Code
+					//    if (lastToken is NullToken)
+				//    {
+				//        if (GetFirstToken(internalLine, out token))
+				//        {
+				//            tokenIsValid = true;
+				//        }
+				//        else if (InfixFunctionToken.TryParse(internalLine, out token)
+				//            || ArithmeticOperatorToken.TryParse(internalLine, out token)
+				//            || BinaryOperatorToken.TryParse(internalLine, out token)
+				//            || BooleanOperatorToken.TryParse(internalLine, out token)
+				//            || PostfixFunctionToken.TryParse(internalLine, out token))
+				//        {
+				//            _tokens.Add(CalculatorContext.GetInstance()[CalculatorContext.LastResult]);
+
+				//            lastToken = _tokens[0];
+				//        }
+				//        else
+				//        {
+				//            throw new InvalidTokenException(String.Format("Invalid or unrecognized token at {0}.", internalLine));
+				//        }
+				//    }
+				//    else if (lastToken is VariableToken)
+				//    {
+				//        if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed)
+				//            || InfixFunctionToken.TryParse(internalLine, out token)
+				//            || ArithmeticOperatorToken.TryParse(internalLine, out token)
+				//            || BinaryOperatorToken.TryParse(internalLine, out token)
+				//            || BooleanOperatorToken.TryParse(internalLine, out token)
+				//            || PostfixFunctionToken.TryParse(internalLine, out token)
+				//            || AssignmentOperatorToken.TryParse(internalLine, out token)
+				//            || CommentToken.TryParse(internalLine, out token))
+				//        {
+				//            tokenIsValid = true;
+				//        }
+				//    }
+				//    else if (lastToken is NumberToken || lastToken is BooleanToken)
+				//    {
+				//        if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed) 
+				//            || InfixFunctionToken.TryParse(internalLine, out token) 
+				//            || ArithmeticOperatorToken.TryParse(internalLine, out token) 
+				//            || BinaryOperatorToken.TryParse(internalLine, out token) 
+				//            || BooleanOperatorToken.TryParse(internalLine, out token) 
+				//            || PostfixFunctionToken.TryParse(internalLine, out token) 
+				//            || CommentToken.TryParse(internalLine, out token))
+				//        {
+				//            tokenIsValid = true;
+				//        }
+				//    }
+				//    else if (lastToken is PerenthesisToken)
+				//    {
+				//        if (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == ((PerenthesisToken)lastToken).PerenthesisType 
+				//            || CommentToken.TryParse(internalLine, out token))
+				//        {
+				//            tokenIsValid = true;
+				//        }
+				//        else if (((PerenthesisToken)lastToken).PerenthesisType == PerenthesisType.Open)
+				//        {
+				//            if (PrefixFunctionToken.TryParse(internalLine, out token) 
+				//                || BooleanToken.TryParse(internalLine, out token)
+				//                || VariableToken.TryParse(internalLine, out token)
+				//                || ConstantToken.TryParse(internalLine, out token) 
+				//                || NumberToken.TryParse(internalLine, out token)
+				//                || LastResultToken.TryParse(internalLine, out token))
+				//            {
+				//                tokenIsValid = true;
+				//            }
+				//        }
+				//        else
+				//        {
+				//            if (InfixFunctionToken.TryParse(internalLine, out token) 
+				//                || ArithmeticOperatorToken.TryParse(internalLine, out token) 
+				//                || BinaryOperatorToken.TryParse(internalLine, out token) 
+				//                || BooleanOperatorToken.TryParse(internalLine, out token)
+				//                || PostfixFunctionToken.TryParse(internalLine, out token))
+				//            {
+				//                tokenIsValid = true;
+				//            }
+				//        }
+				//    }
+				//    else if (lastToken is PrefixFunctionToken 
+				//        && ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open)
+				//            || lastToken.ToString().Equals("!", StringComparison.InvariantCultureIgnoreCase)
+				//                && (BooleanToken.TryParse(internalLine, out token)
+				//                || VariableToken.TryParse(internalLine, out token)
+				//                || ConstantToken.TryParse(internalLine, out token)
+				//                || NumberToken.TryParse(internalLine, out token))))
+				//    {
+				//        tokenIsValid = true;
+				//    }
+				//    else if (lastToken is InfixFunctionToken || lastToken is OperatorToken)
+				//    {
+				//        if (PrefixFunctionToken.TryParse(internalLine, out token) 
+				//            || BooleanToken.TryParse(internalLine, out token)
+				//            || VariableToken.TryParse(internalLine, out token)
+				//            || ConstantToken.TryParse(internalLine, out token)
+				//            || NumberToken.TryParse(internalLine, out token)
+				//            || LastResultToken.TryParse(internalLine, out token)
+				//            || (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open)
+				//            || CommentToken.TryParse(internalLine, out token))
+				//        {
+				//            tokenIsValid = true;
+				//        }
+				//    }
+				//    else if (lastToken is PostfixFunctionToken)
+				//    {
+				//        if ((PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed) 
+				//            || InfixFunctionToken.TryParse(internalLine, out token) 
+				//            || ArithmeticOperatorToken.TryParse(internalLine, out token) 
+				//            || BinaryOperatorToken.TryParse(internalLine, out token) 
+				//            || BooleanOperatorToken.TryParse(internalLine, out token) 
+				//            || PostfixFunctionToken.TryParse(internalLine, out token)
+				//            || CommentToken.TryParse(internalLine, out token))
+				//        {
+				//            tokenIsValid = true;
+				//        }
+				//    }
+				//    else
+				//    {
+				//        throw new InvalidTokenException(String.Format("Invalid or unrecognized token at {0}.", internalLine));
+					//    }
+					#endregion
 
 					if (tokenIsValid)
 					{
 						internalLine = AddTokenToCollection(token, internalLine);
-						lastToken = token;
+						context[CalculatorContext.LastToken] = token;
+					}
+					else if (CalculatorContext.GetInstance().LastResultIsImplied)
+					{
+						_tokens.Add(CalculatorContext.GetInstance()[CalculatorContext.LastResult]);
+
+						context[CalculatorContext.LastToken] = _tokens[0];
+
+						CalculatorContext.GetInstance().LastResultIsImplied = false;
 					}
 				}
 			}

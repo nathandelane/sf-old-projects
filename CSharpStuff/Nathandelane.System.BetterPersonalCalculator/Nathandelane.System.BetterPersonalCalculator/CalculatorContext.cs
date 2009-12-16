@@ -31,6 +31,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		#region Fields
 
 		public const string LastResult = "$";
+		public const string LastToken = "lastToken";
 		public const string DisplayBase = "base";
 		public const string Mode = "mode";
 
@@ -38,10 +39,20 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		private static Object __lockObject = new Object();
 
 		private Dictionary<string, Token> _values;
+		private bool _lastResultImplied;
 
 		#endregion
 
 		#region Properties
+
+		/// <summary>
+		/// Gets or sets whether LastResult was implied.
+		/// </summary>
+		public bool LastResultIsImplied
+		{
+			get { return _lastResultImplied; }
+			set { _lastResultImplied = value; }
+		}
 
 		/// <summary>
 		/// Gets or sets a context item.
@@ -88,10 +99,12 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		private CalculatorContext()
 		{
 			_values = new Dictionary<string, Token>();
+			_lastResultImplied = false;
 
 			this[CalculatorContext.LastResult] = new NumberToken();
 			this[CalculatorContext.DisplayBase] = new NumberToken("10");
 			this[CalculatorContext.Mode] = new VariableToken("rad");
+			this[CalculatorContext.LastToken] = new NullToken();
 		}
 
 		#endregion

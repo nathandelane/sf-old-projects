@@ -72,6 +72,15 @@
     <Compile Include="Expressions\BooleanExpression.cs" />
     <Compile Include="Expressions\ExpressionYard.cs" />
     <Compile Include="Expressions\VariableExpression.cs" />
+    <Compile Include="Parse States\InfixOperationParseState.cs" />
+    <Compile Include="Parse States\InvalidTokenParseState.cs" />
+    <Compile Include="Parse States\NullTokenParseState.cs" />
+    <Compile Include="Parse States\PerenthesisTokenParseState.cs" />
+    <Compile Include="Parse States\PostfixFunctionParseState.cs" />
+    <Compile Include="Parse States\PrefixFunctionTokenParseState.cs" />
+    <Compile Include="Parse States\TokenParseState.cs" />
+    <Compile Include="Parse States\ValueTokenParseState.cs" />
+    <Compile Include="Parse States\VariableTokenParseState.cs" />
     <Compile Include="ProgramArguments.cs" />
     <Compile Include="Tokens\ArithmeticOperatorToken.cs" />
     <Compile Include="Tokens\AssignmentOperatorToken.cs" />
@@ -141,6 +150,7 @@
   <ItemGroup>
     <Content Include="License\License.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
