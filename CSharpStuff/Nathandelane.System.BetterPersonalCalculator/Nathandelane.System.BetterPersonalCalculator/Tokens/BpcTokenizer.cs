@@ -32,6 +32,8 @@ namespace Nathandelane.System.BetterPersonalCalculator
 	{
 		#region Fields
 
+		private static CalculatorContext _context = CalculatorContext.GetInstance();
+
 		private IList<Token> _tokens;
 
 		#endregion
@@ -78,7 +80,6 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			string internalLine = line;
 			Regex spaceRegex = new Regex("^[\\s]+", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 			TokenParseState tokenParseState = new NullTokenParseState();
-			CalculatorContext context = CalculatorContext.GetInstance();
 
 			while (!String.IsNullOrEmpty(internalLine))
 			{
@@ -221,51 +222,27 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					if (tokenIsValid)
 					{
 						internalLine = AddTokenToCollection(token, internalLine);
-						context[CalculatorContext.LastToken] = token;
+						_context[CalculatorContext.LastToken] = token;
 					}
-					else if (CalculatorContext.GetInstance().LastResultIsImplied)
-					{
-						_tokens.Add(CalculatorContext.GetInstance()[CalculatorContext.LastResult]);
 
-						context[CalculatorContext.LastToken] = _tokens[0];
-
-						CalculatorContext.GetInstance().LastResultIsImplied = false;
-					}
+					CheckForLastResultImplication();
 				}
 			}
 		}
 
 		/// <summary>
-		/// Gets the first Token from the line.
+		/// Determines whether the last result was implied in the expression and if it was, adds the last result to the token collection.
 		/// </summary>
-		/// <param name="internalLine"></param>
-		/// <returns></returns>
-		private bool GetFirstToken(string internalLine, out Token token)
+		private void CheckForLastResultImplication()
 		{
-			return PerenthesisToken.TryParse(internalLine, out token)
-				|| PrefixFunctionToken.TryParse(internalLine, out token)
-				|| BooleanToken.TryParse(internalLine, out token)
-				|| VariableToken.TryParse(internalLine, out token)
-				|| ConstantToken.TryParse(internalLine, out token)
-				|| NumberToken.TryParse(internalLine, out token)
-				|| LastResultToken.TryParse(internalLine, out token);
-		}
-
-		/// <summary>
-		/// Determines whether the last token was an abnormal postfix function
-		/// </summary>
-		/// <param name="lastToken"></param>
-		/// <returns></returns>
-		private bool LastTokenWasPostfixFunction(Token lastToken)
-		{
-			bool result = false;
-
-			if (lastToken.ToString().Equals("!", StringComparison.InvariantCultureIgnoreCase))
+			if (_context.LastResultIsImplied)
 			{
-				result = true;
-			}
+				_tokens.Add(CalculatorContext.GetInstance()[CalculatorContext.LastResult]);
 
-			return result;
+				_context[CalculatorContext.LastToken] = _tokens[0];
+
+				CalculatorContext.GetInstance().LastResultIsImplied = false;
+			}
 		}
 
 		/// <summary>
