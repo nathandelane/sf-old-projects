@@ -31,108 +31,114 @@ namespace Nathandelane.System.BetterPersonalCalculator
 		/// <summary>
 		/// Forumulates the tokens contained in the tokenizer
 		/// </summary>
-		/// <param name="tokenizer"></param>
+		/// <param name="postfixTokenizer"></param>
 		/// <returns></returns>
-		public static Expression Formulate(ITokenizer tokenizer)
+		public static Expression Formulate(ITokenizer postfixTokenizer)
 		{
 			Expression expression = null;
 
-			if (tokenizer.HasTokens)
+			if (postfixTokenizer.HasTokens)
 			{
-				Stack<Token> output = Postfixate(tokenizer);
-
-				expression = CreateExpression(output);
+				//Stack<Token> output = Postfixate(tokenizer);
+				expression = CreateExpression(postfixTokenizer.Tokens);
+			}
+			else
+			{
+				Console.WriteLine("Tokenizer has no tokens.");
 			}
 
 			return expression;
 		}
 
-		/// <summary>
-		/// Gets postfix-ordered Queue of Token objects.
-		/// </summary>
-		/// <param name="tokenizer"></param>
-		/// <returns></returns>
-		private static Stack<Token> Postfixate(ITokenizer tokenizer)
-		{
-			Stack<Token> output = new Stack<Token>();
-			Stack<Token> operations = new Stack<Token>();
-			int openPerenthesisSet = 0;
+		#region Old Postfixator Code
+		///// <summary>
+		///// Gets postfix-ordered Queue of Token objects.
+		///// </summary>
+		///// <param name="tokenizer"></param>
+		///// <returns></returns>
+		//private static Stack<Token> Postfixate(ITokenizer tokenizer)
+		//{
+		//    Stack<Token> output = new Stack<Token>();
+		//    Stack<Token> operations = new Stack<Token>();
+		//    int openPerenthesisSet = 0;
 
-			foreach (Token token in tokenizer.Tokens)
-			{
-				if (token is NumberToken || token is BooleanToken || token is VariableToken)
-				{
-					output.Push(token);
-				}
-				else if (token is OperatorToken || token is FunctionToken)
-				{
-					if (operations.Count == 0 || operations.Peek().Precedence < token.Precedence)
-					{
-						operations.Push(token);
-					}
-					else if (operations.Peek().Precedence >= token.Precedence && !(operations.Peek() is PerenthesisToken))
-					{
-						if (operations.Peek().Precedence == token.Precedence && operations.Peek().Precedence == ExpressionPrecedence.Function)
-						{
-							operations.Push(token);
-						}
-						else
-						{
-							output.Push(operations.Pop());
-							operations.Push(token);
-						}
-					}
-					else if(operations.Peek() is PerenthesisToken)
-					{
-						operations.Push(token);
-					}
-				}
-				else if (token is PerenthesisToken)
-				{
-					if (openPerenthesisSet > 0 && token.ToString().Equals(")", StringComparison.InvariantCultureIgnoreCase))
-					{
-						while (!(operations.Peek() is PerenthesisToken))
-						{
-							Token nextOperator = operations.Pop();
+		//    foreach (Token token in tokenizer.Tokens)
+		//    {
+		//        if (token is NumberToken || token is BooleanToken || token is VariableToken)
+		//        {
+		//            output.Push(token);
+		//        }
+		//        else if (token is OperatorToken || token is FunctionToken)
+		//        {
+		//            if (operations.Count == 0 || operations.Peek().Precedence < token.Precedence)
+		//            {
+		//                operations.Push(token);
+		//            }
+		//            else if (operations.Peek().Precedence >= token.Precedence && !(operations.Peek() is PerenthesisToken))
+		//            {
+		//                if (operations.Peek().Precedence == token.Precedence && operations.Peek().Precedence == ExpressionPrecedence.Function)
+		//                {
+		//                    operations.Push(token);
+		//                }
+		//                else
+		//                {
+		//                    output.Push(operations.Pop());
+		//                    operations.Push(token);
+		//                }
+		//            }
+		//            else if(operations.Peek() is PerenthesisToken)
+		//            {
+		//                operations.Push(token);
+		//            }
+		//        }
+		//        else if (token is PerenthesisToken)
+		//        {
+		//            if (openPerenthesisSet > 0 && token.ToString().Equals(")", StringComparison.InvariantCultureIgnoreCase))
+		//            {
+		//                while (!(operations.Peek() is PerenthesisToken))
+		//                {
+		//                    Token nextOperator = operations.Pop();
 
-							output.Push(nextOperator);
-						}
+		//                    output.Push(nextOperator);
+		//                }
 
-						operations.Pop();
-						openPerenthesisSet--;
-					}
-					else
-					{
-						operations.Push(token);
-						openPerenthesisSet++;
-					}
-				}
-			}
+		//                operations.Pop();
+		//                openPerenthesisSet--;
+		//            }
+		//            else
+		//            {
+		//                operations.Push(token);
+		//                openPerenthesisSet++;
+		//            }
+		//        }
+		//    }
 
-			if (operations.Count > 0)
-			{
-				while (operations.Count > 0)
-				{
-					output.Push(operations.Pop());
-				}
-			}
+		//    if (operations.Count > 0)
+		//    {
+		//        while (operations.Count > 0)
+		//        {
+		//            output.Push(operations.Pop());
+		//        }
+		//    }
 
-			Stack<Token> reversed = new Stack<Token>();
-			while (output.Count > 0)
-			{
-				reversed.Push(output.Pop());
-			}
+		//    Stack<Token> reversed = new Stack<Token>();
+		//    while (output.Count > 0)
+		//    {
+		//        reversed.Push(output.Pop());
+		//    }
 
-			return reversed;
-		}
+		//    return reversed;
+		//}
+		#endregion
 
 		/// <summary>
 		/// Generates an expression.
 		/// </summary>
 		/// <param name="output"></param>
 		/// <returns></returns>
-		private static Expression CreateExpression(Stack<Token> output)
+		private static Expression CreateExpression(IList<Token> outputList)
 		{
+			TokenListStackAdapter output = new TokenListStackAdapter(outputList);
 			Stack<Expression> expressionStack = new Stack<Expression>();
 
 			while (output.Count > 0)

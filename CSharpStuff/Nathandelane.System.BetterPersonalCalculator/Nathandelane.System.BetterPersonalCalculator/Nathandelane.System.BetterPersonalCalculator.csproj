@@ -100,6 +100,7 @@
     <Compile Include="Tokens\PostfixFunctionToken.cs" />
     <Compile Include="Tokens\FunctionToken.cs" />
     <Compile Include="Tokens\InfixFunctionToken.cs" />
+    <Compile Include="Tokens\PostfixTokenizer.cs" />
     <Compile Include="Tokens\PrefixFunctionToken.cs" />
     <Compile Include="Expressions\MalformedExpressionException.cs" />
     <Compile Include="Expressions\NumericExpression.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tokens\Token.cs" />
     <Compile Include="Expressions\ExpressionPrecedence.cs" />
+    <Compile Include="Tokens\TokenListStackAdapter.cs" />
     <Compile Include="Tokens\TokenNotSupportedException.cs" />
     <Compile Include="Tokens\TokenType.cs" />
     <Compile Include="Tokens\InvalidTokenException.cs" />

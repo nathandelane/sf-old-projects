@@ -300,7 +300,8 @@ Variables: assignment using =, inline usage, names must begin with underscore (_
 			try
 			{
 				ITokenizer tokenizer = new BpcTokenizer(strExpression);
-				Expression expression = ExpressionYard.Formulate(tokenizer);
+				ITokenizer postfixTokenizer = new PostfixTokenizer(tokenizer);
+				Expression expression = ExpressionYard.Formulate(postfixTokenizer);
 				Token result = expression.Evaluate();
 
 				if (result is VariableToken)
