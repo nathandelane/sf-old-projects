@@ -61,7 +61,15 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 					foreach (string nextExpression in expressions)
 					{
-						Console.WriteLine("{0}", PerformEvaluation(nextExpression));
+						try
+						{
+							Console.WriteLine("{0}", PerformEvaluation(nextExpression));
+						}
+						catch (Exception ex)
+						{
+							Console.WriteLine("{0}", ex.Message);
+							Environment.ExitCode = 1;
+						}
 					}
 				}
 			}
@@ -130,7 +138,14 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				{
 					foreach (string nextExpression in GetExpressions(userInput))
 					{
-						Console.WriteLine("{0}", PerformEvaluation(nextExpression));
+						try
+						{
+							Console.WriteLine("{0}", PerformEvaluation(nextExpression));
+						}
+						catch (Exception ex)
+						{
+							Console.WriteLine("{0}", ex.Message);
+						}
 					}
 				}
 			}
@@ -296,54 +311,45 @@ Variables: assignment using =, inline usage, names must begin with underscore (_
 		private string PerformEvaluation(string strExpression)
 		{
 			string strResult = "0";
+			ITokenizer tokenizer = new BpcTokenizer(strExpression);
+			ITokenizer postfixTokenizer = new PostfixTokenizer(tokenizer);
+			Expression expression = ExpressionYard.Formulate(postfixTokenizer);
+			Token result = expression.Evaluate();
 
-			try
+			if (result is VariableToken)
 			{
-				ITokenizer tokenizer = new BpcTokenizer(strExpression);
-				ITokenizer postfixTokenizer = new PostfixTokenizer(tokenizer);
-				Expression expression = ExpressionYard.Formulate(postfixTokenizer);
-				Token result = expression.Evaluate();
-
-				if (result is VariableToken)
-				{
-					result = _context[result.ToString()];
-				}
-
-				strResult = String.Format("{0}", result);
-
-				if (result is NumberToken)
-				{
-					if (_context[CalculatorContext.DisplayBase].ToString().Equals("2", StringComparison.InvariantCultureIgnoreCase))
-					{
-						strResult = ((NumberToken)result).AsBin();
-
-						ResetDisplayBase();
-					}
-					else if (_context[CalculatorContext.DisplayBase].ToString().Equals("8", StringComparison.InvariantCultureIgnoreCase))
-					{
-						strResult = ((NumberToken)result).AsOct();
-
-						ResetDisplayBase();
-					}
-					else if (_context[CalculatorContext.DisplayBase].ToString().Equals("16", StringComparison.InvariantCultureIgnoreCase))
-					{
-						strResult = ((NumberToken)result).AsHex();
-
-						ResetDisplayBase();
-					}
-				}
-				else if(!(result is BooleanToken))
-				{
-					throw new Exception(String.Format("Unexpected token was returned as result. Type: {0} value: {1}", result.Type, result));
-				}
-
-				_context[CalculatorContext.LastResult] = result;
+				result = _context[result.ToString()];
 			}
-			catch (Exception ex)
+
+			strResult = String.Format("{0}", result);
+
+			if (result is NumberToken)
 			{
-				Console.WriteLine("{0}", ex.Message);
-				Environment.ExitCode = 1;
+				if (_context[CalculatorContext.DisplayBase].ToString().Equals("2", StringComparison.InvariantCultureIgnoreCase))
+				{
+					strResult = ((NumberToken)result).AsBin();
+
+					ResetDisplayBase();
+				}
+				else if (_context[CalculatorContext.DisplayBase].ToString().Equals("8", StringComparison.InvariantCultureIgnoreCase))
+				{
+					strResult = ((NumberToken)result).AsOct();
+
+					ResetDisplayBase();
+				}
+				else if (_context[CalculatorContext.DisplayBase].ToString().Equals("16", StringComparison.InvariantCultureIgnoreCase))
+				{
+					strResult = ((NumberToken)result).AsHex();
+
+					ResetDisplayBase();
+				}
 			}
+			else if (!(result is BooleanToken))
+			{
+				throw new Exception(String.Format("Unexpected token was returned as result. Type: {0} value: {1}", result.Type, result));
+			}
+
+			_context[CalculatorContext.LastResult] = result;
 
 			return strResult;
 		}
