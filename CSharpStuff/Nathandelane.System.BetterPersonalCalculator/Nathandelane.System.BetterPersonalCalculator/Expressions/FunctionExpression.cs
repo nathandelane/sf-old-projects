@@ -64,7 +64,31 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			string op = Operation.ToString();
 			bool modeIsDegrees = CalculatorContext.GetInstance()[CalculatorContext.Mode].ToString().Equals("deg", StringComparison.InvariantCultureIgnoreCase);
 
-			if (op.Equals("cos", StringComparison.InvariantCultureIgnoreCase))
+			if (op.Equals("cosh", StringComparison.InvariantCultureIgnoreCase))
+			{
+				Token val = EvaluateOperand(0);
+				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
+				res = Math.Cosh(res);
+
+				result = new NumberToken(res.ToString());
+			}
+			else if (op.Equals("sinh", StringComparison.InvariantCultureIgnoreCase))
+			{
+				Token val = EvaluateOperand(0);
+				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
+				res = Math.Sinh(res);
+
+				result = new NumberToken(res.ToString());
+			}
+			else if (op.Equals("tanh", StringComparison.InvariantCultureIgnoreCase))
+			{
+				Token val = EvaluateOperand(0);
+				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
+				res = Math.Tanh(res);
+
+				result = new NumberToken(res.ToString());
+			}
+			else if (op.Equals("cos", StringComparison.InvariantCultureIgnoreCase))
 			{
 				Token val = EvaluateOperand(0);
 				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());

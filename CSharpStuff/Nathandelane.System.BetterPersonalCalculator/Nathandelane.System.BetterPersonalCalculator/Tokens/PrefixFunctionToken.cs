@@ -31,7 +31,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 	{
 		#region Fields
 
-		private static readonly Regex __functionPattern = new Regex("^(cos|sin|tan|acos|asin|atan|log|ln|lb|ld|lg|deg|rad|sqrt|tod|toh|too|tob|-\\(|[!]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __functionPattern = new Regex("^(cosh|sinh|tanh|cos|sin|tan|acos|asin|atan|log|ln|lb|ld|lg|deg|rad|sqrt|tod|toh|too|tob|-\\(|[!]{1}){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		#endregion
 
