@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApplication1", "WpfApplication1\WpfApplication1.csproj", "{8B8E88BD-2EC4-447F-BA86-F48FDDCA7DE1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoutedCommands1", "RoutedCommands1\RoutedCommands1.csproj", "{8B8E88BD-2EC4-447F-BA86-F48FDDCA7DE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
