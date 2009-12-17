@@ -214,12 +214,20 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 				if (left is NumberToken && right is NumberToken)
 				{
-					long lLeft = long.Parse(((NumberToken)left).WholePart());
-					long lRight = long.Parse(((NumberToken)right).WholePart()); ;
+					long lLeft = 0;
+					long lRight = 0;
 					long rem = 0;
-					long whole = Math.DivRem(lLeft, lRight, out rem);
 
-					result = new NumberToken(whole.ToString());
+					if (long.TryParse(((NumberToken)left).WholePart(), out lLeft) && long.TryParse(((NumberToken)right).WholePart(), out lRight))
+					{
+						long whole = Math.DivRem(lLeft, lRight, out rem);
+
+						result = new NumberToken(whole.ToString());
+					}
+					else
+					{
+						throw new FormatException(String.Format("Could not parse long value from {0} for function expression.", left.ToString()));
+					}
 				}
 				else
 				{

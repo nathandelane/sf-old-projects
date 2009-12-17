@@ -51,50 +51,68 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 			if (left is NumberToken && right is NumberToken)
 			{
-				double dLeft = long.Parse(((NumberToken)left).ToString());
-				double dRight = long.Parse(((NumberToken)right).ToString());
+				double dLeft = 0.0;
+				double dRight = 0.0;
 
-				if (Operation.ToString().Equals("==", StringComparison.InvariantCultureIgnoreCase))
+				if (double.TryParse(left.ToString(), out dLeft) && double.TryParse(right.ToString(), out dRight))
 				{
-					result = new BooleanToken((dLeft == dRight).ToString());
+					if (Operation.ToString().Equals("==", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new BooleanToken((dLeft == dRight).ToString());
+					}
+					else if (Operation.ToString().Equals("<=", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new BooleanToken((dLeft <= dRight).ToString());
+					}
+					else if (Operation.ToString().Equals(">=", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new BooleanToken((dLeft >= dRight).ToString());
+					}
+					else if (Operation.ToString().Equals("<", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new BooleanToken((dLeft < dRight).ToString());
+					}
+					else if (Operation.ToString().Equals(">", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new BooleanToken((dLeft > dRight).ToString());
+					}
+					else if (Operation.ToString().Equals("!=", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new BooleanToken((dLeft != dRight).ToString());
+					}
+					else
+					{
+						throw new MalformedExpressionException(String.Format("Unknown boolean operator {0}.", Operation));
+					}
 				}
-				else if (Operation.ToString().Equals("<=", StringComparison.InvariantCultureIgnoreCase))
+				else
 				{
-					result = new BooleanToken((dLeft <= dRight).ToString());
-				}
-				else if (Operation.ToString().Equals(">=", StringComparison.InvariantCultureIgnoreCase))
-				{
-					result = new BooleanToken((dLeft >= dRight).ToString());
-				}
-				else if (Operation.ToString().Equals("<", StringComparison.InvariantCultureIgnoreCase))
-				{
-					result = new BooleanToken((dLeft < dRight).ToString());
-				}
-				else if (Operation.ToString().Equals(">", StringComparison.InvariantCultureIgnoreCase))
-				{
-					result = new BooleanToken((dLeft > dRight).ToString());
-				}
-				else if (Operation.ToString().Equals("!=", StringComparison.InvariantCultureIgnoreCase))
-				{
-					result = new BooleanToken((dLeft != dRight).ToString());
+					throw new FormatException(String.Format("Could not parse double value from {0} for boolean expression.", left.ToString()));
 				}
 			}
 			else if (left is BooleanToken && right is BooleanToken)
 			{
-				bool bLeft = Boolean.Parse(left.ToString());
-				bool bRight = Boolean.Parse(right.ToString());
+				bool bLeft = false;
+				bool bRight = false;
 
-				if (Operation.ToString().Equals("==", StringComparison.InvariantCultureIgnoreCase))
+				if (bool.TryParse(left.ToString(), out bLeft) && bool.TryParse(right.ToString(), out bRight))
 				{
-					result = new BooleanToken((bLeft == bRight).ToString());
-				}
-				else if (Operation.ToString().Equals("!=", StringComparison.InvariantCultureIgnoreCase))
-				{
-					result = new BooleanToken((bLeft != bRight).ToString());
+					if (Operation.ToString().Equals("==", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new BooleanToken((bLeft == bRight).ToString());
+					}
+					else if (Operation.ToString().Equals("!=", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new BooleanToken((bLeft != bRight).ToString());
+					}
+					else
+					{
+						throw new MalformedExpressionException("Booleans cannot be less than or greater than each other.");
+					}
 				}
 				else
 				{
-					throw new MalformedExpressionException("Booleans cannot be less than or greater than each other.");
+					throw new FormatException(String.Format("Could not parse bool value from {0} for boolean expression.", left.ToString()));
 				}
 			}
 			else

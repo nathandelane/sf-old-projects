@@ -51,38 +51,52 @@ namespace Nathandelane.System.BetterPersonalCalculator
 
 			if (left is NumberToken && right is NumberToken)
 			{
-				long dLeft = long.Parse(((NumberToken)left).WholePart());
-				long dRight = long.Parse(((NumberToken)right).WholePart());
+				long lLeft = 0; ;
+				long lRight = 0; ;
 
-				if (Operation.ToString().Equals("&", StringComparison.InvariantCultureIgnoreCase))
+				if (long.TryParse(((NumberToken)left).WholePart(), out lLeft) && long.TryParse(((NumberToken)right).WholePart(), out lRight))
 				{
-					result = new NumberToken((dLeft & dRight).ToString());
-				}
-				else if (Operation.ToString().Equals("|", StringComparison.InvariantCultureIgnoreCase))
-				{
-					result = new NumberToken((dLeft | dRight).ToString());
-				}
-				else if (Operation.ToString().Equals("^", StringComparison.InvariantCultureIgnoreCase))
-				{
-					result = new NumberToken((dLeft ^ dRight).ToString());
+					if (Operation.ToString().Equals("&", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new NumberToken((lLeft & lRight).ToString());
+					}
+					else if (Operation.ToString().Equals("|", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new NumberToken((lLeft | lRight).ToString());
+					}
+					else if (Operation.ToString().Equals("^", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new NumberToken((lLeft ^ lRight).ToString());
+					}
+					else
+					{
+						throw new FormatException(String.Format("Could not parse long value from {0} for binary expression.", left.ToString()));
+					}
 				}
 			}
 			else if (left is BooleanToken && right is BooleanToken)
 			{
-				bool bLeft = Boolean.Parse(left.ToString());
-				bool bRight = Boolean.Parse(right.ToString());
+				bool bLeft = false;
+				bool bRight = false;
 
-				if (Operation.ToString().Equals("&", StringComparison.InvariantCultureIgnoreCase))
+				if (bool.TryParse(left.ToString(), out bLeft) && bool.TryParse(right.ToString(), out bRight))
 				{
-					result = new BooleanToken((bLeft & bRight).ToString());
-				}
-				else if (Operation.ToString().Equals("|", StringComparison.InvariantCultureIgnoreCase))
-				{
-					result = new BooleanToken((bLeft | bRight).ToString());
-				}
-				else if (Operation.ToString().Equals("^", StringComparison.InvariantCultureIgnoreCase))
-				{
-					result = new BooleanToken((bLeft ^ bRight).ToString());
+					if (Operation.ToString().Equals("&", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new BooleanToken((bLeft & bRight).ToString());
+					}
+					else if (Operation.ToString().Equals("|", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new BooleanToken((bLeft | bRight).ToString());
+					}
+					else if (Operation.ToString().Equals("^", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new BooleanToken((bLeft ^ bRight).ToString());
+					}
+					else
+					{
+						throw new FormatException(String.Format("Could not parse bool value from {0} for binary expression.", left.ToString()));
+					}
 				}
 			}
 			else

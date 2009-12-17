@@ -77,32 +77,41 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			Token result = new NullToken();
 			Token left = EvaluateOperand(1);
 			Token right = EvaluateOperand(0);
+			double dLeft = 0.0;
+			double dRight = 0.0;
 
-			switch (Precedence)
+			if (double.TryParse(left.ToString(), out dLeft) && double.TryParse(right.ToString(), out dRight))
 			{
-				case ExpressionPrecedence.Add:
-					result = new NumberToken((double.Parse(left.ToString()) + double.Parse(right.ToString())).ToString());
-					break;
-				case ExpressionPrecedence.Subtract:
-					result = new NumberToken((double.Parse(left.ToString()) - double.Parse(right.ToString())).ToString());
-					break;
-				case ExpressionPrecedence.MultiplyOrDivide:
-					if (Operation.ToString().Equals("/", StringComparison.InvariantCultureIgnoreCase))
-					{
-						if (right.ToString().Equals("0", StringComparison.InvariantCultureIgnoreCase))
+				switch (Precedence)
+				{
+					case ExpressionPrecedence.Add:
+						result = new NumberToken((dLeft + dRight).ToString());
+						break;
+					case ExpressionPrecedence.Subtract:
+						result = new NumberToken((dLeft - dRight).ToString());
+						break;
+					case ExpressionPrecedence.MultiplyOrDivide:
+						if (Operation.ToString().Equals("/", StringComparison.InvariantCultureIgnoreCase))
 						{
-							throw new DivideByZeroException();
+							if (right.ToString().Equals("0", StringComparison.InvariantCultureIgnoreCase))
+							{
+								throw new DivideByZeroException();
+							}
+							else
+							{
+								result = new NumberToken((dLeft / dRight).ToString());
+							}
 						}
-						else
+						else if (Operation.ToString().Equals("*"))
 						{
-							result = new NumberToken((double.Parse(left.ToString()) / double.Parse(right.ToString())).ToString());
+							result = new NumberToken((dLeft * dRight).ToString());
 						}
-					}
-					else if (Operation.ToString().Equals("*"))
-					{
-						result = new NumberToken((double.Parse(left.ToString()) * double.Parse(right.ToString())).ToString());
-					}
-					break;
+						break;
+				}
+			}
+			else
+			{
+				throw new FormatException(String.Format("Could not parse double value from {0} for arithmetic expression.", left.ToString()));
 			}
 
 			return result;
