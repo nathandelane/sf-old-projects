@@ -143,30 +143,19 @@ namespace Nathandelane.System.BetterPersonalCalculator
 					}
 					else if (op.Equals("acos", StringComparison.InvariantCultureIgnoreCase))
 					{
-						if (modeIsDegrees)
-						{
-							res = ToRadians(res);
-						}
-
 						res = modeIsDegrees ? ToDegrees(Math.Acos(res)) : Math.Acos(res);
 
 						result = new NumberToken(res.ToString());
 					}
 					else if (op.Equals("asin", StringComparison.InvariantCultureIgnoreCase))
 					{
-						if (modeIsDegrees)
-						{
-							res = ToRadians(res);
-						}
+						res = modeIsDegrees ? ToDegrees(Math.Asin(res)) : Math.Acos(res);
 
 						result = new NumberToken(res.ToString());
 					}
 					else if (op.Equals("atan", StringComparison.InvariantCultureIgnoreCase))
 					{
-						if (modeIsDegrees)
-						{
-							res = ToRadians(res);
-						}
+						res = modeIsDegrees ? ToDegrees(Math.Atan(res)) : Math.Acos(res);
 
 						result = new NumberToken(res.ToString());
 					}

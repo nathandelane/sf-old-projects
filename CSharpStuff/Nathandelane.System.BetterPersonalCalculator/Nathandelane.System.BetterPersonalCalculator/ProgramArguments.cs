@@ -82,7 +82,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				{
 					if (argRegex.IsMatch(sub))
 					{
-						programArguments._args.Add(RemoveArgDelimiters(nextArg));
+						programArguments._args.Add(RemoveArgDelimiters(sub));
 					}
 					else
 					{
