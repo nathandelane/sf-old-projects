@@ -64,222 +64,257 @@ namespace Nathandelane.System.BetterPersonalCalculator
 			string op = Operation.ToString();
 			bool modeIsDegrees = CalculatorContext.GetInstance()[CalculatorContext.Mode].ToString().Equals("deg", StringComparison.InvariantCultureIgnoreCase);
 
-			if (op.Equals("cosh", StringComparison.InvariantCultureIgnoreCase))
+			if (Operation is PrefixFunctionToken)
 			{
 				Token val = EvaluateOperand(0);
-				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
-				res = Math.Cosh(res);
+				double res = 0.0;
 
-				result = new NumberToken(res.ToString());
-			}
-			else if (op.Equals("sinh", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
-				res = Math.Sinh(res);
-
-				result = new NumberToken(res.ToString());
-			}
-			else if (op.Equals("tanh", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
-				res = Math.Tanh(res);
-
-				result = new NumberToken(res.ToString());
-			}
-			else if (op.Equals("cos", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
-				res = Math.Cos(res);
-
-				result = new NumberToken(res.ToString());
-			}
-			else if (op.Equals("sin", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
-				res = Math.Sin(res);
-
-				result = new NumberToken(res.ToString());
-			}
-			else if (op.Equals("tan", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-				double res = modeIsDegrees ? ToRadians(double.Parse(val.ToString())) : double.Parse(val.ToString());
-				res = Math.Tan(res);
-
-				result = new NumberToken(res.ToString());
-			}
-			else if (op.Equals("acos", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-				double res = double.Parse(val.ToString());
-				res = modeIsDegrees ? ToDegrees(Math.Acos(res)) : Math.Acos(res);
-
-				result = new NumberToken(res.ToString());
-			}
-			else if (op.Equals("asin", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-				double res = double.Parse(val.ToString());
-				res = modeIsDegrees ? ToDegrees(Math.Asin(res)) : Math.Asin(res);
-
-				result = new NumberToken(res.ToString());
-			}
-			else if (op.Equals("atan", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-				double res = double.Parse(val.ToString());
-				res = modeIsDegrees ? ToDegrees(Math.Atan(res)) : Math.Atan(res);
-
-				result = new NumberToken(res.ToString());
-			}
-			else if (op.Equals("log", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-
-				result = new NumberToken((Math.Log10(double.Parse(val.ToString()))).ToString());
-			}
-			else if (op.Equals("ln", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-
-				result = new NumberToken((Math.Log(double.Parse(val.ToString()))).ToString());
-			}
-			else if (op.Equals("lb", StringComparison.InvariantCultureIgnoreCase) || op.Equals("ld", StringComparison.InvariantCultureIgnoreCase) || op.Equals("lg", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-
-				result = new NumberToken((Math.Log(double.Parse(val.ToString())) / Math.Log(2.0)).ToString());
-			}
-			else if (op.Equals("deg", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-
-				result = new NumberToken((ToDegrees(double.Parse(val.ToString()))).ToString());
-			}
-			else if (op.Equals("rad", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-
-				result = new NumberToken((ToRadians(double.Parse(val.ToString()))).ToString());
-			}
-			else if (op.Equals("sqrt", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-
-				result = new NumberToken((Math.Sqrt(double.Parse(val.ToString()))).ToString());
-			}
-			else if (op.Equals("too", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("8");
-
-				result = new NumberToken(val);
-			}
-			else if (op.Equals("tod", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("10");
-
-				result = new NumberToken(val);
-			}
-			else if (op.Equals("toh", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("16");
-
-				result = new NumberToken(val);
-			}
-			else if (op.Equals("tob", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-				CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("2");
-
-				result = new NumberToken(val);
-			}
-			else if (op.Equals("**", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token left = EvaluateOperand(1);
-				Token right = EvaluateOperand(0);
-
-				result = new NumberToken((Math.Pow(double.Parse(left.ToString()), double.Parse(right.ToString()))).ToString());
-			}
-			else if (op.Equals("//", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token left = EvaluateOperand(1);
-				Token right = EvaluateOperand(0);
-
-				if (left is NumberToken && right is NumberToken)
+				if (double.TryParse(val.ToString(), out res))
 				{
-					long lLeft = 0;
-					long lRight = 0;
-					long rem = 0;
-
-					if (long.TryParse(((NumberToken)left).WholePart(), out lLeft) && long.TryParse(((NumberToken)right).WholePart(), out lRight))
+					if (op.Equals("abs", StringComparison.InvariantCultureIgnoreCase))
 					{
-						long whole = Math.DivRem(lLeft, lRight, out rem);
-
-						result = new NumberToken(whole.ToString());
+						result = new NumberToken((Math.Abs(res)).ToString());
 					}
-					else
+					else if (op.Equals("cosh", StringComparison.InvariantCultureIgnoreCase))
 					{
-						throw new FormatException(String.Format("Could not parse long value from {0} for function expression.", left.ToString()));
+						if (modeIsDegrees)
+						{
+							res = ToRadians(res);
+						}
+
+						res = Math.Cosh(res);
+
+						result = new NumberToken(res.ToString());
+					}
+					else if (op.Equals("sinh", StringComparison.InvariantCultureIgnoreCase))
+					{
+						if (modeIsDegrees)
+						{
+							res = ToRadians(res);
+						}
+
+						res = Math.Sinh(res);
+
+						result = new NumberToken(res.ToString());
+					}
+					else if (op.Equals("tanh", StringComparison.InvariantCultureIgnoreCase))
+					{
+						if (modeIsDegrees)
+						{
+							res = ToRadians(res);
+						}
+
+						res = Math.Tanh(res);
+
+						result = new NumberToken(res.ToString());
+					}
+					else if (op.Equals("cos", StringComparison.InvariantCultureIgnoreCase))
+					{
+						if (modeIsDegrees)
+						{
+							res = ToRadians(res);
+						}
+
+						res = Math.Cos(res);
+
+						result = new NumberToken(res.ToString());
+					}
+					else if (op.Equals("sin", StringComparison.InvariantCultureIgnoreCase))
+					{
+						if (modeIsDegrees)
+						{
+							res = ToRadians(res);
+						}
+
+						res = Math.Sin(res);
+
+						result = new NumberToken(res.ToString());
+					}
+					else if (op.Equals("tan", StringComparison.InvariantCultureIgnoreCase))
+					{
+						if (modeIsDegrees)
+						{
+							res = ToRadians(res);
+						}
+
+						res = Math.Tan(res);
+
+						result = new NumberToken(res.ToString());
+					}
+					else if (op.Equals("acos", StringComparison.InvariantCultureIgnoreCase))
+					{
+						if (modeIsDegrees)
+						{
+							res = ToRadians(res);
+						}
+
+						res = modeIsDegrees ? ToDegrees(Math.Acos(res)) : Math.Acos(res);
+
+						result = new NumberToken(res.ToString());
+					}
+					else if (op.Equals("asin", StringComparison.InvariantCultureIgnoreCase))
+					{
+						if (modeIsDegrees)
+						{
+							res = ToRadians(res);
+						}
+
+						result = new NumberToken(res.ToString());
+					}
+					else if (op.Equals("atan", StringComparison.InvariantCultureIgnoreCase))
+					{
+						if (modeIsDegrees)
+						{
+							res = ToRadians(res);
+						}
+
+						result = new NumberToken(res.ToString());
+					}
+					else if (op.Equals("log", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new NumberToken((Math.Log10(res)).ToString());
+					}
+					else if (op.Equals("ln", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new NumberToken((Math.Log(res)).ToString());
+					}
+					else if (op.Equals("lb", StringComparison.InvariantCultureIgnoreCase) || op.Equals("ld", StringComparison.InvariantCultureIgnoreCase) || op.Equals("lg", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new NumberToken((Math.Log(res) / Math.Log(2.0)).ToString());
+					}
+					else if (op.Equals("deg", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new NumberToken((ToDegrees(res)).ToString());
+					}
+					else if (op.Equals("rad", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new NumberToken((ToRadians(res)).ToString());
+					}
+					else if (op.Equals("sqrt", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new NumberToken((Math.Sqrt(res)).ToString());
+					}
+					else if (op.Equals("too", StringComparison.InvariantCultureIgnoreCase))
+					{
+						CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("8");
+
+						result = new NumberToken(val);
+					}
+					else if (op.Equals("tod", StringComparison.InvariantCultureIgnoreCase))
+					{
+						CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("10");
+
+						result = new NumberToken(val);
+					}
+					else if (op.Equals("toh", StringComparison.InvariantCultureIgnoreCase))
+					{
+						CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("16");
+
+						result = new NumberToken(val);
+					}
+					else if (op.Equals("tob", StringComparison.InvariantCultureIgnoreCase))
+					{
+						CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("2");
+
+						result = new NumberToken(val);
+					}
+					else if (op.Equals("-", StringComparison.InvariantCultureIgnoreCase))
+					{
+						result = new NumberToken((res * (-1)).ToString());
+					}
+					else if (op.Equals("!", StringComparison.InvariantCultureIgnoreCase))
+					{
+						if (val is BooleanToken)
+						{
+							result = ((BooleanToken)val).Not();
+						}
+						else if (val is NumberToken)
+						{
+							result = ((NumberToken)val).Negate();
+						}
 					}
 				}
 				else
 				{
-					throw new MalformedExpressionException("Exception in //.");
+					throw new FormatException(String.Format("Could not parse double value from {0}", val));
 				}
 			}
-			else if (op.Equals("%", StringComparison.InvariantCultureIgnoreCase))
+			else if (Operation is InfixFunctionToken)
 			{
 				Token left = EvaluateOperand(1);
 				Token right = EvaluateOperand(0);
+				double dLeft = 0.0;
+				double dRight = 0.0;
 
-				result = new NumberToken((double.Parse(left.ToString()) % double.Parse(right.ToString())).ToString());
-			}
-			else if (op.Equals("!", StringComparison.InvariantCultureIgnoreCase))
-			{
-				Token val = EvaluateOperand(0);
-
-				if (Operation is PostfixFunctionToken)
+				if (double.TryParse(left.ToString(), out dLeft) && double.TryParse(right.ToString(), out dRight))
 				{
-					double counter = double.Parse(val.ToString());
-					double total = counter;
-
-					while (counter > 1)
+					if (op.Equals("**", StringComparison.InvariantCultureIgnoreCase))
 					{
-						counter--;
-
-						total *= counter;
+						result = new NumberToken((Math.Pow(dLeft, dRight)).ToString());
 					}
-
-					result = new NumberToken(total.ToString());
-				}
-				else if (Operation is PrefixFunctionToken)
-				{
-					if (val is BooleanToken)
+					else if (op.Equals("%", StringComparison.InvariantCultureIgnoreCase))
 					{
-						result = ((BooleanToken)val).Not();
+						result = new NumberToken((dLeft % dRight).ToString());
 					}
-					else if (val is VariableToken)
+					else if (op.Equals("//", StringComparison.InvariantCultureIgnoreCase))
 					{
+						if ((left is NumberToken && right is NumberToken))
+						{
+							long lLeft = 0;
+							long lRight = 0;
 
-					}
-					else if (val is NumberToken)
-					{
-						result = ((NumberToken)val).Negate();
+							if ((long.TryParse(((NumberToken)left).WholePart(), out lLeft) && long.TryParse(((NumberToken)right).WholePart(), out lRight)))
+							{
+								long rem = 0;
+								long whole = Math.DivRem(lLeft, lRight, out rem);
+
+								result = new NumberToken(whole.ToString());
+							}
+						}
+						else
+						{
+							throw new FormatException(String.Format("Could not parse long values from {0} or {1}.", left, right));
+						}
 					}
 				}
+				else
+				{
+					throw new FormatException(String.Format("Could not parse double values from {0} or {1}.", left, right));
+				}
 			}
-			else if (op.Equals("-", StringComparison.InvariantCultureIgnoreCase))
+			else if (Operation is PostfixFunctionToken)
 			{
 				Token val = EvaluateOperand(0);
+				double res = 0.0;
 
-				result = new NumberToken((double.Parse(val.ToString()) * (-1)).ToString());
+				if (double.TryParse(val.ToString(), out res))
+				{
+					if (op.Equals("!", StringComparison.InvariantCultureIgnoreCase))
+					{
+						if (Operation is PostfixFunctionToken)
+						{
+							double counter = res;
+							double total = counter;
+
+							while (counter > 1)
+							{
+								counter--;
+
+								total *= counter;
+							}
+
+							result = new NumberToken(total.ToString());
+						}
+					}
+				}
+				else
+				{
+					throw new FormatException(String.Format("Could not parse double value from {0}", val));
+				}
+			}
+			else
+			{
+				throw new InvalidTokenException(String.Format("Operation {0} not currently supported. Please submit a feature request.", Operation));
 			}
 
 			return result;

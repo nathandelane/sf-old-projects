@@ -31,7 +31,7 @@ namespace Nathandelane.System.BetterPersonalCalculator
 	{
 		#region Fields
 
-		private static readonly Regex __constantPattern = new Regex("^(e|E|pi|PI){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __constantPattern = new Regex("^(e|E|pi|PI|phi|PHI){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 		#endregion
 
@@ -105,6 +105,10 @@ namespace Nathandelane.System.BetterPersonalCalculator
 				else if (matchText.Equals("pi", StringComparison.InvariantCultureIgnoreCase))
 				{
 					token = new ConstantToken(Math.PI.ToString(), matchText);
+				}
+				else if (matchText.Equals("phi", StringComparison.InvariantCultureIgnoreCase))
+				{
+					token = new ConstantToken("1.61803398874989", matchText);
 				}
 			}
 
