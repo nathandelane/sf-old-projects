@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.HGrep", "Nathandelane.Net.HGrep\Nathandelane.Net.HGrep.csproj", "{914ABBFB-021C-4AD0-AB25-5A8EB01F473F}"
 EndProject
 Global
