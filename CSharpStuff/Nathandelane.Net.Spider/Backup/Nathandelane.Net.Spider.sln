@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.Spider", "Nathandelane.Net.Spider\Nathandelane.Net.Spider.csproj", "{1E72CC23-12BF-48F3-8639-194BBFF896A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.Spider.WebCrawler", "Nathandelane.Net.Spider.WebCrawler\Nathandelane.Net.Spider.WebCrawler.csproj", "{A1EB5626-525A-40AB-8797-899BD46C0AC4}"
