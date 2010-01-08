@@ -212,10 +212,6 @@ namespace Nathandelane.Net.Spider.WebCrawler
 						_urls.Enqueue(spiderUrl);
 					}
 				}
-				else
-				{
-					Logger.LogMessage(string.Format("Malformed Uri: {0}", nextTarget), LoggingType.File);
-				}
 			}
 		}
 
