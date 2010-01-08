@@ -5,6 +5,7 @@ using System.Text;
 using System.Configuration;
 using System.Threading;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace Nathandelane.Net.Spider.WebCrawler
 {
@@ -16,6 +17,8 @@ namespace Nathandelane.Net.Spider.WebCrawler
 		private List<string> _visitedUrls;
 		private CookieCollection _cookies;
 		private DateTime _startTime;
+		private bool _onlyFollowUniques;
+		private Regex _website;
 
 		#endregion
 
@@ -128,6 +131,8 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			_urls.Enqueue(new SpiderUrl(startingUrl, startingUrl));
 
 			_visitedUrls = new List<string>();
+			_onlyFollowUniques = bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]);
+			_website = new Regex(String.Format("^(http|https){{1}}://{0}", ConfigurationManager.AppSettings["website"]), RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 			Logger.InitializeLogFile("Id, Start Time, Message, Target, Referrer, Title, Time");
 		}
@@ -138,7 +143,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			{
 				SpiderUrl nextUrl = _urls.Dequeue();
 
-				if ((bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]) && nextUrl.Target.Contains(ConfigurationManager.AppSettings["website"])) || !bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]))
+				if ((_onlyFollowUniques && _website.IsMatch(nextUrl.Target)) || !_onlyFollowUniques)
 				{
 					Agent nextAgent = new Agent(nextUrl, DefaultCookies);
 
