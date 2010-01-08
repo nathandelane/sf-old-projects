@@ -43,7 +43,7 @@ namespace Nathandelane.Net.Spider
 
 		public Uri Referrer
 		{
-			get { return new Uri(_url.Target); }
+			get { return _url.Target; }
 		}
 
 		public string Hash
@@ -52,7 +52,7 @@ namespace Nathandelane.Net.Spider
 			{
 				string hash = String.Empty;
 
-				byte[] buffer = Encoding.ASCII.GetBytes(_url.Target);
+				byte[] buffer = Encoding.ASCII.GetBytes(_url.Target.ToString());
 				SHA1CryptoServiceProvider provider = new SHA1CryptoServiceProvider();
 
 				hash = BitConverter.ToString(provider.ComputeHash(buffer)).Replace("-", String.Empty);

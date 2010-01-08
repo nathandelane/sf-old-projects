@@ -126,15 +126,23 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			_startTime = DateTime.Now;
 
 			string startingUrl = String.Concat(ConfigurationManager.AppSettings["startingUrl"], ConfigurationManager.AppSettings["path"]);
+			Uri startingUri = null;
 
-			_urls = new UrlCollection();
-			_urls.Enqueue(new SpiderUrl(startingUrl, startingUrl));
+			if (Uri.TryCreate(startingUrl, UriKind.Absolute, out startingUri))
+			{
+				_urls = new UrlCollection();
+				_urls.Enqueue(new SpiderUrl(startingUri, startingUrl));
 
-			_visitedUrls = new List<string>();
-			_onlyFollowUniques = bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]);
-			_website = new Regex(String.Format("^(http|https){{1}}://{0}", ConfigurationManager.AppSettings["website"]), RegexOptions.Compiled | RegexOptions.CultureInvariant);
+				_visitedUrls = new List<string>();
+				_onlyFollowUniques = bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]);
+				_website = new Regex(String.Format("^(http|https){{1}}://{0}", ConfigurationManager.AppSettings["website"]), RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
-			Logger.InitializeLogFile("Id, Start Time, Message, Target, Referrer, Title, Time");
+				Logger.InitializeLogFile("Id, Start Time, Message, Target, Referrer, Title, Time");
+			}
+			else
+			{
+				throw new Exception(String.Format("Malformed Uri: {0}", startingUrl));
+			}
 		}
 
 		private void Crawl()
@@ -143,7 +151,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			{
 				SpiderUrl nextUrl = _urls.Dequeue();
 
-				if ((_onlyFollowUniques && _website.IsMatch(nextUrl.Target)) || !_onlyFollowUniques)
+				if ((_onlyFollowUniques && _website.IsMatch(nextUrl.Target.ToString())) || !_onlyFollowUniques)
 				{
 					Agent nextAgent = new Agent(nextUrl, DefaultCookies);
 
@@ -193,11 +201,20 @@ namespace Nathandelane.Net.Spider.WebCrawler
 		{
 			foreach (string nextTarget in urls)
 			{
-				SpiderUrl spiderUrl = new SpiderUrl(nextTarget, referrer);
+				Uri nextUri = null;
 
-				if (!spiderUrl.IsJavascript && !spiderUrl.IsMailto && !spiderUrl.Target.Contains("#"))
+				if (Uri.TryCreate(nextTarget, UriKind.Absolute, out nextUri))
 				{
-					_urls.Enqueue(spiderUrl);
+					SpiderUrl spiderUrl = new SpiderUrl(nextUri, referrer);
+
+					if (!spiderUrl.IsJavascript && !spiderUrl.IsMailto && !spiderUrl.Target.ToString().Contains("#"))
+					{
+						_urls.Enqueue(spiderUrl);
+					}
+				}
+				else
+				{
+					Logger.LogMessage(string.Format("Malformed Uri: {0}", nextTarget), LoggingType.File);
 				}
 			}
 		}

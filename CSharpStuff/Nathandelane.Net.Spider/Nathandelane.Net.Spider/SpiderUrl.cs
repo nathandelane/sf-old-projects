@@ -10,7 +10,7 @@ namespace Nathandelane.Net.Spider
 	{
 		#region Fields
 
-		private string _target;
+		private Uri _target;
 		private string _referrer;
 		private bool _isImage;
 
@@ -18,7 +18,7 @@ namespace Nathandelane.Net.Spider
 
 		#region Properties
 
-		public string Target
+		public Uri Target
 		{
 			get { return _target; }
 		}
@@ -39,7 +39,7 @@ namespace Nathandelane.Net.Spider
 			{
 				bool result = false;
 
-				if (_target.ToLower().Contains(".doc") || _target.ToLower().Contains(".pdf") || _target.ToLower().Contains(".xls"))
+				if (_target.ToString().ToLower().Contains(".doc") || _target.ToString().ToLower().Contains(".pdf") || _target.ToString().ToLower().Contains(".xls"))
 				{
 					result = true;
 				}
@@ -52,7 +52,7 @@ namespace Nathandelane.Net.Spider
 		{
 			get
 			{
-				return _target.ToLower().Contains("javascript");
+				return _target.ToString().ToLower().Contains("javascript");
 			}
 		}
 
@@ -60,7 +60,7 @@ namespace Nathandelane.Net.Spider
 		{
 			get
 			{
-				return _target.ToLower().Contains("mailto");
+				return _target.ToString().ToLower().Contains("mailto");
 			}
 		}
 
@@ -68,12 +68,12 @@ namespace Nathandelane.Net.Spider
 
 		#region Constructors
 
-		public SpiderUrl(string target, string referrer)
+		public SpiderUrl(Uri target, string referrer)
 		{
 			_target = target;
 			_referrer = referrer;
 
-			if (target.EndsWith("gif") || target.EndsWith("jpg") || target.EndsWith("jpeg") || target.EndsWith("bmp") || target.EndsWith("png"))
+			if (target.ToString().EndsWith("gif") || target.ToString().EndsWith("jpg") || target.ToString().EndsWith("jpeg") || target.ToString().EndsWith("bmp") || target.ToString().EndsWith("png"))
 			{
 				_isImage = true;
 			}
@@ -91,20 +91,27 @@ namespace Nathandelane.Net.Spider
 
 		private void SanitizeTarget()
 		{
-			_target = _target.Replace("&amp;", "&");
+			string strTarget = _target.ToString();
 
-			if (!_target.StartsWith("http://") && !_target.StartsWith("https://"))
+			strTarget = strTarget.Replace("&amp;", "&");
+
+			if (!strTarget.StartsWith("http://") && !strTarget.StartsWith("https://"))
 			{
-				if (_target.StartsWith("/"))
+				if (strTarget.StartsWith("/"))
 				{
-					_target = String.Concat(ConfigurationManager.AppSettings["startingUrl"], _target);
+					strTarget = String.Concat(ConfigurationManager.AppSettings["startingUrl"], _target);
 				}
 				else
 				{
 					string relativeLocation = _referrer.Substring(0, (_referrer.LastIndexOf('/') + 1));
 
-					_target = String.Concat(relativeLocation, _target);
+					strTarget = String.Concat(relativeLocation, _target);
 				}
+			}
+
+			if (!Uri.TryCreate(strTarget, UriKind.Absolute, out _target))
+			{
+				throw new Exception(String.Format("Malformed Uri: {0}", strTarget));
 			}
 		}
 
