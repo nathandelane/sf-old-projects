@@ -24,6 +24,9 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 		#region Properties
 
+		/// <summary>
+		/// Gets the default cookies from the App.config.
+		/// </summary>
 		private CookieCollection DefaultCookies
 		{
 			get
@@ -55,6 +58,9 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			}
 		}
 
+		/// <summary>
+		/// Gets the magic wait period.
+		/// </summary>
 		private int MagicWaitPeriod
 		{
 			get
@@ -70,6 +76,9 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			}
 		}
 
+		/// <summary>
+		/// Gets the allowed runtime in minutes.
+		/// </summary>
 		private long AllowedRuntimeInMinutes
 		{
 			get
@@ -85,6 +94,9 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			}
 		}
 
+		/// <summary>
+		/// Gets the current runtime in minutes.
+		/// </summary>
 		private long RuntimeInMinutes
 		{
 			get
@@ -102,6 +114,9 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			}
 		}
 
+		/// <summary>
+		/// Gets the allowed memory remaining in megabytes.
+		/// </summary>
 		private float AllowedMemoryRemainingInMegabytes
 		{
 			get
@@ -145,6 +160,13 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			}
 		}
 
+		#endregion
+
+		#region Methods
+
+		/// <summary>
+		/// Crawls the next link in the queue.
+		/// </summary>
 		private void Crawl()
 		{
 			while (_urls.Count > 0)
@@ -197,6 +219,11 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			Thread.Sleep(MagicWaitPeriod);
 		}
 
+		/// <summary>
+		/// Adds the URLs found on the page to the queue.
+		/// </summary>
+		/// <param name="urls"></param>
+		/// <param name="referrer"></param>
 		private void AddUrls(string[] urls, string referrer)
 		{
 			foreach (string nextTarget in urls)

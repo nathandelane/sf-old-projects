@@ -31,21 +31,33 @@ namespace Nathandelane.Net.Spider
 
 		#region Properties
 
+		/// <summary>
+		/// Gets the cookies set by the agent.
+		/// </summary>
 		public CookieCollection Cookies
 		{
 			get { return _cookies; }
 		}
 
+		/// <summary>
+		/// Gets the URLs collected by the agent.
+		/// </summary>
 		public List<string> Urls
 		{
 			get { return _urls; }
 		}
 
+		/// <summary>
+		/// Gets the referrer.
+		/// </summary>
 		public Uri Referrer
 		{
 			get { return _url.Target; }
 		}
 
+		/// <summary>
+		/// Gets the hash for this agent.
+		/// </summary>
 		public string Hash
 		{
 			get
@@ -61,6 +73,9 @@ namespace Nathandelane.Net.Spider
 			}
 		}
 
+		/// <summary>
+		/// Gets the user-agent string for this agent.
+		/// </summary>
 		public string UserAgent
 		{
 			get
@@ -76,6 +91,9 @@ namespace Nathandelane.Net.Spider
 			}
 		}
 
+		/// <summary>
+		/// Gets the number of ticks.
+		/// </summary>
 		private long Ticks
 		{
 			get { return DateTime.Now.Ticks; }
@@ -103,11 +121,12 @@ namespace Nathandelane.Net.Spider
 
 		#region Methods
 
-		#region Public Methods
-
+		/// <summary>
+		/// Runs the agent.
+		/// </summary>
 		public void Run()
 		{
-			__id++;
+			Agent.__id++;
 
 			long startingTicks = Ticks;
 
@@ -119,16 +138,19 @@ namespace Nathandelane.Net.Spider
 
 				_elapsedTime = new TimeSpan(mark - startingTicks);
 
-				HtmlDocument document = new HtmlDocument();
-				using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+				if (!_url.IsImage)
 				{
-					document.LoadHtml(reader.ReadToEnd());
-
-					if (!_url.IsImage && !_url.IsDocument)
+					using (StreamReader reader = new StreamReader(response.GetResponseStream()))
 					{
-						_documentTitle = document.DocumentNode.SelectSingleNode("//title").InnerText.Trim();
+						HtmlDocument document = new HtmlDocument();
+						document.LoadHtml(reader.ReadToEnd());
 
-						GatherUrls(document);
+						if (!_url.IsImage && !_url.IsDocument)
+						{
+							_documentTitle = document.DocumentNode.SelectSingleNode("//title").InnerText.Trim();
+
+							GatherUrls(document);
+						}
 					}
 				}
 
@@ -141,10 +163,9 @@ namespace Nathandelane.Net.Spider
 			}
 		}
 
-		#endregion
-
-		#region Private Methods
-
+		/// <summary>
+		/// Sets up the web request for this agent.
+		/// </summary>
 		private void SetupWebRequest()
 		{
 			_webRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
@@ -170,6 +191,10 @@ namespace Nathandelane.Net.Spider
 			}
 		}
 
+		/// <summary>
+		/// Gets all of the URLs on the page relevant to the current configuration.
+		/// </summary>
+		/// <param name="document"></param>
 		private void GatherUrls(HtmlDocument document)
 		{
 			HtmlNodeCollection linksNodes = document.DocumentNode.SelectNodes("//a[@href]");
@@ -180,25 +205,27 @@ namespace Nathandelane.Net.Spider
 
 			if (bool.Parse(ConfigurationManager.AppSettings["checkImages"]))
 			{
-				HtmlNodeCollection imageNodes = document.DocumentNode.SelectNodes("//a[@href]");
+				HtmlNodeCollection imageNodes = document.DocumentNode.SelectNodes("//img[@src]");
 				foreach (HtmlNode imageNode in imageNodes)
 				{
-					_urls.Add(imageNode.Attributes["src"].Value.Trim());
+					string srcAttr = imageNode.Attributes["src"].Value.Trim();
+
+					if (!String.IsNullOrEmpty(srcAttr))
+					{
+						_urls.Add(srcAttr);
+					}
 				}
 			}
 		}
 
-		#endregion
-
-		#region Override Methods
-
+		/// <summary>
+		/// Provides a string representation for this agent.
+		/// </summary>
+		/// <returns></returns>
 		public override string ToString()
 		{
-			// Id, Current Time, Message, Target, Referrer, Title, Time
 			return String.Format("{0},{1},\"{2}\",\"{3}\",\"{4}\",\"{5}\",{6}", __id, DateTime.Now.ToString("hh:mm:ss.fff"), _message, _url.Target, _url.Referrer, _documentTitle, _elapsedTime);
 		}
-
-		#endregion
 
 		#endregion
 	}
