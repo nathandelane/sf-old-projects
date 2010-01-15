@@ -168,6 +168,10 @@ namespace Nathandelane.Net.Spider
 		/// </summary>
 		private void SetupWebRequest()
 		{
+			int timeout = 30000;
+
+			Int32.TryParse(ConfigurationManager.AppSettings["timeout"], out timeout);
+
 			_webRequest.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
 			_webRequest.AllowWriteStreamBuffering = true;
 			_webRequest.AuthenticationLevel = AuthenticationLevel.None;
@@ -177,7 +181,7 @@ namespace Nathandelane.Net.Spider
 			_webRequest.KeepAlive = true;
 			_webRequest.Method = "GET";
 			_webRequest.Referer = _url.Referrer;
-			_webRequest.Timeout = 30000;
+			_webRequest.Timeout = timeout;
 			_webRequest.UseDefaultCredentials = true;
 			_webRequest.UserAgent = UserAgent;
 
