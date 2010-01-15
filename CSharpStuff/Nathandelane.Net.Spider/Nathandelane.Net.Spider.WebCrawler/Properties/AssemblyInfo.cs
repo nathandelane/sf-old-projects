@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Nathandelane.Net.Spider.WebCrawler")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Vehix")]
+[assembly: AssemblyCompany("Nathandelane")]
 [assembly: AssemblyProduct("Nathandelane.Net.Spider.WebCrawler")]
 [assembly: AssemblyCopyright("Copyright © Vehix 2009")]
 [assembly: AssemblyTrademark("")]

@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nathandelane.Net.Spider.WebCrawler</RootNamespace>
-    <AssemblyName>VehixWebCrawler</AssemblyName>
+    <AssemblyName>WebCrawler</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
