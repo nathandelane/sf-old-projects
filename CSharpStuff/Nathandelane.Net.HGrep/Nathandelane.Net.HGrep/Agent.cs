@@ -52,6 +52,28 @@ namespace Nathandelane.Net.HGrep
 			get { return _response; }
 		}
 
+		public int Timeout
+		{
+			get { return _timeout; }
+			set { _timeout = value; }
+		}
+
+		public string[] Headers
+		{
+			set
+			{
+				foreach (string pair in value)
+				{
+					string[] parts = pair.Split(new char[] { '=' });
+
+					if (parts.Length == 2)
+					{
+						_request.Headers.Add(parts[0], parts[1]);
+					}
+				}
+			}
+		}
+
 		#endregion
 
 		#region Constructors
@@ -133,7 +155,7 @@ namespace Nathandelane.Net.HGrep
 			{
 				if (ConfigurationManager.AppSettings["Timeout"].ToLower().Equals("infinite"))
 				{
-					timeout = Timeout.Infinite;
+					timeout = System.Threading.Timeout.Infinite;
 				}
 			}
 

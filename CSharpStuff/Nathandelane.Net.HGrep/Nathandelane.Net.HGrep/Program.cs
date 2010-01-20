@@ -206,6 +206,11 @@ namespace Nathandelane.Net.HGrep
 						}
 					}
 
+					if (_arguments.ContainsKey(ArgumentCollection.SetHeadersArg))
+					{
+						agent.Headers = _arguments[ArgumentCollection.SetHeadersArg] as string[];
+					}
+
 					agent.Run();
 
 					if (agent.Response.ContentEncoding.ToLower().Equals("gzip"))

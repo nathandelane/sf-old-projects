@@ -46,6 +46,7 @@ namespace Nathandelane.Net.HGrep
 		public static readonly string ReturnHeadersArg = "return-headers";
 		public static readonly string ReturnUrlArg = "return-url";
 		public static readonly string ScrubArg = "scrub";
+		public static readonly string SetHeadersArg = "set-headers";
 		public static readonly string TimeoutArg = "timeout";
 		public static readonly string UriArg = "uri";
 		public static readonly string VersionArg = "version";
@@ -71,6 +72,7 @@ namespace Nathandelane.Net.HGrep
 			{ ReturnHeadersArg, ArgumentType.Null },
 			{ ReturnUrlArg, ArgumentType.Null },
 			{ ScrubArg, ArgumentType.Null },
+			{ SetHeadersArg, ArgumentType.StringArray },
 			{ TimeoutArg, ArgumentType.IntOrString },
 			{ UriArg, ArgumentType.String },
 			{ VersionArg, ArgumentType.Null }
