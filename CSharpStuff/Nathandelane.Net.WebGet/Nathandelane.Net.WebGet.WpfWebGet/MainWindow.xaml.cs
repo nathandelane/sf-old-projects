@@ -34,6 +34,9 @@ namespace Nathandelane.Net.WebGet.WpfWebGet
 
 			//_agentList = new List<string>();
 			//_savedItemsListBox.ItemsSource = _agentList;
+
+			BitmapFrame windowIcon = BitmapFrame.Create(Application.GetResourceStream(new Uri("icons/ndellogo.png", UriKind.RelativeOrAbsolute)).Stream);
+			this.Icon = windowIcon;
 		}
 
 		#endregion
