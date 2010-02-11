@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Nathandelane.Net.WebGet
 {
@@ -11,7 +12,7 @@ namespace Nathandelane.Net.WebGet
 	{
 		#region Fields
 
-		private static string __saveFolder;
+		private static string __saveFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "My Videos");
 
 		private string _url;
 		private string _fileName;
@@ -58,7 +59,7 @@ namespace Nathandelane.Net.WebGet
 
 				if (Uri.TryCreate(_url, UriKind.Absolute, out uri))
 				{
-					_client.DownloadFile(uri, _fileName);
+					_client.DownloadFile(uri, Path.Combine(Agent.__saveFolder, _fileName));
 				}
 				else
 				{
