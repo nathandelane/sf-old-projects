@@ -13,7 +13,7 @@ namespace Nathandelane.Net.WebGet.ConsoleWebGet
 		{
 			foreach (string nextUrl in urls)
 			{
-				Agent agent = new Agent(nextUrl);
+				Agent agent = new Agent(nextUrl, String.Empty, false);
 				agent.Run();
 			}
 		}

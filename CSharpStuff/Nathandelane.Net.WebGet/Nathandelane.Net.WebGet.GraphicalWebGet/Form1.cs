@@ -65,7 +65,7 @@ namespace Nathandelane.Net.WebGet.GraphicalWebGet
 
                         if((File.Exists(fileName) && result == DialogResult.Yes) || !File.Exists(fileName))
                         {
-                            Agent nextAgent = new Agent(_urlTextBox.Text, name);
+                            Agent nextAgent = new Agent(_urlTextBox.Text, name, true);
                             nextAgent.FileName = fileName;
                             nextAgent.Client.DownloadFileCompleted += new AsyncCompletedEventHandler(OnDownloadCompleted);
 

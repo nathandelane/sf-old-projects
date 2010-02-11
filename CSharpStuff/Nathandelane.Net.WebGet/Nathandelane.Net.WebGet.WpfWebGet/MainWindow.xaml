@@ -1,0 +1,36 @@
+﻿<Window x:Class="Nathandelane.Net.WebGet.WpfWebGet.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Web Get 2.0" Height="433" Width="790">
+    <Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid Grid.Row="0" Margin="0,5">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="70" />
+			</Grid.ColumnDefinitions>
+			<Label Grid.Column="0" Content="URL:" Padding="10,4" />
+			<TextBox Grid.Column="1" Name="_urlTextBox" Margin="10,0" KeyDown="FilterEnter" />
+			<Button Grid.Column="2" Content="Clear" Margin="0,0,10,0" Click="ClearUrlAndSaveAsBoxes" />
+		</Grid>
+		<Grid Grid.Row="1" Margin="0,5">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Label Grid.Column="0" Content="Save as:" Padding="10,4" />
+			<TextBox Grid.Column="1" Name="_saveAsTextBox" Margin="0,0,10,0" KeyDown="FilterEnter" />
+		</Grid>
+		<Grid Grid.Row="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<ListBox Grid.Column="0" Name="_savedItemsListBox" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="10,5" />
+		</Grid>
+	</Grid>
+</Window>

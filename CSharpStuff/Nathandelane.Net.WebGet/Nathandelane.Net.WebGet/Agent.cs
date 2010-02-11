@@ -44,50 +44,35 @@ namespace Nathandelane.Net.WebGet
 
 		#region Constructors
 
-		public Agent(string url)
-		{
-			_url = url;
-			_fileName = _url.Substring(_url.LastIndexOf("/") + 1);
-			_client = new WebClient();
-			_hasGraphicalInterface = false;
-		}
-
-		public Agent(string url, bool hasGraphicalInterface)
-		{
-			_url = url;
-			_fileName = _url.Substring(_url.LastIndexOf("/") + 1);
-			_client = new WebClient();
-			_hasGraphicalInterface = hasGraphicalInterface;
-		}
-
-
-		public Agent(string url, string fileName)
-		{
-			_url = url;
-			_fileName = fileName;
-			_client = new WebClient();
-			_hasGraphicalInterface = false;
-		}
-
 		public Agent(string url, string fileName, bool hasGraphicalInterface)
 		{
 			_url = url;
-			_fileName = fileName;
+			_fileName = String.IsNullOrEmpty(fileName) ? _url.Substring(_url.LastIndexOf("/") + 1) : fileName;
 			_client = new WebClient();
 			_hasGraphicalInterface = hasGraphicalInterface;
 		}
 
 		#endregion
 
-		#region Run Method
+		#region Methods
 
+		/// <summary>
+		/// Runs the agent in order to get the file specified.
+		/// </summary>
 		public void Run()
 		{
 			try
 			{
-				Uri uri = new Uri(Url);
+				Uri uri = null;
 
-				_client.DownloadFile(uri, FileName);
+				if (Uri.TryCreate(_url, UriKind.Absolute, out uri))
+				{
+					_client.DownloadFile(uri, FileName);
+				}
+				else
+				{
+					throw new Exception(String.Format("Url was malformed or could not otherwise be parsed: {0}.", _url));
+				}
 			}
 			catch (Exception e)
 			{
@@ -100,6 +85,15 @@ namespace Nathandelane.Net.WebGet
 					Console.Write("Message: {0}\r\nStackTrace:\r\n{1}", e.Message, e.StackTrace);
 				}
 			}
+		}
+
+		/// <summary>
+		/// Generates a string representation of the Agent.
+		/// </summary>
+		/// <returns></returns>
+		public override string ToString()
+		{
+			return String.Format("{Agent: {0} ({1})", _url, _fileName);
 		}
 
 		#endregion
