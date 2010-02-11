@@ -21,7 +21,7 @@ namespace Nathandelane.Net.WebGet.WpfWebGet
 	{
 		#region Fields
 
-		private IList<Agent> _agentList;
+		private IList<string> _agentList;
 
 		#endregion
 
@@ -31,7 +31,7 @@ namespace Nathandelane.Net.WebGet.WpfWebGet
 		{
 			InitializeComponent();
 
-			_agentList = new List<Agent>();
+			_agentList = new List<string>();
 			_savedItemsListBox.ItemsSource = _agentList;
 		}
 
@@ -49,8 +49,12 @@ namespace Nathandelane.Net.WebGet.WpfWebGet
 			if (e.Key == Key.Enter)
 			{
 				Agent newAgent = new Agent(_urlTextBox.Text, _saveAsTextBox.Text, true);
-				_agentList.Add(newAgent);
-				_agentList.Last<Agent>().Run();
+
+				_agentList.Add(newAgent.ToString());
+				_saveAsTextBox.Text = String.Empty;
+				_urlTextBox.Text = String.Empty;
+
+				newAgent.Run();
 			}
 		}
 

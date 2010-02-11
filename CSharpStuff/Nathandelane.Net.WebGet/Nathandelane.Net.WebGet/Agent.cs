@@ -11,6 +11,8 @@ namespace Nathandelane.Net.WebGet
 	{
 		#region Fields
 
+		private static string __saveFolder;
+
 		private string _url;
 		private string _fileName;
 		private WebClient _client;
@@ -20,24 +22,13 @@ namespace Nathandelane.Net.WebGet
 
 		#region Properties
 
-		public string Url
+		/// <summary>
+		/// Gets or sets the save folder for files being saved.
+		/// </summary>
+		public static string SaveFolder
 		{
-			get { return _url; }
-		}
-
-		public string FileName
-		{
-			get { return _fileName; }
-			set
-			{
-				_fileName = value;
-			}
-		}
-
-		public WebClient Client
-		{
-			get { return _client; }
-			set { _client = value; }
+			get { return Agent.__saveFolder; }
+			set { Agent.__saveFolder = value; }
 		}
 
 		#endregion
