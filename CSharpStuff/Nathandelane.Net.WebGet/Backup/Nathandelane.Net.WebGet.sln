@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.WebGet.ConsoleWebGet", "Nathandelane.Net.WebGet.ConsoleWebGet\Nathandelane.Net.WebGet.ConsoleWebGet.csproj", "{446999D2-973F-458E-91A3-DDF2580D18E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.WebGet.GraphicalWebGet", "Nathandelane.Net.WebGet.GraphicalWebGet\Nathandelane.Net.WebGet.GraphicalWebGet.csproj", "{AD92E255-9A6E-47E9-9651-3160909D3AED}"
