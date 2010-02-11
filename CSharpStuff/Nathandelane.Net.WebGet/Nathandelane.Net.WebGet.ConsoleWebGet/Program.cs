@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Nathandelane.Net.WebGet;
+using System.Threading;
 
 namespace Nathandelane.Net.WebGet.ConsoleWebGet
 {
@@ -11,10 +12,12 @@ namespace Nathandelane.Net.WebGet.ConsoleWebGet
 	{
 		private Program(string[] urls)
 		{
-			foreach (string nextUrl in urls)
+			for (int urlIndex = 0; urlIndex < urls.Length; urlIndex++)
 			{
-				Agent agent = new Agent(nextUrl, String.Empty, false);
-				agent.Run();
+				string nextUrl = urls[urlIndex];
+				Agent nextAgent = new Agent(nextUrl, String.Empty, false);
+
+				ThreadPool.QueueUserWorkItem(nextAgent.Run, urlIndex);
 			}
 		}
 

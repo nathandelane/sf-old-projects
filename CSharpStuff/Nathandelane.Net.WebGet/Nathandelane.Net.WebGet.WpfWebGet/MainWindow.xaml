@@ -30,7 +30,7 @@
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="*" />
 			</Grid.ColumnDefinitions>
-			<ListBox Grid.Column="0" Name="_savedItemsListBox" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="10,5" />
+			<ListBox Grid.Column="0" Name="_savedItemsListBox" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="10,5" IsSynchronizedWithCurrentItem="True"  />
 		</Grid>
 	</Grid>
 </Window>

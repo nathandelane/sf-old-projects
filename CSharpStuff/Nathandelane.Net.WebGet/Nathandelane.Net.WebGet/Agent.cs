@@ -51,7 +51,7 @@ namespace Nathandelane.Net.WebGet
 		/// <summary>
 		/// Runs the agent in order to get the file specified.
 		/// </summary>
-		public void Run()
+		public void Run(Object threadContext)
 		{
 			try
 			{
@@ -85,7 +85,7 @@ namespace Nathandelane.Net.WebGet
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return String.Format("{Agent: {0} ({1})", _url, _fileName);
+			return String.Format("{0} ({1})", _url, _fileName);
 		}
 
 		#endregion

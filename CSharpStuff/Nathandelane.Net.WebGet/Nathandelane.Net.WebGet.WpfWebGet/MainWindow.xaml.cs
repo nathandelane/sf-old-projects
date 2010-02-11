@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
 
 namespace Nathandelane.Net.WebGet.WpfWebGet
 {
@@ -19,11 +20,11 @@ namespace Nathandelane.Net.WebGet.WpfWebGet
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		#region Fields
+		//#region Fields
 
-		private IList<string> _agentList;
+		//private IList<string> _agentList;
 
-		#endregion
+		//#endregion
 
 		#region Constructor
 
@@ -31,8 +32,8 @@ namespace Nathandelane.Net.WebGet.WpfWebGet
 		{
 			InitializeComponent();
 
-			_agentList = new List<string>();
-			_savedItemsListBox.ItemsSource = _agentList;
+			//_agentList = new List<string>();
+			//_savedItemsListBox.ItemsSource = _agentList;
 		}
 
 		#endregion
@@ -50,11 +51,13 @@ namespace Nathandelane.Net.WebGet.WpfWebGet
 			{
 				Agent newAgent = new Agent(_urlTextBox.Text, _saveAsTextBox.Text, true);
 
-				_agentList.Add(newAgent.ToString());
+				//_agentList.Add(newAgent.ToString());
+				//_savedItemsListBox.ItemsSource = _agentList;
+				_savedItemsListBox.Items.Add(newAgent.ToString());
 				_saveAsTextBox.Text = String.Empty;
 				_urlTextBox.Text = String.Empty;
 
-				newAgent.Run();
+				ThreadPool.QueueUserWorkItem(newAgent.Run, newAgent.ToString());
 			}
 		}
 
