@@ -58,7 +58,7 @@ namespace Nathandelane.Net.WebGet
 
 				if (Uri.TryCreate(_url, UriKind.Absolute, out uri))
 				{
-					_client.DownloadFile(uri, FileName);
+					_client.DownloadFile(uri, _fileName);
 				}
 				else
 				{
