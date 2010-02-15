@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.System.PersonalCalculator2", "Nathandelane.System.PersonalCalculator2\Nathandelane.System.PersonalCalculator2.csproj", "{7A598F04-0A38-40CA-8E6E-AFA40BC46051}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.System", "Nathandelane.System\Nathandelane.System.csproj", "{B23528D5-2B99-4A66-A064-98D8646397C0}"
