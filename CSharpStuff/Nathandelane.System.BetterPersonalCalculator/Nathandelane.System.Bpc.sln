@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.System.BetterPersonalCalculator", "Nathandelane.System.BetterPersonalCalculator\Nathandelane.System.BetterPersonalCalculator.csproj", "{E97ECE4A-580C-467F-8C6D-93187FB40616}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.System.Bpc", "Nathandelane.System.Bpc\Nathandelane.System.Bpc.csproj", "{E97ECE4A-580C-467F-8C6D-93187FB40616}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.System.Bpc.Tests", "Nathandelane.System.BPC.Tests\Nathandelane.System.Bpc.Tests.csproj", "{B2E2D88E-F31D-49F0-99E2-BDFDC6C9B7B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.System.Bpc.Tests", "Nathandelane.System.Bpc.Tests\Nathandelane.System.Bpc.Tests.csproj", "{B2E2D88E-F31D-49F0-99E2-BDFDC6C9B7B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
