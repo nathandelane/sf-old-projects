@@ -26,7 +26,7 @@ using System.Text;
 using System.Configuration;
 using System.Text.RegularExpressions;
 
-namespace Nathandelane.System.BetterPersonalCalculator
+namespace Nathandelane.System.Bpc
 {
 	public class BpcTokenizer : ITokenizer
 	{

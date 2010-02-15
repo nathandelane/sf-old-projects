@@ -25,7 +25,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Nathandelane.System.BetterPersonalCalculator
+namespace Nathandelane.System.Bpc
 {
 	/// <summary>
 	/// Variable names must be at least three characters long, including underscores, and may only begin with 

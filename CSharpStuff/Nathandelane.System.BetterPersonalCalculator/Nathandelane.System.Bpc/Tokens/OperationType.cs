@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Nathandelane.System.BetterPersonalCalculator
+namespace Nathandelane.System.Bpc
 {
 	/// <summary>
 	/// Defines the different types of operations that can occur.

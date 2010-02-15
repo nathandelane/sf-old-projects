@@ -25,7 +25,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Nathandelane.System.BetterPersonalCalculator
+namespace Nathandelane.System.Bpc
 {
 	public class AssignmentOperatorToken : OperatorToken
 	{

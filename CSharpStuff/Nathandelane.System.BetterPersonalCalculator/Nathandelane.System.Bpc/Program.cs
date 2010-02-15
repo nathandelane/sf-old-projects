@@ -26,7 +26,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Reflection;
 
-namespace Nathandelane.System.BetterPersonalCalculator
+namespace Nathandelane.System.Bpc
 {
 	class Program
 	{

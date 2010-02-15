@@ -25,7 +25,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 
-namespace Nathandelane.System.BetterPersonalCalculator
+namespace Nathandelane.System.Bpc
 {
 	public abstract class Token
 	{

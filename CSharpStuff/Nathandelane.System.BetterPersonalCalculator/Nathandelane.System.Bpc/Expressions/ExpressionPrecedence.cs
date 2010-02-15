@@ -24,7 +24,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Nathandelane.System.BetterPersonalCalculator
+namespace Nathandelane.System.Bpc
 {
 	/// <summary>
 	/// Represents an order of operations where Number is the lowest evaluation and Perenthesis is the highest order.
