@@ -8,8 +8,8 @@
     <ProjectGuid>{B2E2D88E-F31D-49F0-99E2-BDFDC6C9B7B2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nathandelane.System.BPC.Tests</RootNamespace>
-    <AssemblyName>Nathandelane.System.BPC.Tests</AssemblyName>
+    <RootNamespace>Nathandelane.System.Bpc.Tests</RootNamespace>
+    <AssemblyName>Nathandelane.System.Bpc.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

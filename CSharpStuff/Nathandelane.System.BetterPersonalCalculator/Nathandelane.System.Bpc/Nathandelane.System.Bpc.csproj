@@ -8,7 +8,7 @@
     <ProjectGuid>{E97ECE4A-580C-467F-8C6D-93187FB40616}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nathandelane.System.BetterPersonalCalculator</RootNamespace>
+    <RootNamespace>Nathandelane.System.Bpcr</RootNamespace>
     <AssemblyName>bpc</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
