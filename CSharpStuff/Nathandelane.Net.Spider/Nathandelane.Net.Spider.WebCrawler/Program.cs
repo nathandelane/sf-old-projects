@@ -239,6 +239,20 @@ namespace Nathandelane.Net.Spider.WebCrawler
 						_urls.Enqueue(spiderUrl);
 					}
 				}
+                else if (Uri.TryCreate(nextTarget, UriKind.Relative, out nextUri))
+                {
+                    string nextAbsoluteUri = String.Format("{0}/{1}", ConfigurationManager.AppSettings["startingUrl"], nextTarget);
+
+                    if (Uri.TryCreate(nextAbsoluteUri, UriKind.Absolute, out nextUri))
+                    {
+                        SpiderUrl spiderUrl = new SpiderUrl(nextUri, referrer);
+
+                        if (!spiderUrl.IsJavascript && !spiderUrl.IsMailto && !spiderUrl.Target.ToString().Contains("#"))
+                        {
+                            _urls.Enqueue(spiderUrl);
+                        }
+                    }
+                }
 			}
 		}
 
