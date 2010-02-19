@@ -20,20 +20,11 @@ namespace Nathandelane.Net.WebGet.WpfWebGet
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		//#region Fields
-
-		//private IList<string> _agentList;
-
-		//#endregion
-
 		#region Constructor
 
 		public MainWindow()
 		{
 			InitializeComponent();
-
-			//_agentList = new List<string>();
-			//_savedItemsListBox.ItemsSource = _agentList;
 
 			BitmapFrame windowIcon = BitmapFrame.Create(Application.GetResourceStream(new Uri("icons/ndellogo.ico", UriKind.RelativeOrAbsolute)).Stream);
 			this.Icon = windowIcon;
@@ -54,9 +45,7 @@ namespace Nathandelane.Net.WebGet.WpfWebGet
 			{
 				Agent newAgent = new Agent(_urlTextBox.Text, _saveAsTextBox.Text, true);
 
-				//_agentList.Add(newAgent.ToString());
-				//_savedItemsListBox.ItemsSource = _agentList;
-				_savedItemsListBox.Items.Add(newAgent.ToString());
+                _savedItemsListBox.Items.Add(newAgent.ToString());
 				_saveAsTextBox.Text = String.Empty;
 				_urlTextBox.Text = String.Empty;
 

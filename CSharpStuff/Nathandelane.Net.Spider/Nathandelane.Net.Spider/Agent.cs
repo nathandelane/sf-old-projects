@@ -130,37 +130,31 @@ namespace Nathandelane.Net.Spider
 
 			long startingTicks = Ticks;
 
-			try
-			{
-				HttpWebResponse response = _webRequest.GetResponse() as HttpWebResponse;
+            try
+            {
+                HttpWebResponse response = _webRequest.GetResponse() as HttpWebResponse;
 
-				long mark = Ticks;
+                long mark = Ticks;
 
-				_elapsedTime = new TimeSpan(mark - startingTicks);
+                _elapsedTime = new TimeSpan(mark - startingTicks);
 
-				if (!_url.IsImage)
-				{
-					using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-					{
-						HtmlDocument document = new HtmlDocument();
-						document.LoadHtml(reader.ReadToEnd());
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    HtmlDocument document = new HtmlDocument();
+                    document.LoadHtml(reader.ReadToEnd());
 
-						if (!_url.IsImage && !_url.IsDocument)
-						{
-							_documentTitle = document.DocumentNode.SelectSingleNode("//title").InnerText.Trim();
+                    _documentTitle = document.DocumentNode.SelectSingleNode("//title").InnerText.Trim();
 
-							GatherUrls(document);
-						}
-					}
-				}
+                    GatherUrls(document);
+                }
 
-				_cookies = response.Cookies;
-				_message = "HTTP 200 OK";
-			}
-			catch (Exception ex)
-			{
-				_message = ex.Message;
-			}
+                _cookies = response.Cookies;
+                _message = "HTTP 200 OK";
+            }
+            catch (Exception ex)
+            {
+                _message = ex.Message;
+            }
 		}
 
 		/// <summary>
