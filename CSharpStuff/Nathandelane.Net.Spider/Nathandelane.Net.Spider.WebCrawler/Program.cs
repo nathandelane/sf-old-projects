@@ -18,6 +18,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 		private CookieCollection _cookies;
 		private DateTime _startTime;
 		private bool _onlyFollowUniques;
+        private bool _checkImages;
 		private Regex _website;
 
 		#endregion
@@ -67,7 +68,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			{
 				int magicWaitPeriod = 150;
 
-				if (ConfigurationManager.AppSettings["magicWaitPeriod"] != null)
+				if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["magicWaitPeriod"]))
 				{
 					magicWaitPeriod = int.Parse(ConfigurationManager.AppSettings["magicWaitPeriod"]);
 				}
@@ -150,7 +151,8 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 				_visitedUrls = new List<string>();
 				_onlyFollowUniques = bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]);
-				_website = new Regex(String.Format("^(http|https){{1}}://{0}", ConfigurationManager.AppSettings["website"]), RegexOptions.Compiled | RegexOptions.CultureInvariant);
+                _checkImages = bool.Parse(ConfigurationManager.AppSettings["checkImages"]);
+				_website = new Regex(String.Format("^(http|https){{1}}://({0}){{1}}", ConfigurationManager.AppSettings["website"]), RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 				Logger.InitializeLogFile("Id, Start Time, Message, Target, Referrer, Title, Time");
 			}
@@ -232,12 +234,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 				if (Uri.TryCreate(nextTarget, UriKind.Absolute, out nextUri))
 				{
-					SpiderUrl spiderUrl = new SpiderUrl(nextUri, referrer);
-
-					if (!spiderUrl.IsJavascript && !spiderUrl.IsMailto && !spiderUrl.Target.ToString().Contains("#"))
-					{
-						_urls.Enqueue(spiderUrl);
-					}
+                    Add(new SpiderUrl(nextUri, referrer));
 				}
                 else if (Uri.TryCreate(nextTarget, UriKind.Relative, out nextUri))
                 {
@@ -245,16 +242,30 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
                     if (Uri.TryCreate(nextAbsoluteUri, UriKind.Absolute, out nextUri))
                     {
-                        SpiderUrl spiderUrl = new SpiderUrl(nextUri, referrer);
-
-                        if (!spiderUrl.IsJavascript && !spiderUrl.IsMailto && !spiderUrl.Target.ToString().Contains("#"))
-                        {
-                            _urls.Enqueue(spiderUrl);
-                        }
+                        Add(new SpiderUrl(nextUri, referrer));
                     }
                 }
 			}
 		}
+
+        /// <summary>
+        /// Adds the Url to the queue if it meets the internal criteria.
+        /// </summary>
+        /// <param name="url"></param>
+        private void Add(SpiderUrl url)
+        {
+            if (url.IsDesirable)
+            {
+                if (_checkImages)
+                {
+                    _urls.Enqueue(url);                    
+                }
+                else if (!_checkImages && !url.IsImage)
+                {
+                    _urls.Enqueue(url);
+                }
+            }
+        }
 
 		#endregion
 
