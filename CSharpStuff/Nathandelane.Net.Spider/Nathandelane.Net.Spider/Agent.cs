@@ -23,9 +23,9 @@ namespace Nathandelane.Net.Spider
 		private CookieCollection _cookies;
 		private TimeSpan _elapsedTime;
 		private string _documentTitle;
+		private string _message;
 		private List<string> _urls;
 		private SpiderUrl _url;
-		private string _message;
 
 		#endregion
 
@@ -82,7 +82,7 @@ namespace Nathandelane.Net.Spider
 			{
 				string retVal = "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US; rv:1.9.0.8) Gecko/2009032609 Firefox/3.0.8 (.NET CLR 3.5.30729) Vehix Spider";
 
-				if (ConfigurationManager.AppSettings["overrideUserAgent"] != null)
+				if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["overrideUserAgent"]))
 				{
 					retVal = ConfigurationManager.AppSettings["overrideUserAgent"];
 				}
