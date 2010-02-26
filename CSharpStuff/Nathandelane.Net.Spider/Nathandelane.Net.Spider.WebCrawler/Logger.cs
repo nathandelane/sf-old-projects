@@ -44,7 +44,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 		public static void LogToFile(string message)
 		{
-			using(StreamWriter writer = new StreamWriter(new FileStream(__logFileName, FileMode.Append)))
+			using (StreamWriter writer = new StreamWriter(new FileStream(__logFileName, FileMode.Append)))
 			{
 				writer.WriteLine(message);
 			}

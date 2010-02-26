@@ -18,51 +18,51 @@ namespace Nathandelane.Net.Spider
 
 		#region Properties
 
-        /// <summary>
-        /// Gets the Target Url.
-        /// </summary>
+		/// <summary>
+		/// Gets the Target Url.
+		/// </summary>
 		public Uri Target
 		{
 			get { return _target; }
 		}
 
-        /// <summary>
-        /// Gets the Url referrer.
-        /// </summary>
+		/// <summary>
+		/// Gets the Url referrer.
+		/// </summary>
 		public string Referrer
 		{
 			get { return _referrer; }
 		}
 
-        /// <summary>
-        /// Gets whether the Url refers to an image.
-        /// </summary>
+		/// <summary>
+		/// Gets whether the Url refers to an image.
+		/// </summary>
 		public bool IsImage
-		{
-            get
-            {
-                bool result = IsUrlOfKnownType(_target.ToString(), ConfigurationManager.AppSettings["imageFileExtensions"]);
-
-                return result;
-            }
-		}
-
-        /// <summary>
-        /// Gets whether the Url refers to a file type that should be ignored.
-        /// </summary>
-		public bool IsIgnoredFileType
 		{
 			get
 			{
-                bool result = IsUrlOfKnownType(_target.ToString(), ConfigurationManager.AppSettings["fileExtensionsToIgnore"]);
+				bool result = IsUrlOfKnownType(_target.ToString(), ConfigurationManager.AppSettings["imageFileExtensions"]);
 
 				return result;
 			}
 		}
 
-        /// <summary>
-        /// Gets whether the Url refers to some javascript.
-        /// </summary>
+		/// <summary>
+		/// Gets whether the Url refers to a file type that should be ignored.
+		/// </summary>
+		public bool IsIgnoredFileType
+		{
+			get
+			{
+				bool result = IsUrlOfKnownType(_target.ToString(), ConfigurationManager.AppSettings["fileExtensionsToIgnore"]);
+
+				return result;
+			}
+		}
+
+		/// <summary>
+		/// Gets whether the Url refers to some javascript.
+		/// </summary>
 		public bool IsJavascript
 		{
 			get
@@ -71,9 +71,9 @@ namespace Nathandelane.Net.Spider
 			}
 		}
 
-        /// <summary>
-        /// Gets whether the Url refers to a mailto: link.
-        /// </summary>
+		/// <summary>
+		/// Gets whether the Url refers to a mailto: link.
+		/// </summary>
 		public bool IsMailto
 		{
 			get
@@ -82,29 +82,29 @@ namespace Nathandelane.Net.Spider
 			}
 		}
 
-        /// <summary>
-        /// Gets whether the Url refers to a relative link.
-        /// </summary>
-        public bool IsPageRelative
-        {
-            get
-            {
-                return _target.ToString().ToLower().Contains("#");
-            }
-        }
+		/// <summary>
+		/// Gets whether the Url refers to a relative link.
+		/// </summary>
+		public bool IsPageRelative
+		{
+			get
+			{
+				return _target.ToString().ToLower().Contains("#");
+			}
+		}
 
-        /// <summary>
-        /// Gets whether the Url is a Url that we want to crawl.
-        /// </summary>
-        public bool IsDesirable
-        {
-            get
-            {
+		/// <summary>
+		/// Gets whether the Url is a Url that we want to crawl.
+		/// </summary>
+		public bool IsDesirable
+		{
+			get
+			{
 				bool isNotDesirable = (IsIgnoredFileType || IsJavascript || IsMailto || IsPageRelative);
 
 				return !isNotDesirable;
-            }
-        }
+			}
+		}
 
 		#endregion
 
@@ -122,9 +122,9 @@ namespace Nathandelane.Net.Spider
 
 		#region Methods
 
-        /// <summary>
-        /// Sanaitizes Urls so that they have proper tags or domains.
-        /// </summary>
+		/// <summary>
+		/// Sanaitizes Urls so that they have proper tags or domains.
+		/// </summary>
 		private void SanitizeTarget()
 		{
 			string strTarget = _target.ToString();
@@ -151,29 +151,29 @@ namespace Nathandelane.Net.Spider
 			}
 		}
 
-        /// <summary>
-        /// Determines whether the passed Url falls into a known configured type.
-        /// </summary>
-        /// <param name="url"></param>
-        /// <param name="appSetting"></param>
-        /// <returns></returns>
-        private bool IsUrlOfKnownType(string url, string appSetting)
-        {
-            bool result = false;
-            Regex regex = new Regex(String.Format("({0}){{1}}", appSetting), RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
+		/// <summary>
+		/// Determines whether the passed Url falls into a known configured type.
+		/// </summary>
+		/// <param name="url"></param>
+		/// <param name="appSetting"></param>
+		/// <returns></returns>
+		private bool IsUrlOfKnownType(string url, string appSetting)
+		{
+			bool result = false;
+			Regex regex = new Regex(String.Format("({0}){{1}}", appSetting), RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
 
-            if (regex.IsMatch(url))
-            {
-                result = true;
-            }
-            
-            return result;
-        }
+			if (regex.IsMatch(url))
+			{
+				result = true;
+			}
 
-        /// <summary>
-        /// Returns a string representation of this SpiderUrl.
-        /// </summary>
-        /// <returns></returns>
+			return result;
+		}
+
+		/// <summary>
+		/// Returns a string representation of this SpiderUrl.
+		/// </summary>
+		/// <returns></returns>
 		public override string ToString()
 		{
 			return String.Format("Target={0}; Referrer={1}; IsImage={2}", Target, Referrer, IsImage);

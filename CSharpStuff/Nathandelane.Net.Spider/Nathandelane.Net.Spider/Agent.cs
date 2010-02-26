@@ -130,31 +130,31 @@ namespace Nathandelane.Net.Spider
 
 			long startingTicks = Ticks;
 
-            try
-            {
-                HttpWebResponse response = _webRequest.GetResponse() as HttpWebResponse;
+			try
+			{
+				HttpWebResponse response = _webRequest.GetResponse() as HttpWebResponse;
 
-                long mark = Ticks;
+				long mark = Ticks;
 
-                _elapsedTime = new TimeSpan(mark - startingTicks);
+				_elapsedTime = new TimeSpan(mark - startingTicks);
 
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                {
-                    HtmlDocument document = new HtmlDocument();
-                    document.LoadHtml(reader.ReadToEnd());
+				using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+				{
+					HtmlDocument document = new HtmlDocument();
+					document.LoadHtml(reader.ReadToEnd());
 
-                    _documentTitle = document.DocumentNode.SelectSingleNode("//title").InnerText.Trim();
+					_documentTitle = document.DocumentNode.SelectSingleNode("//title").InnerText.Trim();
 
-                    GatherUrls(document);
-                }
+					GatherUrls(document);
+				}
 
-                _cookies = response.Cookies;
-                _message = "HTTP 200 OK";
-            }
-            catch (Exception ex)
-            {
-                _message = ex.Message;
-            }
+				_cookies = response.Cookies;
+				_message = "HTTP 200 OK";
+			}
+			catch (Exception ex)
+			{
+				_message = ex.Message;
+			}
 		}
 
 		/// <summary>
@@ -196,7 +196,7 @@ namespace Nathandelane.Net.Spider
 		private void GatherUrls(HtmlDocument document)
 		{
 			HtmlNodeCollection linksNodes = document.DocumentNode.SelectNodes("//a[@href]");
-			foreach(HtmlNode linkNode in linksNodes)
+			foreach (HtmlNode linkNode in linksNodes)
 			{
 				_urls.Add(linkNode.Attributes["href"].Value.Trim());
 			}

@@ -18,7 +18,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 		private CookieCollection _cookies;
 		private DateTime _startTime;
 		private bool _onlyFollowUniques;
-        private bool _checkImages;
+		private bool _checkImages;
 		private Regex _website;
 
 		#endregion
@@ -151,7 +151,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 				_visitedUrls = new List<string>();
 				_onlyFollowUniques = bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]);
-                _checkImages = bool.Parse(ConfigurationManager.AppSettings["checkImages"]);
+				_checkImages = bool.Parse(ConfigurationManager.AppSettings["checkImages"]);
 				_website = new Regex(String.Format("^(http|https){{1}}://({0}){{1}}", ConfigurationManager.AppSettings["website"]), RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 				Logger.InitializeLogFile("Id, Start Time, Message, Target, Referrer, Title, Time");
@@ -234,38 +234,38 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 				if (Uri.TryCreate(nextTarget, UriKind.Absolute, out nextUri))
 				{
-                    Add(new SpiderUrl(nextUri, referrer));
+					Add(new SpiderUrl(nextUri, referrer));
 				}
-                else if (Uri.TryCreate(nextTarget, UriKind.Relative, out nextUri))
-                {
-                    string nextAbsoluteUri = String.Format("{0}/{1}", ConfigurationManager.AppSettings["startingUrl"], nextTarget);
+				else if (Uri.TryCreate(nextTarget, UriKind.Relative, out nextUri))
+				{
+					string nextAbsoluteUri = String.Format("{0}/{1}", ConfigurationManager.AppSettings["startingUrl"], nextTarget);
 
-                    if (Uri.TryCreate(nextAbsoluteUri, UriKind.Absolute, out nextUri))
-                    {
-                        Add(new SpiderUrl(nextUri, referrer));
-                    }
-                }
+					if (Uri.TryCreate(nextAbsoluteUri, UriKind.Absolute, out nextUri))
+					{
+						Add(new SpiderUrl(nextUri, referrer));
+					}
+				}
 			}
 		}
 
-        /// <summary>
-        /// Adds the Url to the queue if it meets the internal criteria.
-        /// </summary>
-        /// <param name="url"></param>
-        private void Add(SpiderUrl url)
-        {
-            if (url.IsDesirable)
-            {
-                if (_checkImages)
-                {
-                    _urls.Enqueue(url);                    
-                }
-                else if (!_checkImages && !url.IsImage)
-                {
-                    _urls.Enqueue(url);
-                }
-            }
-        }
+		/// <summary>
+		/// Adds the Url to the queue if it meets the internal criteria.
+		/// </summary>
+		/// <param name="url"></param>
+		private void Add(SpiderUrl url)
+		{
+			if (url.IsDesirable)
+			{
+				if (_checkImages)
+				{
+					_urls.Enqueue(url);
+				}
+				else if (!_checkImages && !url.IsImage)
+				{
+					_urls.Enqueue(url);
+				}
+			}
+		}
 
 		#endregion
 
