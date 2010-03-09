@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="f649371a-bd61-49b0-ae98-f352dd070b06" Name="Nathandelane.System.Bpc.Installer" Language="1033" Version="1.3.2.1" Manufacturer="Nathandelane" UpgradeCode="d59bd13e-f014-49c6-a27a-d3efd2a59dc5">
+		<Package InstallerVersion="200" Compressed="yes" />
+
+		<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLLOCATION" Name="Nathandelane.System.Bpc.Installer">
+					<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+					<!-- <Component Id="ProductComponent" Guid="61bb623e-58c5-43f4-b63e-178dc873b9a6"> -->
+						<!-- TODO: Insert files, registry keys, and other resources here. -->
+					<!-- </Component> -->
+				</Directory>
+			</Directory>
+		</Directory>
+
+		<Feature Id="ProductFeature" Title="Nathandelane.System.Bpc.Installer" Level="1">
+			<!-- TODO: Remove the comments around this ComponentRef element and the Component above in order to add resources to this installer. -->
+			<!-- <ComponentRef Id="ProductComponent" /> -->
+			
+			<!-- Note: The following ComponentGroupRef is required to pull in generated authoring from project references. -->
+			<ComponentGroupRef Id="Product.Generated" />
+		</Feature>
+	</Product>
+</Wix>
