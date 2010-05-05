@@ -92,7 +92,7 @@ namespace Nathandelane.Net.HttpGrep
 		/// </summary>
 		private static void DispalyHelp()
 		{
-			Console.WriteLine(Context.GeneralHelp);
+			Console.WriteLine("{0}{1}", Environment.NewLine, Context.GeneralHelp);
 		}
 
 		#endregion

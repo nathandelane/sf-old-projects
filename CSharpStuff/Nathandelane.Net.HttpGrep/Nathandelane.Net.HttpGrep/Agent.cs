@@ -87,7 +87,7 @@ namespace Nathandelane.Net.HttpGrep
 		{
 			if (_context.ArgumentIsDefined(Context.Data))
 			{
-				Console.WriteLine("Data:");
+				Console.WriteLine("{0}Data:", Environment.NewLine);
 				Console.WriteLine(data);
 			}
 
@@ -95,7 +95,7 @@ namespace Nathandelane.Net.HttpGrep
 			{
 				try
 				{
-					Console.WriteLine("Find:");
+					Console.WriteLine("{0}Find:", Environment.NewLine);
 
 					HtmlNodeCollection selectedNodes = _document.DocumentNode.SelectNodes(_context[Context.Find]);
 
@@ -129,7 +129,7 @@ namespace Nathandelane.Net.HttpGrep
 			{
 				string[] headers = _request.Headers.AllKeys;
 
-				Console.WriteLine("Request Header:");
+				Console.WriteLine("{0}Request Header:", Environment.NewLine);
 
 				foreach (string nextHeader in headers)
 				{
@@ -141,7 +141,7 @@ namespace Nathandelane.Net.HttpGrep
 			{
 				string[] headers = _response.Headers.AllKeys;
 
-				Console.WriteLine("Response Headers:");
+				Console.WriteLine("{0}Response Headers:", Environment.NewLine);
 
 				foreach (string nextHeader in headers)
 				{

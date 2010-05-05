@@ -106,6 +106,8 @@ namespace Nathandelane.Net.HttpGrep
 					nextArgument = nextArgument.Substring(1);
 				}
 
+				nextArgument = nextArgument.Capitalize();
+
 				if (Context.__allowedArguments[Context.Url].IsMatch(nextArgument) && argIndex == 0)
 				{
 					_actualArguments[Context.Url] = nextArgument;
