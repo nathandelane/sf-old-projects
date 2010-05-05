@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Nathandelane.System.ClassExtensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -114,7 +115,7 @@ namespace Nathandelane.Net.HttpGrep
 					if (nextArgument.Contains('='))
 					{
 						string[] parts = nextArgument.Split(new char[] { '=' }, StringSplitOptions.RemoveEmptyEntries);
-						string argument = parts[0];
+						string argument = parts[0].Capitalize();
 
 						if (Context.__allowedArguments.ContainsKey(argument))
 						{
