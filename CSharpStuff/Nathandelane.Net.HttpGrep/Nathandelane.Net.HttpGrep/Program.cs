@@ -30,8 +30,7 @@ namespace Nathandelane.Net.HttpGrep
 			}
 			catch (ArgumentException e)
 			{
-				Console.WriteLine(String.Format("Caught exception {0}. {1}", e.GetType(), e.Message));
-				Program.DispalyHelp();
+				Console.WriteLine(String.Format("{2}An Error occurred. {1}", e.GetType(), e.Message, Environment.NewLine));
 			}
 		}
 
@@ -47,15 +46,8 @@ namespace Nathandelane.Net.HttpGrep
 		{
 			if (args.Length > 0)
 			{
-				try
-				{
-					Program httpGrep = new Program(args);
-					httpGrep.Run();
-				}
-				catch (Exception e)
-				{
-					Console.WriteLine("Excaption caught {0}. {1}", e.GetType(), e.Message);
-				}
+				Program httpGrep = new Program(args);
+				httpGrep.Run();
 			}
 			else
 			{
@@ -72,7 +64,7 @@ namespace Nathandelane.Net.HttpGrep
 		/// </summary>
 		private void Run()
 		{
-			if (_context.ArgumentIsDefined(Context.Help))
+			if (_context == null || _context.ArgumentIsDefined(Context.Help))
 			{
 				Program.DispalyHelp();
 			}

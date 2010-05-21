@@ -28,7 +28,7 @@ namespace Nathandelane.Net.HttpGrep
 			"-Help                    Displays this help message." + Environment.NewLine +
 			"-Url=<url>               Sets the URL for the current GREP operation. Same as <url>." + Environment.NewLine +
 			"-Find=<xpath>            Uses XPath to locate certain elements in the resultant document." + Environment.NewLine +
-			"-Request=[true]|false    Displays the request headers." + Environment.NewLine +
+			"-Request                 Displays the request headers." + Environment.NewLine +
 			"-Response                Displays the response headers." + Environment.NewLine +
 			"-Data                    Displays the response body." + Environment.NewLine +
 			"-Post                    Sets the request mode to post and puts HTTP Grep into interactive mode to set the post body." + Environment.NewLine +
@@ -40,7 +40,7 @@ namespace Nathandelane.Net.HttpGrep
 			{ Context.Url, new Regex("^(http|https){1}(://)", RegexOptions.CultureInvariant | RegexOptions.Compiled) },
 			{ Context.Help, null },
 			{ Context.Find, new Regex("^(/|\\.|@|\\*){1}([a-zA-Z/]+)",  RegexOptions.CultureInvariant | RegexOptions.Compiled) },
-			{ Context.Request, new Regex("^(true|false){1}$", RegexOptions.CultureInvariant | RegexOptions.Compiled) },
+			{ Context.Request, null },
 			{ Context.Response, null },
 			{ Context.Data, null },
 			{ Context.Post, null },
@@ -121,9 +121,9 @@ namespace Nathandelane.Net.HttpGrep
 
 						if (Context.__allowedArguments.ContainsKey(argument))
 						{
-							if (parts.Length > 1 && Context.__allowedArguments[argument] != null)
+							if (Context.__allowedArguments[argument] != null)
 							{
-								string value = parts[1];
+								string value = (parts.Length > 1) ? parts[1] : null;
 								Regex regex = Context.__allowedArguments[argument];
 
 								if (regex.IsMatch(value))
