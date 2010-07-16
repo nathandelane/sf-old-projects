@@ -35,12 +35,15 @@ class KeywordsCollection extends ArrayList implements IRenderable {
 	 */
 	public function render() {
 		$array = $this->toArray();
-		$stringifiedList = implode(", ", $array);
+		
+		if (count($array) > 0) {
+			$stringifiedList = implode(", ", $array);
 		
 ?>
 		<meta name="keywords" content="<?php echo "$stringifiedList"; ?>" />
 <?php
 
+		}
 	}
 	
 }
