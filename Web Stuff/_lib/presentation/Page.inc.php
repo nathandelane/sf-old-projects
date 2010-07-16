@@ -21,7 +21,6 @@ abstract class Page implements IPage {
 	protected $_logger;
 	
 	private $_title;
-	private $_headerComponent;
 	private $_stylesheets;
 	private $_scripts;
 	private $_keywords;
@@ -30,15 +29,13 @@ abstract class Page implements IPage {
 	/**
 	 * Page constructor
 	 * @param string $title
-	 * @param IRenderable $headerComponent
 	 * @return Page
 	 */
-	public function Page(/*string*/ $title, IRenderable $headerComponent) {
+	public function Page(/*string*/ $title) {
 		ArgumentTypeValidator::isString($title, "Title must be a string.");
 		
 		$this->_logger = Logger::getInstance();
 		$this->_title = $title;
-		$this->_headerComponent = $headerComponent;
 		$this->_stylesheets = new StylesheetsCollection();
 		$this->_scripts = new ScriptsCollection();
 		$this->_keywords = new KeywordsCollection();
@@ -82,6 +79,8 @@ abstract class Page implements IPage {
 	 * @see _lib/presentation/IPage::registerStylesheet()
 	 */
 	public function registerStylesheet(/*string*/ $stylesheetHref, /*int*/ $stylesheetMedia = 1) {
+		$this->_logger->sendMessage(LogStatus::DEBUG, "Stylesheet Href: $stylesheetHref");
+		
 		ArgumentTypeValidator::isString($stylesheetHref, "StylesheetHref must be a string.");
 		ArgumentTypeValidator::isInteger($stylesheetMedia, "StylesheetMedia must be an integer. See presentation/StylesheetMedia.");
 		

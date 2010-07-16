@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__) . "/../../Config.inc");
+require_once(dirname(__FILE__) . "/../../Config.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/collections/ICollection.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/collections/IEnumerator.inc.php");
 
@@ -131,7 +131,7 @@ final class CollectionEnumerator implements IEnumerator {
 	 */
 	public function CollectionEnumerator(array $collection) {
 		$this->_collection = $collection;
-		$this->_cursor = -1;
+		$this->_cursor = 0;
 	}
 	
 	/**
@@ -156,7 +156,7 @@ final class CollectionEnumerator implements IEnumerator {
 	 * @see _lib/foundation/collections/IEnumerator::reset()
 	 */
 	public function reset() {
-		$this->_cursor = -1;
+		$this->_cursor = 0;
 	}
 	
 	/**

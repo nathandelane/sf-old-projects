@@ -18,7 +18,7 @@ final class Config {
 		if (!isset(self::$__frameworkRoot)) {
 			$localConfigLocation = dirname(__FILE__);
 			
-			self::$__frameworkRoot = "$localConfigLocation/_lib/";
+			self::$__frameworkRoot = "$localConfigLocation/";
 		}
 		
 		return self::$__frameworkRoot;

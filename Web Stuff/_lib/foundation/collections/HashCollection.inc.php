@@ -1,6 +1,7 @@
 <?php
 
 require_once(dirname(__FILE__) . "/../../Config.inc.php");
+require_once(Config::getFrameworkRoot() . "foundation/Logger.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/collections/IHash.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/collections/IEnumerator.inc.php");
 
@@ -12,6 +13,8 @@ require_once(Config::getFrameworkRoot() . "foundation/collections/IEnumerator.in
  */
 class HashCollection implements IHash {
 	
+	protected $_logger;
+	
 	private $_collection;
 	
 	/**
@@ -20,6 +23,7 @@ class HashCollection implements IHash {
 	 */
 	public function HashCollection() {
 		$this->_collection = array();
+		$this->_logger = Logger::getInstance();
 	}
 	
 	/**
@@ -27,6 +31,12 @@ class HashCollection implements IHash {
 	 * @see _lib/foundation/collections/IHash::add()
 	 */
 	public function add($key, $value) {
+		if (is_array($value)) {
+			$this->_logger->sendMessage(LOG_DEBUG, sprintf('Key: %1$s, Value: %2$s, foundation/collections/HashCollection', $key, http_build_query($value)));
+		} else {
+			$this->_logger->sendMessage(LOG_DEBUG, sprintf('Key: %1$s, Value: %2$s, foundation/collections/HashCollection', $key, $value));
+		}
+		
 		if ($this->containsKey($key)) {
 			throw new Exception("HashCollection already contains key $key.");
 		}
@@ -138,6 +148,7 @@ final class HashCollectionEnumerator implements IEnumerator {
 	private $_cursor;
 	private $_currentKey;
 	private $_currentValue;
+	private $_logger;
 	
 	/**
 	 * Constructor
@@ -147,7 +158,8 @@ final class HashCollectionEnumerator implements IEnumerator {
 	public function HashCollectionEnumerator(array $hash) {
 		$this->_hash = $hash;
 		$this->_keys = array_keys($this->_hash);
-		$this->_cursor = -1;
+		$this->_cursor = 0;
+		$this->_logger = Logger::getInstance();
 	}
 	
 	/**
@@ -157,13 +169,15 @@ final class HashCollectionEnumerator implements IEnumerator {
 	public function moveNext() {
 		$result = false;
 		
-		if ($this->_cursor < (count($this->_keys) - 1)) {
+		if ($this->_cursor < (count($this->_keys))) {
 			$result = true;
 			
 			$this->_currentKey = $this->_keys[$this->_cursor];
 			$this->_currentValue = $this->_hash[$this->_currentKey];
 			$this->_cursor++;
 		}
+		
+		$this->_logger->sendMessage(LOG_DEBUG, "Cursor: $this->_cursor, Key: $this->_currentKey, Value: $this->_currentValue, foundation/collections/HashCollection");
 		
 		return $result;
 	}
@@ -173,7 +187,7 @@ final class HashCollectionEnumerator implements IEnumerator {
 	 * @see _lib/foundation/collections/IEnumerator::reset()
 	 */
 	public function reset() {
-		$this->_cursor = -1;
+		$this->_cursor = 0;
 	}
 	
 	/**
