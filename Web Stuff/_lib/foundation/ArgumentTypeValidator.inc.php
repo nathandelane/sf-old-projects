@@ -28,7 +28,7 @@ class ArgumentTypeValidator {
 	 * @param string $exceptionMessage
 	 */
 	public static function isString(/*mixed*/ $arg, /*string*/ $exceptionMessage) {
-		$result = $this->_validate(ArgumentTypeValidator::STRING, $arg, $exceptionMessage);
+		$result = self::_validate(ArgumentTypeValidator::STRING, $arg, $exceptionMessage);
 		
 		return $result;
 	}
@@ -40,7 +40,7 @@ class ArgumentTypeValidator {
 	 * @param string $exceptionMessage
 	 */
 	public static function isInteger(/*mixed*/ $arg, /*string*/ $exceptionMessage) {
-		$result = $this->_validate(ArgumentTypeValidator::INTEGER, $arg, $exceptionMessage);
+		$result = self::_validate(ArgumentTypeValidator::INTEGER, $arg, $exceptionMessage);
 				
 		return $result;
 	}
@@ -52,7 +52,7 @@ class ArgumentTypeValidator {
 	 * @param string $exceptionMessage
 	 */
 	public static function isDouble(/*mixed*/ $arg, /*string*/ $exceptionMessage) {
-		$result = $this->_validate(ArgumentTypeValidator::DOUBLE, $arg, $exceptionMessage);
+		$result = self::_validate(ArgumentTypeValidator::DOUBLE, $arg, $exceptionMessage);
 				
 		return $result;
 	}
@@ -64,7 +64,7 @@ class ArgumentTypeValidator {
 	 * @param string $exceptionMessage
 	 */
 	public static function isBool(/*mixed*/ $arg, /*string*/ $exceptionMessage) {
-		$result = $this->_validate(ArgumentTypeValidator::BOOL, $arg, $exceptionMessage);
+		$result = self::_validate(ArgumentTypeValidator::BOOL, $arg, $exceptionMessage);
 				
 		return $result;
 	}
@@ -75,8 +75,8 @@ class ArgumentTypeValidator {
 	 * @param mixed $arg
 	 * @param string $exceptionMessage
 	 */
-	public static function isBool(/*mixed*/ $arg, /*string*/ $exceptionMessage) {
-		$result = $this->_validate(ArgumentTypeValidator::FLOAT, $arg, $exceptionMessage);
+	public static function isFloat(/*mixed*/ $arg, /*string*/ $exceptionMessage) {
+		$result = self::_validate(ArgumentTypeValidator::FLOAT, $arg, $exceptionMessage);
 				
 		return $result;
 	}
@@ -88,7 +88,7 @@ class ArgumentTypeValidator {
 	 * @param string $exceptionMessage
 	 */
 	public static function isLong(/*mixed*/ $arg, /*string*/ $exceptionMessage) {
-		$result = $this->_validate(ArgumentTypeValidator::LONG, $arg, $exceptionMessage);
+		$result = self::_validate(ArgumentTypeValidator::LONG, $arg, $exceptionMessage);
 				
 		return $result;
 	}
@@ -100,7 +100,7 @@ class ArgumentTypeValidator {
 	 * @param string $exceptionMessage
 	 */
 	public static function isNumeric(/*mixed*/ $arg, /*string*/ $exceptionMessage) {
-		$result = $this->_validate(ArgumentTypeValidator::NUMERIC, $arg, $exceptionMessage);
+		$result = self::_validate(ArgumentTypeValidator::NUMERIC, $arg, $exceptionMessage);
 				
 		return $result;
 	}
@@ -112,7 +112,7 @@ class ArgumentTypeValidator {
 	 * @param string $exceptionMessage
 	 */
 	public static function isObject(/*mixed*/ $arg, /*string*/ $exceptionMessage) {
-		$result = $this->_validate(ArgumentTypeValidator::OBJECT, $arg, $exceptionMessage);
+		$result = self::_validate(ArgumentTypeValidator::OBJECT, $arg, $exceptionMessage);
 				
 		return $result;
 	}
@@ -124,7 +124,7 @@ class ArgumentTypeValidator {
 	 * @param string $exceptionMessage
 	 */
 	public static function isReal(/*mixed*/ $arg, /*string*/ $exceptionMessage) {
-		$result = $this->_validate(ArgumentTypeValidator::REAL, $arg, $exceptionMessage);
+		$result = self::_validate(ArgumentTypeValidator::REAL, $arg, $exceptionMessage);
 				
 		return $result;
 	}
@@ -136,7 +136,7 @@ class ArgumentTypeValidator {
 	 * @param string $exceptionMessage
 	 */
 	public static function isResource(/*mixed*/ $arg, /*string*/ $exceptionMessage) {
-		$result = $this->_validate(ArgumentTypeValidator::RESOURCE, $arg, $exceptionMessage);
+		$result = self::_validate(ArgumentTypeValidator::RESOURCE, $arg, $exceptionMessage);
 				
 		return $result;
 	}
@@ -148,7 +148,7 @@ class ArgumentTypeValidator {
 	 * @param string $exceptionMessage
 	 */
 	public static function isScalar(/*mixed*/ $arg, /*string*/ $exceptionMessage) {
-		$result = $this->_validate(ArgumentTypeValidator::SCALAR, $arg, $exceptionMessage);
+		$result = self::_validate(ArgumentTypeValidator::SCALAR, $arg, $exceptionMessage);
 				
 		return $result;
 	}
@@ -160,7 +160,7 @@ class ArgumentTypeValidator {
 	 * @param string $exceptionMessage
 	 */
 	public static function isArray(/*mixed*/ $arg, /*string*/ $exceptionMessage) {
-		$result = $this->_validate(ArgumentTypeValidator::T_ARRAY, $arg, $exceptionMessage);
+		$result = self::_validate(ArgumentTypeValidator::T_ARRAY, $arg, $exceptionMessage);
 				
 		return $result;
 	}
@@ -174,7 +174,7 @@ class ArgumentTypeValidator {
 	 * @throws InvalidArgumentException
 	 * @return bool
 	 */
-	private function _validate(/*int*/ $type, /*mixed*/ $arg, /*string*/ $exceptionMessage) {
+	private static function _validate(/*int*/ $type, /*mixed*/ $arg, /*string*/ $exceptionMessage) {
 		$localExceptionMessage = $exceptionMessage;
 		$isValid = false;
 		

@@ -34,6 +34,8 @@ abstract class Page implements IPage {
 	 * @return Page
 	 */
 	public function Page(/*string*/ $title, IRenderable $headerComponent) {
+		ArgumentTypeValidator::isString($title, "Title must be a string.");
+		
 		$this->_logger = Logger::getInstance();
 		$this->_title = $title;
 		$this->_headerComponent = $headerComponent;
@@ -134,6 +136,8 @@ abstract class Page implements IPage {
 	 * @see _lib/presentation/IPage::setDescription()
 	 */
 	public function setDescription($description) {
+		ArgumentTypeValidator::isString($description, "Description must be a string");
+		
 		$this->_description = $description;
 	}
 	
