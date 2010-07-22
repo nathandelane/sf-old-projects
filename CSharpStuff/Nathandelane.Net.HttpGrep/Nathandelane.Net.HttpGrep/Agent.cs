@@ -53,29 +53,36 @@ namespace Nathandelane.Net.HttpGrep
 					}
 				}
 
-				_response = (HttpWebResponse)_request.GetResponse();
-				string data;
-
-				if (_response.ContentEncoding.Equals("gzip", StringComparison.InvariantCultureIgnoreCase))
+				try
 				{
-					using (StreamReader reader = new StreamReader(new GZipInputStream(_response.GetResponseStream())))
+					_response = (HttpWebResponse)_request.GetResponse();
+					string data;
+
+					if (_response.ContentEncoding.Equals("gzip", StringComparison.InvariantCultureIgnoreCase))
 					{
-						data = reader.ReadToEnd();
+						using (StreamReader reader = new StreamReader(new GZipInputStream(_response.GetResponseStream())))
+						{
+							data = reader.ReadToEnd();
+						}
 					}
+					else
+					{
+						using (StreamReader reader = new StreamReader(_response.GetResponseStream()))
+						{
+							data = reader.ReadToEnd();
+						}
+					}
+
+					data = FormatData(data);
+
+					DisplayResults(data);
+
+					_response.Close();
 				}
-				else
+				catch (Exception exception)
 				{
-					using (StreamReader reader = new StreamReader(_response.GetResponseStream()))
-					{
-						data = reader.ReadToEnd();
-					}
+					Console.WriteLine("Exception was caught: {0}", exception.Message);
 				}
-
-				data = FormatData(data);
-
-				DisplayResults(data);
-
-				_response.Close();
 			}
 		}
 
