@@ -1,6 +1,7 @@
 <?php
 
 require_once(dirname(__FILE__) . "/../Config.inc.php");
+require_once(Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/Environment.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/LogStatus.inc.php");
 
@@ -30,6 +31,8 @@ final class Logger {
 	 * @param string $message
 	 */
 	public function sendMessage(/*int*/ $status, /*string*/ $message) {
+		ArgumentTypeValidator::isString($message, "Message must be a string.");
+		
 		$logMessage = null;
 		
 		if(Config::isDebugEnvironment()) {
@@ -72,6 +75,8 @@ final class Logger {
 	 * @return string
 	 */
 	private function _normalizeMessage(/*string*/ $message) {
+		ArgumentTypeValidator::isString($message, "Message must be a string.");
+		
 		$newMessage = str_replace("\r", "\\r", $message);
 		$newMessage = str_replace("\n", "\\n", $message);
 		

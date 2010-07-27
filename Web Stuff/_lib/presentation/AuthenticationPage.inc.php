@@ -7,7 +7,10 @@ if(!session_id()) {
 require_once(dirname(__FILE__) . "/../Config.inc.php");
 require_once(Config::getFrameworkRoot() . "presentation/Page.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
+require_once(Config::getFrameworkRoot() . "foundation/Logger.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/Strings.inc.php");
+require_once(Config::getFrameworkRoot() . "foundation/data/QueryHandler.inc.php");
+require_once(Config::getFrameworkRoot() . "foundation/data/QueryHandlerType.inc.php");
 
 /**
  * This page represents a login or other type of authentication page.
@@ -24,6 +27,9 @@ abstract class AuthenticationPage extends Page {
 	protected $_salt;
 	protected $_redirectUrl;
 	protected $_authenticationErrorExists;
+	protected $_logger;
+	
+	private static $__queryHandler;
 	
 	/**
 	 * Creates an instance of AuthenticationPage
@@ -38,17 +44,24 @@ abstract class AuthenticationPage extends Page {
 		ArgumentTypeValidator::isString($redirectUrl, "RedirectUrl must be a string.");
 		ArgumentTypeValidator::isString($salt, "Salt must be a string.");
 		
+		if (!self::$__queryHandler) {
+			self::$__queryHandler = QueryHandler::getInstance(QueryHandlerType::MYSQL);
+		}
+		
 		$this->_salt = $salt;
 		$this->_redirectUrl = $redirectUrl;
 		$this->_authenticationErrorExists = false;
+		$this->_logger = Logger::getInstance();
 		
 		if($this->_userAuthenticationIsDefined()) {
 			$this->setSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY, $this->tryAuthentication($this->getFieldValue(AuthenticationPage::USERNAME_KEY), $this->getFieldValue(AuthenticationPage::PASSWORD_KEY)));
 			$this->setSessionFieldValue(AuthenticationPage::USERNAME_KEY, $this->getFieldValue(AuthenticationPage::USERNAME_KEY));
 		}
 		
-		if($this->getSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY) && (StringExtensions::equals($this->getSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY), session_id()))) {
+		if($this->getSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY) && (Strings::equals($this->getSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY), session_id()))) {
 			$url = "http://" . $_SERVER["SERVER_NAME"] . $this->_redirectUrl;
+			
+			$this->_logger->sendMessage(LOG_DEBUG, "Redirecting to $url");
 			
 			header("Location: $url");
 		}
@@ -73,13 +86,19 @@ abstract class AuthenticationPage extends Page {
 	public function tryAuthentication(/*string*/ $userName, /*string*/ $password) {
 		ArgumentTypeValidator::isString($userName, "UserName must be a string.");
 		ArgumentTypeValidator::isString($password, "Password must be a string.");
-		//TODO:fix this
+		
 		$ticket = null;
 		$password .= $this->_salt;
 		$encryptedPassword = $this->_encryptPassword($password);
-		$credentials = array("user" => "$userName", "pass" => "$encryptedPassword");		
+		$query = $this->getAuthenticationQuery();
 		
-		$rows = self::$usersTable->selectObjects($credentials);
+		ArgumentTypeValidator::isString($query, "Query must be a string in the form of an sprintf SQL query.");
+		
+		$credentials = sprintf($query, self::$__queryHandler->cleanData("$userName"), "$encryptedPassword");
+
+		$this->_logger->sendMessage(LOG_DEBUG, "Trying to authenticate using $credentials");
+		
+		$rows = self::$__queryHandler->executeQuery($credentials);
 		
 		if (count($rows) > 0) {
 			$ticket = session_id();
@@ -87,7 +106,13 @@ abstract class AuthenticationPage extends Page {
 			$this->_authenticationErrorExists = true;
 		}
 		
+		$this->_logger->sendMessage(LOG_DEBUG, "Ticket at time of authentication attempt: $ticket");
+		
 		return $ticket;
+	}
+	
+	public function getAuthenticationQuery() {
+		throw new BadFunctionCallException("GetAuthenticationQuery must be overridden by an inheriting class.");
 	}
 
 	/**

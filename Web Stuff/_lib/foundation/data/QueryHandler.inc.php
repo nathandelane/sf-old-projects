@@ -55,7 +55,11 @@ final class QueryHandler {
 				
 				if ($this->_connection && is_resource($this->_connection)) {
 					$connected = true;
+				} else {
+					$this->_logger->sendMessage(LOG_DEBUG, "Could not authenticate on " . http_build_query($credentials));
 				}
+			} else {
+				$this->_logger->sendMessage(LOG_DEBUG, "Unrecognized query handler type: $this->_type");
 			}
 		} else {
 			$connected = true;
@@ -73,6 +77,8 @@ final class QueryHandler {
 		if (isset($this->_connection) && is_resource($this->_connection)) {
 			if ($this->_type == QueryHandlerType::MYSQL) {
 				mysql_close($this->_connection);
+				
+				$this->_connection = null;
 			}
 		}
 	}
@@ -99,17 +105,48 @@ final class QueryHandler {
 	 */
 	private function _executeMySqlQuery(/*string*/ $query) {
 		$results = array();
-		$resultSet = mysql_query($query, $this->_connection);
 		
-		if (is_resource($resultSet)) {
-			if (mysql_num_rows($resultSet) > 0) {
-				while ($nextRow = mysql_fetch_assoc($resultSet)) {
-					$results[] = $nextRow;
+		if ($this->_createConnection()) {
+			$resultSet = mysql_query($query, $this->_connection);
+			
+			if (is_resource($resultSet)) {
+				if (mysql_num_rows($resultSet) > 0) {
+					while ($nextRow = mysql_fetch_assoc($resultSet)) {
+						$results[] = $nextRow;
+					}
+					
+					mysql_free_result($resultSet);
+				} else {
+					$this->_logger->sendMessage(LOG_DEBUG, "The query \"$query\" return no results");
 				}
+			} else {
+				$this->_logger->sendMessage(LOG_DEBUG, "The query \"$query\" failed to execute properly, returning no resource.");
 			}
+			
+			$this->_closeConnection();
+		} else {
+			$this->_logger->sendMessage(LOG_DEBUG, "Could not create connection.");
 		}
 		
 		return $results;
+	}
+	
+	/**
+	 * cleanData
+	 * Cleans data to avoid SQL injections.
+	 * @param string $data
+	 * @return string
+	 */
+	public function cleanData(/*string*/ $data) {
+		$result = $data;
+		
+		if ($this->_createConnection()) {
+			$result = mysql_real_escape_string($data, $this->_connection);
+			
+			$this->_closeConnection();
+		}
+		
+		return $result;
 	}
 	
 	/**

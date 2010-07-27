@@ -62,6 +62,34 @@ class Strings {
 	}
 	
 	/**
+	 * contains
+	 * Determines whether a string contains a substring
+	 * @param string $source
+	 * @param string $substring
+	 * @return bool
+	 */
+	public static function contains(/*string*/ $source, /*string*/ $substring) {
+		$result = true;
+		
+		if (!strstr($source, $substring)) {
+			$result = false;
+		}
+		
+		return $result;
+	}
+	
+	/**
+	 * indexOf
+	 * Returns the first index of a particular substring in a string.
+	 * @param string $source
+	 * @param string $substring
+	 * @return int
+	 */
+	public static function indexOf(/*string*/ $source, /*string*/ $substring) {
+		return strpos($source, $substring);
+	}
+	
+	/**
 	 * toLower
 	 * Converts a source string to lowercase.
 	 * @param string $source
@@ -109,6 +137,18 @@ class Strings {
 		}
 		
 		return $result;
+	}
+	
+	/**
+	 * replace
+	 * Replaces the first occurrence of a particular substring in a string with another substring.
+	 * @param string $source
+	 * @param string $search
+	 * @param string $replacement
+	 * @return string
+	 */
+	public static function replace(/*string*/ $source, /*string*/ $search, /*string*/ $replacement) {
+		return str_replace($search, $replacement, $source);
 	}
 	
 }
