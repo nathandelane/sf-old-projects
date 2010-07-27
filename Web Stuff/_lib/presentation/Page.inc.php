@@ -1,5 +1,9 @@
 <?php
 
+if(!session_id()) {
+	session_start();
+}
+
 require_once(dirname(__FILE__) . "/../Config.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/Logger.inc.php");
@@ -110,7 +114,7 @@ abstract class Page implements IPage {
 	 * @see _lib/presentation/IPage::registerKeyword()
 	 */
 	public function registerKeyword($keyword) {
-		ArgumentTypeValidator::isString($keyword, "Keyword must be a string");
+		ArgumentTypeValidator::isString($keyword, "Keyword must be a string.");
 		
 		try {
 			$this->_keywords->addKeyword($keyword);
@@ -135,9 +139,55 @@ abstract class Page implements IPage {
 	 * @see _lib/presentation/IPage::setDescription()
 	 */
 	public function setDescription($description) {
-		ArgumentTypeValidator::isString($description, "Description must be a string");
+		ArgumentTypeValidator::isString($description, "Description must be a string.");
 		
 		$this->_description = $description;
+	}
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see _lib/presentation/IPage::getFieldValue()
+	 */
+	public function getFieldValue($fieldName) {
+		$result = null;
+		
+		ArgumentTypeValidator::isString($fieldName, "FieldName must be a string.");
+		
+		if (isset($_REQUEST[$fieldName])) {
+			$result = $_REQUEST[$fieldName];
+		}
+		
+		return $result;
+	}
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see _lib/presentation/IPage::getSessionFieldValue()
+	 */
+	public function getSessionFieldValue($fieldName) {
+		$result = null;
+		
+		if (isset($_SESSION[$fieldName])) {
+			$result = $_SESSION[$fieldName];
+		}
+		
+		return $result;
+	}
+	
+	/**
+	 * setSessionFieldValue
+	 * Sets the value of a session variable. Null unsets the variable.
+	 * @param string $fieldName
+	 * @param string $value
+	 */
+	public function setSessionFieldValue($fieldName, $value) {
+		ArgumentTypeValidator::isString($fieldName, "FieldName must be a string.");
+		
+		if (is_null($value) && $this->getSessionFieldValue($fieldName)) {
+			unset($_SESSION[$fieldName]);
+		} else {
+			$_SESSION[$fieldName] = $value;
+		}
 	}
 	
 	/**
@@ -151,6 +201,7 @@ abstract class Page implements IPage {
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php echo "$this->_title"; ?></title>
+		<link rel="shortcut icon" href="favicon.png" type="image/png" />
 <?php
 
 		$this->_stylesheets->render();

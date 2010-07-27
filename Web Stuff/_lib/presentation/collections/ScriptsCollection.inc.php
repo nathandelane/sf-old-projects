@@ -34,10 +34,14 @@ class ScriptsCollection extends ArrayList implements IRenderable {
 	 * @see _lib/presentation/IRenderable::render()
 	 */
 	public function render() {
+		$this->_logger->sendMessage(LOG_DEBUG, "Rendering ScriptsCollection.");
+		
 		$enumerator = $this->getEnumerator();
 		
 		while ($enumerator->moveNext()) {
-			$nextScript = $enumerator->getNextValue();
+			$nextScript = $enumerator->getNextItem();
+			
+			$this->_logger->sendMessage(LOG_DEBUG, "NextScript: $nextScript");
 			
 ?>
 		<script type="text/javascript" src="<?php echo "{$nextScript}"; ?>"></script>

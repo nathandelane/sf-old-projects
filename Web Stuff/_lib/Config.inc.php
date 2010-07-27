@@ -33,6 +33,15 @@ final class Config {
 		return self::$__isDebugEnvironment;
 	}
 	
+	/**
+	 * getDatabaseCredentials
+	 * Gets the database credentials for the current environment.
+	 * @return array
+	 */
+	public static function getDatabaseCredentials() {
+		return array("server" => "localhost", "userName" => "phyeradmin", "password" => "o6dv28upwrgeq");
+	}
+	
 }
 
 ?>

@@ -21,8 +21,6 @@ class StylesheetsCollection extends HashCollection implements IRenderable {
 	 */
 	public function StylesheetsCollection() {
 		parent::__construct();
-		
-		$this->_logger = Logger::getInstance();
 	}
 	
 	/**
@@ -43,6 +41,8 @@ class StylesheetsCollection extends HashCollection implements IRenderable {
 	 * @see _lib/presentation/IRenderable::render()
 	 */
 	public function render() {
+		$this->_logger->sendMessage(LOG_DEBUG, "Rendering StylesheetsCollection.");
+		
 		$enumerator = $this->getEnumerator();
 		
 		while ($enumerator->moveNext()) {

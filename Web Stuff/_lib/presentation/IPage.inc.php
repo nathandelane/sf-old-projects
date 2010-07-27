@@ -53,6 +53,20 @@ interface IPage {
 	 */
 	public function setDescription(/*string*/ $description);
 	
+	/**
+	 * getFieldValue
+	 * Returns the value of a GET or POST parameter.
+	 * @param string $fieldName
+	 */
+	public function getFieldValue(/*string*/ $fieldName);
+	
+	/**
+	 * getSessionFieldValue
+	 * Returns the value of a SESSION variable.
+	 * @param string $fieldName
+	 */
+	public function getSessionFieldValue(/*string*/ $fieldName);
+	
 }
 
 ?>

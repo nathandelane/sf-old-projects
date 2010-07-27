@@ -1,6 +1,7 @@
 <?php
 
 require_once(dirname(__FILE__) . "/../../Config.inc.php");
+require_once(Config::getFrameworkRoot() . "foundation/Logger.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/collections/ICollection.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/collections/IEnumerator.inc.php");
 
@@ -12,6 +13,8 @@ require_once(Config::getFrameworkRoot() . "foundation/collections/IEnumerator.in
  */
 class ArrayList implements ICollection {
 	
+	protected $_logger;
+	
 	private $_collection;
 	
 	/**
@@ -20,6 +23,7 @@ class ArrayList implements ICollection {
 	 */
 	public function ArrayList() {
 		$this->_collection = array();
+		$this->_logger = Logger::getInstance();
 	}
 	
 	/**
@@ -27,6 +31,8 @@ class ArrayList implements ICollection {
 	 * @see _lib/foundation/collections/ICollection::add()
 	 */
 	public function add($object) {
+		$this->_logger->sendMessage(LOG_DEBUG, sprintf('Adding script: %1$s, ArrayList', $object));
+		
 		$this->_collection[] = $object;
 	}
 	
@@ -141,7 +147,7 @@ final class CollectionEnumerator implements IEnumerator {
 	public function moveNext() {
 		$result = false;
 		
-		if ($this->_cursor < (count($this->_collection) - 1)) {
+		if ($this->_cursor < count($this->_collection)) {
 			$result = true;
 			
 			$this->_currentItem = $this->_collection[$this->_cursor];
