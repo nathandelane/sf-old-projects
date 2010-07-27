@@ -1,0 +1,222 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	background-color: #7097CD;
+	background-image: url(../_img/PhyerNet-Background.png);
+	background-repeat: repeat-x;
+	font-family: Helvetica, Arial, Verdana, sans-serif;
+	font-size: 12px;
+	text-align: center;
+	color: #efefef;
+}
+
+img
+{
+	border: 0;
+}
+
+label,
+input
+{
+	width: 100%;
+	overflow: hidden;
+}
+
+p
+{
+	margin: 0 0 10px 0;
+}
+
+a:link,
+a:active,
+a:visited,
+a:hover
+{
+	color: #efefef;
+}
+
+legend
+{
+	color: #efefef;
+}
+
+fieldset
+{
+	border-bottom: #F0F0F0 2px solid;
+	border-top: #F0F0F0 2px solid;
+	border-right: #F0F0F0 2px solid;
+	border-left: #F0F0F0 2px solid;
+	padding: 4px 9px 7px 9px;
+}
+
+.root
+{
+	width: 1002px;
+	overflow: hidden;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.formRow
+{
+	width: 100%;
+	overflow: hidden;
+}
+
+.submit
+{
+	width: auto;
+	float: right;
+	height: 26px;
+}
+
+.top
+{
+	width: 100%;
+	overflow: hidden;
+}
+
+.content
+{
+	width: 980px;
+	overflow: hidden;
+	border-left: 1px solid #00529b;
+	border-right: 1px solid #00529b;
+	font-size: 14px;
+	padding: 0 10px 10px;
+	text-align: justify;
+	background-color: #50779d;
+}
+
+.column
+{
+	width: 475px;
+	overflow: hidden;
+	float: left;
+	padding: 10px 0;
+	
+}
+
+.column.left
+{
+	padding-right: 30px;
+}
+
+.disclaimer
+{
+	font-size: 10px;
+	font-style: italic;
+}
+
+#signUpNow
+{
+	margin: 10px 0 0 60px;
+}
+
+#signUpNow.customButton
+{
+	width: 120px;
+	height: 30px;
+	overflow: hidden;
+}
+
+.customButton a:link span,
+.customButton a:active span,
+.customButton a:visited span,
+.customButton a:hover span
+{
+	display: block;
+}
+
+.customButton .left,
+.customButton .content,
+.customButton .right
+{
+	background-image: url(../_img/PhyerNet-Button.png);
+	overflow: hidden;
+	float: left;
+	display: block;
+}
+
+.customButton a:link .left,
+.customButton a:active .left,
+.customButton a:visited .left,
+.customButton a:hover .left,
+.customButton a:link .right,
+.customButton a:active .right,
+.customButton a:visited .right,
+.customButton a:hover .right
+{
+	width: 5px;
+	background-repeat: no-repeat;
+	height: 30px;
+}
+
+.customButton a:link .left,
+.customButton a:active .left,
+.customButton a:visited .left
+{
+	background-position: 0 0;
+}
+
+.customButton a:hover .left
+{
+	background-position: 0 -90px;
+}
+
+.customButton a:link .right,
+.customButton a:active .right,
+.customButton a:visited .right
+{
+	background-position: 0 -60px;
+}
+
+.customButton a:hover .right
+{
+	background-position: 0 -150px;
+}
+
+.customButton a:link .content,
+.customButton a:active .content,
+.customButton a:visited .content
+{
+	width: 85px;
+	background-position: 0 -30px;
+	background-repeat: repeat-x;
+	height: 18px;
+	padding: 7px 0;
+	border: 0;
+	text-align: center;
+}
+
+.customButton a:hover .content
+{
+	width: 85px;
+	background-position: 0 -120px;
+	background-repeat: repeat-x;
+	height: 18px;
+	padding: 7px 0;
+	border: 0;
+	text-align: center;
+}
+
+.customButton a:link,
+.customButton a:active,
+.customButton a:visited,
+.customButton a:hover
+{
+	text-decoration: none;
+}
+
+.checkBox
+{
+	float: left;
+	width: auto;
+}
+
+.checkBoxLabel
+{
+	display: inline;
+	width: auto;
+}
