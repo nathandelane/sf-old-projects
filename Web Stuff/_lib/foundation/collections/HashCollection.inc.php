@@ -4,6 +4,7 @@ require_once(dirname(__FILE__) . "/../../Config.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/Logger.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/collections/IHash.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/collections/IEnumerator.inc.php");
+require_once(Config::getFrameworkRoot() . "foundation/collections/IEnumerable.inc.php");
 
 /**
  * HashCollection
@@ -11,7 +12,7 @@ require_once(Config::getFrameworkRoot() . "foundation/collections/IEnumerator.in
  * @author lanathan
  *
  */
-class HashCollection implements IHash {
+class HashCollection implements IHash, IEnumerable {
 	
 	protected $_logger;
 	
@@ -19,10 +20,11 @@ class HashCollection implements IHash {
 	
 	/**
 	 * Constructor
+	 * @param array $hash
 	 * @return HashCollection
 	 */
-	public function HashCollection() {
-		$this->_collection = array();
+	public function HashCollection(array $hash = array()) {
+		$this->_collection = $hash;
 		$this->_logger = Logger::getInstance();
 	}
 	
@@ -108,7 +110,7 @@ class HashCollection implements IHash {
 	
 	/**
 	 * (non-PHPdoc)
-	 * @see _lib/foundation/collections/IHash::getEnumerator()
+	 * @see _lib/foundation/collections/IEnumerable::getEnumerator()
 	 */
 	public function getEnumerator() {
 		$enumerator = new HashCollectionEnumerator($this->_collection);

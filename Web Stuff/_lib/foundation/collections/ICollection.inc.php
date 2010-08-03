@@ -47,13 +47,6 @@ interface ICollection {
 	public function removeAt(/*mixed*/ $index);
 	
 	/**
-	 * getEnumerator
-	 * Gets an enumerator for this hash
-	 * @return IEnumerator
-	 */
-	public function getEnumerator();
-	
-	/**
 	 * size
 	 * Gets the current size of the hash.
 	 * @return int

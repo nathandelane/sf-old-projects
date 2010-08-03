@@ -39,7 +39,8 @@ final class Config {
 	 * @return array
 	 */
 	public static function getDatabaseCredentials() {
-		return array("server" => "localhost", "userName" => "phyeradmin", "password" => "o6dv28upwrgeq");
+//		return array("server" => "localhost", "userName" => "phyeradmin", "password" => "o6dv28upwrgeq");
+		return array("server" => "localhost", "userName" => "root", "password" => "i78y6zbgfhla");
 	}
 	
 }

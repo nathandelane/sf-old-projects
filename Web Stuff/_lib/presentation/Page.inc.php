@@ -175,6 +175,14 @@ abstract class Page implements IPage {
 	}
 	
 	/**
+	 * (non-PHPdoc)
+	 * @see _lib/presentation/IPage::getLogger()
+	 */
+	public function getLogger() {
+		return $this->_logger;
+	}
+	
+	/**
 	 * setSessionFieldValue
 	 * Sets the value of a session variable. Null unsets the variable.
 	 * @param string $fieldName
@@ -188,6 +196,15 @@ abstract class Page implements IPage {
 		} else {
 			$_SESSION[$fieldName] = $value;
 		}
+	}
+	
+	/**
+	 * _isValid
+	 * Validation hook.
+	 * @return bool
+	 */
+	protected function _isValid() {
+		throw new Exception("IsValid is not defined.");
 	}
 	
 	/**
