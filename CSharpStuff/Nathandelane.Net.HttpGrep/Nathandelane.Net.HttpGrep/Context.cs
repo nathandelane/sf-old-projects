@@ -44,7 +44,7 @@ namespace Nathandelane.Net.HttpGrep
 			{ Context.Response, null },
 			{ Context.Data, null },
 			{ Context.Post, null },
-			{ Context.Proxy, new Regex("^(http|https){1}(://)", RegexOptions.CultureInvariant | RegexOptions.Compiled) }
+			{ Context.Proxy, new Regex("[\\w\\d:#@%/;$()~_?\\+-=\\\\.&]*", RegexOptions.CultureInvariant | RegexOptions.Compiled) }
 		};
 
 		private Dictionary<string, string> _actualArguments;
