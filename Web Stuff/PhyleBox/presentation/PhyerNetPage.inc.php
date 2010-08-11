@@ -34,6 +34,7 @@ abstract class PhyerNetPage extends Page {
 		$this->registerStylesheet("_css/main.css");
 		
 		$this->registerScript("_js/jquery.js");
+		$this->registerScript("_js/Phyer.js");
 	}
 	
 	/**

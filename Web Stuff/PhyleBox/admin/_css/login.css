@@ -20,9 +20,3 @@ input
 	width: 200px;
 	overflow: hidden;
 }
-
-.footer
-{
-	position: absolute;
-	bottom: 0;
-}

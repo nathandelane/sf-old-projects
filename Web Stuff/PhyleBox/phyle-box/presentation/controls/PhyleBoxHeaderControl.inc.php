@@ -4,6 +4,7 @@ require_once(dirname(__FILE__) . "/../../Config.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/IPage.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/IRenderable.inc.php");
 require_once(PhyleBox_Config::getLocalPresentationLocation() . "controls/PhyleBoxLogo.inc.php");
+require_once(PhyleBox_Config::getLocalPresentationLocation() . "controls/PhyleBoxFooterSubNavigation.inc.php");
 
 /**
  * PhyleBoxHeaderControl
@@ -14,6 +15,7 @@ require_once(PhyleBox_Config::getLocalPresentationLocation() . "controls/PhyleBo
 class PhyleBoxHeaderControl implements IRenderable {
 	
 	private $_phyleBoxLogo;
+	private $_subNavigation;
 	
 	/**
 	 * Constructor
@@ -22,6 +24,7 @@ class PhyleBoxHeaderControl implements IRenderable {
 	 */
 	public function PhyleBoxHeaderControl(IPage $page) {
 		$this->_phyleBoxLogo = new PhyleBoxLogo();
+		$this->_subNavigation = new PhyleBoxFooterSubNavigation();
 		
 		$page->registerStylesheet("_css/header.css");
 	}
@@ -34,7 +37,12 @@ class PhyleBoxHeaderControl implements IRenderable {
 		
 ?>
 <div class="header">
-	<?php $this->_phyleBoxLogo->render(); ?>
+<?php
+
+	$this->_phyleBoxLogo->render();
+	$this->_subNavigation->render();
+	
+?>
 </div>
 <?php
 		

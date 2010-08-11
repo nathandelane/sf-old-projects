@@ -43,6 +43,12 @@ class PhyleBoxFooterSubNavigation implements IRenderable {
 
 ?>
 		<li>
+			<a href="<?php echo PhyleBox_Config::getPhyleBoxRoot(); ?>/file-manager.php">File Manager</a>
+		</li>
+		<li>
+			<a href="<?php echo PhyleBox_Config::getPhyleBoxRoot(); ?>/profile.php">Profile</a>
+		</li>
+		<li>
 			<a href="<?php echo PhyleBox_Config::getPhyleBoxRoot(); ?>/logout.php">Logout</a>
 		</li>
 <?php

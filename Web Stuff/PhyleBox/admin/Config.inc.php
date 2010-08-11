@@ -1,13 +1,13 @@
 <?php
 
-require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
+require_once(Admin_Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
 
 /**
  * This class represents the configuration for PhyleBox.
  * @author lanathan
  *
  */
-final class PhyleBox_Config {
+final class Admin_Config {
 	
 	private static $__frameworkRoot;
 	private static $__analyticsWebPropertyIds = array(
@@ -15,7 +15,7 @@ final class PhyleBox_Config {
 	);
 	private static $__localPresentationFolder;
 	private static $__localFoundationFolder;
-	private static $__phyleBoxRoot = "/phyle-box";
+	private static $__adminRoot = "/PhyerNet2010/admin";
 	
 	/**
 	 * getFrameworkRoot
@@ -81,12 +81,12 @@ final class PhyleBox_Config {
 	}
 	
 	/**
-	 * getPhyleBoxRoot
-	 * Gets the HTTP root of PhyleBox
+	 * getAdminRoot
+	 * Gets the HTTP root of the PhyerNet admin
 	 * @return string
 	 */
-	public static function getPhyleBoxRoot() {
-		return self::$__phyleBoxRoot;
+	public static function getAdminRoot() {
+		return self::$__adminRoot;
 	}
 	
 }

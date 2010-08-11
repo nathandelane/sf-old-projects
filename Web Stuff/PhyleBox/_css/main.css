@@ -50,6 +50,12 @@ fieldset
 	padding: 4px 9px 7px 9px;
 }
 
+h2
+{
+	margin: 0 0 4px;
+	padding: 0;
+}
+
 .root
 {
 	width: 1002px;
@@ -219,4 +225,59 @@ fieldset
 {
 	display: inline;
 	width: auto;
+}
+
+.containerTop,
+.containerBottom
+{
+	width: 475px;
+	height: 20px;
+	overflow: hidden;
+	background-image: url(../_img/NewsBox.png);
+	background-repeat: no-repeat;
+}
+
+.containerTop
+{
+	background-position: 0 0;
+}
+
+.containerBottom
+{
+	background-position: 0 -20px;
+}
+
+.containerMiddle
+{
+	width: 433px;
+	height: 150px;
+	overflow: hidden;
+	padding: 0 20px;
+	border-left: 1px solid #efefef;
+	border-right: 1px solid #efefef;
+}
+
+.containerMiddle p
+{
+	background-color: #efefef;
+	color: #50779d;
+}
+
+.newsItem
+{
+	width: 433px;
+	height: 125px;
+	ocerflow: hidden;
+}
+
+.hide
+{
+	display: none;
+}
+
+#newsItems
+{
+	height: 190px;
+	overflow: hidden;
+	width: 475px;
 }

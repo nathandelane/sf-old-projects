@@ -7,6 +7,8 @@ class _Index_Page extends PhyleBoxPage {
 	
 	public function _Index_Page() {
 		parent::__construct("Welcome to PhyleBox, a Service of PhyerNet");
+		
+		$this->registerStylesheet("_css/index.css");
 	}
 	
 	/**

@@ -2,8 +2,9 @@
 {
 	width: 100%;
 	overflow: hidden;
+	position: absolute;
+	bottom: 0;
 	background-color: #50779d;
-	margin-top: 10px;
 }
 
 #copyrightNotice
@@ -14,7 +15,7 @@
 
 #footerSubNavigation
 {
-	width: 350px;
+	width: 250px;
 	overflow: hidden;
 	margin: 10px;
 	float: right;
@@ -41,4 +42,16 @@
 	display: block;
 	float: left;
 	padding: 2px 4px;
+}
+
+#footerSubNavigation ul li a:link,
+#footerSubNavigation ul li a:active,
+#footerSubNavigation ul li a:visited
+{
+	text-decoration: underline;
+}
+
+#footerSubNavigation ul li a:hover
+{
+	text-decoration: none;
 }

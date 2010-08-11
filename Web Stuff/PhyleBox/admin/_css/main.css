@@ -15,9 +15,7 @@ img
 }
 
 label,
-input,
-select,
-textarea
+input
 {
 	width: 100%;
 	overflow: hidden;
@@ -36,18 +34,6 @@ a:hover
 	color: #efefef;
 }
 
-a:link,
-a:active,
-a:visited
-{
-	text-decoration: underline;
-}
-
-a:hover
-{
-	text-decoration: none;
-}
-
 legend
 {
 	color: #efefef;
@@ -60,14 +46,6 @@ fieldset
 	border-right: #F0F0F0 2px solid;
 	border-left: #F0F0F0 2px solid;
 	padding: 4px 9px 7px 9px;
-}
-
-h3
-{
-	font-size: 14px;
-	font-weight: bold;
-	margin: 0;
-	padding: 0 0 4px;
 }
 
 .root
@@ -89,31 +67,4 @@ h3
 	width: auto;
 	float: right;
 	height: 26px;
-}
-
-.breadcrumb
-{
-	width: 100%;
-	overflow: hidden;
-	background-color: #50779d;
-	padding: 4px 0;
-}
-
-.breadcrumb ul
-{
-	list-style-type: none;
-	margin: 0;
-	padding: 0 0 0 10px;
-	float: left;
-}
-
-.breadcrumb ul li
-{
-	float: left;
-	margin-right: 10px;
-}
-
-.hide
-{
-	display: none;
 }

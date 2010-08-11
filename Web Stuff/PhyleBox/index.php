@@ -18,8 +18,40 @@ $page->openDocument();
 	<?php $page->buttons["signUpNow"]->render(); ?>
 </div>
 <div class="column">
-	<div id="services">test</div>
+	<div id="newsItems">
+		<div class="containerTop"></div>
+		<div class="containerMiddle">
+			<h2>PhyerNet News</h2>
+			<div id="newsItem0" class="newsItem">
+				<h4>30 July 2010</h4>
+				Mandatory team meeting on Saturday, 31 July 2010, starting at 6:00 pm EST.
+			</div>
+			<div id="newsItem1" class="hide newsItem">
+				<h4>24 July 2010</h4>
+				Brace yourselves! The new and improved PhyerNet is almost ready!
+			</div>
+			<div id="newsItem2" class="hide newsItem">
+				<h4>20 June 2010</h4>
+				Chat system restored. Beta phase is nearly ended. We will give an update later.
+			</div>
+			<div id="newsItem3" class="hide newsItem">
+				<h4>19 March 2010</h4>
+				We are still restoring services. Updates can also be found here: 
+				<a href="http://www.twitter.com/phyernet">www.twitter.com/phyernet</a>
+				.
+			</div>
+		</div>
+		<div class="containerBottom"></div>
+	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		if ($Phyer) {
+			$Phyer.News.showNewsItem(0);
+			$Phyer.News._startRotation();
+		}
+	});
+</script>
 <?php
 
 $page->closeDocument();
