@@ -151,6 +151,16 @@ class Strings {
 		return str_replace($search, $replacement, $source);
 	}
 	
+	/**
+	 * isNullOrEmpty
+	 * Determines whether a reference in null or an empty string.
+	 * @param string $source
+	 * @return bool
+	 */
+	public static function isNullOrEmpty(/*string*/ $source) {
+		return (is_null($source) || empty($source));
+	}
+	
 }
 
 ?>

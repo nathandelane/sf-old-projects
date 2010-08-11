@@ -179,8 +179,6 @@ final class HashCollectionEnumerator implements IEnumerator {
 			$this->_cursor++;
 		}
 		
-		$this->_logger->sendMessage(LOG_DEBUG, "Cursor: $this->_cursor, Key: $this->_currentKey, Value: $this->_currentValue, foundation/collections/HashCollection");
-		
 		return $result;
 	}
 	
