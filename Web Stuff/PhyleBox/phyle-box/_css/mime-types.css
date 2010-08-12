@@ -1,0 +1,19 @@
+.typeDirectory,
+.typexml
+{
+	background-image: url(../_img/FileManager-SmallIcons.gif);
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+}
+
+.typeDirectory
+{
+	background-position: -16px 0;
+}
+
+.typexml
+{
+	background-position: -48px 0;
+}

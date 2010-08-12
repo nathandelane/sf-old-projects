@@ -9,6 +9,12 @@ body
 	color: #efefef;
 }
 
+form
+{
+	margin: 0;
+	padding: 0;
+}
+
 img
 {
 	border: 0;

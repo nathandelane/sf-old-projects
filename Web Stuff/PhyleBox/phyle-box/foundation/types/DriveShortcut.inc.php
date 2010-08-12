@@ -11,6 +11,7 @@ require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/ArgumentTypeValid
  */
 final class DriveShortcut {
 	
+	public $id;
 	public $name;
 	public $location;
 	public $totalDiskspace;
@@ -18,18 +19,21 @@ final class DriveShortcut {
 	
 	/**
 	 * Constructor
+	 * @param int $id;
 	 * @param string $name
 	 * @param string $location
 	 * @param number $totalDiskspace
 	 * @param int $type
 	 * @return DriveShortcut
 	 */
-	public function DriveShortcut(/*string*/ $name, /*string*/ $location, /*number*/ $totalDiskspace, /*int*/ $type) {
+	public function DriveShortcut(/*string*/ $id, /*string*/ $name, /*string*/ $location, /*number*/ $totalDiskspace, /*int*/ $type) {
+		ArgumentTypeValidator::isInteger($id, "Id must be an integer.");
 		ArgumentTypeValidator::isString($name, "Name must be a string.");
 		ArgumentTypeValidator::isString($location, "Location must be a string.");
 		ArgumentTypeValidator::isNumeric($totalDiskspace, "TotalDiskspace must be a Number.");
 		ArgumentTypeValidator::isInteger($type, "Type must be an integer.");
 		
+		$this->id = $id;
 		$this->name = $name;
 		$this->location = $location;
 		$this->totalDiskspace = $totalDiskspace;
@@ -42,7 +46,7 @@ final class DriveShortcut {
 	 * @return string
 	 */
 	public function __toString() {
-		return sprintf('Name: %1$s, Location: %2$s, TotalDiskspace: %3$s, Type: %4$s', $this->name, $this->location, $this->totalDiskspace, $this->type);
+		return sprintf('Id: %1$s, Name: %2$s, Location: %3$s, TotalDiskspace: %4$s, Type: %5$s', $this->id, $this->name, $this->location, $this->totalDiskspace, $this->type);
 	}
 	
 }

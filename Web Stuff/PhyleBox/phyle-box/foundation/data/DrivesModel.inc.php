@@ -85,14 +85,14 @@ class DrivesModel implements IEnumerable, IReadable {
 	 * @return void
 	 */
 	private function _collectPersonalDrives() {
-		$personalDriveQuery = "select pd.drive_location, pd.additional_space, at.allotted_space from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$this->_userName}' and at.id = p.account_type and pd.person = p.id";
+		$personalDriveQuery = "select pd.id, pd.drive_location, pd.additional_space, at.allotted_space from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$this->_userName}' and at.id = p.account_type and pd.person = p.id";
 		$rows = self::$__queryHandler->executeQuery($personalDriveQuery);
 		
 		if (count($rows) > 0) {
 			foreach ($rows as $nextRow) {
-				$nextShortcut = new DriveShortcut("Personal Drive", $nextRow["drive_location"], (doubleval($nextRow["allotted_space"]) + doubleval($nextRow["additional_space"])), DriveType::PERSONAL);
+				$nextShortcut = new DriveShortcut(intval($nextRow["id"]), "Personal Drive", $nextRow["drive_location"], (doubleval($nextRow["allotted_space"]) + doubleval($nextRow["additional_space"])), DriveType::PERSONAL);
 				
-				$this->_model[$nextRow["drive_location"]] = $nextShortcut;
+				$this->_model[sprintf('%1$s-%2$s', DriveType::PERSONAL, $nextRow["id"])] = $nextShortcut;
 			}
 		}
 	}
@@ -103,14 +103,14 @@ class DrivesModel implements IEnumerable, IReadable {
 	 * @return void
 	 */
 	private function _collectPersonalStorage() {
-		$storageQuery = "select ps.storage_location, ps.allotted_space from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$this->_userName}' and ps.person = p.id";
+		$storageQuery = "select ps.id, ps.storage_location, ps.allotted_space from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$this->_userName}' and ps.person = p.id";
 		$rows = self::$__queryHandler->executeQuery($storageQuery);
 		
 		if (count($rows) > 0) {
 			foreach ($rows as $nextRow) {
-				$nextShortcut = new DriveShortcut("Personal Storage", $nextRow["storage_location"], doubleval($nextRow["allotted_space"]), DriveType::STORAGE);
+				$nextShortcut = new DriveShortcut(intval($nextRow["id"]), "Personal Storage", $nextRow["storage_location"], doubleval($nextRow["allotted_space"]), DriveType::STORAGE);
 				
-				$this->_model[$nextRow["storage_location"]] = $nextShortcut;
+				$this->_model[sprintf('%1$s-%2$s', DriveType::STORAGE, $nextRow["id"])] = $nextShortcut;
 			}
 		}
 	}
@@ -121,14 +121,14 @@ class DrivesModel implements IEnumerable, IReadable {
 	 * @return void
 	 */
 	private function _collectGroupDrives() {
-		$storageQuery = "select gd.drive_location, gd.allotted_space, pg.name from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$this->_userName}' and g.person = p.id and g.group = pg.id and gd.group = pg.id";
+		$storageQuery = "select gd.id, gd.drive_location, gd.allotted_space, pg.name from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$this->_userName}' and g.person = p.id and g.group = pg.id and gd.group = pg.id";
 		$rows = self::$__queryHandler->executeQuery($storageQuery);
 		
 		if (count($rows) > 0) {
 			foreach ($rows as $nextRow) {
-				$nextShortcut = new DriveShortcut("{$nextRow["name"]} Group Drive", $nextRow["drive_location"], doubleval($nextRow["allotted_space"]), DriveType::GROUP);
+				$nextShortcut = new DriveShortcut(intval($nextRow["id"]), "{$nextRow["name"]} Group Drive", $nextRow["drive_location"], doubleval($nextRow["allotted_space"]), DriveType::GROUP);
 				
-				$this->_model[$nextRow["drive_location"]] = $nextShortcut;
+				$this->_model[sprintf('%1$s-%2$s', DriveType::GROUP, $nextRow["id"])] = $nextShortcut;
 			}
 		}
 	}

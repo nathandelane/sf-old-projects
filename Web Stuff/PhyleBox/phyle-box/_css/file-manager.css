@@ -125,3 +125,69 @@
 {
 	width: auto;
 }
+
+.fileList
+{
+	width: 100%;
+	overflow: hidden;
+}
+
+.fileListTable
+{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.fileListTable caption
+{
+	background-color: #50779d;
+	border-bottom: 1px solid #7097cd;
+	padding: 2px 0;
+}
+
+.fileListTable thead
+{
+	background-color: #50779d;
+	padding-bottom: 2px;
+}
+
+.fileListTable td
+{
+	text-align: left;
+}
+
+.fileListTable td.checkBox,
+.fileListTable td.icon
+{
+	width: 90px;
+	overflow: hidden;
+	text-align: center;
+}
+
+.fileListTable td.checkBox label,
+.fileListTable td.checkBox input
+{
+	display: inline;
+	width: auto;
+}
+
+.fileListTable td.size
+{
+	text-align: right;
+	padding-right: 10px;
+}
+
+.fileListTable tr
+{
+	cursor: pointer;
+}
+
+.fileListTable tr.oddRow
+{
+	background-color: #50779d;
+}
+
+.selected
+{
+	background-color: #ffaa00;
+}

@@ -4,9 +4,9 @@ require_once(dirname(__FILE__) . "/../../Config.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/collections/HashCollection.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/IRenderable.inc.php");
-require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/IPage.inc.php");
 require_once(PhyleBox_Config::getLocalFoundationLocation() . "data/DrivesModel.inc.php");
 require_once(PhyleBox_Config::getLocalFoundationLocation() . "types/DriveShortcut.inc.php");
+require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxPage.inc.php");
 
 /**
  * SelectDrive
@@ -23,11 +23,11 @@ class SelectDrive implements IRenderable {
 	
 	/**
 	 * Constructor
-	 * @param IPage $page
+	 * @param PhyleBoxPage $page
 	 * @param string $formId
 	 * @return SelectDrive
 	 */
-	public function SelectDrive(IPage $page, /*string*/ $formId) {
+	public function SelectDrive(PhyleBoxPage $page, /*string*/ $formId) {
 		ArgumentTypeValidator::isString($formId, "FormID must be a string.");
 		
 		$this->_drivesModel = new DrivesModel($page);
@@ -45,6 +45,7 @@ class SelectDrive implements IRenderable {
 		}
 		
 		$this->_page->getLogger()->sendMessage(LOG_DEBUG, "Selected Drive: {$this->_selectedDrive}");
+		$this->_page->getBreadcrumb()->setBreadcrumb(array("Home" => PhyleBox_Config::getPhyleBoxRoot(), "File Manager" => PhyleBox_Config::getPhyleBoxRoot() . "/file-manager.php", "[{$this->_selectedDrive->name}] /" => null));
 	}
 	
 	/**
@@ -60,9 +61,9 @@ class SelectDrive implements IRenderable {
 			<div id="driveInfo">
 				<a id="selectedDrive" href="#"><?php echo "{$this->_selectedDrive->name}"; ?></a>
 				<div class="smallDriveSpace">
-					<div class="smallUsedSpace" style="width: 15%;"></div>
+					<div id="selectedDriveUsedSpace" class="smallUsedSpace"></div>
 				</div>
-				<div class="driveSpacePercentage">85% Free</div>
+				<div id="driveSpacePercentage" class="driveSpacePercentage"></div>
 			</div>
 			<div id="driveSelectorContainer" class="hide">
 				<select id="driveSelector" name="driveSelector">
@@ -78,7 +79,7 @@ class SelectDrive implements IRenderable {
 			if ($nextDriveShortcut instanceof DriveShortcut) {
 			
 ?>
-					<option value="<?php echo "{$nextDriveShortcut->location}"; ?>"><?php echo"{$nextDriveShortcut->name}"; ?></option>
+					<option value="<?php echo "{$nextDriveShortcut->type}-{$nextDriveShortcut->id}"; ?>"><?php echo"{$nextDriveShortcut->name}"; ?></option>
 <?php
 			
 			}
@@ -91,12 +92,17 @@ class SelectDrive implements IRenderable {
 		</li>
 	</ul>
 	<script type="text/javascript">
-		$("#selectedDrive").bind("click", function() {
-			$("#driveInfo").attr("class", "hide");
-			$("#driveSelectorContainer").attr("class", "");
-		});
-		$("#driveSelectorButton").bind("click", function() {
-			$("#<?php echo "$this->_formId"; ?>").submit();
+		$(document).ready(function() {
+			$("#selectedDrive").bind("click", function() {
+				$("#driveInfo").attr("class", "hide");
+				$("#driveSelectorContainer").attr("class", "");
+			});
+			$("#driveSelectorButton").bind("click", function() {
+				$("#<?php echo "$this->_formId"; ?>").submit();
+			});
+
+			$Phyer.FileManager.getDiskUsage("<?php echo "{$this->_selectedDrive->name}" ?>", "<?php echo "{$this->_selectedDrive->type}-{$this->_selectedDrive->id}" ?>", <?php echo "{$this->_selectedDrive->type}"?>);
+			$Phyer.FileManager.populateFileList("<?php echo "{$this->_selectedDrive->type}-{$this->_selectedDrive->id}" ?>", $("#currentDirectory").val());
 		});
 	</script>
 </div>

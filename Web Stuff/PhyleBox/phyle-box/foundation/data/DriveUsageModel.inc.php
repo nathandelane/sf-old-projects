@@ -7,7 +7,7 @@ require_once(PhyleBox_Config::getLocalFoundationLocation() . "types/DriveType.in
 
 /**
  * DriveUsageModel
- * This class represents the drive usage for a particular drive.
+ * This class represents the drive usage for a particular drive. Percentage is what's available. Kilobytes is what's used.
  * @author lanathan
  *
  */
@@ -30,14 +30,12 @@ class DriveUsageModel {
 		$this->_allottedSpace = $allottedSpace;		
 		
 		if (file_exists($absolutDirectoryPath)) {
-			$directoryHandle = opendir($absolutDirectoryPath);
+			$this->_kilobytes = $this->_calculateUsage($absolutDirectoryPath) / 1024;
 			
-			if (is_resource($directoryHandle)) {
-				$this->_calculateUsage($directoryHandle);
-				
-				closedir($directoryHandle);
+			if ($this->_allottedSpace > 0) {
+				$this->_percentage = round(($this->_kilobytes / $this->_allottedSpace), 0);
 			} else {
-				throw new Exception("Directory {$absolutDirectoryPath} does not exist or cannot be found.");
+				$this->_percentage = 0;
 			}
 		}
 	}
@@ -54,6 +52,8 @@ class DriveUsageModel {
 			$result = $this->_kilobytes;
 		} else 	if (Strings::equals($key, "percentage")) {
 			$result = $this->_percentage;
+		} else if (Strings::equals($key, "allotted")) {
+			$result = $this->_allottedSpace;
 		}
 		
 		return $result;
@@ -62,29 +62,30 @@ class DriveUsageModel {
 	/**
 	 * _calculateUsage
 	 * Calculates the usage in a directory and sets the internal usage variable.
-	 * @param resource $directoryHandle
+	 * @param string $directory
+	 * @throws Exception
 	 * @return void
 	 */
-	private function _calculateUsage(/*resource*/ $directoryHandle) {
-		$this->_kilobytes = 0;
-		
-		while ($nextFile = readdir($directoryHandle)) {
-			if ($nextFile != "." && $nextFile != "..") 	{
-				if (is_dir($directoryHandle . "/" . $nextFile)) {
-					$this->_kilobytes += directory_size($directoryHandle . "/" . $nextFile);
-				} else {
-					$this->_kilobytes += filesize($directoryHandle . "/" . $nextFile);
+	private function _calculateUsage(/*string*/ $directory) {
+		$directoryHandle = opendir($directory);
+			
+		if (is_resource($directoryHandle)) {
+			while ($nextFile = readdir($directoryHandle)) {
+				if ($nextFile != "." && $nextFile != "..") 	{
+					if (is_dir($directory . "/" . $nextFile)) {
+						$bytes += $this->_calculateUsage($directory . "/" . $nextFile);
+					} else {
+						$bytes += filesize($directory . "/" . $nextFile);
+					}
 				}
 			}
-		}
-		
-		$this->_kilobytes /= 1024;
-		
-		if ($this->_allottedSpace > 0) {
-			$this->_percentage = ($this->_kilobytes / $this->_allottedSpace);
+			
+			closedir($directoryHandle);
 		} else {
-			$this->_percentage = 100;
+			throw new Exception("Directory {$absolutDirectoryPath} does not exist or cannot be found.");
 		}
+		
+		return $bytes;
 	} 
 	
 }

@@ -79,6 +79,15 @@ abstract class PhyleBoxPage extends Page {
 	}
 	
 	/**
+	 * getBreadcrumb
+	 * Gets the breadcrumb object for the page.
+	 * @return Breadcrumb
+	 */
+	public function getBreadcrumb() {
+		return $this->_breadcrumb;
+	}
+	
+	/**
 	 * getAvatar
 	 * Gets the location for the current user's avatar.
 	 * @return string

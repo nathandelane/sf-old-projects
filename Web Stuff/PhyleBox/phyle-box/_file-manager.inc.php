@@ -11,6 +11,7 @@ require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/data/QueryHandler
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/data/QueryHandlerType.inc.php");
 require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxPage.inc.php");
 require_once(PhyleBox_Config::getLocalPresentationLocation() . "controls/FileManagerToolBar.inc.php");
+require_once(PhyleBox_Config::getLocalPresentationLocation() . "controls/FileList.inc.php");
 
 /**
  * _FileManager_Page
@@ -21,6 +22,7 @@ require_once(PhyleBox_Config::getLocalPresentationLocation() . "controls/FileMan
 class _FileManager_Page extends PhyleBoxPage {
 	
 	private $_toolBar;
+	private $_fileList;
 	
 	/**
 	 * Constructor
@@ -31,8 +33,12 @@ class _FileManager_Page extends PhyleBoxPage {
 		
 		$this->_breadcrumb->setBreadcrumb(array("Home" => PhyleBox_Config::getPhyleBoxRoot(), "File Manager" => null));
 		$this->_toolBar = new FileManagerToolBar($this);
+		$this->_fileList = new FileList();
 		
 		$this->registerStylesheet("_css/file-manager.css");
+		$this->registerStylesheet("_css/mime-types.css");
+		$this->registerScript("/_js/Phyer.js");
+		$this->registerScript("_js/FileManager.js");
 	}
 	
 	/**
@@ -44,9 +50,11 @@ class _FileManager_Page extends PhyleBoxPage {
 		
 ?>
 <form id="fileManagerForm" action="<?php echo $_SERVER["REQUEST_URI"]; ?>" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="currentDirectory" id="currentDirectory" value="/" />
 <?php
 		
 		$this->_toolBar->render();
+		$this->_fileList->render();
 	}
 	
 	/**

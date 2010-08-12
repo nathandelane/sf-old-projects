@@ -11,7 +11,9 @@ require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/Strings.inc.php")
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/data/QueryHandler.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/data/QueryHandlerType.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/business/JsonWebServiceBase.inc.php");
+require_once(PhyleBox_Config::getLocalFoundationLocation() . "data/DirectoryModel.inc.php");
 require_once(PhyleBox_Config::getLocalFoundationLocation() . "data/DriveUsageModel.inc.php");
+require_once(PhyleBox_Config::getLocalFoundationLocation() . "data/FileModel.inc.php");
 require_once(PhyleBox_Config::getLocalFoundationLocation() . "types/DriveType.inc.php");
 
 /**
@@ -22,10 +24,11 @@ require_once(PhyleBox_Config::getLocalFoundationLocation() . "types/DriveType.in
  */
 class FileManagementService extends JsonWebServiceBase {
 	
-	const USER_NAME = "userName";
+	const DIRECTORY_NAME = "directory";
 	const DRIVE_NAME = "name";
 	const DRIVE_LOCATION = "location";
 	const DRIVE_TYPE = "type";
+	const USER_NAME = "userName";
 	
 	private static $__instance;
 	private static $__queryHandler;
@@ -52,40 +55,129 @@ class FileManagementService extends JsonWebServiceBase {
 	public function getDiskSpaceUsedForDrive(/*object*/ $jsonObject) {
 		ArgumentTypeValidator::isObject($jsonObject, "JsonObject must be an object.");
 		
-		Assert::isTrue(isset($jsonObject->{FileManagementService::DRIVE_NAME}), "A string value named name was expected but not found.");
-		Assert::isTrue(isset($jsonObject->{FileManagementService::DRIVE_LOCATION}), "A string value named location was expected but not found.");
-		Assert::isTrue(isset($jsonObject->{FileManagementService::DRIVE_TYPE}), "An integer value named type was expected but not found.");
-		
 		$userName = $_SESSION["userName"];
-		$driveLocation = $jsonObject->{FileManagementService::DRIVE_LOCATION};
+		$driveName = $jsonObject->{FileManagementService::DRIVE_NAME};
+		list($type, $driveId) = Strings::split(($jsonObject->{FileManagementService::DRIVE_LOCATION}), "-");
+		$driveId = intval($driveId);
 		$driveType = intval($jsonObject->{FileManagementService::DRIVE_TYPE});
 		$allottedSpace = 0;
 		$driveQuery = "";
+		$driveUsageModel = null;
+		
+		Assert::isTrue(!is_null($driveId), "A string value named location was expected but not found.");
+		Assert::isTrue(!is_null($driveType), "An integer value named type was expected but not found.");
 		
 		if (!is_null($userName)) {
 			if ($driveType === DriveType::PERSONAL) {
-				$driveQuery = "select pd.additional_space, at.allotted_space from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.drive_location = '{$driveLocation}' and pd.person = p.id";
+				$driveQuery = "select pd.drive_location, pd.additional_space, at.allotted_space from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.id = '{$driveId}' and pd.person = p.id";
 			} else if ($driveType === DriveType::STORAGE) {
-				$driveQuery = "select ps.allotted_space from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.storage_location = '{$driveLocation}' and ps.person = p.id";
+				$driveQuery = "select ps.storage_location as drive_location, ps.allotted_space from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.id = '{$driveId}' and ps.person = p.id";
 			} else if ($driveType === DriveType::GROUP) {
-				$driveQuery = "select gd.allotted_space from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and g.person = p.id and g.group = pg.id and gd.group = pg.id and gd.drive_location = '{$driveLocation}'";
+				$driveQuery = "select gd.drive_location, gd.allotted_space from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and g.person = p.id and g.group = pg.id and gd.group = pg.id and gd.id = '{$driveId}'";
 			}
 			
 			if (!Strings::isNullOrEmpty($driveQuery)) {
 				$rows = self::$__queryHandler->executeQuery($driveQuery);
 				
+				$this->_logger->sendMessage(LOG_DEBUG, "Number of rows: " . count($rows));
+				
 				if (count($rows) > 0) {
-					$allottedSpace = intval($rows[0]["allottedSpace"]);
+					$allottedSpace = intval($rows[0]["allotted_space"]);
 					
 					if (array_key_exists("additional_space", $rows[0])) {
 						$allottedSpace += intval($rows[0]["additional_space"]);
 					}
+					
+					$this->_logger->sendMessage(LOG_DEBUG, "AllottedSpace: {$allottedSpace}");
+				}else {
+					$this->echoJsonError("Drive specified could not be found or does not exist.", "The drive that was specified either does not exist or it could not be found in the system.");
 				}
+			
+				$driveUsageModel = new DriveUsageModel($rows[0]["drive_location"], $allottedSpace);
+			} else {
+				$this->echoJsonError("Unrecognized drive type", "The drive type {$driveType} was not recognized as a valid drive type.");
 			}
 			
-			$driveUsageModel = new DriveUsageModel($driveLocation, $allottedSpace);
+			$this->echoJson(json_encode(array("kilobytes" => $driveUsageModel->kilobytes, "percentage" => $driveUsageModel->percentage, "allotted" => $driveUsageModel->allotted)));
+		} else {
+			$this->echoJsonError("No user is authenticated.", "You must be authenticated to use this service.");
+		}
+	}
+	
+	/**
+	 * listFoldersAndFilesForDriveAndDirectory
+	 * Returns a list of folders and files for a specific drive and directory.
+	 * @param object $jsonObject
+	 */
+	public function listFoldersAndFilesForDriveAndDirectory(/*object*/ $jsonObject) {
+		ArgumentTypeValidator::isObject($jsonObject, "JsonObject must be an object.");
+		
+		$userName = $_SESSION["userName"];
+		$locationComponents = Strings::split(($jsonObject->{FileManagementService::DRIVE_LOCATION}), "-");
+		$driveType = intval($locationComponents[0]);
+		$driveId = intval($locationComponents[1]);
+		$directoryName = $jsonObject->{FileManagementService::DIRECTORY_NAME};
+		$foldersAndFiles = array();
+		
+		Assert::isTrue(!is_null($driveId) && !is_null($driveType), "A string value named location was expected but not found.");
+		Assert::isTrue(!is_null($directoryName), "A string value named directory was expected but not found.");
+		
+		if (!is_null($userName)) {
+			if ($driveType === DriveType::PERSONAL) {
+				$driveQuery = "select pd.drive_location from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.id = '{$driveId}' and pd.person = p.id";
+			} else if ($driveType === DriveType::STORAGE) {
+				$driveQuery = "select ps.storage_location as drive_location from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.id = '{$driveId}' and ps.person = p.id";
+			} else if ($driveType === DriveType::GROUP) {
+				$driveQuery = "select gd.drive_location from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and g.person = p.id and g.group = pg.id and gd.group = pg.id and gd.id = '{$driveId}'";
+			}
 			
-			$this->echoJson(json_encode(array("kilobytes" => $driveUsageModel->kilobytes, "percentage" => $driveUsageModel->percentage)));
+			if (!Strings::isNullOrEmpty($driveQuery)) {
+				$rows = self::$__queryHandler->executeQuery($driveQuery);
+				
+				$this->_logger->sendMessage(LOG_DEBUG, "Number of rows: " . count($rows));
+				
+				if (count($rows) > 0) {
+					$driveLocation = $rows[0]["drive_location"];
+					$absoluteDirectoryLocation = $driveLocation . (Strings::startsWith($directoryName, "/") ? $directoryName : ("/" . $directoryName));
+					
+					if (is_dir($absoluteDirectoryLocation)) {
+						$directoryHandle = opendir($absoluteDirectoryLocation);
+						
+						if (is_resource($directoryHandle)) {							
+							$fileCounter = 0;
+							$directoryCounter = 0;
+							
+							while ($nextFile = readdir($directoryHandle)) {
+								$nextAbsolutePath = $absoluteDirectoryLocation . $nextFile;
+								
+								if (!Strings::equals($nextFile, ".")) {
+									if (is_dir($nextAbsolutePath)) {
+										$directoryCounter++;
+										$directoryModel = new DirectoryModel($nextAbsolutePath);
+										$modifiedTime = date("r", $directoryModel->modifiedTime);
+										$foldersAndFiles["dir{$directoryCounter}"] = array("type" => "Directory", "name" => $nextFile, "permissions" => $directoryModel->permissions, "size" => $directoryModel->size, "modifiedTime" => $modifiedTime);
+									} else {
+										$fileCounter++;
+										$fileModel = new FileModel($nextAbsolutePath);
+										$modifiedTime = date("r", $fileModel->modifiedTime);
+										$foldersAndFiles["file{$fileCounter}"] = array("type" => $fileModel->extension, "name" => $nextFile, "permissions" => $fileModel->permissions, "size" => $fileModel->size, "modifiedTime" => $modifiedTime);
+									}
+								}
+							}
+						
+							$this->echoJson(json_encode(array("directories" => $directoryCounter, "files" => $fileCounter, "contents" => $foldersAndFiles)));
+						} else {
+							$this->echoJsonError("Directory could not be read.", "The direcotry specified, {$absoluteDirectoryLocation} could not be read on this system.");
+						}
+					} else {
+						$this->echoJsonError("Directory specified is not a direcotry", "The directory that was specified, {$absoluteDirectoryLocation}, is not a directory on this system.");
+					}
+				} else {
+					$this->echoJsonError("Drive specified could not be found or does not exist.", "The drive that was specified either does not exist or it could not be found in the system.");
+				}
+			} else {
+				$this->echoJsonError("Unrecognized drive type", "The drive type {$driveType} was not recognized as a valid drive type.");
+			}
 		} else {
 			$this->echoJsonError("No user is authenticated.", "You must be authenticated to use this service.");
 		}
