@@ -1,8 +1,8 @@
 <?php
 
 require_once(dirname(__FILE__) . "/../../Config.inc.php");
-require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
-require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/IRenderable.inc.php");
+require_once(Nathandelane_Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
+require_once(Nathandelane_Config::getFrameworkRoot() . "presentation/IRenderable.inc.php");
 
 /**
  * GoogleAnalytics
@@ -19,10 +19,10 @@ class GoogleAnalytics implements IRenderable {
 	 * @param string $webSite
 	 * @return GoogleAnalytics
 	 */
-	public function PhyerNetGoogleAnalytics(/*string*/ $webSite) {
+	public function GoogleAnalytics(/*string*/ $webSite) {
 		ArgumentTypeValidator::isString($webSite, "WebSite must be a string in the form www.domain.com.");
 		
-		$this->_webPropertyId = PhyleBox_Config::getWebPropertyIdForSite($webSite);
+		$this->_webPropertyId = Nathandelane_Config::getWebPropertyIdForSite($webSite);
 	}
 	
 	/**
