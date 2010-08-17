@@ -31,7 +31,7 @@ a:visited
 
 a:hover
 {
-	text-decoration: underline;
+	text-decoration: overline;
 }
 
 a.selected:link,
@@ -39,7 +39,7 @@ a.selected:active,
 a.selected:visited,
 a.selected:hover
 {
-	text-decoration: underline;
+	text-decoration: overline;
 }
 
 #header
@@ -51,8 +51,13 @@ a.selected:hover
 
 #header .top
 {
-	height: 26px;
+	height: 36px;
 	overflow: hidden;
+}
+
+#header img
+{
+	margin: 10px 0 0;
 }
 
 #header img,
@@ -64,8 +69,8 @@ a.selected:hover
 #header ul
 {
 	list-style-type: none;
-	margin: 0;
-	padding: 2px 13px 0;
+	margin: 12px 0 0;
+	padding: 2px 17px 0;
 }
 
 #header ul li
@@ -73,6 +78,6 @@ a.selected:hover
 	float: left;
 	height: 26px;
 	padding: 0 13px 0 0;
-	font-size: 18px;
+	font-size: 22px;
 	font-style: italic;
 }

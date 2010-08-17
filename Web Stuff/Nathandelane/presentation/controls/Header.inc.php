@@ -35,13 +35,13 @@ final class Header implements IRenderable {
 		</a>
 		<ul id="navigation">
 			<li>
-				<a <?php $this->_renderIfSelected("resume"); ?>href="/resume.php">Resume</a>
+				<a <?php if ($this->_isSelected("resume") === true) { echo "class=\"selected\""; } ?>href="/resume.php">Resume</a>
 			</li>
 			<li>
-				<a  <?php $this->_renderIfSelected("projects"); ?>href="/projects/">Projects</a>
+				<a <?php if ($this->_isSelected("projects") === true) { echo "class=\"selected\""; } ?>href="/projects/">Projects</a>
 			</li>
 			<li>
-				<a  <?php $this->_renderIfSelected("web-reference"); ?>href="/web-references/">Web Reference</a>
+				<a <?php if ($this->_isSelected("web-reference") === true) { echo "class=\"selected\""; } ?>href="/web-references/">Web Reference</a>
 			</li>
 		</ul>
 	</div>
@@ -53,17 +53,21 @@ final class Header implements IRenderable {
 	}
 	
 	/**
-	 * _rednerIfSelected
+	 * _isSelected
 	 * Renders something if the section is selected.
 	 * @param string $section
-	 * @return void
+	 * @return bool
 	 */
-	private function _renderIfSelected(/*string*/ $section) {
+	private function _isSelected(/*string*/ $section) {
 		ArgumentTypeValidator::isString($section, "Section must be a string.");
 		
+		$isSelected = false;
+		
 		if (Strings::contains($_SERVER["REQUEST_URI"], $section)) {
-			echo "class=\"selected\" ";
+			$isSelected = true;
 		}
+		
+		return $isSelected;
 	}
 	
 }
