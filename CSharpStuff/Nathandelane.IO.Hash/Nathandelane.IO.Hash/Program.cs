@@ -6,15 +6,22 @@ using System.Text;
 
 namespace Nathandelane.IO.Hash
 {
-	class Program
+	class HashProgram
 	{
+		/// <summary>
+		/// Represents argument types.
+		/// </summary>
 		private enum ArgumentType
 		{
 			Name,
 			Value
 		}
 
-		public Program(Dictionary<string, string> arguments)
+		/// <summary>
+		/// Constructor for the program.
+		/// </summary>
+		/// <param name="arguments"></param>
+		public HashProgram(Dictionary<string, string> arguments)
 		{
 			string resource = String.Empty;
 			ResourceType resourceType = ResourceType.File;
@@ -78,13 +85,17 @@ namespace Nathandelane.IO.Hash
 			}
 		}
 
+		/// <summary>
+		/// Preogram entry point.
+		/// </summary>
+		/// <param name="args"></param>
 		static void Main(string[] args)
 		{
 			if (args.Length >= 4 && (String.Join(" ", args).Contains("-c") && (String.Join(" ", args).Contains("-s") || String.Join(" ", args).Contains("-f"))))
 			{
 				try
 				{
-					new Program(ParseArguments(args));
+					new HashProgram(ParseArguments(args));
 				}
 				catch (ArgumentException ex)
 				{
@@ -97,6 +108,11 @@ namespace Nathandelane.IO.Hash
 			}
 		}
 
+		/// <summary>
+		/// Parses command-line arguments.
+		/// </summary>
+		/// <param name="args"></param>
+		/// <returns></returns>
 		private static Dictionary<string, string> ParseArguments(string[] args)
 		{
 			Dictionary<string, string>  arguments = new Dictionary<string, string>();

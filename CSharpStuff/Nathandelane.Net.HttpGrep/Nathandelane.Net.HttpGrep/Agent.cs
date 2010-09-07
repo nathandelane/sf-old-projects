@@ -25,6 +25,7 @@ namespace Nathandelane.Net.HttpGrep
 		public void Run()
 		{
 			Uri requestUri = null;
+			WebProxy simpleWebProxy = null;
 
 			if (Uri.TryCreate(_context[Context.Url], UriKind.Absolute, out requestUri))
 			{
@@ -45,12 +46,18 @@ namespace Nathandelane.Net.HttpGrep
 
 				if (_context[Context.Proxy] != null)
 				{
-					Uri proxyAddress = null;
+					string[] proxyParts = _context[Context.Proxy].Split(new string[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
+					string address = proxyParts[0];
+					int port = 80;
 
-					if (Uri.TryCreate(_context[Context.Proxy], UriKind.Absolute, out proxyAddress))
+					if (proxyParts.Length == 2)
 					{
-						WebProxy simpleWebProxy = new WebProxy(proxyAddress);
+						port = Convert.ToInt32(proxyParts[1]);
 					}
+
+					simpleWebProxy = new WebProxy(address, port);
+
+					_request.Proxy = simpleWebProxy;
 				}
 
 				try
@@ -106,7 +113,7 @@ namespace Nathandelane.Net.HttpGrep
 
 					HtmlNodeCollection selectedNodes = _document.DocumentNode.SelectNodes(_context[Context.Find]);
 
-					if(selectedNodes != null && selectedNodes.Count > 0)
+					if (selectedNodes != null && selectedNodes.Count > 0)
 					{
 						foreach (HtmlNode nextNode in selectedNodes)
 						{

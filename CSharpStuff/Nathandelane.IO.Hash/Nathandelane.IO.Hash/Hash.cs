@@ -15,21 +15,36 @@ namespace Nathandelane.IO.Hash
 		private HashType _hashType;
 		private bool _isDisposed;
 
+		/// <summary>
+		/// Gets the hash resource value.
+		/// </summary>
 		public string ResourceValue
 		{
 			get { return _resourceValue; }
 		}
 
+		/// <summary>
+		/// Gets the resource type for the hash encryption.
+		/// </summary>
 		public ResourceType ResourceType
 		{
 			get { return _resourceType; }
 		}
 
+		/// <summary>
+		/// Gets the hash type.
+		/// </summary>
 		public HashType HashType
 		{
 			get { return _hashType; }
 		}
 
+		/// <summary>
+		/// Creates an instance of Hash.
+		/// </summary>
+		/// <param name="resourceValue"></param>
+		/// <param name="resourceType"></param>
+		/// <param name="hashType"></param>
 		public Hash(string resourceValue, ResourceType resourceType, HashType hashType)
 		{
 			_resourceValue = resourceValue;
@@ -39,6 +54,13 @@ namespace Nathandelane.IO.Hash
 			_isDisposed = false;
 		}
 
+		/// <summary>
+		/// Creates an instance of Hash.
+		/// </summary>
+		/// <param name="resourceValue"></param>
+		/// <param name="resourceType"></param>
+		/// <param name="hashType"></param>
+		/// <param name="desKey"></param>
 		public Hash(string resourceValue, ResourceType resourceType, HashType hashType, string desKey)
 		{
 			if (desKey.Length < 8)
@@ -54,6 +76,10 @@ namespace Nathandelane.IO.Hash
 			_isDisposed = false;
 		}
 
+		/// <summary>
+		/// Returns a string representation of Hash.
+		/// </summary>
+		/// <returns></returns>
 		public override string ToString()
 		{
 			if (String.IsNullOrEmpty(_resultingHash))
@@ -64,6 +90,10 @@ namespace Nathandelane.IO.Hash
 			return _resultingHash;
 		}
 
+		/// <summary>
+		/// Creates the hash.
+		/// </summary>
+		/// <returns>String representation of the resultant hash.</returns>
 		private string CreateHash()
 		{
 			StringBuilder sb = new StringBuilder();
@@ -89,6 +119,10 @@ namespace Nathandelane.IO.Hash
 			return sb.ToString();
 		}
 
+		/// <summary>
+		/// Gets the resource.
+		/// </summary>
+		/// <returns>String representation of the resource.</returns>
 		private string GetResource()
 		{
 			string resource = String.Empty;
@@ -108,6 +142,11 @@ namespace Nathandelane.IO.Hash
 			return resource;
 		}
 
+		/// <summary>
+		/// Gets a byte array representing the resultant hash.
+		/// </summary>
+		/// <param name="input"></param>
+		/// <returns></returns>
 		private byte[] GetHash(byte[] input)
 		{
 			byte[] output = new byte[0];
@@ -140,6 +179,11 @@ namespace Nathandelane.IO.Hash
 			return output;
 		}
 
+		/// <summary>
+		/// Computes a special DES hash variant.
+		/// </summary>
+		/// <param name="plaint"></param>
+		/// <returns></returns>
 		private byte[] ComputeDES(byte[] plaint)
 		{
 			byte[] result;
