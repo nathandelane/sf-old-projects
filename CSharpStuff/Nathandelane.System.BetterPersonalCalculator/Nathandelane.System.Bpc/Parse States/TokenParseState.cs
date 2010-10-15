@@ -30,6 +30,13 @@ namespace Nathandelane.System.Bpc
 	{
 		#region Methods
 
+		/// <summary>
+		/// Gets the next token while within a given token parse state.
+		/// </summary>
+		/// <param name="internalLine"></param>
+		/// <param name="token"></param>
+		/// <param name="state"></param>
+		/// <returns></returns>
 		public abstract bool GetNextToken(string internalLine, out Token token, out TokenParseState state);
 
 		#endregion

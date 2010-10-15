@@ -30,6 +30,13 @@ namespace Nathandelane.System.Bpc
 	{
 		#region Methods
 
+		/// <summary>
+		/// Gets the next token while within a postfix function parse state.
+		/// </summary>
+		/// <param name="internalLine"></param>
+		/// <param name="token"></param>
+		/// <param name="state"></param>
+		/// <returns></returns>
 		public override bool GetNextToken(string internalLine, out Token token, out TokenParseState state)
 		{
 			bool result = false;
