@@ -96,6 +96,9 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of CalculatorContext.
+		/// </summary>
 		private CalculatorContext()
 		{
 			_values = new Dictionary<string, Token>();

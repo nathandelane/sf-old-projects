@@ -54,6 +54,9 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of ProgramArguments.
+		/// </summary>
 		private ProgramArguments()
 		{
 			_args = new List<string>();

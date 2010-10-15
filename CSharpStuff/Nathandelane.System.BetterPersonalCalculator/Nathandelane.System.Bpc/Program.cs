@@ -38,6 +38,10 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of Program.
+		/// </summary>
+		/// <param name="args"></param>
 		private Program(ProgramArguments args)
 		{
 			bool continueExecution = true;
