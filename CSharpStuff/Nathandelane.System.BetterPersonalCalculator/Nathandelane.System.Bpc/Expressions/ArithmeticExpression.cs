@@ -30,6 +30,12 @@ namespace Nathandelane.System.Bpc
 	{
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of ArithmeticExpression.
+		/// </summary>
+		/// <param name="operation"></param>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
 		public ArithmeticExpression(Token operation, Expression left, Expression right)
 			: base(DeterminePrecedence(operation), operation, new List<Expression>() { left, right })
 		{

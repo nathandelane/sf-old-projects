@@ -30,6 +30,12 @@ namespace Nathandelane.System.Bpc
 	{
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of AssignmentExpression.
+		/// </summary>
+		/// <param name="operation"></param>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
 		public AssignmentExpression(Token operation, Expression left, Expression right)
 			: base(ExpressionPrecedence.Assignment, operation, new List<Expression>() { left, right })
 		{

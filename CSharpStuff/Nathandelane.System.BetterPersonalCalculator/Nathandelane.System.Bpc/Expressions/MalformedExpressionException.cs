@@ -30,6 +30,10 @@ namespace Nathandelane.System.Bpc
 	{
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of MalformedExpressionException.
+		/// </summary>
+		/// <param name="message"></param>
 		public MalformedExpressionException(string message)
 			: base(message)
 		{

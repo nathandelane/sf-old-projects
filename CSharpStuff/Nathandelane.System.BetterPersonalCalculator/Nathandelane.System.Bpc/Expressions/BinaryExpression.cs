@@ -30,6 +30,12 @@ namespace Nathandelane.System.Bpc
 	{
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of BinaryExpression.
+		/// </summary>
+		/// <param name="operation"></param>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
 		public BinaryExpression(Token operation, Expression left, Expression right)
 			: base(ExpressionPrecedence.Binary, operation, new List<Expression>() { left, right })
 		{

@@ -30,21 +30,44 @@ namespace Nathandelane.System.Bpc
 	{
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of FunctionExpression.
+		/// </summary>
+		/// <param name="function"></param>
+		/// <param name="operand"></param>
 		public FunctionExpression(Token function, Expression operand)
 			: base(ExpressionPrecedence.Function, function, new List<Expression>() { operand })
 		{
 		}
 
+		/// <summary>
+		/// Creates an instance of FunctionExpression.
+		/// </summary>
+		/// <param name="function"></param>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
 		public FunctionExpression(Token function, Expression left, Expression right)
 			: base(ExpressionPrecedence.Function, function, new List<Expression>() { left, right })
 		{
 		}
 
+		/// <summary>
+		/// Creates an instance of FunctionExpression.
+		/// </summary>
+		/// <param name="function"></param>
+		/// <param name="first"></param>
+		/// <param name="second"></param>
+		/// <param name="third"></param>
 		public FunctionExpression(Token function, Expression first, Expression second, Expression third)
 			: base(ExpressionPrecedence.Function, function, new List<Expression>() { first, second, third })
 		{
 		}
 
+		/// <summary>
+		/// Creates an instance of FunctionExpression.
+		/// </summary>
+		/// <param name="function"></param>
+		/// <param name="operands"></param>
 		public FunctionExpression(Token function, IList<Expression> operands)
 			: base(ExpressionPrecedence.Function, function, operands)
 		{

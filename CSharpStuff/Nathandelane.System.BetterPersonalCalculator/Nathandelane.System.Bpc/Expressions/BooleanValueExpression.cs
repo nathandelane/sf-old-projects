@@ -36,6 +36,10 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of BooleanValueExpression.
+		/// </summary>
+		/// <param name="value"></param>
 		public BooleanValueExpression(Token value)
 			: base(ExpressionPrecedence.BooleanValue, new NullToken(), new List<Expression>())
 		{
@@ -46,11 +50,19 @@ namespace Nathandelane.System.Bpc
 
 		#region Methods
 
+		/// <summary>
+		/// Evaluates this BooleanValueExpression.
+		/// </summary>
+		/// <returns></returns>
 		public override Token Evaluate()
 		{
 			return _value;
 		}
 
+		/// <summary>
+		/// Gets a string representation of this BooleanValueExpression.
+		/// </summary>
+		/// <returns></returns>
 		public override string ToString()
 		{
 			return _value.ToString();

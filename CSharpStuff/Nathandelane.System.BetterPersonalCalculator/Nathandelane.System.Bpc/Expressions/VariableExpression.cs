@@ -36,6 +36,10 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of VariableExpression.
+		/// </summary>
+		/// <param name="value"></param>
 		public VariableExpression(Token value)
 			: base(ExpressionPrecedence.Variable, new NullToken(), new List<Expression>())
 		{
@@ -46,11 +50,19 @@ namespace Nathandelane.System.Bpc
 
 		#region Methods
 
+		/// <summary>
+		/// Evaluates this VariableExpression.
+		/// </summary>
+		/// <returns></returns>
 		public override Token Evaluate()
 		{
 			return _value;
 		}
 
+		/// <summary>
+		/// Returns a string representation of this VariableExpression.
+		/// </summary>
+		/// <returns></returns>
 		public override string ToString()
 		{
 			return _value.ToString();

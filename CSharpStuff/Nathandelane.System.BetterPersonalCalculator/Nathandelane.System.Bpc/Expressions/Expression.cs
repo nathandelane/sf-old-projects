@@ -38,16 +38,25 @@ namespace Nathandelane.System.Bpc
 
 		#region Properties
 
+		/// <summary>
+		/// Gets this Expression's precedence.
+		/// </summary>
 		public ExpressionPrecedence Precedence
 		{
 			get { return _precedence; }
 		}
 
+		/// <summary>
+		/// Gets the operation of this expression.
+		/// </summary>
 		public Token Operation
 		{
 			get { return _operation; }
 		}
 
+		/// <summary>
+		/// Gets a list of operands of this expression.
+		/// </summary>
 		public IList<Expression> Operands
 		{
 			get { return _operands; }
@@ -57,6 +66,12 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of Expression.
+		/// </summary>
+		/// <param name="precedence"></param>
+		/// <param name="operation"></param>
+		/// <param name="operands"></param>
 		protected Expression(ExpressionPrecedence precedence, Token operation, IList<Expression> operands)
 		{
 			_precedence = precedence;
@@ -100,6 +115,10 @@ namespace Nathandelane.System.Bpc
 			return evaluation;
 		}
 
+		/// <summary>
+		/// Returns a string representation of this Expression.
+		/// </summary>
+		/// <returns></returns>
 		public override string ToString()
 		{
 			string[] strOperands = new string[_operands.Count];

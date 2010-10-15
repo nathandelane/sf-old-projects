@@ -38,6 +38,7 @@ namespace Nathandelane.System.Bpc
 		Constant,
 		Number,
 		Variable,
+		Set,
 		BooleanValue,
 		Add,
 		Subtract,

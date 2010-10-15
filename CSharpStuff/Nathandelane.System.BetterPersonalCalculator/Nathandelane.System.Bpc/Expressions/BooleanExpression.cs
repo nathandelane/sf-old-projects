@@ -30,6 +30,12 @@ namespace Nathandelane.System.Bpc
 	{
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of BooleanExpression.
+		/// </summary>
+		/// <param name="operation"></param>
+		/// <param name="left"></param>
+		/// <param name="right"></param>
 		public BooleanExpression(Token operation, Expression left, Expression right)
 			: base(ExpressionPrecedence.Boolean, operation, new List<Expression>() { left, right })
 		{
