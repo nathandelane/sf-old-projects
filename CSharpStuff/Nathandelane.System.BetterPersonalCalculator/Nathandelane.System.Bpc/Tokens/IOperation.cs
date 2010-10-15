@@ -28,6 +28,9 @@ namespace Nathandelane.System.Bpc
 {
 	public interface IOperation
 	{
+		/// <summary>
+		/// Gets the OperationType of a token.
+		/// </summary>
 		OperationType OperationType { get; }
 	}
 }

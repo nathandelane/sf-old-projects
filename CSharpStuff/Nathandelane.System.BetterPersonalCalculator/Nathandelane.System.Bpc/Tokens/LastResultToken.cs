@@ -37,11 +37,17 @@ namespace Nathandelane.System.Bpc
 
 		#region Properties
 
+		/// <summary>
+		/// Gets this LastResultToken's token type.
+		/// </summary>
 		public override TokenType Type
 		{
 			get { return TokenType.Constant; }
 		}
 
+		/// <summary>
+		/// Gets this LastResultToken's precedence.
+		/// </summary>
 		public override ExpressionPrecedence Precedence
 		{
 			get { return ExpressionPrecedence.Constant; }
@@ -51,11 +57,21 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of LastResultToken.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <param name="rep"></param>
 		public LastResultToken(string value, string rep)
 			: base(value, rep)
 		{
 		}
 
+		/// <summary>
+		/// Creates an instance of LastResultToken.
+		/// </summary>
+		/// <param name="other"></param>
+		/// <param name="rep"></param>
 		public LastResultToken(Token other, string rep)
 			: base(other, rep)
 		{

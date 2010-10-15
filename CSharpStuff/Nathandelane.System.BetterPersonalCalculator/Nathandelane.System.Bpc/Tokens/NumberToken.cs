@@ -42,16 +42,25 @@ namespace Nathandelane.System.Bpc
 
 		#region Properties
 
+		/// <summary>
+		/// Gets this NumberToken's token type.
+		/// </summary>
 		public override TokenType Type
 		{
 			get { return TokenType.Number; }
 		}
 
+		/// <summary>
+		/// Gets this number token's precedence.
+		/// </summary>
 		public override ExpressionPrecedence Precedence
 		{
 			get { return ExpressionPrecedence.Number; }
 		}
 
+		/// <summary>
+		/// Gets this NumberToken's representation.
+		/// </summary>
 		public string Representation
 		{
 			get { return _representation; }
@@ -61,29 +70,50 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of NumberToken.
+		/// </summary>
 		public NumberToken()
 			: base("0")
 		{
 		}
 
+		/// <summary>
+		/// Creates an instance of NumberToken.
+		/// </summary>
+		/// <param name="value"></param>
 		public NumberToken(string value)
 			: base(value)
 		{
 			_representation = value;
 		}
 
+		/// <summary>
+		/// Creates an instance of NumberToken.
+		/// </summary>
+		/// <param name="other"></param>
 		public NumberToken(Token other)
 			: base(other)
 		{
 			_representation = other.ToString();
 		}
 
+		/// <summary>
+		/// Creates an instance of NumberToken.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <param name="rep"></param>
 		public NumberToken(string value, string rep)
 			: base(value)
 		{
 			_representation = rep;
 		}
 
+		/// <summary>
+		/// Creates an instance of NumberToken.
+		/// </summary>
+		/// <param name="other"></param>
+		/// <param name="rep"></param>
 		public NumberToken(Token other, string rep)
 			: base(other)
 		{

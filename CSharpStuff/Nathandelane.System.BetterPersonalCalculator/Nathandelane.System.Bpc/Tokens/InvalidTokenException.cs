@@ -30,6 +30,10 @@ namespace Nathandelane.System.Bpc
 	{
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of InvalidTokenException.
+		/// </summary>
+		/// <param name="message"></param>
 		public InvalidTokenException(string message)
 			: base(message)
 		{

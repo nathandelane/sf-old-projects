@@ -37,6 +37,9 @@ namespace Nathandelane.System.Bpc
 
 		#region Properties
 
+		/// <summary>
+		/// Gets this InfixFunctionToken's operation type.
+		/// </summary>
 		public OperationType OperationType
 		{
 			get { return OperationType.InfixFunction; }
@@ -46,11 +49,19 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of InfixFunctionToken.
+		/// </summary>
+		/// <param name="value"></param>
 		public InfixFunctionToken(string value)
 			: base(value)
 		{
 		}
 
+		/// <summary>
+		/// Creates an instance of InfixFunctionToken.
+		/// </summary>
+		/// <param name="other"></param>
 		public InfixFunctionToken(Token other)
 			: base(other)
 		{

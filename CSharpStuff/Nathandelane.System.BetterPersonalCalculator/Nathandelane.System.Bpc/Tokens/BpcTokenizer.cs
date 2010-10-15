@@ -60,6 +60,10 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of BpcTokenizer.
+		/// </summary>
+		/// <param name="line"></param>
 		public BpcTokenizer(string line)
 		{
 			_tokens = new List<Token>();

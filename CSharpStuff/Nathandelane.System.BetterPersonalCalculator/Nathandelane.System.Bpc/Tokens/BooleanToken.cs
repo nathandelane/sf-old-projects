@@ -39,16 +39,25 @@ namespace Nathandelane.System.Bpc
 
 		#region Properties
 
+		/// <summary>
+		/// Gets this BooleanToken's token type.
+		/// </summary>
 		public override TokenType Type
 		{
 			get { return TokenType.Number; }
 		}
 
+		/// <summary>
+		/// Gets this BooleanToken's precedence.
+		/// </summary>
 		public override ExpressionPrecedence Precedence
 		{
 			get { return ExpressionPrecedence.Binary; }
 		}
 
+		/// <summary>
+		/// Gets this BooleanToken's representation.
+		/// </summary>
 		public string Representation
 		{
 			get { return _representation; }
@@ -58,18 +67,31 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of BooleanToken.
+		/// </summary>
+		/// <param name="value"></param>
 		public BooleanToken(string value)
 			: base(value.ToLowerInvariant())
 		{
 			_representation = value;
 		}
 
+		/// <summary>
+		/// Creates an instance of BooleanToken.
+		/// </summary>
+		/// <param name="other"></param>
 		public BooleanToken(Token other)
 			: base(other)
 		{
 			_representation = other.ToString();
 		}
 
+		/// <summary>
+		/// Creates an instance of BooleanToken.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <param name="rep"></param>
 		public BooleanToken(string value, string rep)
 			: base(value)
 		{

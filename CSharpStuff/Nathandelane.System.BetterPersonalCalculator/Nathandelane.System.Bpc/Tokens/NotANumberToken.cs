@@ -30,11 +30,17 @@ namespace Nathandelane.System.Bpc
 	{
 		#region Properties
 
+		/// <summary>
+		/// Gets this NotANumberToken's token type.
+		/// </summary>
 		public override TokenType Type
 		{
 			get { return TokenType.NotANumber; }
 		}
 
+		/// <summary>
+		/// Gets this NotANumberToken's precedence.
+		/// </summary>
 		public override ExpressionPrecedence Precedence
 		{
 			get { return ExpressionPrecedence.Number; }
@@ -44,6 +50,9 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of NotANumberToken.
+		/// </summary>
 		public NotANumberToken()
 			: base("i")
 		{

@@ -37,6 +37,9 @@ namespace Nathandelane.System.Bpc
 
 		#region Properties
 
+		/// <summary>
+		/// Gets this BooleanOperatorToken's precedence.
+		/// </summary>
 		public override ExpressionPrecedence Precedence
 		{
 			get { return ExpressionPrecedence.Binary; }
@@ -46,11 +49,19 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of BooleanOperatorToken.
+		/// </summary>
+		/// <param name="value"></param>
 		public BooleanOperatorToken(string value)
 			: base(value)
 		{
 		}
 
+		/// <summary>
+		/// Creates an instance of BooleanOperatorToken.
+		/// </summary>
+		/// <param name="other"></param>
 		public BooleanOperatorToken(Token other)
 			: base(other)
 		{

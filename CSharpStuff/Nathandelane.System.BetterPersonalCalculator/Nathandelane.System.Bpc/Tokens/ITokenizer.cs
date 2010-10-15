@@ -28,8 +28,14 @@ namespace Nathandelane.System.Bpc
 {
 	public interface ITokenizer
 	{
+		/// <summary>
+		/// Gets a list of tokens.
+		/// </summary>
 		IList<Token> Tokens { get; }
 
+		/// <summary>
+		/// Determines whether this ITokenizer has any tokens.
+		/// </summary>
 		bool HasTokens { get; }
 	}
 }

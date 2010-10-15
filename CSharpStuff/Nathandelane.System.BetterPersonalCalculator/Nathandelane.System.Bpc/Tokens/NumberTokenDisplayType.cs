@@ -26,7 +26,7 @@ using System.Text;
 
 namespace Nathandelane.System.Bpc
 {
-	public enum NumberTokenType
+	public enum NumberTokenDisplayType
 	{
 		Binary,
 		Decimal,

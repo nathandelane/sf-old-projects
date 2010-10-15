@@ -56,12 +56,20 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of FunctionToken.
+		/// </summary>
+		/// <param name="value"></param>
 		protected FunctionToken(string value)
 			: base(value)
 		{
 			_precedence = ExpressionPrecedence.Function;
 		}
 
+		/// <summary>
+		/// Creates an instance of FunctionToken.
+		/// </summary>
+		/// <param name="other"></param>
 		protected FunctionToken(Token other)
 			: base(other)
 		{

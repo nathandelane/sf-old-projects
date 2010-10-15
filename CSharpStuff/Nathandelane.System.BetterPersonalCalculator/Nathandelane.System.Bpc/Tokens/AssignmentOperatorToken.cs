@@ -45,11 +45,17 @@ namespace Nathandelane.System.Bpc
 			get { return OperationType.Infix; }
 		}
 
+		/// <summary>
+		/// Gets this AssignmentOperator's token type.
+		/// </summary>
 		public override TokenType Type
 		{
 			get { return TokenType.Variable; }
 		}
 
+		/// <summary>
+		/// Gets this AssignmentOperator's precedence.
+		/// </summary>
 		public override ExpressionPrecedence Precedence
 		{
 			get { return ExpressionPrecedence.Assignment; }
@@ -59,6 +65,9 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of AssignmentOperatorToken.
+		/// </summary>
 		public AssignmentOperatorToken()
 			: base("=")
 		{

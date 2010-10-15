@@ -37,11 +37,17 @@ namespace Nathandelane.System.Bpc
 
 		#region Properties
 
+		/// <summary>
+		/// Gets this CommentToken's token type.
+		/// </summary>
 		public override TokenType Type
 		{
 			get { return TokenType.Number; }
 		}
 
+		/// <summary>
+		/// Gets this CommentToken's precedence.
+		/// </summary>
 		public override ExpressionPrecedence Precedence
 		{
 			get { return ExpressionPrecedence.Number; }
@@ -51,11 +57,19 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of CommentToken.
+		/// </summary>
+		/// <param name="value"></param>
 		public CommentToken(string value)
 			: base(value)
 		{
 		}
 
+		/// <summary>
+		/// Creates an instance of CommentToken.
+		/// </summary>
+		/// <param name="other"></param>
 		public CommentToken(Token other)
 			: base(other)
 		{

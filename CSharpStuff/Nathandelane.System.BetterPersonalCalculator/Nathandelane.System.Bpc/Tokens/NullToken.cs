@@ -30,11 +30,17 @@ namespace Nathandelane.System.Bpc
 	{
 		#region Properties
 
+		/// <summary>
+		/// Gets this NullToken's token type.
+		/// </summary>
 		public override TokenType Type
 		{
 			get { return TokenType.Null; }
 		}
 
+		/// <summary>
+		/// Gets this NullToken's precedence.
+		/// </summary>
 		public override ExpressionPrecedence Precedence
 		{
 			get { return ExpressionPrecedence.Number; }
@@ -44,11 +50,14 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of NullToken.
+		/// </summary>
 		public NullToken()
 			: base(String.Empty)
 		{
 		}
 
 		#endregion
-}
+	}
 }
