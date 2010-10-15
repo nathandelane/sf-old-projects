@@ -37,6 +37,9 @@ namespace Nathandelane.System.Bpc
 
 		#region Properties
 
+		/// <summary>
+		/// Gets this PrefixFunctionToken's operation type.
+		/// </summary>
 		public OperationType OperationType
 		{
 			get { return OperationType.PrefixFunction; }
@@ -46,11 +49,19 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of PrefixFunctionToken.
+		/// </summary>
+		/// <param name="value"></param>
 		public PrefixFunctionToken(string value)
 			: base(value)
 		{
 		}
 
+		/// <summary>
+		/// Creates an instance of PrefixFunctionToken.
+		/// </summary>
+		/// <param name="other"></param>
 		public PrefixFunctionToken(Token other)
 			: base(other)
 		{

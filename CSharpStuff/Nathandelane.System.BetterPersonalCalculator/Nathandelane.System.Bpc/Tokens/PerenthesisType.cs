@@ -26,6 +26,9 @@ using System.Text;
 
 namespace Nathandelane.System.Bpc
 {
+	/// <summary>
+	/// Defaines the different types of perentheses that are possible.
+	/// </summary>
 	public enum PerenthesisType
 	{
 		Closed,

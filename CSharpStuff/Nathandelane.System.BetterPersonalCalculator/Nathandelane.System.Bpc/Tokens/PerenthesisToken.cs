@@ -39,16 +39,25 @@ namespace Nathandelane.System.Bpc
 
 		#region Properties
 
+		/// <summary>
+		/// Gets this PerenthesisToken's perenthesis type.
+		/// </summary>
 		public PerenthesisType PerenthesisType
 		{
 			get { return _perenthesisType; }
 		}
 
+		/// <summary>
+		/// Gets this PerenthesisToken's token type.
+		/// </summary>
 		public override TokenType Type
 		{
 			get { return TokenType.Number; }
 		}
 
+		/// <summary>
+		/// Gets this PerenthesisToken's precedence.
+		/// </summary>
 		public override ExpressionPrecedence Precedence
 		{
 			get { return ExpressionPrecedence.Number; }
@@ -58,11 +67,19 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of PerenthesisToken.
+		/// </summary>
+		/// <param name="value"></param>
 		public PerenthesisToken(string value)
 			: base(value)
 		{
 		}
 
+		/// <summary>
+		/// Creates an instance of PerenthesisToken.
+		/// </summary>
+		/// <param name="other"></param>
 		public PerenthesisToken(Token other)
 			: base(other)
 		{

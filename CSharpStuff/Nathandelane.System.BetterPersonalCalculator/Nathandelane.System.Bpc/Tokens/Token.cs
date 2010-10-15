@@ -37,8 +37,14 @@ namespace Nathandelane.System.Bpc
 
 		#region Properties
 
+		/// <summary>
+		/// Gets this Token's token type.
+		/// </summary>
 		public abstract TokenType Type { get; }
 
+		/// <summary>
+		/// Gets this Token's precedence.
+		/// </summary>
 		public abstract ExpressionPrecedence Precedence { get; }
 
 		/// <summary>
@@ -53,11 +59,19 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of Token.
+		/// </summary>
+		/// <param name="value"></param>
 		protected Token(string value)
 		{
 			_value = value;
 		}
 
+		/// <summary>
+		/// Creates an instance of Token.
+		/// </summary>
+		/// <param name="other"></param>
 		protected Token(Token other)
 		{
 			_value = other._value;
@@ -77,6 +91,10 @@ namespace Nathandelane.System.Bpc
 			throw new NotImplementedException();
 		}
 
+		/// <summary>
+		/// Returns a string representation of this Token.
+		/// </summary>
+		/// <returns></returns>
 		public override string ToString()
 		{
 			return _value;

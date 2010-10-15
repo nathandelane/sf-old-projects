@@ -37,6 +37,9 @@ namespace Nathandelane.System.Bpc
 
 		#region Properties
 
+		/// <summary>
+		/// Gets this PostfixFunctionToken's operation type.
+		/// </summary>
 		public OperationType OperationType
 		{
 			get { return OperationType.PostfixFunction; }
@@ -46,11 +49,19 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of PostfixFunctionToken.
+		/// </summary>
+		/// <param name="value"></param>
 		public PostfixFunctionToken(string value)
 			: base(value)
 		{
 		}
 
+		/// <summary>
+		/// Creates an instance of PostfixFunctionToken.
+		/// </summary>
+		/// <param name="other"></param>
 		public PostfixFunctionToken(Token other)
 			: base(other)
 		{

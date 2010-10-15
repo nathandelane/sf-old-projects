@@ -30,11 +30,17 @@ namespace Nathandelane.System.Bpc
 	{
 		#region Properties
 
+		/// <summary>
+		/// Gets this OperatorToken's token type.
+		/// </summary>
 		public override TokenType Type
 		{
 			get { return TokenType.Operator; }
 		}
 
+		/// <summary>
+		/// Gets this OperatorToken's precedence.
+		/// </summary>
 		public override ExpressionPrecedence Precedence
 		{
 			get { throw new NotImplementedException(); }
@@ -44,11 +50,19 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of OperatorToken.
+		/// </summary>
+		/// <param name="value"></param>
 		protected OperatorToken(string value)
 			: base(value)
 		{
 		}
 
+		/// <summary>
+		/// Creates an instance of OperatorToken.
+		/// </summary>
+		/// <param name="other"></param>
 		protected OperatorToken(Token other)
 			: base(other)
 		{

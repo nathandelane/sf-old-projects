@@ -41,11 +41,17 @@ namespace Nathandelane.System.Bpc
 
 		#region Properties
 
+		/// <summary>
+		/// Gets this VariableToken's token type.
+		/// </summary>
 		public override TokenType Type
 		{
 			get { return TokenType.Variable; }
 		}
 
+		/// <summary>
+		/// Gets this VariableToken's precedence.
+		/// </summary>
 		public override ExpressionPrecedence Precedence
 		{
 			get { return ExpressionPrecedence.Variable; }
@@ -55,11 +61,20 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of VariableToken.
+		/// </summary>
+		/// <param name="value"></param>
 		public VariableToken(string value)
 			: base(value)
 		{
 		}
 
+		/// <summary>
+		/// Creates an instance of VariableToken.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <param name="rep"></param>
 		public VariableToken(string value, string rep)
 			: base(value, rep)
 		{

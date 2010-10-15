@@ -56,6 +56,10 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of PostfixTokenizer.
+		/// </summary>
+		/// <param name="stringTokenizer"></param>
 		public PostfixTokenizer(ITokenizer stringTokenizer)
 		{
 			_tokens = new List<Token>();

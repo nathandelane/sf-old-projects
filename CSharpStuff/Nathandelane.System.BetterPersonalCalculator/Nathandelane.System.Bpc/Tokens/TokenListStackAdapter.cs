@@ -36,6 +36,9 @@ namespace Nathandelane.System.Bpc
 
 		#region Properties
 
+		/// <summary>
+		/// Gets the number of tokens on the TokenListStack.
+		/// </summary>
 		public int Count
 		{
 			get { return _tokens.Count; }
@@ -45,6 +48,10 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructor
 
+		/// <summary>
+		/// Creates an instance of TokenListStackAdapter.
+		/// </summary>
+		/// <param name="tokens"></param>
 		public TokenListStackAdapter(IList<Token> tokens)
 		{
 			_tokens = tokens;
@@ -54,6 +61,10 @@ namespace Nathandelane.System.Bpc
 
 		#region Methods
 
+		/// <summary>
+		/// Removes the top token off of the stack and returns it.
+		/// </summary>
+		/// <returns></returns>
 		public Token Pop()
 		{
 			Token token = _tokens[_tokens.Count - 1];

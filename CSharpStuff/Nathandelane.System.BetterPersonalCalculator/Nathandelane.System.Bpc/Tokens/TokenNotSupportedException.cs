@@ -30,11 +30,18 @@ namespace Nathandelane.System.Bpc
 	{
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of TokenNotSupportedException.
+		/// </summary>
 		public TokenNotSupportedException()
 			: base()
 		{
 		}
 
+		/// <summary>
+		/// Creates an instance of TokenNotSupportedException.
+		/// </summary>
+		/// <param name="message"></param>
 		public TokenNotSupportedException(string message)
 			: base(message)
 		{
