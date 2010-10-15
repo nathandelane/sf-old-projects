@@ -1,5 +1,5 @@
 ﻿/*
-Nathan Lane, Nathandelane Copyright (C) 2009, Nathandelane.
+Nathan Lane, Nathandelane Copyright (C) 2010, Nathandelane.
 
 Copyright 1992, 1997-1999, 2000 Free Software Foundation, Inc.
 
@@ -39,6 +39,9 @@ namespace Nathandelane.System.Bpc
 
 		#region Properties
 
+		/// <summary>
+		/// Gets this ArithmeticOperatorToken's precedence.
+		/// </summary>
 		public override ExpressionPrecedence Precedence
 		{
 			get { return _precedence; }
@@ -48,12 +51,20 @@ namespace Nathandelane.System.Bpc
 
 		#region Constructors
 
+		/// <summary>
+		/// Creates an instance of ArithmeticOperatorToken.
+		/// </summary>
+		/// <param name="value"></param>
 		public ArithmeticOperatorToken(string value)
 			: base(value)
 		{
 			DeterminePrecedence(value);
 		}
 
+		/// <summary>
+		/// Creates an instance of ArithmeticOperatorToken.
+		/// </summary>
+		/// <param name="other"></param>
 		public ArithmeticOperatorToken(Token other)
 			: base(other)
 		{
@@ -103,6 +114,10 @@ namespace Nathandelane.System.Bpc
 			return token;
 		}
 
+		/// <summary>
+		/// Determines the operator precedence of the token.
+		/// </summary>
+		/// <param name="value"></param>
 		private void DeterminePrecedence(string value)
 		{
 			if (value.Equals("+", StringComparison.InvariantCultureIgnoreCase))

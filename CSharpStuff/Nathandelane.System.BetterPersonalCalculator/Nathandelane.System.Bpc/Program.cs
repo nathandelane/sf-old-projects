@@ -1,5 +1,5 @@
 ﻿/*
-Nathan Lane, Nathandelane Copyright (C) 2009, Nathandelane.
+Nathan Lane, Nathandelane Copyright (C) 2010, Nathandelane.
 
 Copyright 1992, 1997-1999, 2000 Free Software Foundation, Inc.
 
@@ -31,7 +31,7 @@ namespace Nathandelane.System.Bpc
 	class Program
 	{
 		#region Fields
-
+		
 		private CalculatorContext _context;
 
 		#endregion
@@ -63,7 +63,7 @@ namespace Nathandelane.System.Bpc
 					{
 						try
 						{
-							Console.WriteLine("{0}", PerformEvaluation(nextExpression));
+							Console.WriteLine("{0}", Evaluator.PerformEvaluation(nextExpression));
 						}
 						catch (Exception ex)
 						{
@@ -140,7 +140,7 @@ namespace Nathandelane.System.Bpc
 					{
 						try
 						{
-							Console.WriteLine("{0}", PerformEvaluation(nextExpression));
+							Console.WriteLine("{0}", Evaluator.PerformEvaluation(nextExpression));
 						}
 						catch (Exception ex)
 						{
@@ -163,7 +163,7 @@ namespace Nathandelane.System.Bpc
 			Console.WriteLine(@"PC.NET, BPC, and Better Personal Calculator are all names used to 
 describe this software which is copyrighted by:
 
-Nathan Lane, Nathandelane Copyright (C) 2009, Nathandelane.
+Nathan Lane, Nathandelane Copyright (C) 2010, Nathandelane.
 
 GNU General Public Licence, version 3.
 
@@ -198,7 +198,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 		/// </summary>
 		private void DisplayGreeting()
 		{
-			Console.WriteLine("BPC - Better Personal Calculator, Copyright (C) 2009 Nathandelane");
+			Console.WriteLine("BPC - Better Personal Calculator, Copyright (C) 2010 Nathandelane");
 
 			DisplayVersion();
 
@@ -301,65 +301,6 @@ Variables: assignment using =, inline usage, names must begin with underscore (_
 			}
 
 			return continueExecution;
-		}
-
-		/// <summary>
-		/// Performs an evaluation on an expression.
-		/// </summary>
-		/// <param name="expression"></param>
-		/// <returns></returns>
-		private string PerformEvaluation(string strExpression)
-		{
-			string strResult = "0";
-			ITokenizer tokenizer = new BpcTokenizer(strExpression);
-			ITokenizer postfixTokenizer = new PostfixTokenizer(tokenizer);
-			Expression expression = ExpressionYard.Formulate(postfixTokenizer);
-			Token result = expression.Evaluate();
-
-			if (result is VariableToken)
-			{
-				result = _context[result.ToString()];
-			}
-
-			strResult = String.Format("{0}", result);
-
-			if (result is NumberToken)
-			{
-				if (_context[CalculatorContext.DisplayBase].ToString().Equals("2", StringComparison.InvariantCultureIgnoreCase))
-				{
-					strResult = ((NumberToken)result).AsBin();
-
-					ResetDisplayBase();
-				}
-				else if (_context[CalculatorContext.DisplayBase].ToString().Equals("8", StringComparison.InvariantCultureIgnoreCase))
-				{
-					strResult = ((NumberToken)result).AsOct();
-
-					ResetDisplayBase();
-				}
-				else if (_context[CalculatorContext.DisplayBase].ToString().Equals("16", StringComparison.InvariantCultureIgnoreCase))
-				{
-					strResult = ((NumberToken)result).AsHex();
-
-					ResetDisplayBase();
-				}
-			}
-			else if (!(result is BooleanToken))
-			{
-				throw new Exception(String.Format("Unexpected token was returned as result. Type: {0} value: {1}", result.Type, result));
-			}
-
-			_context[CalculatorContext.LastResult] = result;
-
-			return strResult;
-		}
-
-		/// <summary>
-		/// Resets the display base to 10.
-		/// </summary>
-		private void ResetDisplayBase()
-		{
-			_context[CalculatorContext.DisplayBase] = new NumberToken("10", "10");
 		}
 
 		/// <summary>

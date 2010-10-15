@@ -20,45 +20,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Nathandelane.System.Bpc
 {
-	public class AssignmentExpression : Expression
+	/// <summary>
+	/// Enumeration for the SetContainer type
+	/// </summary>
+	public enum SetContainerType
 	{
-		#region Constructors
-
-		public AssignmentExpression(Token operation, Expression left, Expression right)
-			: base(ExpressionPrecedence.Assignment, operation, new List<Expression>() { left, right })
-		{
-		}
-
-		#endregion
-
-		#region Methods
-
-		/// <summary>
-		/// Evaluates this expression.
-		/// </summary>
-		/// <returns></returns>
-		public override Token Evaluate()
-		{
-			Token result = new NullToken();
-			Token left = Operands[1].Evaluate();
-			Token right = Operands[0].Evaluate();
-
-			if (left is VariableToken)
-			{
-				result = right;
-
-				CalculatorContext.GetInstance()[left.ToString()] = result;
-			}
-
-			return result;
-		}
-
-		#endregion
+		Closed,
+		Open
 	}
 }

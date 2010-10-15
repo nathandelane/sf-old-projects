@@ -27,37 +27,64 @@ using System.Text.RegularExpressions;
 
 namespace Nathandelane.System.Bpc
 {
-	public class ConstantToken : NumberToken
+	/// <summary>
+	/// Description of SetContainerToken.
+	/// </summary>
+	public class SetContainerToken : Token
 	{
 		#region Fields
 
-		private static readonly Regex __constantPattern = new Regex("^(e|E|pi|PI|phi|PHI){1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+		private static readonly Regex __setContainerPattern = new Regex("^[\\[\\]]{1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
+
+		private SetContainerType _setContainerType;
 
 		#endregion
 
 		#region Properties
 
-		public override TokenType Type
+		/// <summary>
+		/// Gets the SetContainerType.
+		/// </summary>
+		public SetContainerType SetContainerType
 		{
-			get { return TokenType.Constant; }
+			get { return _setContainerType; }
 		}
 
+		/// <summary>
+		/// Gets the token type.
+		/// </summary>
+		public override TokenType Type
+		{
+			get { return TokenType.Number; }
+		}
+
+		/// <summary>
+		/// Gets the expression precedence.
+		/// </summary>
 		public override ExpressionPrecedence Precedence
 		{
-			get { return ExpressionPrecedence.Constant; }
+			get { return ExpressionPrecedence.Number; }
 		}
 
 		#endregion
 
 		#region Constructors
 
-		public ConstantToken(string value, string rep)
-			: base(value, rep)
+		/// <summary>
+		/// Creates an instance of SectContainerToken.
+		/// </summary>
+		/// <param name="value"></param>
+		public SetContainerToken(string value)
+			: base(value)
 		{
 		}
 
-		public ConstantToken(Token other, string rep)
-			: base(other, rep)
+		/// <summary>
+		/// Creates an instance of SetContainerToken.
+		/// </summary>
+		/// <param name="other"></param>
+		public SetContainerToken(Token other)
+			: base(other)
 		{
 		}
 
@@ -71,13 +98,13 @@ namespace Nathandelane.System.Bpc
 		/// <param name="line">String from which to take the next token.</param>
 		/// <param name="token">Out parameter to send token to if successful.</param>
 		/// <returns></returns>
-		public new static bool TryParse(string line, out Token token)
+		public static bool TryParse(string line, out Token token)
 		{
 			bool parseSuccessful = false;
 
-			token = Parse(line);
+			token = new NullToken();
 
-			if (token is ConstantToken)
+			if ((token = Parse(line)) is SetContainerToken)
 			{
 				parseSuccessful = true;
 			}
@@ -86,7 +113,7 @@ namespace Nathandelane.System.Bpc
 		}
 
 		/// <summary>
-		/// Gets a Token of type ConstantToken from the beginning of a line of text.
+		/// Gets a Token of type SetContainerToken from the beginning of a line of text.
 		/// </summary>
 		/// <param name="line"></param>
 		/// <returns></returns>
@@ -94,21 +121,19 @@ namespace Nathandelane.System.Bpc
 		{
 			Token token = new NullToken();
 
-			if (ConstantToken.__constantPattern.IsMatch(line))
+			if (SetContainerToken.__setContainerPattern.IsMatch(line))
 			{
-				string matchText = ConstantToken.__constantPattern.Matches(line)[0].Value;
+				string matchText = SetContainerToken.__setContainerPattern.Matches(line)[0].Value;
 
-				if (matchText.Equals("e", StringComparison.InvariantCultureIgnoreCase))
+				token = new SetContainerToken(matchText);
+
+				if (matchText.Equals("(", StringComparison.InvariantCultureIgnoreCase))
 				{
-					token = new ConstantToken(Math.E.ToString(), matchText);
+					((SetContainerToken)token)._setContainerType = SetContainerType.Open;
 				}
-				else if (matchText.Equals("pi", StringComparison.InvariantCultureIgnoreCase))
+				else
 				{
-					token = new ConstantToken(Math.PI.ToString(), matchText);
-				}
-				else if (matchText.Equals("phi", StringComparison.InvariantCultureIgnoreCase))
-				{
-					token = new ConstantToken("1.61803398874989", matchText);
+					((SetContainerToken)token)._setContainerType = SetContainerType.Closed;
 				}
 			}
 

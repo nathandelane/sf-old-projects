@@ -26,37 +26,24 @@ using System.Text;
 
 namespace Nathandelane.System.Bpc
 {
-	public class AssignmentExpression : Expression
+	public static class DisplayBase
 	{
-		#region Constructors
+		#region Fields
 
-		public AssignmentExpression(Token operation, Expression left, Expression right)
-			: base(ExpressionPrecedence.Assignment, operation, new List<Expression>() { left, right })
-		{
-		}
+		public const string BinaryBase = "2";
+		public const string OctalBase = "8";
+		public const string HexadecimalBase = "16";
 
 		#endregion
 
 		#region Methods
 
 		/// <summary>
-		/// Evaluates this expression.
+		/// Resets the display base to 10.
 		/// </summary>
-		/// <returns></returns>
-		public override Token Evaluate()
+		public static void ResetDisplayBase()
 		{
-			Token result = new NullToken();
-			Token left = Operands[1].Evaluate();
-			Token right = Operands[0].Evaluate();
-
-			if (left is VariableToken)
-			{
-				result = right;
-
-				CalculatorContext.GetInstance()[left.ToString()] = result;
-			}
-
-			return result;
+			CalculatorContext.GetInstance()[CalculatorContext.DisplayBase] = new NumberToken("10", "10");
 		}
 
 		#endregion
