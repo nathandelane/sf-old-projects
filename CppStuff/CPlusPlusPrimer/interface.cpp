@@ -134,14 +134,14 @@ void sayWelcome(IPerson & person)
 /**
  * Program entry point.
  */
-int main()
-{
-	IPerson * author = (new Author());
-
-	author->SetFirstName("Nathan");
-	author->SetLastName("Lane");
-
-	sayWelcome(*author);
-
-	return 0;
-}
+//int main()
+//{
+//	IPerson * author = (new Author());
+//
+//	author->SetFirstName("Nathan");
+//	author->SetLastName("Lane");
+//
+//	sayWelcome(* author);
+//
+//	return 0;
+//}
