@@ -124,6 +124,14 @@ void Author::SetLastName(const string & lastName)
 }
 
 /**
+ * Says 'Welcome,..' to a person.
+ */
+void sayWelcome(IPerson & person)
+{
+	cout << "Welcome, " << person.GetFirstName() << " " << person.GetLastName() << endl;
+}
+
+/**
  * Program entry point.
  */
 int main()
@@ -133,7 +141,7 @@ int main()
 	author->SetFirstName("Nathan");
 	author->SetLastName("Lane");
 
-	cout << "Welcome, " << author->GetFirstName() << " " << author->GetLastName() << endl;
+	sayWelcome(*author);
 
 	return 0;
 }
