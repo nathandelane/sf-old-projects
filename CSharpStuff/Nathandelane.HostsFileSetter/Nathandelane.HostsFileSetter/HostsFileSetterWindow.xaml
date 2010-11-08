@@ -34,8 +34,8 @@
 		</Grid.RowDefinitions>
 		<Menu Grid.Row="0" IsMainMenu="True" VerticalAlignment="Top" Style="{StaticResource BlackGradientBackgroundStyle}">
 			<MenuItem Header="Hosts _File Setter">
-				<MenuItem Header="_New" Style="{StaticResource MenuItemStyle}" IsEnabled="False">
-					<MenuItem Header="_Custom Hosts File..." />
+				<MenuItem Header="_New" Style="{StaticResource MenuItemStyle}">
+					<MenuItem Header="_Custom Hosts File..." Click="CreateCustomHostsFile" />
 				</MenuItem>
 				<MenuItem Header="_Import..." Style="{StaticResource MenuItemStyle}" IsEnabled="False" />
 				<MenuItem Header="_Preferences..." Style="{StaticResource MenuItemStyle}" IsEnabled="False" />
