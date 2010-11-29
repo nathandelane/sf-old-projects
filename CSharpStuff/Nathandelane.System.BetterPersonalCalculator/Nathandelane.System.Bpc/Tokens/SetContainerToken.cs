@@ -36,7 +36,7 @@ namespace Nathandelane.System.Bpc
 
 		private static readonly Regex __setContainerPattern = new Regex("^[\\[\\]]{1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
-		private SetContainerType _setContainerType;
+		private SetContainerTokenType _setContainerType;
 
 		#endregion
 
@@ -45,7 +45,7 @@ namespace Nathandelane.System.Bpc
 		/// <summary>
 		/// Gets the SetContainerType.
 		/// </summary>
-		public SetContainerType SetContainerType
+		public SetContainerTokenType SetContainerType
 		{
 			get { return _setContainerType; }
 		}
@@ -129,11 +129,11 @@ namespace Nathandelane.System.Bpc
 
 				if (matchText.Equals("(", StringComparison.InvariantCultureIgnoreCase))
 				{
-					((SetContainerToken)token)._setContainerType = SetContainerType.Open;
+					((SetContainerToken)token)._setContainerType = SetContainerTokenType.Open;
 				}
 				else
 				{
-					((SetContainerToken)token)._setContainerType = SetContainerType.Closed;
+					((SetContainerToken)token)._setContainerType = SetContainerTokenType.Closed;
 				}
 			}
 

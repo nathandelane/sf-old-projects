@@ -26,7 +26,7 @@ namespace Nathandelane.System.Bpc
 	/// <summary>
 	/// Enumeration for the SetContainer type
 	/// </summary>
-	public enum SetContainerType
+	public enum SetContainerTokenType
 	{
 		Closed,
 		Open

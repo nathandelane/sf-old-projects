@@ -41,7 +41,7 @@ namespace Nathandelane.System.Bpc
 		{
 			bool result = false;
 
-			if ((result = PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Closed))
+			if ((result = PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisTokenType.Closed))
 			{
 				state = new PerenthesisTokenParseState();
 			}

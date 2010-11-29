@@ -53,7 +53,7 @@ namespace Nathandelane.System.Bpc
 			{
 				state = new VariableTokenParseState();
 			}
-			else if((result = (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open)))
+			else if((result = (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisTokenType.Open)))
 			{
 				state = new PerenthesisTokenParseState();
 			}

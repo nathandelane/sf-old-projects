@@ -33,7 +33,7 @@ namespace Nathandelane.System.Bpc
 
 		private static readonly Regex __perenPattern = new Regex("^[()]{1}", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
-		private PerenthesisType _perenthesisType;
+		private PerenthesisTokenType _perenthesisType;
 
 		#endregion
 
@@ -42,7 +42,7 @@ namespace Nathandelane.System.Bpc
 		/// <summary>
 		/// Gets this PerenthesisToken's perenthesis type.
 		/// </summary>
-		public PerenthesisType PerenthesisType
+		public PerenthesisTokenType PerenthesisType
 		{
 			get { return _perenthesisType; }
 		}
@@ -126,11 +126,11 @@ namespace Nathandelane.System.Bpc
 
 				if (matchText.Equals("(", StringComparison.InvariantCultureIgnoreCase))
 				{
-					((PerenthesisToken)token)._perenthesisType = PerenthesisType.Open;
+					((PerenthesisToken)token)._perenthesisType = PerenthesisTokenType.Open;
 				}
 				else
 				{
-					((PerenthesisToken)token)._perenthesisType = PerenthesisType.Closed;
+					((PerenthesisToken)token)._perenthesisType = PerenthesisTokenType.Closed;
 				}
 			}
 

@@ -42,7 +42,7 @@ namespace Nathandelane.System.Bpc
 			bool result = false;
 			Token lastToken = CalculatorContext.GetInstance()[CalculatorContext.LastToken];
 
-			if((result = (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisType.Open)))
+			if((result = (PerenthesisToken.TryParse(internalLine, out token) && ((PerenthesisToken)token).PerenthesisType == PerenthesisTokenType.Open)))
 			{
 				state = new PerenthesisTokenParseState();
 			}

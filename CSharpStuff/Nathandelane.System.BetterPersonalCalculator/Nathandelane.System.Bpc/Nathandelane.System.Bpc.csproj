@@ -98,7 +98,7 @@
     <Compile Include="Expressions\FunctionExpression.cs" />
     <Compile Include="Tokens\LastResultToken.cs" />
     <Compile Include="Tokens\OperatorToken.cs" />
-    <Compile Include="Tokens\PerenthesisType.cs" />
+    <Compile Include="Tokens\PerenthesisTokenType.cs" />
     <Compile Include="Tokens\PostfixFunctionToken.cs" />
     <Compile Include="Tokens\FunctionToken.cs" />
     <Compile Include="Tokens\InfixFunctionToken.cs" />
@@ -117,7 +117,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tokens\SetContainerToken.cs" />
-    <Compile Include="Tokens\SetContainerType.cs" />
+    <Compile Include="Tokens\SetContainerTokenType.cs" />
     <Compile Include="Tokens\Token.cs" />
     <Compile Include="Expressions\ExpressionPrecedence.cs" />
     <Compile Include="Tokens\TokenListStackAdapter.cs" />

@@ -50,7 +50,7 @@ namespace Nathandelane.System.Bpc
 			{
 				state = new NullTokenParseState();
 			}
-			else if (((PerenthesisToken)lastToken).PerenthesisType == PerenthesisType.Open)
+			else if (((PerenthesisToken)lastToken).PerenthesisType == PerenthesisTokenType.Open)
 			{
 				if ((result = PrefixFunctionToken.TryParse(internalLine, out token)))
 				{
