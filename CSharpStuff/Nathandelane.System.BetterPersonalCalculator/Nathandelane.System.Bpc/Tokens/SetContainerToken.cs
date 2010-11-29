@@ -127,7 +127,7 @@ namespace Nathandelane.System.Bpc
 
 				token = new SetContainerToken(matchText);
 
-				if (matchText.Equals("(", StringComparison.InvariantCultureIgnoreCase))
+				if (matchText.Equals("[", StringComparison.InvariantCultureIgnoreCase))
 				{
 					((SetContainerToken)token)._setContainerType = SetContainerTokenType.Open;
 				}

@@ -80,6 +80,7 @@
     <Compile Include="Parse States\PerenthesisTokenParseState.cs" />
     <Compile Include="Parse States\PostfixFunctionParseState.cs" />
     <Compile Include="Parse States\PrefixFunctionTokenParseState.cs" />
+    <Compile Include="Parse States\SetContainerTokenParseState.cs" />
     <Compile Include="Parse States\TokenParseState.cs" />
     <Compile Include="Parse States\ValueTokenParseState.cs" />
     <Compile Include="Parse States\VariableTokenParseState.cs" />

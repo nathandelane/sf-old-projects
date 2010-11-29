@@ -27,7 +27,7 @@ using System.Text;
 namespace Nathandelane.System.Bpc
 {
 	/// <summary>
-	/// Defaines the different types of perentheses that are possible.
+	/// Defines the different types of perentheses that are possible.
 	/// </summary>
 	public enum PerenthesisTokenType
 	{
