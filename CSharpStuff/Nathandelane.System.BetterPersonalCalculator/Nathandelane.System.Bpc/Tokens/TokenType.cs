@@ -36,6 +36,7 @@ namespace Nathandelane.System.Bpc
 		Constant,
 		Number,
 		Variable,
+		RangeDelimiter,
 		Operator,
 		Boolean,
 		Function,
