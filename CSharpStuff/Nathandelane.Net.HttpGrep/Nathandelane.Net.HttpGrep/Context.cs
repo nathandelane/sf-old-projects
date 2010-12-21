@@ -155,15 +155,15 @@ namespace Nathandelane.Net.HttpGrep
 							{
 								if(argument.Equals("Post", StringComparison.InvariantCultureIgnoreCase))
 								{
-									string userInput = "";
-									string userInputLine = "";
+									ConsoleKeyInfo userInput;
+									string inputBody = String.Empty;
 
-									while (!(userInputLine = Console.ReadLine()).Trim().Equals("^D"))
+									while ((userInput = Console.ReadKey()) != null && !(userInput.Modifiers == ConsoleModifiers.Control && userInput.Key == ConsoleKey.D))
 									{
-										userInput += userInputLine;
+										inputBody += userInput.KeyChar;
 									}
 
-									_actualArguments[Context.Post] = userInput;
+									_actualArguments[Context.Post] = inputBody;
 								}
 								else
 								{
