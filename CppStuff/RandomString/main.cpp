@@ -6,56 +6,117 @@
  */
 
 #include <iostream>
-#include <sstream>
 #include <string>
+#include <cstring>
+#include <sstream>
 #include <cstdlib>
+#include <exception>
+#include <stdexcept>
 #include "RandomString.h"
+#include "UniqueLengthException.h"
 
-using namespace std;
-
-int main(int argc, char* argv[])
+int main(int argc, const char* argv[])
 {
+	const char* HexArgValue = "hex";
+	const char* HtmlFriendlyArgValue = "htmlfriendly";
+	const char* UniqueOnlyArgValue = "uniqueonly";
+	const char* AlphaOnlyArgValue = "alphaonly";
+	const char* AlphaNumericArgValue = "alphanumeric";
+
 	int length;
-	string printableCharacters = "";
+	bool printHexString = false;
+	bool uniqueOnly = false;
+	std::string printableCharacters = "";
 
 	if (argc == 1)
 	{
-		cout << "Usage: RandomString NUMBER-OF-CHARS [CHARS-TO-USE]" << endl << endl;
+		std::cout << "Usage: RandomString NUMBER-OF-CHARS [ [CHARS-TO-USE (overrides any other set)] [" << HexArgValue << "] [" << HtmlFriendlyArgValue << "] [" << UniqueOnlyArgValue << "] [" << AlphaOnlyArgValue << "]  [" << AlphaNumericArgValue << "] ]" << std::endl << std::endl;
 
 		return 1;
 	}
 	else if (argc >= 2)
 	{
-		string numberOfChars = string(argv[1]);
-		stringstream ss(numberOfChars);
+		std::string numberOfChars = std::string(argv[1]);
+		std::stringstream ss(numberOfChars);
 		ss >> length;
 
 		if (argc >= 3)
 		{
-			printableCharacters = string(argv[2]);
+			for (int argIndex = 2; argIndex < argc; argIndex++)
+			{
+				if (strcmp(argv[argIndex], HexArgValue) == 0)
+				{
+					printHexString = true;
+				}
+				else if (strcmp(argv[argIndex], HtmlFriendlyArgValue) == 0 and printableCharacters.empty())
+				{
+					printableCharacters = "0123456789@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+				}
+				else if (strcmp(argv[argIndex], AlphaOnlyArgValue) == 0 and printableCharacters.empty())
+				{
+					printableCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+				}
+				else if (strcmp(argv[argIndex], AlphaNumericArgValue) == 0 and printableCharacters.empty())
+				{
+					printableCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+				}
+				else if (strcmp(argv[argIndex], UniqueOnlyArgValue) == 0)
+				{
+					uniqueOnly = true;
+				}
+				else
+				{
+					if (printableCharacters.empty())
+					{
+						printableCharacters = std::string(argv[argIndex]);
+					}
+				}
+			}
 		}
 	}
 
-	RandomString randomString(length, printableCharacters);
-	string nextString = randomString.NextString();
-
-	for (int charIndex = 0; charIndex < length; charIndex++)
+	if (length > 0)
 	{
-		char nextChar = nextString[charIndex];
+		Nathandelane::RandomString randomString(length, printableCharacters, uniqueOnly);
 
-		cout << nextChar;
+		try
+		{
+			std::string nextString = randomString.NextString();
+
+			for (int charIndex = 0; charIndex < length; charIndex++)
+			{
+				char nextChar = nextString[charIndex];
+
+				std::cout << nextChar;
+			}
+
+			if (printHexString)
+			{
+				for (int charIndex = 0; charIndex < length; charIndex++)
+				{
+					int nextChar = nextString[charIndex];
+
+					std::cout << std::hex << nextChar;
+				}
+			}
+		}
+		catch(Nathandelane::UniqueLengthException& ex)
+		{
+			std::cout << ex.what() << std::endl << std::endl;
+			return 1;
+		}
+		catch(std::exception& ex)
+		{
+			std::cout << "Unexpected exception occurred: " << ex.what() << std::endl << std::endl;
+			return 1;
+		}
+	}
+	else
+	{
+		std::cout << "Length must be greater than zero.";
 	}
 
-	cout << endl << endl;
-
-	for (int charIndex = 0; charIndex < length; charIndex++)
-	{
-		int nextChar = nextString[charIndex];
-
-		cout << hex << nextChar;
-	}
-
-	cout << endl << endl;
+	std::cout << std::endl << std::endl;
 
 	return 0;
 }

@@ -8,65 +8,129 @@
 #include <stdlib.h>
 #include <ctime>
 #include <string>
+#include <sstream>
+#include <cstring>
 #include <iostream>
+#include <algorithm>
 #include "RandomString.h"
+#include "UniqueLengthException.h"
 
-using namespace std;
-
-/**
- * Creates an instance of RandomString.
- * @param int length
- * @param string printableCharacters
- */
-RandomString::RandomString(int length, string printableCharacters)
+namespace Nathandelane
 {
-	_numberOfPossibleChars = 93;
-	_length = length;
 
-	if (!printableCharacters.empty())
+	/**
+	 * Creates an instance of RandomString.
+	 * @param int length
+	 * @param string printableCharacters
+	 * @param bool uniqueOnly
+	 */
+	RandomString::RandomString(int length, std::string printableCharacters, bool uniqueOnly)
 	{
-		_numberOfPossibleChars = (printableCharacters.size() + 1);
-	}
-	else
-	{
-		printableCharacters = string("!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~");
-	}
+		srand(time(0));
 
-	_printableCharacters = new char[_numberOfPossibleChars];
+		_numberOfPossibleChars = 93;
+		_length = length;
+		_uniqueOnly = uniqueOnly;
+		_clock = clock();
 
-	for (int charCounter = 0; charCounter < _numberOfPossibleChars; charCounter++)
-	{
-		_printableCharacters[charCounter] = printableCharacters[charCounter];
-	}
-}
+		if (!printableCharacters.empty())
+		{
+			_numberOfPossibleChars = (printableCharacters.size() + 1);
+		}
+		else
+		{
+			printableCharacters = std::string("!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~");
+		}
 
-/**
- * Destructor for RandomString.
- */
-RandomString::~RandomString()
-{
-	_length = 0;
-	_printableCharacters = NULL;
-}
+		_printableCharacters = printableCharacters;
 
-/**
- * Generates the next random string.
- */
-string RandomString::NextString()
-{
-	string retVal = "";
-	int charCounter = 0;
-
-	srand(time(NULL));
-
-	while (charCounter <= _length)
-	{
-		int nextCharIndex = rand() % _numberOfPossibleChars;
-		char nextChar = _printableCharacters[nextCharIndex];
-
-		retVal += nextChar;
-		charCounter++;
+		random_shuffle(_printableCharacters.begin(), _printableCharacters.end());
 	}
 
-	return retVal;
+	/**
+	 * Destructor for RandomString.
+	 */
+	RandomString::~RandomString()
+	{
+		_length = 0;
+		_printableCharacters = "";
+	}
+
+	/**
+	 * Generates the next random string.
+	 */
+	std::string RandomString::NextString()
+	{
+		std::string retVal = "";
+
+		srand(time(0) + (clock() - _clock));
+
+		if (_uniqueOnly)
+		{
+			retVal = GenerateUniqueRandomString();
+		}
+		else
+		{
+			retVal = GenerateRandomString();
+		}
+
+		return retVal;
+	}
+
+	/**
+	 * Generates a random string with possible duplicates.
+	 */
+	std::string RandomString::GenerateRandomString()
+	{
+		std::stringstream retVal;
+		unsigned int charCounter = 0;
+
+		while (charCounter <= _length)
+		{
+			int nextCharIndex = rand() % _numberOfPossibleChars;
+			char nextChar = _printableCharacters[nextCharIndex];
+
+			retVal << nextChar;
+			charCounter++;
+		}
+
+		return retVal.str();
+	}
+
+	/**
+	 * Generates a random string that contains only unique characters.
+	 */
+	std::string RandomString::GenerateUniqueRandomString()
+	{
+		std::stringstream retVal;
+
+		if (_length > _printableCharacters.size())
+		{
+			std::stringstream ss;
+			ss << "Requested length (" << _length << ") was greater than possible characters (" << _printableCharacters.size() << ") for unique random string.";
+
+			std::string message = ss.str();
+
+			throw UniqueLengthException(message.c_str());
+		}
+
+		std::string remainingPrintableCharacters = _printableCharacters;
+		unsigned int charCounter = 0;
+		unsigned int numberOfPossibleCharacters = remainingPrintableCharacters.size();
+
+		while (charCounter <= _length)
+		{
+			int nextCharIndex = rand() % numberOfPossibleCharacters;
+			char nextChar = remainingPrintableCharacters[nextCharIndex];
+
+			retVal << nextChar;
+			charCounter++;
+
+			remainingPrintableCharacters.replace(nextCharIndex, 1, std::string(""));
+			numberOfPossibleCharacters = remainingPrintableCharacters.size();
+		}
+
+		return retVal.str();
+	}
+
 }
