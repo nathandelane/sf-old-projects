@@ -36,7 +36,7 @@ int main(int argc, const char* argv[])
 
 	if (argc == 1)
 	{
-		std::cout << "Usage: RandomString NUMBER-OF-CHARS [ [CHARS-TO-USE (overrides any other set)] [" << HexArgValue << "] [" << HtmlFriendlyArgValue << "] [" << UniqueOnlyArgValue << "] [" << AlphaOnlyArgValue << "] [" << AlphaNumericArgValue << "] ]" << std::endl << std::endl;
+		std::cout << "Usage: RandomString NUMBER-OF-CHARS [ [CHARS-TO-USE|" << HtmlFriendlyArgValue << "|" << AlphaOnlyArgValue << "|" << AlphaNumericArgValue << " (last named character set overrides)] [" << HexArgValue << "] [" << UniqueOnlyArgValue << "] ]" << std::endl << std::endl;
 
 		return 1;
 	}
