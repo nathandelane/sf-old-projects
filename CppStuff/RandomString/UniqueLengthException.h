@@ -8,9 +8,6 @@
 #ifndef UNIQUELENGTHEXCEPTION_H_
 #define UNIQUELENGTHEXCEPTION_H_
 
-
-#endif /* UNIQUELENGTHEXCEPTION_H_ */
-
 #include <string>
 #include <stdexcept>
 
@@ -24,3 +21,5 @@ namespace Nathandelane
 	};
 
 }
+
+#endif /* UNIQUELENGTHEXCEPTION_H_ */

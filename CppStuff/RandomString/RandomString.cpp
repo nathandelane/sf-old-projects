@@ -14,6 +14,11 @@
 #include <algorithm>
 #include "RandomString.h"
 #include "UniqueLengthException.h"
+#include "ICharacterSet.h"
+#include "DefaultCharacterSet.h"
+#include "HtmlFriendlyCharacterSet.h"
+#include "AlphaCharacterSet.h"
+#include "AlphaNumericCharacterSet.h"
 
 namespace Nathandelane
 {
@@ -24,36 +29,14 @@ namespace Nathandelane
 	 * @param string printableCharacters
 	 * @param bool uniqueOnly
 	 */
-	RandomString::RandomString(int length, std::string printableCharacters, bool uniqueOnly)
+	RandomString::RandomString(int length, Nathandelane::ICharacterSet & characterSet, bool uniqueOnly)
 	{
 		srand(time(0));
 
-		_numberOfPossibleChars = 93;
 		_length = length;
+		_characterSet = &characterSet;
 		_uniqueOnly = uniqueOnly;
 		_clock = clock();
-
-		if (!printableCharacters.empty())
-		{
-			_numberOfPossibleChars = (printableCharacters.size() + 1);
-		}
-		else
-		{
-			printableCharacters = std::string("!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~");
-		}
-
-		_printableCharacters = printableCharacters;
-
-		random_shuffle(_printableCharacters.begin(), _printableCharacters.end());
-	}
-
-	/**
-	 * Destructor for RandomString.
-	 */
-	RandomString::~RandomString()
-	{
-		_length = 0;
-		_printableCharacters = "";
 	}
 
 	/**
@@ -83,15 +66,18 @@ namespace Nathandelane
 	std::string RandomString::GenerateRandomString()
 	{
 		std::stringstream retVal;
+		std::string possibleCharacters = (* _characterSet).GetCharacters();
 		unsigned int charCounter = 0;
 
 		while (charCounter <= _length)
 		{
-			int nextCharIndex = rand() % _numberOfPossibleChars;
-			char nextChar = _printableCharacters[nextCharIndex];
+			unsigned int nextCharIndex = rand() % (* _characterSet).Size();
+			char nextChar = possibleCharacters[nextCharIndex];
 
 			retVal << nextChar;
 			charCounter++;
+
+			random_shuffle(possibleCharacters.begin(), possibleCharacters.end());
 		}
 
 		return retVal.str();
@@ -104,17 +90,17 @@ namespace Nathandelane
 	{
 		std::stringstream retVal;
 
-		if (_length > _printableCharacters.size())
+		if (_length > (* _characterSet).Size())
 		{
 			std::stringstream ss;
-			ss << "Requested length (" << _length << ") was greater than possible characters (" << _printableCharacters.size() << ") for unique random string.";
+			ss << "Requested length (" << _length << ") was greater than possible characters (" << (* _characterSet).Size() << ") for unique random string.";
 
 			std::string message = ss.str();
 
 			throw UniqueLengthException(message.c_str());
 		}
 
-		std::string remainingPrintableCharacters = _printableCharacters;
+		std::string remainingPrintableCharacters = (* _characterSet).GetCharacters();
 		unsigned int charCounter = 0;
 		unsigned int numberOfPossibleCharacters = remainingPrintableCharacters.size();
 
@@ -128,9 +114,19 @@ namespace Nathandelane
 
 			remainingPrintableCharacters.replace(nextCharIndex, 1, std::string(""));
 			numberOfPossibleCharacters = remainingPrintableCharacters.size();
+
+			random_shuffle(remainingPrintableCharacters.begin(), remainingPrintableCharacters.end());
 		}
 
 		return retVal.str();
+	}
+
+	/**
+	 * Cleans up memory in use by RandomString.
+	 */
+	RandomString::~RandomString()
+	{
+		delete(_characterSet);
 	}
 
 }

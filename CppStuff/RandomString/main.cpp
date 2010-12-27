@@ -14,6 +14,12 @@
 #include <stdexcept>
 #include "RandomString.h"
 #include "UniqueLengthException.h"
+#include "ICharacterSet.h"
+#include "DefaultCharacterSet.h"
+#include "HtmlFriendlyCharacterSet.h"
+#include "AlphaCharacterSet.h"
+#include "AlphaNumericCharacterSet.h"
+#include "UniqueCharacterSet.h"
 
 int main(int argc, const char* argv[])
 {
@@ -26,11 +32,11 @@ int main(int argc, const char* argv[])
 	int length;
 	bool printHexString = false;
 	bool uniqueOnly = false;
-	std::string printableCharacters = "";
+	Nathandelane::ICharacterSet * characterSet = (new Nathandelane::DefaultCharacterSet());
 
 	if (argc == 1)
 	{
-		std::cout << "Usage: RandomString NUMBER-OF-CHARS [ [CHARS-TO-USE (overrides any other set)] [" << HexArgValue << "] [" << HtmlFriendlyArgValue << "] [" << UniqueOnlyArgValue << "] [" << AlphaOnlyArgValue << "]  [" << AlphaNumericArgValue << "] ]" << std::endl << std::endl;
+		std::cout << "Usage: RandomString NUMBER-OF-CHARS [ [CHARS-TO-USE (overrides any other set)] [" << HexArgValue << "] [" << HtmlFriendlyArgValue << "] [" << UniqueOnlyArgValue << "] [" << AlphaOnlyArgValue << "] [" << AlphaNumericArgValue << "] ]" << std::endl << std::endl;
 
 		return 1;
 	}
@@ -48,17 +54,17 @@ int main(int argc, const char* argv[])
 				{
 					printHexString = true;
 				}
-				else if (strcmp(argv[argIndex], HtmlFriendlyArgValue) == 0 and printableCharacters.empty())
+				else if (strcmp(argv[argIndex], HtmlFriendlyArgValue) == 0)
 				{
-					printableCharacters = "0123456789@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+					characterSet = (new Nathandelane::HtmlFriendlyCharacterSet());
 				}
-				else if (strcmp(argv[argIndex], AlphaOnlyArgValue) == 0 and printableCharacters.empty())
+				else if (strcmp(argv[argIndex], AlphaOnlyArgValue) == 0)
 				{
-					printableCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+					characterSet = (new Nathandelane::AlphaCharacterSet());
 				}
-				else if (strcmp(argv[argIndex], AlphaNumericArgValue) == 0 and printableCharacters.empty())
+				else if (strcmp(argv[argIndex], AlphaNumericArgValue) == 0)
 				{
-					printableCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+					characterSet = (new Nathandelane::AlphaNumericCharacterSet());
 				}
 				else if (strcmp(argv[argIndex], UniqueOnlyArgValue) == 0)
 				{
@@ -66,10 +72,7 @@ int main(int argc, const char* argv[])
 				}
 				else
 				{
-					if (printableCharacters.empty())
-					{
-						printableCharacters = std::string(argv[argIndex]);
-					}
+					characterSet = (new Nathandelane::UniqueCharacterSet(argv[argIndex]));
 				}
 			}
 		}
@@ -77,7 +80,7 @@ int main(int argc, const char* argv[])
 
 	if (length > 0)
 	{
-		Nathandelane::RandomString randomString(length, printableCharacters, uniqueOnly);
+		Nathandelane::RandomString randomString(length, * characterSet, uniqueOnly);
 
 		try
 		{
@@ -92,6 +95,8 @@ int main(int argc, const char* argv[])
 
 			if (printHexString)
 			{
+				std::cout << std::endl << std::endl;
+
 				for (int charIndex = 0; charIndex < length; charIndex++)
 				{
 					int nextChar = nextString[charIndex];

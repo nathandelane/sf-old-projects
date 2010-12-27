@@ -8,11 +8,9 @@
 #ifndef RANDOMSTRING_H_
 #define RANDOMSTRING_H_
 
-
-#endif /* RANDOMSTRING_H_ */
-
 #include <string>
 #include <ctime>
+#include "ICharacterSet.h"
 
 namespace Nathandelane
 {
@@ -21,8 +19,7 @@ namespace Nathandelane
 	{
 	private:
 		unsigned int _length;
-		unsigned int _numberOfPossibleChars;
-		std::string _printableCharacters;
+		Nathandelane::ICharacterSet * _characterSet;
 		bool _uniqueOnly;
 		clock_t _clock;
 
@@ -30,9 +27,11 @@ namespace Nathandelane
 		std::string GenerateUniqueRandomString();
 
 	public:
-		RandomString(int length, std::string printableCharacters, bool uniqueOnly);
+		RandomString(int length, Nathandelane::ICharacterSet & characterSet, bool uniqueOnly);
 		~RandomString();
 		std::string NextString();
 	};
 
 }
+
+#endif /* RANDOMSTRING_H_ */
