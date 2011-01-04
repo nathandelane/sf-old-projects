@@ -12,6 +12,7 @@
 #include <cstdlib>
 #include <exception>
 #include <stdexcept>
+#include <vector>
 #include "RandomString.h"
 #include "UniqueLengthException.h"
 #include "ICharacterSet.h"
@@ -20,6 +21,26 @@
 #include "AlphaCharacterSet.h"
 #include "AlphaNumericCharacterSet.h"
 #include "UniqueCharacterSet.h"
+
+/**
+ * Tokenizes a string.
+ */
+std::vector<std::string> tokenize(const std::string & str, const std::string delimiters)
+{
+	std::vector<std::string> result;
+	std::string::size_type lastPos = str.find_first_not_of(delimiters, 0);
+	std::string::size_type pos = str.find_first_of(delimiters, lastPos);
+
+	while (std::string::npos != pos || std::string::npos != lastPos)
+	{
+		result.push_back(str.substr(lastPos, pos - lastPos));
+
+		lastPos = str.find_first_not_of(delimiters, pos);
+		pos = str.find_first_of(delimiters, lastPos);
+	}
+
+	return result;
+}
 
 int main(int argc, const char* argv[])
 {
@@ -36,7 +57,10 @@ int main(int argc, const char* argv[])
 
 	if (argc == 1)
 	{
-		std::cout << "Usage: RandomString NUMBER-OF-CHARS [ [CHARS-TO-USE|" << HtmlFriendlyArgValue << "|" << AlphaOnlyArgValue << "|" << AlphaNumericArgValue << " (last named character set overrides)] [" << HexArgValue << "] [" << UniqueOnlyArgValue << "] ]" << std::endl << std::endl;
+		std::string firstArgument(argv[0]);
+		std::vector<std::string> tokens = tokenize(firstArgument, "/\\");
+
+		std::cout << "Usage: " << tokens.back() << " NUMBER-OF-CHARS [ [CHARS-TO-USE|" << HtmlFriendlyArgValue << "|" << AlphaOnlyArgValue << "|" << AlphaNumericArgValue << " (last named character set overrides)] [" << HexArgValue << "] [" << UniqueOnlyArgValue << "] ]" << std::endl << std::endl;
 
 		return 1;
 	}
