@@ -19,3 +19,5 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
+
+//  g++ -o tictactoe.exe -Xlinker --enable-auto-import main.cpp Board.h Board.cpp Game.h Game.cpp
