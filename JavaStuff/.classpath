@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="BinHexPlugin"/>
+	<classpathentry kind="src" path="com.nathandelane.util.timekeeper/src"/>
+	<classpathentry kind="src" path="JarClassLoader"/>
+	<classpathentry kind="src" path="Journal"/>
+	<classpathentry kind="src" path="JournalPlugin"/>
+	<classpathentry kind="src" path="Lacidar/src"/>
+	<classpathentry excluding="com/nathandelane/mud/server/" kind="src" path="Nathandelane.Mud/src"/>
+	<classpathentry kind="src" path="Nathandelane.Mud/src/com/nathandelane/mud/server"/>
+	<classpathentry kind="src" path="OpenTCards/src"/>
+	<classpathentry kind="src" path="PaintChat.Business/src"/>
+	<classpathentry kind="src" path="PaintChat.Web/src"/>
+	<classpathentry kind="src" path="PersonalCalculator/personalcalculator/src"/>
+	<classpathentry kind="src" path="PostfixCalculator/src"/>
+	<classpathentry kind="src" path="QuestEditor-j0.2/src"/>
+	<classpathentry kind="src" path="RPG2"/>
+	<classpathentry kind="src" path="SpiderTool"/>
+	<classpathentry kind="src" path="Timekeeper"/>
+	<classpathentry kind="lib" path="Lib/JOrbis.jar"/>
+	<classpathentry kind="lib" path="PaintChat.Web/paintchat-web.jar"/>
+	<classpathentry kind="lib" path="PersonalCalculator/personalcalculator/pc.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
