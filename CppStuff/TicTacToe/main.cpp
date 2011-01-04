@@ -50,7 +50,13 @@ Board::~Board()
  */
 void Board::move(const Player player, const unsigned int squareIndex)
 {
-	std::stringstream ss(std::stringstream::in | std::stringstream::out);
+	std::stringstream ss;
+
+	ss << "Player " << player << " placed token on square " << (squareIndex + 1) << ".";
+
+	log(ss.str());
+	
+	ss.str(std::string());
 
 	if (squareIndex < Board::BOARD_SIZE)
 	{
@@ -58,10 +64,6 @@ void Board::move(const Player player, const unsigned int squareIndex)
 		{
 			this->_board[squareIndex] = player;
 			
-			ss << "Player " << player << " placed token on square " << (squareIndex + 1) << ".";
-
-			log(ss.str());
-
 			str();
 		}
 		else
@@ -92,7 +94,7 @@ void Board::log(std::string message)
  */
 void Board::str()
 {
-	std::stringstream ss(std::stringstream::in | std::stringstream::out);
+	std::stringstream ss;
 
 	for (int boardIndex = 0; boardIndex < Board::BOARD_SIZE; boardIndex++)
 	{
