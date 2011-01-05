@@ -1,16 +1,17 @@
 #include "Game.h"
+#include "Board.h"
 
 void playGame()
 {
-	Game game;
+	Nathandelane::Game game;
 	game.play();
+/*
+	Nathandelane::Board board;
 
-//	Board board;
-
-//	board.move(Human, 0);
-//	board.move(Computer, 3);
-//	board.move(Human, 3);
-//	board.move(Human, 4);
+	board.move(Nathandelane::Human, 1);
+	board.move(Nathandelane::Computer, 4);
+	board.move(Nathandelane::Human, 4);
+	board.move(Nathandelane::Human, 5);*/
 }
 
 int main(int argc, char* argv[])
