@@ -93,7 +93,7 @@ namespace ConvertTestLinkTestCases
 
 				foreach (XElement nextStepsElement in stepsXElements)
 				{
-					Console.WriteLine("Test Case: {0}", testCaseXElements[testCaseIndex].Attribute("name").Value);
+					Console.WriteLine("Test Case: {0} ({1})", testCaseXElements[testCaseIndex].Attribute("name").Value, nextFile.Name);
 					Console.WriteLine("Converting {0}", nextStepsElement.Value);
 
 					string stepsDocString = String.Format("<steps>{0}</steps>", nextStepsElement.Value.Replace("&nbsp;", " ").Replace("&Ntilde;", "~").Replace("&ntilde;", "~").Replace("&fnof;", "Æ").Replace("&ndash;", "-").Replace("o:", String.Empty).Replace("&rsquo;", "'").Replace("&agrave;", "â").Replace("&eacute;", "ê").Replace("&egrave", "è").Replace("&", "&amp;"));//HttpUtility.HtmlDecode(String.Format("<steps>{0}</steps>", nextStepsElement.Value));//.Replace("&nbsp;", " ").Replace("&Ntilde;", "~").Replace("&fnof;", "Æ").Replace("&ndash;", "-").Replace("o:", String.Empty).Replace("&rsquo;", "'").Replace("&agrave;", "`")));
