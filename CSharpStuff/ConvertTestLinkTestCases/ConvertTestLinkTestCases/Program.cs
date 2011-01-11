@@ -130,6 +130,7 @@ namespace ConvertTestLinkTestCases
 					}
 
 					Console.WriteLine("Converted Element: ", newSteps.ToString(SaveOptions.DisableFormatting));
+					Console.WriteLine(new String('-', 32));
 
 					testCaseIndex++;
 				}
