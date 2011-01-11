@@ -94,7 +94,7 @@ namespace ConvertTestLinkTestCases
 				foreach (XElement nextStepsElement in stepsXElements)
 				{
 					Console.WriteLine("Test Case: {0} ({1})", testCaseXElements[testCaseIndex].Attribute("name").Value, nextFile.Name);
-					Console.WriteLine("Converting {0}", nextStepsElement.Value);
+					Console.WriteLine("Converting: \r\n{0}", nextStepsElement.Value);
 
 					string stepsDocString = String.Format("<steps>{0}</steps>", nextStepsElement.Value.Replace("&nbsp;", " ").Replace("&Ntilde;", "~").Replace("&ntilde;", "~").Replace("&fnof;", "Æ").Replace("&ndash;", "-").Replace("o:", String.Empty).Replace("&rsquo;", "'").Replace("&agrave;", "â").Replace("&eacute;", "ê").Replace("&egrave", "è").Replace("&", "&amp;"));//HttpUtility.HtmlDecode(String.Format("<steps>{0}</steps>", nextStepsElement.Value));//.Replace("&nbsp;", " ").Replace("&Ntilde;", "~").Replace("&fnof;", "Æ").Replace("&ndash;", "-").Replace("o:", String.Empty).Replace("&rsquo;", "'").Replace("&agrave;", "`")));
 					XElement oldSteps = XElement.Parse(stepsDocString);
@@ -129,8 +129,8 @@ namespace ConvertTestLinkTestCases
 						}
 					}
 
-					Console.WriteLine("Converted Element: {0}", newSteps);
-					Console.WriteLine("Expected Results: {0}", expectedResults[testCaseIndex].Value);
+					Console.WriteLine("Converted Element: \r\n{0}", newSteps);
+					Console.WriteLine("Expected Results: \r\n{0}", expectedResults[testCaseIndex].Value);
 					Console.WriteLine(new String('-', 32));
 
 					testCaseIndex++;
