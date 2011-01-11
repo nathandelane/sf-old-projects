@@ -86,12 +86,14 @@ namespace ConvertTestLinkTestCases
 			foreach (FileInfo nextFile in _filesToBeConverted)
 			{
 				XDocument nextXDocument = XDocument.Load(nextFile.OpenRead());
-				IEnumerable<XElement> stepsXElements = from d in nextXDocument.Root.Descendants() where d.Name.LocalName.Equals("steps") select d;
+				XElement[] testCaseXElements = (from d in nextXDocument.Root.Descendants() where d.Name.LocalName.Equals("testcase") select d).ToArray<XElement>();
 				XElement[] expectedResults = (from d in nextXDocument.Root.Descendants() where d.Name.LocalName.Equals("expectedresults") select d).ToArray<XElement>();
+				IEnumerable<XElement> stepsXElements = from d in nextXDocument.Root.Descendants() where d.Name.LocalName.Equals("steps") select d;
 				int testCaseIndex = 0;
 
 				foreach (XElement nextStepsElement in stepsXElements)
 				{
+					Console.WriteLine("Test Case: {0}", testCaseXElements[testCaseIndex].Attribute("name").Value);
 					Console.WriteLine("Converting {0}", nextStepsElement.Value);
 
 					string stepsDocString = String.Format("<steps>{0}</steps>", nextStepsElement.Value.Replace("&nbsp;", " ").Replace("&Ntilde;", "~").Replace("&ntilde;", "~").Replace("&fnof;", "Æ").Replace("&ndash;", "-").Replace("o:", String.Empty).Replace("&rsquo;", "'").Replace("&agrave;", "â").Replace("&eacute;", "ê").Replace("&egrave", "è").Replace("&", "&amp;"));//HttpUtility.HtmlDecode(String.Format("<steps>{0}</steps>", nextStepsElement.Value));//.Replace("&nbsp;", " ").Replace("&Ntilde;", "~").Replace("&fnof;", "Æ").Replace("&ndash;", "-").Replace("o:", String.Empty).Replace("&rsquo;", "'").Replace("&agrave;", "`")));
