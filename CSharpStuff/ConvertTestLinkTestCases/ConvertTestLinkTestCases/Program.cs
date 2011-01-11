@@ -129,7 +129,8 @@ namespace ConvertTestLinkTestCases
 						}
 					}
 
-					Console.WriteLine("Converted Element: ", newSteps.ToString(SaveOptions.DisableFormatting));
+					Console.WriteLine("Converted Element: {0}", newSteps.ToString(SaveOptions.DisableFormatting));
+					Console.WriteLine("Expected Results: {0}", expectedResults[testCaseIndex].Value);
 					Console.WriteLine(new String('-', 32));
 
 					testCaseIndex++;
