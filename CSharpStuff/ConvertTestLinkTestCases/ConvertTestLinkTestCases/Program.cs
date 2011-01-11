@@ -127,7 +127,7 @@ namespace ConvertTestLinkTestCases
 						}
 					}
 
-					Console.WriteLine("Converted Element: ", newSteps);
+					Console.WriteLine("Converted Element: ", newSteps.ToString(SaveOptions.DisableFormatting));
 				}
 
 				string newFilePath = Path.Combine(_currentWorkingDirectory.FullName, String.Format("converted-{0}", nextFile.Name));
