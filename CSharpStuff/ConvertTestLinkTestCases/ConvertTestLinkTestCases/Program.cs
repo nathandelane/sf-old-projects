@@ -87,6 +87,8 @@ namespace ConvertTestLinkTestCases
 			{
 				XDocument nextXDocument = XDocument.Load(nextFile.OpenRead());
 				IEnumerable<XElement> stepsXElements = from d in nextXDocument.Root.Descendants() where d.Name.LocalName.Equals("steps") select d;
+				XElement[] expectedResults = (from d in nextXDocument.Root.Descendants() where d.Name.LocalName.Equals("expectedresults") select d).ToArray<XElement>();
+				int testCaseIndex = 0;
 
 				foreach (XElement nextStepsElement in stepsXElements)
 				{
@@ -100,15 +102,23 @@ namespace ConvertTestLinkTestCases
 					if (oldSteps.HasElements && oldSteps.Descendants().FirstOrDefault().HasElements)
 					{
 						IEnumerable<XElement> oldLiSteps = from d in oldSteps.Descendants().FirstOrDefault().Descendants() where d.Name.LocalName.Equals("li") select d;
+						int totalSteps = oldLiSteps.Count<XElement>();
 						int stepCounter = 1;
 
 						foreach (XElement nextLiStep in oldLiSteps)
 						{
+							string expectedResultsValue = String.Empty;
+
+							if (stepCounter == totalSteps)
+							{
+								expectedResultsValue = expectedResults[testCaseIndex].Value;
+							}
+
 							newSteps.Add(
 								new XElement("step",
 									new XElement("step_number", String.Format("{0}", stepCounter)),
 									new XElement("actions", nextLiStep.Value),
-									new XElement("expectedresults", String.Empty),
+									new XElement("expectedresults", expectedResultsValue),
 									new XElement("execution_type", "1")
 								)
 							);
