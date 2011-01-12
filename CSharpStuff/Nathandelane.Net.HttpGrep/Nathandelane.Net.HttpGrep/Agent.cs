@@ -35,7 +35,7 @@ namespace Nathandelane.Net.HttpGrep
 				_request.Accept = "application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
 				_request.UserAgent = "HttpGrep";
 
-				if (_context[Context.IgnoreBadCerts] != null)
+				if (_context.ArgumentIsDefined(Context.IgnoreBadCerts))
 				{
 					ServicePointManager.ServerCertificateValidationCallback +=
 						delegate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
