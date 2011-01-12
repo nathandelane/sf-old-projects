@@ -34,7 +34,7 @@ namespace Nathandelane.Net.HttpGrep
 			"-Data                    Displays the response body." + Environment.NewLine +
 			"-Post                    Sets the request mode to post and puts HTTP Grep into interactive mode to set the post body." + Environment.NewLine +
 			"-Proxy=<url>             Sets the HTTP proxy for use with this session." + Environment.NewLine +
-			"-IngorBadCerts           Ignores bad certificates when they are encountered." + Environment.NewLine + Environment.NewLine;
+			"-IngoreBadCerts          Ignores bad SSL certificates when they are encountered." + Environment.NewLine + Environment.NewLine;
 
 		private static Context __instance;
 		private static Dictionary<string, Regex> __allowedArguments = new Dictionary<string, Regex>()
