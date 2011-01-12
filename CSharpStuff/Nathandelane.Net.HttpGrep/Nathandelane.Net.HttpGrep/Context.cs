@@ -22,6 +22,7 @@ namespace Nathandelane.Net.HttpGrep
 		public const string Data = "Data";
 		public const string Post = "Post";
 		public const string Proxy = "Proxy";
+		public const string IgnoreBadCerts = "IgnoreBadCerts";
 
 		public static string GeneralHelp = "Usage: HttpGrep <url> [<options>]" + Environment.NewLine +
 			"Options (specifying no options returns the response headers):" + Environment.NewLine +
@@ -32,7 +33,8 @@ namespace Nathandelane.Net.HttpGrep
 			"-Response                Displays the response headers." + Environment.NewLine +
 			"-Data                    Displays the response body." + Environment.NewLine +
 			"-Post                    Sets the request mode to post and puts HTTP Grep into interactive mode to set the post body." + Environment.NewLine +
-			"-Proxy=<url>             Sets the HTTP proxy for use with this session." + Environment.NewLine + Environment.NewLine;
+			"-Proxy=<url>             Sets the HTTP proxy for use with this session." + Environment.NewLine +
+			"-IngorBadCerts           Ignores bad certificates when they are encountered." + Environment.NewLine + Environment.NewLine;
 
 		private static Context __instance;
 		private static Dictionary<string, Regex> __allowedArguments = new Dictionary<string, Regex>()
@@ -44,7 +46,8 @@ namespace Nathandelane.Net.HttpGrep
 			{ Context.Response, null },
 			{ Context.Data, null },
 			{ Context.Post, null },
-			{ Context.Proxy, new Regex("[\\w\\d:#@%/;$()~_?\\+-=\\\\.&]*", RegexOptions.CultureInvariant | RegexOptions.Compiled) }
+			{ Context.Proxy, new Regex("[\\w\\d:#@%/;$()~_?\\+-=\\\\.&]*", RegexOptions.CultureInvariant | RegexOptions.Compiled) },
+			{ Context.IgnoreBadCerts, null }
 		};
 
 		private Dictionary<string, string> _actualArguments;

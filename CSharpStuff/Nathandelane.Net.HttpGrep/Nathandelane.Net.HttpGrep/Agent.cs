@@ -6,6 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.IO;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Nathandelane.Net.HttpGrep
 {
@@ -32,6 +34,15 @@ namespace Nathandelane.Net.HttpGrep
 				_request = (HttpWebRequest)WebRequest.Create(requestUri);
 				_request.Accept = "application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
 				_request.UserAgent = "HttpGrep";
+
+				if (_context[Context.IgnoreBadCerts] != null)
+				{
+					ServicePointManager.ServerCertificateValidationCallback +=
+						delegate(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
+						{
+							return true;
+						};
+				}
 
 				if (_context[Context.Post] != null)
 				{
