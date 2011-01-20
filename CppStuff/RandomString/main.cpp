@@ -18,6 +18,7 @@
 #include "ICharacterSet.h"
 #include "DefaultCharacterSet.h"
 #include "HtmlFriendlyCharacterSet.h"
+#include "AllAsciiPrintable.h"
 #include "AlphaCharacterSet.h"
 #include "AlphaNumericCharacterSet.h"
 #include "UniqueCharacterSet.h"
@@ -44,13 +45,16 @@ std::vector<std::string> tokenize(const std::string & str, const std::string del
 
 int main(int argc, const char* argv[])
 {
-	const char* HexArgValue = "hex";
-	const char* HtmlFriendlyArgValue = "htmlfriendly";
-	const char* UniqueOnlyArgValue = "uniqueonly";
-	const char* AlphaOnlyArgValue = "alphaonly";
-	const char* AlphaNumericArgValue = "alphanumeric";
+	const std::string HexArgValue("hex");
+	const std::string HtmlFriendlyArgValue("htmlfriendly");
+	const std::string UniqueOnlyArgValue("uniqueonly");
+	const std::string AlphaOnlyArgValue("alphaonly");
+	const std::string AlphaNumericArgValue("alphanumeric");
+	const std::string AllAsciiPrintableValue("allasciiprintable");
+	const std::string NumStringsValue("numstrings");
 
 	int length;
+	int numStrings = 1;
 	bool printHexString = false;
 	bool uniqueOnly = false;
 	Nathandelane::ICharacterSet * characterSet = (new Nathandelane::DefaultCharacterSet());
@@ -60,7 +64,7 @@ int main(int argc, const char* argv[])
 		std::string firstArgument(argv[0]);
 		std::vector<std::string> tokens = tokenize(firstArgument, "/\\");
 
-		std::cout << "Usage: " << tokens.back() << " NUMBER-OF-CHARS [ [CHARS-TO-USE|" << HtmlFriendlyArgValue << "|" << AlphaOnlyArgValue << "|" << AlphaNumericArgValue << " (last named character set overrides)] [" << HexArgValue << "] [" << UniqueOnlyArgValue << "] ]" << std::endl << std::endl;
+		std::cout << "Usage: " << tokens.back() << " NUMBER-OF-CHARS [" << NumStringsValue << "=<number of strings>] [ [CHARS-TO-USE|" << HtmlFriendlyArgValue << "|" << AlphaOnlyArgValue << "|" << AlphaNumericArgValue << "|" << AllAsciiPrintableValue << " (last named character set overrides)] [" << HexArgValue << "] [" << UniqueOnlyArgValue << "] ]" << std::endl << std::endl;
 
 		return 1;
 	}
@@ -74,25 +78,60 @@ int main(int argc, const char* argv[])
 		{
 			for (int argIndex = 2; argIndex < argc; argIndex++)
 			{
-				if (strcmp(argv[argIndex], HexArgValue) == 0)
+				std::string nextArgument(argv[argIndex]);
+
+				if (nextArgument.compare(HexArgValue) == 0)
 				{
 					printHexString = true;
 				}
-				else if (strcmp(argv[argIndex], HtmlFriendlyArgValue) == 0)
+				else if (nextArgument.find_first_of("=") != std::string::npos)
+				{
+					std::vector<std::string> nextArgTokens = tokenize(nextArgument, "=");
+
+					if (nextArgTokens.size() == 2)
+					{
+						if ((nextArgTokens.front()).compare(NumStringsValue) == 0)
+						{
+							std::string numberOfStrings = nextArgTokens.back();
+							std::stringstream numStringsStream(numberOfStrings);
+
+							if (!(numStringsStream >> numStrings))
+							{
+								std::cout << NumStringsValue << " value must be an integer greater than 0." << std::endl << std::endl;
+								return 1;
+							}
+						}
+						else
+						{
+							std::cout << nextArgTokens.front() << "= is not recognized as a valid argument." << std::endl << std::endl;
+							return 2;
+						}
+					}
+					else
+					{
+						std::cout << "No rvalue found for argument " << nextArgTokens.front() << "=" << std::endl << std::endl;
+						return 3;
+					}
+				}
+				else if (nextArgument.compare(HtmlFriendlyArgValue) == 0)
 				{
 					characterSet = (new Nathandelane::HtmlFriendlyCharacterSet());
 				}
-				else if (strcmp(argv[argIndex], AlphaOnlyArgValue) == 0)
+				else if (nextArgument.compare(AlphaOnlyArgValue) == 0)
 				{
 					characterSet = (new Nathandelane::AlphaCharacterSet());
 				}
-				else if (strcmp(argv[argIndex], AlphaNumericArgValue) == 0)
+				else if (nextArgument.compare(AlphaNumericArgValue) == 0)
 				{
 					characterSet = (new Nathandelane::AlphaNumericCharacterSet());
 				}
-				else if (strcmp(argv[argIndex], UniqueOnlyArgValue) == 0)
+				else if (nextArgument.compare(UniqueOnlyArgValue) == 0)
 				{
 					uniqueOnly = true;
+				}
+				else if (nextArgument.compare(AllAsciiPrintableValue) == 0)
+				{
+					characterSet = (new Nathandelane::AllAsciiPrintable());
 				}
 				else
 				{
@@ -108,24 +147,29 @@ int main(int argc, const char* argv[])
 
 		try
 		{
-			std::string nextString = randomString.NextString();
-
-			for (int charIndex = 0; charIndex < length; charIndex++)
+			for (int stringCounter = 0; stringCounter < numStrings; stringCounter++)
 			{
-				char nextChar = nextString[charIndex];
-
-				std::cout << nextChar;
-			}
-
-			if (printHexString)
-			{
-				std::cout << std::endl << std::endl;
+				std::string nextString = randomString.NextString();
 
 				for (int charIndex = 0; charIndex < length; charIndex++)
 				{
-					int nextChar = nextString[charIndex];
+					char nextChar = nextString[charIndex];
 
-					std::cout << std::hex << nextChar;
+					std::cout << nextChar;
+				}
+
+				std::cout << std::endl;
+
+				if (printHexString)
+				{
+					for (int charIndex = 0; charIndex < length; charIndex++)
+					{
+						int nextChar = nextString[charIndex];
+
+						std::cout << std::hex << nextChar;
+					}
+
+					std::cout << std::endl;
 				}
 			}
 		}
