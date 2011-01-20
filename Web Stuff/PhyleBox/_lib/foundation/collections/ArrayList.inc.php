@@ -4,6 +4,7 @@ require_once(dirname(__FILE__) . "/../../Config.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/Logger.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/collections/ICollection.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/collections/IEnumerator.inc.php");
+require_once(Config::getFrameworkRoot() . "foundation/collections/IEnumerable.inc.php");
 
 /**
  * ArrayList
@@ -11,7 +12,7 @@ require_once(Config::getFrameworkRoot() . "foundation/collections/IEnumerator.in
  * @author lanathan
  *
  */
-class ArrayList implements ICollection {
+class ArrayList implements ICollection, IEnumerable {
 	
 	protected $_logger;
 	
@@ -19,10 +20,11 @@ class ArrayList implements ICollection {
 	
 	/**
 	 * Constructor
+	 * @param array $array
 	 * @return ArrayList
 	 */
-	public function ArrayList() {
-		$this->_collection = array();
+	public function ArrayList(array $array = array()) {
+		$this->_collection = $array;
 		$this->_logger = Logger::getInstance();
 	}
 	
@@ -90,7 +92,7 @@ class ArrayList implements ICollection {
 	
 	/**
 	 * (non-PHPdoc)
-	 * @see _lib/foundation/collections/ICollection::getEnumerator()
+	 * @see _lib/foundation/collections/IEnumerable::getEnumerator()
 	 */
 	public function getEnumerator() {
 		$enumerator = new CollectionEnumerator($this->_collection);

@@ -10,6 +10,9 @@ if (jQuery) {
 	
 	Phyer.prototype = {
 		_json: null,
+
+		/* Constants */
+		PHYER_ROOT: "/",
 		
 		/**
 		 * postJson is used to do an asynchronous JSON postback to a web service. The results are returned as a JSON object to the success callback function.

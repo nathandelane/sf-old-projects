@@ -151,6 +151,27 @@ class Strings {
 		return str_replace($search, $replacement, $source);
 	}
 	
+	/**
+	 * isNullOrEmpty
+	 * Determines whether a reference in null or an empty string.
+	 * @param string $source
+	 * @return bool
+	 */
+	public static function isNullOrEmpty(/*string*/ $source) {
+		return (is_null($source) || empty($source));
+	}
+	
+	/**
+	 * split
+	 * Splits a string using a delimiter into an array of components.
+	 * @param string $source
+	 * @param string $delimiter
+	 * @return array
+	 */
+	public static function split(/*string*/ $source, /*string*/ $delimiter) {
+		return explode($delimiter, $source);
+	}
+	
 }
 
 ?>

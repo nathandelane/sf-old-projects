@@ -27,13 +27,15 @@ class DriveUsageModel {
 		ArgumentTypeValidator::isString($absolutDirectoryPath, "AbsoluteDirectoryPath must be a string.");
 		ArgumentTypeValidator::isInteger($allottedSpace, "AllottedSpace must be an integer.");
 		
-		$this->_allottedSpace = $allottedSpace;		
+		$this->_allottedSpace = $allottedSpace;	
 		
 		if (file_exists($absolutDirectoryPath)) {
 			$this->_kilobytes = $this->_calculateUsage($absolutDirectoryPath) / 1024;
 			
 			if ($this->_allottedSpace > 0) {
-				$this->_percentage = round(($this->_kilobytes / $this->_allottedSpace), 0);
+				$decimalUsage = $this->_kilobytes / $this->_allottedSpace;
+				
+				$this->_percentage = round(($decimalUsage * 100), 0);
 			} else {
 				$this->_percentage = 0;
 			}

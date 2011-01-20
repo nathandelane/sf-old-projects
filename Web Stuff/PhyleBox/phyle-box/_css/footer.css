@@ -3,7 +3,9 @@
 	width: 100%;
 	overflow: hidden;
 	background-color: #50779d;
-	margin-top: 10px;
+	border-top: #2A557C solid 2px;
+	position: fixed;
+	bottom: 0;
 }
 
 #copyrightNotice

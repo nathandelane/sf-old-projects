@@ -50,6 +50,7 @@ abstract class PhyleBoxPage extends Page {
 		$this->_checkAuthenticated();
 		
 		$this->registerScript("../_js/jquery.js");
+		$this->registerScript("../_js/jquery.address.js");
 	}
 	
 	/**

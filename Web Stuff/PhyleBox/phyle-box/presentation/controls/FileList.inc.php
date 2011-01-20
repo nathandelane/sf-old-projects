@@ -38,7 +38,7 @@ class FileList implements IRenderable {
 					<label for="checkAllCheckBox">Check All</label>
 					<input type="checkbox" id="checkAllCheckBox" name="checkAllCheckbox" />
 				</td>
-				<td class="icon">Icon</td>
+				<td class="icon">File Type</td>
 				<td class="fileOrDirName">File of Directory Name</td>
 				<td class="modifiedTime">Modified Time</td>
 				<td class="size">Size</td>
@@ -49,6 +49,31 @@ class FileList implements IRenderable {
 		<tbody>
 		</tbody>
 	</table>
+	<script type="text/javascript">
+		$("#checkAllCheckBox").change(function(e) {
+			var target;
+			
+			if (!e) {
+				var e = window.event;
+			}
+
+			if (e.target) {
+				target = e.target;
+			} else if (e.srcElement) {
+				target = e.srcElement;
+			}
+
+			if (target.nodeType == 3) {
+				target = target.parentNode;
+			}
+			
+			if ($(target).attr("checked")) {
+				$("input[type='checkbox']").attr("checked", true);
+			} else {
+				$("input[type='checkbox']").attr("checked", false);
+			}
+		});
+	</script>
 </div>
 <?php
 		

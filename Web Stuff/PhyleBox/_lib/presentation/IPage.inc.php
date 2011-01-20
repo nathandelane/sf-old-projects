@@ -67,6 +67,13 @@ interface IPage {
 	 */
 	public function getSessionFieldValue(/*string*/ $fieldName);
 	
+	/**
+	 * getLogger
+	 * Gets the page's logger
+	 * @return Logger
+	 */
+	public function getLogger();
+	
 }
 
 ?>

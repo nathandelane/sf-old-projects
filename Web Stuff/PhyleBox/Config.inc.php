@@ -18,7 +18,7 @@ final class PhyerNet_Config {
 	private static $__localPresentationFolder;
 	private static $__localFoundationFolder;
 	private static $__phyerNetErrorHandlerPage = "/error/";
-	private static $__phyerNetRoot = "/PhyerNet2010";
+	private static $__phyerNetRoot = "/";
 	
 	/**
 	 * getFrameworkRoot

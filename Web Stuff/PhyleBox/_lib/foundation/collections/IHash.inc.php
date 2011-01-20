@@ -57,13 +57,6 @@ interface IHash {
 	public function tryGetValue(/*mixed*/ $key, /*mixed*/ &$value);
 	
 	/**
-	 * getEnumerator
-	 * Gets an enumerator for this hash
-	 * @return IEnumerator
-	 */
-	public function getEnumerator();
-	
-	/**
 	 * size
 	 * Gets the current size of the hash.
 	 * @return int

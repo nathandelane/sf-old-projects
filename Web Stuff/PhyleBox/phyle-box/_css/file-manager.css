@@ -1,9 +1,3 @@
-.footer
-{
-	position: absolute;
-	bottom: 0;
-}
-
 .toolbar
 {
 	width: 100%;
@@ -136,6 +130,7 @@
 {
 	width: 100%;
 	border-collapse: collapse;
+	margin-bottom: 40px;
 }
 
 .fileListTable caption
@@ -177,14 +172,17 @@
 	padding-right: 10px;
 }
 
-.fileListTable tr
-{
-	cursor: pointer;
-}
-
 .fileListTable tr.oddRow
 {
 	background-color: #50779d;
+}
+
+.fileListTable td.fileOrDirName a:link,
+.fileListTable td.fileOrDirName a:active,
+.fileListTable td.fileOrDirName a:visited,
+.fileListTable td.fileOrDirName a:hover
+{
+	text-decoration: none;
 }
 
 .selected

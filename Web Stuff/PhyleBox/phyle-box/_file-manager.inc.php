@@ -50,7 +50,7 @@ class _FileManager_Page extends PhyleBoxPage {
 		
 ?>
 <form id="fileManagerForm" action="<?php echo $_SERVER["REQUEST_URI"]; ?>" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="currentDirectory" id="currentDirectory" value="/" />
+	<input type="hidden" name="currentDirectory" id="currentDirectory" value="<?php if (isset($_REQUEST["currentDirectory"])) { echo "{$_REQUEST["currentDirectory"]}"; } else { echo "/"; } ?>" />
 <?php
 		
 		$this->_toolBar->render();
