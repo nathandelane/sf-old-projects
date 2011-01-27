@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
@@ -171,6 +172,9 @@ namespace Nathandelane.IO.Hash
 				case HashType.DES:
 					output = ComputeDES(input);
 					break;
+				case HashType.BINARY7:
+					output = Binary7(input);
+					break;
 				default:
 					output = MD5.Create().ComputeHash(input);
 					break;
@@ -200,6 +204,19 @@ namespace Nathandelane.IO.Hash
 			memoryStream.Write(plaintext, 0, plaintext.Length);
 			CryptoStream cryptoStream = new CryptoStream(memoryStream, transform, CryptoStreamMode.Write);
 			result = memoryStream.ToArray();
+
+			return result;
+		}
+
+		private byte[] Binary7(byte[] plaintext)
+		{
+			byte[] result = new byte[(plaintext.Length * 7)];
+			BitArray bitArray = new BitArray(plaintext);
+			int counter = 1;
+
+			foreach (bool nextBit in bitArray)
+			{
+			}
 
 			return result;
 		}

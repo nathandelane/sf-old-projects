@@ -61,6 +61,9 @@ namespace Nathandelane.IO.Hash
 							case "des":
 								hashType = HashType.DES;
 								break;
+							case "binary7":
+								hashType = HashType.BINARY7;
+								break;
 						}
 						break;
 					default:
@@ -104,7 +107,7 @@ namespace Nathandelane.IO.Hash
 			}
 			else
 			{
-				Console.WriteLine("Usage: hash (-s string|-f filename) -c (md5|sha1|sha256|sha384|sha512|des)");
+				Console.WriteLine("Usage: hash (-s string|-f filename) -c (md5|sha1|sha256|sha384|sha512|des|binary7)");
 			}
 		}
 
