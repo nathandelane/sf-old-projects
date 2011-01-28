@@ -179,17 +179,17 @@ namespace Nathandelane.Net.Spider.WebCrawler
 				{
 					Agent nextAgent = new Agent(nextUrl, DefaultCookies);
 
-					if (!_visitedUrls.Contains(nextAgent.Hash))
+					if (!_visitedUrls.Contains(nextAgent.Request.Hash))
 					{
 						nextAgent.Run();
 
-						AddUrls(nextAgent.Urls.ToArray(), nextAgent.Referrer.AbsoluteUri);
+						AddUrls(nextAgent.Request.GetUrls().ToArray(), nextAgent.Request.Referrer);
 
-						_visitedUrls.Add(nextAgent.Hash);
+						_visitedUrls.Add(nextAgent.Request.Hash);
 
 						Logger.LogMessage(nextAgent.ToString(), LoggingType.Both);
 
-						_cookies = nextAgent.Cookies;
+						_cookies = nextAgent.Request.Cookies;
 					}
 					else
 					{
@@ -226,25 +226,11 @@ namespace Nathandelane.Net.Spider.WebCrawler
 		/// </summary>
 		/// <param name="urls"></param>
 		/// <param name="referrer"></param>
-		private void AddUrls(string[] urls, string referrer)
+		private void AddUrls(IList<SpiderUrl> urls, string referrer)
 		{
-			foreach (string nextTarget in urls)
+			foreach (SpiderUrl nextTarget in urls)
 			{
-				Uri nextUri = null;
-
-				if (Uri.TryCreate(nextTarget, UriKind.Absolute, out nextUri))
-				{
-					Add(new SpiderUrl(nextUri, referrer));
-				}
-				else if (Uri.TryCreate(nextTarget, UriKind.Relative, out nextUri))
-				{
-					string nextAbsoluteUri = String.Format("{0}/{1}", ConfigurationManager.AppSettings["startingUrl"], nextTarget);
-
-					if (Uri.TryCreate(nextAbsoluteUri, UriKind.Absolute, out nextUri))
-					{
-						Add(new SpiderUrl(nextUri, referrer));
-					}
-				}
+				Add(nextTarget);
 			}
 		}
 
