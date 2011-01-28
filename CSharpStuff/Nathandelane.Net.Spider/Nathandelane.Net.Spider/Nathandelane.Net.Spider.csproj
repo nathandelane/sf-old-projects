@@ -76,8 +76,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Agent.cs" />
+    <Compile Include="AuthenticationCredentials.cs" />
+    <Compile Include="HttpPostAuthentication.cs" />
+    <Compile Include="IAuthenticationRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpiderUrl.cs" />
+    <Compile Include="AuthenticationMethod.cs" />
     <Compile Include="UrlCollection.cs" />
   </ItemGroup>
   <ItemGroup>
