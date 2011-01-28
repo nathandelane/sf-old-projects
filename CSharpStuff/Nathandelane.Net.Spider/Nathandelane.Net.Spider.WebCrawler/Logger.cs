@@ -27,7 +27,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 	
 				LogToFile(header);
 			}
-			catch(IOException ioe)
+			catch(IOException)
 			{
 				Console.WriteLine("Could not get a log on {0}. Please close {0} and try again.", __logFileName);
 			}
