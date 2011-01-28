@@ -18,12 +18,19 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 		public static void InitializeLogFile(string header)
 		{
-			if (File.Exists(__logFileName))
+			try
 			{
-				File.Delete(__logFileName);
+				if (File.Exists(__logFileName))
+				{
+					File.Delete(__logFileName);
+				}
+	
+				LogToFile(header);
 			}
-
-			LogToFile(header);
+			catch(IOException ioe)
+			{
+				Console.WriteLine("Could not get a log on {0}. Please close {0} and try again.", __logFileName);
+			}
 		}
 
 		public static void LogMessage(string message, LoggingType loggingType)
