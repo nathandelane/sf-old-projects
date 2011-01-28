@@ -7,6 +7,7 @@
  * To change this template use Tools | Options | Coding | Edit Standard Headers.
  */
 using System;
+using Nathandelane.Net.Spider.Configuration;
 
 namespace Nathandelane.Net.Spider
 {

@@ -77,6 +77,10 @@
   <ItemGroup>
     <Compile Include="Agent.cs" />
     <Compile Include="AuthenticationCredentials.cs" />
+    <Compile Include="Configuration\AuthenticationConfigurationSection.cs" />
+    <Compile Include="Configuration\AuthenticationCredentialsCollection.cs" />
+    <Compile Include="Configuration\AuthenticationMethod.cs" />
+    <Compile Include="Configuration\CredentialsElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpiderUrl.cs" />
     <Compile Include="UrlCollection.cs" />
@@ -102,6 +106,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
