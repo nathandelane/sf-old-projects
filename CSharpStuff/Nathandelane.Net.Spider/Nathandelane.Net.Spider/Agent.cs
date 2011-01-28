@@ -20,7 +20,6 @@ namespace Nathandelane.Net.Spider
 		private static long __id = 0L;
 
 		private AgentRequest _request;
-		private CookieCollection _cookies;
 		private HttpResponseInfo _responseInfo;
 
 		#endregion

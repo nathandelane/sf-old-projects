@@ -178,11 +178,12 @@ namespace Nathandelane.Net.Spider
 		public HttpResponseInfo Execute()
 		{
 			HttpResponseInfo responseInfo;
+			HttpWebResponse response;
 			long startingTicks = Ticks;
 
 			try
 			{
-				HttpWebResponse response = _request.GetResponse() as HttpWebResponse;
+				response = _request.GetResponse() as HttpWebResponse;
 
 				long mark = Ticks;
 
@@ -201,11 +202,11 @@ namespace Nathandelane.Net.Spider
 				_request.CookieContainer = new CookieContainer();
 				_request.CookieContainer.Add(response.Cookies);
 				
-				responseInfo = new HttpResponseInfo("200 OK");
+				responseInfo = new HttpResponseInfo(response.StatusCode);
 			}
 			catch (Exception ex)
 			{
-				responseInfo = new HttpResponseInfo(ex.Message);
+				responseInfo = new HttpResponseInfo(response.StatusCode);
 			}
 			
 			return responseInfo;
@@ -221,19 +222,28 @@ namespace Nathandelane.Net.Spider
 			{	
 				_spiderUrls = new List<SpiderUrl>();
 								
-				foreach (string nextUrl in _urls)
+				foreach (string nextTarget in _urls)
 				{
-					Uri nextUri;
+					Uri nextUri = null;
+					SpiderUrl nextSpiderUrl = null;
 					
-					if (Uri.TryCreate(nextUrl, UriKind.Absolute, out nextUri))
+					if (Uri.TryCreate(nextTarget, UriKind.Absolute, out nextUri))
 					{
-						SpiderUrl nextSpiderUrl = new SpiderUrl(nextUri, _request.RequestUri.OriginalString);
-						_spiderUrls.Add(nextSpiderUrl);
+						nextSpiderUrl = new SpiderUrl(nextUri, _request.RequestUri.AbsoluteUri);
 					}
-					else if (Uri.TryCreate(String.Format("{0}{1}", _request.RequestUri.AbsolutePath, nextUrl), UriKind.Absolute, out nextUri))
+					else if (Uri.TryCreate(nextTarget, UriKind.Relative, out nextUri))
 					{
-						SpiderUrl nextSpiderUrl = new SpiderUrl(nextUri, _request.RequestUri.OriginalString);
-						_spiderUrls.Add(nextSpiderUrl);						
+						string nextAbsoluteUri = String.Format("{0}/{1}", ConfigurationManager.AppSettings["startingUrl"], nextTarget);
+	
+						if (Uri.TryCreate(nextAbsoluteUri, UriKind.Absolute, out nextUri))
+						{
+							nextSpiderUrl = new SpiderUrl(nextUri, _request.RequestUri.AbsoluteUri);
+						}
+					}
+					
+					if (nextSpiderUrl != null)
+					{
+						_spiderUrls.Add(nextSpiderUrl);
 					}
 				}
 			}
