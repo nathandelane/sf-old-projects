@@ -1,0 +1,38 @@
+.typeUnknown,
+.typeDirectory,
+.typexml,
+.typehtml,
+.typephp,
+.typetxt,
+.typepng
+{
+	background-image: url(../_img/FileManager-SmallIcons.gif);
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+.typeUnknown
+{
+	background-position: -48px 0;
+}
+
+.typeDirectory
+{
+	background-position: -16px 0;
+}
+
+.typexml,
+.typehtml,
+.typephp,
+.typetxt
+{
+	background-position: -48px -16px;
+}
+
+.typepng
+{
+	background-position: -48px -64px;
+}

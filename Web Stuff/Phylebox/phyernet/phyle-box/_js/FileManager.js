@@ -1,0 +1,160 @@
+if (Phyer && $Phyer) {
+	
+	var FileManager = function() { }
+	
+	FileManager.prototype = {
+		/**
+		 * Static variables
+		 */
+		__rowCounter: 0,
+		/**
+		 * Constants
+		 */
+		DRIVE_NAME: "name",
+		DRIVE_LOCATION: "location",
+		DRIVE_TYPE: "type",
+		DIRECTORY: "directory",
+		FILE_LIST_TABLE: "fileListTable",
+		ORDER_BY_COLUMN_NAME: "orderByColumnName",
+		ORDER_BY_ORDER: "orderByOrder",
+		
+		/**
+		 * getDiskUsage
+		 * Gets the disk usage for the currently selected drive.
+		 * @param string name
+		 * @param string location
+		 * @param int type
+		 * @return void
+		 */
+		getDiskUsage: function(name, location, type) {
+			var data = "{ \"" + $Phyer.FileManager.DRIVE_NAME + "\": \"" + name + "\", \"" + $Phyer.FileManager.DRIVE_LOCATION + "\": \"" + location + "\", \"" + $Phyer.FileManager.DRIVE_TYPE + "\": " + type + " }";
+			
+			$Phyer.postJson($Phyer.PHYER_ROOT + "phyle-box/business/FileManagementService.php?getDiskSpaceUsedForDrive", data, 
+				null, 
+				function(json) {
+					$Phyer.setJson(json);
+					
+					$("#selectedDriveUsedSpace").attr("style", "width: " + json.percentage + "px;");
+					$("#driveSpacePercentage").text((100 - json.percentage) + "% Free");
+				}
+			);
+		},
+		
+		/**
+		 * populateFileList
+		 * Populates the file list for the current directory.
+		 * @param string location
+		 * @param string directory
+		 * @param string orderByColumnName
+		 * @param string orderByOrder
+		 * @return void
+		 */
+		populateFileList: function(location, directory, orderByColumnName, orderByOrder) {
+			if (!orderByColumnName) { orderByColumnName = "name"; }
+			if (!orderByOrder) { orderByOrder = "asc"; }
+			
+			var data = "{ \"" + $Phyer.FileManager.DRIVE_LOCATION + "\": \"" + location + "\", \"" + $Phyer.FileManager.DIRECTORY + "\": \"" + directory + "\", \"" + $Phyer.FileManager.ORDER_BY_COLUMN_NAME + "\": \"" + orderByColumnName + "\", \"" + $Phyer.FileManager.ORDER_BY_ORDER + "\": \"" + orderByOrder + "\" }";
+			
+			$Phyer.postJson($Phyer.PHYER_ROOT + "phyle-box/business/FileManagementService.php?listFoldersAndFilesForDriveAndDirectory", data, 
+				null, 
+				function(json) {
+					$Phyer.setJson(json);
+					$Phyer.FileManager.__rowCounter = 0;
+					
+					$("#" + $Phyer.FileManager.FILE_LIST_TABLE + " > tbody").empty();
+
+					var fileListTableCaption = $("#" + $Phyer.FileManager.FILE_LIST_TABLE + " > caption");
+					
+					$(fileListTableCaption).text("Files and Folders located in: " + json.path);
+					
+					var directoryCount = json.directoryCount;
+					var fileCount = json.fileCount;
+					
+					if (directoryCount > 0) {
+						for (var directoryIndex = 1; directoryIndex <= directoryCount; directoryIndex++) {
+							var nextDir = json.directories[directoryIndex];
+							
+							if (nextDir && nextDir.name != "..") {
+								$Phyer.FileManager.createFileListDirectoryRow(location, directory, nextDir.name, nextDir.modifiedTime, nextDir.size, nextDir.permissions);
+								
+								$Phyer.FileManager.__rowCounter++;
+							}
+						}
+					}
+					
+					if (fileCount > 0) {
+						for (var fileIndex = 1; fileIndex <= fileCount; fileIndex++) {
+							var nextFile = json.files[fileIndex];
+							
+							if (nextFile) {
+								$Phyer.FileManager.createFileListRow(nextFile.type, nextFile.name, nextFile.modifiedTime, nextFile.size, nextFile.permissions);
+								
+								$Phyer.FileManager.__rowCounter++;
+							}
+						}						
+					}
+					
+					$("#" + $Phyer.FileManager.FILE_LIST_TABLE + " tbody tr").hover(
+						function() {
+							$(this).children().addClass("selected");
+						},
+						function() {
+							$(this).children().removeClass("selected");
+						}
+					);
+				}
+			);			
+		},
+		
+		/**
+		 * createFileListDirectoryRow
+		 * Creates a directory row in the file list.
+		 * @param string location
+		 * @param string directory
+		 * @param string name
+		 * @param string modifiedTime
+		 * @param double size
+		 * @param int permissions
+		 * @return void
+		 */
+		createFileListDirectoryRow: function(location, directory, name, modifiedTime, size, permissions) {
+			var fileListTable = $("#" + $Phyer.FileManager.FILE_LIST_TABLE + " > tbody");
+			var newDirectory = directory.replace(/^\s*/, "").replace(/\s*$/, "") + name + "/";
+			var newLocation = location.replace(/^\s*/, "").replace(/\s*$/, "");
+			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><div class=\"typeDirectory\"></div></td><td class=\"fileOrDirName\"><a href=\"" + $Phyer.PHYER_ROOT + "phyle-box/file-manager.php?currentDirectory=/" + name + "/\">" + name + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"></td>";
+			
+			if (($Phyer.FileManager.__rowCounter % 2) == 0) {
+				$("<tr>" + row + "</tr>").appendTo(fileListTable);
+			} else {
+				$("<tr class=\"oddRow\">" + row + "</tr>").appendTo(fileListTable);
+			}			
+		},
+		
+		/**
+		 * createFileListRow
+		 * Creates and places a file list row on the file list dynamically.
+		 * @param int type
+		 * @param string name
+		 * @param string modifiedTime
+		 * @param double size
+		 * @param int permissions
+		 * @return void
+		 */
+		createFileListRow: function(type, name, modifiedTime, size, permissions) {
+			var fileListTable = $("#" + $Phyer.FileManager.FILE_LIST_TABLE + " > tbody");
+			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><div class=\"type" + type + "\"></div></td><td class=\"fileOrDirName\">" + name + "</td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"></td>";
+			
+			if (($Phyer.FileManager.__rowCounter % 2) == 0) {
+				$("<tr>" + row + "</tr>").appendTo(fileListTable);
+			} else {
+				$("<tr class=\"oddRow\">" + row + "</tr>").appendTo(fileListTable);
+			}
+		}
+			
+	}
+	
+	Phyer.prototype.FileManager = new FileManager();
+	
+}
+
+window.$Phyer = new Phyer();

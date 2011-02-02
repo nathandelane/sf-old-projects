@@ -1,0 +1,57 @@
+.footer
+{
+	width: 100%;
+	overflow: hidden;
+	position: absolute;
+	bottom: 0;
+	background-color: #50779d;
+}
+
+#copyrightNotice
+{
+	margin: 10px;
+	float: left;
+}
+
+#footerSubNavigation
+{
+	width: 250px;
+	overflow: hidden;
+	margin: 10px;
+	float: right;
+}
+
+#footerSubNavigation ul
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	float: right;
+}
+
+#footerSubNavigation ul li
+{
+	display: inline;
+}
+
+#footerSubNavigation ul li a:link,
+#footerSubNavigation ul li a:active,
+#footerSubNavigation ul li a:visited,
+#footerSubNavigation ul li a:hover
+{
+	display: block;
+	float: left;
+	padding: 2px 4px;
+}
+
+#footerSubNavigation ul li a:link,
+#footerSubNavigation ul li a:active,
+#footerSubNavigation ul li a:visited
+{
+	text-decoration: underline;
+}
+
+#footerSubNavigation ul li a:hover
+{
+	text-decoration: none;
+}

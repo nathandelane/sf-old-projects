@@ -1,0 +1,191 @@
+.toolbar
+{
+	width: 100%;
+	overflow: hidden;
+	padding: 4px 0;
+	background-color: #ffffff;
+}
+
+.smallIcons
+{
+	background-image: url(../_img/FileManager-SmallIcons.gif);
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	float: left;
+	display: block;
+}
+
+.smallIcons.createNewFile
+{
+	background-position: 0 -80px;	
+}
+
+.smallIcons.createNewFolder
+{
+	background-position: -16px -48px;
+}
+
+.largeIcons
+{
+	background-image: url(../_img/FileManager-LargeIcons.png);
+	background-repeat: no-repeat;
+	width: 32px;
+	height: 32px;
+	overflow: hidden;
+	float: left;
+}
+
+#favorites,
+#commands
+{
+	width: auto;
+	height: 30px;
+	overflow: hidden;
+	float: left;
+	margin-left: 10px;
+	padding-right: 10px;
+	font-size: 16px;
+	border-right: 1px solid #a0a0a0;
+}
+
+#commands
+{
+	padding-right: 0;
+}
+
+#favorites ul,
+#commands ul
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#favorites ul li
+{
+	padding: 6px 0 5px;
+}
+
+#commands ul li
+{
+	padding: 7px 10px 0 0;
+	float: left;
+}
+
+#favorites ul li a,
+#favorites ul li a:link,
+#favorites ul li a:active,
+#favorites ul li a:visited,
+#favorites ul li a:hover
+{
+	color: #50779d;
+	float: left;
+	padding-right: 8px;
+}
+
+.smallDriveSpace
+{
+	width: 100px;
+	height: 19px;
+	background-color: #008000;
+	overflow: hidden;
+	float: left;
+}
+
+.smallUsedSpace
+{
+	height: 17px;
+	margin: 1px 0;
+	background-color: #a00000;
+	float: left;
+}
+
+.driveSpacePercentage
+{
+	padding-left: 8px;
+	float: left;
+	color: #50779d;
+}
+
+#driveInfo,
+#driveSelectorContainer
+{
+	float: left;
+}
+
+#driveSelector
+{
+	width: auto;
+}
+
+.fileList
+{
+	width: 100%;
+	overflow: hidden;
+}
+
+.fileListTable
+{
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 40px;
+}
+
+.fileListTable caption
+{
+	background-color: #50779d;
+	border-bottom: 1px solid #7097cd;
+	padding: 2px 0;
+}
+
+.fileListTable thead
+{
+	background-color: #50779d;
+	padding-bottom: 2px;
+}
+
+.fileListTable td
+{
+	text-align: left;
+}
+
+.fileListTable td.checkBox,
+.fileListTable td.icon
+{
+	width: 90px;
+	overflow: hidden;
+	text-align: center;
+}
+
+.fileListTable td.checkBox label,
+.fileListTable td.checkBox input
+{
+	display: inline;
+	width: auto;
+}
+
+.fileListTable td.size
+{
+	text-align: right;
+	padding-right: 10px;
+}
+
+.fileListTable tr.oddRow
+{
+	background-color: #50779d;
+}
+
+.fileListTable td.fileOrDirName a:link,
+.fileListTable td.fileOrDirName a:active,
+.fileListTable td.fileOrDirName a:visited,
+.fileListTable td.fileOrDirName a:hover
+{
+	text-decoration: none;
+}
+
+.selected
+{
+	background-color: #ffaa00;
+}
