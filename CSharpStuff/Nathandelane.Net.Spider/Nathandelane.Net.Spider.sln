@@ -1,7 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-# SharpDevelop 4.0.0.7070
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.Spider", "Nathandelane.Net.Spider\Nathandelane.Net.Spider.csproj", "{1E72CC23-12BF-48F3-8639-194BBFF896A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.Net.Spider.WebCrawler", "Nathandelane.Net.Spider.WebCrawler\Nathandelane.Net.Spider.WebCrawler.csproj", "{A1EB5626-525A-40AB-8797-899BD46C0AC4}"
@@ -9,17 +8,27 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1E72CC23-12BF-48F3-8639-194BBFF896A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1E72CC23-12BF-48F3-8639-194BBFF896A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E72CC23-12BF-48F3-8639-194BBFF896A1}.Debug|x86.ActiveCfg = Debug|x86
+		{1E72CC23-12BF-48F3-8639-194BBFF896A1}.Debug|x86.Build.0 = Debug|x86
 		{1E72CC23-12BF-48F3-8639-194BBFF896A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E72CC23-12BF-48F3-8639-194BBFF896A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E72CC23-12BF-48F3-8639-194BBFF896A1}.Release|x86.ActiveCfg = Release|x86
+		{1E72CC23-12BF-48F3-8639-194BBFF896A1}.Release|x86.Build.0 = Release|x86
 		{A1EB5626-525A-40AB-8797-899BD46C0AC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A1EB5626-525A-40AB-8797-899BD46C0AC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1EB5626-525A-40AB-8797-899BD46C0AC4}.Debug|x86.ActiveCfg = Debug|x86
+		{A1EB5626-525A-40AB-8797-899BD46C0AC4}.Debug|x86.Build.0 = Debug|x86
 		{A1EB5626-525A-40AB-8797-899BD46C0AC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1EB5626-525A-40AB-8797-899BD46C0AC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1EB5626-525A-40AB-8797-899BD46C0AC4}.Release|x86.ActiveCfg = Release|x86
+		{A1EB5626-525A-40AB-8797-899BD46C0AC4}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
