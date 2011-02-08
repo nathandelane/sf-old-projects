@@ -1,0 +1,103 @@
+#bio,
+#signature
+{
+	font-family: Helvetica,Arial,Verdana,sans-serif;
+	font-size: 13.3333px;
+	height: 5em;
+}
+
+.modal
+{
+	width: 350px;
+	overflow: hidden;
+	color: #50779D;
+	text-align: left;
+}
+
+.modal h2
+{
+	text-align: center;
+}
+
+.content
+{
+	width: 100%;
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+
+.contentInner
+{
+	margin: 10px;
+	overflow: hidden;
+	position: relative;
+}
+
+h1
+{
+	border-bottom: 3px solid #50779D;
+	float: left;
+}
+
+input
+{
+	width: 250px;
+}
+
+input.radio
+{
+	width: auto;
+}
+
+select
+{
+	width: auto;
+}
+
+.panel
+{
+	width: 99.5%;
+	border: 3px solid #efefef;
+	background-color: #ffffff;
+	color: #2a557c;
+	float: left;
+	overflow: hidden;
+}
+
+.panel a:link
+{
+	color: #50779D;
+}
+
+.panelInner
+{
+	margin: 10px;
+	overflow: hidden;
+}
+
+#registrationFormTable
+{
+	width: 690px;
+}
+
+.label
+{
+	text-align: right;
+	width: 98px;
+}
+
+.requiredColor
+{
+	color: #800000;
+}
+
+.watermark
+{
+	color: #7097CD;
+}
+
+#submitButton
+{
+	margin-top: 20px;
+	width: auto;
+}

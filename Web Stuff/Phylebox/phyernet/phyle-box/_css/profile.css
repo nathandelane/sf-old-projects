@@ -1,0 +1,76 @@
+.column
+{
+	width: 320px;
+	overflow: hidden;
+	float: left;
+	padding: 0 0 10px 0;
+}
+
+.contentBox
+{
+	width: 300px;
+	overflow: hidden;
+	margin: 10px 0 0 10px;
+	float: left;
+	background-color: #50779d;
+	padding: 4px;
+}
+
+.contentBox .avatar
+{
+	width: 48px;
+	height: 48px;
+	overflow: hidden;
+	padding: 2px;
+	border: solid 1px #7097cd;
+	float: left;
+	margin: 0 6px 0 0;
+}
+
+.fileInput
+{
+	color: #ffffff;
+	background-color: transparent;
+}
+
+#username
+{
+	color: #ffffff;
+	background-color: transparent;
+	border: 0;
+	font-weight: bold;
+}
+
+.profileSubmit
+{
+	width: auto;
+	margin: 0 auto;
+}
+
+.diskRepresentation
+{
+	width: 298px;
+	height: 18px;
+	background-color: #008000;
+	overflow: hidden;
+	border: 1px solid #7097cd;
+}
+
+.diskUsed
+{
+	height: 18px;
+	background-color: #800000;
+	overflow: hidden;
+	float: left;
+}
+
+.formRow.resources
+{
+	padding: 4px 0;
+}
+
+.formRow ul
+{
+	list-style-type: square;
+	margin: 6px 0 0;
+}
