@@ -45,7 +45,7 @@ class FileManagerCommands implements IRenderable {
 				"<h2>Create New Folder</h2><label for=\"newFileName\">New Folder Name:</label><input type=\"text\" id=\"newFolderName\" name=\"newFolderName\" value=\"\" /><input type=\"button\" value=\"Create Folder\" onclick=\"javascript: $Phyer.FileManager.createFolder();\" />",
 				{
 					"autoDimensions": false,
-					"width": 350,
+					"width": 380,
 					"height": "auto",
 					"transitionIn": "none",
 					"transitionOut": "none"
