@@ -16,6 +16,7 @@ if (Phyer && $Phyer) {
 		DIRECTORY: "directory",
 		FILE_LIST_TABLE: "fileListTable",
 		FILE_NAME: "fileName",
+		FILE_CONTENTS: "fileContents",
 		FOLDER_NAME: "folderName",
 		ORDER_BY_COLUMN_NAME: "orderByColumnName",
 		ORDER_BY_ORDER: "orderByOrder",
@@ -104,6 +105,16 @@ if (Phyer && $Phyer) {
 							$(this).children().removeClass("selected");
 						}
 					);
+					
+					$("input[type='checkbox']").change(function(e) {
+						if ($(this).attr("checked")) {
+							$("#downloadFiles").attr("class", "phyleBoxIcons download active");
+							$("#downloadFiles").attr("title", "Download Files");
+						} else {
+							$("#downloadFiles").attr("class", "phyleBoxIcons download");
+							$("#downloadFiles").attr("title", "Select Files to Download");
+						}
+					});
 				}
 			);			
 		},
@@ -111,13 +122,14 @@ if (Phyer && $Phyer) {
 		/**
 		 * createFile
 		 * Creates a file in the current directory if it doesn't already exist.
+		 * @param string location
+		 * @param string directory
+		 * @param string fileName
+		 * @param string contents
 		 * @return bool
 		 */
-		createFile: function() {
-			var location = $("#driveSelector").val();
-			var directory = $("#currentDirectory").val();
-			var fileName = $("#newFileName").val();
-			var data = "{ \"" + $Phyer.FileManager.DRIVE_LOCATION + "\": \"" + location + "\", \"" + $Phyer.FileManager.DIRECTORY + "\": \"" + directory + "\", \"" + $Phyer.FileManager.FILE_NAME + "\": \"" + fileName + "\" }";
+		createFile: function(location, directory, fileName, contents) {
+			var data = "{ \"" + $Phyer.FileManager.DRIVE_LOCATION + "\": \"" + location + "\", \"" + $Phyer.FileManager.DIRECTORY + "\": \"" + directory + "\", \"" + $Phyer.FileManager.FILE_NAME + "\": \"" + fileName + "\", \"" + $Phyer.FileManager.FILE_CONTENTS + "\": \"" + contents + "\" }";
 			
 			$Phyer.postJson($Phyer.PHYER_ROOT + "phyle-box/business/FileManagementService.php?createNewFile", data, 
 					null, 
@@ -200,13 +212,33 @@ if (Phyer && $Phyer) {
 		 */
 		createFileListRow: function(type, name, modifiedTime, size, permissions) {
 			var fileListTable = $("#" + $Phyer.FileManager.FILE_LIST_TABLE + " > tbody");
-			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><div class=\"type" + type + "\"></div></td><td class=\"fileOrDirName\">" + name + "</td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"></td>";
+			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><div class=\"type" + type + "\"></div></td><td class=\"fileOrDirName\"><a href=\"javascript: void(0);\" onclick=\"javascript: $Phyer.FileManager.openFileEditor('" + name + "');\">" + name + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"></td>";
 			
 			if (($Phyer.FileManager.__rowCounter % 2) == 0) {
 				$("<tr>" + row + "</tr>").appendTo(fileListTable);
 			} else {
 				$("<tr class=\"oddRow\">" + row + "</tr>").appendTo(fileListTable);
 			}
+		},
+		
+		/**
+		 * openFileEditor
+		 * Opens a file editor with the optional file name argument.
+		 * @param string fileName
+		 * @return void
+		 */
+		openFileEditor: function(fileName) {
+			$.fancybox(
+				{
+					"width": 620,
+					"height": 674,
+					"autoScale": false,
+					"transitionIn": true,
+					"transitionOut": false,
+					"type": "iframe",
+					"href": "/phyle-box/simple-editor.php?fileName=" + fileName + "&driveSelector=" + $("#driveSelector").val() + "&currentDirectory=" + $("#currentDirectory").val()
+				}
+			);
 		}
 			
 	}

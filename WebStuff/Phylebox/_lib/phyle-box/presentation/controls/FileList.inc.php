@@ -50,28 +50,30 @@ class FileList implements IRenderable {
 		</tbody>
 	</table>
 	<script type="text/javascript">
-		$("#checkAllCheckBox").change(function(e) {
-			var target;
-			
-			if (!e) {
-				var e = window.event;
-			}
-
-			if (e.target) {
-				target = e.target;
-			} else if (e.srcElement) {
-				target = e.srcElement;
-			}
-
-			if (target.nodeType == 3) {
-				target = target.parentNode;
-			}
-			
-			if ($(target).attr("checked")) {
-				$("input[type='checkbox']").attr("checked", true);
-			} else {
-				$("input[type='checkbox']").attr("checked", false);
-			}
+		$(document).ready(function(e) {
+			$("#checkAllCheckBox").change(function(e) {
+				var target;
+				
+				if (!e) {
+					var e = window.event;
+				}
+	
+				if (e.target) {
+					target = e.target;
+				} else if (e.srcElement) {
+					target = e.srcElement;
+				}
+	
+				if (target.nodeType == 3) {
+					target = target.parentNode;
+				}
+				
+				if ($(target).attr("checked")) {
+					$("input[type='checkbox']").attr("checked", true);
+				} else {
+					$("input[type='checkbox']").attr("checked", false);
+				}
+			});	
 		});
 	</script>
 </div>

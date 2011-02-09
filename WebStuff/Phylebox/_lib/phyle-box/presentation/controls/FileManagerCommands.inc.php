@@ -24,13 +24,19 @@ class FileManagerCommands implements IRenderable {
 		<li>
 			<a href="javascript: void(0);" id="createNewFolderButton" title="Create New Folder" class="smallIcons createNewFolder"></a>
 		</li>
+		<li>
+			<a href="javascript: void(0);" id="uploadFiles" title="Upload Files" class="phyleBoxIcons upload"></a>
+		</li>
+		<li>
+			<a href="javascript: void(0);" id="downloadFiles" title="Select Files to Download" class="phyleBoxIcons download"></a>
+		</li>
 	</ul>
 </div>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#createNewFileButton").click(function(e) {
 			$.fancybox(
-				"<h2>Create New File</h2><label for=\"newFileName\">New File Name:</label><input type=\"text\" id=\"newFileName\" name=\"newFileName\" value=\"\" /><input type=\"button\" value=\"Create File\" onclick=\"javascript: $Phyer.FileManager.createFile();\" />",
+				"<h2>Create New File</h2><label for=\"newFileName\">New File Name:</label><input type=\"text\" id=\"newFileName\" name=\"newFileName\" value=\"\" /><input type=\"button\" value=\"Create File\" onclick=\"javascript: var newFileName = $('#newFileName').val(); $Phyer.FileManager.openFileEditor(newFileName);\" />",
 				{
 					"autoDimensions": false,
 					"width": 350,
@@ -52,6 +58,8 @@ class FileManagerCommands implements IRenderable {
 				}
 			);
 		});
+		$("#uploadFiles").click(function(e) {});
+		$("#downloadFiles").click(function(e) {});
 	});
 </script>
 <?php

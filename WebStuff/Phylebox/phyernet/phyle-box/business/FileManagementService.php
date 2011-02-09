@@ -29,6 +29,7 @@ class FileManagementService extends JsonWebServiceBase {
 	const DRIVE_LOCATION = "location";
 	const DRIVE_TYPE = "type";
 	const FILE_NAME = "fileName";
+	const FILE_CONTENTS = "fileContents";
 	const FOLDER_NAME = "folderName";
 	const USER_NAME = "userName";
 	const RELATIVE_PATH = "relativePath";
@@ -84,13 +85,13 @@ class FileManagementService extends JsonWebServiceBase {
 		
 		if (!is_null($userName)) {
 			if ($driveType === DriveType::PERSONAL) {
-				$driveQuery = "select pd.drive_location, pd.additional_space, at.allotted_space from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.id = '{$driveId}' and pd.person = p.id";
+				$driveQuery = "select pd.drive_location from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.personal_drive_id = '{$driveId}' and pd.person_id = p.person_id";
 			} else if ($driveType === DriveType::STORAGE) {
-				$driveQuery = "select ps.storage_location as drive_location, ps.allotted_space from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.id = '{$driveId}' and ps.person = p.id";
+				$driveQuery = "select ps.storage_location as drive_location from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.personal_storage_id = '{$driveId}' and ps.person_id = p.person_id";
 			} else if ($driveType === DriveType::GROUP) {
-				$driveQuery = "select gd.drive_location, gd.allotted_space from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and g.person = p.id and g.group = pg.id and gd.group = pg.id and gd.id = '{$driveId}'";
+				$driveQuery = "select gd.drive_location from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and pg.person_id = p.person_id and pg.group_id = g.group_id and gd.group_id = g.group_id and gd.group_drive_id = '{$driveId}'";
 			}
-			
+												
 			if (!Strings::isNullOrEmpty($driveQuery)) {
 				$rows = self::$__queryHandler->executeQuery($driveQuery);
 				
@@ -141,13 +142,13 @@ class FileManagementService extends JsonWebServiceBase {
 		
 		if (!is_null($userName)) {
 			if ($driveType === DriveType::PERSONAL) {
-				$driveQuery = "select pd.drive_location, pd.additional_space, at.allotted_space from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.personal_drive_id = '{$driveId}' and pd.person_id = p.person_id";
+				$driveQuery = "select pd.drive_location from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.personal_drive_id = '{$driveId}' and pd.person_id = p.person_id";
 			} else if ($driveType === DriveType::STORAGE) {
-				$driveQuery = "select ps.storage_location as drive_location, ps.allotted_space from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.personal_storage_id = '{$driveId}' and ps.person_id = p.person_id";
+				$driveQuery = "select ps.storage_location as drive_location from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.personal_storage_id = '{$driveId}' and ps.person_id = p.person_id";
 			} else if ($driveType === DriveType::GROUP) {
-				$driveQuery = "select gd.drive_location, gd.allotted_space from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and pg.person_id = p.person_id and pg.group_id = g.group_id and gd.group_id = g.group_id and gd.group_drive_id = '{$driveId}'";
+				$driveQuery = "select gd.drive_location from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and pg.person_id = p.person_id and pg.group_id = g.group_id and gd.group_id = g.group_id and gd.group_drive_id = '{$driveId}'";
 			}
-			
+												
 			if (!Strings::isNullOrEmpty($driveQuery)) {
 				$rows = self::$__queryHandler->executeQuery($driveQuery);
 				
@@ -210,7 +211,7 @@ class FileManagementService extends JsonWebServiceBase {
 			} else if ($driveType === DriveType::GROUP) {
 				$driveQuery = "select gd.drive_location from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and pg.person_id = p.person_id and pg.group_id = g.group_id and gd.group_id = g.group_id and gd.group_drive_id = '{$driveId}'";
 			}
-			
+												
 			if (!Strings::isNullOrEmpty($driveQuery)) {
 				$rows = self::$__queryHandler->executeQuery($driveQuery);
 				
@@ -387,6 +388,7 @@ class FileManagementService extends JsonWebServiceBase {
 		$driveId = intval($locationComponents[1]);
 		$directoryName = $jsonObject->{FileManagementService::DIRECTORY_NAME};
 		$fileName = $jsonObject->{FileManagementService::FILE_NAME};
+		$fileContents = $jsonObject->{FileManagementService::FILE_CONTENTS};
 		
 		Assert::isTrue(!is_null($driveId) && !is_null($driveType), "A string value named location was expected but not found.");
 		Assert::isTrue(!is_null($directoryName), "A string value named directory was expected but not found.");
@@ -399,7 +401,7 @@ class FileManagementService extends JsonWebServiceBase {
 			} else if ($driveType === DriveType::GROUP) {
 				$driveQuery = "select gd.drive_location from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and pg.person_id = p.person_id and pg.group_id = g.group_id and gd.group_id = g.group_id and gd.group_drive_id = '{$driveId}'";
 			}
-			
+									
 			if (!Strings::isNullOrEmpty($driveQuery)) {
 				$rows = self::$__queryHandler->executeQuery($driveQuery);
 				
@@ -424,7 +426,7 @@ class FileManagementService extends JsonWebServiceBase {
 						if (!file_exists($newFilePath)) {
 							$newFileHandle = fopen($newFilePath, "w+");
 							
-							fwrite($newFileHandle, "");
+							fwrite($newFileHandle, $fileContents);
 							fclose($newFileHandle);
 							
 							$newFileHandle = null;
@@ -461,7 +463,7 @@ class FileManagementService extends JsonWebServiceBase {
 			} else if ($driveType === DriveType::GROUP) {
 				$driveQuery = "select gd.drive_location from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and pg.person_id = p.person_id and pg.group_id = g.group_id and gd.group_id = g.group_id and gd.group_drive_id = '{$driveId}'";
 			}
-			
+						
 			if (!Strings::isNullOrEmpty($driveQuery)) {
 				$rows = self::$__queryHandler->executeQuery($driveQuery);
 				
@@ -491,6 +493,7 @@ class FileManagementService extends JsonWebServiceBase {
 			}
 		}
 	}
+	
 }
 
 $fileManagementService = FileManagementService::getInstance();
