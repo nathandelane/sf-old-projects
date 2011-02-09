@@ -107,7 +107,7 @@ if (Phyer && $Phyer) {
 					);
 					
 					$("input[type='checkbox']").change(function(e) {
-						if ($(this).attr("checked")) {
+						if ($("input[type='checkbox']:checked").length > 0) {
 							$("#downloadFiles").attr("class", "phyleBoxIcons download active");
 							$("#downloadFiles").attr("title", "Download Files");
 						} else {
