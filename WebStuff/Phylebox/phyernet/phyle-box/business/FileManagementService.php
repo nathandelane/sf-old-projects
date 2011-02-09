@@ -363,7 +363,16 @@ class FileManagementService extends JsonWebServiceBase {
 		$result = (strcasecmp($actualFirst, $actualSecond) * (-1));
 		
 		return $result;
-	}	
+	}
+	
+	/**
+	 * createNewFile
+	 * Creates a new file in the current directory if it doesn't already exist.
+	 * @param object $jsonObject
+	 */
+	public function createNewFile(/*object*/ $jsonObject) {
+
+	}
 }
 
 $fileManagementService = FileManagementService::getInstance();

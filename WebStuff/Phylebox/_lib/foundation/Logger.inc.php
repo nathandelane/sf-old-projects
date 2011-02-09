@@ -30,7 +30,7 @@ final class Logger {
 	 * @param int $status Use _lib/foundation/LogStatus
 	 * @param string $message
 	 */
-	public function sendMessage(/*int*/ $status, /*string*/ $message) {
+	public function sendMessage(/*int*/ $status, /*string*/ $message, /*int*/ $loggingLevel = LogStatus::DEBUG, /*int*/ $permittedLevel = LogStatus::DEBUG) {
 		ArgumentTypeValidator::isString($message, "Message must be a string.");
 		
 		$logMessage = null;

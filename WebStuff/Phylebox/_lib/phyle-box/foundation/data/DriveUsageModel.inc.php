@@ -70,6 +70,7 @@ class DriveUsageModel {
 	 */
 	private function _calculateUsage(/*string*/ $directory) {
 		$directoryHandle = opendir($directory);
+		$bytes = 0;
 			
 		if (is_resource($directoryHandle)) {
 			while ($nextFile = readdir($directoryHandle)) {

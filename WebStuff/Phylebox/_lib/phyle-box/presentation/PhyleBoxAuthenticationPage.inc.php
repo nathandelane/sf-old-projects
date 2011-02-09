@@ -9,6 +9,7 @@ require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/AuthenticationP
 require_once(PhyleBox_Config::getLocalPresentationLocation() . "controls/GoogleAnalytics.inc.php");
 require_once(PhyleBox_Config::getLocalPresentationLocation() . "controls/PhyleBoxHeaderControl.inc.php");
 require_once(PhyleBox_Config::getLocalPresentationLocation() . "controls/PhyleBoxFooterControl.inc.php");
+require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/business/Functions.inc.php");
 
 /**
  * PhyleBoxAuthenticationPage
@@ -52,7 +53,7 @@ abstract class PhyleBoxAuthenticationPage extends AuthenticationPage {
 	public function getAuthenticationQuery() {
 		$this->_logger->sendMessage(LOG_DEBUG, "Inside of GetAuthenticationQuery");
 		
-		return 'select * from `pbox`.`people` where user_name = \'%1$s\' and password = \'%2$s\'';
+		return 'select p.* from `pbox`.`people` p inner join `pbox`.`people_roles` pr on pr.person_id = p.person_id left outer join `pbox`.`roles` r on r.role_id = pr.role_id left outer join `pbox`.`roles_functions` rf on rf.role_id = r.role_id inner join `pbox`.`functions` f on f.function_id = rf.function_id where p.user_name = \'%1$s\' and p.password = \'%2$s\' and p.is_disabled_by_phyer = \'false\' and p.is_locked = \'false\' and (p.date_deleted > NOW() || p.date_deleted = \'0000-00-00 00:00:00\') and f.name = \'' . Functions::PHYLE_BOX . '\'';
 	}
 	
 	/**

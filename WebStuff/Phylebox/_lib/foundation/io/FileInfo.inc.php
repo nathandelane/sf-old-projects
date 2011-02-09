@@ -162,6 +162,7 @@ class FileInfo {
 	private function _calculateUsage(/*string*/ $directory) {
 		ArgumentTypeValidator::isString($directory, "Directory must be a string.");
 		
+		$bytes = 0;
 		$directoryHandle = opendir($directory);
 			
 		if (is_resource($directoryHandle)) {

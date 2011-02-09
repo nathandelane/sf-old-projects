@@ -12,6 +12,7 @@ require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/IRenderable.inc
  */
 final class PhyleBoxLoginForm implements IRenderable {
 	
+	private $_page;
 	private $_actionUrl;
 	private $_showGoToPhyleBox;
 	
@@ -21,10 +22,12 @@ final class PhyleBoxLoginForm implements IRenderable {
 	 * @param bool $showGoToPhyleBox
 	 * @return PhyleBoxLoginForm
 	 */
-	public function PhyleBoxLoginForm(/*string*/ $actionUrl, /*bool*/ $showGoToPhyleBox = true) {
+	public function PhyleBoxLoginForm(/*Page*/ $page, /*string*/ $actionUrl, /*bool*/ $showGoToPhyleBox = true) {
+		ArgumentTypeValidator::isObject($page, "Page must be an object of Page.");
 		ArgumentTypeValidator::isString($actionUrl, "ActionUrl must be a string.");
 		ArgumentTypeValidator::isBool($showGoToPhyleBox, "ShowGoToPhyleBox must be boolean.");
 		
+		$this->_page = $page;
 		$this->_actionUrl = $actionUrl;
 		$this->_showGoToPhyleBox = $showGoToPhyleBox;
 	}
@@ -40,7 +43,7 @@ final class PhyleBoxLoginForm implements IRenderable {
 				<form id="loginForm" action="<?php echo "$this->_actionUrl"; ?>" method="post">
 					<div class="formRow">
 						<label for="userName">User Name:</label>
-						<input id="userName" name="userName" value="<?php echo $_REQUEST["userName"]; ?>" type="text" />
+						<input id="userName" name="userName" value="<?php echo $this->_page->getFieldValue("userName"); ?>" type="text" />
 					</div>
 					<div class="formRow">
 						<label for="password">Password:</label>

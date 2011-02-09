@@ -10,6 +10,7 @@ final class Config {
 	private static $__frameworkRoot;
 	private static $__phyernetRoot;
 	private static $__phyleboxRoot;
+	private static $__adminRoot;
 	private static $__isDebugEnvironment = true;
 	
 	/**
@@ -73,6 +74,21 @@ final class Config {
 		}
 		
 		return self::$__phyleboxRoot;
+	}
+	
+	/**
+	 * getAdminRoot
+	 * Gets the root of admin.
+	 * @return string
+	 */
+	public static function getAdminRoot() {
+		if (!isset(self::$__adminRoot)) {
+			$localConfigLocation = dirname(__FILE__);
+			
+			self::$__adminRoot = "$localConfigLocation/../phyernet/admin/";
+		}
+		
+		return self::$__adminRoot;
 	}
 	
 }

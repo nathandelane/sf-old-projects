@@ -19,13 +19,31 @@ class FileManagerCommands implements IRenderable {
 <div id="commands">
 	<ul>
 		<li>
-			<a href="#" title="Create New File" class="smallIcons createNewFile"></a>
+			<a href="javascript: void(0);" id="createNewFileButton" title="Create New File" class="smallIcons createNewFile"></a>
 		</li>
 		<li>
-			<a href="#" title="Create New Folder" class="smallIcons createNewFolder"></a>
+			<a href="javascript: void(0);" id="createNewFolderButton" title="Create New Folder" class="smallIcons createNewFolder"></a>
 		</li>
 	</ul>
 </div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#createNewFileButton").click(function(e) {
+			$.fancybox(
+				"<h2>Create New File</h2><label for=\"newFileName\">New File Name:</label><input type=\"text\" id=\"newFileName\" name=\"newFileName\" value=\"\" /><input type=\"button\" value=\"Create File\" onclick=\"\" />",
+				{
+					"autoDimensions": false,
+					"width": 350,
+					"height": "auto",
+					"transitionIn": "none",
+					"transitionOut": "none"
+				}
+			);
+		});
+		$("#createNewFolderButton").click(function(e) {
+		});
+	});
+</script>
 <?php
 		
 	}
