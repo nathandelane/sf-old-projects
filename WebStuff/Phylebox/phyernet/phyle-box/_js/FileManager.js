@@ -166,17 +166,16 @@ if (Phyer && $Phyer) {
 			if (name == "..") {
 				name = "";
 				
-				var locationComponents = directory.split("/");
+				var locationComponents = directory.substring(0, (directory.length - 1)).split("/");
 				
 				directory = "";
 				
-				for (var i = 2; i < (locationComponents.length - 1); i++) {
-					if (i > 2) {
+				for (var i = 0; i < (locationComponents.length - 1); i++) {
+					if (i > 0) {
 						directory = directory + "/";
 					}
-					
+
 					directory = directory + locationComponents[i];
-					alert(directory);
 				}
 			}
 			
