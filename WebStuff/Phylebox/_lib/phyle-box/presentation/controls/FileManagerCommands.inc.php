@@ -30,7 +30,7 @@ class FileManagerCommands implements IRenderable {
 	$(document).ready(function() {
 		$("#createNewFileButton").click(function(e) {
 			$.fancybox(
-				"<h2>Create New File</h2><label for=\"newFileName\">New File Name:</label><input type=\"text\" id=\"newFileName\" name=\"newFileName\" value=\"\" /><input type=\"button\" value=\"Create File\" onclick=\"\" />",
+				"<h2>Create New File</h2><label for=\"newFileName\">New File Name:</label><input type=\"text\" id=\"newFileName\" name=\"newFileName\" value=\"\" /><input type=\"button\" value=\"Create File\" onclick=\"javascript: $Phyer.FileManager.createFile();\" />",
 				{
 					"autoDimensions": false,
 					"width": 350,
@@ -41,6 +41,16 @@ class FileManagerCommands implements IRenderable {
 			);
 		});
 		$("#createNewFolderButton").click(function(e) {
+			$.fancybox(
+				"<h2>Create New Folder</h2><label for=\"newFileName\">New Folder Name:</label><input type=\"text\" id=\"newFolderName\" name=\"newFolderName\" value=\"\" /><input type=\"button\" value=\"Create Folder\" onclick=\"javascript: $Phyer.FileManager.createFolder();\" />",
+				{
+					"autoDimensions": false,
+					"width": 350,
+					"height": "auto",
+					"transitionIn": "none",
+					"transitionOut": "none"
+				}
+			);
 		});
 	});
 </script>

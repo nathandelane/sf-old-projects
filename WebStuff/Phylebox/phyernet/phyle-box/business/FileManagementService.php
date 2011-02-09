@@ -28,6 +28,8 @@ class FileManagementService extends JsonWebServiceBase {
 	const DRIVE_NAME = "name";
 	const DRIVE_LOCATION = "location";
 	const DRIVE_TYPE = "type";
+	const FILE_NAME = "fileName";
+	const FOLDER_NAME = "folderName";
 	const USER_NAME = "userName";
 	const RELATIVE_PATH = "relativePath";
 	const ORDER_BY_COLUMN_NAME = "orderByColumnName";
@@ -229,11 +231,17 @@ class FileManagementService extends JsonWebServiceBase {
 					if (is_dir($absoluteDirectoryLocation)) {
 						$directoryHandle = opendir($absoluteDirectoryLocation);
 						
-						if (is_resource($directoryHandle)) {							
+						if (is_resource($directoryHandle)) {
+							if (!Strings::equals($directoryName, "/")) {
+								$this->_logger->sendMessage(LOG_DEBUG, "DirName: " . $directoryName);
+								
+								$directories[] = array("type" => "Directory", "name" => "..", "permissions" => 0, "size" => 0, "modifiedTime" => "");
+							}
+							
 							while ($nextFile = readdir($directoryHandle)) {
 								$nextAbsolutePath = $absoluteDirectoryLocation . $nextFile;
 								
-								if (!Strings::equals($nextFile, ".")) {
+								if (!Strings::equals($nextFile, ".") && !Strings::equals($nextFile, "..")) {
 									if (is_dir($nextAbsolutePath)) {
 										$directoryModel = new DirectoryModel($nextAbsolutePath);
 										$modifiedTime = date("r", $directoryModel->modifiedTime);
@@ -371,7 +379,117 @@ class FileManagementService extends JsonWebServiceBase {
 	 * @param object $jsonObject
 	 */
 	public function createNewFile(/*object*/ $jsonObject) {
+		ArgumentTypeValidator::isObject($jsonObject, "JsonObject must be an object.");
+		
+		$userName = $_SESSION["userName"];
+		$locationComponents = Strings::split(($jsonObject->{FileManagementService::DRIVE_LOCATION}), "-");
+		$driveType = intval($locationComponents[0]);
+		$driveId = intval($locationComponents[1]);
+		$directoryName = $jsonObject->{FileManagementService::DIRECTORY_NAME};
+		$fileName = $jsonObject->{FileManagementService::FILE_NAME};
+		
+		Assert::isTrue(!is_null($driveId) && !is_null($driveType), "A string value named location was expected but not found.");
+		Assert::isTrue(!is_null($directoryName), "A string value named directory was expected but not found.");
 
+		if (!is_null($userName)) {
+			if ($driveType === DriveType::PERSONAL) {
+				$driveQuery = "select pd.drive_location from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.personal_drive_id = '{$driveId}' and pd.person_id = p.person_id";
+			} else if ($driveType === DriveType::STORAGE) {
+				$driveQuery = "select ps.storage_location as drive_location from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.personal_storage_id = '{$driveId}' and ps.person_id = p.person_id";
+			} else if ($driveType === DriveType::GROUP) {
+				$driveQuery = "select gd.drive_location from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and pg.person_id = p.person_id and pg.group_id = g.group_id and gd.group_id = g.group_id and gd.group_drive_id = '{$driveId}'";
+			}
+			
+			if (!Strings::isNullOrEmpty($driveQuery)) {
+				$rows = self::$__queryHandler->executeQuery($driveQuery);
+				
+				$this->_logger->sendMessage(LOG_DEBUG, "Number of rows: " . count($rows));
+				
+				if (count($rows) > 0) {
+					$driveLocation = $rows[0]["drive_location"];
+					$absoluteDirectoryLocation = $driveLocation . (Strings::startsWith($directoryName, "/") ? $directoryName : ("/" . $directoryName));
+					
+					$testPath = dirname($absoluteDirectoryLocation);
+					
+					$this->_logger->sendMessage(LOG_DEBUG, "Test Path: {$testPath}");
+					
+					if (!Strings::startsWith($testPath, $driveLocation) || strcmp($testPath, $driveLocation) < 0) {
+						$absoluteDirectoryLocation = $driveLocation . "/";
+					}
+					
+					if (is_dir($absoluteDirectoryLocation)) {
+						// TODO: Create the file or don't
+						$newFilePath = $absoluteDirectoryLocation . "/" . $fileName;
+
+						if (!file_exists($newFilePath)) {
+							$newFileHandle = fopen($newFilePath, "w+");
+							
+							fwrite($newFileHandle, "");
+							fclose($newFileHandle);
+							
+							$newFileHandle = null;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * createNewFolder
+	 * Creates a new folder in the current directory if it doesn't already exist.
+	 * @param object $jsonObject
+	 */
+	public function createNewFolder(/*object*/ $jsonObject) {
+		ArgumentTypeValidator::isObject($jsonObject, "JsonObject must be an object.");
+		
+		$userName = $_SESSION["userName"];
+		$locationComponents = Strings::split(($jsonObject->{FileManagementService::DRIVE_LOCATION}), "-");
+		$driveType = intval($locationComponents[0]);
+		$driveId = intval($locationComponents[1]);
+		$directoryName = $jsonObject->{FileManagementService::DIRECTORY_NAME};
+		$folderName = $jsonObject->{FileManagementService::FOLDER_NAME};
+		
+		Assert::isTrue(!is_null($driveId) && !is_null($driveType), "A string value named location was expected but not found.");
+		Assert::isTrue(!is_null($directoryName), "A string value named directory was expected but not found.");
+
+		if (!is_null($userName)) {
+			if ($driveType === DriveType::PERSONAL) {
+				$driveQuery = "select pd.drive_location from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.personal_drive_id = '{$driveId}' and pd.person_id = p.person_id";
+			} else if ($driveType === DriveType::STORAGE) {
+				$driveQuery = "select ps.storage_location as drive_location from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.personal_storage_id = '{$driveId}' and ps.person_id = p.person_id";
+			} else if ($driveType === DriveType::GROUP) {
+				$driveQuery = "select gd.drive_location from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and pg.person_id = p.person_id and pg.group_id = g.group_id and gd.group_id = g.group_id and gd.group_drive_id = '{$driveId}'";
+			}
+			
+			if (!Strings::isNullOrEmpty($driveQuery)) {
+				$rows = self::$__queryHandler->executeQuery($driveQuery);
+				
+				$this->_logger->sendMessage(LOG_DEBUG, "Number of rows: " . count($rows));
+				
+				if (count($rows) > 0) {
+					$driveLocation = $rows[0]["drive_location"];
+					$absoluteDirectoryLocation = $driveLocation . (Strings::startsWith($directoryName, "/") ? $directoryName : ("/" . $directoryName));
+					
+					$testPath = dirname($absoluteDirectoryLocation);
+					
+					$this->_logger->sendMessage(LOG_DEBUG, "Test Path: {$testPath}");
+					
+					if (!Strings::startsWith($testPath, $driveLocation) || strcmp($testPath, $driveLocation) < 0) {
+						$absoluteDirectoryLocation = $driveLocation . "/";
+					}
+					
+					if (is_dir($absoluteDirectoryLocation)) {
+						// TODO: Create the file or don't
+						$newFolderPath = $absoluteDirectoryLocation . "/" . $folderName;
+
+						if (!file_exists($newFilePath)) {
+							mkdir($newFolderPath);
+						}
+					}
+				}
+			}
+		}
 	}
 }
 

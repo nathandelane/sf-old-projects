@@ -15,6 +15,8 @@ if (Phyer && $Phyer) {
 		DRIVE_TYPE: "type",
 		DIRECTORY: "directory",
 		FILE_LIST_TABLE: "fileListTable",
+		FILE_NAME: "fileName",
+		FOLDER_NAME: "folderName",
 		ORDER_BY_COLUMN_NAME: "orderByColumnName",
 		ORDER_BY_ORDER: "orderByOrder",
 		
@@ -71,10 +73,10 @@ if (Phyer && $Phyer) {
 					var fileCount = json.fileCount;
 					
 					if (directoryCount > 0) {
-						for (var directoryIndex = 1; directoryIndex <= directoryCount; directoryIndex++) {
+						for (var directoryIndex = 0; directoryIndex <= directoryCount; directoryIndex++) {
 							var nextDir = json.directories[directoryIndex];
 							
-							if (nextDir && nextDir.name != "..") {
+							if (nextDir) {
 								$Phyer.FileManager.createFileListDirectoryRow(location, directory, nextDir.name, nextDir.modifiedTime, nextDir.size, nextDir.permissions);
 								
 								$Phyer.FileManager.__rowCounter++;
@@ -107,6 +109,44 @@ if (Phyer && $Phyer) {
 		},
 		
 		/**
+		 * createFile
+		 * Creates a file in the current directory if it doesn't already exist.
+		 * @return bool
+		 */
+		createFile: function() {
+			var location = $("#driveSelector").val();
+			var directory = $("#currentDirectory").val();
+			var fileName = $("#newFileName").val();
+			var data = "{ \"" + $Phyer.FileManager.DRIVE_LOCATION + "\": \"" + location + "\", \"" + $Phyer.FileManager.DIRECTORY + "\": \"" + directory + "\", \"" + $Phyer.FileManager.FILE_NAME + "\": \"" + fileName + "\" }";
+			
+			$Phyer.postJson($Phyer.PHYER_ROOT + "phyle-box/business/FileManagementService.php?createNewFile", data, 
+					null, 
+					function(json) {
+						$Phyer.setJson(json);
+					}
+				);
+		},
+		
+		/**
+		 * createFolder
+		 * Creates a folder in the current directory if it doesn't already exist.
+		 * @return bool
+		 */
+		createFolder: function() {
+			var location = $("#driveSelector").val();
+			var directory = $("#currentDirectory").val();
+			var folderName = $("#newFolderName").val();
+			var data = "{ \"" + $Phyer.FileManager.DRIVE_LOCATION + "\": \"" + location + "\", \"" + $Phyer.FileManager.DIRECTORY + "\": \"" + directory + "\", \"" + $Phyer.FileManager.FOLDER_NAME + "\": \"" + folderName + "\" }";
+			
+			$Phyer.postJson($Phyer.PHYER_ROOT + "phyle-box/business/FileManagementService.php?createNewFolder", data, 
+					null, 
+					function(json) {
+						$Phyer.setJson(json);
+					}
+				);
+		},
+		
+		/**
 		 * createFileListDirectoryRow
 		 * Creates a directory row in the file list.
 		 * @param string location
@@ -121,7 +161,26 @@ if (Phyer && $Phyer) {
 			var fileListTable = $("#" + $Phyer.FileManager.FILE_LIST_TABLE + " > tbody");
 			var newDirectory = directory.replace(/^\s*/, "").replace(/\s*$/, "") + name + "/";
 			var newLocation = location.replace(/^\s*/, "").replace(/\s*$/, "");
-			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><div class=\"typeDirectory\"></div></td><td class=\"fileOrDirName\"><a href=\"" + $Phyer.PHYER_ROOT + "phyle-box/file-manager.php?currentDirectory=/" + name + "/\">" + name + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"></td>";
+			var newName = name;
+			
+			if (name == "..") {
+				name = "";
+				
+				var locationComponents = directory.split("/");
+				
+				directory = "";
+				
+				for (var i = 2; i < (locationComponents.length - 1); i++) {
+					if (i > 2) {
+						directory = directory + "/";
+					}
+					
+					directory = directory + locationComponents[i];
+					alert(directory);
+				}
+			}
+			
+			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><div class=\"typeDirectory\"></div></td><td class=\"fileOrDirName\"><a href=\"" + $Phyer.PHYER_ROOT + "phyle-box/file-manager.php?currentDirectory=" + directory + name + "/\">" + newName + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"></td>";
 			
 			if (($Phyer.FileManager.__rowCounter % 2) == 0) {
 				$("<tr>" + row + "</tr>").appendTo(fileListTable);

@@ -72,6 +72,7 @@ class SelectDrive implements IRenderable {
 <?php
 
 		$drivesEnumerator = $this->_drivesModel->getEnumerator();
+		$selectedDrive = $this->_page->getFieldValue("driveSelector");
 
 		while ($drivesEnumerator->moveNext()) {
 			$nextDriveShortcut = $drivesEnumerator->getNextValue();
@@ -79,9 +80,10 @@ class SelectDrive implements IRenderable {
 			$this->_page->getLogger()->sendMessage(LOG_DEBUG, "Next Drive Shortcut: {$nextDriveShortcut}.");
 			
 			if ($nextDriveShortcut instanceof DriveShortcut) {
+				$nextShortcutToken = "{$nextDriveShortcut->type}-{$nextDriveShortcut->id}";
 			
 ?>
-					<option value="<?php echo "{$nextDriveShortcut->type}-{$nextDriveShortcut->id}"; ?>"><?php echo"{$nextDriveShortcut->name}"; ?></option>
+					<option value="<?php echo "{$nextShortcutToken}"; ?>"<?php if (Strings::equals($selectedDrive, $nextShortcutToken)) { echo "selected=\"selected\""; } ?>><?php echo"{$nextDriveShortcut->name}"; ?></option>
 <?php
 			
 			}
