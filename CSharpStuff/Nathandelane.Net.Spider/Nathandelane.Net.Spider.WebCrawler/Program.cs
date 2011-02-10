@@ -18,7 +18,6 @@ namespace Nathandelane.Net.Spider.WebCrawler
 		private CookieCollection _cookies;
 		private DateTime _startTime;
 		private bool _onlyFollowUniques;
-		private bool _checkImages;
 		private Regex _website;
 		private IList<MimeType> _mimeTypesToIgnore;
 		private IList<string> _linkHrefPatternsToIgnore;
@@ -156,7 +155,6 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 			_visitedUrls = new List<string>();
 			_onlyFollowUniques = bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]);
-			_checkImages = bool.Parse(ConfigurationManager.AppSettings["checkImages"]);
 			_website = new Regex(String.Format("^(http|https){{1}}://({0}){{1}}", ConfigurationManager.AppSettings["website"]), RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
 			Logger.InitializeLogFile("\"Id\",\"Checked\",\"Start Time\",\"Message\",\"Target\",\"Referrer\",\"Title\",\"Time\",\"Size\",\"Content Type\",\"MIME Type\"");
