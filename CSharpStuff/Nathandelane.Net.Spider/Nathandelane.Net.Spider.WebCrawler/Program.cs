@@ -183,20 +183,16 @@ namespace Nathandelane.Net.Spider.WebCrawler
 					{
 						nextAgent.Run();
 
+						Logger.LogMessage(nextAgent.ToString(), LoggingType.Both);
+
 						if (!_mimeTypesToIgnore.Contains(nextAgent.MimeType) && _contentTypesToInclude.ContainsKey(nextAgent.ContentType) && _contentTypesToInclude[nextAgent.ContentType])
 						{
-							Logger.LogMessage(nextAgent.ToString(), LoggingType.Both);
-
 							if (nextAgent.Urls.Count > 0)
 							{
 								AddUrls(nextAgent.Urls.ToArray(), nextAgent.Referrer.AbsoluteUri);
 
 								_visitedUrls.Add(nextAgent.Hash);
 							}
-						}
-						else
-						{
-							Logger.LogToScreen(String.Format("Not Logging: {0} --", nextAgent));
 						}
 
 						_cookies = nextAgent.Cookies;
