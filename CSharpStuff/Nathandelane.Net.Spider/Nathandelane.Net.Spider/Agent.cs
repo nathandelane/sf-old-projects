@@ -186,6 +186,7 @@ namespace Nathandelane.Net.Spider
 
 				_contentType = (response.ContentType.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries)[0]).Trim();
 				_mimeType = ContentTypes.GetMimeType(_contentType);
+				_responseSize = response.ContentLength;
 
 				response.Close();
 				response = null;
@@ -207,8 +208,6 @@ namespace Nathandelane.Net.Spider
 						{
 							HtmlDocument document = new HtmlDocument();
 							string responseString = reader.ReadToEnd();
-
-							_responseSize = responseString.Length;
 
 							document.LoadHtml(responseString);
 
