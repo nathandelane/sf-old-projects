@@ -10,6 +10,7 @@ namespace Nathandelane.Net.Spider
 	/// </summary>
 	public enum MimeType
 	{
+		Unknown,
 		Application,
 		Audio,
 		Image,

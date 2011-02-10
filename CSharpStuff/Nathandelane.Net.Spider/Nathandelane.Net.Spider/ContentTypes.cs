@@ -14,6 +14,7 @@ namespace Nathandelane.Net.Spider
 
 		private static readonly IDictionary<string, MimeType> _types = new Dictionary<string, MimeType>()
 		{
+			{ String.Empty, MimeType.Unknown },
 			{ "application/envoy", MimeType.Application },
 			{ "application/fractals", MimeType.Application },
 			{ "application/futuresplash", MimeType.Application },
