@@ -294,20 +294,6 @@ namespace Nathandelane.Net.Spider
 					_urls.Add(linkNode.Attributes["href"].Value.Trim());
 				}
 			}
-
-			//if (bool.Parse(ConfigurationManager.AppSettings["checkImages"]))
-			//{
-			//    HtmlNodeCollection imageNodes = document.DocumentNode.SelectNodes("//img[@src]");
-			//    foreach (HtmlNode imageNode in imageNodes)
-			//    {
-			//        string srcAttr = imageNode.Attributes["src"].Value.Trim();
-
-			//        if (!String.IsNullOrEmpty(srcAttr))
-			//        {
-			//            _urls.Add(srcAttr);
-			//        }
-			//    }
-			//}
 		}
 
 		/// <summary>
