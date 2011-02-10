@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="Agent.cs" />
     <Compile Include="ContentTypes.cs" />
+    <Compile Include="HttpWebRequestExtensions.cs" />
     <Compile Include="MimeType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpiderUrl.cs" />

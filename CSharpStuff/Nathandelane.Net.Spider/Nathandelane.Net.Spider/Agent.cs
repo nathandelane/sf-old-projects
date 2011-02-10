@@ -28,7 +28,9 @@ namespace Nathandelane.Net.Spider
 		private List<string> _urls;
 		private SpiderUrl _url;
 		private long _responseSize;
+		private IList<MimeType> _mimeTypesToIgnore;
 		private IList<string> _linkHrefPatternsToIgnore;
+		private IDictionary<string, bool> _contentTypesToInclude;
 		private MimeType _mimeType;
 
 		#endregion
@@ -131,9 +133,11 @@ namespace Nathandelane.Net.Spider
 
 		#region Constructors
 
-		public Agent(SpiderUrl target, CookieCollection cookies, IList<string> linkHrefPatternsToIgnore)
+		public Agent(SpiderUrl target, CookieCollection cookies, IList<string> linkHrefPatternsToIgnore, IList<MimeType> mimeTypesToIgnore, IDictionary<string, bool> contentTypesToInclude)
 		{
 			_linkHrefPatternsToIgnore = linkHrefPatternsToIgnore;
+			_mimeTypesToIgnore = mimeTypesToIgnore;
+			_contentTypesToInclude = contentTypesToInclude;
 
 			_elapsedTime = new TimeSpan();
 			_documentTitle = String.Empty;
@@ -162,33 +166,49 @@ namespace Nathandelane.Net.Spider
 
 			try
 			{
-				HttpWebResponse response = _webRequest.GetResponse() as HttpWebResponse;
+				HttpWebResponse response = null;
+				HttpWebRequest headRequest = _webRequest.Clone();
 
-				long mark = Ticks;
+				headRequest.Method = "HEAD";
 
-				_elapsedTime = new TimeSpan(mark - startingTicks);
+				response = headRequest.GetResponse() as HttpWebResponse;
+
 				_contentType = (response.ContentType.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries)[0]).Trim();
 				_mimeType = ContentTypes.GetMimeType(_contentType);
 
-				if (MimeType == Spider.MimeType.Text && ContentType.Equals("text/html", StringComparison.InvariantCultureIgnoreCase))
+				response.Close();
+				response = null;
+
+				if (!_mimeTypesToIgnore.Contains(_mimeType) && _contentTypesToInclude.ContainsKey(_contentType) && _contentTypesToInclude[_contentType])
 				{
-					using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+					_webRequest.Method = "GET";
+
+					response = _webRequest.GetResponse() as HttpWebResponse;
+
+					long mark = Ticks;
+
+					_elapsedTime = new TimeSpan(mark - startingTicks);
+
+					if (MimeType == Spider.MimeType.Text && ContentType.Equals("text/html", StringComparison.InvariantCultureIgnoreCase))
 					{
-						HtmlDocument document = new HtmlDocument();
-						string responseString = reader.ReadToEnd();
+						using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+						{
+							HtmlDocument document = new HtmlDocument();
+							string responseString = reader.ReadToEnd();
 
-						_responseSize = responseString.Length;
+							_responseSize = responseString.Length;
 
-						document.LoadHtml(responseString);
+							document.LoadHtml(responseString);
 
-						_documentTitle = document.DocumentNode.SelectSingleNode("//title").InnerText.Trim();
+							_documentTitle = document.DocumentNode.SelectSingleNode("//title").InnerText.Trim();
 
-						GatherUrls(document);
+							GatherUrls(document);
+						}
 					}
-				}
 
-				_cookies = response.Cookies;
-				_message = "HTTP 200 OK";
+					_cookies = response.Cookies;
+					_message = "HTTP 200 OK";
+				}
 			}
 			catch (Exception ex)
 			{
@@ -283,7 +303,7 @@ namespace Nathandelane.Net.Spider
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return String.Format("{0},{1},\"{2}\",\"{3}\",\"{4}\",\"{5}\",{6},{7}", __id, DateTime.Now.ToString("hh:mm:ss.fff"), _message, _url.Target, _url.Referrer, _documentTitle, _elapsedTime, _responseSize);
+			return String.Format("{0},{1},\"{2}\",\"{3}\",\"{4}\",\"{5}\",{6},{7},\"{8}\",\"{9}\"", __id, DateTime.Now.ToString("hh:mm:ss.fff"), _message, _url.Target, _url.Referrer, _documentTitle, _elapsedTime, _responseSize, _contentType, _mimeType);
 		}
 
 		#endregion

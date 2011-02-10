@@ -150,7 +150,6 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			_startTime = DateTime.Now;
 
 			string startingUrl = String.Concat(ConfigurationManager.AppSettings["startingUrl"], ConfigurationManager.AppSettings["path"]);
-			Uri startingUri = null;
 
 			_urls = new UrlCollection();
 			_urls.Enqueue(new SpiderUrl(startingUrl, startingUrl));
@@ -160,7 +159,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			_checkImages = bool.Parse(ConfigurationManager.AppSettings["checkImages"]);
 			_website = new Regex(String.Format("^(http|https){{1}}://({0}){{1}}", ConfigurationManager.AppSettings["website"]), RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
-			Logger.InitializeLogFile("\"Id\",\"Start Time\",\"Message\",\"Target\",\"Referrer\",\"Title\",\"Time\",\"Size\"");
+			Logger.InitializeLogFile("\"Id\",\"Start Time\",\"Message\",\"Target\",\"Referrer\",\"Title\",\"Time\",\"Size\",\"Content Type\",\"MIME Type\"");
 		}
 
 		#endregion
@@ -178,7 +177,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 				if ((_onlyFollowUniques && _website.IsMatch(nextUrl.Target.ToString())) || !_onlyFollowUniques)
 				{
-					Agent nextAgent = new Agent(nextUrl, DefaultCookies, _linkHrefPatternsToIgnore);
+					Agent nextAgent = new Agent(nextUrl, DefaultCookies, _linkHrefPatternsToIgnore, _mimeTypesToIgnore, _contentTypesToInclude);
 
 					if (!_visitedUrls.Contains(nextAgent.Hash))
 					{
