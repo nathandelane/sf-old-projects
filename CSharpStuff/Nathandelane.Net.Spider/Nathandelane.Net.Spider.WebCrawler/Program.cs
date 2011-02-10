@@ -159,7 +159,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			_checkImages = bool.Parse(ConfigurationManager.AppSettings["checkImages"]);
 			_website = new Regex(String.Format("^(http|https){{1}}://({0}){{1}}", ConfigurationManager.AppSettings["website"]), RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
-			Logger.InitializeLogFile("\"Id\",\"Start Time\",\"Message\",\"Target\",\"Referrer\",\"Title\",\"Time\",\"Size\",\"Content Type\",\"MIME Type\"");
+			Logger.InitializeLogFile("\"Id\",\"Checked\",\"Start Time\",\"Message\",\"Target\",\"Referrer\",\"Title\",\"Time\",\"Size\",\"Content Type\",\"MIME Type\"");
 		}
 
 		#endregion

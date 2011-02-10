@@ -32,6 +32,7 @@ namespace Nathandelane.Net.Spider
 		private IList<string> _linkHrefPatternsToIgnore;
 		private IDictionary<string, bool> _contentTypesToInclude;
 		private MimeType _mimeType;
+		private bool _checked;
 
 		#endregion
 
@@ -122,6 +123,14 @@ namespace Nathandelane.Net.Spider
 		}
 
 		/// <summary>
+		/// Gets whether this request was checked.
+		/// </summary>
+		public bool Checked
+		{
+			get { return _checked; }
+		}
+
+		/// <summary>
 		/// Gets the number of ticks.
 		/// </summary>
 		private long Ticks
@@ -160,6 +169,8 @@ namespace Nathandelane.Net.Spider
 		/// </summary>
 		public void Run()
 		{
+			_checked = false;
+
 			Agent.__id++;
 
 			long startingTicks = Ticks;
@@ -181,6 +192,7 @@ namespace Nathandelane.Net.Spider
 
 				if (!_mimeTypesToIgnore.Contains(_mimeType) && _contentTypesToInclude.ContainsKey(_contentType) && _contentTypesToInclude[_contentType])
 				{
+					_checked = true;
 					_webRequest.Method = "GET";
 
 					response = _webRequest.GetResponse() as HttpWebResponse;
@@ -303,7 +315,7 @@ namespace Nathandelane.Net.Spider
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return String.Format("{0},{1},\"{2}\",\"{3}\",\"{4}\",\"{5}\",{6},{7},\"{8}\",\"{9}\"", __id, DateTime.Now.ToString("hh:mm:ss.fff"), _message, _url.Target, _url.Referrer, _documentTitle, _elapsedTime, _responseSize, _contentType, _mimeType);
+			return String.Format("{0},\"{10}\",{1},\"{2}\",\"{3}\",\"{4}\",\"{5}\",{6},{7},\"{8}\",\"{9}\"", __id, DateTime.Now.ToString("hh:mm:ss.fff"), _message, _url.Target, _url.Referrer, _documentTitle, _elapsedTime, _responseSize, _contentType, _mimeType, _checked);
 		}
 
 		#endregion
