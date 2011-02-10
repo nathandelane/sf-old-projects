@@ -92,6 +92,14 @@ namespace Nathandelane.Net.Spider
 		}
 
 		/// <summary>
+		/// Gets the Agent's request object.
+		/// </summary>
+		public HttpWebRequest Request
+		{
+			get { return _webRequest; }
+		}
+
+		/// <summary>
 		/// Gets the number of ticks.
 		/// </summary>
 		private long Ticks

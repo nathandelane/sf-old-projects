@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Nathandelane.Net.Spider
 	{
 		#region Fields
 
-		private Uri _target;
+		private string _target;
 		private string _referrer;
 
 		#endregion
@@ -23,7 +24,29 @@ namespace Nathandelane.Net.Spider
 		/// </summary>
 		public Uri Target
 		{
-			get { return _target; }
+			get
+			{
+				Uri resultantTarget = null;
+
+				if (!Uri.TryCreate(_target, UriKind.Absolute, out resultantTarget))
+				{
+					if (_target.StartsWith("/", StringComparison.InvariantCultureIgnoreCase))
+					{
+						_target = String.Format("{0}{1}", ConfigurationManager.AppSettings["startingUrl"], _target);
+					}
+					else
+					{
+						int lastIndexOfPathSeparator = _referrer.LastIndexOf("/", StringComparison.InvariantCultureIgnoreCase);
+						string newReferrer = _referrer.Substring(0, lastIndexOfPathSeparator);
+
+						_target = String.Format("{0}/{1}", newReferrer, _target);
+					}
+
+					Uri.TryCreate(_target, UriKind.Absolute, out resultantTarget);
+				}
+
+				return resultantTarget;
+			}
 		}
 
 		/// <summary>
@@ -110,7 +133,7 @@ namespace Nathandelane.Net.Spider
 
 		#region Constructors
 
-		public SpiderUrl(Uri target, string referrer)
+		public SpiderUrl(string target, string referrer)
 		{
 			_target = target;
 			_referrer = referrer;
@@ -127,28 +150,7 @@ namespace Nathandelane.Net.Spider
 		/// </summary>
 		private void SanitizeTarget()
 		{
-			string strTarget = _target.ToString();
-
-			strTarget = strTarget.Replace("&amp;", "&");
-
-			if (!strTarget.StartsWith("http://") && !strTarget.StartsWith("https://"))
-			{
-				if (strTarget.StartsWith("/"))
-				{
-					strTarget = String.Concat(ConfigurationManager.AppSettings["startingUrl"], _target);
-				}
-				else
-				{
-					string relativeLocation = _referrer.Substring(0, (_referrer.LastIndexOf('/') + 1));
-
-					strTarget = String.Concat(relativeLocation, _target);
-				}
-			}
-
-			if (!Uri.TryCreate(strTarget, UriKind.Absolute, out _target))
-			{
-				throw new Exception(String.Format("Malformed Uri: {0}", strTarget));
-			}
+			_target = _target.Replace("&amp;", "&");
 		}
 
 		/// <summary>
