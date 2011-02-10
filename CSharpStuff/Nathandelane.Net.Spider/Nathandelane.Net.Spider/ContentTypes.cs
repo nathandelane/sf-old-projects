@@ -8,7 +8,7 @@ namespace Nathandelane.Net.Spider
 	/// <summary>
 	/// This class represents the MIME types that are available in HTTP protocol.
 	/// </summary>
-	public sealed class ContentType
+	public static class ContentTypes
 	{
 		#region Fields
 

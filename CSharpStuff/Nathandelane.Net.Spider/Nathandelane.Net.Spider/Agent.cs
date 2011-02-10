@@ -24,9 +24,12 @@ namespace Nathandelane.Net.Spider
 		private TimeSpan _elapsedTime;
 		private string _documentTitle;
 		private string _message;
+		private string _contentType;
 		private List<string> _urls;
 		private SpiderUrl _url;
 		private long _responseSize;
+		private IList<string> _linkHrefPatternsToIgnore;
+		private MimeType _mimeType;
 
 		#endregion
 
@@ -93,11 +96,27 @@ namespace Nathandelane.Net.Spider
 		}
 
 		/// <summary>
+		/// Gets the content type value of the response.
+		/// </summary>
+		public string ContentType
+		{
+			get { return _contentType; }
+		}
+
+		/// <summary>
 		/// Gets the Agent's request object.
 		/// </summary>
 		public HttpWebRequest Request
 		{
 			get { return _webRequest; }
+		}
+
+		/// <summary>
+		/// Gets the MIME Type of the response.
+		/// </summary>
+		public MimeType MimeType
+		{
+			get { return _mimeType; }
 		}
 
 		/// <summary>
@@ -112,8 +131,10 @@ namespace Nathandelane.Net.Spider
 
 		#region Constructors
 
-		public Agent(SpiderUrl target, CookieCollection cookies)
+		public Agent(SpiderUrl target, CookieCollection cookies, IList<string> linkHrefPatternsToIgnore)
 		{
+			_linkHrefPatternsToIgnore = linkHrefPatternsToIgnore;
+
 			_elapsedTime = new TimeSpan();
 			_documentTitle = String.Empty;
 			_urls = new List<string>();
@@ -146,19 +167,24 @@ namespace Nathandelane.Net.Spider
 				long mark = Ticks;
 
 				_elapsedTime = new TimeSpan(mark - startingTicks);
+				_contentType = (response.ContentType.Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries)[0]).Trim();
+				_mimeType = ContentTypes.GetMimeType(_contentType);
 
-				using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+				if (MimeType == Spider.MimeType.Text && ContentType.Equals("text/html", StringComparison.InvariantCultureIgnoreCase))
 				{
-					HtmlDocument document = new HtmlDocument();
-					string responseString = reader.ReadToEnd();
+					using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+					{
+						HtmlDocument document = new HtmlDocument();
+						string responseString = reader.ReadToEnd();
 
-					_responseSize = responseString.Length;
+						_responseSize = responseString.Length;
 
-					document.LoadHtml(responseString);
+						document.LoadHtml(responseString);
 
-					_documentTitle = document.DocumentNode.SelectSingleNode("//title").InnerText.Trim();
+						_documentTitle = document.DocumentNode.SelectSingleNode("//title").InnerText.Trim();
 
-					GatherUrls(document);
+						GatherUrls(document);
+					}
 				}
 
 				_cookies = response.Cookies;
@@ -209,24 +235,46 @@ namespace Nathandelane.Net.Spider
 		private void GatherUrls(HtmlDocument document)
 		{
 			HtmlNodeCollection linksNodes = document.DocumentNode.SelectNodes("//a[@href]");
+
 			foreach (HtmlNode linkNode in linksNodes)
 			{
-				_urls.Add(linkNode.Attributes["href"].Value.Trim());
-			}
-
-			if (bool.Parse(ConfigurationManager.AppSettings["checkImages"]))
-			{
-				HtmlNodeCollection imageNodes = document.DocumentNode.SelectNodes("//img[@src]");
-				foreach (HtmlNode imageNode in imageNodes)
+				if (_linkHrefPatternsToIgnore.Count > 0)
 				{
-					string srcAttr = imageNode.Attributes["src"].Value.Trim();
+					bool patternFound = false;
 
-					if (!String.IsNullOrEmpty(srcAttr))
+					foreach (string nextHrefPattern in _linkHrefPatternsToIgnore)
 					{
-						_urls.Add(srcAttr);
+						if (linkNode.Attributes["href"].Value.IndexOf(nextHrefPattern, StringComparison.InvariantCultureIgnoreCase) > -1)
+						{
+							patternFound = true;
+							break;
+						}
+					}
+
+					if (!patternFound)
+					{
+						_urls.Add(linkNode.Attributes["href"].Value.Trim());
 					}
 				}
+				else
+				{
+					_urls.Add(linkNode.Attributes["href"].Value.Trim());
+				}
 			}
+
+			//if (bool.Parse(ConfigurationManager.AppSettings["checkImages"]))
+			//{
+			//    HtmlNodeCollection imageNodes = document.DocumentNode.SelectNodes("//img[@src]");
+			//    foreach (HtmlNode imageNode in imageNodes)
+			//    {
+			//        string srcAttr = imageNode.Attributes["src"].Value.Trim();
+
+			//        if (!String.IsNullOrEmpty(srcAttr))
+			//        {
+			//            _urls.Add(srcAttr);
+			//        }
+			//    }
+			//}
 		}
 
 		/// <summary>

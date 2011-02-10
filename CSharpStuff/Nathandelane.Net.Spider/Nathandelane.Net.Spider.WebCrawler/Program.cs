@@ -20,6 +20,9 @@ namespace Nathandelane.Net.Spider.WebCrawler
 		private bool _onlyFollowUniques;
 		private bool _checkImages;
 		private Regex _website;
+		private IList<MimeType> _mimeTypesToIgnore;
+		private IList<string> _linkHrefPatternsToIgnore;
+		private IDictionary<string, bool> _contentTypesToInclude;
 
 		#endregion
 
@@ -139,6 +142,11 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 		private Program()
 		{
+			CheckConfiguration();
+			InitializeMimeTypesToIgnore();
+			InitializeContentTypesToInclude();
+			IntializeLinkHrefPatternsToIgnore();
+
 			_startTime = DateTime.Now;
 
 			string startingUrl = String.Concat(ConfigurationManager.AppSettings["startingUrl"], ConfigurationManager.AppSettings["path"]);
@@ -170,17 +178,27 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 				if ((_onlyFollowUniques && _website.IsMatch(nextUrl.Target.ToString())) || !_onlyFollowUniques)
 				{
-					Agent nextAgent = new Agent(nextUrl, DefaultCookies);
+					Agent nextAgent = new Agent(nextUrl, DefaultCookies, _linkHrefPatternsToIgnore);
 
 					if (!_visitedUrls.Contains(nextAgent.Hash))
 					{
 						nextAgent.Run();
 
-						AddUrls(nextAgent.Urls.ToArray(), nextAgent.Referrer.AbsoluteUri);
+						if (!_mimeTypesToIgnore.Contains(nextAgent.MimeType) && _contentTypesToInclude.ContainsKey(nextAgent.ContentType) && _contentTypesToInclude[nextAgent.ContentType])
+						{
+							Logger.LogMessage(nextAgent.ToString(), LoggingType.Both);
 
-						_visitedUrls.Add(nextAgent.Hash);
+							if (nextAgent.Urls.Count > 0)
+							{
+								AddUrls(nextAgent.Urls.ToArray(), nextAgent.Referrer.AbsoluteUri);
 
-						Logger.LogMessage(nextAgent.ToString(), LoggingType.Both);
+								_visitedUrls.Add(nextAgent.Hash);
+							}
+						}
+						else
+						{
+							Logger.LogToScreen(String.Format("Not Logging: {0}", nextAgent));
+						}
 
 						_cookies = nextAgent.Cookies;
 					}
@@ -223,25 +241,85 @@ namespace Nathandelane.Net.Spider.WebCrawler
 		{
 			foreach (string nextTarget in urls)
 			{
-				Add(new SpiderUrl(nextTarget, referrer));
+				SpiderUrl nextUrl = new SpiderUrl(nextTarget, referrer);
+
+				_urls.Enqueue(nextUrl);
 			}
 		}
 
 		/// <summary>
-		/// Adds the Url to the queue if it meets the internal criteria.
+		/// Checks the configuration to make sure that it doesn't break any rules.
 		/// </summary>
-		/// <param name="url"></param>
-		private void Add(SpiderUrl url)
+		/// <returns></returns>
+		private void CheckConfiguration()
 		{
-			if (url.IsDesirable)
+			if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["contentTypesToIgnore"]) & !String.IsNullOrEmpty(ConfigurationManager.AppSettings["contentTypesToInclude"]))
 			{
-				if (_checkImages)
+				throw new Exception("The two configuration directives, contentTypesToIgnore and contentTypesToInclude may not be used together.");
+			}
+		}
+
+		/// <summary>
+		/// Gets the MIME Types to ignore, if any.
+		/// </summary>
+		private void InitializeMimeTypesToIgnore()
+		{
+			_mimeTypesToIgnore = new List<MimeType>();
+
+			if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["mimeTypesToIgnore"]))
+			{
+				string[] mimeTypes = ConfigurationManager.AppSettings["mimeTypesToIgnore"].Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
+
+				foreach (string nextMimeType in mimeTypes)
 				{
-					_urls.Enqueue(url);
+					MimeType next = (MimeType)Enum.Parse(typeof(MimeType), nextMimeType);
+
+					_mimeTypesToIgnore.Add(next);
 				}
-				else if (!_checkImages && !url.IsImage)
+			}
+		}
+
+		/// <summary>
+		/// Gets any content types to include or ignore.
+		/// </summary>
+		private void InitializeContentTypesToInclude()
+		{
+			_contentTypesToInclude = new Dictionary<string, bool>();
+
+			if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["contentTypesToInclude"]))
+			{
+				string[] contentTypes = ConfigurationManager.AppSettings["contentTypesToInclude"].Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
+
+				foreach (string nextContentType in contentTypes)
 				{
-					_urls.Enqueue(url);
+					_contentTypesToInclude.Add(nextContentType, true);
+				}
+			}
+			else if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["contentTypesToIgnore"]))
+			{
+				string[] contentTypes = ConfigurationManager.AppSettings["contentTypesToIgnore"].Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
+
+				foreach (string nextContentType in contentTypes)
+				{
+					_contentTypesToInclude.Add(nextContentType, false);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Gets any HREF link patterns to ignore.
+		/// </summary>
+		private void IntializeLinkHrefPatternsToIgnore()
+		{
+			_linkHrefPatternsToIgnore = new List<string>();
+
+			if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["linkHrefPatternsToIgnore"]))
+			{
+				string[] patterns = ConfigurationManager.AppSettings["linkHrefPatternsToIgnore"].Split(new string[] { "|" }, StringSplitOptions.RemoveEmptyEntries);
+
+				if (patterns.Length > 0)
+				{
+					_linkHrefPatternsToIgnore = new List<string>(patterns);
 				}
 			}
 		}
