@@ -144,22 +144,15 @@ namespace Nathandelane.Net.Spider.WebCrawler
 			string startingUrl = String.Concat(ConfigurationManager.AppSettings["startingUrl"], ConfigurationManager.AppSettings["path"]);
 			Uri startingUri = null;
 
-			if (Uri.TryCreate(startingUrl, UriKind.Absolute, out startingUri))
-			{
-				_urls = new UrlCollection();
-				_urls.Enqueue(new SpiderUrl(startingUri, startingUrl));
+			_urls = new UrlCollection();
+			_urls.Enqueue(new SpiderUrl(startingUrl, startingUrl));
 
-				_visitedUrls = new List<string>();
-				_onlyFollowUniques = bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]);
-				_checkImages = bool.Parse(ConfigurationManager.AppSettings["checkImages"]);
-				_website = new Regex(String.Format("^(http|https){{1}}://({0}){{1}}", ConfigurationManager.AppSettings["website"]), RegexOptions.Compiled | RegexOptions.CultureInvariant);
+			_visitedUrls = new List<string>();
+			_onlyFollowUniques = bool.Parse(ConfigurationManager.AppSettings["onlyFollowUniques"]);
+			_checkImages = bool.Parse(ConfigurationManager.AppSettings["checkImages"]);
+			_website = new Regex(String.Format("^(http|https){{1}}://({0}){{1}}", ConfigurationManager.AppSettings["website"]), RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
-				Logger.InitializeLogFile("Id, Start Time, Message, Target, Referrer, Title, Time");
-			}
-			else
-			{
-				throw new Exception(String.Format("Malformed Uri: {0}", startingUrl));
-			}
+			Logger.InitializeLogFile("Id, Start Time, Message, Target, Referrer, Title, Time");
 		}
 
 		#endregion
@@ -179,17 +172,17 @@ namespace Nathandelane.Net.Spider.WebCrawler
 				{
 					Agent nextAgent = new Agent(nextUrl, DefaultCookies);
 
-					if (!_visitedUrls.Contains(nextAgent.Request.Hash))
+					if (!_visitedUrls.Contains(nextAgent.Hash))
 					{
 						nextAgent.Run();
 
-						AddUrls(nextAgent.Request.GetUrls().ToArray(), nextAgent.Request.Referrer);
+						AddUrls(nextAgent.Urls.ToArray(), nextAgent.Referrer.AbsoluteUri);
 
-						_visitedUrls.Add(nextAgent.Request.Hash);
+						_visitedUrls.Add(nextAgent.Hash);
 
 						Logger.LogMessage(nextAgent.ToString(), LoggingType.Both);
 
-						_cookies = nextAgent.Request.Cookies;
+						_cookies = nextAgent.Cookies;
 					}
 					else
 					{
@@ -226,11 +219,11 @@ namespace Nathandelane.Net.Spider.WebCrawler
 		/// </summary>
 		/// <param name="urls"></param>
 		/// <param name="referrer"></param>
-		private void AddUrls(IList<SpiderUrl> urls, string referrer)
+		private void AddUrls(string[] urls, string referrer)
 		{
-			foreach (SpiderUrl nextTarget in urls)
+			foreach (string nextTarget in urls)
 			{
-				Add(nextTarget);
+				Add(new SpiderUrl(nextTarget, referrer));
 			}
 		}
 
