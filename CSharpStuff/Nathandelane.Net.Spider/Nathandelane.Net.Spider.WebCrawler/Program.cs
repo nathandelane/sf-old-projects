@@ -185,7 +185,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 
 						Logger.LogMessage(nextAgent.ToString(), LoggingType.Both);
 
-						if (!_mimeTypesToIgnore.Contains(nextAgent.MimeType) && _contentTypesToInclude.ContainsKey(nextAgent.ContentType) && _contentTypesToInclude[nextAgent.ContentType])
+						if (!_mimeTypesToIgnore.Contains(nextAgent.MimeType) && !String.IsNullOrEmpty(nextAgent.ContentType) && _contentTypesToInclude.ContainsKey(nextAgent.ContentType) && _contentTypesToInclude[nextAgent.ContentType])
 						{
 							if (nextAgent.Urls.Count > 0)
 							{
