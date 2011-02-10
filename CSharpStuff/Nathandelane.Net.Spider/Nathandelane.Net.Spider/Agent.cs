@@ -26,6 +26,7 @@ namespace Nathandelane.Net.Spider
 		private string _message;
 		private List<string> _urls;
 		private SpiderUrl _url;
+		private long _responseSize;
 
 		#endregion
 
@@ -149,7 +150,11 @@ namespace Nathandelane.Net.Spider
 				using (StreamReader reader = new StreamReader(response.GetResponseStream()))
 				{
 					HtmlDocument document = new HtmlDocument();
-					document.LoadHtml(reader.ReadToEnd());
+					string responseString = reader.ReadToEnd();
+
+					_responseSize = responseString.Length;
+
+					document.LoadHtml(responseString);
 
 					_documentTitle = document.DocumentNode.SelectSingleNode("//title").InnerText.Trim();
 
@@ -230,7 +235,7 @@ namespace Nathandelane.Net.Spider
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return String.Format("{0},{1},\"{2}\",\"{3}\",\"{4}\",\"{5}\",{6}", __id, DateTime.Now.ToString("hh:mm:ss.fff"), _message, _url.Target, _url.Referrer, _documentTitle, _elapsedTime);
+			return String.Format("{0},{1},\"{2}\",\"{3}\",\"{4}\",\"{5}\",{6},{7}", __id, DateTime.Now.ToString("hh:mm:ss.fff"), _message, _url.Target, _url.Referrer, _documentTitle, _elapsedTime, _responseSize);
 		}
 
 		#endregion
