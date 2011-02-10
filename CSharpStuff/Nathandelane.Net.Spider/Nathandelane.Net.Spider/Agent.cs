@@ -209,6 +209,8 @@ namespace Nathandelane.Net.Spider
 							HtmlDocument document = new HtmlDocument();
 							string responseString = reader.ReadToEnd();
 
+							_responseSize = responseString.Length;
+
 							document.LoadHtml(responseString);
 
 							_documentTitle = document.DocumentNode.SelectSingleNode("//title").InnerText.Trim();
