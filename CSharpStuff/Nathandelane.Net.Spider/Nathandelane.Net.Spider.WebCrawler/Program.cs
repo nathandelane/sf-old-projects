@@ -196,7 +196,7 @@ namespace Nathandelane.Net.Spider.WebCrawler
 						}
 						else
 						{
-							Logger.LogToScreen(String.Format("Not Logging: {0}", nextAgent));
+							Logger.LogToScreen(String.Format("Not Logging: {0} --", nextAgent));
 						}
 
 						_cookies = nextAgent.Cookies;
