@@ -25,7 +25,7 @@ final class PhyerNetHeaderControl implements IRenderable {
 	 */
 	public function PhyerNetHeaderControl(IPage $page) {
 		$this->_phyerNetLogo = new PhyerNetLogo();
-		$this->_phyleBoxLoginForm = new PhyleBoxLoginForm(PhyerNet_Config::getPhyerNetRoot() . "/phyle-box/login.php");
+		$this->_phyleBoxLoginForm = new PhyleBoxLoginForm($page, PhyerNet_Config::getPhyerNetRoot() . "/phyle-box/login.php", true);
 		$this->_phyerNetNavigationControl = new PhyerNetNavigationControl();
 		
 		$page->registerStylesheet("_css/header.css");

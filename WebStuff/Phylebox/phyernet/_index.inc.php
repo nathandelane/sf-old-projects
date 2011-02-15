@@ -1,34 +1,21 @@
 <?php
 
 require_once(dirname(__FILE__) . "/../_lib/phyernet/Config.inc.php");
-require_once(PhyerNet_Config::getFrameworkRoot() . "presentation/controls/Button.inc.php");
 require_once(PhyerNet_Config::getLocalPresentationLocation() . "PhyerNetPage.inc.php");
 
-/**
- * This class represents the Index page for PhyerNet.
- * @author lanathan
- *
- */
-final class _Index_Page extends PhyerNetPage {
-	
-	public $buttons;
+class _Index_Page extends PhyerNetPage {
 	
 	/**
-	 * Constructor
+	 * Creates an instance of _Index_Page.
 	 * @return _Index_Page
 	 */
 	public function _Index_Page() {
 		parent::__construct("Welcome to PhyerNet");
-		
-		$this->buttons = array();
-		$this->buttons["signUpNow"] = new Button("signUpNow", "Sign Up Now",	"/services.php");
-		
-		$this->registerScript("_js/News.js");
 	}
 	
 	/**
 	 * (non-PHPdoc)
-	 * @see presentation/PhyerNetPage#openDocument()
+	 * @see _lib/phyernet/presentation/PhyerNetPage::openDocument()
 	 */
 	public function openDocument() {
 		parent::openDocument();
@@ -36,7 +23,7 @@ final class _Index_Page extends PhyerNetPage {
 	
 	/**
 	 * (non-PHPdoc)
-	 * @see presentation/PhyerNetPage#closeDocument()
+	 * @see _lib/phyernet/presentation/PhyerNetPage::closeDocument()
 	 */
 	public function closeDocument() {
 		parent::closeDocument();

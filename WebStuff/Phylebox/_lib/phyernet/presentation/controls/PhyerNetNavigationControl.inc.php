@@ -35,13 +35,13 @@ final class PhyerNetNavigationControl implements IRenderable {
 						<a <?php if (Strings::startsWith($currentScript, "/services")) { echo "class=\"current\""; } ?> href="/services.php">Services</a>
 					</li>
 					<li>
+						<a <?php if (Strings::startsWith($currentScript, "/information")) { echo "class=\"current\""; } ?> href="/information.php">Info</a>
+					</li>
+					<li>
+						<a <?php if (Strings::startsWith($currentScript, "/payments")) { echo "class=\"current\""; } ?> href="/payments.php">Payments</a>
+					</li>
+					<li>
 						<a <?php if (Strings::startsWith($currentScript, "/support")) { echo "class=\"current\""; } ?> href="/support.php">Support</a>
-					</li>
-					<li>
-						<a <?php if (Strings::startsWith($currentScript, "/about-us")) { echo "class=\"current\""; } ?> href="/about-us.php">About Us</a>
-					</li>
-					<li>
-						<a <?php if (Strings::startsWith($currentScript, "/account")) { echo "class=\"current\""; } ?> href="/account.php">Account</a>
 					</li>
 				</ul>
 				<div id="navigationPlaceHolderBack"></div>

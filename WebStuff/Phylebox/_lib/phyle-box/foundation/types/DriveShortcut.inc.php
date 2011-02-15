@@ -11,15 +11,35 @@ require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/ArgumentTypeValid
  */
 final class DriveShortcut {
 	
+	/**
+	 * Drive ID in the database.
+	 * @var int
+	 */
 	public $id;
+	/**
+	 * Name of the drive shortcut.
+	 * @var string
+	 */
 	public $name;
+	/**
+	 * Location of the drive.
+	 * @var string
+	 */
 	public $location;
+	/**
+	 * Total allotted disk space.
+	 * @var number
+	 */
 	public $totalDiskspace;
+	/**
+	 * Drive type ID.
+	 * @var int
+	 */
 	public $type;
 	
 	/**
 	 * Constructor
-	 * @param int $id;
+	 * @param int $id
 	 * @param string $name
 	 * @param string $location
 	 * @param number $totalDiskspace

@@ -11,7 +11,7 @@ final class Nathandelane_Config {
 	
 	private static $__frameworkRoot;
 	private static $__analyticsWebPropertyIds = array(
-		"www.phyer.net" => "UA-12532045-2"
+		"www.phyer.net" => "UA-21407973-1"
 	);
 	private static $__localPresentationFolder;
 	private static $__localFoundationFolder;
