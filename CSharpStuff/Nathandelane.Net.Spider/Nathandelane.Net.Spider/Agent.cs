@@ -191,7 +191,7 @@ namespace Nathandelane.Net.Spider
 				response.Close();
 				response = null;
 
-				if (!_mimeTypesToIgnore.Contains(_mimeType) && _contentTypesToInclude.ContainsKey(_contentType) && _contentTypesToInclude[_contentType])
+				if (!_mimeTypesToIgnore.Contains(_mimeType) && ((_contentTypesToInclude.ContainsKey(_contentType) && _contentTypesToInclude[_contentType]) || !_contentTypesToInclude.ContainsKey(_contentType)))
 				{
 					_checked = true;
 					_webRequest.Method = "GET";
