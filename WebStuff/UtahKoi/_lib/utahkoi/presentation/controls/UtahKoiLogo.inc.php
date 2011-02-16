@@ -23,7 +23,7 @@ class UtahKoiLogo implements IRenderable {
 		
 ?>
 <div id="adminLogo">
-	<a href="<?php echo UtahKoi_Config::getNathandelaneRoot(); ?>/">
+	<a href="<?php echo UtahKoi_Config::getUtahKoiRoot(); ?>/">
 		<img src="_img/UtahKoiLogo.png" alt="UtahKoi.com" />
 	</a>
 </div>
