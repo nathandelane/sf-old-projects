@@ -1,21 +1,21 @@
 <?php
 
-require_once(Nathandelane_Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
+require_once(UtahKoi_Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
 
 /**
- * This class represents the configuration for Nathandelane.
+ * This class represents the configuration for UtahKoi.com.
  * @author lanathan
  *
  */
-final class Nathandelane_Config {
+final class UtahKoi_Config {
 	
 	private static $__frameworkRoot;
 	private static $__analyticsWebPropertyIds = array(
-		"www.phyer.net" => "UA-12532045-2"
+		"www.utahkoi.com" => "UA-21407973-3"
 	);
 	private static $__localPresentationFolder;
 	private static $__localFoundationFolder;
-	private static $__adminRoot = "http://localhost.nathandelane.com:8080";
+	private static $__utahKoiRoot = "http://localhost.utahkoi.com";
 	
 	/**
 	 * getFrameworkRoot
@@ -81,12 +81,12 @@ final class Nathandelane_Config {
 	}
 	
 	/**
-	 * getAdminRoot
-	 * Gets the HTTP root of the PhyerNet admin
+	 * getUtahKoiRoot
+	 * Gets the HTTP root of UtahKoi.com.
 	 * @return string
 	 */
-	public static function getAdminRoot() {
-		return self::$__adminRoot;
+	public static function getUtahKoiRoot() {
+		return self::$__utahKoiRoot;
 	}
 	
 }
