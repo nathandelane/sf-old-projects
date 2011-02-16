@@ -26,7 +26,7 @@ class KeywordsCollection extends ArrayList implements IRenderable {
 	 * @param string $src
 	 */
 	public function addKeyword(/*string*/ $word) {
-		$this->add($src);
+		$this->add($word);
 	}
 	
 	/**
