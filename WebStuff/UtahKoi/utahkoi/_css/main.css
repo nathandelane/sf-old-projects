@@ -4,8 +4,9 @@ body
 	font-size: 12px;
 	margin: 0;
 	padding: 0;
-	color: #000000;
+	color: #ffffff;
 	background-color: #ffffff;
+	text-align: center;
 }
 
 img
@@ -13,7 +14,12 @@ img
 	border: 0;
 }
 
-#root
+.root
 {
-	
+	width: 963px;
+	overflow: auto;
+	margin: 10px 0;
+	padding: 10px;
+	background-color: #6082a8;
+	text-align: left;
 }
