@@ -5,13 +5,13 @@ if (!session_id()) {
 }
 
 require_once(dirname(__FILE__) . "/../../_lib/phyle-box/Config.inc.php");
-require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxEditorPage.inc.php");
+require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxBasicPage.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/Strings.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/data/QueryHandler.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/data/QueryHandlerType.inc.php");
 require_once(PhyleBox_Config::getLocalFoundationLocation() . "types/DriveType.inc.php");
 
-class _Simple_Editor_Page extends PhyleBoxEditorPage {
+class _Simple_Editor_Page extends PhyleBoxBasicPage {
 	
 	private static $__queryHandler;
 	

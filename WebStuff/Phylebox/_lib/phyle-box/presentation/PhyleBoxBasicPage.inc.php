@@ -8,26 +8,23 @@ require_once(dirname(__FILE__) . "/../Config.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/Strings.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/Page.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/AuthenticationPage.inc.php");
-require_once(PhyleBox_Config::getLocalPresentationLocation() . "controls/PhyleBoxHeaderControl.inc.php");
-require_once(PhyleBox_Config::getLocalPresentationLocation() . "controls/PhyleBoxFooterControl.inc.php");
-require_once(PhyleBox_Config::getLocalPresentationLocation() . "controls/Breadcrumb.inc.php");
 
 /**
- * PhyleBoxEditorPage
- * This class represents every editor page in PhyleBox.
+ * PhyleBoxBasicPage
+ * This class represents every basic page in PhyleBox.
  * @author lanathan
  *
  */
-abstract class PhyleBoxEditorPage extends Page {
+abstract class PhyleBoxBasicPage extends Page {
 	
 	const AUTHENTICATION_PAGE_URL = "/phyle-box/login.php";
 		
 	/**
 	 * Constructor
 	 * @param string $title
-	 * @return PhyleBoxEditorPage
+	 * @return PhyleBoxBasicPage
 	 */
-	public function PhyleBoxEditorPage(/*string*/ $title) {
+	public function PhyleBoxBasicPage(/*string*/ $title) {
 		parent::__construct($title);
 		
 		$this->registerStylesheet("_css/main.css");

@@ -5,7 +5,7 @@ if (!session_id()) {
 }
 
 require_once(dirname(__FILE__) . "/../../_lib/phyle-box/Config.inc.php");
-require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxPage.inc.php");
+require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxBasicPage.inc.php");
 
 /**
  * _Upload_Files_Page
@@ -13,7 +13,7 @@ require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxPage.inc
  * @author lanathan
  *
  */
-class _Upload_Files_Page extends PhyleBoxPage {
+class _Upload_Files_Page extends PhyleBoxBasicPage {
 	
 	public $successMessage;
 	
