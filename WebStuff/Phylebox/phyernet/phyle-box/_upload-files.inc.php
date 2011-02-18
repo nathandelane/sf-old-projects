@@ -111,13 +111,10 @@ class _Upload_Files_Page extends PhyleBoxBasicPage {
 					}
 					
 					if (is_dir($absoluteDirectoryLocation)) {
-						$newFileLocation = $absoluteDirectoryLocation . "/" . basename( $_FILES['uploadedfile']['name']);
+						$newFileLocation = $absoluteDirectoryLocation . "/" . basename( $_FILES['filesBeingUploaded']['name']);
 					
-						if (!file_exists($newFilePath)) {
-							// TODO: Move files here
-							if (move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $newFileLocation)) {
-								$result = true;
-							}
+						if (move_uploaded_file($_FILES['filesBeingUploaded']['tmp_name'], $newFileLocation)) {
+							$result = true;
 						}
 					}
 				}
