@@ -5,11 +5,12 @@ if (!session_id()) {
 }
 
 require_once(dirname(__FILE__) . "/../../_lib/phyle-box/Config.inc.php");
-require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxBasicPage.inc.php");
+require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/Strings.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/data/QueryHandler.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/data/QueryHandlerType.inc.php");
 require_once(PhyleBox_Config::getLocalFoundationLocation() . "types/DriveType.inc.php");
+require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxBasicPage.inc.php");
 
 /**
  * _Upload_Files_Page
