@@ -420,7 +420,6 @@ class FileManagementService extends JsonWebServiceBase {
 					}
 					
 					if (is_dir($absoluteDirectoryLocation)) {
-						// TODO: Create the file or don't
 						$newFilePath = $absoluteDirectoryLocation . "/" . $fileName;
 
 						if (!file_exists($newFilePath)) {

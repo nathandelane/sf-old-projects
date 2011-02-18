@@ -12,7 +12,7 @@ $page->openDocument();
 		<input type="hidden" name="driveSelector" id="driveSelector" value="<?php echo $page->getFieldValue("driveSelector"); ?>" />
 		<input type="hidden" name="currentDirectory" id="currentDirectory" value="<?php echo $page->getFieldValue("currentDirectory"); ?>" />
 		<input type="file" name="filesBeingUploaded" id="filesBeingUploaded" value="" />
-		<input type="submit" value="Upload Images" id="submit" />
+		<input type="submit" value="Upload Files" id="submit" />
 	</form>
 	<span><?php echo "{$page->successMessage}"; ?></span>
 </div>
