@@ -239,6 +239,25 @@ if (Phyer && $Phyer) {
 					"href": "/phyle-box/simple-editor.php?fileName=" + fileName + "&driveSelector=" + $("#driveSelector").val() + "&currentDirectory=" + $("#currentDirectory").val()
 				}
 			);
+		},
+		
+		/**
+		 * openFileUploader
+		 * Opens the file uploader.
+		 * @return void
+		 */
+		openFileUploader: function() {
+			$.fancybox(
+				{
+					"width": 620,
+					"height": 674,
+					"autoScale": false,
+					"transitionIn": true,
+					"transitionOut": false,
+					"type": "iframe",
+					"href": "/phyle-box/upload-files.php?driveSelector=" + $("#driveSelector").val() + "&currentDirectory=" + $("#currentDirectory").val()
+				}
+			);
 		}
 			
 	}

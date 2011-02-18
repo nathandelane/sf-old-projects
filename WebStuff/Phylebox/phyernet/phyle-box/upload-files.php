@@ -9,7 +9,8 @@ $page->openDocument();
 <div id="contentInner">
 	<form id="fileUploadForm" action="<?php echo $_SERVER["REQUEST_URI"]; ?>" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="token" id="token" value="<?php echo "{$page->createToken()}"; ?>" />
-		<input type="hidden" 
+		<input type="hidden" name="driveSelector" id="driveSelector" value="<?php echo $page->getFieldValue("driveSelector"); ?>" />
+		<input type="hidden" name="currentDirectory" id="currentDirectory" value="<?php echo $page->getFieldValue("currentDirectory"); ?>" />
 		<input type="file" name="filesBeingUploaded" id="filesBeingUploaded" value="" />
 		<input type="submit" value="Upload Images" id="submit" />
 	</form>

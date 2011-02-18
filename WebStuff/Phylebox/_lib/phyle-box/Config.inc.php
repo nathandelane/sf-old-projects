@@ -15,7 +15,7 @@ final class PhyleBox_Config {
 	);
 	private static $__localPresentationFolder;
 	private static $__localFoundationFolder;
-	private static $__phyleBoxRoot = "http://localhost.phyer.net:8080/phyle-box";
+	private static $__phyleBoxRoot = "http://localhost.phyer.net/phyle-box";
 	
 	/**
 	 * getFrameworkRoot

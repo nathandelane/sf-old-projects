@@ -58,7 +58,9 @@ class FileManagerCommands implements IRenderable {
 				}
 			);
 		});
-		$("#uploadFiles").click(function(e) {});
+		$("#uploadFiles").click(function(e) {
+			$Phyer.FileManager.openFileUploader();
+		});
 		$("#downloadFiles").click(function(e) {});
 	});
 </script>
