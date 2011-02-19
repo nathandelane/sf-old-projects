@@ -340,7 +340,7 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		$dateCreated = date("Y/m/d") . " 00:00:00";
 		$dateUpdated = date("Y/m/d") . " 00:00:00";
 		$dateOfBirth = $this->getFieldValue(self::DATE_OF_BIRTH);
-		$query = "inert into `pbox`.`person` (user_name, first_real_name, last_real_name, password, explicity, bio, date_created, date_update, date_of_birth) values ('{$username}', '{$firstRealName}', '{$lastRealName}', '{$password}', '{$explicity}', '{$bio}', '{$dateCreated}', '{$dateUpdated}', '{$dateOfBirth}')";
+		$query = "insert into `pbox`.`person` (user_name, first_real_name, last_real_name, password, explicity, bio, date_created, date_update, date_of_birth) values ('{$username}', '{$firstRealName}', '{$lastRealName}', '{$password}', '{$explicity}', '{$bio}', '{$dateCreated}', '{$dateUpdated}', '{$dateOfBirth}')";
 		
 		self::$__queryHandler->executeQuery($query);
 

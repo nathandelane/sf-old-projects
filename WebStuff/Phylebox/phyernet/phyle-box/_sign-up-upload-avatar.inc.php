@@ -1,7 +1,7 @@
 <?php
 
 require_once(dirname(__FILE__) . "/../../_lib/phyle-box/Config.inc.php");
-require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxPage.inc.php");
+require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxBasicPage.inc.php");
 
 class _Sign_Up_Upload_Avatar extends PhyleBoxBasicPage {
 	

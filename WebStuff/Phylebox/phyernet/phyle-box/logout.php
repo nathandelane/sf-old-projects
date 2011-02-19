@@ -4,7 +4,7 @@ if(!session_id()) {
 	session_start();
 }
 
-require_once(dirname(__FILE__) . "/Config.inc.php");
+require_once(dirname(__FILE__) . "/../../_lib/phyle-box/Config.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/Strings.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/AuthenticationPage.inc.php");
 
