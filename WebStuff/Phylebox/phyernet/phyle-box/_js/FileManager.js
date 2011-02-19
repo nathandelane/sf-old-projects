@@ -87,7 +87,7 @@ if (Phyer && $Phyer) {
 					}
 					
 					if (fileCount > 0) {
-						for (var fileIndex = 1; fileIndex <= fileCount; fileIndex++) {
+						for (var fileIndex = 0; fileIndex <= fileCount; fileIndex++) {
 							var nextFile = json.files[fileIndex];
 							
 							if (nextFile) {
