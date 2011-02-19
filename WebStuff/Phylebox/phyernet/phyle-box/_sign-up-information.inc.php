@@ -121,8 +121,8 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 	$(document).ready(function() {
 		$("#password").watermark("Password");
 		$("#repeatPassword").watermark("Repeat Password");
-		$("#dateOfBirth").mask("99/99/9999");
-		$("#dateOfBirth").watermark("mm-dd-yyyy");
+		$("#dateOfBirth").mask("9999-99-99");
+		$("#dateOfBirth").watermark("yyyy-mm-dd");
 		$("#firstRealName").watermark("First Name");
 		$("#lastRealName").watermark("Last Name");
 		$("#emailAddress").watermark("Email Address");
@@ -335,20 +335,35 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		$firstRealName = $this->getFieldValue(self::FIRST_REAL_NAME);
 		$lastRealName = $this->getFieldValue(self::LAST_REAL_NAME);
 		$salt = "34b14c5e-448e-4992-98a8-5274bb49d125";
-		$password = md5($this->getFieldValue(self::PASSWORD . $salt));
+		$password = $this->getFieldValue(self::PASSWORD). $salt;
+		$encryptedPassword = md5($password);
 		$explicity = $this->getFieldValue(self::EXPLICITNESS);
 		$bio = $this->getFieldValue(self::BIO);
 		$dateCreated = date("Y/m/d") . " 00:00:00";
 		$dateUpdated = date("Y/m/d") . " 00:00:00";
 		$dateOfBirth = $this->getFieldValue(self::DATE_OF_BIRTH) . " 00:00:00";
-		$query = "insert into `pbox`.`people` (user_name, first_real_name, last_real_name, password, explicity_id, bio, date_created, date_update, date_of_birth) values ('{$username}', '{$firstRealName}', '{$lastRealName}', '{$password}', '{$explicity}', '{$bio}', '{$dateCreated}', '{$dateUpdated}', '{$dateOfBirth}')";
+		$query = "insert into `pbox`.`people` (user_name, first_real_name, last_real_name, password, explicity_id, bio, date_created, date_update, date_of_birth) values ('{$username}', '{$firstRealName}', '{$lastRealName}', '{$encryptedPassword}', '{$explicity}', '{$bio}', '{$dateCreated}', '{$dateUpdated}', '{$dateOfBirth}')";
 		
 		self::$__queryHandler->executeQuery($query);
 
 		if (self::$__queryHandler->getAffectedRows() > 0) {
-			$this->setSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY, session_id());
-			$this->setSessionFieldValue(AuthenticationPage::USERNAME_KEY, $this->getFieldValue(AuthenticationPage::USERNAME_KEY));
-			$result = true;
+			$query = "select person_id from `people`.`box` where user_name = '{$username}' and password = '{$encryptedPassword}'";
+			
+			$rows = self::$__queryHandler->executeQuery($query);
+			
+			if (count($rows) > 0) {
+				$personId = $rows[0]["person_id"];
+				$query = "insert into `pbox`.`people_roles` (person_id, role_id) values ({$personId}, 8)";
+				
+				self::$__queryHandler->executeQuery($query);
+				
+				if (self::$__queryHandler->getAffectedRows() > 0) {
+					$this->setSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY, session_id());
+					$this->setSessionFieldValue(AuthenticationPage::USERNAME_KEY, $this->getFieldValue(AuthenticationPage::USERNAME_KEY));
+					
+					$result = true;
+				}
+			}
 		}
 		
 		return $result;

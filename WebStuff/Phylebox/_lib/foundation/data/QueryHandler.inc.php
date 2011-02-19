@@ -121,7 +121,11 @@ final class QueryHandler {
 		if ($this->_createConnection()) {
 			$resultSet = mysql_query($query, $this->_connection);
 			
-			$this->_affectedRows = ((mysql_affected_rows() > 0) ? mysql_affected_rows() : mysql_num_rows($resultSet)) ;
+			if (is_resource($resultSet)) {
+				$this->_affectedRows = mysql_num_rows($resultSet);
+			} else {
+				$this->_affectedRows = mysql_affected_rows();
+			}
 			
 			if (is_resource($resultSet)) {
 				if (mysql_num_rows($resultSet) > 0) {
