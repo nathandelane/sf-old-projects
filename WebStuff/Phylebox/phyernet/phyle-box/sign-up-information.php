@@ -175,7 +175,7 @@ $page->renderExplicitness();
 				</table>
 				<?php $page->renderBetaDisclaimer(); ?>
 				<div class="formRow">
-					<input id="submitButton" type="submit" value="Continue to Upload Avatar >>" />
+					<input id="submitButton" type="submit" value="Finish Sign Up >>" />
 				</div>
 			</form>
 		</div>

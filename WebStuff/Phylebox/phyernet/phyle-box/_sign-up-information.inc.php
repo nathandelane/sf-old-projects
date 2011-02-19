@@ -90,7 +90,7 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		if ($this->getFieldValue(self::TOKEN)) {
 			if ($this->_registrationInformationIsValid()) {
 				if ($this->_createAccount()) {				
-					header("Location: " . PhyleBox_Config::getPhyleBoxRoot() . "/sign-up-upload-avatar.php");
+					header("Location: " . PhyleBox_Config::getPhyleBoxRoot() . "/file-manager.php");
 				}
 			}
 		}
@@ -342,12 +342,12 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		$dateCreated = date("Y/m/d") . " 00:00:00";
 		$dateUpdated = date("Y/m/d") . " 00:00:00";
 		$dateOfBirth = $this->getFieldValue(self::DATE_OF_BIRTH) . " 00:00:00";
-		$query = "insert into `pbox`.`people` (user_name, first_real_name, last_real_name, password, explicity_id, bio, date_created, date_update, date_of_birth) values ('{$username}', '{$firstRealName}', '{$lastRealName}', '{$encryptedPassword}', '{$explicity}', '{$bio}', '{$dateCreated}', '{$dateUpdated}', '{$dateOfBirth}')";
+		$query = "insert into `pbox`.`people` (user_name, first_real_name, last_real_name, password, explicity_id, bio, date_created, date_update, date_of_birth, account_type_id) values ('{$username}', '{$firstRealName}', '{$lastRealName}', '{$encryptedPassword}', '{$explicity}', '{$bio}', '{$dateCreated}', '{$dateUpdated}', '{$dateOfBirth}', 1)";
 		
 		self::$__queryHandler->executeQuery($query);
 
 		if (self::$__queryHandler->getAffectedRows() > 0) {
-			$query = "select person_id from `people`.`box` where user_name = '{$username}' and password = '{$encryptedPassword}'";
+			$query = "select person_id from `pbox`.`people` where user_name = '{$username}' and password = '{$encryptedPassword}'";
 			
 			$rows = self::$__queryHandler->executeQuery($query);
 			
@@ -358,10 +358,21 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 				self::$__queryHandler->executeQuery($query);
 				
 				if (self::$__queryHandler->getAffectedRows() > 0) {
-					$this->setSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY, session_id());
-					$this->setSessionFieldValue(AuthenticationPage::USERNAME_KEY, $this->getFieldValue(AuthenticationPage::USERNAME_KEY));
+					$newDirectory = "C:/hosting/{$username}";
+					$query = "insert into `pbox`.`personal_drives` (person_id, drive_location) values ({$personId}, '{$newDirectory}')";
 					
-					$result = true;
+					if (mkdir($newDirectory)) {					
+						self::$__queryHandler->executeQuery($query);
+						
+						if (self::$__queryHandler->getAffectedRows() > 0) {
+							$this->setSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY, session_id());
+							$this->setSessionFieldValue(AuthenticationPage::USERNAME_KEY, $this->getFieldValue(self::USERNAME));
+							
+							$result = true;
+						}
+					} else {
+						$this->_logger->sendMessage(LOG_DEBUG, "Could not create directory {$newDirectory}.");
+					}
 				}
 			}
 		}

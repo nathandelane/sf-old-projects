@@ -137,6 +137,8 @@ final class QueryHandler {
 				} else {
 					$this->_logger->sendMessage(LOG_DEBUG, "The query \"$query\" return no results");
 				}
+			} else if ($this->_affectedRows > 0) {
+				// Don't do anything.
 			} else {
 				$this->_logger->sendMessage(LOG_DEBUG, "The query \"$query\" failed to execute properly, returning no resource.");
 			}
