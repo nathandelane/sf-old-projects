@@ -16,6 +16,25 @@ require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxNonAuthe
  */
 class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 	
+	const TOKEN = "token";
+	const USERNAME = "username";
+	const PASSWORD = "password";
+	const REPEAT_PASSWORD = "repeatPassword";
+	const EXPLICITNESS = "explicitness";
+	const DATE_OF_BIRTH = "dateOfBirth";
+	const FIRST_REAL_NAME = "firstRealName";
+	const LAST_REAL_NAME = "lastRealName";
+	const EMAIL_ADDRESS = "emailAddress";
+	const REPEAT_EMAIL_ADDRESS = "repeatEmailAddress";
+	const COUNTRY = "country";
+	const OTHER_COUNTRY = "otherCountry";
+	const STATE = "state";
+	const CITY = "city";
+	const BIO = "bio";
+	const I_AGREE_TO_BETA_RULES = "iagreetobetarules";
+	
+	public $InvalidFields;
+	
 	private static $__queryHandler;
 	private static $__explicitness;
 	private static $__countries;
@@ -29,6 +48,8 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 	 */
 	public function _Sign_Up_Information_Page() {
 		parent::__construct("Sign Up - Information | PhyleBox");
+		
+		$this->InvalidFields = array();
 		
 		$this->registerStylesheet("/_css/jquery.fancybox.css");
 		$this->registerScript("/_js/jquery.fancybox.js");
@@ -63,6 +84,12 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		
 		if (!isset(self::$__betaDisclaimer)) {
 			self::$__betaDisclaimer = new BetaDisclaimer();
+		}
+		
+		if ($this->getFieldValue(self::TOKEN)) {
+			if ($this->_registrationInformationIsValid()) {
+				header("Location: " . PhyleBox_Config::getPhyleBoxRoot() . "/sign-up-upload-avatar.php");
+			}
 		}
 	}
 	
@@ -188,6 +215,110 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 	 */
 	public function renderBetaDisclaimer() {
 		self::$__betaDisclaimer->render();
+	}
+	
+	/**
+	 * _registrationInformationIsValid
+	 * Ensures that the form data is valid.
+	 * @return bool
+	 */
+	private function _registrationInformationIsValid() {
+		$isValid = true;
+		
+		if (Strings::isNullOrEmpty($this->getFieldValue(self::USERNAME)) || $this->_usernameIsInUse($this->getFieldValue(self::USERNAME))) {
+			$this->InvalidFields[] = self::USERNAME;
+			
+			$isValid = false;
+		}
+		
+		if (Strings::isNullOrEmpty($this->getFieldValue(self::PASSWORD)) || Strings::isNullOrEmpty($this->getFieldValue(self::REPEAT_PASSWORD)) || $this->getFieldValue(self::PASSWORD) != $this->getFieldValue(self::REPEAT_PASSWORD)) {
+			$this->InvalidFields[] = self::PASSWORD;
+			$this->InvalidFields[] = self::REPEAT_PASSWORD;
+			
+			$isValid = false;
+		}
+		
+		if (Strings::isNullOrEmpty($this->getFieldValue(self::EXPLICITNESS))) {
+			$this->InvalidFields[] = self::EXPLICITNESS;
+			
+			$isValid = false;
+		}
+		
+		if (Strings::isNullOrEmpty($this->getFieldValue(self::DATE_OF_BIRTH))) {
+			$this->InvalidFields[] = self::DATE_OF_BIRTH;
+			
+			$isValid = false;
+		}
+		
+		if (Strings::isNullOrEmpty($this->getFieldValue(self::FIRST_REAL_NAME))) {
+			$this->InvalidFields[] = self::FIRST_REAL_NAME;
+			
+			$isValid = false;
+		}
+		
+		if (Strings::isNullOrEmpty($this->getFieldValue(self::LAST_REAL_NAME))) {
+			$this->InvalidFields[] = self::LAST_REAL_NAME;
+			
+			$isValid = false;
+		}
+		
+		if (Strings::isNullOrEmpty($this->getFieldValue(self::EMAIL_ADDRESS)) || Strings::isNullOrEmpty($this->getFieldValue(self::REPEAT_EMAIL_ADDRESS)) || ($this->getFieldValue(self::EMAIL_ADDRESS) != $this->getFieldValue(self::REPEAT_EMAIL_ADDRESS))) {
+			$this->InvalidFields[] = self::EMAIL_ADDRESS;
+			$this->InvalidFields[] = self::REPEAT_EMAIL_ADDRESS;
+			
+			$isValid = false;
+		}
+		
+		if (Strings::equals($this->getFieldValue(self::COUNTRY), "0") || (Strings::equals($this->getFieldValue(self::COUNTRY), "10001") && Strings::isNullOrEmpty($this->getFieldValue(self::OTHER_COUNTRY)))) {
+			$this->InvalidFields[] = self::COUNTRY;
+			$this->InvalidFields[] = self::OTHER_COUNTRY;
+			
+			$isValid = false;
+		}
+		
+		if (Strings::isNullOrEmpty($this->getFieldValue(self::STATE))) {
+			$this->InvalidFields[] = self::STATE;
+			
+			$isValid = false;
+		}
+		
+		if (Strings::isNullOrEmpty($this->getFieldValue(self::CITY))) {
+			$this->InvalidFields[] = self::CITY;
+			
+			$isValid = false;
+		}
+		
+		if (Strings::isNullOrEmpty($this->getFieldValue(self::I_AGREE_TO_BETA_RULES))) {
+			$this->InvalidFields[] = self::I_AGREE_TO_BETA_RULES;
+			
+			$isValid = false;
+		}
+		
+		$this->_logger->sendMessage(LOG_DEBUG, "Invalid Fields: " . var_export($this->InvalidFields, true));
+		
+		return $isValid;
+	}
+	
+	/**
+	 * _usernameIsInUse
+	 * Determines whether the username chosen is already in use.
+	 * @param string $userName
+	 * @return bool
+	 */
+	private function _usernameIsInUse(/*string*/ $userName) {
+		ArgumentTypeValidator::isString($userName, "UserName must be a string.");
+		
+		$usernameInUse = false;
+		
+		$query = "select user_name from `pbox`.`people` where user_name = '{$userName}'";
+		
+		if (!Strings::isNullOrEmpty($query)) {
+			$rows = self::$__queryHandler->executeQuery($query);
+			
+			if (count($rows) > 0) {
+				$usernameInUse = true;
+			}
+		}
 	}
 	
 }

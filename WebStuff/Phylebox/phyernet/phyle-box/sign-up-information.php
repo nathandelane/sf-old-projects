@@ -35,7 +35,7 @@ $page->openDocument();
 								<span class="requiredColor">*</span>
 							</td>
 							<td>
-								<input type="text" name="username" id="username" value="" />
+								<input type="text" name="username" id="username" value="<?php echo $page->getFieldValue(_Sign_Up_Information_Page::USERNAME); ?>" <?php if (in_array(_Sign_Up_Information_Page::USERNAME, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
 								<a href="javascript: void(0);" id="checkUserNameLink">Check availability</a>
 								<span id="userNameIsAvailableMessage"></span>
 							</td>
@@ -50,8 +50,8 @@ $page->openDocument();
 								<span class="requiredColor">*</span>
 							</td>
 							<td>
-								<input type="password" name="password" id="password" value="" />
-								<input type="password" name="repeatPassword" id="repeatPassword" value="" />
+								<input type="password" name="password" id="password" value="" <?php if (in_array(_Sign_Up_Information_Page::PASSWORD, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
+								<input type="password" name="repeatPassword" id="repeatPassword" value="" <?php if (in_array(_Sign_Up_Information_Page::REPEAT_PASSWORD, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
 							</td>
 						</tr>
 						<tr>
@@ -64,7 +64,7 @@ $page->openDocument();
 								<span class="requiredColor">*</span>
 							</td>
 							<td>
-								<fieldset>
+								<fieldset <?php if (in_array(_Sign_Up_Information_Page::EXPLICITNESS, $page->InvalidFields)) { echo "class=\"error\""; } ?>>
 									<a href="javascript: void(0);" id="whyExplicityLink">What is this?</a>
 <?php
 
@@ -84,7 +84,7 @@ $page->renderExplicitness();
 								<span class="requiredColor">*</span>
 							</td>
 							<td>
-								<input type="text" name="datOfBirth" id="dateOfBirth" value="" />
+								<input type="text" name="dateOfBirth" id="dateOfBirth" value="<?php echo $page->getFieldValue(_Sign_Up_Information_Page::DATE_OF_BIRTH); ?>" <?php if (in_array(_Sign_Up_Information_Page::DATE_OF_BIRTH, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
 								<a href="javascript: void(0);" id="whyDateOfBirthIsRequiredLink">Why is this required?</a>
 							</td>
 						</tr>
@@ -98,8 +98,8 @@ $page->renderExplicitness();
 								<span class="requiredColor">*</span>
 							</td>
 							<td>
-								<input type="text" name="firstRealName" id="firstRealName" value="" />
-								<input type="text" name="lastRealName" id="lastRealName" value="" />
+								<input type="text" name="firstRealName" id="firstRealName" value="<?php echo $page->getFieldValue(_Sign_Up_Information_Page::FIRST_REAL_NAME); ?>" <?php if (in_array(_Sign_Up_Information_Page::FIRST_REAL_NAME, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
+								<input type="text" name="lastRealName" id="lastRealName" value="<?php echo $page->getFieldValue(_Sign_Up_Information_Page::LAST_REAL_NAME); ?>" <?php if (in_array(_Sign_Up_Information_Page::LAST_REAL_NAME, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
 							</td>
 						</tr>
 						<tr>
@@ -112,8 +112,8 @@ $page->renderExplicitness();
 								<span class="requiredColor">*</span>
 							</td>
 							<td>
-								<input type="text" name="emailAddress" id="emailAddress" value="" />
-								<input type="text" name="repeatEmailAddress" id="repeatEmailAddress" value="" />
+								<input type="text" name="emailAddress" id="emailAddress" value="<?php echo $page->getFieldValue(_Sign_Up_Information_Page::EMAIL_ADDRESS); ?>" <?php if (in_array(_Sign_Up_Information_Page::EMAIL_ADDRESS, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
+								<input type="text" name="repeatEmailAddress" id="repeatEmailAddress" value="<?php echo $page->getFieldValue(_Sign_Up_Information_Page::REPEAT_EMAIL_ADDRESS); ?>" <?php if (in_array(_Sign_Up_Information_Page::REPEAT_EMAIL_ADDRESS, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
 							</td>
 						</tr>
 						<tr>
@@ -126,12 +126,12 @@ $page->renderExplicitness();
 								<span class="requiredColor">*</span>
 							</td>
 							<td>
-								<select name="country" id="country">
+								<select name="country" id="country" <?php if (in_array(_Sign_Up_Information_Page::COUNTRY, $page->InvalidFields)) { echo "class=\"error\""; } ?>>
 									<option value="0">Select your Country</option>
 									<option value="10001">-- Country not listed</option>
 									<?php $page->renderCountryOptions(); ?>
 								</select>
-								<input type="text" name="otherCountry" id="otherCountry" value="" style="display: none;" />
+								<input type="text" name="otherCountry" id="otherCountry" value="<?php echo $page->getFieldValue(_Sign_Up_Information_Page::OTHER_COUNTRY); ?>" style="display: none;" <?php if (in_array(_Sign_Up_Information_Page::OTHER_COUNTRY, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
 							</td>
 						</tr>
 						<tr>
@@ -144,7 +144,7 @@ $page->renderExplicitness();
 								<span class="requiredColor">*</span>
 							</td>
 							<td>
-								<input type="text" name="state" id="state" value="" />
+								<input type="text" name="state" id="state" value="<?php echo $page->getFieldValue(_Sign_Up_Information_Page::STATE); ?>" <?php if (in_array(_Sign_Up_Information_Page::STATE, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
 							</td>							
 						</tr>
 						<tr>
@@ -157,7 +157,7 @@ $page->renderExplicitness();
 								<span class="requiredColor">*</span>
 							</td>
 							<td>
-								<input type="text" name="city" id="city" value="" />
+								<input type="text" name="city" id="city" value="<?php echo $page->getFieldValue(_Sign_Up_Information_Page::CITY); ?>" <?php if (in_array(_Sign_Up_Information_Page::CITY, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
 							</td>							
 						</tr>
 						<tr>
@@ -168,7 +168,7 @@ $page->renderExplicitness();
 							</td>
 							<td></td>
 							<td>
-								<textarea name="bio" id="bio"></textarea>
+								<textarea name="bio" id="bio"><?php echo $page->getFieldValue(_Sign_Up_Information_Page::BIO); ?></textarea>
 							</td>
 						</tr>
 					</tbody>

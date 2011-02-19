@@ -48,10 +48,15 @@ if (Phyer && $Phyer) {
 			$Phyer.Registration.checkUserNameAvailability();
 			
 			if ($("#username").val() === "" || !$Phyer_json.userNameIsInUse) {
+				$("#username").attr("class", "error");
+				
 				isValid = false;
 			}
 			
 			if ($("#password").val() === "" || $("#repeatPassword").val() === "" || $("#password").val() != $("#repeatPassword").val()) {
+				$("#password").attr("class", "error");
+				$("#repeatPassword").attr("class", "error");
+				
 				isValid = false;
 			}
 			
@@ -60,30 +65,47 @@ if (Phyer && $Phyer) {
 			}
 			
 			if ($("#dateOfBirth").val() === "") {
+				$("#dateOfBirth").attr("class", "error");
+				
 				isValid = false;
 			}
 			
 			if ($("#firstRealName").val() === "" || $("#lastRealName").val() === "") {
+				$("#firstRealName").attr("class", "error");
+				$("#lastRealName").attr("class", "error");
+				
 				isValid = false;
 			}
 			
-			if ($("#emailAddress").val() === "" || $("#repeatEmailAddress").val() === "") {
+			if ($("#emailAddress").val() === "" || $("#repeatEmailAddress").val() === "" || ($("#emailAddress").val() != $("#repeatEmailAddress").val())) {
+				$("#emailAddress").attr("class", "error");
+				$("#repeatEmailAddress").attr("class", "error");
+				
 				isValid = false;
 			}
 			
 			if ($("#country").val() === "0" || ($("#country").val() === "10001" && $("#otherCountry").val() === "")) {
+				$("#country").attr("class", "error");
+				$("#country").attr("class", "error");
+				
 				isValid = false;
 			}
 			
 			if ($("#state").val() === "") {
+				$("#state").attr("class", "error");
+				
 				isValid = false;
 			}
 			
 			if ($("#city").val() === "") {
+				$("#city").attr("class", "error");
+				
 				isValid = false;
 			}
 			
-			if (!($("#iagreetobetarules:checked").val() == undefined)) {
+			if ($("#iagreetobetarules:checked").val() == undefined) {
+				$("label[for='iagreetobetarules']").attr("class", "error");
+				
 				isValid = false;
 			}
 			

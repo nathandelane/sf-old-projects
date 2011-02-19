@@ -106,3 +106,8 @@ select
 {
 	width: auto;
 }
+
+.error
+{
+	background-color: #ffcccc;
+}
