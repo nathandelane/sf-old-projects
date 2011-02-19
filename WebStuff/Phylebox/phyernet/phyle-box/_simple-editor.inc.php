@@ -68,8 +68,13 @@ class _Simple_Editor_Page extends PhyleBoxBasicPage {
 			var directory = $("#currentDirectory").val();
 			var fileName = $("#fileName").val();
 			var contents = $("#textFileContents").val();
+
+			contents = contents.replace(new RegExp( "\\r", "g" ), "\\r");
+			contents = contents.replace(new RegExp( "\\n", "g" ), "\\n");
+			contents = contents.replace(new RegExp( "\\t", "g" ), "\\t");
+			contents = contents.replace(new RegExp( "\\\"", "g" ), "\\\"");
 			
-			$Phyer.FileManager.createFile(location, directory, fileName, contents);
+			$Phyer.FileManager.editFile(location, directory, fileName, contents);
 		});
 	});
 </script>

@@ -4,7 +4,10 @@
 .typehtml,
 .typephp,
 .typetxt,
-.typepng
+.typepng,
+.typesvg,
+.typejpeg,
+.typejpg
 {
 	background-image: url(../_img/FileManager-SmallIcons.gif);
 	background-repeat: no-repeat;
@@ -32,7 +35,10 @@
 	background-position: -48px -16px;
 }
 
-.typepng
+.typepng,
+.typesvg,
+.typejpeg,
+.typejpg
 {
 	background-position: -48px -64px;
 }

@@ -28,6 +28,8 @@ class _Upload_Files_Page extends PhyleBoxBasicPage {
 
 	private static $__queryHandler;
 	
+	private $_filesUploaded;
+	
 	/**
 	 * Creates an instance of _Upload_Files_Page.
 	 * @return _Upload_Files_Page
@@ -35,14 +37,21 @@ class _Upload_Files_Page extends PhyleBoxBasicPage {
 	public function _Upload_Files_Page() {
 		parent::__construct("Upload Files | PhyleBox");
 		
+		$this->_filesUploaded = array();
+				
+		$this->registerStylesheet("_css/file-manager.css");
+		$this->registerScript("_js/FileManager.js");
+		
 		if (!isset(self::$__queryHandler)) {
 			self::$__queryHandler = QueryHandler::getInstance(QueryHandlerType::MYSQL);
 		}
 		
 		if ($this->getFieldValue("token")) {
-			if (count($_FILES["filesBeingUploaded"]) > 0) {
+			$numberOfFiles = intval($this->getFieldValue("numberOfFilesUploaded"));
+			
+			if ($numberOfFiles > 0) {
 				if ($this->moveUploadedFiles()) {
-					$this->successMessage = "Uploaded: " . $_FILES["filesBeingUploaded"]["name"];
+					$this->successMessage = "Uploaded: " . implode(", ", $this->_filesUploaded);
 				} else {
 					$this->successMessage = "Upload failed.";
 				}
@@ -65,6 +74,17 @@ class _Upload_Files_Page extends PhyleBoxBasicPage {
 	 * @see _lib/phyle-box/presentation/PhyleBoxPage::closeDocument()
 	 */
 	public function closeDocument() {
+		
+?>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#addFileButton").click(function(e) {
+			$Phyer.FileManager.createNewFileUploaderRow();
+		});
+	});
+</script>
+<?php
+		
 		parent::closeDocument();
 	}
 	
@@ -111,10 +131,21 @@ class _Upload_Files_Page extends PhyleBoxBasicPage {
 					}
 					
 					if (is_dir($absoluteDirectoryLocation)) {
-						$newFileLocation = $absoluteDirectoryLocation . "/" . basename( $_FILES['filesBeingUploaded']['name']);
-					
-						if (move_uploaded_file($_FILES['filesBeingUploaded']['tmp_name'], $newFileLocation)) {
-							$result = true;
+						$numberOfFiles = intval($this->getFieldValue("numberOfFilesUploaded"));
+						
+						$this->_logger->sendMessage(LOG_DEBUG, "{$numberOfFiles} files are being uploaded");
+						
+						for ($fileIndex = 0; $fileIndex < $numberOfFiles; $fileIndex++) {
+							$newFileLocation = $absoluteDirectoryLocation . "/" . basename($_FILES['filesBeingUploaded']['name'][$fileIndex]);
+							$tempFileName = $_FILES['filesBeingUploaded']['tmp_name'][$fileIndex];
+							
+							$this->_filesUploaded[] = $_FILES['filesBeingUploaded']['name'][$fileIndex];
+						
+							if (move_uploaded_file($tempFileName, $newFileLocation)) {
+								$this->_logger->sendMessage(LOG_DEBUG, "File {$tempFileName} is being uploaded to {$newFileLocation}.");
+								
+								$result = true;
+							}
 						}
 					}
 				}

@@ -30,6 +30,9 @@ class FileManagerCommands implements IRenderable {
 		<li>
 			<a href="javascript: void(0);" id="downloadFiles" title="Select Files to Download" class="phyleBoxIcons download"></a>
 		</li>
+		<li>
+			<a href="javascript: void(0);" id="deleteFiles" title="Select Files to be Deleted" class="phyleBoxIcons delete"></a>
+		</li>
 	</ul>
 </div>
 <script type="text/javascript">
@@ -61,7 +64,30 @@ class FileManagerCommands implements IRenderable {
 		$("#uploadFiles").click(function(e) {
 			$Phyer.FileManager.openFileUploader();
 		});
-		$("#downloadFiles").click(function(e) {});
+		$("#downloadFiles").click(function(e) {
+			$.fancybox(
+				"<h1>We are sorry. This function is currently not available</h1><span>Please check back in about 24 hours.</span>",
+				{
+					"autoDimensions": false,
+					"width": 350,
+					"height": "auto",
+					"transitionIn": "none",
+					"transitionOut": "none",
+				}
+			);
+		});
+		$("#deleteFiles").click(function(e) {
+			$.fancybox(
+				"<h1>We are sorry. This function is currently not available</h1><span>Please check back in about 24 hours.</span>",
+				{
+					"autoDimensions": false,
+					"width": 350,
+					"height": "auto",
+					"transitionIn": "none",
+					"transitionOut": "none",
+				}
+			);
+		});
 	});
 </script>
 <?php

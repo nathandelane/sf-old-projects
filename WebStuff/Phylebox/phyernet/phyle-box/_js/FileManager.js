@@ -7,6 +7,7 @@ if (Phyer && $Phyer) {
 		 * Static variables
 		 */
 		__rowCounter: 0,
+		__imageFileExtensions: new Array("png", "svg", "jpg", "jpeg", "bmp", "gif"),
 		/**
 		 * Constants
 		 */
@@ -110,9 +111,13 @@ if (Phyer && $Phyer) {
 						if ($("input[type='checkbox']:checked").length > 0) {
 							$("#downloadFiles").attr("class", "phyleBoxIcons download active");
 							$("#downloadFiles").attr("title", "Download Files");
+							$("#deleteFiles").attr("class", "phyleBoxIcons delete active");
+							$("#deleteFiles").attr("title", "Delte Selected Files");
 						} else {
 							$("#downloadFiles").attr("class", "phyleBoxIcons download");
 							$("#downloadFiles").attr("title", "Select Files to Download");
+							$("#deleteFiles").attr("class", "phyleBoxIcons delete");
+							$("#deleteFiles").attr("title", "Select Files to be Deleted");
 						}
 					});
 				}
@@ -120,18 +125,18 @@ if (Phyer && $Phyer) {
 		},
 		
 		/**
-		 * createFile
-		 * Creates a file in the current directory if it doesn't already exist.
+		 * editFile
+		 * Creates or edits a file in the current directory.
 		 * @param string location
 		 * @param string directory
 		 * @param string fileName
 		 * @param string contents
 		 * @return bool
 		 */
-		createFile: function(location, directory, fileName, contents) {
+		editFile: function(location, directory, fileName, contents) {
 			var data = "{ \"" + $Phyer.FileManager.DRIVE_LOCATION + "\": \"" + location + "\", \"" + $Phyer.FileManager.DIRECTORY + "\": \"" + directory + "\", \"" + $Phyer.FileManager.FILE_NAME + "\": \"" + fileName + "\", \"" + $Phyer.FileManager.FILE_CONTENTS + "\": \"" + contents + "\" }";
 			
-			$Phyer.postJson($Phyer.PHYER_ROOT + "phyle-box/business/FileManagementService.php?createNewFile", data, 
+			$Phyer.postJson($Phyer.PHYER_ROOT + "phyle-box/business/FileManagementService.php?editFile", data, 
 					null, 
 					function(json) {
 						$Phyer.setJson(json);
@@ -151,11 +156,11 @@ if (Phyer && $Phyer) {
 			var data = "{ \"" + $Phyer.FileManager.DRIVE_LOCATION + "\": \"" + location + "\", \"" + $Phyer.FileManager.DIRECTORY + "\": \"" + directory + "\", \"" + $Phyer.FileManager.FOLDER_NAME + "\": \"" + folderName + "\" }";
 			
 			$Phyer.postJson($Phyer.PHYER_ROOT + "phyle-box/business/FileManagementService.php?createNewFolder", data, 
-					null, 
-					function(json) {
-						$Phyer.setJson(json);
-					}
-				);
+				null, 
+				function(json) {
+					$Phyer.setJson(json);
+				}
+			);
 		},
 		
 		/**
@@ -212,12 +217,39 @@ if (Phyer && $Phyer) {
 		 */
 		createFileListRow: function(type, name, modifiedTime, size, permissions) {
 			var fileListTable = $("#" + $Phyer.FileManager.FILE_LIST_TABLE + " > tbody");
-			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><div class=\"type" + type + "\"></div></td><td class=\"fileOrDirName\"><a href=\"javascript: void(0);\" onclick=\"javascript: $Phyer.FileManager.openFileEditor('" + name + "');\">" + name + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"></td>";
+			var openFunction = "openFileEditor";
+			
+			if ($Phyer.FileManager.isImage(type)) {
+				if (type === "svg") {
+					openFunction = "openImageViewerSvg";
+				} else {
+					openFunction = "openImageViewer";
+				}
+			}
+			
+			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><div class=\"type" + type + "\"></div></td><td class=\"fileOrDirName\"><a href=\"javascript: void(0);\" onclick=\"javascript: $Phyer.FileManager." + openFunction + "('" + name + "');\">" + name + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"></td>";
 			
 			if (($Phyer.FileManager.__rowCounter % 2) == 0) {
 				$("<tr>" + row + "</tr>").appendTo(fileListTable);
 			} else {
 				$("<tr class=\"oddRow\">" + row + "</tr>").appendTo(fileListTable);
+			}
+		},
+		
+		/**
+		 * Creates a new file uploader input for the uploader page.
+		 * @return void
+		 */
+		createNewFileUploaderRow: function() {
+			var totalNumberOfFiles = parseInt($("#numberOfFilesUploaded").val());
+			
+			if (totalNumberOfFiles < 20) {
+				totalNumberOfFiles = totalNumberOfFiles + 1;
+				
+				var row = "<div class=\"formRow\"><label>File " + totalNumberOfFiles + ": </label><input class=\"file\" type=\"file\" name=\"filesBeingUploaded[]\" id=\"filesBeingUploaded[]\" value=\"\" /></div>";
+				
+				$(row).appendTo("#filesFieldSet");			
+				$("#numberOfFilesUploaded").val("" + totalNumberOfFiles);
 			}
 		},
 		
@@ -231,7 +263,7 @@ if (Phyer && $Phyer) {
 			$.fancybox(
 				{
 					"width": 620,
-					"height": 674,
+					"height": 690,
 					"autoScale": false,
 					"transitionIn": true,
 					"transitionOut": false,
@@ -239,6 +271,48 @@ if (Phyer && $Phyer) {
 					"href": "/phyle-box/simple-editor.php?fileName=" + fileName + "&driveSelector=" + $("#driveSelector").val() + "&currentDirectory=" + $("#currentDirectory").val()
 				}
 			);
+		},
+		
+		/**
+		 * openImageViewer
+		 * Opens an image viewer to view the selected image.
+		 * @param string location
+		 * @param string directory
+		 * @param string fileName
+		 * @return void
+		 */
+		openImageViewer: function(fileName) {
+			$.fancybox(
+				"<h1>We are sorry. This function is currently not available</h1><span>Please check back in about 24 hours.</span>",
+				{
+					"autoDimensions": false,
+					"width": 350,
+					"height": "auto",
+					"transitionIn": "none",
+					"transitionOut": "none",
+				}
+			);
+		},
+		
+		/**
+		 * openImageViewerSvg
+		 * Opens a special SVG image viewer in case the user-agent doesn't support SVG.
+		 * @param string location
+		 * @param string directory
+		 * @param string fileName
+		 * @return void
+		 */
+		openImageViewerSvg: function(fileName) {
+			$.fancybox(
+				"<h1>We are sorry. This function is currently not available</h1><span>Please check back in about 24 hours.</span>",
+				{
+					"autoDimensions": false,
+					"width": 350,
+					"height": "auto",
+					"transitionIn": "none",
+					"transitionOut": "none"
+				}
+			);			
 		},
 		
 		/**
@@ -258,8 +332,27 @@ if (Phyer && $Phyer) {
 					"href": "/phyle-box/upload-files.php?driveSelector=" + $("#driveSelector").val() + "&currentDirectory=" + $("#currentDirectory").val()
 				}
 			);
-		}
+		},
+		
+		/**
+		 * isImage
+		 * Gets whether a file appears to be an image.
+		 * @param string fileType
+		 * @return bool
+		 */
+		isImage: function(fileType) {
+			var retVal = false;
+
+			for (index = 0; index < $Phyer.FileManager.__imageFileExtensions.length; index++) {
+				if ($Phyer.FileManager.__imageFileExtensions[index] === fileType) {
+					retVal = true;
+					
+					break;
+				}
+			}
 			
+			return retVal;
+		}			
 	}
 	
 	Phyer.prototype.FileManager = new FileManager();

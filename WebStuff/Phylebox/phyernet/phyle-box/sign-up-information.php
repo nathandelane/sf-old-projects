@@ -10,7 +10,7 @@ $page->openDocument();
 	<h1>Sign Up for PhyleBox</h1>
 	<div class="panel">
 		<div class="panelInner">
-			<form id="signUpForm" name="signUpForm" action="<?php echo $_SERVER["REQUEST_URI"]; ?>" method="post" enctype="application/x-www-form-urlencoded">
+			<form id="signUpForm" name="signUpForm" action="<?php echo $_SERVER["REQUEST_URI"]; ?>" method="post" enctype="application/x-www-form-urlencoded" onsubmit="javascript: return $Phyer.Registration.informationFormIsValid();">
 				<input type="hidden" id="token" name="token" value="<?php echo $page->createToken(); ?>" />
 				<p>
 					<span style="font-style: italic;">Indicates that the field or fields are required:</span> 
@@ -37,6 +37,7 @@ $page->openDocument();
 							<td>
 								<input type="text" name="username" id="username" value="" />
 								<a href="javascript: void(0);" id="checkUserNameLink">Check availability</a>
+								<span id="userNameIsAvailableMessage"></span>
 							</td>
 						</tr>
 						<tr>
@@ -128,11 +129,7 @@ $page->renderExplicitness();
 								<select name="country" id="country">
 									<option value="0">Select your Country</option>
 									<option value="10001">-- Country not listed</option>
-<?php
-
-$page->renderCountryOptions();
-
-?>
+									<?php $page->renderCountryOptions(); ?>
 								</select>
 								<input type="text" name="otherCountry" id="otherCountry" value="" style="display: none;" />
 							</td>
@@ -176,6 +173,7 @@ $page->renderCountryOptions();
 						</tr>
 					</tbody>
 				</table>
+				<?php $page->renderBetaDisclaimer(); ?>
 				<div class="formRow">
 					<input id="submitButton" type="submit" value="Continue to Upload Avatar >>" />
 				</div>

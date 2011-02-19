@@ -29,6 +29,7 @@ class FileManagementService extends JsonWebServiceBase {
 	const DRIVE_LOCATION = "location";
 	const DRIVE_TYPE = "type";
 	const FILE_NAME = "fileName";
+	const FILE_NAMES = "fileNames";
 	const FILE_CONTENTS = "fileContents";
 	const FOLDER_NAME = "folderName";
 	const USER_NAME = "userName";
@@ -40,7 +41,7 @@ class FileManagementService extends JsonWebServiceBase {
 	private static $__queryHandler;
 	private static $__orderByColumnName;
 	private static $__orderByOrder;
-	private static $__knownFileTypes = array("png", "gif", "jpeg", "jpg", "bmp", "html", "htm", "php", "py", "pl", "pm", "aspx", "cs", "c", "cpp", "hpp", "h");
+	private static $__knownFileTypes = array("png", "gif", "jpeg", "jpg", "bmp", "svg", "html", "htm", "php", "py", "pl", "pm", "aspx", "cs", "c", "cpp", "hpp", "h", "txt");
 	
 	private $_sort;
 	
@@ -66,6 +67,7 @@ class FileManagementService extends JsonWebServiceBase {
 		$this->registerServiceMethod("getDiskSpaceUsedForDrive", array("name: string", "location: string", "type: int"), "Gets the total amount of disk space used by files and messages at a specific location.");
 		$this->registerServiceMethod("listFoldersAndFilesForDriveAndDirectory", array("location: string", "directory: string", "orderByColumnName: string (default: name)", "orderByOrder: string (default: asc)"), "Gets the files and folders at a specific location.");
 		$this->registerServiceMethod("getAbsolutePath", array("type: int", "relativePath: string", "location: string"), "Gets the absolute path of a relative location.");
+		$this->registerServiceMethod("editFile", array("location: string", "directory: string", "fileName: string", "fileContents: string"), "Creates or edits a file.");
 	}
 	
 	/**
@@ -251,6 +253,8 @@ class FileManagementService extends JsonWebServiceBase {
 										$fileModel = new FileModel($nextAbsolutePath);
 										$modifiedTime = date("r", $fileModel->modifiedTime);
 										
+										$this->_logger->sendMessage(LOG_DEBUG, "File extension ({$nextFile}): {$fileModel->extension}");
+										
 										if (in_array($fileModel->extension, self::$__knownFileTypes, true)) {
 											$files[] = array("type" => $fileModel->extension, "name" => $nextFile, "permissions" => $fileModel->permissions, "size" => $fileModel->size, "modifiedTime" => $modifiedTime);
 										} else {
@@ -375,11 +379,11 @@ class FileManagementService extends JsonWebServiceBase {
 	}
 	
 	/**
-	 * createNewFile
-	 * Creates a new file in the current directory if it doesn't already exist.
+	 * editFile
+	 * Creates or edits file in the current directory.
 	 * @param object $jsonObject
 	 */
-	public function createNewFile(/*object*/ $jsonObject) {
+	public function editFile(/*object*/ $jsonObject) {
 		ArgumentTypeValidator::isObject($jsonObject, "JsonObject must be an object.");
 		
 		$userName = $_SESSION["userName"];
@@ -389,6 +393,13 @@ class FileManagementService extends JsonWebServiceBase {
 		$directoryName = $jsonObject->{FileManagementService::DIRECTORY_NAME};
 		$fileName = $jsonObject->{FileManagementService::FILE_NAME};
 		$fileContents = $jsonObject->{FileManagementService::FILE_CONTENTS};
+		
+		$fileContents = Strings::replace($fileContents, "\\r", "\r");
+		$fileContents = Strings::replace($fileContents, "\\n", "\n");
+		$fileContents = Strings::replace($fileContents, "\\t", "\t");
+		$fileContents = Strings::replace($fileContents, "\\\"", "\"");
+		
+		$this->_logger->sendMessage(LOG_DEBUG, "Saving: {$fileContents}");
 		
 		Assert::isTrue(!is_null($driveId) && !is_null($driveType), "A string value named location was expected but not found.");
 		Assert::isTrue(!is_null($directoryName), "A string value named directory was expected but not found.");
@@ -413,7 +424,7 @@ class FileManagementService extends JsonWebServiceBase {
 					
 					$testPath = dirname($absoluteDirectoryLocation);
 					
-					$this->_logger->sendMessage(LOG_DEBUG, "Test Path: {$testPath}");
+					$this->_logger->sendMessage(LOG_DEBUG, "Test Path: {$testPath}; Drive Location: {$driveLocation}");
 					
 					if (!Strings::startsWith($testPath, $driveLocation) || strcmp($testPath, $driveLocation) < 0) {
 						$absoluteDirectoryLocation = $driveLocation . "/";
@@ -421,14 +432,20 @@ class FileManagementService extends JsonWebServiceBase {
 					
 					if (is_dir($absoluteDirectoryLocation)) {
 						$newFilePath = $absoluteDirectoryLocation . "/" . $fileName;
+						
+						$this->_logger->sendMessage(LOG_DEBUG, "New file path: {$newFilePath}");
 
-						if (!file_exists($newFilePath)) {
-							$newFileHandle = fopen($newFilePath, "w+");
+						$newFileHandle = fopen($newFilePath, "w");
+						
+						if (is_resource($newFileHandle)) {
+							$this->_logger->sendMessage(LOG_DEBUG, "Writing file {$newFilePath}.");
 							
 							fwrite($newFileHandle, $fileContents);
 							fclose($newFileHandle);
 							
 							$newFileHandle = null;
+						} else {
+							$this->_logger->sendMessage(LOG_DEBUG, "File could not be written to.");
 						}
 					}
 				}
@@ -486,6 +503,78 @@ class FileManagementService extends JsonWebServiceBase {
 
 						if (!file_exists($newFilePath)) {
 							mkdir($newFolderPath);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	/**
+	 * deleteFile
+	 * Deletes a file.
+	 * @param object $jsonObject
+	 */
+	public function deleteFilesAndFolders(/*object*/ $jsonObject) {
+		ArgumentTypeValidator::isObject($jsonObject, "JsonObject must be an object.");
+		
+		$userName = $_SESSION["userName"];
+		$locationComponents = Strings::split(($jsonObject->{FileManagementService::DRIVE_LOCATION}), "-");
+		$driveType = intval($locationComponents[0]);
+		$driveId = intval($locationComponents[1]);
+		$directoryName = $jsonObject->{FileManagementService::DIRECTORY_NAME};
+		$fileNames = $jsonObject->{FileManagementService::FILE_NAMES};
+		
+		Assert::isTrue(!is_null($driveId) && !is_null($driveType), "A string value named location was expected but not found.");
+		Assert::isTrue(!is_null($directoryName), "A string value named directory was expected but not found.");
+
+		if (!is_null($userName)) {
+			if ($driveType === DriveType::PERSONAL) {
+				$driveQuery = "select pd.drive_location from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.personal_drive_id = '{$driveId}' and pd.person_id = p.person_id";
+			} else if ($driveType === DriveType::STORAGE) {
+				$driveQuery = "select ps.storage_location as drive_location from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.personal_storage_id = '{$driveId}' and ps.person_id = p.person_id";
+			} else if ($driveType === DriveType::GROUP) {
+				$driveQuery = "select gd.drive_location from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and pg.person_id = p.person_id and pg.group_id = g.group_id and gd.group_id = g.group_id and gd.group_drive_id = '{$driveId}'";
+			}
+									
+			if (!Strings::isNullOrEmpty($driveQuery)) {
+				$rows = self::$__queryHandler->executeQuery($driveQuery);
+				
+				$this->_logger->sendMessage(LOG_DEBUG, "Number of rows: " . count($rows));
+				
+				if (count($rows) > 0) {
+					$driveLocation = $rows[0]["drive_location"];
+					$absoluteDirectoryLocation = $driveLocation . (Strings::startsWith($directoryName, "/") ? $directoryName : ("/" . $directoryName));
+					
+					$testPath = dirname($absoluteDirectoryLocation);
+					
+					$this->_logger->sendMessage(LOG_DEBUG, "Test Path: {$testPath}; Drive Location: {$driveLocation}");
+					
+					if (!Strings::startsWith($testPath, $driveLocation) || strcmp($testPath, $driveLocation) < 0) {
+						$absoluteDirectoryLocation = $driveLocation . "/";
+					}
+					
+					if (is_dir($absoluteDirectoryLocation)) {
+						$newFilePath = $absoluteDirectoryLocation . "/" . $fileName;
+						
+						$this->_logger->sendMessage(LOG_DEBUG, "New file path: {$newFilePath}");
+
+						$newFileHandle = fopen($newFilePath, "w");
+						
+						if (is_resource($newFileHandle)) {
+							$this->_logger->sendMessage(LOG_DEBUG, "Deleting file {$newFilePath}.");
+							
+							fclose($newFileHandle);
+							
+							if (unlink($newFilePath)) {
+								$this->echoJson(array("success" => true));
+							} else {
+								$this->echoJson(array("success" => false));
+							}
+							
+							$newFileHandle = null;
+						} else {
+							$this->_logger->sendMessage(LOG_DEBUG, "File could not be written to.");
 						}
 					}
 				}

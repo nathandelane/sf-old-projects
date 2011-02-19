@@ -20,6 +20,8 @@ require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/business/JsonWebS
  */
 class RegistrationService extends JsonWebServiceBase {
 	
+	const USER_NAME = "username";
+	
 	private static $__instance;
 	private static $__queryHandler;
 	
@@ -34,7 +36,34 @@ class RegistrationService extends JsonWebServiceBase {
 			self::$__queryHandler = QueryHandler::getInstance(QueryHandlerType::MYSQL);
 		}
 
-//		$this->registerServiceMethod("getDiskSpaceUsedForDrive", array("name: string", "location: string", "type: int"), "Gets the total amount of disk space used by files and messages at a specific location.");
+		$this->registerServiceMethod("checkUserNameAvailability", array("username: string", ), " Checks the database to determine whether the username chosen already exists or not.");
+	}
+	
+	/**
+	 * checkUserNameAvailability
+	 * Checks the database to determine whether the username chosen already exists or not.
+	 * @param object $jsonObject
+	 */
+	public function checkUserNameAvailability(/*object*/ $jsonObject) {
+		ArgumentTypeValidator::isObject($jsonObject, "JsonObject must be an object.");
+		
+		$userName = $jsonObject->{RegistrationService::USER_NAME};
+		
+		if (!Strings::isNullOrEmpty($userName)) {
+			$query = "select user_name from `pbox`.`people` where user_name = '{$userName}'";
+			
+			if (!Strings::isNullOrEmpty($query)) {
+				$rows = self::$__queryHandler->executeQuery($query);
+				
+				if (count($rows) > 0) {
+					$this->echoJson(json_encode(array("userNameIsInUse" => true)));
+				} else {
+					$this->echoJson(json_encode(array("userNameIsInUse" => false)));
+				}
+			}
+		} else {
+			$this->echoJson(json_encode(array("userNameIsInUse" => false)));
+		}
 	}
 	
 	/**
@@ -47,11 +76,11 @@ class RegistrationService extends JsonWebServiceBase {
 
 	/**
 	 * Gets the singleton instance.
-	 * @return FileManagementService
+	 * @return RegistrationService
 	 */
 	public static function getInstance() {
 		if (!self::$__instance) {
-			self::$__instance = new FileManagementService();
+			self::$__instance = new RegistrationService();
 		}
 		
 		return self::$__instance;

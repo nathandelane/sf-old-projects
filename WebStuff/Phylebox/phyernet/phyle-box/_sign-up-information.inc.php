@@ -5,6 +5,7 @@ require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/Strings.inc.php")
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/data/QueryHandler.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/data/QueryHandlerType.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/controls/Content.inc.php");
+require_once(PhyleBox_Config::getLocalPresentationLocation() . "controls/BetaDisclaimer.inc.php");
 require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxNonAuthenticationPage.inc.php");
 
 /**
@@ -20,6 +21,7 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 	private static $__countries;
 	private static $__whyWeTrackExplicitness;
 	private static $__whyWeTrackYourBirthdate;
+	private static $__betaDisclaimer;
 	
 	/**
 	 * Constructor
@@ -32,6 +34,8 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		$this->registerScript("/_js/jquery.fancybox.js");
 		$this->registerScript("/_js/jquery.maskedinput.js");
 		$this->registerScript("/_js/jquery.watermark.js");
+		$this->registerScript("/_js/Phyer.js");
+		$this->registerScript("_js/Registration.js");
 		
 		if (!isset(self::$__queryHandler)) {
 			self::$__queryHandler = QueryHandler::getInstance(QueryHandlerType::MYSQL);
@@ -55,6 +59,10 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		
 		if (!isset(self::$__whyWeTrackYourBirthdate)) {
 			self::$__whyWeTrackYourBirthdate = new Content("why_do_we_need_your_birthdate");
+		}
+		
+		if (!isset(self::$__betaDisclaimer)) {
+			self::$__betaDisclaimer = new BetaDisclaimer();
 		}
 	}
 	
@@ -130,6 +138,10 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 				}
 			);
 		});
+
+		$("#checkUserNameLink").click(function(e) {
+			$Phyer.Registration.checkUserNameAvailability();
+		});
 	});
 </script>
 <?php
@@ -168,6 +180,14 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 <?php
 			
 		}
+	}
+	
+	/**
+	 * renderBetaDisclaimer
+	 * Renders the beta disclaimer.
+	 */
+	public function renderBetaDisclaimer() {
+		self::$__betaDisclaimer->render();
 	}
 	
 }
