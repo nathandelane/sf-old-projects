@@ -14,6 +14,14 @@ $page->openDocument();
 				<input type="hidden" id="token" name="token" value="<?php echo $page->createToken(); ?>" />
 				<table border="0" id="registrationFormTable">
 					<tbody>
+						<tr>
+							<td>
+								
+							</td>
+							<td>
+								<input type="file" id="avatarImage" name="avatarImage" />
+							</td>
+						</tr>
 					</tbody>
 				</table>
 				<div class="formRow">

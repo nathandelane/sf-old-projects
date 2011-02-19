@@ -15,7 +15,7 @@ final class Admin_Config {
 	);
 	private static $__localPresentationFolder;
 	private static $__localFoundationFolder;
-	private static $__adminRoot = "/admin";
+	private static $__adminRoot = "http://localhost.phyer.net/admin";
 	
 	/**
 	 * getFrameworkRoot

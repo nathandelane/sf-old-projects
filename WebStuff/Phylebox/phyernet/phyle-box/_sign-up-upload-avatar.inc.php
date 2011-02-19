@@ -7,6 +7,8 @@ class _Sign_Up_Upload_Avatar extends PhyleBoxBasicPage {
 	
 	public function _Sign_Up_Upload_Avatar() {
 		parent::__construct("Sign Up - Upload Avatar | PhyleBox");
+		
+		$this->registerStylesheet("_css/sign-up.css");
 	}
 	
 	public function openDocument() {

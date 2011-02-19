@@ -22,7 +22,7 @@ class _Login_Page extends AdminAuthenticationPage {
 	public function _Login_Page() {
 		parent::__construct("Login | PhyerNet Admin", Admin_Config::getAdminRoot() . "/", "34b14c5e-448e-4992-98a8-5274bb49d125");
 		
-		$this->adminLoginForm = new AdminLoginForm(Admin_Config::getAdminRoot() . "/login.php");
+		$this->adminLoginForm = new AdminLoginForm($this, Admin_Config::getAdminRoot() . "/login.php");
 	}
 	
 	/**

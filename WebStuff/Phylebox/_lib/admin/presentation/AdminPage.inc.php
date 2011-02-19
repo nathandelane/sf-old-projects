@@ -19,7 +19,7 @@ require_once(Admin_Config::getLocalPresentationLocation() . "controls/AdminFoote
  */
 abstract class AdminPage extends Page {
 	
-	const AUTHENTICATION_PAGE_URL = "/PhyerNet2010/admin/login.php";
+	const AUTHENTICATION_PAGE_URL = "/admin/login.php";
 	
 	private static $__adminHeaderControl;
 	private static $__adminFooterControl;
@@ -54,15 +54,28 @@ abstract class AdminPage extends Page {
 		
 ?>
 <div class="root">
+	<?php self::$__adminHeaderControl->render(); ?>
+	<table id="rootTable">
+		<tr>
+			<td>
+				<ul id="navigation">
+					<li>
+						<a href="<?php echo Admin_Config::getAdminRoot() . "/users.php" ?>">Users</a>
+					</li>
+				</ul>
+			</td>
+			<td>
 <?php
 
-		self::$__adminHeaderControl->render();
 	}
 	
 	public function closeDocument() {
-		self::$__adminFooterControl->render();
 		
 ?>
+			</td>
+		</tr>
+	</table>
+	<?php self::$__adminFooterControl->render(); ?>
 </div>
 <?php
 		
