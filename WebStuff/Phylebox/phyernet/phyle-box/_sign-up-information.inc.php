@@ -4,6 +4,7 @@ require_once(dirname(__FILE__) . "/../../_lib/phyle-box/Config.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/Strings.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/data/QueryHandler.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/data/QueryHandlerType.inc.php");
+require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/AuthenticationPage.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/controls/Content.inc.php");
 require_once(PhyleBox_Config::getLocalPresentationLocation() . "controls/BetaDisclaimer.inc.php");
 require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxNonAuthenticationPage.inc.php");
@@ -342,6 +343,9 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		$query = "inert into `pbox`.`person` (user_name, first_real_name, last_real_name, password, explicity, bio, date_created, date_update, date_of_birth) values ('{$username}', '{$firstRealName}', '{$lastRealName}', '{$password}', '{$explicity}', '{$bio}', '{$dateCreated}', '{$dateUpdated}', '{$dateOfBirth}')";
 		
 		self::$__queryHandler->executeQuery($query);
+
+		$this->setSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY, session_id());
+		$this->setSessionFieldValue(AuthenticationPage::USERNAME_KEY, $this->getFieldValue(AuthenticationPage::USERNAME_KEY));
 	}
 	
 }
