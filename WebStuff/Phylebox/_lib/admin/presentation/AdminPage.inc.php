@@ -57,14 +57,14 @@ abstract class AdminPage extends Page {
 	<?php self::$__adminHeaderControl->render(); ?>
 	<table id="rootTable">
 		<tr>
-			<td>
+			<td id="navigationCell">
 				<ul id="navigation">
 					<li>
 						<a href="<?php echo Admin_Config::getAdminRoot() . "/users.php" ?>">Users</a>
 					</li>
 				</ul>
 			</td>
-			<td>
+			<td id="contentCell">
 <?php
 
 	}

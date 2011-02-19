@@ -68,3 +68,13 @@ fieldset
 	float: right;
 	height: 26px;
 }
+
+#rootTable
+{
+	width: 100%;
+}
+
+#navigationCell
+{
+	width: 180px;
+}
