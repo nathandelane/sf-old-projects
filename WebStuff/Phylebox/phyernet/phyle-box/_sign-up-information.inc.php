@@ -88,6 +88,8 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		
 		if ($this->getFieldValue(self::TOKEN)) {
 			if ($this->_registrationInformationIsValid()) {
+				$this->_createAccount();
+				
 				header("Location: " . PhyleBox_Config::getPhyleBoxRoot() . "/sign-up-upload-avatar.php");
 			}
 		}
@@ -319,6 +321,27 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 				$usernameInUse = true;
 			}
 		}
+	}
+	
+	/**
+	 * _createAccount
+	 * Creates the new account for this user.
+	 * @return void
+	 */
+	private function _createAccount() {
+		$username = $this->getFieldValue(self::USERNAME);
+		$firstRealName = $this->getFieldValue(self::FIRST_REAL_NAME);
+		$lastRealName = $this->getFieldValue(self::LAST_REAL_NAME);
+		$salt = "34b14c5e-448e-4992-98a8-5274bb49d125";
+		$password = md5($this->getFieldValue(self::PASSWORD . $salt));
+		$explicity = $this->getFieldValue(self::EXPLICITNESS);
+		$bio = $this->getFieldValue(self::BIO);
+		$dateCreated = date("Y/m/d") . " 00:00:00";
+		$dateUpdated = date("Y/m/d") . " 00:00:00";
+		$dateOfBirth = $this->getFieldValue(self::DATE_OF_BIRTH);
+		$query = "inert into `pbox`.`person` (user_name, first_real_name, last_real_name, password, explicity, bio, date_created, date_update, date_of_birth) values ('{$username}', '{$firstRealName}', '{$lastRealName}', '{$password}', '{$explicity}', '{$bio}', '{$dateCreated}', '{$dateUpdated}', '{$dateOfBirth}')";
+		
+		self::$__queryHandler->executeQuery($query);
 	}
 	
 }
