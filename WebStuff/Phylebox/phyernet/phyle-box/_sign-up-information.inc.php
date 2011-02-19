@@ -122,7 +122,7 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		$("#password").watermark("Password");
 		$("#repeatPassword").watermark("Repeat Password");
 		$("#dateOfBirth").mask("99/99/9999");
-		$("#dateOfBirth").watermark("mm/dd/yyyy");
+		$("#dateOfBirth").watermark("mm-dd-yyyy");
 		$("#firstRealName").watermark("First Name");
 		$("#lastRealName").watermark("Last Name");
 		$("#emailAddress").watermark("Email Address");
@@ -340,7 +340,7 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		$bio = $this->getFieldValue(self::BIO);
 		$dateCreated = date("Y/m/d") . " 00:00:00";
 		$dateUpdated = date("Y/m/d") . " 00:00:00";
-		$dateOfBirth = $this->getFieldValue(self::DATE_OF_BIRTH);
+		$dateOfBirth = $this->getFieldValue(self::DATE_OF_BIRTH) . " 00:00:00";
 		$query = "insert into `pbox`.`people` (user_name, first_real_name, last_real_name, password, explicity_id, bio, date_created, date_update, date_of_birth) values ('{$username}', '{$firstRealName}', '{$lastRealName}', '{$password}', '{$explicity}', '{$bio}', '{$dateCreated}', '{$dateUpdated}', '{$dateOfBirth}')";
 		
 		self::$__queryHandler->executeQuery($query);
