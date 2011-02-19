@@ -89,9 +89,9 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		
 		if ($this->getFieldValue(self::TOKEN)) {
 			if ($this->_registrationInformationIsValid()) {
-				$this->_createAccount();
-				
-				header("Location: " . PhyleBox_Config::getPhyleBoxRoot() . "/sign-up-upload-avatar.php");
+				if ($this->_createAccount()) {				
+					header("Location: " . PhyleBox_Config::getPhyleBoxRoot() . "/sign-up-upload-avatar.php");
+				}
 			}
 		}
 	}
@@ -330,6 +330,7 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 	 * @return void
 	 */
 	private function _createAccount() {
+		$result = false;
 		$username = $this->getFieldValue(self::USERNAME);
 		$firstRealName = $this->getFieldValue(self::FIRST_REAL_NAME);
 		$lastRealName = $this->getFieldValue(self::LAST_REAL_NAME);
@@ -340,12 +341,17 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		$dateCreated = date("Y/m/d") . " 00:00:00";
 		$dateUpdated = date("Y/m/d") . " 00:00:00";
 		$dateOfBirth = $this->getFieldValue(self::DATE_OF_BIRTH);
-		$query = "insert into `pbox`.`person` (user_name, first_real_name, last_real_name, password, explicity, bio, date_created, date_update, date_of_birth) values ('{$username}', '{$firstRealName}', '{$lastRealName}', '{$password}', '{$explicity}', '{$bio}', '{$dateCreated}', '{$dateUpdated}', '{$dateOfBirth}')";
+		$query = "insert into `pbox`.`people` (user_name, first_real_name, last_real_name, password, explicity_id, bio, date_created, date_update, date_of_birth) values ('{$username}', '{$firstRealName}', '{$lastRealName}', '{$password}', '{$explicity}', '{$bio}', '{$dateCreated}', '{$dateUpdated}', '{$dateOfBirth}')";
 		
 		self::$__queryHandler->executeQuery($query);
 
-		$this->setSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY, session_id());
-		$this->setSessionFieldValue(AuthenticationPage::USERNAME_KEY, $this->getFieldValue(AuthenticationPage::USERNAME_KEY));
+		if (self::$__queryHandler->getAffectedRows() > 0) {
+			$this->setSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY, session_id());
+			$this->setSessionFieldValue(AuthenticationPage::USERNAME_KEY, $this->getFieldValue(AuthenticationPage::USERNAME_KEY));
+			$result = true;
+		}
+		
+		return $result;
 	}
 	
 }

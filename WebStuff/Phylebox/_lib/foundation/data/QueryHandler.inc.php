@@ -18,6 +18,7 @@ final class QueryHandler {
 	private $_connection;
 	private $_logger;
 	private $_rows;
+	private $_affectedRows;
 	
 	/**
 	 * Constructor
@@ -38,6 +39,15 @@ final class QueryHandler {
 	 */
 	public function executeQuery(/*string*/ $query) {
 		return $this->_executeQuery($query);
+	}
+	
+	/**
+	 * getAffectedRows
+	 * Gets the number of rows affected.
+	 * @return int
+	 */
+	public function getAffectedRows() {
+		return $this->_affectedRows;
 	}
 	
 	/**
@@ -106,8 +116,12 @@ final class QueryHandler {
 	private function _executeMySqlQuery(/*string*/ $query) {
 		$results = array();
 		
+		$this->_affectedRows = 0;
+			
 		if ($this->_createConnection()) {
 			$resultSet = mysql_query($query, $this->_connection);
+			
+			$this->_affectedRows = ((mysql_affected_rows() > 0) ? mysql_affected_rows() : mysql_num_rows($resultSet)) ;
 			
 			if (is_resource($resultSet)) {
 				if (mysql_num_rows($resultSet) > 0) {
