@@ -19,6 +19,8 @@ require_once(UtahKoi_Config::getLocalPresentationLocation() . "controls/UtahKoiF
  */
 abstract class UtahKoiPage extends Page {
 	
+	const AUTHENTICATION_PAGE_URL = "/login.php";
+	
 	private static $__utahKoiHeaderControl;
 	private static $__utahKoiFooterControl;
 		
@@ -39,6 +41,8 @@ abstract class UtahKoiPage extends Page {
 		if (!isset(self::$__utahKoiFooterControl)) {
 			self::$__utahKoiFooterControl = new UtahKoiFooterControl($this);
 		}
+		
+		$this->_checkAuthenticated();
 	}
 	
 	/**
@@ -63,6 +67,18 @@ abstract class UtahKoiPage extends Page {
 <?php
 		
 		parent::closeDocument();
+	}
+		
+	/**
+	 * _checkAuthenticated
+	 * Checks the authentication of the current session.
+	 */
+	private function _checkAuthenticated() {
+		if(!($this->getSessionFieldValue($this->getAuthenticationKey()) && Strings::equals($this->getSessionFieldValue($this->getAuthenticationKey()), session_id()))) {
+			$url = self::AUTHENTICATION_PAGE_URL . "?" . AuthenticationPage::REFERRER_KEY . "=" . $_SERVER["REQUEST_URI"];
+			
+			header("Location: $url");
+		}
 	}
 	
 }
