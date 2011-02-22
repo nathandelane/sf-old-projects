@@ -35,7 +35,7 @@ abstract class UtahKoiAuthenticationPage extends AuthenticationPage {
 	public function getAuthenticationQuery() {
 		$this->_logger->sendMessage(LOG_DEBUG, "Inside of GetAuthenticationQuery");
 		
-		return 'select * from `crm_nathandelane`.`contact_security` ci where ci.username = \'%2$s\' and ci.password = \'%1$s\' and ci.contact_locked_out = \'False\'';
+		return 'select * from `crm_nathandelane`.`contact_security` ci where ci.username = \'%1$s\' and ci.password = \'%2$s\' and ci.contact_locked_out = \'False\'';
 	}
 	
 	/**
