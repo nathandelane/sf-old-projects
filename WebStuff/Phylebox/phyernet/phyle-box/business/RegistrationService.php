@@ -21,6 +21,7 @@ require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/business/JsonWebS
 class RegistrationService extends JsonWebServiceBase {
 	
 	const USER_NAME = "username";
+	const EMAIL_ADDRESS = "emailAddress";
 	
 	private static $__instance;
 	private static $__queryHandler;
@@ -36,7 +37,8 @@ class RegistrationService extends JsonWebServiceBase {
 			self::$__queryHandler = QueryHandler::getInstance(QueryHandlerType::MYSQL);
 		}
 
-		$this->registerServiceMethod("checkUserNameAvailability", array("username: string", ), " Checks the database to determine whether the username chosen already exists or not.");
+		$this->registerServiceMethod("checkUserNameAvailability", array("username: string", ), "Checks the database to determine whether the username chosen already exists or not.");
+		$this->registerServiceMethod("checkEmailAddressUsage", array("emailAddress: string", ), "Checks the database to determine whether the email address chosen already exists or not.");
 	}
 	
 	/**
@@ -63,6 +65,33 @@ class RegistrationService extends JsonWebServiceBase {
 			}
 		} else {
 			$this->echoJson(json_encode(array("userNameIsInUse" => false)));
+		}
+	}
+	
+	/**
+	 * checkEmailAddressUsage
+	 * Checks the database to determine whether the email address chosen already exists or not.
+	 * @param object $jsonObject
+	 */
+	public function checkEmailAddressUsage(/*object*/ $jsonObject) {
+		ArgumentTypeValidator::isObject($jsonObject, "JsonObject must be an object.");
+		
+		$emailAddress = $jsonObject->{RegistrationService::EMAIL_ADDRESS};
+		
+		if (!Strings::isNullOrEmpty($emailAddress)) {
+			$query = "select email from pbox.contact_info ci where ci.email = '{$emailAddress}'";
+
+			if (!Strings::isNullOrEmpty($query)) {
+				$rows = self::$__queryHandler->executeQuery($query);
+				
+				if (count($rows) > 0) {
+					$this->echoJson(json_encode(array("emailAddressIsInUse" => true)));
+				} else {
+					$this->echoJson(json_encode(array("emailAddressIsInUse" => false)));
+				}
+			}
+		} else {
+			$this->echoJson(json_encode(array("emailAddressIsInUse" => false)));
 		}
 	}
 	

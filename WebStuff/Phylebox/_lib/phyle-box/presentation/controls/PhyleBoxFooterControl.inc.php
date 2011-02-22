@@ -23,7 +23,7 @@ class PhyleBoxFooterControl implements IRenderable {
 	public function PhyleBoxFooterControl(IPage $page) {
 		$page->registerStylesheet("_css/footer.css");
 		
-		self::$__phyleBoxFooterSubNavigation = new PhyleBoxFooterSubNavigation();
+		self::$__phyleBoxFooterSubNavigation = new PhyleBoxFooterSubNavigation($page);
 	}
 	
 	/**

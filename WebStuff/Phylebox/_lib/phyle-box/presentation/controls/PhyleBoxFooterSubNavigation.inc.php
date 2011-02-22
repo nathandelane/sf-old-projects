@@ -7,7 +7,7 @@ if (!session_id()) {
 require_once(dirname(__FILE__) . "/../../Config.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/Strings.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/IRenderable.inc.php");
-require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/AuthenticationPage.inc.php");
+require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/IPage.inc.php");
 
 /**
  * PhyleBoxFooterSubNavigation
@@ -17,12 +17,15 @@ require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/AuthenticationP
  */
 class PhyleBoxFooterSubNavigation implements IRenderable {
 	
+	private $_page;
+	
 	/**
 	 * Constructor
+	 * @param IPage $page
 	 * @return PhyleBoxFooterSubNavigation
 	 */
-	public function PhyleBoxFooterSubNavigation() {
-		
+	public function PhyleBoxFooterSubNavigation(IPage $page) {
+		$this->_page = $page;
 	}
 	
 	/**
@@ -39,7 +42,7 @@ class PhyleBoxFooterSubNavigation implements IRenderable {
 		</li>
 <?php
 
-		if (isset($_SESSION[AuthenticationPage::AUTHENTICATION_KEY]) && Strings::equals($_SESSION[AuthenticationPage::AUTHENTICATION_KEY], session_id())) {
+		if (isset($_SESSION[$this->_page->getAuthenticationKey()]) && Strings::equals($_SESSION[$this->_page->getAuthenticationKey()], session_id())) {
 
 ?>
 		<li>

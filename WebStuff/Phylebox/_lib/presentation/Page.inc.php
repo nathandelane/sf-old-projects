@@ -31,14 +31,16 @@ abstract class Page implements IPage {
 	private $_stylesheets;
 	private $_scripts;
 	private $_keywords;
-	private $_description;
+	private $_description;	
+	private $_authenticationKey;
 	
 	/**
 	 * Page constructor
 	 * @param string $title
+	 * @param string $authenticationKey
 	 * @return Page
 	 */
-	public function Page(/*string*/ $title) {
+	public function Page(/*string*/ $title, /*string*/ $authenticationKey = "ticket") {
 		ArgumentTypeValidator::isString($title, "Title must be a string.");
 		
 		$this->_logger = Logger::getInstance();
@@ -47,6 +49,7 @@ abstract class Page implements IPage {
 		$this->_scripts = new ScriptsCollection();
 		$this->_keywords = new KeywordsCollection();
 		$this->_description = null;
+		$this->_authenticationKey = $authenticationKey;
 	}
 	
 	/**
@@ -223,6 +226,15 @@ abstract class Page implements IPage {
 		}
 		
 		return $resultString;
+	}
+	
+	/**
+	 * getAuthenticationKey
+	 * Gets the current authentication key.
+	 * @return string
+	 */
+	public function getAuthenticationKey() {
+		return $this->_authenticationKey;
 	}
 	
 	/**

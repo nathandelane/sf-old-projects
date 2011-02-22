@@ -6,6 +6,7 @@ if (!session_id()) {
 
 require_once(dirname(__FILE__) . "/../Config.inc.php");
 require_once(Admin_Config::getFrameworkRoot() . "foundation/Strings.inc.php");
+require_once(Admin_Config::getFrameworkRoot() . "presentation/IPage.inc.php");
 require_once(Admin_Config::getFrameworkRoot() . "presentation/Page.inc.php");
 require_once(Admin_Config::getFrameworkRoot() . "presentation/AuthenticationPage.inc.php");
 require_once(Admin_Config::getLocalPresentationLocation() . "controls/AdminHeaderControl.inc.php");
@@ -30,7 +31,7 @@ abstract class AdminPage extends Page {
 	 * @return AdminPage
 	 */
 	public function AdminPage(/*string*/ $title) {
-		parent::__construct($title);
+		parent::__construct($title, "ticket-admin");
 		
 		$this->registerStylesheet("_css/main.css");
 		
@@ -87,7 +88,7 @@ abstract class AdminPage extends Page {
 	 * Checks the authentication of the current session.
 	 */
 	private function _checkAuthenticated() {
-		if(!($this->getSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY) && Strings::equals($this->getSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY), session_id()))) {
+		if(!($this->getSessionFieldValue($this->getAuthenticationKey()) && Strings::equals($this->getSessionFieldValue($this->getAuthenticationKey()), session_id()))) {
 			$url = AdminPage::AUTHENTICATION_PAGE_URL . "?" . AuthenticationPage::REFERRER_KEY . "=" . $_SERVER["REQUEST_URI"];
 			
 			header("Location: $url");

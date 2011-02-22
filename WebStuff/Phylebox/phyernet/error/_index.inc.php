@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__) . "/Config.inc.php");
+require_once(dirname(__FILE__) . "/../../_lib/phyernet/Config.inc.php");
 require_once(PhyerNet_Config::getLocalPresentationLocation() . "PhyerNetPage.inc.php");
 
 class _Index_Page extends PhyerNetPage {

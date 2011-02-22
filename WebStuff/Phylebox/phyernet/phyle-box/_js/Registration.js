@@ -10,7 +10,9 @@ if (Phyer && $Phyer) {
 		 * Constants
 		 */
 		USER_NAME: "username",
+		EMAIL_ADDRESS: "emailAddress",
 		USER_NAME_IN_USE: "userNameIsInUse",
+		EMAIL_ADDRESS_IN_USE: "emailAddressIsInUse",
 		
 		/**
 		 *  checkUserNameAvailability
@@ -38,6 +40,32 @@ if (Phyer && $Phyer) {
 		},
 		
 		/**
+		 * checkEmailAddressAvailability
+		 * Checks whether an email address is available or not.
+		 */
+		checkEmailAddressAvailability: function() {
+			var emailAddress = $("#emailAddress").val();
+			
+			if (emailAddress != "") {
+				var data = ""{ \"" + $Phyer.Registration.USER_NAME_IN_USE + "\": \"" + emailAddress + "\" }";
+				
+				
+				$Phyer.postJson($Phyer.PHYER_ROOT + "phyle-box/business/RegistrationService.php?checkEmailAddressUsage", data, 
+					null, 
+					function(json) {
+						$Phyer.setJson(json);
+						
+						if (json.userNameIsInUse) {
+							$("#emailAddressIsAvailableMessage").text("Email address is already in use");
+						} else {
+							$("#emailAddressIsAvailableMessage").text("Email address is already in use");
+						}
+					}
+				);
+			}
+		},
+		
+		/**
 		 * informationFormIsValid
 		 * Determines whether all of the information on the information form is valid.
 		 * @return bool
@@ -53,15 +81,19 @@ if (Phyer && $Phyer) {
 				isValid = false;
 			}
 			
-			if ($("#password").val() === "" || $("#repeatPassword").val() === "" || $("#password").val() != $("#repeatPassword").val()) {
+			if ($("#password").val() === "" || $("#repeatPassword").val() === "" || ($("#password").val() != "" && $("#password").val() != $("#repeatPassword").val())) {
 				$("#password").attr("class", "error");
 				$("#repeatPassword").attr("class", "error");
 				
 				isValid = false;
 			}
 			
-			if ($("input[name='explicitness']:checked").val() == undefined) {
-				isValid = false;
+			if ($("accountType").val() == "5") {
+				if ($("input[name='explicitness']:checked").val() == undefined) {
+					$("#contentTypeDiv").attr("class", "error");
+					
+					isValid = false;
+				}
 			}
 			
 			if ($("#dateOfBirth").val() === "") {
@@ -77,7 +109,9 @@ if (Phyer && $Phyer) {
 				isValid = false;
 			}
 			
-			if ($("#emailAddress").val() === "" || $("#repeatEmailAddress").val() === "" || ($("#emailAddress").val() != $("#repeatEmailAddress").val())) {
+			$Phyer.Registration.checkEmailAddressAvailability();
+			
+			if ($("#emailAddress").val() === "" || $("#repeatEmailAddress").val() === "" || ($("#emailAddress").val() != $("#repeatEmailAddress").val()) || !$Phyer_json.emailAddressIsInUse) {
 				$("#emailAddress").attr("class", "error");
 				$("#repeatEmailAddress").attr("class", "error");
 				
@@ -106,6 +140,21 @@ if (Phyer && $Phyer) {
 			if ($("#iagreetobetarules:checked").val() == undefined) {
 				$("label[for='iagreetobetarules']").attr("class", "error");
 				
+				isValid = false;
+			}
+			
+			return isValid;
+		},
+		
+		/**
+		 * accountTypeFormIsValid
+		 * Determines whether an account type has been chosen.
+		 * @return bool
+		 */
+		accountTypeFormIsValid: function() {
+			var isValid = true;
+			
+			if ($("#accountType:checked").val() == undefined) {
 				isValid = false;
 			}
 			

@@ -24,7 +24,7 @@ class PhyleBoxHeaderControl implements IRenderable {
 	 */
 	public function PhyleBoxHeaderControl(IPage $page) {
 		$this->_phyleBoxLogo = new PhyleBoxLogo();
-		$this->_subNavigation = new PhyleBoxFooterSubNavigation();
+		$this->_subNavigation = new PhyleBoxFooterSubNavigation($page);
 		
 		$page->registerStylesheet("_css/header.css");
 	}

@@ -15,7 +15,9 @@ final class PhyleBox_Config {
 	);
 	private static $__localPresentationFolder;
 	private static $__localFoundationFolder;
+	private static $__phyerNetErrorHandlerPage = "/error/";
 	private static $__phyleBoxRoot = "http://localhost.phyer.net:8080/phyle-box";
+	private static $__phyleBoxSalt = "34b14c5e-448e-4992-98a8-5274bb49d125";
 	
 	/**
 	 * getFrameworkRoot
@@ -81,6 +83,26 @@ final class PhyleBox_Config {
 	}
 	
 	/**
+	 * handleError
+	 * This function handles errors, and is defined as the global error handler.
+	 * @param int $number
+	 * @param string $string
+	 * @param string $file
+	 * @param int $line
+	 */
+	public static function handleError($number, $string, $file, $line) {
+		$phpError = array("number" => $number, "string" => $string, "file" => $file, "line" => $line);
+		
+		$_SESSION["PHP_ERROR"] = $phpError;
+		
+		if ($number == E_USER_ERROR) {
+			header("Location: " . self::getPhyleBoxRoot() . self::$__phyleBoxErrorHandlerPage);
+		} else {
+			
+		}
+	}
+	
+	/**
 	 * getPhyleBoxRoot
 	 * Gets the HTTP root of PhyleBox
 	 * @return string
@@ -89,6 +111,17 @@ final class PhyleBox_Config {
 		return self::$__phyleBoxRoot;
 	}
 	
+	/**
+	 * getSalt
+	 * Returns salt expected for PhyleBox authentication.
+	 * @Return string
+	 */
+	public static function getSalt() {
+		return self::$__phyleBoxSalt;
+	}
+	
 }
+
+set_error_handler("PhyleBox_Config::handleError");
 
 ?>

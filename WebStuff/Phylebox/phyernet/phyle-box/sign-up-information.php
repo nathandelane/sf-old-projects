@@ -1,6 +1,7 @@
 <?php
 
 require_once(dirname(__FILE__) . "/_sign-up-information.inc.php");
+require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/Strings.inc.php");
 
 $page = new _Sign_Up_Information_Page();
 $page->openDocument();
@@ -12,6 +13,7 @@ $page->openDocument();
 		<div class="panelInner">
 			<form id="signUpForm" name="signUpForm" action="<?php echo $_SERVER["REQUEST_URI"]; ?>" method="post" enctype="application/x-www-form-urlencoded" onsubmit="javascript: return $Phyer.Registration.informationFormIsValid();">
 				<input type="hidden" id="token" name="token" value="<?php echo $page->createToken(); ?>" />
+				<input type="hidden" id="accountType" name="accountType" value="<?php echo $page->getFieldValue("accountType"); ?>" />
 				<p>
 					<span style="font-style: italic;">Indicates that the field or fields are required:</span> 
 					<span class="requiredColor">*</span>
@@ -54,26 +56,38 @@ $page->openDocument();
 								<input type="password" name="repeatPassword" id="repeatPassword" value="" <?php if (in_array(_Sign_Up_Information_Page::REPEAT_PASSWORD, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
 							</td>
 						</tr>
+<?php 
+
+if (Strings::equals($page->getFieldValue("accountType"), "5")) {
+
+?>
 						<tr>
 							<td class="label">
 								<label for="explicitness">
-									Explicitness: 
+									Content Type: 
 								</label>
 							</td>
 							<td>
 								<span class="requiredColor">*</span>
 							</td>
 							<td>
-								<fieldset <?php if (in_array(_Sign_Up_Information_Page::EXPLICITNESS, $page->InvalidFields)) { echo "class=\"error\""; } ?>>
-									<a href="javascript: void(0);" id="whyExplicityLink">What is this?</a>
+								<div id="contentTypeDiv">
+									<fieldset <?php if (in_array(_Sign_Up_Information_Page::EXPLICITNESS, $page->InvalidFields)) { echo "class=\"error\""; } ?>>
+										<a href="javascript: void(0);" id="whyExplicityLink">What is this?</a>
 <?php
 
-$page->renderExplicitness();
+	$page->renderExplicitness();
 
 ?>
-								</fieldset>
+									</fieldset>
+								</div>
 							</td>
 						</tr>
+<?php 
+
+}
+
+?>
 						<tr>
 							<td class="label">
 								<label for="dateOfBith">
@@ -114,6 +128,7 @@ $page->renderExplicitness();
 							<td>
 								<input type="text" name="emailAddress" id="emailAddress" value="<?php echo $page->getFieldValue(_Sign_Up_Information_Page::EMAIL_ADDRESS); ?>" <?php if (in_array(_Sign_Up_Information_Page::EMAIL_ADDRESS, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
 								<input type="text" name="repeatEmailAddress" id="repeatEmailAddress" value="<?php echo $page->getFieldValue(_Sign_Up_Information_Page::REPEAT_EMAIL_ADDRESS); ?>" <?php if (in_array(_Sign_Up_Information_Page::REPEAT_EMAIL_ADDRESS, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
+								<span id="emailAddressIsAvailableMessage"></span>
 							</td>
 						</tr>
 						<tr>
@@ -160,6 +175,11 @@ $page->renderExplicitness();
 								<input type="text" name="city" id="city" value="<?php echo $page->getFieldValue(_Sign_Up_Information_Page::CITY); ?>" <?php if (in_array(_Sign_Up_Information_Page::CITY, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
 							</td>							
 						</tr>
+<?php 
+
+if (Strings::equals($page->getFieldValue("accountType"), "5")) {
+
+?>
 						<tr>
 							<td class="label">
 								<label for="bio">
@@ -171,6 +191,11 @@ $page->renderExplicitness();
 								<textarea name="bio" id="bio"><?php echo $page->getFieldValue(_Sign_Up_Information_Page::BIO); ?></textarea>
 							</td>
 						</tr>
+<?php 
+
+}
+
+?>
 					</tbody>
 				</table>
 				<?php $page->renderBetaDisclaimer(); ?>

@@ -85,12 +85,12 @@ class DrivesModel implements IEnumerable, IReadable {
 	 * @return void
 	 */
 	private function _collectPersonalDrives() {
-		$personalDriveQuery = "select pd.personal_drive_id, pd.drive_location, pd.additional_space, aty.allotted_space from `pbox`.`personal_drives` pd inner join `pbox`.`people` p on pd.person_id = p.person_id inner join `pbox`.`account_types` aty on aty.account_type_id = p.account_type_id where p.user_name = '{$this->_userName}'";
+		$personalDriveQuery = "select pd.personal_drive_id, pd.drive_location, pd.additional_space, atdd.alotted_space from `pbox`.`personal_drives` pd inner join `pbox`.`people` p on p.person_id = pd.person_id inner join `pbox`.`account_types` a on a.account_type_id = p.account_type_id left outer join `pbox`.`account_type_folders` atf on atf.account_type_id = p.account_type_id inner join `pbox`.`account_type_default_data` atdd on atdd.account_type_default_data_id = atf.account_type_default_data_id inner join `pbox`.`storage_types` st on st.storage_type_id = atf.storage_type_id where p.user_name = '{$this->_userName}' and st.name = 'Webspace'";
 		$rows = self::$__queryHandler->executeQuery($personalDriveQuery);
 		
 		if (count($rows) > 0) {
 			foreach ($rows as $nextRow) {
-				$nextShortcut = new DriveShortcut(intval($nextRow["personal_drive_id"]), "Personal Drive", $nextRow["drive_location"], (doubleval($nextRow["allotted_space"]) + doubleval($nextRow["additional_space"])), DriveType::PERSONAL);
+				$nextShortcut = new DriveShortcut(intval($nextRow["personal_drive_id"]), "Personal Drive", $nextRow["drive_location"], (doubleval($nextRow["alotted_space"]) + doubleval($nextRow["additional_space"])), DriveType::PERSONAL);
 				
 				$newKey = sprintf('%d-%d', DriveType::PERSONAL, $nextRow["personal_drive_id"]);
 				$this->_model[$newKey] = $nextShortcut;
@@ -104,12 +104,12 @@ class DrivesModel implements IEnumerable, IReadable {
 	 * @return void
 	 */
 	private function _collectPersonalStorage() {
-		$storageQuery = "select ps.personal_storage_id, ps.storage_location, ps.allotted_space from `pbox`.`personal_storage` ps inner join `pbox`.`people` p on p.person_id = ps.person_id where p.user_name = '{$this->_userName}'";
+		$storageQuery = "select ps.personal_storage_id, ps.storage_location, ps.additional_space, atdd.alotted_space from `pbox`.`personal_storage` ps inner join `pbox`.`people` p on p.person_id = ps.person_id inner join `pbox`.`account_types` a on a.account_type_id = p.account_type_id left outer join `pbox`.`account_type_folders` atf on atf.account_type_id = p.account_type_id inner join `pbox`.`account_type_default_data` atdd on atdd.account_type_default_data_id = atf.account_type_default_data_id inner join `pbox`.`storage_types` st on st.storage_type_id = atf.storage_type_id where p.user_name = '{$this->_userName}' and st.name = 'Personal Storage'";
 		$rows = self::$__queryHandler->executeQuery($storageQuery);
 		
 		if (count($rows) > 0) {
 			foreach ($rows as $nextRow) {
-				$nextShortcut = new DriveShortcut(intval($nextRow["personal_storage_id"]), "Personal Storage", $nextRow["storage_location"], doubleval($nextRow["allotted_space"]), DriveType::STORAGE);
+				$nextShortcut = new DriveShortcut(intval($nextRow["personal_storage_id"]), "Personal Storage", $nextRow["storage_location"], doubleval($nextRow["alotted_space"]), DriveType::STORAGE);
 				
 				$newKey = sprintf('%d-%d', DriveType::STORAGE, $nextRow["personal_storage_id"]);
 				$this->_model[$newKey]= $nextShortcut;

@@ -6,7 +6,7 @@ require_once(Admin_Config::getLocalPresentationLocation() . "AdminPage.inc.php")
 class _Index_Page extends AdminPage {
 	
 	public function _Index_Page() {
-		parent::__construct("PhyerNet Admin");
+		parent::__construct("PhyerNet Admin", $this);
 	}
 	
 	/**

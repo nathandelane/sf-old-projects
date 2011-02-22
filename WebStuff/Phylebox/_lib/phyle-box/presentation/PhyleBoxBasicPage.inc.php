@@ -58,7 +58,7 @@ abstract class PhyleBoxBasicPage extends Page {
 	 * Checks the authentication of the current session.
 	 */
 	private function _checkAuthenticated() {
-		if(!($this->getSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY) && Strings::equals($this->getSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY), session_id()))) {
+		if(!($this->getSessionFieldValue($this->getAuthenticationKey()) && Strings::equals($this->getSessionFieldValue($this->getAuthenticationKey()), session_id()))) {
 			$url = PhyleBoxEditorPage::AUTHENTICATION_PAGE_URL . "?" . AuthenticationPage::REFERRER_KEY . "=" . $_SERVER["REQUEST_URI"];
 			
 			header("Location: $url");

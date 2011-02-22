@@ -6,6 +6,7 @@ if (!session_id()) {
 
 require_once(dirname(__FILE__) . "/../../Config.inc.php");
 require_once(Admin_Config::getFrameworkRoot() . "presentation/AuthenticationPage.inc.php");
+require_once(Admin_Config::getFrameworkRoot() . "presentation/IPage.inc.php");
 require_once(Admin_Config::getLocalPresentationLocation() . "controls/AdminHeaderControl.inc.php");
 require_once(Admin_Config::getLocalPresentationLocation() . "controls/AdminFooterControl.inc.php");
 require_once(Admin_Config::getFrameworkRoot() . "foundation/business/Functions.inc.php");
@@ -26,7 +27,7 @@ abstract class AdminAuthenticationPage extends AuthenticationPage {
 	 * @return AdminAuthenticationPage
 	 */
 	public function AdminAuthenticationPage(/*string*/ $title, /*string*/ $redirectUrl, /*string*/ $salt) {
-		parent::__construct($title, $redirectUrl, $salt);
+		parent::__construct($title, $redirectUrl, $salt, "ticket-admin");
 		
 		$this->registerStylesheet("_css/main.css");
 		$this->registerStylesheet("_css/login.css");

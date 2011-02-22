@@ -1,3 +1,13 @@
+p
+{
+	font-size: 13px;
+}
+
+p.important
+{
+	text-transform: uppercase;;
+}
+
 #bio,
 #signature
 {
@@ -110,4 +120,21 @@ select
 .error
 {
 	background-color: #ffcccc;
+}
+
+#accountTypeTable
+{
+	width !00%;
+}
+
+td.accountTypeSection
+{
+	padding: 20px;
+	vertical-align: top;
+}
+
+.accountTypeSection li
+{
+	margin-bottom: 4px;
+	font-size: 14px;
 }

@@ -17,6 +17,7 @@ require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxNonAuthe
  */
 class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 	
+	const ACCOUNT_TYPE = "accountType";
 	const TOKEN = "token";
 	const USERNAME = "username";
 	const PASSWORD = "password";
@@ -50,9 +51,14 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 	public function _Sign_Up_Information_Page() {
 		parent::__construct("Sign Up - Information | PhyleBox");
 		
+		if (!$this->getFieldValue("accountType")) {
+			header("Location: " . PhyleBox_Config::getPhyleBoxRoot() . "/sign-up-account-type.php");
+		}
+		
 		$this->InvalidFields = array();
 		
 		$this->registerStylesheet("/_css/jquery.fancybox.css");
+		$this->registerStylesheet("_css/sign-up.css");
 		$this->registerScript("/_js/jquery.fancybox.js");
 		$this->registerScript("/_js/jquery.maskedinput.js");
 		$this->registerScript("/_js/jquery.watermark.js");
@@ -241,10 +247,12 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 			$isValid = false;
 		}
 		
-		if (Strings::isNullOrEmpty($this->getFieldValue(self::EXPLICITNESS))) {
-			$this->InvalidFields[] = self::EXPLICITNESS;
-			
-			$isValid = false;
+		if (Strings::equals($this->getFieldValue(self::ACCOUNT_TYPE), "5")) {
+			if (Strings::isNullOrEmpty($this->getFieldValue(self::EXPLICITNESS))) {
+				$this->InvalidFields[] = self::EXPLICITNESS;
+				
+				$isValid = false;
+			}
 		}
 		
 		if (Strings::isNullOrEmpty($this->getFieldValue(self::DATE_OF_BIRTH))) {
@@ -332,40 +340,37 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 	private function _createAccount() {
 		$result = false;
 		$username = $this->getFieldValue(self::USERNAME);
-		$firstRealName = $this->getFieldValue(self::FIRST_REAL_NAME);
-		$lastRealName = $this->getFieldValue(self::LAST_REAL_NAME);
 		$salt = "34b14c5e-448e-4992-98a8-5274bb49d125";
 		$password = $this->getFieldValue(self::PASSWORD). $salt;
 		$encryptedPassword = md5($password);
-		$explicity = $this->getFieldValue(self::EXPLICITNESS);
-		$bio = $this->getFieldValue(self::BIO);
-		$dateCreated = date("Y/m/d") . " 00:00:00";
-		$dateUpdated = date("Y/m/d") . " 00:00:00";
-		$dateOfBirth = $this->getFieldValue(self::DATE_OF_BIRTH) . " 00:00:00";
-		$query = "insert into `pbox`.`people` (user_name, first_real_name, last_real_name, password, explicity_id, bio, date_created, date_update, date_of_birth, account_type_id) values ('{$username}', '{$firstRealName}', '{$lastRealName}', '{$encryptedPassword}', '{$explicity}', '{$bio}', '{$dateCreated}', '{$dateUpdated}', '{$dateOfBirth}', 1)";
+		$accountTypeId = intval($this->getFieldValue(self::ACCOUNT_TYPE));
+		$personId = 0;
 		
-		self::$__queryHandler->executeQuery($query);
-
-		if (self::$__queryHandler->getAffectedRows() > 0) {
-			$query = "select person_id from `pbox`.`people` where user_name = '{$username}' and password = '{$encryptedPassword}'";
+		$personId = $this->_createPersonRecord($username, $encryptedPassword, $accountType);
+		
+		if ($personId > 0) {
+			$query = "insert into `pbox`.`people_roles` (person_id, role_id) values ({$personId}, 8)";
 			
-			$rows = self::$__queryHandler->executeQuery($query);
+			self::$__queryHandler->executeQuery($query);
 			
-			if (count($rows) > 0) {
-				$personId = $rows[0]["person_id"];
-				$query = "insert into `pbox`.`people_roles` (person_id, role_id) values ({$personId}, 8)";
+			if (self::$__queryHandler->getAffectedRows() > 0) {
+				$userDirectoryRoots = $this->_getDrivesForAccountType($accountTypeId);
 				
-				self::$__queryHandler->executeQuery($query);
-				
-				if (self::$__queryHandler->getAffectedRows() > 0) {
-					$newDirectory = "C:/hosting/{$username}";
-					$query = "insert into `pbox`.`personal_drives` (person_id, drive_location) values ({$personId}, '{$newDirectory}')";
+				foreach ($userDirectoryRoots as $nextDirectoryRoot) {
+					$newDirectory = $nextDirectoryRoot["folders_root_location"] . "/{$username}";
+					$query = "";
+					
+					if (intval($nextDirectoryRoot["storage_type_id"]) == 1) {					
+						$query = "insert into `pbox`.`personal_drives` (person_id, drive_location) values ({$personId}, '{$newDirectory}')";
+					} else if (intval($nextDirectoryRoot["storage_type_id"]) == 1) {
+						$query = "insert into `pbox`.`personal_storage` (person_id, storage_location) values ({$personId}, '{$newDirectory}')";
+					}
 					
 					if (mkdir($newDirectory)) {					
 						self::$__queryHandler->executeQuery($query);
 						
 						if (self::$__queryHandler->getAffectedRows() > 0) {
-							$this->setSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY, session_id());
+							$this->setSessionFieldValue($this->getAuthenticationKey(), session_id());
 							$this->setSessionFieldValue(AuthenticationPage::USERNAME_KEY, $this->getFieldValue(self::USERNAME));
 							
 							$result = true;
@@ -378,6 +383,71 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		}
 		
 		return $result;
+	}
+	
+	/**
+	 * _getDrivesForAccountType
+	 * Gets all of the drives associated with the given account type.
+	 * @param int $accountTypeId
+	 */
+	private function _getDrivesForAccountType(/*int*/ $accountTypeId) {
+		$drives = array();
+		
+		if (isset($accountType)) {
+			$query = "select atf.storage_type_id, atf.folders_root_location from `pbox`.`account_types` aty inner join `pbox`.`account_type_folders` atf on atf.account_type_id = aty.account_type_id where aty.account_type_id = {$accountTypeId} and aty.is_public = 'True'";
+			$rows = self::$__queryHandler->executeQuery($query);
+			
+			if (count($rows) > 0) {
+				foreach ($rows as $nextRow) {
+					$drives[] = array("storage_type_id" => $nextRow["storage_Type_id"], "folders_root_location" => "folders_root_location");
+				}
+			}
+		}
+		
+		return $drives;
+	}
+	
+	/**
+	 * _createPersonRecord
+	 * Creates the personal account record.
+	 * @param string $username
+	 * @param string $encryptedPassword
+	 * @param int $accountTypeId
+	 * @return @int
+	 */
+	private function _createPersonRecord(/*string*/ $username, /*int*/ $accountTypeId) {
+		$personId = 0;
+		
+		$firstRealName = $this->getFieldValue(self::FIRST_REAL_NAME);
+		$lastRealName = $this->getFieldValue(self::LAST_REAL_NAME);
+		$salt = PhyleBox_Config::getSalt();
+		$explicity = $this->getFieldValue(self::EXPLICITNESS) or "1";
+		$bio = $this->getFieldValue(self::BIO);
+		$dateCreated = date("Y/m/d") . " 00:00:00";
+		$dateUpdated = date("Y/m/d") . " 00:00:00";
+		$dateOfBirth = $this->getFieldValue(self::DATE_OF_BIRTH) . " 00:00:00";
+		$emailAddress = $this->getFieldValue(self::EMAIL_ADDRESS);
+		$country = $this->getFieldValue(self::COUNTRY);
+		$state = $this->getFieldValue(self::STATE);
+		$city = $this->getFieldValue(self::CITY);
+		$query = "insert into `pbox`.`people` (user_name, first_real_name, last_real_name, password, explicity_id, bio, date_created, date_update, date_of_birth, account_type_id) values ('{$username}', '{$firstRealName}', '{$lastRealName}', '{$encryptedPassword}', '{$explicity}', '{$bio}', '{$dateCreated}', '{$dateUpdated}', '{$dateOfBirth}', {$accountTypeId})";
+		
+		self::$__queryHandler->executeQuery($query);
+		
+		if (self::$__queryHandler->getAffectedRows() > 0) {
+			$query = "select person_id from `pbox`.`people` where user_name = '{$username}' and password = '{$encryptedPassword}'";
+			
+			$rows = self::$__queryHandler->executeQuery($query);
+			
+			if (count($rows) > 0) {
+				$personId = intval($rows[0]["person_id"]);
+				$query = "insert into `pbox`.`contact_info` (person_id, email, country_iso, state, city) values ({$personId}, '{$emailAddress}', '{$country}', '{$state}', '{$city}')";
+				
+				self::$__queryHandler->executeQuery($query);
+			} 
+		}
+		
+		return $personId;
 	}
 	
 }

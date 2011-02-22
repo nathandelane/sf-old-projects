@@ -74,6 +74,13 @@ interface IPage {
 	 */
 	public function getLogger();
 	
+	/**
+	 * getAuthenticationKey
+	 * Gets the page's authentication key.
+	 * @return string
+	 */
+	public function getAuthenticationKey();
+	
 }
 
 ?>

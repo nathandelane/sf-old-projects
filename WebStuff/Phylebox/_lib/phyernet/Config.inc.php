@@ -99,7 +99,7 @@ final class PhyerNet_Config {
 		$_SESSION["PHP_ERROR"] = $phpError;
 		
 		if ($number == E_USER_ERROR) {
-			header("Location: " . self::$__phyerNetErrorHandlerPage);
+			header("Location: " . self::getPhyerNetRoot() . self::$__phyerNetErrorHandlerPage);
 		} else {
 			
 		}
