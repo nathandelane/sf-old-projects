@@ -1,9 +1,9 @@
 <?php
 
 require_once(dirname(__FILE__) . "/../../Config.inc.php");
-require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
-require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/IRenderable.inc.php");
-require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/IPage.inc.php");
+require_once(UtahKoi_Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
+require_once(UtahKoi_Config::getFrameworkRoot() . "presentation/IRenderable.inc.php");
+require_once(UtahKoi_Config::getFrameworkRoot() . "presentation/IPage.inc.php");
 
 /**
  * UtahKoiLoginForm

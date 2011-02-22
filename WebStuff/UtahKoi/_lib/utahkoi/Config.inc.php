@@ -15,7 +15,7 @@ final class UtahKoi_Config {
 	);
 	private static $__localPresentationFolder;
 	private static $__localFoundationFolder;
-	private static $__utahKoiRoot = "http://localhost.utahkoi.com";
+	private static $__utahKoiRoot = "http://utahkoi.nathandelane.com";
 	
 	/**
 	 * getFrameworkRoot
