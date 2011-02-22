@@ -7,6 +7,7 @@ if(!session_id()) {
 require_once(dirname(__FILE__) . "/../Config.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/Logger.inc.php");
+require_once(Config::getFrameworkRoot() . "foundation/Strings.inc.php");
 require_once(Config::getFrameworkRoot() . "foundation/LogStatus.inc.php");
 require_once(Config::getFrameworkRoot() . "presentation/IPage.inc.php");
 require_once(Config::getFrameworkRoot() . "presentation/IRenderable.inc.php");
@@ -24,18 +25,22 @@ abstract class Page implements IPage {
 	
 	protected $_logger;
 	
+	const TOKEN_LENGTH = 16;
+	
 	private $_title;
 	private $_stylesheets;
 	private $_scripts;
 	private $_keywords;
-	private $_description;
+	private $_description;	
+	private $_authenticationKey;
 	
 	/**
 	 * Page constructor
 	 * @param string $title
+	 * @param string $authenticationKey
 	 * @return Page
 	 */
-	public function Page(/*string*/ $title) {
+	public function Page(/*string*/ $title, /*string*/ $authenticationKey = "ticket") {
 		ArgumentTypeValidator::isString($title, "Title must be a string.");
 		
 		$this->_logger = Logger::getInstance();
@@ -44,6 +49,7 @@ abstract class Page implements IPage {
 		$this->_scripts = new ScriptsCollection();
 		$this->_keywords = new KeywordsCollection();
 		$this->_description = null;
+		$this->_authenticationKey = $authenticationKey;
 	}
 	
 	/**
@@ -196,6 +202,39 @@ abstract class Page implements IPage {
 		} else {
 			$_SESSION[$fieldName] = $value;
 		}
+	}
+	
+	/**
+	 * createToken
+	 * Creates a token for a form.
+	 * @return string
+	 */
+	public function createToken() {
+		$characters = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+		$counter = 0;
+		$resultString = "";
+		
+		while ($counter < Page::TOKEN_LENGTH) {
+			$nextRand = mt_rand(0, (count($characters) - 1));
+			
+			if (!Strings::contains($resultString, sprintf('%1$s', $characters[$nextRand]))) {
+				$resultString .= $characters[$nextRand];
+				
+				$counter++;
+			}
+		}
+		
+		return $resultString;
+	}
+	
+	/**
+	 * getAuthenticationKey
+	 * Gets the current authentication key.
+	 * @return string
+	 */
+	public function getAuthenticationKey() {
+		return $this->_authenticationKey;
 	}
 	
 	/**

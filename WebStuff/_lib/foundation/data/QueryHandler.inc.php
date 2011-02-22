@@ -18,6 +18,7 @@ final class QueryHandler {
 	private $_connection;
 	private $_logger;
 	private $_rows;
+	private $_affectedRows;
 	
 	/**
 	 * Constructor
@@ -38,6 +39,15 @@ final class QueryHandler {
 	 */
 	public function executeQuery(/*string*/ $query) {
 		return $this->_executeQuery($query);
+	}
+	
+	/**
+	 * getAffectedRows
+	 * Gets the number of rows affected.
+	 * @return int
+	 */
+	public function getAffectedRows() {
+		return $this->_affectedRows;
 	}
 	
 	/**
@@ -106,8 +116,16 @@ final class QueryHandler {
 	private function _executeMySqlQuery(/*string*/ $query) {
 		$results = array();
 		
+		$this->_affectedRows = 0;
+			
 		if ($this->_createConnection()) {
 			$resultSet = mysql_query($query, $this->_connection);
+			
+			if (is_resource($resultSet)) {
+				$this->_affectedRows = mysql_num_rows($resultSet);
+			} else {
+				$this->_affectedRows = mysql_affected_rows();
+			}
 			
 			if (is_resource($resultSet)) {
 				if (mysql_num_rows($resultSet) > 0) {
@@ -119,6 +137,8 @@ final class QueryHandler {
 				} else {
 					$this->_logger->sendMessage(LOG_DEBUG, "The query \"$query\" return no results");
 				}
+			} else if ($this->_affectedRows > 0) {
+				// Don't do anything.
 			} else {
 				$this->_logger->sendMessage(LOG_DEBUG, "The query \"$query\" failed to execute properly, returning no resource.");
 			}

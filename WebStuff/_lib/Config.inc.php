@@ -8,6 +8,7 @@
 final class Config {
 		
 	private static $__frameworkRoot;
+	private static $__nathandelaneRoot;
 	private static $__isDebugEnvironment = true;
 	
 	/**
@@ -39,8 +40,22 @@ final class Config {
 	 * @return array
 	 */
 	public static function getDatabaseCredentials() {
-//		return array("server" => "localhost", "userName" => "phyeradmin", "password" => "o6dv28upwrgeq");
 		return array("server" => "localhost", "userName" => "root", "password" => "i78y6zbgfhla");
+	}
+	
+	/**
+	 * getNathandelaneRoot
+	 * Gets the root of nathandelane.
+	 * @return string
+	 */
+	public static function getNathandelaneRoot() {
+		if (!isset(self::$__frameworkRoot)) {
+			$localConfigLocation = dirname(__FILE__);
+			
+			self::$__frameworkRoot = "$localConfigLocation/../nathandelane/";
+		}
+		
+		return self::$__frameworkRoot;
 	}
 	
 }

@@ -19,7 +19,6 @@ require_once(Config::getFrameworkRoot() . "foundation/data/QueryHandlerType.inc.
  */
 abstract class AuthenticationPage extends Page {
 	
-	const AUTHENTICATION_KEY = "ticket";
 	const REFERRER_KEY = "referrer";
 	const USERNAME_KEY = "userName";
 	const PASSWORD_KEY = "password";
@@ -38,8 +37,8 @@ abstract class AuthenticationPage extends Page {
 	 * @param string $salt
 	 * @return AuthenticationPage
 	 */
-	protected function AuthenticationPage(/*string*/ $title, /*string*/ $redirectUrl, /*string*/ $salt) {
-		parent::__construct($title);
+	protected function AuthenticationPage(/*string*/ $title, /*string*/ $redirectUrl, /*string*/ $salt, /*string*/ $authenticationKey = "ticket") {
+		parent::__construct($title, $authenticationKey);
 		
 		ArgumentTypeValidator::isString($redirectUrl, "RedirectUrl must be a string.");
 		ArgumentTypeValidator::isString($salt, "Salt must be a string.");
@@ -54,12 +53,16 @@ abstract class AuthenticationPage extends Page {
 		$this->_logger = Logger::getInstance();
 		
 		if($this->_userAuthenticationIsDefined()) {
-			$this->setSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY, $this->tryAuthentication($this->getFieldValue(AuthenticationPage::USERNAME_KEY), $this->getFieldValue(AuthenticationPage::PASSWORD_KEY)));
+			$this->setSessionFieldValue($this->getAuthenticationKey(), $this->tryAuthentication($this->getFieldValue(AuthenticationPage::USERNAME_KEY), $this->getFieldValue(AuthenticationPage::PASSWORD_KEY)));
 			$this->setSessionFieldValue(AuthenticationPage::USERNAME_KEY, $this->getFieldValue(AuthenticationPage::USERNAME_KEY));
 		}
 		
-		if($this->getSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY) && (Strings::equals($this->getSessionFieldValue(AuthenticationPage::AUTHENTICATION_KEY), session_id()))) {
-			$url = "http://" . $_SERVER["SERVER_NAME"] . $this->_redirectUrl;
+		if($this->getSessionFieldValue($this->getAuthenticationKey()) && (Strings::equals($this->getSessionFieldValue($this->getAuthenticationKey()), session_id()))) {
+			$url = $this->_redirectUrl;
+			
+			if (!Strings::startsWith($this->_redirectUrl, "http")) {
+				$url = "http://" . $_SERVER["SERVER_NAME"] . $this->_redirectUrl;
+			}
 			
 			$this->_logger->sendMessage(LOG_DEBUG, "Redirecting to $url");
 			
