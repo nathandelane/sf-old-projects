@@ -30,7 +30,7 @@ abstract class UtahKoiPage extends Page {
 	 * @return UtahKoiPage
 	 */
 	public function UtahKoiPage(/*string*/ $title) {
-		parent::__construct($title);
+		parent::__construct($title, "ticket-utahkoi");
 		
 		$this->registerStylesheet("_css/main.css");
 		
