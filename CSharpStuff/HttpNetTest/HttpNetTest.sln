@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpNetTest", "HttpNetTest\HttpNetTest.csproj", "{0A273998-1A43-4074-AF4C-1CA200E3EEED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A273998-1A43-4074-AF4C-1CA200E3EEED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A273998-1A43-4074-AF4C-1CA200E3EEED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A273998-1A43-4074-AF4C-1CA200E3EEED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A273998-1A43-4074-AF4C-1CA200E3EEED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
