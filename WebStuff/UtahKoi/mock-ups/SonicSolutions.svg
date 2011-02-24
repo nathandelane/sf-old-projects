@@ -15,7 +15,7 @@
    id="svg3047"
    version="1.1"
    inkscape:version="0.48.0 r9654"
-   sodipodi:docname="New document 1">
+   sodipodi:docname="SonicSolutions.svg">
   <defs
      id="defs3049" />
   <sodipodi:namedview
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.88993316"
-     inkscape:cx="-92.512561"
-     inkscape:cy="694.88841"
+     inkscape:zoom="1.03127"
+     inkscape:cx="152.86625"
+     inkscape:cy="725.11444"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -46,7 +46,6 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -55,31 +54,38 @@
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       id="g4200">
+       id="g5290">
       <g
-         transform="translate(-198.96168,0)"
-         id="g3779">
-        <rect
-           style="fill:#6082a8;fill-opacity:1;stroke:none"
-           id="rect3773"
-           width="1005"
-           height="716.28809"
-           x="-125.04673"
-           y="120.0759" />
+         id="g5106">
         <g
-           id="g3769"
-           transform="translate(-21.069683,-225.52752)">
-          <rect
-             y="98.031372"
-             x="-103.97705"
-             height="261.021"
-             width="1005"
-             id="rect2993"
-             style="fill:#6082a8;fill-opacity:1;fill-rule:evenodd;stroke:none" />
-          <image
-             width="1002"
-             height="258.02078"
-             xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA2IAAADfCAIAAAAbcffzAAAAA3NCSVQICAjb4U/gAAAgAElEQVR4
+           id="g4954">
+          <g
+             transform="translate(-198.96168,0)"
+             id="g3779">
+            <g
+               id="g5083">
+              <rect
+                 y="120.0759"
+                 x="-125.04673"
+                 height="716.28809"
+                 width="1005"
+                 id="rect3773"
+                 style="fill:#6082a8;fill-opacity:1;stroke:none" />
+              <g
+                 transform="translate(-21.069683,-225.52752)"
+                 id="g3769">
+                <rect
+                   style="fill:#6082a8;fill-opacity:1;fill-rule:evenodd;stroke:none"
+                   id="rect2993"
+                   width="1005"
+                   height="261.021"
+                   x="-103.97705"
+                   y="98.031372" />
+                <image
+                   y="99.531479"
+                   x="-102.47705"
+                   id="image2990"
+                   xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA2IAAADfCAIAAAAbcffzAAAAA3NCSVQICAjb4U/gAAAgAElEQVR4
 nOy9eZAk133f+Tvey6Oq+pzumZ7BYAaDGwMeIsBDgGXroGCREsOSKVNaacMryZZWsuzwP+tdR1iW
 V16tInbD165CK0u2Y3cVuiVzRZEwJYqXxQskAAKQSJwkrhkA0zPd0113Zb73fr/f/pHdPQ0QQwLg
 XC3UJzp6crKyql5m58v85u9EM4MpUy4hIqKq3vsQQpZlIsLMAKCqqoqIzKyqRAQmgAgAYGYAiGhm
@@ -2646,341 +2652,740 @@ qxUA4C6XZhenmujgcNGY1CsztYjoyEQHBweHS460WhGJyQKxmuByaQlHp5ro4HDReF9fG0cgOjg4
 OFxCYIEo1vzKjxegcYlRvAT3EznVRAcHBwcHBweHCwiWibMx9J5rODLRweGi4Sw6Ozg4OHxEuET7
 Wi7BAqiDw+VCta8ZUxsV6ODg4OBw2aDqleFxq7o98RLi/wMiEWcY1XARuAAAAABJRU5ErkJggg==
 "
-             id="image2990"
-             x="-102.47705"
-             y="99.531479" />
+                   height="258.02078"
+                   width="1002" />
+              </g>
+              <image
+                 width="104"
+                 height="61"
+                 xlink:href="data:image/png;base64,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
+"
+                 id="image5080"
+                 x="-91.579163"
+                 y="664.05096" />
+            </g>
+            <text
+               xml:space="preserve"
+               style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:none;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+               x="-126.05817"
+               y="173.83372"
+               id="text5090"
+               sodipodi:linespacing="125%"
+               transform="translate(198.96168,0)"><tspan
+                 sodipodi:role="line"
+                 id="tspan5092"
+                 x="-126.05817"
+                 y="173.83372">Filtration</tspan></text>
+          </g>
+          <text
+             sodipodi:linespacing="125%"
+             id="text3775"
+             y="152.89902"
+             x="-73.058212"
+             style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+             xml:space="preserve"><tspan
+               y="152.89902"
+               x="-73.058212"
+               id="tspan3777"
+               sodipodi:role="line">New Shipments of Japanese Koi Coming in Weekly</tspan></text>
+          <rect
+             y="160.95038"
+             x="-143.64714"
+             height="674.69171"
+             width="824.21924"
+             id="rect3787"
+             style="fill:#3399cc;fill-opacity:1;stroke:none" />
+          <rect
+             y="161.28404"
+             x="-323.61981"
+             height="491.60995"
+             width="180"
+             id="rect3789"
+             style="fill:#98afea;fill-opacity:1;stroke:none" />
+          <rect
+             y="362.43616"
+             x="-323.87253"
+             height="16.484529"
+             width="180.36014"
+             id="rect4549"
+             style="fill:#3399cc;fill-opacity:1;stroke:none" />
+          <g
+             transform="translate(-14,-3.6519488)"
+             id="g4143">
+            <g
+               id="g4896">
+              <g
+                 id="g3907"
+                 transform="translate(13.609115,5.4905871)">
+                <g
+                   id="g4840">
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3795"
+                     y="177.01553"
+                     x="-316.27487"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="177.01553"
+                       x="-316.27487"
+                       id="tspan3797"
+                       sodipodi:role="line">Main</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3799"
+                     y="194.95122"
+                     x="-316.30222"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       id="tspan3803"
+                       y="194.95122"
+                       x="-316.30222"
+                       sodipodi:role="line">News and Events</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3807"
+                     y="212.93814"
+                     x="-316.2612"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="212.93814"
+                       x="-316.2612"
+                       id="tspan3809"
+                       sodipodi:role="line">Koi &amp; Pond Health</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3811"
+                     y="229.43138"
+                     x="-316.3364"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="229.43138"
+                       x="-316.3364"
+                       id="tspan3813"
+                       sodipodi:role="line">Retailing Tanks</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3815"
+                     y="248.75818"
+                     x="-316.2612"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="248.75818"
+                       x="-316.2612"
+                       id="tspan3817"
+                       sodipodi:role="line">Koi</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3819"
+                     y="265.3027"
+                     x="-316.30222"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="265.3027"
+                       x="-316.30222"
+                       id="tspan3821"
+                       sodipodi:role="line">Nishikigoi Koi</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3823"
+                     y="284.62952"
+                     x="-316.2612"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="284.62952"
+                       x="-316.2612"
+                       id="tspan3825"
+                       sodipodi:role="line">Koi Food</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3827"
+                     y="302.56519"
+                     x="-316.27487"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="302.56519"
+                       x="-316.27487"
+                       id="tspan3829"
+                       sodipodi:role="line">Medications</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3831"
+                     y="320.55206"
+                     x="-315.56393"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="320.55206"
+                       x="-315.56393"
+                       id="tspan3833"
+                       sodipodi:role="line">Test Kits &amp; Pond Vacs</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3835"
+                     y="338.51846"
+                     x="-316.2612"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="338.51846"
+                       x="-316.2612"
+                       id="tspan3837"
+                       sodipodi:role="line">Koi Care Books</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3839"
+                     y="356.37213"
+                     x="-315.40671"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="356.37213"
+                       x="-315.40671"
+                       id="tspan3841"
+                       sodipodi:role="line">Water Treatments</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3843"
+                     y="374.30783"
+                     x="-316.38425"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="374.30783"
+                       x="-316.38425"
+                       id="tspan3845"
+                       sodipodi:role="line">Filtration</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3847"
+                     y="390.93439"
+                     x="-315.40671"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="390.93439"
+                       x="-315.40671"
+                       id="tspan3849"
+                       sodipodi:role="line">Water Pumps</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3851"
+                     y="410.26117"
+                     x="-316.3364"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="410.26117"
+                       x="-316.3364"
+                       id="tspan3853"
+                       sodipodi:role="line">UV Sterilizers</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3855"
+                     y="426.80573"
+                     x="-315.2153"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="426.80573"
+                       x="-315.2153"
+                       id="tspan3857"
+                       sodipodi:role="line">Air Pumps</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3859"
+                     y="446.13242"
+                     x="-315.86472"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="446.13242"
+                       x="-315.86472"
+                       id="tspan3861"
+                       sodipodi:role="line">Skimmers</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3863"
+                     y="462.76242"
+                     x="-316.27487"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="462.76242"
+                       x="-316.27487"
+                       id="tspan3865"
+                       sodipodi:role="line">Microsocopes &amp; Meters</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3867"
+                     y="482.0072"
+                     x="-316.2612"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="482.0072"
+                       x="-316.2612"
+                       id="tspan3869"
+                       sodipodi:role="line">Bio Waterfalls</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3871"
+                     y="499.85739"
+                     x="-316.2612"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="499.85739"
+                       x="-316.2612"
+                       id="tspan3873"
+                       sodipodi:role="line">Bottom Drains</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3875"
+                     y="517.79309"
+                     x="-316.2612"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="517.79309"
+                       x="-316.2612"
+                       id="tspan3877"
+                       sodipodi:role="line">Koi Nets</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3879"
+                     y="535.81073"
+                     x="-315.86472"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="535.81073"
+                       x="-315.86472"
+                       id="tspan3881"
+                       sodipodi:role="line">Show Tanks</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3883"
+                     y="552.27325"
+                     x="-316.31589"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="552.27325"
+                       x="-316.31589"
+                       id="tspan3885"
+                       sodipodi:role="line">Pond Lighting</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3887"
+                     y="570.29437"
+                     x="-315.98093"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="570.29437"
+                       x="-315.98093"
+                       id="tspan3889"
+                       sodipodi:role="line">Greeting Cards</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3891"
+                     y="588.23004"
+                     x="-315.98093"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="588.23004"
+                       x="-315.98093"
+                       id="tspan3893"
+                       sodipodi:role="line">Gongs, Bells &amp; Baths</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3895"
+                     y="606.16565"
+                     x="-316.2612"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="606.16565"
+                       x="-316.2612"
+                       id="tspan3897"
+                       sodipodi:role="line">Koi Toys Shop</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3899"
+                     y="625.40356"
+                     x="-315.2153"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="625.40356"
+                       x="-315.2153"
+                       id="tspan3901"
+                       sodipodi:role="line">About Us</tspan></text>
+                  <text
+                     sodipodi:linespacing="125%"
+                     id="text3903"
+                     y="643.34265"
+                     x="-316.31589"
+                     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+                     xml:space="preserve"><tspan
+                       y="643.34265"
+                       x="-316.31589"
+                       id="tspan3905"
+                       sodipodi:role="line">Pond Heaters</tspan></text>
+                </g>
+              </g>
+            </g>
+          </g>
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267"
+             d="m -323.90073,182.63395 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-4"
+             d="m -323.76027,200.47236 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-3"
+             d="m -324.04119,217.1871 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-6"
+             d="m -323.90073,235.86828 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-0"
+             d="m -323.61981,253.7067 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-5"
+             d="m -323.76027,271.2642 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-7"
+             d="m -323.90073,289.94537 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-1"
+             d="m -323.61981,308.06471 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-33"
+             d="m -323.90073,326.46497 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-8"
+             d="m -323.90073,344.16293 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-84"
+             d="m -323.61981,362.14181 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-41"
+             d="m -323.76027,379.41838 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-40"
+             d="m -324.04119,397.11634 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-2"
+             d="m -323.76027,415.09522 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-86"
+             d="m -323.76027,433.0741 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-860"
+             d="m -323.61981,451.3339 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-38"
+             d="m -323.76027,469.17232 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-46"
+             d="m -323.61981,487.85349 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-22"
+             d="m -323.76027,505.41099 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-55"
+             d="m -323.61981,523.38987 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-9"
+             d="m -323.76027,540.66645 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-07"
+             d="m -323.61981,558.36441 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-410"
+             d="m -323.61981,576.48375 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-37"
+             d="m -323.76027,594.46262 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-16"
+             d="m -323.76027,613.28426 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4267-73"
+             d="m -323.61981,631.26314 180.35062,0"
+             style="fill:none;stroke:#6384a5;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
         </g>
+        <text
+           xml:space="preserve"
+           style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+           x="-135.75496"
+           y="177.71245"
+           id="text5094"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan5096"
+             x="-135.75496"
+             y="177.71245">Home &gt; Filtration &gt; Sonic Solutions</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+           x="-136.21199"
+           y="208.74216"
+           id="text5098"
+           sodipodi:linespacing="125%"><tspan
+             style="font-weight:bold;-inkscape-font-specification:Sans Bold"
+             sodipodi:role="line"
+             id="tspan5100"
+             x="-136.21199"
+             y="208.74216">Sonic Solutions</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:14px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+           x="-136.05476"
+           y="222.31764"
+           id="text5102"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan5104"
+             x="-136.05476"
+             y="222.31764">Ultrasound Algae Killer</tspan></text>
       </g>
       <text
          sodipodi:linespacing="125%"
-         id="text3775"
-         y="152.89902"
-         x="-73.058212"
-         style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         id="text5213"
+         y="244.62024"
+         x="-136.72462"
+         style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
          xml:space="preserve"><tspan
-           y="152.89902"
-           x="-73.058212"
-           id="tspan3777"
-           sodipodi:role="line">New Shipments of Japanese Koi Coming in Weekly</tspan></text>
-      <rect
-         y="160.95038"
-         x="-143.64714"
-         height="674.69171"
-         width="824.21924"
-         id="rect3787"
-         style="fill:#3399cc;fill-opacity:1;stroke:none" />
-      <rect
-         y="161.28404"
-         x="-323.61981"
-         height="491.60995"
-         width="180"
-         id="rect3789"
-         style="fill:#98afea;fill-opacity:1;stroke:none" />
+           id="tspan5217"
+           y="244.62024"
+           x="-136.72462"
+           sodipodi:role="line">Using less than 10 watts of power, SonicSolutions® floats just below the surface, fighting pool and pond algae, water</tspan><tspan
+           id="tspan5219"
+           y="259.62024"
+           x="-136.72462"
+           sodipodi:role="line">treatment algae, farm pond algae, fish pond algae, and even algae in irrigation ponds and pools. The device works 24 </tspan><tspan
+           id="tspan5227"
+           y="289.62024"
+           x="-136.72462"
+           sodipodi:role="line">hours a day, is environmentally safe, and requires little maintenance, with no need to measure and apply toxic chemicals.</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text5237"
+         y="299.89191"
+         x="-136.72462"
+         style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="299.89191"
+           x="-136.72462"
+           id="tspan5239"
+           sodipodi:role="line">The SonicSolutions® algae control device emits ultrasonic waves that &quot;fan out&quot; at approximately 180° from the front of </tspan><tspan
+           id="tspan5241"
+           y="314.89191"
+           x="-136.72462"
+           sodipodi:role="line">the transducer (see figure 1). Range and coverage area are dependant on the local conditions, including the distance to </tspan><tspan
+           id="tspan5243"
+           y="329.89191"
+           x="-136.72462"
+           sodipodi:role="line">the site from the equator and nutrient loading. Units can be used in combination to provide complete coverage of large </tspan><tspan
+           id="tspan5245"
+           y="344.89191"
+           x="-136.72462"
+           sodipodi:role="line">installations. Download a SonicSolutions® Specifications Sheet in PDF format for specific details and information in </tspan><tspan
+           id="tspan5247"
+           y="359.89191"
+           x="-136.72462"
+           sodipodi:role="line">selecting the model that is ideal for your personal needs.</tspan></text>
       <g
-         transform="translate(-14,-3.6519488)"
-         id="g4143">
-        <g
-           transform="translate(13.609115,5.4905871)"
-           id="g3907">
-          <text
-             sodipodi:linespacing="125%"
-             id="text3795"
-             y="177.01553"
-             x="-316.27487"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="177.01553"
-               x="-316.27487"
-               id="tspan3797"
-               sodipodi:role="line">Main</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3799"
-             y="194.95122"
-             x="-316.30222"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               id="tspan3803"
-               y="194.95122"
-               x="-316.30222"
-               sodipodi:role="line">News and Events</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3807"
-             y="212.93814"
-             x="-316.2612"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="212.93814"
-               x="-316.2612"
-               id="tspan3809"
-               sodipodi:role="line">Koi &amp; Pond Health</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3811"
-             y="229.43138"
-             x="-316.3364"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="229.43138"
-               x="-316.3364"
-               id="tspan3813"
-               sodipodi:role="line">Retailing Tanks</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3815"
-             y="248.75818"
-             x="-316.2612"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="248.75818"
-               x="-316.2612"
-               id="tspan3817"
-               sodipodi:role="line">Koi</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3819"
-             y="265.3027"
-             x="-316.30222"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="265.3027"
-               x="-316.30222"
-               id="tspan3821"
-               sodipodi:role="line">Nishikigoi Koi</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3823"
-             y="284.62952"
-             x="-316.2612"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="284.62952"
-               x="-316.2612"
-               id="tspan3825"
-               sodipodi:role="line">Koi Food</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3827"
-             y="302.56519"
-             x="-316.27487"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="302.56519"
-               x="-316.27487"
-               id="tspan3829"
-               sodipodi:role="line">Medications</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3831"
-             y="320.55206"
-             x="-315.56393"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="320.55206"
-               x="-315.56393"
-               id="tspan3833"
-               sodipodi:role="line">Test Kits &amp; Pond Vacs</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3835"
-             y="338.51846"
-             x="-316.2612"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="338.51846"
-               x="-316.2612"
-               id="tspan3837"
-               sodipodi:role="line">Koi Care Books</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3839"
-             y="356.37213"
-             x="-315.40671"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="356.37213"
-               x="-315.40671"
-               id="tspan3841"
-               sodipodi:role="line">Water Treatments</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3843"
-             y="374.30783"
-             x="-316.38425"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="374.30783"
-               x="-316.38425"
-               id="tspan3845"
-               sodipodi:role="line">Filtration</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3847"
-             y="390.93439"
-             x="-315.40671"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="390.93439"
-               x="-315.40671"
-               id="tspan3849"
-               sodipodi:role="line">Water Pumps</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3851"
-             y="410.26117"
-             x="-316.3364"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="410.26117"
-               x="-316.3364"
-               id="tspan3853"
-               sodipodi:role="line">UV Sterilizers</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3855"
-             y="426.80573"
-             x="-315.2153"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="426.80573"
-               x="-315.2153"
-               id="tspan3857"
-               sodipodi:role="line">Air Pumps</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3859"
-             y="446.13242"
-             x="-315.86472"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="446.13242"
-               x="-315.86472"
-               id="tspan3861"
-               sodipodi:role="line">Skimmers</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3863"
-             y="462.76242"
-             x="-316.27487"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="462.76242"
-               x="-316.27487"
-               id="tspan3865"
-               sodipodi:role="line">Microsocopes &amp; Meters</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3867"
-             y="482.0072"
-             x="-316.2612"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="482.0072"
-               x="-316.2612"
-               id="tspan3869"
-               sodipodi:role="line">Bio Waterfalls</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3871"
-             y="499.85739"
-             x="-316.2612"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="499.85739"
-               x="-316.2612"
-               id="tspan3873"
-               sodipodi:role="line">Bottom Drains</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3875"
-             y="517.79309"
-             x="-316.2612"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="517.79309"
-               x="-316.2612"
-               id="tspan3877"
-               sodipodi:role="line">Koi Nets</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3879"
-             y="535.81073"
-             x="-315.86472"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="535.81073"
-               x="-315.86472"
-               id="tspan3881"
-               sodipodi:role="line">Show Tanks</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3883"
-             y="552.27325"
-             x="-316.31589"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="552.27325"
-               x="-316.31589"
-               id="tspan3885"
-               sodipodi:role="line">Pond Lighting</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3887"
-             y="570.29437"
-             x="-315.98093"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="570.29437"
-               x="-315.98093"
-               id="tspan3889"
-               sodipodi:role="line">Greeting Cards</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3891"
-             y="588.23004"
-             x="-315.98093"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="588.23004"
-               x="-315.98093"
-               id="tspan3893"
-               sodipodi:role="line">Gongs, Bells &amp; Baths</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3895"
-             y="606.16565"
-             x="-316.2612"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="606.16565"
-               x="-316.2612"
-               id="tspan3897"
-               sodipodi:role="line">Koi Toys Shop</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3899"
-             y="625.40356"
-             x="-315.2153"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="625.40356"
-               x="-315.2153"
-               id="tspan3901"
-               sodipodi:role="line">About Us</tspan></text>
-          <text
-             sodipodi:linespacing="125%"
-             id="text3903"
-             y="643.34265"
-             x="-316.31589"
-             style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-             xml:space="preserve"><tspan
-               y="643.34265"
-               x="-316.31589"
-               id="tspan3905"
-               sodipodi:role="line">Pond Heaters</tspan></text>
-        </g>
+         transform="matrix(1.9694605,0,0,1.6765913,67.325195,-276.38474)"
+         id="g5274">
+        <text
+           xml:space="preserve"
+           style="font-size:110.06835175px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#98afea;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+           x="-89.865677"
+           y="475.19257"
+           id="text5249"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan5251"
+             x="-89.865677"
+             y="475.19257">ʽ</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:110.06835175px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#98afea;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+           x="-75.0924"
+           y="475.19257"
+           id="text5249-8"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan5251-4"
+             x="-75.0924"
+             y="475.19257">ʽ</tspan></text>
       </g>
+      <text
+         sodipodi:linespacing="125%"
+         id="text5280"
+         y="401.70813"
+         x="-88.240715"
+         style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="401.70813"
+           x="-88.240715"
+           id="tspan5282"
+           sodipodi:role="line">We installed a SonicSolutions model SS-500 in our dock area. After just over two weeks the results </tspan><tspan
+           id="tspan5284"
+           y="416.70813"
+           x="-88.240715"
+           sodipodi:role="line">in the immediate area were extraordinary with areas further out taking somewhat longer but achieving </tspan><tspan
+           id="tspan5286"
+           y="431.70813"
+           x="-88.240715"
+           sodipodi:role="line">the same result. The SonicSolution system eliminated the algae while causing no harm to any of the </tspan><tspan
+           id="tspan5288"
+           y="446.70813"
+           x="-88.240715"
+           sodipodi:role="line">fish and other wildlife in the area tested and our club was very pleased with the results.</tspan></text>
     </g>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       x="299.63058"
+       y="463.76752"
+       id="text5418"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan5420"
+         x="299.63058"
+         y="463.76752">Michael Kellstrand</tspan><tspan
+         sodipodi:role="line"
+         x="299.63058"
+         y="476.26752"
+         id="tspan5422">Member, Willow Bank Yacht Club, </tspan><tspan
+         sodipodi:role="line"
+         x="299.63058"
+         y="488.76752"
+         id="tspan5424">Cazenovia, NY</tspan></text>
   </g>
 </svg>
