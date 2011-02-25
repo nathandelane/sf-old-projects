@@ -38,6 +38,9 @@ class PhyleBoxFooterSubNavigation implements IRenderable {
 <div id="footerSubNavigation">
 	<ul>
 		<li>
+			<a href="<?php echo PhyleBox_Config::getPhyleBoxRoot(); ?>/">PhyleBox Home</a>
+		</li>
+		<li>
 			<a href="<?php echo PhyleBox_Config::getPhyleBoxRoot(); ?>/../">Return to PhyerNet</a>
 		</li>
 <?php

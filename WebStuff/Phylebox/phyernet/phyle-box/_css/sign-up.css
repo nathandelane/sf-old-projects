@@ -124,7 +124,7 @@ select
 
 #accountTypeTable
 {
-	width !00%;
+	width: 100%;
 }
 
 td.accountTypeSection

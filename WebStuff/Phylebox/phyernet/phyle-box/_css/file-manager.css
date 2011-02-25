@@ -28,6 +28,18 @@
 	display: block;
 }
 
+.actionIcons
+{
+	background-image: url(../_img/phyleboxicons.png);
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	float: left;
+	display: block;
+	cursor: pointer;
+}
+
 .smallIcons.createNewFile
 {
 	background-position: 0 -80px;	
@@ -61,6 +73,11 @@
 .phyleBoxIcons.delete.active
 {
 	background-position: -7px -155px;
+}
+
+.actionIcons.changeProperties
+{
+	background-position: -7px -86px;
 }
 
 .largeIcons

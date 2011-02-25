@@ -120,6 +120,20 @@ if (Phyer && $Phyer) {
 							$("#deleteFiles").attr("title", "Select Files to be Deleted");
 						}
 					});
+					
+					$(".actionIcons.changeProperties").click(function(e) {
+						$.fancybox(
+							{
+								"width": 400,
+								"height": 600,
+								"autoScale": false,
+								"transitionIn": true,
+								"transitionOut": false,
+								"type": "iframe",
+								"href": "/phyle-box/file-properties.php?fileName=" + $(this).attr("name") + "&driveSelector=" + $("#driveSelector").val() + "&currentDirectory=" + $("#currentDirectory").val() + "&type=" + $(this).attr("fm:type")
+							}
+						);
+					});
 				}
 			);			
 		},
@@ -196,7 +210,7 @@ if (Phyer && $Phyer) {
 				}
 			}
 			
-			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><div class=\"typeDirectory\"></div></td><td class=\"fileOrDirName\"><a href=\"" + $Phyer.PHYER_ROOT + "phyle-box/file-manager.php?currentDirectory=" + directory + name + "/\">" + newName + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"></td>";
+			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><div class=\"typeDirectory\"></div></td><td class=\"fileOrDirName\"><a href=\"" + $Phyer.PHYER_ROOT + "phyle-box/file-manager.php?currentDirectory=" + directory + name + "/\">" + newName + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"><div class=\"actionIcons changeProperties\" name=\"" + name + "\" title=\"Edit properties for " + name + "\" fm:type=\"directory\"></div></td>";
 			
 			if (($Phyer.FileManager.__rowCounter % 2) == 0) {
 				$("<tr>" + row + "</tr>").appendTo(fileListTable);
@@ -227,7 +241,7 @@ if (Phyer && $Phyer) {
 				}
 			}
 			
-			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><div class=\"type" + type + "\"></div></td><td class=\"fileOrDirName\"><a href=\"javascript: void(0);\" onclick=\"javascript: $Phyer.FileManager." + openFunction + "('" + name + "');\">" + name + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"></td>";
+			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><div class=\"type" + type + "\"></div></td><td class=\"fileOrDirName\"><a href=\"javascript: void(0);\" onclick=\"javascript: $Phyer.FileManager." + openFunction + "('" + name + "');\">" + name + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"><div class=\"actionIcons changeProperties\" name=\"" + name + "\" title=\"Edit properties for " + name + "\" fm:type=\"" + type + "\"></div></td>";
 			
 			if (($Phyer.FileManager.__rowCounter % 2) == 0) {
 				$("<tr>" + row + "</tr>").appendTo(fileListTable);

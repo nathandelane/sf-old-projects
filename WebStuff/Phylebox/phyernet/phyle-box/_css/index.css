@@ -3,3 +3,35 @@
 	position: absolute;
 	bottom: 0;
 }
+
+#appContainer
+{
+	width: 704px;
+	margin: 30px auto;
+	overflow: hidden;
+}
+
+.applicationIcons
+{
+	background-image: url(../_img/Phyerbigicons.png);
+	background-repeat: no-repeat;
+	width: 128px;
+	height: 128px;
+	overflow: hidden;
+	float: left;
+}
+
+.applicationIcons.fileManager
+{
+	background-position: -41px -19px;
+}
+
+.applicationIcons.profileManager
+{
+	background-position: -41px -521px;
+}
+
+.left
+{
+	margin-right: 64px;
+}

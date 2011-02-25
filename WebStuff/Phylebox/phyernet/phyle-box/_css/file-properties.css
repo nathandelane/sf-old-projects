@@ -1,0 +1,63 @@
+h2
+{
+	display: black;
+	margin: 0 0 10px 0;
+	padding: 0;
+	color: #efefef;
+	text-align: left;
+}
+
+#filePropertiesFormTable
+{
+	width: 354px;
+}
+
+#submitButton
+{
+	margin-top: 20px;
+	width: auto;
+	float: right;
+}
+
+.content
+{
+	width: 100%;
+	overflow: hidden;
+	margin-bottom: 30px;
+}
+
+.contentInner
+{
+	margin: 10px;
+	overflow: hidden;
+	position: relative;
+}
+
+h1
+{
+	border-bottom: 3px solid #50779D;
+	float: left;
+}
+
+input
+{
+	width: 250px;
+}
+
+.panel
+{
+	text-align: left;
+	width: 374px;
+	border: 3px solid #50779D;
+	background-color: transparent;
+	color: #2a557c;
+	float: left;
+	overflow: hidden;
+}
+
+.panelInner
+{
+	margin: 10px;
+	overflow: hidden;
+}
+
