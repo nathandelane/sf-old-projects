@@ -16,7 +16,7 @@ $page->openDocument();
 				<table id="filePropertiesFormTable">
 					<tr>
 						<td>
-							<div class="type<?php echo Strings::toUpper(Strings::substring($page->getFieldValue("type"), 0, 1)) . Strings::substring($page->getFieldValue("type"), 1); ?>"></div>
+							<div class="type<?php echo $page->getFieldValue("type"); ?>"></div>
 						</td>
 						<td>
 							<input type="text" name="fileName" id="fileName" value="<?php echo $page->getFieldValue("fileName"); ?>" />
