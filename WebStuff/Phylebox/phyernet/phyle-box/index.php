@@ -8,7 +8,7 @@ $page->openDocument();
 ?>
 <div id="appContainer">
 	<a class="applicationIcons fileManager left" href="<?php echo PhyleBox_Config::getPhyleBoxRoot() . "/file-manager.php"  ?>" title="Use File Manager"></a>
-	<a class="applicationIcons profileManager" href="<?php echo PhyleBox_Config::getPhyleBoxRoot() . "/profile.php"  ?>" title="Use File Manager"></a>
+	<a class="applicationIcons profileManager" href="<?php echo PhyleBox_Config::getPhyleBoxRoot() . "/profile.php"  ?>" title="Profile Manager"></a>
 </div>
 <?php
 

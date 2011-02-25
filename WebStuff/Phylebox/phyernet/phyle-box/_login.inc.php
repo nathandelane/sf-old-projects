@@ -20,7 +20,7 @@ class _Login_Page extends PhyleBoxAuthenticationPage {
 	 * @return _Login_Page
 	 */
 	public function _Login_Page() {
-		parent::__construct("Login | PhyleBox", PhyleBox_Config::getPhyleBoxRoot() . "/file-manager.php", "34b14c5e-448e-4992-98a8-5274bb49d125");
+		parent::__construct("Login | PhyleBox", PhyleBox_Config::getPhyleBoxRoot() . "/index.php", "34b14c5e-448e-4992-98a8-5274bb49d125");
 		
 		$this->phyleBoxLoginForm = new PhyleBoxLoginForm($this, PhyleBox_Config::getPhyleBoxRoot() . "/login.php", false);
 	}
