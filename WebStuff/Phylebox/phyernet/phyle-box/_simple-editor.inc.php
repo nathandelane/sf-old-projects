@@ -41,6 +41,20 @@ class _Simple_Editor_Page extends PhyleBoxBasicPage {
 		
 ?>
 <script type="text/javascript">
+	function saveFile() {
+		var location = $("#driveSelector").val();
+		var directory = $("#currentDirectory").val();
+		var fileName = $("#fileName").val();
+		var contents = $("#textFileContents").val();
+
+		contents = contents.replace(new RegExp( "\\r", "g" ), "\\r");
+		contents = contents.replace(new RegExp( "\\n", "g" ), "\\n");
+		contents = contents.replace(new RegExp( "\\t", "g" ), "\\t");
+		contents = contents.replace(new RegExp( "\\\"", "g" ), "\\\"");
+		
+		$Phyer.FileManager.editFile(location, directory, fileName, contents);		
+	}
+	
 	$(document).ready(function() {
 		$("#textFileContents").focus();
 		$("#textFileContents").keydown(function(e) {
@@ -64,17 +78,12 @@ class _Simple_Editor_Page extends PhyleBoxBasicPage {
 			$("#textFileContents").focus();
 		});
 		$("#saveButton").click(function(e) {
-			var location = $("#driveSelector").val();
-			var directory = $("#currentDirectory").val();
-			var fileName = $("#fileName").val();
-			var contents = $("#textFileContents").val();
+			saveFile();
+		});
+		$("#saveCloseButton").click(function(e) {
+			saveFile();
 
-			contents = contents.replace(new RegExp( "\\r", "g" ), "\\r");
-			contents = contents.replace(new RegExp( "\\n", "g" ), "\\n");
-			contents = contents.replace(new RegExp( "\\t", "g" ), "\\t");
-			contents = contents.replace(new RegExp( "\\\"", "g" ), "\\\"");
-			
-			$Phyer.FileManager.editFile(location, directory, fileName, contents);
+			parent.$.fancybox.close();
 		});
 	});
 </script>

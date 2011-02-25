@@ -13,6 +13,7 @@ $page->openDocument();
 	<input type="text" id="fileName" name="fileName" value="<?php echo $page->getFieldValue("fileName"); ?>" />
 	<textarea id="textFileContents" name="textFileContents"><?php echo $page->getFileContents($page->getFieldValue("driveSelector"), $page->getFieldValue("currentDirectory"), $page->getFieldValue("fileName")); ?></textarea>
 	<input type="button" value="Save File" id="saveButton" />
+	<input type="button" value="Save and Close" id="saveCloseButton" />
 </div>
 <?php
 

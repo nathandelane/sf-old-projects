@@ -45,7 +45,10 @@ class FileManagerCommands implements IRenderable {
 					"width": 350,
 					"height": "auto",
 					"transitionIn": "none",
-					"transitionOut": "none"
+					"transitionOut": "none",
+					"onClosed": function() {
+						$Phyer.FileManager.populateFileList($("#driveSelector").val(), $("#currentDirectory").val());
+					}
 				}
 			);
 		});
@@ -57,7 +60,10 @@ class FileManagerCommands implements IRenderable {
 					"width": 380,
 					"height": "auto",
 					"transitionIn": "none",
-					"transitionOut": "none"
+					"transitionOut": "none",
+					"onClosed": function() {
+						$Phyer.FileManager.populateFileList($("#driveSelector").val(), $("#currentDirectory").val());
+					}
 				}
 			);
 		});
@@ -72,7 +78,7 @@ class FileManagerCommands implements IRenderable {
 					"width": 350,
 					"height": "auto",
 					"transitionIn": "none",
-					"transitionOut": "none",
+					"transitionOut": "none"
 				}
 			);
 		});

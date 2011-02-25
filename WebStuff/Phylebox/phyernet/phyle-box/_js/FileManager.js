@@ -268,6 +268,15 @@ if (Phyer && $Phyer) {
 		},
 		
 		/**
+		 * refreshFileList
+		 * Refreshes the file list.
+		 * @return void.
+		 */
+		refreshFileList: function() {
+			$Phyer.FileManager.populateFileList($("#driveSelector").val(), $("#currentDirectory").val());
+		},
+		
+		/**
 		 * openFileEditor
 		 * Opens a file editor with the optional file name argument.
 		 * @param string fileName
@@ -282,7 +291,10 @@ if (Phyer && $Phyer) {
 					"transitionIn": true,
 					"transitionOut": false,
 					"type": "iframe",
-					"href": "/phyle-box/simple-editor.php?fileName=" + fileName + "&driveSelector=" + $("#driveSelector").val() + "&currentDirectory=" + $("#currentDirectory").val()
+					"href": "/phyle-box/simple-editor.php?fileName=" + fileName + "&driveSelector=" + $("#driveSelector").val() + "&currentDirectory=" + $("#currentDirectory").val(),
+					"onClosed": function() {
+						$Phyer.FileManager.populateFileList($("#driveSelector").val(), $("#currentDirectory").val());
+					}
 				}
 			);
 		},
@@ -343,7 +355,10 @@ if (Phyer && $Phyer) {
 					"transitionIn": true,
 					"transitionOut": false,
 					"type": "iframe",
-					"href": "/phyle-box/upload-files.php?driveSelector=" + $("#driveSelector").val() + "&currentDirectory=" + $("#currentDirectory").val()
+					"href": "/phyle-box/upload-files.php?driveSelector=" + $("#driveSelector").val() + "&currentDirectory=" + $("#currentDirectory").val(),
+					"onClosed": function() {
+						$Phyer.FileManager.populateFileList($("#driveSelector").val(), $("#currentDirectory").val());
+					}
 				}
 			);
 		},
