@@ -48,6 +48,30 @@ fieldset
 	padding: 4px 9px 7px 9px;
 }
 
+table
+{
+	border-collapse: collapse;
+}
+
+td,
+th
+{
+	vertical-align: top;
+}
+
+th
+{
+	font-weight: bold;
+	font-size: 14px;
+}
+
+#usersEnrolled td,
+#usersEnrolled th
+{
+	border: 1px solid #ffffff;
+	padding: 0 10px;
+}
+
 .root
 {
 	width: 100%;
@@ -77,4 +101,10 @@ fieldset
 #navigationCell
 {
 	width: 180px;
+}
+
+ul#navigation
+{
+	margin: 0;
+	padding: 0;
 }

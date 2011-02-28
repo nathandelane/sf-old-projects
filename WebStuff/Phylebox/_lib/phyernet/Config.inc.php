@@ -34,6 +34,24 @@ final class PhyerNet_Config {
 		
 		return self::$__frameworkRoot;
 	}
+		
+	/**
+	 * getFrameworkFoundation
+	 * Gets the framework foundation folder.
+	 * @return string
+	 */
+	public static function getFrameworkFoundation() {
+		return self::getFrameworkRoot() . "foundation/";
+	}
+	
+	/**
+	 * getFrameworkPresentation
+	 * Gets the framework presentation folder.
+	 * @return string
+	 */
+	public static function getFrameworkPresentation() {
+		return self::getFrameworkRoot() . "presentation/";
+	}
 	
 	/**
 	 * getWebPropertyIdForSite

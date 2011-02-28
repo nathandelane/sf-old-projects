@@ -33,6 +33,24 @@ final class Admin_Config {
 	}
 	
 	/**
+	 * getFrameworkFoundation
+	 * Gets the framework foundation folder.
+	 * @return string
+	 */
+	public static function getFrameworkFoundation() {
+		return self::getFrameworkRoot() . "foundation/";
+	}
+	
+	/**
+	 * getFrameworkPresentation
+	 * Gets the framework presentation folder.
+	 * @return string
+	 */
+	public static function getFrameworkPresentation() {
+		return self::getFrameworkRoot() . "presentation/";
+	}
+	
+	/**
 	 * getWebPropertyIdForSite
 	 * Gets the Google Analytics web property ID for a particular site
 	 * @param string $webSite

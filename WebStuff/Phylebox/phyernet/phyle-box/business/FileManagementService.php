@@ -244,7 +244,7 @@ class FileManagementService extends JsonWebServiceBase {
 							while ($nextFile = readdir($directoryHandle)) {
 								$nextAbsolutePath = $absoluteDirectoryLocation . $nextFile;
 								
-								if (!Strings::equals($nextFile, ".") && !Strings::equals($nextFile, "..")) {
+								if (!Strings::equals($nextFile, ".") && !Strings::equals($nextFile, "..") && !Strings::equals($nextFile, ".htpasswd") && !Strings::equals($nextFile, ".trash")) {
 									if (is_dir($nextAbsolutePath)) {
 										$directoryModel = new DirectoryModel($nextAbsolutePath);
 										$modifiedTime = date("r", $directoryModel->modifiedTime);

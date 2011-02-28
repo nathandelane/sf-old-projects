@@ -37,7 +37,7 @@ $page->openDocument();
 								<span class="requiredColor">*</span>
 							</td>
 							<td>
-								<input type="text" name="username" id="username" value="<?php echo $page->getFieldValue(_Sign_Up_Information_Page::USERNAME); ?>" <?php if (in_array(_Sign_Up_Information_Page::USERNAME, $page->InvalidFields)) { echo "class=\"error\""; } ?> />
+								<input type="text" name="username" id="username" value="<?php echo $page->getFieldValue(_Sign_Up_Information_Page::USERNAME); ?>" <?php if (in_array(_Sign_Up_Information_Page::USERNAME, $page->InvalidFields)) { echo "class=\"error\""; } ?> maxlength="45" />
 								<a href="javascript: void(0);" id="checkUserNameLink">Check availability</a>
 								<span id="userNameIsAvailableMessage"></span>
 							</td>

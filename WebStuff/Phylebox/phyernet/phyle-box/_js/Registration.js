@@ -13,6 +13,8 @@ if (Phyer && $Phyer) {
 		EMAIL_ADDRESS: "emailAddress",
 		USER_NAME_IN_USE: "userNameIsInUse",
 		EMAIL_ADDRESS_IN_USE: "emailAddressIsInUse",
+		USER_NAME_REGEX: /[A-Za-z\d_-\.]{4}[A-Za-z\d_-\.]*/,
+		EMAIL_ADDRESS_REGEX: /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/,
 		
 		/**
 		 *  checkUserNameAvailability
@@ -75,7 +77,7 @@ if (Phyer && $Phyer) {
 			
 			$Phyer.Registration.checkUserNameAvailability();
 			
-			if ($("#username").val() === "" || !$Phyer_json.userNameIsInUse) {
+			if ($("#username").val() === "" || !$Phyer_json.userNameIsInUse || !$Phyer.Registration.USER_NAME_REGEX.test($("#username").val())) {
 				$("#username").attr("class", "error");
 				
 				isValid = false;
@@ -111,7 +113,7 @@ if (Phyer && $Phyer) {
 			
 			$Phyer.Registration.checkEmailAddressAvailability();
 			
-			if ($("#emailAddress").val() === "" || $("#repeatEmailAddress").val() === "" || ($("#emailAddress").val() != $("#repeatEmailAddress").val()) || !$Phyer_json.emailAddressIsInUse) {
+			if ($("#emailAddress").val() === "" || $("#repeatEmailAddress").val() === "" || ($("#emailAddress").val() != $("#repeatEmailAddress").val()) || !$Phyer_json.emailAddressIsInUse || !$Phyer.Registration.EMAIL_ADDRESS_REGEX.test($("#emailAddress"))) {
 				$("#emailAddress").attr("class", "error");
 				$("#repeatEmailAddress").attr("class", "error");
 				

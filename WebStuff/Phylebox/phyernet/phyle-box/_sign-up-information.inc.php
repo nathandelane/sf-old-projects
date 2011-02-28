@@ -366,7 +366,19 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 						$query = "insert into `pbox`.`personal_storage` (person_id, storage_location) values ({$personId}, '{$newDirectory}')";
 					}
 					
-					if (mkdir($newDirectory)) {					
+					if (mkdir($newDirectory)) {
+						// Create Trash directory.						
+						$trashDirectory = "{$newDirectory}/.trash";
+						
+						mkdir($trashDirectory);
+						
+						// Create HTPasswd file.
+						$htPasswdFile = "{$newDirectory}/.htpasswd";
+						$htPasswdHandle = fopen($htPasswdFile, "w");
+
+						fclose($htPasswdHandle);
+						
+						// Authenticate the user.
 						self::$__queryHandler->executeQuery($query);
 						
 						if (self::$__queryHandler->getAffectedRows() > 0) {

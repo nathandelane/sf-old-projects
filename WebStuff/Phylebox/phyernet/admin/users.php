@@ -10,9 +10,22 @@ $page->openDocument();
 	<thead>
 		<tr>
 			<th>Username</th>
-			<th></th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Disabled</th>
+			<th>Reason</th>
+			<th>Locked</th>
+			<th>Content Type</th>
+			<th>Signature</th>
+			<th>Account Type</th>
+			<th>Date of Birth</th>
+			<th>Merits</th>
+			<th>Date Created</th>
 		</tr>
 	</thead>
+	<tbody>
+		<?php $page->renderUsers(); ?>
+	</tbody>
 </table>
 <?php
 

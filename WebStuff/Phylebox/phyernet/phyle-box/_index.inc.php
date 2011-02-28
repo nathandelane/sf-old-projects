@@ -9,6 +9,10 @@ class _Index_Page extends PhyleBoxPage {
 		parent::__construct("Welcome to PhyleBox, a Service of PhyerNet");
 		
 		$this->registerStylesheet("_css/index.css");
+		$this->registerStylesheet("/_css/jquery.bt.css");
+		$this->registerScript("/_js/excanvas.js");
+		$this->registerScript("/_js/jquery.bgiframe.js");
+		$this->registerScript("/_js/jquery.bt.js");
 	}
 	
 	/**
@@ -24,6 +28,36 @@ class _Index_Page extends PhyleBoxPage {
 	 * @see phyle-box/presentation/PhyleBoxPage::closeDocument()
 	 */
 	public function closeDocument() {
+		
+?>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#fileManager").bt({
+			contentSelector: "$('#fileManagerContent')",
+			fill: "rgba(80, 119, 157, 0.8)",
+			cssStyles: { color: "#ffffff", fontWeight: "bold" },
+			shrinkToFit: true,
+			cornerRadius: 5,
+			spikeLength: 20,
+			spikeGirth: 10,
+			strokeWidth: 2,
+			strokeStyle: "#2A557C"
+		});
+		$("#profileManager").bt({
+			contentSelector: "$('#profileManagerContent')",
+			fill: "rgba(80, 119, 157, 0.8)",
+			cssStyles: { color: "#ffffff", fontWeight: "bold" },
+			shrinkToFit: true,
+			cornerRadius: 5,
+			spikeLength: 20,
+			spikeGirth: 10,
+			strokeWidth: 2,
+			strokeStyle: "#2A557C"
+		});
+	});
+</script>
+<?php
+		
 		parent::closeDocument();
 	}
 	
