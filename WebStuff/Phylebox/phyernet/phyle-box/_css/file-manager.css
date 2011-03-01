@@ -303,3 +303,14 @@
 	margin-top: 10px;
 	padding: 10px;
 }
+
+#imageViewerContainer
+{
+	text-align: center;
+}
+
+#imageViewerContainer img
+{
+	background-color: #ffffff;
+	margin: 10px auto;
+}

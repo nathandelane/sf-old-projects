@@ -1,107 +1,74 @@
 <?php
 
-if (!session_id()) {
-	session_start();
-}
-
-require_once(dirname(__FILE__) . "/../../_lib/phyle-box/Config.inc.php");
-require_once(PhyleBox_Config::getLocalPresentationLocation() . "PhyleBoxBasicPage.inc.php");
+require_once(dirname(__FILE__) . "/../../Config.inc.php");
+require_once(PhyleBox_Config::getFrameworkRoot() . "presentation/IRenderable.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/Strings.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/data/QueryHandler.inc.php");
 require_once(PhyleBox_Config::getFrameworkRoot() . "foundation/data/QueryHandlerType.inc.php");
+require_once(PhyleBox_Config::getFrameworkFoundation() . "Logger.inc.php");
 require_once(PhyleBox_Config::getLocalFoundationLocation() . "types/DriveType.inc.php");
 
-class _Simple_Editor_Page extends PhyleBoxBasicPage {
+/**
+ * ImageLoaderControl
+ * Represents image data from an image.
+ * @author nalane
+ *
+ */
+class ImageLoaderControl implements IRenderable {
 	
 	private static $__queryHandler;
 	
-	public function _Simple_Editor_Page() {
-		parent::__construct("File Manager | Simple Editor");
-		
+	private $_logger;	
+	private $_internalImage;
+	private $_type;
+	
+	/**
+	 * Constructor
+	 * Creates an instance of ImageLoaderControl
+	 * @param string $driveSelector
+	 * @param string $currentDirectory
+	 * @param string $fileName
+	 * @param string $type
+	 * @return ImageLoaderControl
+	 */
+	public function ImageLoaderControl(/*string*/ $driveSelector, /*string*/ $currentDirectory, /*string*/ $fileName, /*string*/ $type) {
 		if (!isset(self::$__queryHandler)) {
 			self::$__queryHandler = QueryHandler::getInstance(QueryHandlerType::MYSQL);
 		}
 		
-		$this->registerStylesheet("_css/file-manager.css");
+		$this->_logger = Logger::getInstance();
+		$this->_type = $type;
+		
+		$this->_loadImage($driveSelector, $currentDirectory, $fileName, $type);
 	}
 	
 	/**
 	 * (non-PHPdoc)
-	 * @see phyle-box/presentation/PhyleBoxPage::openDocument()
+	 * @see _lib/presentation/IRenderable::render()
 	 */
-	public function openDocument() {
-		parent::openDocument();
+	public function render() {
+		if (Strings::equals($this->_type, "png", true)) {
+			echo "data:image/png;base64,{$this->_internalImage}";
+		} else if (Strings::equals($this->_type, "jpg", true) || Strings::equals($type, "jpeg", true)) {
+			echo "data:image/jpg;base64,{$this->_internalImage}";
+		} else if (Strings::equals($this->_type, "gif", true)) {
+			echo "data:image/gif;base64,{$this->_internalImage}";
+		} else if (Strings::equals($this->_type, "bmp", true)) {
+			echo "data:image/bmp;base64,{$this->_internalImage}";
+		}
 	}
+
 	
 	/**
-	 * (non-PHPdoc)
-	 * @see phyle-box/presentation/PhyleBoxPage::closeDocument()
-	 */
-	public function closeDocument() {
-		
-?>
-<script type="text/javascript">
-	function saveFile() {
-		var location = $("#driveSelector").val();
-		var directory = $("#currentDirectory").val();
-		var fileName = $("#fileName").val();
-		var contents = $("#textFileContents").val();
-
-		contents = contents.replace(new RegExp( "\\r", "g" ), "\\r");
-		contents = contents.replace(new RegExp( "\\n", "g" ), "\\n");
-		contents = contents.replace(new RegExp( "\\t", "g" ), "\\t");
-		contents = contents.replace(new RegExp( "\\\"", "g" ), "\\\"");
-		
-		$Phyer.FileManager.editFile(location, directory, fileName, contents);		
-	}
-	
-	$(document).ready(function() {
-		$("#textFileContents").focus();
-		$("#textFileContents").keydown(function(e) {
-			e.stopPropagation();
-
-			var TAB_KEY = 9;
-
-			if (e.keyCode == TAB_KEY) {
-				e.preventDefault();
-
-				var caretSelection = $("#textFileContents").getSelection();
-				var textAreaText = $("#textFileContents").val();
-				
-				var first = textAreaText.substring(0, caretSelection.start);
-				var lastLength = (textAreaText.length - caretSelection.end)
-				var last = textAreaText.substring(caretSelection.end);
-
-				$("#textFileContents").val(first + "\t" + last);
-			}
-
-			$("#textFileContents").focus();
-		});
-		$("#saveButton").click(function(e) {
-			saveFile();
-		});
-		$("#saveCloseButton").click(function(e) {
-			saveFile();
-
-			parent.$.fancybox.close();
-		});
-	});
-</script>
-<?php
-		
-		parent::closeDocument();
-	}
-	
-	/**
-	 * getFileContents
-	 * Gets the contents of a file if it exists.
-	 * @param string driveSelector
-	 * @param string currentDiirectory
-	 * @param string fileName
+	 * _loadImage
+	 * Loads an image.
+	 * @param string $driveSelector
+	 * @param string $currentDiirectory
+	 * @param string $fileName
+	 * @param string $type
 	 * @return string
 	 */
-	public function getFileContents(/*string*/ $driveSelector, /*string*/ $currentDirectory, /*string*/ $fileName) {
-		$contents = "";		
+	private function _loadImage(/*string*/ $driveSelector, /*string*/ $currentDirectory, /*string*/ $fileName, /*string*/ $type) {
 		$userName = $_SESSION["userName"];
 		$relativePath = $currentDirectory;
 		list($driveType, $driveId, $shortcutId) = Strings::split($driveSelector, "-");
@@ -139,15 +106,15 @@ class _Simple_Editor_Page extends PhyleBoxBasicPage {
 					$this->_logger->sendMessage(LOG_DEBUG, "Absolute file location: {$absoluteFilePath}.");
 					
 					if (file_exists($absoluteFilePath)) {
-						$contents = file_get_contents($absoluteFilePath);
+						$binaryImageData = fread(fopen($absoluteFilePath, "r"), filesize($absoluteFilePath));
+						
+						$this->_internalImage = base64_encode($binaryImageData);
 					}
 				}
 			}
 		} else {
 			$this->_logger->sendMessage(LOG_DEBUG, "Could not access file. No authentication found.");
-		}		
-		
-		return $contents;
+		}
 	}
 	
 }

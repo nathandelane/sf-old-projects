@@ -247,7 +247,7 @@ if (Phyer && $Phyer) {
 				}
 			}
 			
-			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><a href=\"javascript: void(0);\" onclick=\"javascript: $Phyer.FileManager." + openFunction + "('" + name + "');\"><div class=\"type" + type + "\"></div></a></td><td class=\"fileOrDirName\"><a href=\"javascript: void(0);\" onclick=\"javascript: $Phyer.FileManager." + openFunction + "('" + name + "');\">" + name + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"><div class=\"actionIcons changeProperties\" name=\"" + name + "\" title=\"Edit properties for " + name + "\" fm:type=\"" + type + "\"></div></td>";
+			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><a href=\"javascript: void(0);\" onclick=\"javascript: $Phyer.FileManager." + openFunction + "('" + name + "', '" + type + "');\"><div class=\"type" + type + "\"></div></a></td><td class=\"fileOrDirName\"><a href=\"javascript: void(0);\" onclick=\"javascript: $Phyer.FileManager." + openFunction + "('" + name + "', '" + type + "');\">" + name + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"><div class=\"actionIcons changeProperties\" name=\"" + name + "\" title=\"Edit properties for " + name + "\" fm:type=\"" + type + "\"></div></td>";
 			
 			if (($Phyer.FileManager.__rowCounter % 2) == 0) {
 				$("<tr>" + row + "</tr>").appendTo(fileListTable);
@@ -286,9 +286,10 @@ if (Phyer && $Phyer) {
 		 * openFileEditor
 		 * Opens a file editor with the optional file name argument.
 		 * @param string fileName
+		 * @param string type
 		 * @return void
 		 */
-		openFileEditor: function(fileName) {
+		openFileEditor: function(fileName, type) {
 			$.fancybox(
 				{
 					"width": 620,
@@ -308,20 +309,20 @@ if (Phyer && $Phyer) {
 		/**
 		 * openImageViewer
 		 * Opens an image viewer to view the selected image.
-		 * @param string location
-		 * @param string directory
 		 * @param string fileName
+		 * @param string type
 		 * @return void
 		 */
-		openImageViewer: function(fileName) {
+		openImageViewer: function(fileName, type) {
 			$.fancybox(
-				"<h1>We are sorry. This function is currently not available</h1><span>Please check back in about 24 hours.</span>",
 				{
-					"autoDimensions": false,
-					"width": 350,
-					"height": "auto",
+					"autoDimensions": true,
+					"autoScale": true,
 					"transitionIn": "none",
 					"transitionOut": "none",
+					"type": "iframe",
+					"scrolling": "auto",
+					"href": "/phyle-box/image-viewer.php?driveSelector=" + $("#driveSelector").val() + "&currentDirectory=" + $("#currentDirectory").val() + "&fileName=" + fileName + "&type=" + type
 				}
 			);
 		},

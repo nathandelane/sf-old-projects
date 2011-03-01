@@ -42,8 +42,17 @@
 
 .typexml,
 .typehtml,
+.typehtm
+{
+	background-position: -80px -16px;
+}
+
+.typetxt
+{
+	background-position: -16px -112px;
+}
+
 .typephp,
-.typetxt,
 .typepm
 {
 	background-position: -48px -16px;
