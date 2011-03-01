@@ -37,9 +37,27 @@ class PhyleBoxFooterSubNavigation implements IRenderable {
 ?>
 <div id="footerSubNavigation">
 	<ul>
+<?php
+
+		if (isset($_SESSION[$this->_page->getAuthenticationKey()]) && Strings::equals($_SESSION[$this->_page->getAuthenticationKey()], session_id())) {
+
+?>
 		<li>
 			<a href="<?php echo PhyleBox_Config::getPhyleBoxRoot(); ?>/">PhyleBox Home</a>
 		</li>
+<?php
+
+		} else {
+
+?>
+		<li>
+			<a href="<?php echo PhyleBox_Config::getPhyleBoxRoot(); ?>/sign-up-account-type.php">No Account? Sign Up Here!</a>
+		</li>
+<?php
+
+		}
+
+?>
 		<li>
 			<a href="<?php echo PhyleBox_Config::getPhyleBoxRoot(); ?>/../">Return to PhyerNet</a>
 		</li>

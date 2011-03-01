@@ -13,7 +13,7 @@ if (Phyer && $Phyer) {
 		EMAIL_ADDRESS: "emailAddress",
 		USER_NAME_IN_USE: "userNameIsInUse",
 		EMAIL_ADDRESS_IN_USE: "emailAddressIsInUse",
-		USER_NAME_REGEX: /[A-Za-z\d_-\.]{4}[A-Za-z\d_-\.]*/,
+		USER_NAME_REGEX: /[A-Za-z\d-_\.]{4}[A-Za-z\d-_\.]*/,
 		EMAIL_ADDRESS_REGEX: /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/,
 		
 		/**
@@ -49,7 +49,7 @@ if (Phyer && $Phyer) {
 			var emailAddress = $("#emailAddress").val();
 			
 			if (emailAddress != "") {
-				var data = ""{ \"" + $Phyer.Registration.USER_NAME_IN_USE + "\": \"" + emailAddress + "\" }";
+				var data = "{ \"" + $Phyer.Registration.USER_NAME_IN_USE + "\": \"" + emailAddress + "\" }";
 				
 				
 				$Phyer.postJson($Phyer.PHYER_ROOT + "phyle-box/business/RegistrationService.php?checkEmailAddressUsage", data, 

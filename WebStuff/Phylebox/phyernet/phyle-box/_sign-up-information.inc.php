@@ -305,7 +305,7 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 			$isValid = false;
 		}
 		
-		$this->_logger->sendMessage(LOG_DEBUG, "Invalid Fields: " . var_export($this->InvalidFields, true));
+		$this->_logger->sendMessage(LOG_DEBUG, "Invalid Fields: " . var_export($this->InvalidFields, true) . ", Is Valid: {$isValid}");
 		
 		return $isValid;
 	}
@@ -346,7 +346,7 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		$accountTypeId = intval($this->getFieldValue(self::ACCOUNT_TYPE));
 		$personId = 0;
 		
-		$personId = $this->_createPersonRecord($username, $encryptedPassword, $accountType);
+		$personId = $this->_createPersonRecord($username, $encryptedPassword, $accountTypeId);
 		
 		if ($personId > 0) {
 			$query = "insert into `pbox`.`people_roles` (person_id, role_id) values ({$personId}, 8)";
@@ -356,39 +356,47 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 			if (self::$__queryHandler->getAffectedRows() > 0) {
 				$userDirectoryRoots = $this->_getDrivesForAccountType($accountTypeId);
 				
+				$this->_logger->sendMessage(LOG_DEBUG, "Number of dirs to create: " . count($userDirectoryRoots) . " for account type {$accountTypeId}");
+				
 				foreach ($userDirectoryRoots as $nextDirectoryRoot) {
+					$this->_logger->sendMessage(LOG_DEBUG, "Next directory: {$nextDirectoryRoot['folders_root_location']}");
+					
 					$newDirectory = $nextDirectoryRoot["folders_root_location"] . "/{$username}";
 					$query = "";
 					
-					if (intval($nextDirectoryRoot["storage_type_id"]) == 1) {					
+					if (Strings::equals($nextDirectoryRoot["storage_type_id"], "2")) {					
 						$query = "insert into `pbox`.`personal_drives` (person_id, drive_location) values ({$personId}, '{$newDirectory}')";
-					} else if (intval($nextDirectoryRoot["storage_type_id"]) == 1) {
+					} else if (Strings::equals($nextDirectoryRoot["storage_type_id"], "1")) {
 						$query = "insert into `pbox`.`personal_storage` (person_id, storage_location) values ({$personId}, '{$newDirectory}')";
 					}
 					
-					if (mkdir($newDirectory)) {
-						// Create Trash directory.						
-						$trashDirectory = "{$newDirectory}/.trash";
-						
-						mkdir($trashDirectory);
-						
-						// Create HTPasswd file.
-						$htPasswdFile = "{$newDirectory}/.htpasswd";
-						$htPasswdHandle = fopen($htPasswdFile, "w");
-
-						fclose($htPasswdHandle);
-						
-						// Authenticate the user.
-						self::$__queryHandler->executeQuery($query);
-						
-						if (self::$__queryHandler->getAffectedRows() > 0) {
-							$this->setSessionFieldValue($this->getAuthenticationKey(), session_id());
-							$this->setSessionFieldValue(AuthenticationPage::USERNAME_KEY, $this->getFieldValue(self::USERNAME));
+					if (!Strings::isNullOrEmpty($query)) {
+						if (mkdir($newDirectory)) {
+							// Create Trash directory.						
+							$trashDirectory = "{$newDirectory}/.trash";
 							
-							$result = true;
+							mkdir($trashDirectory);
+							
+							// Create HTPasswd file.
+							$htPasswdFile = "{$newDirectory}/.htpasswd";
+							$htPasswdHandle = fopen($htPasswdFile, "w");
+	
+							fclose($htPasswdHandle);
+							
+							// Authenticate the user.
+							self::$__queryHandler->executeQuery($query);
+							
+							if (self::$__queryHandler->getAffectedRows() > 0) {
+								$this->setSessionFieldValue($this->getAuthenticationKey(), session_id());
+								$this->setSessionFieldValue(AuthenticationPage::USERNAME_KEY, $this->getFieldValue(self::USERNAME));
+								
+								$result = true;
+							}
+						} else {
+							$this->_logger->sendMessage(LOG_DEBUG, "Could not create directory {$newDirectory}.");
 						}
 					} else {
-						$this->_logger->sendMessage(LOG_DEBUG, "Could not create directory {$newDirectory}.");
+						$this->_logger->sendMessage(LOG_ERROR, "Could not create query due to unrecognized storage type id: {$nextDirectoryRoot['storage_type_id']}");
 					}
 				}
 			}
@@ -401,17 +409,22 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 	 * _getDrivesForAccountType
 	 * Gets all of the drives associated with the given account type.
 	 * @param int $accountTypeId
+	 * @return array
 	 */
 	private function _getDrivesForAccountType(/*int*/ $accountTypeId) {
 		$drives = array();
 		
-		if (isset($accountType)) {
+		if (isset($accountTypeId)) {
 			$query = "select atf.storage_type_id, atf.folders_root_location from `pbox`.`account_types` aty inner join `pbox`.`account_type_folders` atf on atf.account_type_id = aty.account_type_id where aty.account_type_id = {$accountTypeId} and aty.is_public = 'True'";
 			$rows = self::$__queryHandler->executeQuery($query);
 			
 			if (count($rows) > 0) {
 				foreach ($rows as $nextRow) {
-					$drives[] = array("storage_type_id" => $nextRow["storage_Type_id"], "folders_root_location" => "folders_root_location");
+					$nextDrive = array("storage_type_id" => $nextRow["storage_type_id"], "folders_root_location" => $nextRow["folders_root_location"]);
+					
+					$this->_logger->sendMessage(LOG_DEBUG, "Next drive: " . var_export($nextDrive, true));
+					
+					$drives[] = $nextDrive;
 				}
 			}
 		}
@@ -427,12 +440,13 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 	 * @param int $accountTypeId
 	 * @return @int
 	 */
-	private function _createPersonRecord(/*string*/ $username, /*int*/ $accountTypeId) {
+	private function _createPersonRecord(/*string*/ $username, /*string*/ $encryptedPassword, /*int*/ $accountTypeId) {
 		$personId = 0;
+		
+		$this->_logger->sendMessage(LOG_DEBUG, "Creating new person: {$username}, Account Type: {$accountTypeId}");
 		
 		$firstRealName = $this->getFieldValue(self::FIRST_REAL_NAME);
 		$lastRealName = $this->getFieldValue(self::LAST_REAL_NAME);
-		$salt = PhyleBox_Config::getSalt();
 		$explicity = $this->getFieldValue(self::EXPLICITNESS) or "1";
 		$bio = $this->getFieldValue(self::BIO);
 		$dateCreated = date("Y/m/d") . " 00:00:00";
@@ -443,6 +457,8 @@ class _Sign_Up_Information_Page extends PhyleBoxNonAuthenticationPage {
 		$state = $this->getFieldValue(self::STATE);
 		$city = $this->getFieldValue(self::CITY);
 		$query = "insert into `pbox`.`people` (user_name, first_real_name, last_real_name, password, explicity_id, bio, date_created, date_update, date_of_birth, account_type_id) values ('{$username}', '{$firstRealName}', '{$lastRealName}', '{$encryptedPassword}', '{$explicity}', '{$bio}', '{$dateCreated}', '{$dateUpdated}', '{$dateOfBirth}', {$accountTypeId})";
+		
+		$this->_logger->sendMessage(LOG_DEBUG, "Insert query: {$query}");
 		
 		self::$__queryHandler->executeQuery($query);
 		

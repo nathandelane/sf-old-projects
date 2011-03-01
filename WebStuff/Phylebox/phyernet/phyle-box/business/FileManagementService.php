@@ -80,10 +80,12 @@ class FileManagementService extends JsonWebServiceBase {
 		
 		$userName = $_SESSION["userName"];
 		$relativePath = $jsonObject->{FileManagementService::RELATIVE_PATH};
-		list($driveType, $driveId) = Strings::split(($jsonObject->{FileManagementService::DRIVE_LOCATION}), "-");
+		list($type, $driveId, $shortcutId) = Strings::split(($jsonObject->{FileManagementService::DRIVE_LOCATION}), "-");
 		$driveId = intval($driveId);
 		$driveQuery = "";
 		$driveLocation = "/";
+		$shortcutId = intval($locationComponents[2]);
+		$shortcutClause = $shortcutId == 0 ? "" : " and ps.personal_shortcut_id = {$shortcutId}";
 		
 		if (!is_null($userName)) {
 			if ($driveType === DriveType::PERSONAL) {
@@ -132,12 +134,13 @@ class FileManagementService extends JsonWebServiceBase {
 		
 		$userName = $_SESSION["userName"];
 		$driveName = $jsonObject->{FileManagementService::DRIVE_NAME};
-		list($type, $driveId) = Strings::split(($jsonObject->{FileManagementService::DRIVE_LOCATION}), "-");
+		list($type, $driveId, $shortcutId) = Strings::split(($jsonObject->{FileManagementService::DRIVE_LOCATION}), "-");
 		$driveId = intval($driveId);
 		$driveType = intval($jsonObject->{FileManagementService::DRIVE_TYPE});
 		$allottedSpace = 0;
 		$driveQuery = "";
 		$driveUsageModel = null;
+		$shortcutClause = $shortcutId == 0 ? "" : " and ps.personal_shortcut_id = {$shortcutId}";
 		
 		Assert::isTrue(!is_null($driveId), "A string value named location was expected but not found.");
 		Assert::isTrue(!is_null($driveType), "An integer value named type was expected but not found.");
@@ -198,10 +201,10 @@ class FileManagementService extends JsonWebServiceBase {
 		$locationComponents = Strings::split(($jsonObject->{FileManagementService::DRIVE_LOCATION}), "-");
 		$driveType = intval($locationComponents[0]);
 		$driveId = intval($locationComponents[1]);
-		$shortcutId = intval($locationComponents[2]);
 		$directoryName = $jsonObject->{FileManagementService::DIRECTORY_NAME};
 		$directories = array();
 		$files = array();
+		$shortcutId = intval($locationComponents[2]);
 		$shortcutClause = $shortcutId == 0 ? "" : " and ps.personal_shortcut_id = {$shortcutId}";
 				
 		Assert::isTrue(!is_null($driveId) && !is_null($driveType), "A string value named location was expected but not found.");
@@ -397,6 +400,8 @@ class FileManagementService extends JsonWebServiceBase {
 		$directoryName = $jsonObject->{FileManagementService::DIRECTORY_NAME};
 		$fileName = $jsonObject->{FileManagementService::FILE_NAME};
 		$fileContents = $jsonObject->{FileManagementService::FILE_CONTENTS};
+		$shortcutId = intval($locationComponents[2]);
+		$shortcutClause = $shortcutId == 0 ? "" : " and ps.personal_shortcut_id = {$shortcutId}";
 		
 		$fileContents = Strings::replace($fileContents, "\\r", "\r");
 		$fileContents = Strings::replace($fileContents, "\\n", "\n");
@@ -471,6 +476,8 @@ class FileManagementService extends JsonWebServiceBase {
 		$driveId = intval($locationComponents[1]);
 		$directoryName = $jsonObject->{FileManagementService::DIRECTORY_NAME};
 		$folderName = $jsonObject->{FileManagementService::FOLDER_NAME};
+		$shortcutId = intval($locationComponents[2]);
+		$shortcutClause = $shortcutId == 0 ? "" : " and ps.personal_shortcut_id = {$shortcutId}";
 		
 		Assert::isTrue(!is_null($driveId) && !is_null($driveType), "A string value named location was expected but not found.");
 		Assert::isTrue(!is_null($directoryName), "A string value named directory was expected but not found.");
@@ -528,6 +535,8 @@ class FileManagementService extends JsonWebServiceBase {
 		$driveId = intval($locationComponents[1]);
 		$directoryName = $jsonObject->{FileManagementService::DIRECTORY_NAME};
 		$fileNames = $jsonObject->{FileManagementService::FILE_NAMES};
+		$shortcutId = intval($locationComponents[2]);
+		$shortcutClause = $shortcutId == 0 ? "" : " and ps.personal_shortcut_id = {$shortcutId}";
 		
 		Assert::isTrue(!is_null($driveId) && !is_null($driveType), "A string value named location was expected but not found.");
 		Assert::isTrue(!is_null($directoryName), "A string value named directory was expected but not found.");
