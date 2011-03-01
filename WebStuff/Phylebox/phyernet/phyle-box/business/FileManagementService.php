@@ -87,13 +87,13 @@ class FileManagementService extends JsonWebServiceBase {
 		
 		if (!is_null($userName)) {
 			if ($driveType === DriveType::PERSONAL) {
-				$driveQuery = "select pd.drive_location from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.personal_drive_id = '{$driveId}' and pd.person_id = p.person_id";
+				$driveQuery = "select Concat(pd.drive_location, ifnull(ps.directory, '')) as drive_location from `pbox`.`personal_drives` pd inner join `pbox`.`people` p on p.person_id = pd.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 1) ps on (ps.person_id = p.person_id and ps.drive_id = pd.personal_drive_id) where p.user_name = '{$userName}' and pd.personal_drive_id = {$driveId}{$shortcutClause}";
 			} else if ($driveType === DriveType::STORAGE) {
-				$driveQuery = "select ps.storage_location as drive_location from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.personal_storage_id = '{$driveId}' and ps.person_id = p.person_id";
+				$driveQuery = "select Concat(ps.storage_location, ifnull(ps2.directory, '')) as drive_location from `pbox`.`personal_storage` ps inner join `pbox`.`people` p on p.person_id = ps.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 2) ps2 on (ps2.person_id = p.person_id and ps2.drive_id = ps.personal_storage_id) where p.user_name = '{$userName}' and ps.personal_storage_id = {$driveId}{$shortcutClause}";
 			} else if ($driveType === DriveType::GROUP) {
-				$driveQuery = "select gd.drive_location from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and pg.person_id = p.person_id and pg.group_id = g.group_id and gd.group_id = g.group_id and gd.group_drive_id = '{$driveId}'";
+				$driveQuery = "select Concat(gd.drive_location, ifnull(ps.directory, '')) as drive_location from `pbox`.`group_drives` gd left outer join `pbox`.`groups` g on g.group_id = gd.group_id left outer join `pbox`.`people_groups` pg on pg.group_id = g.group_id left outer join `pbox`.`people` p  on p.person_id = pg.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 3) ps on (ps.person_id = p.person_id and ps.drive_id = gd.group_drive_id) where p.user_name = '{$userName}' and gd.group_drive_id = {$driveId}{$shortcutClause}";
 			}
-												
+															
 			if (!Strings::isNullOrEmpty($driveQuery)) {
 				$rows = self::$__queryHandler->executeQuery($driveQuery);
 				
@@ -144,13 +144,13 @@ class FileManagementService extends JsonWebServiceBase {
 		
 		if (!is_null($userName)) {
 			if ($driveType === DriveType::PERSONAL) {
-				$driveQuery = "select pd.drive_location from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.personal_drive_id = '{$driveId}' and pd.person_id = p.person_id";
+				$driveQuery = "select Concat(pd.drive_location, ifnull(ps.directory, '')) as drive_location from `pbox`.`personal_drives` pd inner join `pbox`.`people` p on p.person_id = pd.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 1) ps on (ps.person_id = p.person_id and ps.drive_id = pd.personal_drive_id) where p.user_name = '{$userName}' and pd.personal_drive_id = {$driveId}{$shortcutClause}";
 			} else if ($driveType === DriveType::STORAGE) {
-				$driveQuery = "select ps.storage_location as drive_location from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.personal_storage_id = '{$driveId}' and ps.person_id = p.person_id";
+				$driveQuery = "select Concat(ps.storage_location, ifnull(ps2.directory, '')) as drive_location from `pbox`.`personal_storage` ps inner join `pbox`.`people` p on p.person_id = ps.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 2) ps2 on (ps2.person_id = p.person_id and ps2.drive_id = ps.personal_storage_id) where p.user_name = '{$userName}' and ps.personal_storage_id = {$driveId}{$shortcutClause}";
 			} else if ($driveType === DriveType::GROUP) {
-				$driveQuery = "select gd.drive_location from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and pg.person_id = p.person_id and pg.group_id = g.group_id and gd.group_id = g.group_id and gd.group_drive_id = '{$driveId}'";
+				$driveQuery = "select Concat(gd.drive_location, ifnull(ps.directory, '')) as drive_location from `pbox`.`group_drives` gd left outer join `pbox`.`groups` g on g.group_id = gd.group_id left outer join `pbox`.`people_groups` pg on pg.group_id = g.group_id left outer join `pbox`.`people` p  on p.person_id = pg.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 3) ps on (ps.person_id = p.person_id and ps.drive_id = gd.group_drive_id) where p.user_name = '{$userName}' and gd.group_drive_id = {$driveId}{$shortcutClause}";
 			}
-												
+															
 			if (!Strings::isNullOrEmpty($driveQuery)) {
 				$rows = self::$__queryHandler->executeQuery($driveQuery);
 				
@@ -198,20 +198,22 @@ class FileManagementService extends JsonWebServiceBase {
 		$locationComponents = Strings::split(($jsonObject->{FileManagementService::DRIVE_LOCATION}), "-");
 		$driveType = intval($locationComponents[0]);
 		$driveId = intval($locationComponents[1]);
+		$shortcutId = intval($locationComponents[2]);
 		$directoryName = $jsonObject->{FileManagementService::DIRECTORY_NAME};
 		$directories = array();
 		$files = array();
-		
+		$shortcutClause = $shortcutId == 0 ? "" : " and ps.personal_shortcut_id = {$shortcutId}";
+				
 		Assert::isTrue(!is_null($driveId) && !is_null($driveType), "A string value named location was expected but not found.");
 		Assert::isTrue(!is_null($directoryName), "A string value named directory was expected but not found.");
 		
 		if (!is_null($userName)) {
 			if ($driveType === DriveType::PERSONAL) {
-				$driveQuery = "select pd.drive_location from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.personal_drive_id = '{$driveId}' and pd.person_id = p.person_id";
+				$driveQuery = "select Concat(pd.drive_location, ifnull(ps.directory, '')) as drive_location from `pbox`.`personal_drives` pd inner join `pbox`.`people` p on p.person_id = pd.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 1) ps on (ps.person_id = p.person_id and ps.drive_id = pd.personal_drive_id) where p.user_name = '{$userName}' and pd.personal_drive_id = {$driveId}{$shortcutClause}";
 			} else if ($driveType === DriveType::STORAGE) {
-				$driveQuery = "select ps.storage_location as drive_location from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.personal_storage_id = '{$driveId}' and ps.person_id = p.person_id";
+				$driveQuery = "select Concat(ps.storage_location, ifnull(ps2.directory, '')) as drive_location from `pbox`.`personal_storage` ps inner join `pbox`.`people` p on p.person_id = ps.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 2) ps2 on (ps2.person_id = p.person_id and ps2.drive_id = ps.personal_storage_id) where p.user_name = '{$userName}' and ps.personal_storage_id = {$driveId}{$shortcutClause}";
 			} else if ($driveType === DriveType::GROUP) {
-				$driveQuery = "select gd.drive_location from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and pg.person_id = p.person_id and pg.group_id = g.group_id and gd.group_id = g.group_id and gd.group_drive_id = '{$driveId}'";
+				$driveQuery = "select Concat(gd.drive_location, ifnull(ps.directory, '')) as drive_location from `pbox`.`group_drives` gd left outer join `pbox`.`groups` g on g.group_id = gd.group_id left outer join `pbox`.`people_groups` pg on pg.group_id = g.group_id left outer join `pbox`.`people` p  on p.person_id = pg.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 3) ps on (ps.person_id = p.person_id and ps.drive_id = gd.group_drive_id) where p.user_name = '{$userName}' and gd.group_drive_id = {$driveId}{$shortcutClause}";
 			}
 												
 			if (!Strings::isNullOrEmpty($driveQuery)) {
@@ -225,11 +227,13 @@ class FileManagementService extends JsonWebServiceBase {
 					
 					$testPath = dirname($absoluteDirectoryLocation);
 					
-					$this->_logger->sendMessage(LOG_DEBUG, "Test Path: {$testPath}");
+					$this->_logger->sendMessage(LOG_DEBUG, "Test Path: {$testPath}, Absolute: {$absoluteDirectoryLocation}");
 					
 					if (!Strings::startsWith($testPath, $driveLocation) || strcmp($testPath, $driveLocation) < 0) {
 						$absoluteDirectoryLocation = $driveLocation . "/";
 					}
+					
+					$this->_logger->sendMessage(LOG_DEBUG, "New Abs Dir: {$absoluteDirectoryLocation}");
 					
 					if (is_dir($absoluteDirectoryLocation)) {
 						$directoryHandle = opendir($absoluteDirectoryLocation);
@@ -406,13 +410,13 @@ class FileManagementService extends JsonWebServiceBase {
 
 		if (!is_null($userName)) {
 			if ($driveType === DriveType::PERSONAL) {
-				$driveQuery = "select pd.drive_location from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.personal_drive_id = '{$driveId}' and pd.person_id = p.person_id";
+				$driveQuery = "select Concat(pd.drive_location, ifnull(ps.directory, '')) as drive_location from `pbox`.`personal_drives` pd inner join `pbox`.`people` p on p.person_id = pd.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 1) ps on (ps.person_id = p.person_id and ps.drive_id = pd.personal_drive_id) where p.user_name = '{$userName}' and pd.personal_drive_id = {$driveId}{$shortcutClause}";
 			} else if ($driveType === DriveType::STORAGE) {
-				$driveQuery = "select ps.storage_location as drive_location from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.personal_storage_id = '{$driveId}' and ps.person_id = p.person_id";
+				$driveQuery = "select Concat(ps.storage_location, ifnull(ps2.directory, '')) as drive_location from `pbox`.`personal_storage` ps inner join `pbox`.`people` p on p.person_id = ps.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 2) ps2 on (ps2.person_id = p.person_id and ps2.drive_id = ps.personal_storage_id) where p.user_name = '{$userName}' and ps.personal_storage_id = {$driveId}{$shortcutClause}";
 			} else if ($driveType === DriveType::GROUP) {
-				$driveQuery = "select gd.drive_location from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and pg.person_id = p.person_id and pg.group_id = g.group_id and gd.group_id = g.group_id and gd.group_drive_id = '{$driveId}'";
+				$driveQuery = "select Concat(gd.drive_location, ifnull(ps.directory, '')) as drive_location from `pbox`.`group_drives` gd left outer join `pbox`.`groups` g on g.group_id = gd.group_id left outer join `pbox`.`people_groups` pg on pg.group_id = g.group_id left outer join `pbox`.`people` p  on p.person_id = pg.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 3) ps on (ps.person_id = p.person_id and ps.drive_id = gd.group_drive_id) where p.user_name = '{$userName}' and gd.group_drive_id = {$driveId}{$shortcutClause}";
 			}
-									
+												
 			if (!Strings::isNullOrEmpty($driveQuery)) {
 				$rows = self::$__queryHandler->executeQuery($driveQuery);
 				
@@ -473,13 +477,13 @@ class FileManagementService extends JsonWebServiceBase {
 
 		if (!is_null($userName)) {
 			if ($driveType === DriveType::PERSONAL) {
-				$driveQuery = "select pd.drive_location from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.personal_drive_id = '{$driveId}' and pd.person_id = p.person_id";
+				$driveQuery = "select Concat(pd.drive_location, ifnull(ps.directory, '')) as drive_location from `pbox`.`personal_drives` pd inner join `pbox`.`people` p on p.person_id = pd.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 1) ps on (ps.person_id = p.person_id and ps.drive_id = pd.personal_drive_id) where p.user_name = '{$userName}' and pd.personal_drive_id = {$driveId}{$shortcutClause}";
 			} else if ($driveType === DriveType::STORAGE) {
-				$driveQuery = "select ps.storage_location as drive_location from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.personal_storage_id = '{$driveId}' and ps.person_id = p.person_id";
+				$driveQuery = "select Concat(ps.storage_location, ifnull(ps2.directory, '')) as drive_location from `pbox`.`personal_storage` ps inner join `pbox`.`people` p on p.person_id = ps.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 2) ps2 on (ps2.person_id = p.person_id and ps2.drive_id = ps.personal_storage_id) where p.user_name = '{$userName}' and ps.personal_storage_id = {$driveId}{$shortcutClause}";
 			} else if ($driveType === DriveType::GROUP) {
-				$driveQuery = "select gd.drive_location from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and pg.person_id = p.person_id and pg.group_id = g.group_id and gd.group_id = g.group_id and gd.group_drive_id = '{$driveId}'";
+				$driveQuery = "select Concat(gd.drive_location, ifnull(ps.directory, '')) as drive_location from `pbox`.`group_drives` gd left outer join `pbox`.`groups` g on g.group_id = gd.group_id left outer join `pbox`.`people_groups` pg on pg.group_id = g.group_id left outer join `pbox`.`people` p  on p.person_id = pg.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 3) ps on (ps.person_id = p.person_id and ps.drive_id = gd.group_drive_id) where p.user_name = '{$userName}' and gd.group_drive_id = {$driveId}{$shortcutClause}";
 			}
-						
+									
 			if (!Strings::isNullOrEmpty($driveQuery)) {
 				$rows = self::$__queryHandler->executeQuery($driveQuery);
 				
@@ -530,13 +534,13 @@ class FileManagementService extends JsonWebServiceBase {
 
 		if (!is_null($userName)) {
 			if ($driveType === DriveType::PERSONAL) {
-				$driveQuery = "select pd.drive_location from `pbox`.`personal_drives` pd, `pbox`.`account_types` at, `pbox`.`people` p where p.user_name = '{$userName}' and pd.personal_drive_id = '{$driveId}' and pd.person_id = p.person_id";
+				$driveQuery = "select Concat(pd.drive_location, ifnull(ps.directory, '')) as drive_location from `pbox`.`personal_drives` pd inner join `pbox`.`people` p on p.person_id = pd.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 1) ps on (ps.person_id = p.person_id and ps.drive_id = pd.personal_drive_id) where p.user_name = '{$userName}' and pd.personal_drive_id = {$driveId}{$shortcutClause}";
 			} else if ($driveType === DriveType::STORAGE) {
-				$driveQuery = "select ps.storage_location as drive_location from `pbox`.`personal_storage` ps, `pbox`.`people` p where p.user_name = '{$userName}' and ps.personal_storage_id = '{$driveId}' and ps.person_id = p.person_id";
+				$driveQuery = "select Concat(ps.storage_location, ifnull(ps2.directory, '')) as drive_location from `pbox`.`personal_storage` ps inner join `pbox`.`people` p on p.person_id = ps.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 2) ps2 on (ps2.person_id = p.person_id and ps2.drive_id = ps.personal_storage_id) where p.user_name = '{$userName}' and ps.personal_storage_id = {$driveId}{$shortcutClause}";
 			} else if ($driveType === DriveType::GROUP) {
-				$driveQuery = "select gd.drive_location from `pbox`.`group_drives` gd, `pbox`.`groups` g, `pbox`.`people_groups` pg, `pbox`.`people` p where p.user_name = '{$userName}' and pg.person_id = p.person_id and pg.group_id = g.group_id and gd.group_id = g.group_id and gd.group_drive_id = '{$driveId}'";
+				$driveQuery = "select Concat(gd.drive_location, ifnull(ps.directory, '')) as drive_location from `pbox`.`group_drives` gd left outer join `pbox`.`groups` g on g.group_id = gd.group_id left outer join `pbox`.`people_groups` pg on pg.group_id = g.group_id left outer join `pbox`.`people` p  on p.person_id = pg.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 3) ps on (ps.person_id = p.person_id and ps.drive_id = gd.group_drive_id) where p.user_name = '{$userName}' and gd.group_drive_id = {$driveId}{$shortcutClause}";
 			}
-									
+												
 			if (!Strings::isNullOrEmpty($driveQuery)) {
 				$rows = self::$__queryHandler->executeQuery($driveQuery);
 				

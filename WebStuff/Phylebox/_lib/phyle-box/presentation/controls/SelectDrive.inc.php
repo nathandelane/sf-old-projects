@@ -80,7 +80,7 @@ class SelectDrive implements IRenderable {
 			$this->_page->getLogger()->sendMessage(LOG_DEBUG, "Next Drive Shortcut: {$nextDriveShortcut}.");
 			
 			if ($nextDriveShortcut instanceof DriveShortcut) {
-				$nextShortcutToken = "{$nextDriveShortcut->type}-{$nextDriveShortcut->id}";
+				$nextShortcutToken = "{$nextDriveShortcut->type}-{$nextDriveShortcut->id}-{$nextDriveShortcut->shortcutId}";
 			
 ?>
 					<option value="<?php echo "{$nextShortcutToken}"; ?>"<?php if (Strings::equals($selectedDrive, $nextShortcutToken)) { echo "selected=\"selected\""; } ?>><?php echo"{$nextDriveShortcut->name}"; ?></option>
@@ -102,11 +102,12 @@ class SelectDrive implements IRenderable {
 				$("#driveSelectorContainer").attr("class", "");
 			});
 			$("#driveSelectorButton").bind("click", function() {
+				$("#currentDirectory").val("/");
 				$("#<?php echo "$this->_formId"; ?>").submit();
 			});
 
 			$Phyer.FileManager.getDiskUsage("<?php echo "{$this->_selectedDrive->name}" ?>", "<?php echo "{$this->_selectedDrive->type}-{$this->_selectedDrive->id}" ?>", <?php echo "{$this->_selectedDrive->type}"?>);
-			$Phyer.FileManager.populateFileList("<?php echo "{$this->_selectedDrive->type}-{$this->_selectedDrive->id}" ?>", $("#currentDirectory").val());
+			$Phyer.FileManager.populateFileList("<?php echo "{$this->_selectedDrive->type}-{$this->_selectedDrive->id}-{$this->_selectedDrive->shortcutId}" ?>", $("#currentDirectory").val());
 		});
 	</script>
 </div>

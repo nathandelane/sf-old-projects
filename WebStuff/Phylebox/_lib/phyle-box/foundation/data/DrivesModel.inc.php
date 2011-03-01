@@ -85,14 +85,16 @@ class DrivesModel implements IEnumerable, IReadable {
 	 * @return void
 	 */
 	private function _collectPersonalDrives() {
-		$personalDriveQuery = "select pd.personal_drive_id, pd.drive_location, pd.additional_space, atdd.alotted_space from `pbox`.`personal_drives` pd inner join `pbox`.`people` p on p.person_id = pd.person_id inner join `pbox`.`account_types` a on a.account_type_id = p.account_type_id left outer join `pbox`.`account_type_folders` atf on atf.account_type_id = p.account_type_id inner join `pbox`.`account_type_default_data` atdd on atdd.account_type_default_data_id = atf.account_type_default_data_id inner join `pbox`.`storage_types` st on st.storage_type_id = atf.storage_type_id where p.user_name = '{$this->_userName}' and st.name = 'Webspace'";
+		$personalDriveQuery = "select p.person_id, pd.personal_drive_id, Concat(pd.drive_location, ifnull(ps.directory, '')) as drive_location, pd.additional_space, atdd.alotted_space, ps.name as shortcut_name, ps.personal_shortcut_id  from `pbox`.`personal_drives` pd inner join `pbox`.`people` p on p.person_id = pd.person_id inner join `pbox`.`account_types` a on a.account_type_id = p.account_type_id left outer join `pbox`.`account_type_folders` atf on atf.account_type_id = p.account_type_id inner join `pbox`.`account_type_default_data` atdd on atdd.account_type_default_data_id = atf.account_type_default_data_id inner join `pbox`.`storage_types` st on st.storage_type_id = atf.storage_type_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 1) ps on (ps.person_id = p.person_id and ps.drive_id = pd.personal_drive_id) where p.user_name = '{$this->_userName}' and st.name = 'Webspace'";
 		$rows = self::$__queryHandler->executeQuery($personalDriveQuery);
 		
 		if (count($rows) > 0) {
 			foreach ($rows as $nextRow) {
-				$nextShortcut = new DriveShortcut(intval($nextRow["personal_drive_id"]), "Personal Drive", $nextRow["drive_location"], (doubleval($nextRow["alotted_space"]) + doubleval($nextRow["additional_space"])), DriveType::PERSONAL);
+				$shortcutId = Strings::isNullOrEmpty($nextRow["personal_shortcut_id"]) ? 0 : intval($nextRow["personal_shortcut_id"]);
+				$driveShortcutName = Strings::isNullOrEmpty($nextRow["shortcut_name"]) ? "Personal Drive" : $nextRow["shortcut_name"];
+				$nextShortcut = new DriveShortcut(intval($nextRow["personal_drive_id"]), $driveShortcutName, $nextRow["drive_location"], (doubleval($nextRow["alotted_space"]) + doubleval($nextRow["additional_space"])), DriveType::PERSONAL, $shortcutId);
 				
-				$newKey = sprintf('%d-%d', DriveType::PERSONAL, $nextRow["personal_drive_id"]);
+				$newKey = sprintf('%d-%d-%d', DriveType::PERSONAL, $nextRow["personal_drive_id"], $shortcutId);
 				$this->_model[$newKey] = $nextShortcut;
 			}
 		}
@@ -104,14 +106,16 @@ class DrivesModel implements IEnumerable, IReadable {
 	 * @return void
 	 */
 	private function _collectPersonalStorage() {
-		$storageQuery = "select ps.personal_storage_id, ps.storage_location, ps.additional_space, atdd.alotted_space from `pbox`.`personal_storage` ps inner join `pbox`.`people` p on p.person_id = ps.person_id inner join `pbox`.`account_types` a on a.account_type_id = p.account_type_id left outer join `pbox`.`account_type_folders` atf on atf.account_type_id = p.account_type_id inner join `pbox`.`account_type_default_data` atdd on atdd.account_type_default_data_id = atf.account_type_default_data_id inner join `pbox`.`storage_types` st on st.storage_type_id = atf.storage_type_id where p.user_name = '{$this->_userName}' and st.name = 'Personal Storage'";
+		$storageQuery = "select ps.personal_storage_id, Concat(ps.storage_location, ifnull(ps2.directory, '')) as storage_location, ps.additional_space, atdd.alotted_space, ps2.name as shortcut_name, ps2.personal_shortcut_id  from `pbox`.`personal_storage` ps inner join `pbox`.`people` p on p.person_id = ps.person_id inner join `pbox`.`account_types` a on a.account_type_id = p.account_type_id left outer join `pbox`.`account_type_folders` atf on atf.account_type_id = p.account_type_id inner join `pbox`.`account_type_default_data` atdd on atdd.account_type_default_data_id = atf.account_type_default_data_id inner join `pbox`.`storage_types` st on st.storage_type_id = atf.storage_type_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 2) ps2 on (ps2.person_id = p.person_id and ps2.drive_id = ps.personal_storage_id) where p.user_name = '{$this->_userName}' and st.name = 'Personal Storage'";
 		$rows = self::$__queryHandler->executeQuery($storageQuery);
 		
 		if (count($rows) > 0) {
 			foreach ($rows as $nextRow) {
-				$nextShortcut = new DriveShortcut(intval($nextRow["personal_storage_id"]), "Personal Storage", $nextRow["storage_location"], doubleval($nextRow["alotted_space"]), DriveType::STORAGE);
+				$shortcutId = Strings::isNullOrEmpty($nextRow["personal_shortcut_id"]) ? 0 : intval($nextRow["personal_shortcut_id"]);
+				$driveShortcutName = Strings::isNullOrEmpty($nextRow["shortcut_name"]) ? "Personal Storage" : $nextRow["shortcut_name"];
+				$nextShortcut = new DriveShortcut(intval($nextRow["personal_storage_id"]), $driveShortcutName, $nextRow["storage_location"], doubleval($nextRow["alotted_space"]), DriveType::STORAGE, $shortcutId);
 				
-				$newKey = sprintf('%d-%d', DriveType::STORAGE, $nextRow["personal_storage_id"]);
+				$newKey = sprintf('%d-%d-%d', DriveType::STORAGE, $nextRow["personal_storage_id"], $shortcutId);
 				$this->_model[$newKey]= $nextShortcut;
 			}
 		}
@@ -123,14 +127,16 @@ class DrivesModel implements IEnumerable, IReadable {
 	 * @return void
 	 */
 	private function _collectGroupDrives() {
-		$storageQuery = "select gd.group_drive_id, gd.drive_location, gd.allotted_space, g.name from `pbox`.`group_drives` gd inner join `pbox`.`groups` g on g.group_id = gd.group_id inner join `pbox`.`people_groups` pg on pg.group_id = g.group_id inner join `pbox`.`people` p on p.person_id = pg.person_id where p.user_name = '{$this->_userName}'";
+		$storageQuery = "select gd.group_drive_id, Concat(gd.drive_location, ifnull(ps.directory, '')) as drive_location, gd.allotted_space, g.name, ps.name as shortcut_name, ps.personal_shortcut_id  from `pbox`.`group_drives` gd inner join `pbox`.`groups` g on g.group_id = gd.group_id inner join `pbox`.`people_groups` pg on pg.group_id = g.group_id inner join `pbox`.`people` p on p.person_id = pg.person_id left outer join (select * from `pbox`.`personal_shortcuts` ps where drive_type = 3) ps on (ps.person_id = p.person_id and ps.drive_id = gd.group_drive_id) where p.user_name = '{$this->_userName}'";
 		$rows = self::$__queryHandler->executeQuery($storageQuery);
 		
 		if (count($rows) > 0) {
 			foreach ($rows as $nextRow) {
-				$nextShortcut = new DriveShortcut(intval($nextRow["group_drive_id"]), "{$nextRow["name"]} Group Drive", $nextRow["drive_location"], doubleval($nextRow["allotted_space"]), DriveType::GROUP);
+				$shortcutId = Strings::isNullOrEmpty($nextRow["personal_shortcut_id"]) ? 0 : intval($nextRow["personal_shortcut_id"]);
+				$driveShortcutName = Strings::isNullOrEmpty($nextRow["shortcut_name"]) ? "{$nextRow["name"]} Group Drive" : $nextRow["shortcut_name"];
+				$nextShortcut = new DriveShortcut(intval($nextRow["group_drive_id"]), $driveShortcutName, $nextRow["drive_location"], doubleval($nextRow["allotted_space"]), DriveType::GROUP, $shortcutId);
 				
-				$newKey = sprintf('%d-%d', DriveType::GROUP, $nextRow["group_drive_id"]);
+				$newKey = sprintf('%d-%d-%d', DriveType::GROUP, $nextRow["group_drive_id"], $shortcutId);
 				$this->_model[$newKey]= $nextShortcut;
 			}
 		}

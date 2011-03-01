@@ -194,7 +194,7 @@ if (Phyer && $Phyer) {
 			var newLocation = location.replace(/^\s*/, "").replace(/\s*$/, "");
 			var newName = name;
 			
-			if (name == "..") {
+			if (name === "..") {
 				name = "";
 				
 				var locationComponents = directory.substring(0, (directory.length - 1)).split("/");
@@ -210,7 +210,13 @@ if (Phyer && $Phyer) {
 				}
 			}
 			
-			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><div class=\"typeDirectory\"></div></td><td class=\"fileOrDirName\"><a href=\"" + $Phyer.PHYER_ROOT + "phyle-box/file-manager.php?currentDirectory=" + directory + name + "/\">" + newName + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"><div class=\"actionIcons changeProperties\" name=\"" + name + "\" title=\"Edit properties for " + name + "\" fm:type=\"directory\"></div></td>";
+			var row = "";
+			
+			if (newName === "..") {
+				row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><a href=\"" + $Phyer.PHYER_ROOT + "phyle-box/file-manager.php?currentDirectory=" + $.URLEncode(directory + name) + "%2F&amp;driveSelector=" + location + "\"><div class=\"typeUpDirectory\"></div></a></td><td class=\"fileOrDirName\"><a href=\"" + $Phyer.PHYER_ROOT + "phyle-box/file-manager.php?currentDirectory=" + $.URLEncode(directory + name) + "%2F&amp;driveSelector=" + location + "\">" + newName + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"></div></td>";
+			} else {
+				row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><a href=\"" + $Phyer.PHYER_ROOT + "phyle-box/file-manager.php?currentDirectory=" + $.URLEncode(directory + name) + "%2F&amp;driveSelector=" + location + "\"><div class=\"typeDirectory\"></div></a></td><td class=\"fileOrDirName\"><a href=\"" + $Phyer.PHYER_ROOT + "phyle-box/file-manager.php?currentDirectory=" + $.URLEncode(directory + name) + "%2F&amp;driveSelector=" + location + "\">" + newName + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"><div class=\"actionIcons changeProperties\" name=\"" + name + "\" title=\"Edit properties for " + name + "\" fm:type=\"directory\"></div></td>";
+			}
 			
 			if (($Phyer.FileManager.__rowCounter % 2) == 0) {
 				$("<tr>" + row + "</tr>").appendTo(fileListTable);
@@ -241,7 +247,7 @@ if (Phyer && $Phyer) {
 				}
 			}
 			
-			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><div class=\"type" + type + "\"></div></td><td class=\"fileOrDirName\"><a href=\"javascript: void(0);\" onclick=\"javascript: $Phyer.FileManager." + openFunction + "('" + name + "');\">" + name + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"><div class=\"actionIcons changeProperties\" name=\"" + name + "\" title=\"Edit properties for " + name + "\" fm:type=\"" + type + "\"></div></td>";
+			var row = "<td class=\"checkBox\"><input type=\"checkbox\" id=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" name=\"checkBox" + $Phyer.FileManager.__rowCounter + "\" /></td><td class=\"icon\"><a href=\"javascript: void(0);\" onclick=\"javascript: $Phyer.FileManager." + openFunction + "('" + name + "');\"><div class=\"type" + type + "\"></div></a></td><td class=\"fileOrDirName\"><a href=\"javascript: void(0);\" onclick=\"javascript: $Phyer.FileManager." + openFunction + "('" + name + "');\">" + name + "</a></td><td class=\"modifiedTime\">" + modifiedTime + "</td><td class=\"size\">" + size + " Kb</td><td class=\"permissions\">" + permissions + "</td><td class=\"actions\"><div class=\"actionIcons changeProperties\" name=\"" + name + "\" title=\"Edit properties for " + name + "\" fm:type=\"" + type + "\"></div></td>";
 			
 			if (($Phyer.FileManager.__rowCounter % 2) == 0) {
 				$("<tr>" + row + "</tr>").appendTo(fileListTable);

@@ -37,6 +37,7 @@ class _FileManager_Page extends PhyleBoxPage {
 		
 		$this->registerStylesheet("_css/file-manager.css");
 		$this->registerStylesheet("_css/mime-types.css");
+		$this->registerScript("/_js/urlEncode.js");
 		$this->registerScript("/_js/Phyer.js");
 		$this->registerScript("_js/FileManager.js");
 	}
@@ -49,7 +50,7 @@ class _FileManager_Page extends PhyleBoxPage {
 		parent::openDocument();
 		
 ?>
-<form id="fileManagerForm" action="<?php echo $_SERVER["REQUEST_URI"]; ?>" method="post" enctype="multipart/form-data">
+<form id="fileManagerForm" action="<?php echo $_SERVER["REQUEST_URI"]; ?>" method="get" enctype="multipart/form-data">
 	<input type="hidden" name="currentDirectory" id="currentDirectory" value="<?php if (isset($_REQUEST["currentDirectory"])) { echo "{$_REQUEST["currentDirectory"]}"; } else { echo "/"; } ?>" />
 <?php
 		

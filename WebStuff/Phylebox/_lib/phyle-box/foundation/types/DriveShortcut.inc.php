@@ -36,6 +36,11 @@ final class DriveShortcut {
 	 * @var int
 	 */
 	public $type;
+	/**
+	 * Shortcut ID.
+	 * @var int
+	 */	
+	public $shortcutId;
 	
 	/**
 	 * Constructor
@@ -44,20 +49,23 @@ final class DriveShortcut {
 	 * @param string $location
 	 * @param number $totalDiskspace
 	 * @param int $type
+	 * @param int $shortcutId
 	 * @return DriveShortcut
 	 */
-	public function DriveShortcut(/*string*/ $id, /*string*/ $name, /*string*/ $location, /*number*/ $totalDiskspace, /*int*/ $type) {
+	public function DriveShortcut(/*string*/ $id, /*string*/ $name, /*string*/ $location, /*number*/ $totalDiskspace, /*int*/ $type, /*int*/ $shortcutId = 0) {
 		ArgumentTypeValidator::isInteger($id, "Id must be an integer.");
 		ArgumentTypeValidator::isString($name, "Name must be a string.");
 		ArgumentTypeValidator::isString($location, "Location must be a string.");
 		ArgumentTypeValidator::isNumeric($totalDiskspace, "TotalDiskspace must be a Number.");
 		ArgumentTypeValidator::isInteger($type, "Type must be an integer.");
+		ArgumentTypeValidator::isInteger($shortcutId, "Type must be an integer.");
 		
 		$this->id = $id;
 		$this->name = $name;
 		$this->location = $location;
 		$this->totalDiskspace = $totalDiskspace;
 		$this->type = $type;
+		$this->shortcutId = $shortcutId;
 	}
 	
 	/**
@@ -66,7 +74,7 @@ final class DriveShortcut {
 	 * @return string
 	 */
 	public function __toString() {
-		return sprintf('Id: %1$s, Name: %2$s, Location: %3$s, TotalDiskspace: %4$s, Type: %5$s', $this->id, $this->name, $this->location, $this->totalDiskspace, $this->type);
+		return sprintf('Id: %1$s, Name: %2$s, Location: %3$s, TotalDiskspace: %4$s, Type: %5$s, Shortcut ID: %6$s', $this->id, $this->name, $this->location, $this->totalDiskspace, $this->type, $this->shortcutId);
 	}
 	
 }

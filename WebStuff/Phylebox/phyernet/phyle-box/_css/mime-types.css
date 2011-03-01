@@ -4,10 +4,12 @@
 .typehtml,
 .typephp,
 .typetxt,
+.typepm,
 .typepng,
 .typesvg,
 .typejpeg,
-.typejpg
+.typejpg,
+.typegif
 {
 	background-image: url(../_img/FileManager-SmallIcons.gif);
 	background-repeat: no-repeat;
@@ -15,6 +17,17 @@
 	height: 16px;
 	overflow: hidden;
 	margin: 0 auto;
+}
+
+.typeUpDirectory
+{
+	background-image: url(../_img/Darkboss_ReturnIcon.gif);
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	margin: 0 auto;
+	background-position: 0 0;
 }
 
 .typeUnknown
@@ -30,7 +43,8 @@
 .typexml,
 .typehtml,
 .typephp,
-.typetxt
+.typetxt,
+.typepm
 {
 	background-position: -48px -16px;
 }
@@ -38,7 +52,8 @@
 .typepng,
 .typesvg,
 .typejpeg,
-.typejpg
+.typejpg,
+.typegif
 {
 	background-position: -48px -64px;
 }
