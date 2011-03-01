@@ -318,6 +318,8 @@ if (Phyer && $Phyer) {
 				{
 					"autoDimensions": true,
 					"autoScale": true,
+					"width": 800,
+					"height": 600,
 					"transitionIn": "none",
 					"transitionOut": "none",
 					"type": "iframe",
