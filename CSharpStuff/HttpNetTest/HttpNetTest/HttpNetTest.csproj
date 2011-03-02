@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Events\ValidationEventArgs.cs" />
     <Compile Include="Events\ExtractionEventArgs.cs" />
+    <Compile Include="Events\ExecutionEventArgs.cs" />
     <Compile Include="NetTestContext.cs" />
     <Compile Include="NetTestItem.cs" />
     <Compile Include="NetTestRequest.cs" />

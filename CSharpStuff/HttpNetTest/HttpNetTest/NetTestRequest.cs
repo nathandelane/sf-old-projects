@@ -14,9 +14,13 @@ namespace HttpNetTest
 
 		public delegate void ValidationEventHandler(object o, ValidationEventArgs e);
 		public delegate void ExtractionEventHandler(object o, ExtractionEventArgs e);
+		public delegate void PreExecuteEventHandler(object o, ExecutionEventArgs e);
+		public delegate void PostExecuteEventHandler(object o, ExecutionEventArgs e);
 
 		public event ValidationEventHandler ValidateResponse;
 		public event ExtractionEventHandler ExtractValues;
+		public event PreExecuteEventHandler PreExecute;
+		public event PostExecuteEventHandler PostExecute;
 
 		private HttpWebRequest _webRequest;
 		private HttpWebResponse _webResponse;
@@ -118,7 +122,11 @@ namespace HttpNetTest
 		/// </summary>
 		public override void Execute()
 		{
+			OnPreExecute(new ExecutionEventArgs(this));
+
 			_webResponse = _webRequest.GetResponse() as HttpWebResponse;
+
+			OnPostExecute(new ExecutionEventArgs(this));
 
 			using (StreamReader reader = new StreamReader(_webResponse.GetResponseStream()))
 			{
@@ -129,6 +137,30 @@ namespace HttpNetTest
 
 			OnValidate(new ValidationEventArgs(this));
 			OnExtract(new ExtractionEventArgs(this));
+		}
+
+		/// <summary>
+		/// Fires the PreExecute event.
+		/// </summary>
+		/// <param name="e"></param>
+		protected virtual void OnPreExecute(ExecutionEventArgs e)
+		{
+			if (PreExecute != null)
+			{
+				PreExecute(this, e);
+			}
+		}
+
+		/// <summary>
+		/// Fires the PostExecute event.
+		/// </summary>
+		/// <param name="e"></param>
+		protected virtual void OnPostExecute(ExecutionEventArgs e)
+		{
+			if (PostExecute != null)
+			{
+				PostExecute(this, e);
+			}
 		}
 
 		/// <summary>
