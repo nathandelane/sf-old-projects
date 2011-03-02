@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpNetTest.Tests", "HttpNe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpNetTest.ConsoleTests", "HttpNetTest.ConsoleTests\HttpNetTest.ConsoleTests.csproj", "{6973405C-DB9F-4008-8071-5872B7E8FF90}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5C75FDFE-6067-47B0-8213-7082D7CCB76E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,5 +52,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6973405C-DB9F-4008-8071-5872B7E8FF90} = {5C75FDFE-6067-47B0-8213-7082D7CCB76E}
+		{2F9B07D4-7E5B-497C-A20F-931297F22812} = {5C75FDFE-6067-47B0-8213-7082D7CCB76E}
 	EndGlobalSection
 EndGlobal
