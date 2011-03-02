@@ -49,6 +49,7 @@
     <Compile Include="NetTestItem.cs" />
     <Compile Include="NetTestRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rules\ExtractElements.cs" />
     <Compile Include="Rules\ExtractHiddenFields.cs" />
     <Compile Include="Rules\ExtractionRule.cs" />
     <Compile Include="Rules\ValidationRule.cs" />

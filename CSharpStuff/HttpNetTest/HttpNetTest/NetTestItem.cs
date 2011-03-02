@@ -73,6 +73,14 @@ namespace HttpNetTest
 			return base.ToString();
 		}
 
+		/// <summary>
+		/// Executes the NetTestItem.
+		/// </summary>
+		public virtual void Execute()
+		{
+			throw new NotImplementedException("Execute is not implemented.");
+		}
+
 		#endregion
 	}
 }

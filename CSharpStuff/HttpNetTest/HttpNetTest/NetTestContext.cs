@@ -11,7 +11,7 @@ namespace HttpNetTest
 
 		private static NetTestContext __context;
 
-		private IDictionary<string, string> _contextItems;
+		private IDictionary<string, object> _contextItems;
 
 		#endregion
 
@@ -22,11 +22,11 @@ namespace HttpNetTest
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
-		public string this[string key]
+		public object this[string key]
 		{
 			get
 			{
-				string result = String.Empty;
+				object result = String.Empty;
 
 				if (_contextItems.ContainsKey(key))
 				{
@@ -52,7 +52,7 @@ namespace HttpNetTest
 
 		private NetTestContext()
 		{
-			_contextItems = new Dictionary<string, string>();
+			_contextItems = new Dictionary<string, object>();
 		}
 
 		#endregion
@@ -86,7 +86,7 @@ namespace HttpNetTest
 		/// </summary>
 		/// <param name="key"></param>
 		/// <returns></returns>
-		public bool ContainsItem(string key)
+		public bool ContainsKey(string key)
 		{
 			return _contextItems.ContainsKey(key);
 		}

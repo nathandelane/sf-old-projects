@@ -80,7 +80,7 @@ namespace HttpNetTest
 		/// <summary>
 		/// Executes this WebTestRequest.
 		/// </summary>
-		public void Execute()
+		public override void Execute()
 		{
 			_webResponse = _webRequest.GetResponse() as HttpWebResponse;
 

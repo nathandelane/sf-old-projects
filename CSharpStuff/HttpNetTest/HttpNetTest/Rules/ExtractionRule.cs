@@ -19,6 +19,7 @@ namespace HttpNetTest.Rules
 		private XDocument _document;
 		private string _ruleDescription;
 		private string _ruleName;
+		private bool _required;
 
 		#endregion
 
@@ -50,6 +51,15 @@ namespace HttpNetTest.Rules
 			get { return _document; }
 		}
 
+		/// <summary>
+		/// Gets or sets whether this rule is required.
+		/// </summary>
+		public bool Required
+		{
+			get { return _required; }
+			set { _required = value; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -60,6 +70,7 @@ namespace HttpNetTest.Rules
 		public ExtractionRule()
 		{
 			_context = NetTestContext.GetContext();
+			_required = false;
 		}
 
 		/// <summary>
@@ -69,8 +80,10 @@ namespace HttpNetTest.Rules
 		/// <param name="description"></param>
 		public ExtractionRule(string name, string description)
 		{
+			_context = NetTestContext.GetContext();
 			_ruleName = name;
 			_ruleDescription = description;
+			_required = false;
 		}
 
 		/// <summary>
