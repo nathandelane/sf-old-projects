@@ -262,8 +262,8 @@ class FileManagementService extends JsonWebServiceBase {
 										
 										$this->_logger->sendMessage(LOG_DEBUG, "File extension ({$nextFile}): {$fileModel->extension}");
 										
-										if (in_array($fileModel->extension, self::$__knownFileTypes, true)) {
-											$files[] = array("type" => $fileModel->extension, "name" => $nextFile, "permissions" => $fileModel->permissions, "size" => $fileModel->size, "modifiedTime" => $modifiedTime);
+										if (in_array(Strings::toLower($fileModel->extension), self::$__knownFileTypes, true)) {
+											$files[] = array("type" => Strings::toLower($fileModel->extension), "name" => $nextFile, "permissions" => $fileModel->permissions, "size" => $fileModel->size, "modifiedTime" => $modifiedTime);
 										} else {
 											$files[] = array("type" => "Unknown", "name" => $nextFile, "permissions" => $fileModel->permissions, "size" => $fileModel->size, "modifiedTime" => $modifiedTime);
 										}
