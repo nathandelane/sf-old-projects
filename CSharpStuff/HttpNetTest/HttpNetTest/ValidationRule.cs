@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using HttpNetTest.Events;
 
-namespace HttpNetTest.Rules
+namespace HttpNetTest
 {
 	public abstract class ValidationRule
 	{

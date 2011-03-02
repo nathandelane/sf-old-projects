@@ -8,7 +8,7 @@ using System.Xml.Linq;
 using System.IO;
 using System.Xml;
 
-namespace HttpNetTest.Rules
+namespace HttpNetTest
 {
 	public abstract class ExtractionRule
 	{
