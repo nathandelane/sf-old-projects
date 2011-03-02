@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HttpNetTest.Events
 {
-	public class ValidationEventArgs : EventArgs
+	public class ExtractionEventArgs : EventArgs
 	{
 		#region Fields
 
@@ -24,7 +24,7 @@ namespace HttpNetTest.Events
 
 		#region Constructors
 
-		public ValidationEventArgs(NetTestItem webTestItem)
+		public ExtractionEventArgs(NetTestItem webTestItem)
 		{
 			_webTestItem = webTestItem;
 		}
