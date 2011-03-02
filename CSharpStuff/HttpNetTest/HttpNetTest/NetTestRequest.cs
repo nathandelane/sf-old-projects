@@ -45,6 +45,41 @@ namespace HttpNetTest
 			get { return _context; }
 		}
 
+		/// <summary>
+		/// Gets the response URL from the response.
+		/// </summary>
+		public string ResponseUrl
+		{
+			get { return _responseUrl; }
+		}
+
+		/// <summary>
+		/// Gets or sets the User-Agent string for this NetTestRequest.
+		/// </summary>
+		public string UserAgent
+		{
+			get { return _webRequest.UserAgent; }
+			set { _webRequest.UserAgent = value; }
+		}
+
+		/// <summary>
+		/// Gets or sets the cookies associated with the request.
+		/// </summary>
+		public CookieContainer CookieContainer
+		{
+			get { return _webRequest.CookieContainer; }
+			set { _webRequest.CookieContainer = value; }
+		}
+
+		/// <summary>
+		/// Gets or sets a value that indicates whether the request should follow redirection responses.
+		/// </summary>
+		public bool AutomaticallyRedirect
+		{
+			get { return _webRequest.AllowAutoRedirect; }
+			set { _webRequest.AllowAutoRedirect = value; }
+		}
+
 		#endregion
 
 		#region Constructors
