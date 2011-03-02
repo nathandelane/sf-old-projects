@@ -86,6 +86,10 @@ namespace HttpNetTest
 			_required = false;
 		}
 
+		#endregion
+
+		#region Methods
+
 		/// <summary>
 		/// Returns a string representation of this ExtractionRule based on the name and description.
 		/// </summary>

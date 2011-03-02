@@ -52,7 +52,9 @@
     <Compile Include="Rules\ExtractElements.cs" />
     <Compile Include="Rules\ExtractHiddenFields.cs" />
     <Compile Include="ExtractionRule.cs" />
+    <Compile Include="Rules\ValidateFormField.cs" />
     <Compile Include="ValidationRule.cs" />
+    <Compile Include="WebTestOutcome.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

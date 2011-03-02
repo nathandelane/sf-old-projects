@@ -27,50 +27,6 @@ namespace HttpNetTest.Rules
 
 		#endregion
 
-		#region Constructors
-
-		/// <summary>
-		/// Creates an instance of ExtractElement.
-		/// </summary>
-		public ExtractElements()
-			: base()
-		{
-		}
-
-		/// <summary>
-		/// Creates an instance of ExtractElement.
-		/// </summary>
-		/// <param name="name"></param>
-		/// <param name="description"></param>
-		public ExtractElements(string name, string description)
-			: base(name, description)
-		{
-		}
-
-		/// <summary>
-		/// Creates an instance of ExtractElement.
-		/// </summary>
-		/// <param name="elementName"></param>
-		public ExtractElements(string elementName)
-			: base()
-		{
-			_elementName = elementName;
-		}
-
-		/// <summary>
-		/// Creates an instance of ExtractElement.
-		/// </summary>
-		/// <param name="name"></param>
-		/// <param name="description"></param>
-		/// <param name="elementName"></param>
-		public ExtractElements(string name, string description, string elementName)
-			: base(name, description)
-		{
-			_elementName = elementName;
-		}
-
-		#endregion
-
 		#region Methods
 
 		public override void Extract(object sender, Events.ExtractionEventArgs e)

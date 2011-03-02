@@ -3,22 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using HttpNetTest.Events;
+using System.IO;
+using System.Xml.Linq;
 
 namespace HttpNetTest
 {
 	public abstract class ValidationRule
 	{
 		#region Fields
+		
+		protected NetTestContext _context;
+		protected WebTestOutcome _outcome;
+		protected string _message;
 
+		private XDocument _document;
 		private string _ruleDescription;
 		private string _ruleName;
+		private bool _required;
 
 		#endregion
 
 		#region Properties
 
 		/// <summary>
-		/// Gets or sets the description of this ValidationRule.
+		/// Gets or sets the description of this ExtractionRule.
 		/// </summary>
 		public string RuleDescription
 		{
@@ -27,12 +35,37 @@ namespace HttpNetTest
 		}
 
 		/// <summary>
-		/// Gets or sets the name of this ValidationRule.
+		/// Gets or sets the name of this ExtractionRule.
 		/// </summary>
 		public string RuleName
 		{
 			get { return _ruleName; }
 			set { _ruleName = value; }
+		}
+
+		/// <summary>
+		/// Gets the Response body as an XDocument object.
+		/// </summary>
+		public XDocument Document
+		{
+			get { return _document; }
+		}
+
+		/// <summary>
+		/// Gets or sets whether this rule is required.
+		/// </summary>
+		public bool Required
+		{
+			get { return _required; }
+			set { _required = value; }
+		}
+
+		/// <summary>
+		/// Gets the results of the web test.
+		/// </summary>
+		public WebTestOutcome Outcome
+		{
+			get { return _outcome; }
 		}
 
 		#endregion
@@ -57,13 +90,17 @@ namespace HttpNetTest
 			_ruleDescription = description;
 		}
 
+		#endregion
+
+		#region Methods
+
 		/// <summary>
 		/// Returns a string representation of this ValidationRule based on the name and description.
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return String.Format("{0}: {1}", _ruleName, _ruleDescription);
+			return String.Format("{0}: {1}; {2}: {3}", _ruleName, _ruleDescription, _outcome, _message);
 		}
 
 		/// <summary>
@@ -73,7 +110,18 @@ namespace HttpNetTest
 		/// <param name="e"></param>
 		public virtual void Validate(Object sender, ValidationEventArgs e)
 		{
+			_outcome = WebTestOutcome.NotExecuted;
 
+			HtmlAgilityPack.HtmlDocument document = new HtmlAgilityPack.HtmlDocument();
+			document.LoadHtml(((NetTestRequest)e.WebTestItem).HttpResponseBody);
+			document.OptionOutputAsXml = true;
+
+			using (StringWriter writer = new StringWriter())
+			{
+				document.Save(writer);
+
+				_document = XDocument.Parse(writer.GetStringBuilder().ToString());
+			}
 		}
 
 		#endregion

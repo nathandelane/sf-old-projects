@@ -22,6 +22,7 @@ namespace HttpNetTest
 		private HttpWebResponse _webResponse;
 		private Uri _uri;
 		private string _httpResponseBody;
+		private string _responseUrl;
 		private NetTestContext _context;
 
 		#endregion
@@ -88,6 +89,8 @@ namespace HttpNetTest
 			{
 				_httpResponseBody = reader.ReadToEnd();
 			}
+
+			_responseUrl = _webResponse.ResponseUri.ToString();
 
 			OnValidate(new ValidationEventArgs(this));
 			OnExtract(new ExtractionEventArgs(this));
