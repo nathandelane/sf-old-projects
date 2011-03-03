@@ -8,8 +8,8 @@
     <ProjectGuid>{0A273998-1A43-4074-AF4C-1CA200E3EEED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HttpNetTest</RootNamespace>
-    <AssemblyName>HttpNetTest</AssemblyName>
+    <RootNamespace>Nathandelane.TestingTools.WebTesting</RootNamespace>
+    <AssemblyName>Nathandelane.TestingTools.WebTesting</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace HttpNetTest.Rules
+namespace Nathandelane.TestingTools.WebTesting.Rules
 {
 	public class ExtractElements : ExtractionRule
 	{

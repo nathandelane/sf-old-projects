@@ -6,7 +6,7 @@ using HtmlAgilityPack;
 using System.Collections;
 using System.Xml.Linq;
 
-namespace HttpNetTest.Rules
+namespace Nathandelane.TestingTools.WebTesting.Rules
 {
 	public class ExtractHiddenFields : ExtractionRule
 	{

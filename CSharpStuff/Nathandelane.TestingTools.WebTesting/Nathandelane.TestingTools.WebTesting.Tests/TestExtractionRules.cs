@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using HttpNetTest.Rules;
+using Nathandelane.TestingTools.WebTesting.Rules;
 
-namespace HttpNetTest.Tests
+namespace Nathandelane.TestingTools.WebTesting.Tests
 {
 	[TestFixture]
 	public class TestExtractionRules

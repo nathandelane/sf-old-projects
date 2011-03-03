@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nathandelane.TestingTools.WebTesting.Events
 {
-	public class ValidationEventArgs : EventArgs
+	public class ExecutionEventArgs : EventArgs
 	{
 		#region Fields
 
@@ -24,7 +24,7 @@ namespace Nathandelane.TestingTools.WebTesting.Events
 
 		#region Constructors
 
-		public ValidationEventArgs(NetTestItem webTestItem)
+		public ExecutionEventArgs(NetTestItem webTestItem)
 		{
 			_webTestItem = webTestItem;
 		}

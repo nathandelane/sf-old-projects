@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HttpNetTest.Events;
+using Nathandelane.TestingTools.WebTesting.Events;
 using HtmlAgilityPack;
 using System.Xml.Linq;
 using System.IO;
 using System.Xml;
 
-namespace HttpNetTest
+namespace Nathandelane.TestingTools.WebTesting
 {
 	public abstract class ExtractionRule
 	{

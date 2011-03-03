@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpNetTest", "HttpNetTest\HttpNetTest.csproj", "{0A273998-1A43-4074-AF4C-1CA200E3EEED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.TestingTools.WebTesting", "Nathandelane.TestingTools.WebTesting\Nathandelane.TestingTools.WebTesting.csproj", "{0A273998-1A43-4074-AF4C-1CA200E3EEED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpNetTest.Tests", "HttpNetTest.Tests\HttpNetTest.Tests.csproj", "{2F9B07D4-7E5B-497C-A20F-931297F22812}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.TestingTools.WebTesting.Tests", "Nathandelane.TestingTools.WebTesting.Tests\Nathandelane.TestingTools.WebTesting.Tests.csproj", "{2F9B07D4-7E5B-497C-A20F-931297F22812}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpNetTest.ConsoleTests", "HttpNetTest.ConsoleTests\HttpNetTest.ConsoleTests.csproj", "{6973405C-DB9F-4008-8071-5872B7E8FF90}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nathandelane.TestingTools.WebTesting.ConsoleTests", "Nathandelane.TestingTools.WebTesting.ConsoleTests\Nathandelane.TestingTools.WebTesting.ConsoleTests.csproj", "{6973405C-DB9F-4008-8071-5872B7E8FF90}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5C75FDFE-6067-47B0-8213-7082D7CCB76E}"
 EndProject

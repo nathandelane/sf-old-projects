@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HttpNetTest;
-using HttpNetTest.Rules;
+using Nathandelane.TestingTools.WebTesting;
+using Nathandelane.TestingTools.WebTesting.Rules;
 using System.Diagnostics;
 
-namespace HttpNetTest.ConsoleTests
+namespace Nathandelane.TestingTools.WebTesting.ConsoleTests
 {
 	class Program
 	{

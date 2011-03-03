@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HttpNetTest.Events;
+using Nathandelane.TestingTools.WebTesting.Events;
 using System.IO;
 using System.Xml.Linq;
 
-namespace HttpNetTest
+namespace Nathandelane.TestingTools.WebTesting
 {
 	public abstract class ValidationRule
 	{

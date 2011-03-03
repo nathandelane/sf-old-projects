@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Net;
-using HttpNetTest.Events;
+using Nathandelane.TestingTools.WebTesting.Events;
 using System.IO;
 
-namespace HttpNetTest
+namespace Nathandelane.TestingTools.WebTesting
 {
 	public class NetTestRequest : NetTestItem
 	{

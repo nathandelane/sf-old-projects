@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HttpNetTest;
+using Nathandelane.TestingTools.WebTesting;
 using System.Xml.Linq;
 
-namespace HttpNetTest.Rules
+namespace Nathandelane.TestingTools.WebTesting.Rules
 {
 	public class ValidateFormField : ValidationRule
 	{
