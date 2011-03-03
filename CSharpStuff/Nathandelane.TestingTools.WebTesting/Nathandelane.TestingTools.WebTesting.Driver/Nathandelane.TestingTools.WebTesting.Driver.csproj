@@ -46,6 +46,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nathandelane.TestingTools.WebTesting\Nathandelane.TestingTools.WebTesting.csproj">
+      <Project>{0A273998-1A43-4074-AF4C-1CA200E3EEED}</Project>
+      <Name>Nathandelane.TestingTools.WebTesting</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
