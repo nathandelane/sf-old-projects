@@ -134,6 +134,7 @@ namespace HttpNetTest
 			}
 
 			_responseUrl = _webResponse.ResponseUri.ToString();
+			_context["cookies"] = _webResponse.Cookies;
 
 			OnValidate(new ValidationEventArgs(this));
 			OnExtract(new ExtractionEventArgs(this));
