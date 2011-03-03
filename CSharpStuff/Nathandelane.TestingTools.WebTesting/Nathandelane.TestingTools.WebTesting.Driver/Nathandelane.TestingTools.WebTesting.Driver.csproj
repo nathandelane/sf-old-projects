@@ -9,7 +9,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nathandelane.TestingTools.WebTesting.Driver</RootNamespace>
-    <AssemblyName>Nathandelane.TestingTools.WebTesting.Driver</AssemblyName>
+    <AssemblyName>WebTestDriver</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
