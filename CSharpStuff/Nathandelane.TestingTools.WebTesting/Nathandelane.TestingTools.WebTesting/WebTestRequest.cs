@@ -46,6 +46,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		private string _httpResponseBody;
 		private string _responseUrl;
 		private WebTestContext _context;
+		private WebTestOutcome _outcome;
 
 		#endregion
 
@@ -102,6 +103,14 @@ namespace Nathandelane.TestingTools.WebTesting
 			set { _webRequest.AllowAutoRedirect = value; }
 		}
 
+		/// <summary>
+		/// Gets the outcome of the test.
+		/// </summary>
+		public WebTestOutcome Outcome
+		{
+			get { return _outcome; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -156,53 +165,55 @@ namespace Nathandelane.TestingTools.WebTesting
 
 			OnValidate(new ValidationEventArgs(this));
 			OnExtract(new ExtractionEventArgs(this));
+
+			_outcome = _context.Outcome;
 		}
 
 		/// <summary>
 		/// Fires the PreExecute event.
 		/// </summary>
-		/// <param name="e"></param>
-		protected virtual void OnPreExecute(ExecutionEventArgs e)
+		/// <param name="args"></param>
+		protected virtual void OnPreExecute(ExecutionEventArgs args)
 		{
 			if (PreExecute != null)
 			{
-				PreExecute(this, e);
+				PreExecute(this, args);
 			}
 		}
 
 		/// <summary>
 		/// Fires the PostExecute event.
 		/// </summary>
-		/// <param name="e"></param>
-		protected virtual void OnPostExecute(ExecutionEventArgs e)
+		/// <param name="args"></param>
+		protected virtual void OnPostExecute(ExecutionEventArgs args)
 		{
 			if (PostExecute != null)
 			{
-				PostExecute(this, e);
+				PostExecute(this, args);
 			}
 		}
 
 		/// <summary>
 		/// Fires Validate event.
 		/// </summary>
-		/// <param name="e"></param>
-		protected virtual void OnValidate(ValidationEventArgs e)
+		/// <param name="args"></param>
+		protected virtual void OnValidate(ValidationEventArgs args)
 		{
 			if (ValidateResponse != null)
 			{
-				ValidateResponse(this, e);
+				ValidateResponse(this, args);
 			}
 		}
 
 		/// <summary>
 		/// Fires Extract event.
 		/// </summary>
-		/// <param name="e"></param>
-		protected virtual void OnExtract(ExtractionEventArgs e)
+		/// <param name="args"></param>
+		protected virtual void OnExtract(ExtractionEventArgs args)
 		{
 			if (ExtractValues != null)
 			{
-				ExtractValues(this, e);
+				ExtractValues(this, args);
 			}
 		}
 
@@ -213,6 +224,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		{
 			_webRequest = WebRequest.Create(_uri) as HttpWebRequest;
 			_context = WebTestContext.GetContext();
+			_outcome = WebTestOutcome.NotExecuted;
 		}
 
 		#endregion

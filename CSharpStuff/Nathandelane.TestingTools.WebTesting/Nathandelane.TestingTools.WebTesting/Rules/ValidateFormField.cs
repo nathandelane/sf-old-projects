@@ -76,18 +76,18 @@ namespace Nathandelane.TestingTools.WebTesting.Rules
 				{
 					if (nextElement.Attribute(XName.Get("value")) != null && nextElement.Attribute(XName.Get("value")).Value.Equals(_expectedValue))
 					{
-						_outcome = WebTestOutcome.Passed;
+						_context.Outcome = WebTestOutcome.Passed;
 					}
 				}
 
-				if (_outcome != WebTestOutcome.Passed)
+				if (_context.Outcome != WebTestOutcome.Passed)
 				{
-					_outcome = WebTestOutcome.Failed;
+					_context.Outcome = WebTestOutcome.Failed;
 				}
 			}
 			catch (Exception ex)
 			{
-				_outcome = WebTestOutcome.Error;
+				_context.Outcome = WebTestOutcome.Error;
 				_message = ex.Message;
 			}
 		}

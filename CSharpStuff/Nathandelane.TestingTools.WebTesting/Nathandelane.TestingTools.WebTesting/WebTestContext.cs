@@ -64,6 +64,11 @@ namespace Nathandelane.TestingTools.WebTesting
 			get { return _contextItems.Count; }
 		}
 
+		/// <summary>
+		/// Gets or sets the outcome of the test.
+		/// </summary>
+		public WebTestOutcome Outcome { get; set; }
+
 		#endregion
 
 		#region Constructors

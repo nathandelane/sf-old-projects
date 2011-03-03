@@ -49,7 +49,7 @@ namespace Nathandelane.TestingTools.WebTesting.Rules
 
 		public override void Validate(object sender, Events.ValidationEventArgs e)
 		{
-			_outcome = WebTestOutcome.Passed;
+			_context.Outcome = WebTestOutcome.Passed;
 
 			if (_element == null)
 			{
@@ -69,19 +69,19 @@ namespace Nathandelane.TestingTools.WebTesting.Rules
 					{
 						if (nextElement.Attribute(nextAttribute.Name) == null || !nextElement.Attribute(nextAttribute.Name).Value.Equals(nextAttribute.Value))
 						{
-							_outcome = WebTestOutcome.Failed;
+							_context.Outcome = WebTestOutcome.Failed;
 						}
 					}
 				}
 
-				if (_outcome != WebTestOutcome.Passed)
+				if (_context.Outcome != WebTestOutcome.Passed)
 				{
-					_outcome = WebTestOutcome.Failed;
+					_context.Outcome = WebTestOutcome.Failed;
 				}
 			}
 			catch (Exception ex)
 			{
-				_outcome = WebTestOutcome.Error;
+				_context.Outcome = WebTestOutcome.Error;
 				_message = ex.Message;
 			}
 		}

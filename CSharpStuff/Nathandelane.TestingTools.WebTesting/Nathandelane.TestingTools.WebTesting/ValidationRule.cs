@@ -31,7 +31,6 @@ namespace Nathandelane.TestingTools.WebTesting
 		#region Fields
 		
 		protected WebTestContext _context;
-		protected WebTestOutcome _outcome;
 		protected string _message;
 
 		private XDocument _document;
@@ -83,7 +82,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// </summary>
 		public WebTestOutcome Outcome
 		{
-			get { return _outcome; }
+			get { return _context.Outcome; }
 		}
 
 		#endregion
@@ -118,7 +117,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return String.Format("{0}: {1}; {2}: {3}", _ruleName, _ruleDescription, _outcome, _message);
+			return String.Format("{0}: {1}; {2}: {3}", _ruleName, _ruleDescription, _context.Outcome, _message);
 		}
 
 		/// <summary>
@@ -128,7 +127,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// <param name="e"></param>
 		public virtual void Validate(Object sender, ValidationEventArgs e)
 		{
-			_outcome = WebTestOutcome.NotExecuted;
+			_context.Outcome = WebTestOutcome.NotExecuted;
 
 			HtmlAgilityPack.HtmlDocument document = new HtmlAgilityPack.HtmlDocument();
 			document.LoadHtml(((WebTestRequest)e.WebTestItem).HttpResponseBody);

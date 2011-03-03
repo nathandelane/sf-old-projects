@@ -25,6 +25,45 @@ namespace Nathandelane.TestingTools.WebTesting.Driver
 			_testList = XDocument.Load(testListFile.OpenRead());
 		}
 
+		/// <summary>
+		/// Runs the tests found in the TestList.xml.
+		/// </summary>
+		private void Run()
+		{
+			IEnumerable<XElement> assemblies = _testList.Document.Descendants(XName.Get("assembly"));
+
+			if (assemblies.Count<XElement>() > 0)
+			{
+				foreach (XElement nextAssembly in assemblies)
+				{
+					string assemblyName = nextAssembly.Attribute(XName.Get("name")).Value;
+
+					if (!assemblyName.EndsWith(".dll", StringComparison.InvariantCultureIgnoreCase))
+					{
+						assemblyName = String.Concat(assemblyName, ".dll");
+					}
+
+					Assembly assembly = Assembly.LoadFrom(assemblyName);
+					Type[] types = assembly.GetTypes();
+
+					foreach (Type nextType in types)
+					{
+						if (nextType.BaseType == typeof(WebTest))
+						{
+							WebTest nextWebTest = Activator.CreateInstance(nextType) as WebTest;
+							IEnumerator<WebTestRequest> webTestRequests = nextWebTest.GetRequestEnumerator();
+							
+							while (webTestRequests.MoveNext())
+							{
+								WebTestRequest nextRequest = webTestRequests.Current;
+								nextRequest.Execute();
+							}
+						}
+					}
+				}
+			}
+		}
+
 		#endregion
 
 		public static void Main(string[] args)
@@ -40,6 +79,7 @@ namespace Nathandelane.TestingTools.WebTesting.Driver
 				if (testListFileInfo.Exists)
 				{
 					Program program = new Program(testListFileInfo);
+					program.Run();
 				}
 				else
 				{
