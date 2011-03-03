@@ -46,6 +46,7 @@
     <Compile Include="Events\ValidationEventArgs.cs" />
     <Compile Include="Events\ExtractionEventArgs.cs" />
     <Compile Include="Events\ExecutionEventArgs.cs" />
+    <Compile Include="WebTest.cs" />
     <Compile Include="WebTestContext.cs" />
     <Compile Include="WebTestItem.cs" />
     <Compile Include="WebTestRequest.cs" />
