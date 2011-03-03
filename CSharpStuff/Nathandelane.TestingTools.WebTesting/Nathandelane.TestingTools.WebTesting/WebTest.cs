@@ -10,6 +10,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		#region Fields
 
 		private WebTestContext _context;
+		private WebTestOutcome _outcome;
 
 		#endregion
 
@@ -24,6 +25,15 @@ namespace Nathandelane.TestingTools.WebTesting
 			set { _context = value; }
 		}
 
+		/// <summary>
+		/// Gets or sets the outcome of this test.
+		/// </summary>
+		public WebTestOutcome Outcome
+		{
+			get { return _outcome; }
+			set { _outcome = value; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -33,6 +43,8 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// </summary>
 		public WebTest()
 		{
+			_context = WebTestContext.GetContext();
+			_outcome = WebTestOutcome.NotExecuted;
 		}
 
 		#endregion
