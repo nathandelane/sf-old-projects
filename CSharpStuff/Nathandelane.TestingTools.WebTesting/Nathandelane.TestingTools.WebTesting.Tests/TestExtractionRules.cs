@@ -15,10 +15,10 @@ namespace Nathandelane.TestingTools.WebTesting.Tests
 		[Test]
 		public void TestExtractHiddenFields()
 		{
-			NetTestRequest request = new NetTestRequest("http://www.vehix.com/");
+			WebTestRequest request = new WebTestRequest("http://www.vehix.com/");
 			ExtractHiddenFields extractionRule1 = new ExtractHiddenFields();
 
-			request.ExtractValues += new NetTestRequest.ExtractionEventHandler(extractionRule1.Extract);
+			request.ExtractValues += new WebTestRequest.ExtractionEventHandler(extractionRule1.Extract);
 
 			request.Execute();
 

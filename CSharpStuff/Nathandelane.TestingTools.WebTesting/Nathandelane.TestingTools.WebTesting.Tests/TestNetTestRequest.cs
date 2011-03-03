@@ -13,7 +13,7 @@ namespace Nathandelane.TestingTools.WebTesting.Tests
 		[Test]
 		public void TestConstruction()
 		{
-			NetTestRequest request = new NetTestRequest("http://www.google.com/");
+			WebTestRequest request = new WebTestRequest("http://www.google.com/");
 
 			Assert.IsNotNull(request);
 		}
@@ -22,14 +22,14 @@ namespace Nathandelane.TestingTools.WebTesting.Tests
 		[ExpectedException(typeof(ArgumentException))]
 		public void TestConstructionWithBadUrl()
 		{
-			NetTestRequest request = new NetTestRequest("www.google.com");
+			WebTestRequest request = new WebTestRequest("www.google.com");
 		}
 
 		[Test]
 		public void TestConstructionWithUri()
 		{
 			Uri uri = new Uri("http://www.google.com/");
-			NetTestRequest request = new NetTestRequest(uri);
+			WebTestRequest request = new WebTestRequest(uri);
 
 			Assert.IsNotNull(request);
 		}

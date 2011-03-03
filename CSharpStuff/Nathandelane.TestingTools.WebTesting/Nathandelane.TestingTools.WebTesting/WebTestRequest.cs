@@ -8,7 +8,7 @@ using System.IO;
 
 namespace Nathandelane.TestingTools.WebTesting
 {
-	public class NetTestRequest : NetTestItem
+	public class WebTestRequest : WebTestItem
 	{
 		#region Fields
 
@@ -27,7 +27,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		private Uri _uri;
 		private string _httpResponseBody;
 		private string _responseUrl;
-		private NetTestContext _context;
+		private WebTestContext _context;
 
 		#endregion
 
@@ -44,7 +44,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// <summary>
 		/// Gets the context for this test.
 		/// </summary>
-		public NetTestContext Context
+		public WebTestContext Context
 		{
 			get { return _context; }
 		}
@@ -92,7 +92,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// Creates an instance of WebTestRequest using a string URL.
 		/// </summary>
 		/// <param name="url"></param>
-		public NetTestRequest(string url)
+		public WebTestRequest(string url)
 		{
 			if (!Uri.TryCreate(url, UriKind.Absolute, out _uri))
 			{
@@ -106,7 +106,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// Creates an instance of WebTestRequest using a Uri object.
 		/// </summary>
 		/// <param name="uri"></param>
-		public NetTestRequest(Uri uri)
+		public WebTestRequest(Uri uri)
 		{
 			_uri = uri;
 
@@ -194,7 +194,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		private void InitializeWebRequest()
 		{
 			_webRequest = WebRequest.Create(_uri) as HttpWebRequest;
-			_context = NetTestContext.GetContext();
+			_context = WebTestContext.GetContext();
 		}
 
 		#endregion

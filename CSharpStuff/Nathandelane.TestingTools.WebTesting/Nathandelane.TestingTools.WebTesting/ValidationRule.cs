@@ -12,7 +12,7 @@ namespace Nathandelane.TestingTools.WebTesting
 	{
 		#region Fields
 		
-		protected NetTestContext _context;
+		protected WebTestContext _context;
 		protected WebTestOutcome _outcome;
 		protected string _message;
 
@@ -113,7 +113,7 @@ namespace Nathandelane.TestingTools.WebTesting
 			_outcome = WebTestOutcome.NotExecuted;
 
 			HtmlAgilityPack.HtmlDocument document = new HtmlAgilityPack.HtmlDocument();
-			document.LoadHtml(((NetTestRequest)e.WebTestItem).HttpResponseBody);
+			document.LoadHtml(((WebTestRequest)e.WebTestItem).HttpResponseBody);
 			document.OptionOutputAsXml = true;
 
 			using (StringWriter writer = new StringWriter())

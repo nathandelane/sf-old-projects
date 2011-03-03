@@ -9,13 +9,13 @@ namespace Nathandelane.TestingTools.WebTesting.Events
 	{
 		#region Fields
 
-		private NetTestItem _webTestItem;
+		private WebTestItem _webTestItem;
 
 		#endregion
 
 		#region Properties
 
-		public NetTestItem WebTestItem
+		public WebTestItem WebTestItem
 		{
 			get { return _webTestItem; }
 		}
@@ -24,7 +24,7 @@ namespace Nathandelane.TestingTools.WebTesting.Events
 
 		#region Constructors
 
-		public ExecutionEventArgs(NetTestItem webTestItem)
+		public ExecutionEventArgs(WebTestItem webTestItem)
 		{
 			_webTestItem = webTestItem;
 		}

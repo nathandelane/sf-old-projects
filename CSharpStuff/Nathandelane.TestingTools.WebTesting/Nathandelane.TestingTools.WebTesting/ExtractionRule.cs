@@ -14,7 +14,7 @@ namespace Nathandelane.TestingTools.WebTesting
 	{
 		#region Fields
 
-		protected NetTestContext _context;
+		protected WebTestContext _context;
 
 		private XDocument _document;
 		private string _ruleDescription;
@@ -69,7 +69,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// </summary>
 		public ExtractionRule()
 		{
-			_context = NetTestContext.GetContext();
+			_context = WebTestContext.GetContext();
 			_required = false;
 		}
 
@@ -80,7 +80,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// <param name="description"></param>
 		public ExtractionRule(string name, string description)
 		{
-			_context = NetTestContext.GetContext();
+			_context = WebTestContext.GetContext();
 			_ruleName = name;
 			_ruleDescription = description;
 			_required = false;
@@ -107,7 +107,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		public virtual void Extract(Object sender, ExtractionEventArgs e)
 		{
 			HtmlAgilityPack.HtmlDocument document = new HtmlAgilityPack.HtmlDocument();
-			document.LoadHtml(((NetTestRequest)e.WebTestItem).HttpResponseBody);
+			document.LoadHtml(((WebTestRequest)e.WebTestItem).HttpResponseBody);
 			document.OptionOutputAsXml = true;
 
 			using (StringWriter writer = new StringWriter())

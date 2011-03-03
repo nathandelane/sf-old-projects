@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Nathandelane.TestingTools.WebTesting
 {
-	public class NetTestContext
+	public class WebTestContext
 	{
 		#region Fields
 
-		private static NetTestContext __context;
+		private static WebTestContext __context;
 
 		private IDictionary<string, object> _contextItems;
 
@@ -50,7 +50,7 @@ namespace Nathandelane.TestingTools.WebTesting
 
 		#region Constructors
 
-		private NetTestContext()
+		private WebTestContext()
 		{
 			_contextItems = new Dictionary<string, object>();
 		}
@@ -63,14 +63,14 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// Gets a reference to the instance of the context.
 		/// </summary>
 		/// <returns></returns>
-		public static NetTestContext GetContext()
+		public static WebTestContext GetContext()
 		{
-			if (NetTestContext.__context == null)
+			if (WebTestContext.__context == null)
 			{
-				NetTestContext.__context = new NetTestContext();
+				WebTestContext.__context = new WebTestContext();
 			}
 
-			return NetTestContext.__context;
+			return WebTestContext.__context;
 		}
 
 		/// <summary>
@@ -78,7 +78,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// </summary>
 		public void Reset()
 		{
-			NetTestContext.__context = new NetTestContext();
+			WebTestContext.__context = new WebTestContext();
 		}
 
 		/// <summary>

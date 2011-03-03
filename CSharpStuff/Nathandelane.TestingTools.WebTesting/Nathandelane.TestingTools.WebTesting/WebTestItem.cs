@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Nathandelane.TestingTools.WebTesting
 {
-	public abstract class NetTestItem : ICloneable
+	public abstract class WebTestItem : ICloneable
 	{
 		#region Fields
 
@@ -20,16 +20,16 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// </summary>
 		public int ItemId
 		{
-			get { return NetTestItem._itemId; }
+			get { return WebTestItem._itemId; }
 		}
 
 		#endregion
 
 		#region Constructor
 
-		public NetTestItem()
+		public WebTestItem()
 		{
-			NetTestItem._itemId++;
+			WebTestItem._itemId++;
 		}
 
 		#endregion
