@@ -93,7 +93,8 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// Creates an instance of ValidationRule.
 		/// </summary>
 		public ValidationRule()
-		{			
+		{
+			_context = WebTestContext.GetContext();
 		}
 
 		/// <summary>
@@ -105,6 +106,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		{
 			_ruleName = name;
 			_ruleDescription = description;
+			_context = WebTestContext.GetContext();
 		}
 
 		#endregion

@@ -25,9 +25,9 @@ namespace Nathandelane.TestingTools.WebTesting
 {
 	public enum WebTestOutcome
 	{
+		NotExecuted,
 		Passed,
 		Failed,
-		Error,
-		NotExecuted
+		Error
 	}
 }

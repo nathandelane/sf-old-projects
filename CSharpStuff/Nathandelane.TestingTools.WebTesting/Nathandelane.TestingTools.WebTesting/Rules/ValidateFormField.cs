@@ -69,14 +69,15 @@ namespace Nathandelane.TestingTools.WebTesting.Rules
 			{
 				base.Validate(sender, e);
 
-				IEnumerable<XElement> elements = base.Document.Document.Descendants();
-				IEnumerable<XElement> formElements = from el in elements where el.Name.LocalName.Equals("input") && el.Attribute(XName.Get("name")).Value.Equals(_name) select el;
+				IEnumerable<XElement> formElements = base.Document.Document.Descendants(XName.Get("input", "http://www.w3.org/1999/xhtml"));
 
 				foreach (XElement nextElement in formElements)
 				{
 					if (nextElement.Attribute(XName.Get("value")) != null && nextElement.Attribute(XName.Get("value")).Value.Equals(_expectedValue))
 					{
 						_context.Outcome = WebTestOutcome.Passed;
+
+						break;
 					}
 				}
 

@@ -45,6 +45,16 @@ namespace Nathandelane.TestingTools.WebTesting.Rules
 
 		#endregion
 
+		//#region Constructors
+
+		//public ValidateElementExists()
+		//    : base()
+		//{
+		//    // Do Nothing.
+		//}
+
+		//#endregion
+
 		#region Methods
 
 		public override void Validate(object sender, Events.ValidationEventArgs e)
@@ -65,11 +75,17 @@ namespace Nathandelane.TestingTools.WebTesting.Rules
 
 				foreach (XElement nextElement in formElements)
 				{
+					IList<WebTestOutcome> attributeResults = new List<WebTestOutcome>();
+
 					foreach (XAttribute nextAttribute in _element.Attributes())
 					{
 						if (nextElement.Attribute(nextAttribute.Name) == null || !nextElement.Attribute(nextAttribute.Name).Value.Equals(nextAttribute.Value))
 						{
-							_context.Outcome = WebTestOutcome.Failed;
+							attributeResults.Add(WebTestOutcome.Failed);
+						}
+						else
+						{
+							attributeResults.Add(WebTestOutcome.Passed);
 						}
 					}
 				}

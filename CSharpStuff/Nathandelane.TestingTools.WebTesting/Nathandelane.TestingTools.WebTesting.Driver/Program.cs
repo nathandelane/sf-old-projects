@@ -51,6 +51,16 @@ namespace Nathandelane.TestingTools.WebTesting.Driver
 						if (nextType.BaseType == typeof(WebTest))
 						{
 							WebTest nextWebTest = Activator.CreateInstance(nextType) as WebTest;
+
+							if (String.IsNullOrEmpty(nextWebTest.Name))
+							{
+								Console.Write("{0}: ", nextType);
+							}
+							else
+							{
+								Console.Write("{0}: ", nextWebTest.Name);
+							}
+
 							IEnumerator<WebTestRequest> webTestRequests = nextWebTest.GetRequestEnumerator();
 							
 							while (webTestRequests.MoveNext())
@@ -58,6 +68,8 @@ namespace Nathandelane.TestingTools.WebTesting.Driver
 								WebTestRequest nextRequest = webTestRequests.Current;
 								nextRequest.Execute();
 							}
+
+							Console.WriteLine("{0}", nextWebTest.Outcome);
 						}
 					}
 				}

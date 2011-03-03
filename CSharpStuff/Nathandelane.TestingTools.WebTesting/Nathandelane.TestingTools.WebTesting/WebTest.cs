@@ -28,8 +28,8 @@ namespace Nathandelane.TestingTools.WebTesting
 		#region Fields
 
 		private WebTestContext _context;
-		private WebTestOutcome _outcome;
 		private Guid _guid;
+		private string _name;
 
 		#endregion
 
@@ -49,8 +49,8 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// </summary>
 		public WebTestOutcome Outcome
 		{
-			get { return _outcome; }
-			set { _outcome = value; }
+			get { return _context.Outcome; }
+			set { _context.Outcome = value; }
 		}
 
 		/// <summary>
@@ -60,6 +60,15 @@ namespace Nathandelane.TestingTools.WebTesting
 		{
 			get { return _guid; }
 			set { _guid = value; }
+		}
+
+		/// <summary>
+		/// Gets or sets the name of this test.
+		/// </summary>
+		public string Name
+		{
+			get { return _name; }
+			set { _name = value; }
 		}
 
 		#endregion
@@ -72,7 +81,6 @@ namespace Nathandelane.TestingTools.WebTesting
 		public WebTest()
 		{
 			_context = WebTestContext.GetContext();
-			_outcome = WebTestOutcome.NotExecuted;
 			_guid = Guid.NewGuid();
 		}
 
