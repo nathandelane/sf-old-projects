@@ -30,6 +30,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Nathandelane.TestingTools.WebTesting.key.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\..\Lib\HtmlAgilityPack.dll</HintPath>
@@ -59,6 +65,7 @@
     <Compile Include="WebTestOutcome.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Nathandelane.TestingTools.WebTesting.key.pfx" />
     <None Include="WebTestManifest.xsd">
       <SubType>Designer</SubType>
     </None>
