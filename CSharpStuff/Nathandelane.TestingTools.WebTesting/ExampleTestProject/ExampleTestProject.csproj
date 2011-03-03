@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6A73154B-6D76-47C0-AB02-967B49E696ED}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{5B9D3C17-69E8-4F0D-BA61-CBB83778A84A}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Nathandelane.TestingTools.WebTesting.Driver</RootNamespace>
-    <AssemblyName>WebTestDriver</AssemblyName>
+    <RootNamespace>ExampleTestProject</RootNamespace>
+    <AssemblyName>ExampleTestProject</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -33,9 +33,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,13 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Nathandelane.TestingTools.WebTesting\Nathandelane.TestingTools.WebTesting.csproj">
-      <Project>{0A273998-1A43-4074-AF4C-1CA200E3EEED}</Project>
-      <Name>Nathandelane.TestingTools.WebTesting</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
