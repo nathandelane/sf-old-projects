@@ -11,6 +11,7 @@ namespace Nathandelane.TestingTools.WebTesting
 
 		private WebTestContext _context;
 		private WebTestOutcome _outcome;
+		private Guid _guid;
 
 		#endregion
 
@@ -34,6 +35,15 @@ namespace Nathandelane.TestingTools.WebTesting
 			set { _outcome = value; }
 		}
 
+		/// <summary>
+		/// Gets or sets the GUID for this test.
+		/// </summary>
+		public Guid Guid
+		{
+			get { return _guid; }
+			set { _guid = value; }
+		}
+
 		#endregion
 
 		#region Constructors
@@ -45,6 +55,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		{
 			_context = WebTestContext.GetContext();
 			_outcome = WebTestOutcome.NotExecuted;
+			_guid = Guid.NewGuid();
 		}
 
 		#endregion
