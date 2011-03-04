@@ -51,6 +51,7 @@ namespace Nathandelane.TestingTools.WebTesting.Driver
 						if (nextType.BaseType == typeof(WebTest))
 						{
 							WebTest nextWebTest = Activator.CreateInstance(nextType) as WebTest;
+							IDictionary<string, WebTestOutcome> dependentRequestOutcomes = new Dictionary<string, WebTestOutcome>();
 
 							if (String.IsNullOrEmpty(nextWebTest.Name))
 							{
@@ -73,9 +74,31 @@ namespace Nathandelane.TestingTools.WebTesting.Driver
 								}
 
 								nextRequest.Execute();
+
+								dependentRequestOutcomes.Add(nextRequest.Uri.ToString(), nextRequest.Outcome);
 							}
 
-							Console.WriteLine("{0}", nextWebTest.Outcome);
+							if (dependentRequestOutcomes.Values.Contains(WebTestOutcome.Failed))
+							{
+								Console.WriteLine("{0}", WebTestOutcome.Failed);
+							}
+							else if (dependentRequestOutcomes.Values.Contains(WebTestOutcome.Error))
+							{
+								Console.WriteLine("{0}", WebTestOutcome.Error);
+							}
+							else if (dependentRequestOutcomes.Values.Contains(WebTestOutcome.NotExecuted))
+							{
+								Console.WriteLine("{0}", WebTestOutcome.NotExecuted);
+							}
+							else
+							{
+								Console.WriteLine("{0}", WebTestOutcome.Passed);
+							}
+
+							foreach (string url in dependentRequestOutcomes.Keys)
+							{
+								Console.WriteLine("+ {0}: {1}", url, dependentRequestOutcomes[url]);
+							}
 						}
 					}
 				}

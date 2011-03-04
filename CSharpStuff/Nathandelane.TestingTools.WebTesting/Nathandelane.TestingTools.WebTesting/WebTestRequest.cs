@@ -45,13 +45,24 @@ namespace Nathandelane.TestingTools.WebTesting
 		private HttpWebResponse _webResponse;
 		private Uri _uri;
 		private string _httpResponseBody;
-		private string _responseUrl;
 		private WebTestContext _context;
 		private int _thinkTime;
 
 		#endregion
 
 		#region Properties
+
+		/// <summary>
+		/// Gets or sets this request's url.
+		/// </summary>
+		public Uri Uri
+		{
+			get { return _webRequest.RequestUri; }
+			set
+			{
+				HttpWebRequest newRequest = HttpWebRequest.Create(value) as HttpWebRequest;
+			}
+		}
 
 		/// <summary>
 		/// Gets the HTTP response body.
@@ -74,7 +85,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// </summary>
 		public string ResponseUrl
 		{
-			get { return _responseUrl; }
+			get { return _webResponse.ResponseUri.ToString(); }
 		}
 
 		/// <summary>
@@ -239,7 +250,6 @@ namespace Nathandelane.TestingTools.WebTesting
 				_httpResponseBody = reader.ReadToEnd();
 			}
 
-			_responseUrl = _webResponse.ResponseUri.ToString();
 			_context.Cookies = _webResponse.Cookies;
 
 			OnValidate(new ValidationEventArgs(this));
