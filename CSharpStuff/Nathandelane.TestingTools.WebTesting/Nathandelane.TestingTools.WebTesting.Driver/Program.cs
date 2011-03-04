@@ -66,6 +66,12 @@ namespace Nathandelane.TestingTools.WebTesting.Driver
 							while (webTestRequests.MoveNext())
 							{
 								WebTestRequest nextRequest = webTestRequests.Current;
+
+								if (nextWebTest.PreAtuhenticate)
+								{
+									nextRequest.PreAuthenticate = true;
+								}
+
 								nextRequest.Execute();
 							}
 

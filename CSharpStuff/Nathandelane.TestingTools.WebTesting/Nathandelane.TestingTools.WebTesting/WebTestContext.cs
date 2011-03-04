@@ -31,6 +31,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		private static WebTestContext __context;
 
 		private IDictionary<string, object> _contextItems;
+		private CookieCollection _cookies;
 
 		#endregion
 
@@ -68,7 +69,11 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// <summary>
 		/// Gets or sets the cookies to use for the next request.
 		/// </summary>
-		public CookieCollection Cookies { get; set; }
+		public CookieCollection Cookies
+		{
+			get { return _cookies; }
+			set { _cookies = value; }
+		}
 
 		/// <summary>
 		/// Gets or sets the outcome of the test.
@@ -82,6 +87,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		private WebTestContext()
 		{
 			_contextItems = new Dictionary<string, object>();
+			_cookies = new CookieCollection();
 		}
 
 		#endregion

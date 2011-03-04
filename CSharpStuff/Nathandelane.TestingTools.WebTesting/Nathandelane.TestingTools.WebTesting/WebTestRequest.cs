@@ -160,11 +160,25 @@ namespace Nathandelane.TestingTools.WebTesting
 				
 				_webRequest.ContentLength = data.Length;
 
+				if (!_webRequest.Method.Equals("post", StringComparison.InvariantCultureIgnoreCase))
+				{
+					_webRequest.Method = "post";
+				}
+
 				using (Stream postBodyStream = _webRequest.GetRequestStream())
 				{
 					postBodyStream.Write(data, 0, data.Length);
 				}
 			}
+		}
+
+		/// <summary>
+		/// Gets or sets whether to pre-authenticate this request.
+		/// </summary>
+		public bool PreAuthenticate
+		{
+			get { return _webRequest.PreAuthenticate; }
+			set { _webRequest.PreAuthenticate = value; }
 		}
 
 		#endregion

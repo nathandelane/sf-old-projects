@@ -2,5 +2,6 @@
 <testList>
 	<assembly name="ExampleTestProject">
 		<test name="OreillyHomepage" />
+		<test name="PhyleBoxLogin" />
 	</assembly>
 </testList>

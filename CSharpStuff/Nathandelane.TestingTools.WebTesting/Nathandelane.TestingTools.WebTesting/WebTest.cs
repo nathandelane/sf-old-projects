@@ -30,6 +30,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		private WebTestContext _context;
 		private Guid _guid;
 		private string _name;
+		private bool _preAuthenticate;
 
 		#endregion
 
@@ -69,6 +70,15 @@ namespace Nathandelane.TestingTools.WebTesting
 		{
 			get { return _name; }
 			set { _name = value; }
+		}
+
+		/// <summary>
+		/// Gets or sets whether to pre-authenticate every request.
+		/// </summary>
+		public bool PreAtuhenticate
+		{
+			get { return _preAuthenticate; }
+			set { _preAuthenticate = value; }
 		}
 
 		#endregion
