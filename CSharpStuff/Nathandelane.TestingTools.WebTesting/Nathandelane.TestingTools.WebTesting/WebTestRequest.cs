@@ -23,6 +23,7 @@ using System.Text;
 using System.Net;
 using Nathandelane.TestingTools.WebTesting.Events;
 using System.IO;
+using System.Threading;
 
 namespace Nathandelane.TestingTools.WebTesting
 {
@@ -46,7 +47,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		private string _httpResponseBody;
 		private string _responseUrl;
 		private WebTestContext _context;
-		private WebTestOutcome _outcome;
+		private int _thinkTime;
 
 		#endregion
 
@@ -108,7 +109,43 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// </summary>
 		public WebTestOutcome Outcome
 		{
-			get { return _outcome; }
+			get { return _context.Outcome; }
+		}
+
+		/// <summary>
+		/// Gets or sets the method of this request.
+		/// </summary>
+		public string Method
+		{
+			get { return _webRequest.Method; }
+			set { _webRequest.Method = value; }
+		}
+
+		/// <summary>
+		/// Gets or sets the timeout for this request.
+		/// </summary>
+		public int Timeout
+		{
+			get { return _webRequest.Timeout; }
+			set { _webRequest.Timeout = value; }
+		}
+
+		/// <summary>
+		/// Gets or sets the headers for this request.
+		/// </summary>
+		public WebHeaderCollection Headers
+		{
+			get { return _webRequest.Headers; }
+			set { _webRequest.Headers = value; }
+		}
+
+		/// <summary>
+		/// Gets or sets the amount of time to wait after the request has been made.
+		/// </summary>
+		public int ThinkTime
+		{
+			get { return _thinkTime; }
+			set { _thinkTime = value; }
 		}
 
 		#endregion
@@ -153,6 +190,8 @@ namespace Nathandelane.TestingTools.WebTesting
 
 			_webResponse = _webRequest.GetResponse() as HttpWebResponse;
 
+			Thread.Sleep(_thinkTime);
+
 			OnPostExecute(new ExecutionEventArgs(this));
 
 			using (StreamReader reader = new StreamReader(_webResponse.GetResponseStream()))
@@ -165,8 +204,6 @@ namespace Nathandelane.TestingTools.WebTesting
 
 			OnValidate(new ValidationEventArgs(this));
 			OnExtract(new ExtractionEventArgs(this));
-
-			_outcome = _context.Outcome;
 		}
 
 		/// <summary>
@@ -223,8 +260,13 @@ namespace Nathandelane.TestingTools.WebTesting
 		private void InitializeWebRequest()
 		{
 			_webRequest = WebRequest.Create(_uri) as HttpWebRequest;
+			_webRequest.KeepAlive = true;
+			_webRequest.Method = "GET";
+			_webRequest.Timeout = 60000;
+			_webRequest.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:2.0b12) Gecko/20100101 Firefox/4.0b12";
+			_thinkTime = 0;
 			_context = WebTestContext.GetContext();
-			_outcome = WebTestOutcome.NotExecuted;
+			_context.Outcome = WebTestOutcome.NotExecuted;
 		}
 
 		#endregion
