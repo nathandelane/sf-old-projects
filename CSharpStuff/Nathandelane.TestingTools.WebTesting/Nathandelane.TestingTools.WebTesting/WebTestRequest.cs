@@ -89,7 +89,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		/// <summary>
 		/// Gets or sets a value that indicates whether the request should follow redirection responses.
 		/// </summary>
-		public bool AutomaticallyRedirect
+		public bool FollowRedirects
 		{
 			get { return _webRequest.AllowAutoRedirect; }
 			set { _webRequest.AllowAutoRedirect = value; }
@@ -244,6 +244,11 @@ namespace Nathandelane.TestingTools.WebTesting
 
 			OnValidate(new ValidationEventArgs(this));
 			OnExtract(new ExtractionEventArgs(this));
+
+			if (_context.Outcome == WebTestOutcome.NotExecuted)
+			{
+				_context.Outcome = WebTestOutcome.Passed;
+			}
 		}
 
 		/// <summary>
@@ -300,6 +305,7 @@ namespace Nathandelane.TestingTools.WebTesting
 		private void InitializeWebRequest()
 		{
 			_webRequest = WebRequest.Create(_uri) as HttpWebRequest;
+			_webRequest.AllowAutoRedirect = true;
 			_webRequest.KeepAlive = true;
 			_webRequest.Method = "GET";
 			_webRequest.Timeout = 60000;

@@ -18,6 +18,9 @@ namespace ExampleTestProject
 			request1.HttpRequestBody = "userName=nathanlane&amp;password=i78y6zbgfhla";
 
 			yield return request1;
+
+			WebTestRequest request2 = new WebTestRequest("http://phyer.net/phyle-box/index.php");
+			yield return request2;
 		}
 	}
 }
