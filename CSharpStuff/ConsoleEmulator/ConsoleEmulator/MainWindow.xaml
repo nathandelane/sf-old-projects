@@ -1,0 +1,21 @@
+﻿<Window x:Class="ConsoleEmulator.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Title="Console Emulator" Height="350" Width="525">
+	<Grid>
+		<TabControl Grid.Row="0" Name="_tabControl">
+			<TabItem Header="Home">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition></RowDefinition>
+						<RowDefinition></RowDefinition>
+						<RowDefinition></RowDefinition>
+					</Grid.RowDefinitions>
+					<Button Grid.Row="0" Name="_newCmdButton" HorizontalAlignment="Left" VerticalAlignment="Top" Click="CreateNewCommandTab">New Command Console</Button>
+					<Button Grid.Row="1" Name="_newCygWinButton" HorizontalAlignment="Left" VerticalAlignment="Top" Click="CreateNewCygWinTab">New CygWin Console</Button>
+					<Button Grid.Row="2" Name="_newPowerShellButton" HorizontalAlignment="Left" VerticalAlignment="Top" Click="CreateNewPowerShellTab">New Powershell Console</Button>
+				</Grid>
+			</TabItem>
+		</TabControl>
+	</Grid>
+</Window>
