@@ -87,15 +87,6 @@ namespace Nathandelane.TestingTools.WebTesting
 		}
 
 		/// <summary>
-		/// Gets or sets the cookies associated with the request.
-		/// </summary>
-		public CookieContainer CookieContainer
-		{
-			get { return _webRequest.CookieContainer; }
-			set { _webRequest.CookieContainer = value; }
-		}
-
-		/// <summary>
 		/// Gets or sets a value that indicates whether the request should follow redirection responses.
 		/// </summary>
 		public bool AutomaticallyRedirect
@@ -148,6 +139,34 @@ namespace Nathandelane.TestingTools.WebTesting
 			set { _thinkTime = value; }
 		}
 
+		/// <summary>
+		/// Gets or sets the content-type header for this request.
+		/// </summary>
+		public string ContentType
+		{
+			get { return _webRequest.ContentType; }
+			set { _webRequest.ContentType = value; }
+		}
+
+		/// <summary>
+		/// Sets the request body for this request, for example for a POST reequest.
+		/// </summary>
+		public string HttpRequestBody
+		{
+			set
+			{
+				UTF8Encoding encoding = new UTF8Encoding();
+				byte[] data = encoding.GetBytes(value);
+				
+				_webRequest.ContentLength = data.Length;
+
+				using (Stream postBodyStream = _webRequest.GetRequestStream())
+				{
+					postBodyStream.Write(data, 0, data.Length);
+				}
+			}
+		}
+
 		#endregion
 
 		#region Constructors
@@ -188,6 +207,13 @@ namespace Nathandelane.TestingTools.WebTesting
 		{
 			OnPreExecute(new ExecutionEventArgs(this));
 
+			_webRequest.CookieContainer = new CookieContainer();
+
+			foreach (Cookie cookie in _context.Cookies)
+			{
+				_webRequest.CookieContainer.Add(cookie);
+			}
+
 			_webResponse = _webRequest.GetResponse() as HttpWebResponse;
 
 			Thread.Sleep(_thinkTime);
@@ -200,7 +226,7 @@ namespace Nathandelane.TestingTools.WebTesting
 			}
 
 			_responseUrl = _webResponse.ResponseUri.ToString();
-			_context["cookies"] = _webResponse.Cookies;
+			_context.Cookies = _webResponse.Cookies;
 
 			OnValidate(new ValidationEventArgs(this));
 			OnExtract(new ExtractionEventArgs(this));

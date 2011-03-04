@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Net;
 
 namespace Nathandelane.TestingTools.WebTesting
 {
@@ -63,6 +64,11 @@ namespace Nathandelane.TestingTools.WebTesting
 		{
 			get { return _contextItems.Count; }
 		}
+
+		/// <summary>
+		/// Gets or sets the cookies to use for the next request.
+		/// </summary>
+		public CookieCollection Cookies { get; set; }
 
 		/// <summary>
 		/// Gets or sets the outcome of the test.
