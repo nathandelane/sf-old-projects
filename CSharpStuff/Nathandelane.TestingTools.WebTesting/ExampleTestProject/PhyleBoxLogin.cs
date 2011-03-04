@@ -10,6 +10,11 @@ namespace ExampleTestProject
 {
 	public class PhyleBoxLogin : WebTest
 	{
+		public PhyleBoxLogin()
+		{
+			base.PreAtuhenticate = true;
+		}
+
 		public override IEnumerator<WebTestRequest> GetRequestEnumerator()
 		{
 			ValidateResponseUrl rule1 = new ValidateResponseUrl();
