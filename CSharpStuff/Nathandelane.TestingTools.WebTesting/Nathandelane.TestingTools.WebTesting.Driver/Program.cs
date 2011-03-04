@@ -109,23 +109,36 @@ namespace Nathandelane.TestingTools.WebTesting.Driver
 
 		public static void Main(string[] args)
 		{
+			FileInfo testListFileInfo;
+
 			if (args.Length == 0)
 			{
-				Console.WriteLine("Usage: WebTestDriver <TestListFileName>");
-			}
-			else
-			{
-				FileInfo testListFileInfo = new FileInfo(args[0]);
+				string assumedPathOfTestList = Path.Combine(Environment.CurrentDirectory, "TestList.xml");
 
-				if (testListFileInfo.Exists)
+				if (!File.Exists(assumedPathOfTestList))
 				{
-					Program program = new Program(testListFileInfo);
-					program.Run();
+					Console.WriteLine("Usage: WebTestDriver <TestListFileName>");
+
+					return;
 				}
 				else
 				{
-					Console.WriteLine("Could not load test list file {0}.", testListFileInfo.Name);
+					testListFileInfo = new FileInfo(assumedPathOfTestList);
 				}
+			}
+			else
+			{
+				testListFileInfo = new FileInfo(args[0]);
+			}
+
+			if (testListFileInfo.Exists)
+			{
+				Program program = new Program(testListFileInfo);
+				program.Run();
+			}
+			else
+			{
+				Console.WriteLine("Could not load test list file {0}.", testListFileInfo.Name);
 			}
 		}
 	}
