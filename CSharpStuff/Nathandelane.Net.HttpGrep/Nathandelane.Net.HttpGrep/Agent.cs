@@ -118,7 +118,11 @@ namespace Nathandelane.Net.HttpGrep
 		{
 			if (_context.ArgumentIsDefined(Context.Data))
 			{
-				Console.WriteLine("{0}Data:", Environment.NewLine);
+				if (!_context.ArgumentIsDefined(Context.NoHeaders))
+				{
+					Console.WriteLine("Data:");
+				}
+
 				Console.WriteLine(data);
 			}
 
@@ -126,7 +130,10 @@ namespace Nathandelane.Net.HttpGrep
 			{
 				try
 				{
-					Console.WriteLine("{0}Find:", Environment.NewLine);
+					if (!_context.ArgumentIsDefined(Context.NoHeaders))
+					{
+						Console.WriteLine("Find:");
+					}
 
 					HtmlNodeCollection selectedNodes = _document.DocumentNode.SelectNodes(_context[Context.Find]);
 
@@ -160,7 +167,11 @@ namespace Nathandelane.Net.HttpGrep
 			{
 				string[] headers = _request.Headers.AllKeys;
 
-				Console.WriteLine("{0}Request Header:", Environment.NewLine);
+				if (!_context.ArgumentIsDefined(Context.NoHeaders))
+				{
+
+					Console.WriteLine("Request Headers:");
+				}
 
 				foreach (string nextHeader in headers)
 				{
@@ -172,7 +183,11 @@ namespace Nathandelane.Net.HttpGrep
 			{
 				string[] headers = _response.Headers.AllKeys;
 
-				Console.WriteLine("{0}Response Headers:", Environment.NewLine);
+				if (!_context.ArgumentIsDefined(Context.NoHeaders))
+				{
+					Console.WriteLine("Response Headers:");
+				}
+
 				Console.WriteLine("{0,-40}{1}", "Response URL", _response.ResponseUri);
 
 				foreach (string nextHeader in headers)

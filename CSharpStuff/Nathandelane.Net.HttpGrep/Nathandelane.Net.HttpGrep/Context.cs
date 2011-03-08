@@ -24,6 +24,7 @@ namespace Nathandelane.Net.HttpGrep
 		public const string Proxy = "Proxy";
 		public const string IgnoreBadCerts = "Ignorebadcerts";
 		public const string Method = "Method";
+		public const string NoHeaders = "Noheaders";
 
 		public static string GeneralHelp = "Usage: HttpGrep <url> [<options>]" + Environment.NewLine +
 			"Options (specifying no options returns the response headers):" + Environment.NewLine +
@@ -36,7 +37,8 @@ namespace Nathandelane.Net.HttpGrep
 			"-Post                    Sets the request mode to post and puts HTTP Grep into interactive mode to set the post body." + Environment.NewLine +
 			"-Proxy=<url>             Sets the HTTP proxy for use with this session." + Environment.NewLine +
 			"-IgnoreBadCerts          Ignores bad SSL certificates when they are encountered." + Environment.NewLine +
-			"-Method=<method>         Method may be POST, GET, or HEAD. GET is the default." + Environment.NewLine + Environment.NewLine;
+			"-Method=<method>         Method may be POST, GET, or HEAD. GET is the default." + Environment.NewLine +
+			"-NoHeaders               Output has no headers." + Environment.NewLine + Environment.NewLine;
 
 		private static Context __instance;
 		private static Dictionary<string, Regex> __allowedArguments = new Dictionary<string, Regex>()
@@ -50,7 +52,8 @@ namespace Nathandelane.Net.HttpGrep
 			{ Context.Post, null },
 			{ Context.Proxy, new Regex("[\\w\\d:#@%/;$()~_?\\+-=\\\\.&]*", RegexOptions.CultureInvariant | RegexOptions.Compiled) },
 			{ Context.IgnoreBadCerts, null },
-			{ Context.Method, new Regex("^(get|post|head){1}$") }
+			{ Context.Method, new Regex("^(get|post|head){1}$") },
+			{ Context.NoHeaders, null }
 		};
 
 		private Dictionary<string, string> _actualArguments;
