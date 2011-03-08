@@ -173,6 +173,7 @@ namespace Nathandelane.Net.HttpGrep
 				string[] headers = _response.Headers.AllKeys;
 
 				Console.WriteLine("{0}Response Headers:", Environment.NewLine);
+				Console.WriteLine("{0,-40}{1}", "Response URL", _response.ResponseUri);
 
 				foreach (string nextHeader in headers)
 				{
