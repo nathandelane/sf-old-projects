@@ -32,6 +32,12 @@ namespace Nathandelane.Net.HttpGrep
 			if (Uri.TryCreate(_context[Context.Url], UriKind.Absolute, out requestUri))
 			{
 				_request = (HttpWebRequest)WebRequest.Create(requestUri);
+
+				if (_context.ArgumentIsDefined(Context.Method))
+				{
+					_request.Method = _context[Context.Method].ToString();
+				}
+
 				_request.Accept = "application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
 				_request.UserAgent = "HttpGrep";
 
