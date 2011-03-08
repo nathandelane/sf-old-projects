@@ -139,27 +139,70 @@ namespace Nathandelane.Net.HttpGrep
 
 					if (selectedNodes != null && selectedNodes.Count > 0)
 					{
-						foreach (HtmlNode nextNode in selectedNodes)
+						if (_context.ArgumentIsDefined(Context.PsHashes))
 						{
-							StringBuilder nodeValue = new StringBuilder();
-							nodeValue.Append(nextNode.Name);
-							nodeValue.Append(" [");
+							int outerCounter = 0;
 
-							HtmlAttributeCollection attributes = nextNode.Attributes;
-							foreach (HtmlAttribute nextAttribute in attributes)
+							foreach (HtmlNode nextNode in selectedNodes)
 							{
-								nodeValue.Append(String.Concat("[", nextAttribute.Name, "='", nextAttribute.Value, "']"));
+								if (outerCounter > 0)
+								{
+									Console.WriteLine(",");
+								}
+
+								StringBuilder nodeValue = new StringBuilder();
+								nodeValue.Append(String.Format("@{{\"tagname\"=\"{0}\"", nextNode.Name));
+
+								HtmlAttributeCollection attributes = nextNode.Attributes;
+								int counter = 0;
+
+								foreach (HtmlAttribute nextAttribute in attributes)
+								{
+									if (counter >= 0)
+									{
+										nodeValue.Append(";");
+									}
+
+									string nextAttributeEntry = String.Format("\"{0}\"=\"{1}\"", nextAttribute.Name, nextAttribute.Value);
+
+									nodeValue.Append(nextAttributeEntry);
+
+									counter++;
+								}
+
+								nodeValue.Append("}");
+
+								Console.Write("{0}", nodeValue);
+
+								outerCounter++;
 							}
 
-							nodeValue.Append("]");
+							Console.WriteLine("");
+						}
+						else
+						{
+							foreach (HtmlNode nextNode in selectedNodes)
+							{
+								StringBuilder nodeValue = new StringBuilder();
+								nodeValue.Append(nextNode.Name);
+								nodeValue.Append(" [");
 
-							Console.WriteLine("{0}", nodeValue);
+								HtmlAttributeCollection attributes = nextNode.Attributes;
+								foreach (HtmlAttribute nextAttribute in attributes)
+								{
+									nodeValue.Append(String.Concat("[", nextAttribute.Name, "='", nextAttribute.Value, "']"));
+								}
+
+								nodeValue.Append("]");
+
+								Console.WriteLine("{0}", nodeValue);
+							}
 						}
 					}
 				}
 				catch (Exception e)
 				{
-					Console.WriteLine("Excaption caught {0}. {1}", e.GetType(), e.Message);
+					Console.WriteLine("Exception caught {0}. {1}", e.GetType(), e.Message);
 				}
 			}
 
