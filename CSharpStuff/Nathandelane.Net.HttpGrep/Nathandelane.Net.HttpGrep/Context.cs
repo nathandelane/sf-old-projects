@@ -59,7 +59,7 @@ namespace Nathandelane.Net.HttpGrep
 			{ Context.Method, new Regex("^(get|post|head){1}$") },
 			{ Context.NoHeaders, null },
 			{ Context.PsHashes, null },
-			{ Context.PostContentType, new Regex("^\\w+/(\\w)(([-]){0,1}|\\w)*$") }
+			{ Context.PostContentType, new Regex("^\\w+/(\\w)(([-+]){0,1}|\\w)*$") }
 		};
 
 		private Dictionary<string, string> _actualArguments;
