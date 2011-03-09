@@ -26,6 +26,7 @@ namespace Nathandelane.Net.HttpGrep
 		public const string Method = "Method";
 		public const string NoHeaders = "Noheaders";
 		public const string PsHashes = "Pshashes";
+		public const string PostContentType = "Postcontenttype";
 
 		public static string GeneralHelp = "Usage: HttpGrep <url> [<options>]" + Environment.NewLine +
 			"Options (specifying no options returns the response headers):" + Environment.NewLine +
@@ -40,7 +41,8 @@ namespace Nathandelane.Net.HttpGrep
 			"-IgnoreBadCerts          Ignores bad SSL certificates when they are encountered." + Environment.NewLine +
 			"-Method=<method>         Method may be POST, GET, or HEAD. GET is the default." + Environment.NewLine +
 			"-NoHeaders               Output has no headers." + Environment.NewLine +
-			"-PsHashes                Outputs Find results as Powershell hashes." + Environment.NewLine + Environment.NewLine;
+			"-PsHashes                Outputs Find results as Powershell hashes." + Environment.NewLine +
+			"-PostContentType=<type>  Sets the content type for the post body." + Environment.NewLine + Environment.NewLine;
 
 		private static Context __instance;
 		private static Dictionary<string, Regex> __allowedArguments = new Dictionary<string, Regex>()
@@ -56,7 +58,8 @@ namespace Nathandelane.Net.HttpGrep
 			{ Context.IgnoreBadCerts, null },
 			{ Context.Method, new Regex("^(get|post|head){1}$") },
 			{ Context.NoHeaders, null },
-			{ Context.PsHashes, null }
+			{ Context.PsHashes, null },
+			{ Context.PostContentType, new Regex("^\\w+/(\\w)(([-]){0,1}|\\w)*$") }
 		};
 
 		private Dictionary<string, string> _actualArguments;

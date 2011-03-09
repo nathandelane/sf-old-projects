@@ -52,7 +52,15 @@ namespace Nathandelane.Net.HttpGrep
 
 				if (_context[Context.Post] != null)
 				{
-					_request.ContentType = "application/x-www-form-urlencoded";
+					if (!_context.ArgumentIsDefined(Context.PostContentType))
+					{
+						_request.ContentType = "application/x-www-form-urlencoded";
+					}
+					else
+					{
+						_request.ContentType = _context[Context.PostContentType];
+					}
+
 					_request.Method = "post";
 
 					using (StreamWriter postBodyWriter = new StreamWriter(_request.GetRequestStream()))
