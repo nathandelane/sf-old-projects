@@ -38,7 +38,7 @@ namespace Nathandelane.Net.HttpGrep
 					_request.Method = _context[Context.Method].ToString();
 				}
 
-				_request.Accept = "application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5";
+				_request.Accept = "application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/*,*/*;q=0.5";
 				_request.UserAgent = "HttpGrep";
 
 				if (_context.ArgumentIsDefined(Context.IgnoreBadCerts))
@@ -54,7 +54,7 @@ namespace Nathandelane.Net.HttpGrep
 				{
 					if (!_context.ArgumentIsDefined(Context.PostContentType))
 					{
-						_request.ContentType = "application/x-www-form-urlencoded";
+						_request.ContentType = "application/x-www-form-urlencoded; charset=utf-8";
 					}
 					else
 					{
