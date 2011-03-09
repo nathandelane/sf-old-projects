@@ -173,6 +173,8 @@ namespace Nathandelane.Net.HttpGrep
 									ConsoleKeyInfo userInput;
 									string inputBody = String.Empty;
 
+									Console.WriteLine("Type the text you'd like for the POST body, then press Ctrl+D:");
+
 									while ((userInput = Console.ReadKey()) != null && !(userInput.Modifiers == ConsoleModifiers.Control && userInput.Key == ConsoleKey.D))
 									{
 										inputBody += userInput.KeyChar;
