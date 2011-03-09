@@ -59,7 +59,7 @@ namespace Nathandelane.Net.HttpGrep
 			{ Context.Method, new Regex("^(get|post|head){1}$") },
 			{ Context.NoHeaders, null },
 			{ Context.PsHashes, null },
-			{ Context.PostContentType, new Regex("^\\w+/(\\w)(([-+]){0,1}|\\w)*$") }
+			{ Context.PostContentType, new Regex("^\\w+/(\\w)(([-+;=\\s]){0,1}|\\w)*$") }
 		};
 
 		private Dictionary<string, string> _actualArguments;
@@ -129,16 +129,16 @@ namespace Nathandelane.Net.HttpGrep
 				}
 				else
 				{
-					if (nextArgument.Contains('='))
+					if (nextArgument.IndexOf("=", StringComparison.InvariantCultureIgnoreCase) > -1)
 					{
-						string[] parts = nextArgument.Split(new char[] { '=' }, StringSplitOptions.RemoveEmptyEntries);
-						string argument = parts[0].Capitalize();
+						int indexOfEquals = nextArgument.IndexOf("=", StringComparison.InvariantCultureIgnoreCase);
+						string argument = nextArgument.Substring(0, indexOfEquals).Capitalize();
 
 						if (Context.__allowedArguments.ContainsKey(argument))
 						{
 							if (Context.__allowedArguments[argument] != null)
 							{
-								string value = (parts.Length > 1) ? parts[1] : null;
+								string value = nextArgument.Substring((indexOfEquals + 1));
 								Regex regex = Context.__allowedArguments[argument];
 
 								if (regex.IsMatch(value))
