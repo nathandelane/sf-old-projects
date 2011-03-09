@@ -124,12 +124,22 @@ namespace Nathandelane.Net.HttpGrep
 		/// <param name="data"></param>
 		private void DisplayResults(string data)
 		{
+			ConsoleColor currentConsoleColor = Console.ForegroundColor;
+
+			if (_context.ArgumentIsDefined(Context.Post))
+			{
+				Console.WriteLine("{0}", Environment.NewLine);
+			}
+
 			if (_context.ArgumentIsDefined(Context.Data))
 			{
 				if (!_context.ArgumentIsDefined(Context.NoHeaders))
 				{
+					Console.ForegroundColor = ConsoleColor.Yellow;
 					Console.WriteLine("Data:");
 				}
+
+				Console.ForegroundColor = ConsoleColor.Green;
 
 				Console.WriteLine(data);
 			}
@@ -140,8 +150,11 @@ namespace Nathandelane.Net.HttpGrep
 				{
 					if (!_context.ArgumentIsDefined(Context.NoHeaders))
 					{
+						Console.ForegroundColor = ConsoleColor.Yellow;
 						Console.WriteLine("Find:");
 					}
+
+					Console.ForegroundColor = ConsoleColor.Green;
 
 					HtmlNodeCollection selectedNodes = _document.DocumentNode.SelectNodes(_context[Context.Find]);
 
@@ -220,9 +233,11 @@ namespace Nathandelane.Net.HttpGrep
 
 				if (!_context.ArgumentIsDefined(Context.NoHeaders))
 				{
-
+					Console.ForegroundColor = ConsoleColor.Yellow;
 					Console.WriteLine("Request Headers:");
 				}
+
+				Console.ForegroundColor = ConsoleColor.Green;
 
 				foreach (string nextHeader in headers)
 				{
@@ -236,8 +251,11 @@ namespace Nathandelane.Net.HttpGrep
 
 				if (!_context.ArgumentIsDefined(Context.NoHeaders))
 				{
+					Console.ForegroundColor = ConsoleColor.Yellow;
 					Console.WriteLine("Response Headers:");
 				}
+
+				Console.ForegroundColor = ConsoleColor.Green;
 
 				Console.WriteLine("{0,-40}{1}", "Response URL", _response.ResponseUri);
 
@@ -246,6 +264,8 @@ namespace Nathandelane.Net.HttpGrep
 					Console.WriteLine("{0,-40}{1}", nextHeader, _response.Headers[nextHeader]);
 				}
 			}
+
+			Console.ForegroundColor = currentConsoleColor;
 		}
 
 		/// <summary>
