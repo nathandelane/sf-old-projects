@@ -71,6 +71,12 @@
     <Compile Include="AdminElementCollection.cs" />
     <Compile Include="AdminConfigurationSection.cs" />
     <Compile Include="AdminElement.cs" />
+    <Compile Include="CustomHostsConfigurationSection.cs" />
+    <Compile Include="CustomHostsElement.cs" />
+    <Compile Include="CustomHostsElementCollection.cs" />
+    <Compile Include="CustomConfigurationSection.cs" />
+    <Compile Include="CustomElement.cs" />
+    <Compile Include="CustomElementCollection.cs" />
     <Compile Include="HatConfigurationSection.cs" />
     <Compile Include="HatCollection.cs" />
     <Compile Include="HatElement.cs" />
