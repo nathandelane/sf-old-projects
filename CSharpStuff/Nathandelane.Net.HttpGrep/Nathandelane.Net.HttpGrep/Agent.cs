@@ -1,4 +1,22 @@
-﻿using HtmlAgilityPack;
+﻿/*
+ * HttpGrep - Tool for grepping the Internet
+ * Copyright (C) 2011 Nathan Lane, Nathandelane.com
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using HtmlAgilityPack;
 using ICSharpCode.SharpZipLib.GZip;
 using System;
 using System.Collections.Generic;
@@ -68,6 +86,24 @@ namespace Nathandelane.Net.HttpGrep
 						postBodyWriter.Write(_context[Context.Post]);
 					}
 				}
+				else if (_context[Context.Post] != null && "put".Equals(_context[Context.Method]))
+				{
+					if (!_context.ArgumentIsDefined(Context.PostContentType))
+					{
+						_request.ContentType = "text/plain; charset=utf-8";
+					}
+					else
+					{
+						_request.ContentType = _context[Context.PostContentType];
+					}
+
+					_request.Method = "put";
+
+					using (StreamWriter postBodyWriter = new StreamWriter(_request.GetRequestStream()))
+					{
+						postBodyWriter.Write(_context[Context.Post]);
+					}
+				}
 
 				if (_context[Context.Proxy] != null)
 				{
@@ -85,36 +121,53 @@ namespace Nathandelane.Net.HttpGrep
 					_request.Proxy = simpleWebProxy;
 				}
 
-				try
+				if (_context.ArgumentIsDefined(Context.BasicAuth))
 				{
-					_response = (HttpWebResponse)_request.GetResponse();
-					string data;
+					string credentials = _context[Context.BasicAuth];
+					int separatorIndex = credentials.IndexOf(':');
 
-					if (_response.ContentEncoding.Equals("gzip", StringComparison.InvariantCultureIgnoreCase))
+
+					if (credentials.Length >= 2)
 					{
-						using (StreamReader reader = new StreamReader(new GZipInputStream(_response.GetResponseStream())))
-						{
-							data = reader.ReadToEnd();
-						}
+						_request.Credentials = new NetworkCredential(credentials.Substring(0, (separatorIndex - 1)), credentials.Substring(separatorIndex));
 					}
-					else
-					{
-						using (StreamReader reader = new StreamReader(_response.GetResponseStream()))
-						{
-							data = reader.ReadToEnd();
-						}
-					}
-
-					data = FormatData(data);
-
-					DisplayResults(data);
-
-					_response.Close();
 				}
-				catch (Exception exception)
+
+				MakeRequest();
+			}
+		}
+
+		private void MakeRequest()
+		{
+			try
+			{
+				_response = (HttpWebResponse)_request.GetResponse();
+				string data;
+
+				if (_response.ContentEncoding.Equals("gzip", StringComparison.InvariantCultureIgnoreCase))
 				{
-					Console.WriteLine("Exception was caught: {0}", exception.Message);
+					using (StreamReader reader = new StreamReader(new GZipInputStream(_response.GetResponseStream())))
+					{
+						data = reader.ReadToEnd();
+					}
 				}
+				else
+				{
+					using (StreamReader reader = new StreamReader(_response.GetResponseStream()))
+					{
+						data = reader.ReadToEnd();
+					}
+				}
+
+				data = FormatData(data);
+
+				DisplayResults(data);
+
+				_response.Close();
+			}
+			catch (Exception exception)
+			{
+				Console.WriteLine("Exception was caught: {0}", exception.Message);
 			}
 		}
 

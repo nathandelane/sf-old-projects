@@ -1,4 +1,22 @@
-﻿using Nathandelane.System.ClassExtensions;
+﻿/*
+ * HttpGrep - Tool for grepping the Internet
+ * Copyright (C) 2011 Nathan Lane, Nathandelane.com
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+using Nathandelane.System.ClassExtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,12 +39,14 @@ namespace Nathandelane.Net.HttpGrep
 		public const string Response = "Response";
 		public const string Data = "Data";
 		public const string Post = "Post";
+		public const string Put = "Put";
 		public const string Proxy = "Proxy";
 		public const string IgnoreBadCerts = "Ignorebadcerts";
 		public const string Method = "Method";
 		public const string NoHeaders = "Noheaders";
 		public const string PsHashes = "Pshashes";
 		public const string PostContentType = "Postcontenttype";
+		public const string BasicAuth = "Basicauth";
 
 		public static string GeneralHelp = "Usage: HttpGrep <url> [<options>]" + Environment.NewLine +
 			"Options (specifying no options returns the response headers):" + Environment.NewLine +
@@ -36,13 +56,15 @@ namespace Nathandelane.Net.HttpGrep
 			"-Request                 Displays the request headers." + Environment.NewLine +
 			"-Response                Displays the response headers." + Environment.NewLine +
 			"-Data                    Displays the response body." + Environment.NewLine +
-			"-Post                    Sets the request mode to post and puts HTTP Grep into interactive mode to set the post body." + Environment.NewLine +
+			"-Post                    Sets the request mode to post and puts HTTP Grep into interactive mode to set the post-body." + Environment.NewLine +
+			"-Put                     Sets the request mode to pput and puts HTTP Grep into interactive mode to set the put-body." + Environment.NewLine +
 			"-Proxy=<url>             Sets the HTTP proxy for use with this session." + Environment.NewLine +
 			"-IgnoreBadCerts          Ignores bad SSL certificates when they are encountered." + Environment.NewLine +
-			"-Method=<method>         Method may be POST, GET, or HEAD. GET is the default." + Environment.NewLine +
+			"-Method=<method>         Method may be POST, GET, HEAD, PUT, OPTIONS, DELETE, TRACE, CONNECT, extension-method=token. GET is the default." + Environment.NewLine +
 			"-NoHeaders               Output has no headers." + Environment.NewLine +
 			"-PsHashes                Outputs Find results as Powershell hashes." + Environment.NewLine +
-			"-PostContentType=<type>  Sets the content type for the post body." + Environment.NewLine + Environment.NewLine;
+			"-PostContentType=<type>  Sets the content type for the post body." + Environment.NewLine +
+			"-BasicAuth=<name:pass>   Sets basic authentication credentials when required." + Environment.NewLine + Environment.NewLine;
 
 		private static Context __instance;
 		private static Dictionary<string, Regex> __allowedArguments = new Dictionary<string, Regex>()
@@ -54,12 +76,14 @@ namespace Nathandelane.Net.HttpGrep
 			{ Context.Response, null },
 			{ Context.Data, null },
 			{ Context.Post, null },
+			{ Context.Put, null },
 			{ Context.Proxy, new Regex("[\\w\\d:#@%/;$()~_?\\+-=\\\\.&]*", RegexOptions.CultureInvariant | RegexOptions.Compiled) },
 			{ Context.IgnoreBadCerts, null },
-			{ Context.Method, new Regex("^(get|post|head){1}$") },
+			{ Context.Method, new Regex("^((get|post|head|options|put|delete|trace|connect){1}|(extension-method)=([a-z\\d-]+))$") },
 			{ Context.NoHeaders, null },
 			{ Context.PsHashes, null },
-			{ Context.PostContentType, new Regex("^\\w+/(\\w)(([-+;=\\s]){0,1}|\\w)*$") }
+			{ Context.PostContentType, new Regex("^\\w+/(\\w)(([-+;=\\s]){0,1}|\\w)*$") },
+			{ Context.BasicAuth, new Regex("^(\\w{1}):([A-Za-z\\d!@#$%^&*()+-_=<>,.?/\\\\s])$") }
 		};
 
 		private Dictionary<string, string> _actualArguments;
@@ -168,19 +192,19 @@ namespace Nathandelane.Net.HttpGrep
 						{
 							if (Context.__allowedArguments[argument] == null)
 							{
-								if(argument.Equals("Post", StringComparison.InvariantCultureIgnoreCase))
+								if (argument.Equals("Post", StringComparison.InvariantCultureIgnoreCase) || argument.Equals("Put", StringComparison.InvariantCultureIgnoreCase))
 								{
 									ConsoleKeyInfo userInput;
 									string inputBody = String.Empty;
 
-									Console.WriteLine("Type the text you'd like for the POST body, then press Ctrl+D:");
+									Console.WriteLine("Type the text you'd like for the {0} body, then press Ctrl+D:", argument);
 
 									while ((userInput = Console.ReadKey()) != null && !(userInput.Modifiers == ConsoleModifiers.Control && userInput.Key == ConsoleKey.D))
 									{
 										inputBody += userInput.KeyChar;
 									}
 
-									_actualArguments[Context.Post] = inputBody;
+									_actualArguments[argument] = inputBody;
 								}
 								else
 								{
