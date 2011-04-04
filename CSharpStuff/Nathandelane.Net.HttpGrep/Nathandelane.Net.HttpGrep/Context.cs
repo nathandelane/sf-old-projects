@@ -83,7 +83,7 @@ namespace Nathandelane.Net.HttpGrep
 			{ Context.NoHeaders, null },
 			{ Context.PsHashes, null },
 			{ Context.PostContentType, new Regex("^\\w+/(\\w)(([-+;=\\s]){0,1}|\\w)*$") },
-			{ Context.BasicAuth, new Regex("^(\\w{1}):([A-Za-z\\d!@#$%^&*()+-_=<>,.?/\\\\s])$") }
+			{ Context.BasicAuth, new Regex("^([A-Za-z\\d!@#$%^&*()+-_=<>,.?/\\\\s]+):([A-Za-z\\d!@#$%^&*()+-_=<>,.?/\\\\s]+)$") }
 		};
 
 		private Dictionary<string, string> _actualArguments;

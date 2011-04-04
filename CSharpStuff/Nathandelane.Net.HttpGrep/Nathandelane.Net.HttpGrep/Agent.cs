@@ -139,11 +139,22 @@ namespace Nathandelane.Net.HttpGrep
 
 		private void MakeRequest()
 		{
+			string data;
+
 			try
 			{
 				_response = (HttpWebResponse)_request.GetResponse();
-				string data;
-
+			}
+			catch (WebException exception)
+			{
+				_response = (HttpWebResponse)exception.Response;
+			}
+			catch (Exception exception)
+			{
+				Console.WriteLine("Exception was caught: {0}", exception.Message);
+			}
+			finally
+			{
 				if (_response.ContentEncoding.Equals("gzip", StringComparison.InvariantCultureIgnoreCase))
 				{
 					using (StreamReader reader = new StreamReader(new GZipInputStream(_response.GetResponseStream())))
@@ -164,10 +175,6 @@ namespace Nathandelane.Net.HttpGrep
 				DisplayResults(data);
 
 				_response.Close();
-			}
-			catch (Exception exception)
-			{
-				Console.WriteLine("Exception was caught: {0}", exception.Message);
 			}
 		}
 
