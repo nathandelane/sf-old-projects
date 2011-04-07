@@ -1,12 +1,12 @@
 <?php
 
 require_once(dirname(__FILE__) . "/../../Config.inc.php");
-require_once(Nathandelane_Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
-require_once(Nathandelane_Config::getFrameworkRoot() . "presentation/IRenderable.inc.php");
+require_once(Config::getFrameworkRoot() . "foundation/ArgumentTypeValidator.inc.php");
+require_once(Config::getFrameworkRoot() . "presentation/IRenderable.inc.php");
 
 /**
  * GoogleAnalytics
- * This class renders the requisite Google Analytics code for phyer.
+ * This class renders the requisite Google Analytics.
  * @author lanathan
  *
  */
@@ -16,13 +16,13 @@ class GoogleAnalytics implements IRenderable {
 	
 	/**
 	 * Constructor
-	 * @param string $webSite
+	 * @param string $webPropertyId
 	 * @return GoogleAnalytics
 	 */
-	public function GoogleAnalytics(/*string*/ $webSite) {
-		ArgumentTypeValidator::isString($webSite, "WebSite must be a string in the form www.domain.com.");
+	public function GoogleAnalytics(/*string*/ $webPropertyId) {
+		ArgumentTypeValidator::isString($webPropertyId, "WebPropertyId must be a string.");
 		
-		$this->_webPropertyId = Nathandelane_Config::getWebPropertyIdForSite($webSite);
+		$this->_webPropertyId = $webPropertyId;
 	}
 	
 	/**
