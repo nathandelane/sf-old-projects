@@ -174,12 +174,11 @@ namespace Nathandelane.Net.Spider
 			Agent.__id++;
 
 			long startingTicks = Ticks;
+			HttpWebResponse response = null;
+			HttpWebRequest headRequest = _webRequest.Clone();
 
 			try
 			{
-				HttpWebResponse response = null;
-				HttpWebRequest headRequest = _webRequest.Clone();
-
 				headRequest.Method = "HEAD";
 
 				response = headRequest.GetResponse() as HttpWebResponse;
@@ -250,6 +249,18 @@ namespace Nathandelane.Net.Spider
 			_webRequest.Timeout = timeout;
 			_webRequest.UseDefaultCredentials = true;
 			_webRequest.UserAgent = UserAgent;
+			_webRequest.Headers.Add("Cache-Control", "no-cache");
+
+			if (ConfigurationManager.AppSettings["cacheModifiedDate"] != null)
+			{
+				_webRequest.IfModifiedSince = DateTime.Parse(ConfigurationManager.AppSettings["cacheModifiedDate"]);
+			}
+			else
+			{
+				TimeSpan oneWeek = new TimeSpan(4, 12, 0, 0) + new TimeSpan(2, 12, 0, 0);
+
+				_webRequest.IfModifiedSince = DateTime.Now - oneWeek;
+			}
 
 			if (bool.Parse(ConfigurationManager.AppSettings["ignoreBadCertificates"]))
 			{
@@ -302,7 +313,7 @@ namespace Nathandelane.Net.Spider
 		/// <returns></returns>
 		public override string ToString()
 		{
-			return String.Format("{0},\"{10}\",{1},\"{2}\",\"{3}\",\"{4}\",\"{5}\",{6},{7},\"{8}\",\"{9}\"", __id, DateTime.Now.ToString("hh:mm:ss.fff"), _message, _url.Target, _url.Referrer, _documentTitle, _elapsedTime, _responseSize, _contentType, _mimeType, _checked);
+			return String.Format("{0},\"{10}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\",\"{7}\",\"{8}\",\"{9}\"", __id, DateTime.Now.ToString("hh:mm:ss.fff"), _message, _url.Target, _url.Referrer, _documentTitle.Replace("\"", String.Empty).Replace("\r", String.Empty).Replace("\n", String.Empty), _elapsedTime, _responseSize, _contentType, _mimeType, _checked);
 		}
 
 		#endregion
