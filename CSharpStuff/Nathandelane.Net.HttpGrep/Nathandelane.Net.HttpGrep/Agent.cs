@@ -143,15 +143,27 @@ namespace Nathandelane.Net.HttpGrep
 
 			try
 			{
+				Console.WriteLine("{0}", Environment.NewLine);
+
 				_response = (HttpWebResponse)_request.GetResponse();
 			}
 			catch (WebException exception)
 			{
+				ConsoleColor currentConsoleColor = Console.ForegroundColor;
+
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("{0}{1}", exception.Message, Environment.NewLine);
+				Console.ForegroundColor = currentConsoleColor;
+
 				_response = (HttpWebResponse)exception.Response;
 			}
 			catch (Exception exception)
 			{
-				Console.WriteLine("Exception was caught: {0}", exception.Message);
+				ConsoleColor currentConsoleColor = Console.ForegroundColor;
+
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("{0}{1}", exception, Environment.NewLine);
+				Console.ForegroundColor = currentConsoleColor;
 			}
 			finally
 			{
@@ -185,11 +197,6 @@ namespace Nathandelane.Net.HttpGrep
 		private void DisplayResults(string data)
 		{
 			ConsoleColor currentConsoleColor = Console.ForegroundColor;
-
-			if (_context.ArgumentIsDefined(Context.Post))
-			{
-				Console.WriteLine("{0}", Environment.NewLine);
-			}
 
 			if (_context.ArgumentIsDefined(Context.Data))
 			{
