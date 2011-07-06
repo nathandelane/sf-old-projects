@@ -26,6 +26,8 @@ package com.nathandelane.personalcalculator.engine.parser;
  */
 public class PcToken {
 
+    public static final PcToken NULL_TOKEN = new PcToken("", PcTokenType.NULL);
+
     private String value;
     private PcTokenType type;
 
@@ -56,6 +58,15 @@ public class PcToken {
     @Override
     public String toString() {
 	return String.format("{ Value=\"%1$s\", Type=\"%1$s\" }", this.value, this.type);
+    }
+
+    /**
+     * Determines whether this PcToken is equal in value to another PcToken.
+     * @param other
+     * @return
+     */
+    public boolean equals(PcToken other) {
+	return (this.value.equals(other.value) && this.type == other.type);
     }
 
 }

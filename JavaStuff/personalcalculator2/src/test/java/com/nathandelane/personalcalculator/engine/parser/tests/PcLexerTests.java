@@ -19,13 +19,15 @@
 
 package com.nathandelane.personalcalculator.engine.parser.tests;
 
+import java.util.Stack;
+
+import junit.framework.TestCase;
+
 import org.junit.Test;
 
 import com.nathandelane.personalcalculator.engine.parser.PcLexer;
 import com.nathandelane.personalcalculator.engine.parser.PcToken;
 import com.nathandelane.personalcalculator.engine.parser.PcTokenType;
-
-import junit.framework.TestCase;
 
 /**
  * Tests for the Lexer.
@@ -34,22 +36,28 @@ import junit.framework.TestCase;
  */
 public class PcLexerTests extends TestCase {
 
+    private PcLexer lexer;
+
     /**
      * Tests a series of known valid tokens and token types against the lexer to
      * ensure that the lexer is behaving as expected. This one tests Numbers.
      */
     @Test
     public void testKnownValidTokensNumbers() {
+	if (this.lexer == null) {
+	    this.lexer = PcLexer.getInstance();
+	}
+
 	PcTokenType expectedTokenType = PcTokenType.NUMBER;
 
 	String number = "43";
-	PcToken tokenFromNumber = PcLexer.parseNextToken(number);
+	PcToken tokenFromNumber = this.lexer.parseNextToken(number);
 
 	assertEquals(number, tokenFromNumber.getValue());
 	assertTrue(tokenFromNumber.getType() == expectedTokenType);
 
 	String decimalNumber = "42.109";
-	PcToken tokenFromDecimalNumberToken = PcLexer.parseNextToken(decimalNumber);
+	PcToken tokenFromDecimalNumberToken = this.lexer.parseNextToken(decimalNumber);
 
 	assertEquals(decimalNumber, tokenFromDecimalNumberToken.getValue());
 	assertTrue( tokenFromDecimalNumberToken.getType() == expectedTokenType);
@@ -61,10 +69,14 @@ public class PcLexerTests extends TestCase {
      */
     @Test
     public void testKnownValidTokensOperators() {
+	if (this.lexer == null) {
+	    this.lexer = PcLexer.getInstance();
+	}
+
 	PcTokenType expectedTokenType = PcTokenType.SUBTRACTION_OPERATOR;
 
 	String value = "-";
-	PcToken tokenFromValue = PcLexer.parseNextToken(value);
+	PcToken tokenFromValue = this.lexer.parseNextToken(value);
 
 	assertEquals(value, tokenFromValue.getValue());
 	assertTrue(tokenFromValue.getType() == expectedTokenType);
@@ -72,7 +84,7 @@ public class PcLexerTests extends TestCase {
 	expectedTokenType = PcTokenType.DIVISION_OPERATOR;
 
 	value = "/";
-	tokenFromValue = PcLexer.parseNextToken(value);
+	tokenFromValue = this.lexer.parseNextToken(value);
 
 	assertEquals(value, tokenFromValue.getValue());
 	assertTrue(tokenFromValue.getType() == expectedTokenType);
@@ -80,7 +92,7 @@ public class PcLexerTests extends TestCase {
 	expectedTokenType = PcTokenType.DIV_MOD_OPERATOR;
 
 	value = "//";
-	tokenFromValue = PcLexer.parseNextToken(value);
+	tokenFromValue = this.lexer.parseNextToken(value);
 
 	assertEquals(value, tokenFromValue.getValue());
 	assertTrue(tokenFromValue.getType() == expectedTokenType);
@@ -88,7 +100,7 @@ public class PcLexerTests extends TestCase {
 	expectedTokenType = PcTokenType.OR_LOGICAL_OPERATOR;
 
 	value = "||";
-	tokenFromValue = PcLexer.parseNextToken(value);
+	tokenFromValue = this.lexer.parseNextToken(value);
 
 	assertEquals(value, tokenFromValue.getValue());
 	assertTrue(tokenFromValue.getType() == expectedTokenType);
@@ -96,7 +108,7 @@ public class PcLexerTests extends TestCase {
 	expectedTokenType = PcTokenType.AND_LOGICAL_OPERATOR;
 
 	value = "&&";
-	tokenFromValue = PcLexer.parseNextToken(value);
+	tokenFromValue = this.lexer.parseNextToken(value);
 
 	assertEquals(value, tokenFromValue.getValue());
 	assertTrue(tokenFromValue.getType() == expectedTokenType);
@@ -104,11 +116,11 @@ public class PcLexerTests extends TestCase {
 	expectedTokenType = PcTokenType.EQUALITY_BOOLEAN_OPERATOR;
 
 	value = "==";
-	tokenFromValue = PcLexer.parseNextToken(value);
+	tokenFromValue = this.lexer.parseNextToken(value);
 
 	assertEquals(value, tokenFromValue.getValue());
 	assertTrue(tokenFromValue.getType() == expectedTokenType);
-}
+    }
 
     /**
      * Tests a series of known invalid tokens against the lexer to ensure that the
@@ -116,13 +128,54 @@ public class PcLexerTests extends TestCase {
      */
     @Test
     public void testKnownInvalidTokens() {
+	if (this.lexer == null) {
+	    this.lexer = PcLexer.getInstance();
+	}
+
 	PcTokenType expectedTokenType = PcTokenType.NULL;
 
 	String value = "@123";
-	PcToken tokenFromInvalidValue = PcLexer.parseNextToken(value);
+	PcToken tokenFromInvalidValue = this.lexer.parseNextToken(value);
 
 	assertEquals("", tokenFromInvalidValue.getValue());
 	assertTrue(tokenFromInvalidValue.getType() == expectedTokenType);
+    }
+
+    /**
+     * Test multiple tokens parsed from a single expression.
+     */
+    @Test
+    public void testMultipleTokens() {
+	if (this.lexer == null) {
+	    this.lexer = PcLexer.getInstance();
+	}
+
+	Stack<PcToken> tokenStack = new Stack<PcToken>();
+	Stack<PcToken> expectedTokenStack = new Stack<PcToken>() {
+	    {
+		push(new PcToken("1", PcTokenType.NUMBER));
+		push(new PcToken("+", PcTokenType.ADDITION_OPERATOR));
+		push(new PcToken("21", PcTokenType.NUMBER));
+	    }
+	};
+	String expression = "1+21";
+
+	while (!expression.equals("")) {
+	    PcToken nextToken = this.lexer.parseNextToken(expression);
+
+	    if (!nextToken.equals(PcToken.NULL_TOKEN)) {
+		tokenStack.push(nextToken);
+
+		expression = expression.substring(nextToken.getValue().length());
+	    }
+	}
+
+	while (tokenStack.size() > 0 && expectedTokenStack.size() > 0) {
+	    PcToken nextActualToken = tokenStack.pop();
+	    PcToken nextExpectedToken = expectedTokenStack.pop();
+
+	    assertTrue(nextActualToken.equals(nextExpectedToken));
+	}
     }
 
 }

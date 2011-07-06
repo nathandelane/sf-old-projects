@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.Stack;
 
 import com.nathandelane.personalcalculator.engine.CalculatorContext;
+import com.nathandelane.personalcalculator.engine.ITokenCollector;
 
 /**
  * Personal Calculator implementation if ITokenCollector. This is the token
@@ -32,10 +33,12 @@ import com.nathandelane.personalcalculator.engine.CalculatorContext;
  */
 public class PcTokenCollector implements ITokenCollector<PcToken> {
 
+    private PcLexer lexer;
     private Stack<PcToken> tokenStack;
 
     public PcTokenCollector() {
 	this.tokenStack = new Stack<PcToken>();
+	this.lexer = PcLexer.getInstance();
     }
 
     /**
@@ -66,7 +69,7 @@ public class PcTokenCollector implements ITokenCollector<PcToken> {
 	int expressionCursor = 0;
 
 	while (expressionCursor < (expression.length() - 1)) {
-	    PcToken nextToken = PcLexer.parseNextToken(expression.substring(expressionCursor));
+	    PcToken nextToken = this.lexer.parseNextToken(expression.substring(expressionCursor));
 
 	    if (nextToken != null) {
 		expressionCursor += nextToken.getValue().length();

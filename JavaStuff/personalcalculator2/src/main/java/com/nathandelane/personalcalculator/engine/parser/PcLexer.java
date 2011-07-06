@@ -24,21 +24,23 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.nathandelane.personalcalculator.engine.AbstractLexer;
+
 /**
  * Lexes or parses an expression into tokens, one at a time. The responsibility of the ITokenCollector is to
  * remove tokens from the expression so that the lexer doesn't duplicate tokens on inadvertently.
  * @author nathanlane
  *
  */
-public final class PcLexer {
+public final class PcLexer extends AbstractLexer<PcToken> {
 
     /**
      * Lexer token definitions.
      */
     @SuppressWarnings("serial")
-    private static final Map<Pattern, PcTokenType> tokens = new HashMap<Pattern, PcTokenType>() {
+    private static final Map<Pattern, PcTokenType> TOKENS = new HashMap<Pattern, PcTokenType>() {
 	{
-	    put(Pattern.compile("^[\\d]+([\\.]{1}[\\d]*){0,1}"), PcTokenType.NUMBER);
+	    put(Pattern.compile("^[\\d]+([.]{1}[\\d]+){0,1}"), PcTokenType.NUMBER);
 	    put(Pattern.compile("^([-])"), PcTokenType.SUBTRACTION_OPERATOR);
 	    put(Pattern.compile("^(\\+)"), PcTokenType.ADDITION_OPERATOR);
 	    put(Pattern.compile("^(\\*\\*)"), PcTokenType.POWER_OPERATOR);
@@ -72,29 +74,46 @@ public final class PcLexer {
 	}
     };
 
+    private static PcLexer instance;
+
+    private PcLexer() {
+	// Left intentionally blank.
+    }
+
     /**
      * Parses the next token out of the given expression.
      * @param expression
      * @return
      */
-    public static PcToken parseNextToken(String expression) {
-	PcToken nextToken = new PcToken("", PcTokenType.NULL);
+    public PcToken parseNextToken(String expression) {
+	PcToken nextToken = PcToken.NULL_TOKEN;
 
-	for (Pattern nextPattern : PcLexer.tokens.keySet()){
-	    if (nextPattern.matcher(expression).matches()) {
+	for (Pattern nextPattern : PcLexer.TOKENS.keySet()){
+	    if (nextPattern.matcher(expression).find()) {
 		Matcher patternMatcher = nextPattern.matcher(expression);
+		patternMatcher.find();
 
-		if (patternMatcher.find()) {
-		    String actual = patternMatcher.group(0);
+		String actual = patternMatcher.group(0);
 
-		    nextToken = new PcToken(actual, PcLexer.tokens.get(nextPattern));
+		nextToken = new PcToken(actual, PcLexer.TOKENS.get(nextPattern));
 
-		    break;
-		}
+		break;
 	    }
 	}
 
 	return nextToken;
+    }
+
+    /**
+     * Gets a reference to the instance of PcLexer.
+     * @return
+     */
+    public static PcLexer getInstance() {
+	if (PcLexer.instance == null) {
+	    PcLexer.instance = new PcLexer();
+	}
+
+	return PcLexer.instance;
     }
 
 }

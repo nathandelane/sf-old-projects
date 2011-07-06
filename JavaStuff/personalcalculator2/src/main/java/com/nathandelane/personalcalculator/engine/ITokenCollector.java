@@ -17,7 +17,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nathandelane.personalcalculator.engine.parser;
+package com.nathandelane.personalcalculator.engine;
 
 /**
  * Interface that all Tokenizer or Token Collector classes should implement.
