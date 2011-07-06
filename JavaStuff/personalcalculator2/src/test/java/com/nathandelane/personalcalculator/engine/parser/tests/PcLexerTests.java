@@ -40,10 +40,11 @@ public class PcLexerTests extends TestCase {
 
     /**
      * Tests a series of known valid tokens and token types against the lexer to
-     * ensure that the lexer is behaving as expected. This one tests Numbers.
+     * ensure that the lexer is behaving as expected. This one tests Numbers -
+     * Integers.
      */
     @Test
-    public void testKnownValidTokensNumbers() {
+    public void testKnownValidTokensNumbersInteger() {
 	if (this.lexer == null) {
 	    this.lexer = PcLexer.getInstance();
 	}
@@ -55,6 +56,20 @@ public class PcLexerTests extends TestCase {
 
 	assertEquals(number, tokenFromNumber.getValue());
 	assertTrue(tokenFromNumber.getType() == expectedTokenType);
+    }
+
+    /**
+     * Tests a series of known valid tokens and token types against the lexer to
+     * ensure that the lexer is behaving as expected. This one tests Numbers -
+     * Decimals.
+     */
+    @Test
+    public void testKnownValidTokensNumbersDecimal() {
+	if (this.lexer == null) {
+	    this.lexer = PcLexer.getInstance();
+	}
+
+	PcTokenType expectedTokenType = PcTokenType.NUMBER;
 
 	String decimalNumber = "42.109";
 	PcToken tokenFromDecimalNumberToken = this.lexer.parseNextToken(decimalNumber);
@@ -68,7 +83,7 @@ public class PcLexerTests extends TestCase {
      * ensure that the lexer is behaving as expected. This one tests Operators.
      */
     @Test
-    public void testKnownValidTokensOperators() {
+    public void testKnownValidTokensOperatorsSubtraction() {
 	if (this.lexer == null) {
 	    this.lexer = PcLexer.getInstance();
 	}
@@ -80,43 +95,98 @@ public class PcLexerTests extends TestCase {
 
 	assertEquals(value, tokenFromValue.getValue());
 	assertTrue(tokenFromValue.getType() == expectedTokenType);
+    }
 
-	expectedTokenType = PcTokenType.DIVISION_OPERATOR;
+    /**
+     * Tests a series of known valid tokens and token types against the lexer to
+     * ensure that the lexer is behaving as expected. This one tests Operators.
+     */
+    @Test
+    public void testKnownValidTokensOperatorsDivision() {
+	if (this.lexer == null) {
+	    this.lexer = PcLexer.getInstance();
+	}
 
-	value = "/";
-	tokenFromValue = this.lexer.parseNextToken(value);
+	PcTokenType expectedTokenType = PcTokenType.DIVISION_OPERATOR;
 
-	assertEquals(value, tokenFromValue.getValue());
-	assertTrue(tokenFromValue.getType() == expectedTokenType);
-
-	expectedTokenType = PcTokenType.DIV_MOD_OPERATOR;
-
-	value = "//";
-	tokenFromValue = this.lexer.parseNextToken(value);
-
-	assertEquals(value, tokenFromValue.getValue());
-	assertTrue(tokenFromValue.getType() == expectedTokenType);
-
-	expectedTokenType = PcTokenType.OR_LOGICAL_OPERATOR;
-
-	value = "||";
-	tokenFromValue = this.lexer.parseNextToken(value);
+	String value = "/";
+	PcToken tokenFromValue = this.lexer.parseNextToken(value);
 
 	assertEquals(value, tokenFromValue.getValue());
 	assertTrue(tokenFromValue.getType() == expectedTokenType);
+    }
 
-	expectedTokenType = PcTokenType.AND_LOGICAL_OPERATOR;
+    /**
+     * Tests a series of known valid tokens and token types against the lexer to
+     * ensure that the lexer is behaving as expected. This one tests Operators.
+     */
+    @Test
+    public void testKnownValidTokensOperatorsDivMod() {
+	if (this.lexer == null) {
+	    this.lexer = PcLexer.getInstance();
+	}
 
-	value = "&&";
-	tokenFromValue = this.lexer.parseNextToken(value);
+	PcTokenType expectedTokenType = PcTokenType.DIV_MOD_OPERATOR;
+
+	String value = "//";
+	PcToken tokenFromValue = this.lexer.parseNextToken(value);
 
 	assertEquals(value, tokenFromValue.getValue());
 	assertTrue(tokenFromValue.getType() == expectedTokenType);
+    }
 
-	expectedTokenType = PcTokenType.EQUALITY_BOOLEAN_OPERATOR;
+    /**
+     * Tests a series of known valid tokens and token types against the lexer to
+     * ensure that the lexer is behaving as expected. This one tests Operators.
+     */
+    @Test
+    public void testKnownValidTokensOperatorsOrLogical() {
+	if (this.lexer == null) {
+	    this.lexer = PcLexer.getInstance();
+	}
 
-	value = "==";
-	tokenFromValue = this.lexer.parseNextToken(value);
+	PcTokenType expectedTokenType = PcTokenType.OR_LOGICAL_OPERATOR;
+
+	String value = "||";
+	PcToken tokenFromValue = this.lexer.parseNextToken(value);
+
+	assertEquals(value, tokenFromValue.getValue());
+	assertTrue(tokenFromValue.getType() == expectedTokenType);
+    }
+
+    /**
+     * Tests a series of known valid tokens and token types against the lexer to
+     * ensure that the lexer is behaving as expected. This one tests Operators.
+     */
+    @Test
+    public void testKnownValidTokensOperatorsAndLogical() {
+	if (this.lexer == null) {
+	    this.lexer = PcLexer.getInstance();
+	}
+
+	PcTokenType expectedTokenType = PcTokenType.AND_LOGICAL_OPERATOR;
+
+	String value = "&&";
+	PcToken tokenFromValue = this.lexer.parseNextToken(value);
+
+	assertEquals(value, tokenFromValue.getValue());
+	assertTrue(tokenFromValue.getType() == expectedTokenType);
+    }
+
+    /**
+     * Tests a series of known valid tokens and token types against the lexer to
+     * ensure that the lexer is behaving as expected. This one tests Operators.
+     */
+    @Test
+    public void testKnownValidTokensOperatorsEqualityBoolean() {
+	if (this.lexer == null) {
+	    this.lexer = PcLexer.getInstance();
+	}
+
+	PcTokenType expectedTokenType = PcTokenType.EQUALITY_BOOLEAN_OPERATOR;
+
+	String value = "==";
+	PcToken tokenFromValue = this.lexer.parseNextToken(value);
 
 	assertEquals(value, tokenFromValue.getValue());
 	assertTrue(tokenFromValue.getType() == expectedTokenType);
@@ -145,7 +215,7 @@ public class PcLexerTests extends TestCase {
      * Test multiple tokens parsed from a single expression.
      */
     @Test
-    public void testMultipleTokens() {
+    public void testMultipleTokensTwoArgumentAddition() {
 	if (this.lexer == null) {
 	    this.lexer = PcLexer.getInstance();
 	}
@@ -158,6 +228,31 @@ public class PcLexerTests extends TestCase {
 	    }
 	};
 	String expression = "1+21";
+
+	Stack<PcToken> actualTokenStack = parseExpression(expression);
+
+	assertTrue(stacksAreEqual(expectedTokenStack, actualTokenStack));
+    }
+
+    /**
+     * Test multiple tokens parsed from a single expression.
+     */
+    @Test
+    public void testMultipleTokensTwoNegativeArgumentAddition() {
+	if (this.lexer == null) {
+	    this.lexer = PcLexer.getInstance();
+	}
+
+	Stack<PcToken> expectedTokenStack = new Stack<PcToken>() {
+	    {
+		push(new PcToken("-", PcTokenType.SUBTRACTION_OPERATOR));
+		push(new PcToken("1", PcTokenType.NUMBER));
+		push(new PcToken("+", PcTokenType.ADDITION_OPERATOR));
+		push(new PcToken("-", PcTokenType.SUBTRACTION_OPERATOR));
+		push(new PcToken("21", PcTokenType.NUMBER));
+	    }
+	};
+	String expression = "-1+-21";
 
 	Stack<PcToken> actualTokenStack = parseExpression(expression);
 

@@ -19,8 +19,8 @@
 
 package com.nathandelane.personalcalculator.engine.parser;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,39 +38,39 @@ public final class PcLexer extends AbstractLexer<PcToken> {
      * Lexer token definitions.
      */
     @SuppressWarnings("serial")
-    private static final Map<Pattern, PcTokenType> TOKENS = new HashMap<Pattern, PcTokenType>() {
+    private static final List<LexicalEntry> TOKENS = new ArrayList<LexicalEntry>() {
 	{
-	    put(Pattern.compile("^[\\d]+([.]{1}[\\d]+){0,1}"), PcTokenType.NUMBER);
-	    put(Pattern.compile("^([-])"), PcTokenType.SUBTRACTION_OPERATOR);
-	    put(Pattern.compile("^(\\+)"), PcTokenType.ADDITION_OPERATOR);
-	    put(Pattern.compile("^(\\*\\*)"), PcTokenType.POWER_OPERATOR);
-	    put(Pattern.compile("^(\\*)"), PcTokenType.MULTIPLICATION_OPERATOR);
-	    put(Pattern.compile("^(//)"), PcTokenType.DIV_MOD_OPERATOR);
-	    put(Pattern.compile("^(/)"), PcTokenType.DIVISION_OPERATOR);
-	    put(Pattern.compile("^(%)"), PcTokenType.MODULUS_OPERATOR);
-	    put(Pattern.compile("^(\\^)"), PcTokenType.XOR_BITWISE_OPERATOR);
-	    put(Pattern.compile("^(&&)"), PcTokenType.AND_LOGICAL_OPERATOR);
-	    put(Pattern.compile("^(\\|\\|)"), PcTokenType.OR_LOGICAL_OPERATOR);
-	    put(Pattern.compile("^(&)"), PcTokenType.AND_BITWISE_OPERATOR);
-	    put(Pattern.compile("^(\\|)"), PcTokenType.OR_BITWISE_OPERATOR);
-	    put(Pattern.compile("^(==)"), PcTokenType.EQUALITY_BOOLEAN_OPERATOR);
-	    put(Pattern.compile("^(<=)"), PcTokenType.LESS_THAN_OR_EQUAL_TO_BOOLEAN_OPERATOR);
-	    put(Pattern.compile("^(>=)"), PcTokenType.GREATER_THAN_OR_EQUAL_TO_BOOLEAN_OPERATOR);
-	    put(Pattern.compile("^(<>|!=)"), PcTokenType.INEQUALITY_BOOLEAN_OPERATOR);
-	    put(Pattern.compile("^(=)"), PcTokenType.ASSIGNMENT_OPERATOR);
-	    put(Pattern.compile("^(<)"), PcTokenType.LESS_THAN_BOOLEAN_OPERATOR);
-	    put(Pattern.compile("^(>)"), PcTokenType.GREATER_THAN_BOOLEAN_OPERATOR);
-	    put(Pattern.compile("^(\\()"), PcTokenType.LEFT_PARENTHESIS);
-	    put(Pattern.compile("^(\\))"), PcTokenType.RIGHT_PARENTHESIS);
-	    put(Pattern.compile("^(,)"), PcTokenType.ARGUMENT_DELIMITER);
-	    put(Pattern.compile("^(;)"), PcTokenType.EXPRESSION_DELIMITER);
-	    put(Pattern.compile("^(\\.\\.)"), PcTokenType.RANGE_DELIMITER);
-	    put(Pattern.compile("^(\\\\)"), PcTokenType.NEW_LINE_DELIMITER);
-	    put(Pattern.compile("^(\\[)"), PcTokenType.LEFT_SQUARE_BRACKET);
-	    put(Pattern.compile("^(\\])"), PcTokenType.RIGHT_SQUARE_BRACKET);
-	    put(Pattern.compile("^(!)"), PcTokenType.FACTORIAL_FUNCTION);
-	    put(Pattern.compile("^[a-z]{1}[a-zA-z_\\d]{2,}"), PcTokenType.FUNCTION);
-	    put(Pattern.compile("^\\$[\\$a-zA-z_\\d]*"), PcTokenType.VARIABLE);
+	    add(new LexicalEntry(Pattern.compile("^[\\d]+([.]{1}[\\d]+){0,1}"), PcTokenType.NUMBER));
+	    add(new LexicalEntry(Pattern.compile("^([-])"), PcTokenType.SUBTRACTION_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(\\+)"), PcTokenType.ADDITION_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(\\*\\*)"), PcTokenType.POWER_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(\\*)"), PcTokenType.MULTIPLICATION_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(//)"), PcTokenType.DIV_MOD_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(/)"), PcTokenType.DIVISION_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(%)"), PcTokenType.MODULUS_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(\\^)"), PcTokenType.XOR_BITWISE_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(&&)"), PcTokenType.AND_LOGICAL_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(\\|\\|)"), PcTokenType.OR_LOGICAL_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(&)"), PcTokenType.AND_BITWISE_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(\\|)"), PcTokenType.OR_BITWISE_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(==)"), PcTokenType.EQUALITY_BOOLEAN_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(<=)"), PcTokenType.LESS_THAN_OR_EQUAL_TO_BOOLEAN_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(>=)"), PcTokenType.GREATER_THAN_OR_EQUAL_TO_BOOLEAN_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(<>|!=)"), PcTokenType.INEQUALITY_BOOLEAN_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(=)"), PcTokenType.ASSIGNMENT_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(<)"), PcTokenType.LESS_THAN_BOOLEAN_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(>)"), PcTokenType.GREATER_THAN_BOOLEAN_OPERATOR));
+	    add(new LexicalEntry(Pattern.compile("^(\\()"), PcTokenType.LEFT_PARENTHESIS));
+	    add(new LexicalEntry(Pattern.compile("^(\\))"), PcTokenType.RIGHT_PARENTHESIS));
+	    add(new LexicalEntry(Pattern.compile("^(,)"), PcTokenType.ARGUMENT_DELIMITER));
+	    add(new LexicalEntry(Pattern.compile("^(;)"), PcTokenType.EXPRESSION_DELIMITER));
+	    add(new LexicalEntry(Pattern.compile("^(\\.\\.)"), PcTokenType.RANGE_DELIMITER));
+	    add(new LexicalEntry(Pattern.compile("^(\\\\)"), PcTokenType.NEW_LINE_DELIMITER));
+	    add(new LexicalEntry(Pattern.compile("^(\\[)"), PcTokenType.LEFT_SQUARE_BRACKET));
+	    add(new LexicalEntry(Pattern.compile("^(\\])"), PcTokenType.RIGHT_SQUARE_BRACKET));
+	    add(new LexicalEntry(Pattern.compile("^(!)"), PcTokenType.FACTORIAL_FUNCTION));
+	    add(new LexicalEntry(Pattern.compile("^[a-z]{1}[a-zA-z_\\d]{2,}"), PcTokenType.FUNCTION));
+	    add(new LexicalEntry(Pattern.compile("^\\$[\\$a-zA-z_\\d]*"), PcTokenType.VARIABLE));
 	}
     };
 
@@ -88,14 +88,16 @@ public final class PcLexer extends AbstractLexer<PcToken> {
     public PcToken parseNextToken(String expression) {
 	PcToken nextToken = PcToken.NULL_TOKEN;
 
-	for (Pattern nextPattern : PcLexer.TOKENS.keySet()){
+	for (LexicalEntry nextEntry : PcLexer.TOKENS){
+	    Pattern nextPattern = nextEntry.getPattern();
+
 	    if (nextPattern.matcher(expression).find()) {
 		Matcher patternMatcher = nextPattern.matcher(expression);
 		patternMatcher.find();
 
 		String actual = patternMatcher.group(0);
 
-		nextToken = new PcToken(actual, PcLexer.TOKENS.get(nextPattern));
+		nextToken = new PcToken(actual, nextEntry.getType());
 
 		break;
 	    }
