@@ -214,6 +214,7 @@ public class PcLexerTests extends TestCase {
     /**
      * Test multiple tokens parsed from a single expression.
      */
+    @SuppressWarnings("serial")
     @Test
     public void testMultipleTokensTwoArgumentAddition() {
 	if (this.lexer == null) {
@@ -237,6 +238,7 @@ public class PcLexerTests extends TestCase {
     /**
      * Test multiple tokens parsed from a single expression.
      */
+    @SuppressWarnings("serial")
     @Test
     public void testMultipleTokensTwoNegativeArgumentAddition() {
 	if (this.lexer == null) {
