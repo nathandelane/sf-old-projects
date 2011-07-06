@@ -150,7 +150,6 @@ public class PcLexerTests extends TestCase {
 	    this.lexer = PcLexer.getInstance();
 	}
 
-	Stack<PcToken> tokenStack = new Stack<PcToken>();
 	Stack<PcToken> expectedTokenStack = new Stack<PcToken>() {
 	    {
 		push(new PcToken("1", PcTokenType.NUMBER));
@@ -159,6 +158,19 @@ public class PcLexerTests extends TestCase {
 	    }
 	};
 	String expression = "1+21";
+
+	Stack<PcToken> actualTokenStack = parseExpression(expression);
+
+	assertTrue(stacksAreEqual(expectedTokenStack, actualTokenStack));
+    }
+
+    /**
+     * Parses an expression into a Stack of tokens.
+     * @param expression
+     * @return
+     */
+    private Stack<PcToken> parseExpression(String expression) {
+	Stack<PcToken> tokenStack = new Stack<PcToken>();
 
 	while (!expression.equals("")) {
 	    PcToken nextToken = this.lexer.parseNextToken(expression);
@@ -170,12 +182,28 @@ public class PcLexerTests extends TestCase {
 	    }
 	}
 
-	while (tokenStack.size() > 0 && expectedTokenStack.size() > 0) {
-	    PcToken nextActualToken = tokenStack.pop();
-	    PcToken nextExpectedToken = expectedTokenStack.pop();
+	return tokenStack;
+    }
 
-	    assertTrue(nextActualToken.equals(nextExpectedToken));
+    /**
+     * Compares two Stacks of tokens.
+     * @param expected
+     * @param actual
+     * @return
+     */
+    private boolean stacksAreEqual(Stack<PcToken> expected, Stack<PcToken> actual) {
+	boolean result = true;
+
+	while (actual.size() > 0 && expected.size() > 0) {
+	    PcToken nextExpectedToken = expected.pop();
+	    PcToken nextActualToken = actual.pop();
+
+	    if (!nextExpectedToken.equals(nextActualToken)) {
+		result = false;
+	    }
 	}
+
+	return result;
     }
 
 }
