@@ -19,10 +19,15 @@
 
 package com.nathandelane.personalcalculator.engine;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InvalidPropertiesFormatException;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * Global context for the calculator. This context maintains a history of expressions and results, including the
@@ -33,18 +38,32 @@ import java.util.Map;
  */
 public final class CalculatorContext {
 
-    public static final String MODE_KEY = "mode";
+    public static final String UNITS_KEY = "units";
+    public static final String PROMPT_KEY = "prompt";
 
     private static CalculatorContext instance;
 
     private Map<String, Object> context;
     private List<Expression> expressionHistory;
     private List<Error> errorHistory;
+    private PromptModel promptModel;
 
     private CalculatorContext() {
 	this.context = new HashMap<String, Object>();
 	this.expressionHistory = new ArrayList<Expression>();
 	this.errorHistory = new ArrayList<Error>();
+
+	try {
+	    Properties properties = new Properties();
+	    properties.loadFromXML(new FileInputStream("PersonalCalculator.xml"));
+	    promptModel = new PromptModel(properties.getProperty(CalculatorContext.PROMPT_KEY));
+	} catch (InvalidPropertiesFormatException e) {
+	    System.out.println("Your PersonalCalculator.xml file has an invalid format.");
+	} catch (FileNotFoundException e) {
+	    e.printStackTrace();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
     }
 
     /**
@@ -85,12 +104,32 @@ public final class CalculatorContext {
 	this.expressionHistory.add(expression);
     }
 
+    /**
+     * Adds an error to the error history.
+     * @param error
+     */
     public void addErrorToHistory(Error error) {
 	this.errorHistory.add(error);
     }
 
     /**
-     * Gets this singletone instance for CalculatorContext.
+     * Gets the prompt model.
+     * @return
+     */
+    public PromptModel getPromptModel() {
+	return this.promptModel;
+    }
+
+    /**
+     * Sets the prompt model.
+     * @param promptModel
+     */
+    public void setPromptModel(String prompt) {
+	this.promptModel = new PromptModel(prompt);
+    }
+
+    /**
+     * Gets this singleton instance for CalculatorContext.
      * @return
      */
     public static CalculatorContext get() {

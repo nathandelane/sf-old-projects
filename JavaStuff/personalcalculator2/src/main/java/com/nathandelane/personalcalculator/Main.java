@@ -33,7 +33,7 @@ public class Main {
 
     @SuppressWarnings("serial")
     private Main(String[] args) {
-	CalculatorContext.get().setValue(CalculatorContext.MODE_KEY, CalculatorMode.RADIANS);
+	CalculatorContext.get().setValue(CalculatorContext.UNITS_KEY, CalculatorMode.RADIANS);
 
 	this.arguments = Arguments.getArgumentParser();
 	this.arguments.addArgumentDefinitions(new HashMap<String, ArgumentDefinition>() {
@@ -92,7 +92,7 @@ public class Main {
 	    if (modeComponents.length == 2) {
 		String mode = modeComponents[1].toUpperCase();
 
-		CalculatorContext.get().setValue(CalculatorContext.MODE_KEY, CalculatorMode.valueOf(mode));
+		CalculatorContext.get().setValue(CalculatorContext.UNITS_KEY, CalculatorMode.valueOf(mode));
 	    } else {
 		CalculatorContext.get().addErrorToHistory(new Error(String.format("Mode value '%1$s' was not recognized. Setting to default 'radians'.", argumentValue)));
 	    }
