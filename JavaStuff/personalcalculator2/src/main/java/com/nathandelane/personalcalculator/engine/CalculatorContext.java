@@ -40,6 +40,11 @@ public final class CalculatorContext {
 
     public static final String UNITS_KEY = "units";
     public static final String PROMPT_KEY = "prompt";
+    public static final String CONFIGURATION_FILE_NAME = "PersonalCalculator.xml";
+
+    private static final String CONFIGURATION_INVALID_PROPERTIES_EXCEPTION_MESSAGE = String.format("Error: Your %1$s file has an invalid format.", CalculatorContext.CONFIGURATION_FILE_NAME);
+    private static final String CONFIGURATION_FILE_NOT_FOUND_EXCEPTION_MESSAGE = String.format("Warning: Configuration file (%1$s) not found. Continuing on with defaults...", CalculatorContext.CONFIGURATION_FILE_NAME);
+    private static final String CONFIGURATION_IO_EXCEPTION_MESSAGE = String.format("Warning: Could not read configuration file (%1$s) for some reason. Continuing on with defaults...", CalculatorContext.CONFIGURATION_FILE_NAME);
 
     private static CalculatorContext instance;
 
@@ -58,11 +63,11 @@ public final class CalculatorContext {
 	    properties.loadFromXML(new FileInputStream("PersonalCalculator.xml"));
 	    promptModel = new PromptModel(properties.getProperty(CalculatorContext.PROMPT_KEY));
 	} catch (InvalidPropertiesFormatException e) {
-	    System.out.println("Your PersonalCalculator.xml file has an invalid format.");
+	    System.err.println(CalculatorContext.CONFIGURATION_INVALID_PROPERTIES_EXCEPTION_MESSAGE);
 	} catch (FileNotFoundException e) {
-	    e.printStackTrace();
+	    System.err.println(CalculatorContext.CONFIGURATION_FILE_NOT_FOUND_EXCEPTION_MESSAGE);
 	} catch (IOException e) {
-	    e.printStackTrace();
+	    System.err.println(CalculatorContext.CONFIGURATION_IO_EXCEPTION_MESSAGE);
 	}
     }
 
