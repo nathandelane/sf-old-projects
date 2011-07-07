@@ -17,36 +17,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.nathandelane.personalcalculator.engine;
+package com.nathandelane.personalcalculator.engine.tests;
+
+import junit.framework.TestCase;
+
+import org.junit.Test;
+
+import com.nathandelane.personalcalculator.engine.PromptModel;
 
 /**
- * Expression is a data class for historical purposes.
+ * Tests the PromptModel class.
  * @author nathanlane
  *
  */
-public class Expression {
-
-    private String expression;
-
-    public Expression(String expression) {
-	this.expression = expression;
-    }
+public class PromptModelTests extends TestCase {
 
     /**
-     * Returns a string representation of this expression.
+     * Tests whether what is inserted as the prompt is returned by the
+     * PromptModel's toString() method.
      */
-    @Override
-    public String toString() {
-	return this.expression;
-    }
+    @Test
+    public void testPromptModel() {
+	String prompt = "?> ";
+	PromptModel newPromptModel = new PromptModel(prompt);
 
-    /**
-     * Returns whether this expression is the same as another expression.
-     * @param other
-     * @return
-     */
-    public boolean equals(Expression other) {
-	return this.expression.equals(other.expression);
+	assertEquals(prompt, newPromptModel.toString());
     }
 
 }

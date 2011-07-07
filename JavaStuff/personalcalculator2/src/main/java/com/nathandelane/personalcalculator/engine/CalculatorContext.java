@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InvalidPropertiesFormatException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -32,7 +33,7 @@ import java.util.Properties;
 /**
  * Global context for the calculator. This context maintains a history of expressions and results, including the
  * last result and some constants and definitions for custom functions. All values are stored as Object and must
- * be cast into their
+ * be cast into their respective types.
  * @author nathanlane
  *
  */
@@ -110,11 +111,27 @@ public final class CalculatorContext {
     }
 
     /**
+     * Gets the complete expression history.
+     * @return
+     */
+    public List<Expression> getExpressionHistory() {
+	return this.expressionHistory;
+    }
+
+    /**
      * Adds an error to the error history.
      * @param error
      */
     public void addErrorToHistory(Error error) {
 	this.errorHistory.add(error);
+    }
+
+    /**
+     * Gets the complete error history.
+     * @return
+     */
+    public List<Error> getErrorHistory() {
+	return this.errorHistory;
     }
 
     /**
@@ -127,10 +144,18 @@ public final class CalculatorContext {
 
     /**
      * Sets the prompt model.
-     * @param promptModel
+     * @param prompt
      */
     public void setPromptModel(String prompt) {
 	this.promptModel = new PromptModel(prompt);
+    }
+
+    /**
+     * Sets the prompt model.
+     * @param promptModel
+     */
+    public void setPromptModel(PromptModel promptModel) {
+	this.promptModel = promptModel;
     }
 
     /**
