@@ -45,8 +45,16 @@ public class Expression {
      * @param other
      * @return
      */
-    public boolean equals(Expression other) {
-	return this.expression.equals(other.expression);
+    public boolean equals(Object other) {
+	boolean result = false;
+
+	if (other instanceof Expression) {
+	    if (this.expression.equals(((Expression)other).expression)) {
+		result = true;
+	    }
+	}
+
+	return result;
     }
 
 }
