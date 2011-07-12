@@ -33,7 +33,7 @@ import java.util.Properties;
 /**
  * Global context for the calculator. This context maintains a history of expressions and results, including the
  * last result and some constants and definitions for custom functions. All values are stored as Object and must
- * be cast into their respective types.
+ * be cast into their respective types..
  * @author nathanlane
  *
  */

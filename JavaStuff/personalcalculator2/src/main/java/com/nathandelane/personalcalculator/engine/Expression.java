@@ -45,6 +45,7 @@ public class Expression {
      * @param other
      * @return
      */
+    @Override
     public boolean equals(Object other) {
 	boolean result = false;
 
@@ -55,6 +56,14 @@ public class Expression {
 	}
 
 	return result;
+    }
+
+    /**
+     * Returns a hashcode for this expression.
+     */
+    @Override
+    public int hashCode() {
+	return (31 * this.expression.hashCode());
     }
 
 }
