@@ -2,6 +2,7 @@ package com.nathandelane.education;
 
 import javax.swing.UnsupportedLookAndFeelException;
 
+import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 public class Main {
@@ -17,6 +18,8 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
+	BasicConfigurator.configure();
+
 	try {
 	    new Main();
 	} catch(Exception e) {

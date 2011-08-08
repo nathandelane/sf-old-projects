@@ -39,7 +39,7 @@ public final class CardCollection {
     }
 
     public boolean hasNext() {
-	return this.pointer == (this.cards.size() - 1);
+	return this.pointer < (this.cards.size() - 1);
     }
 
     public Card getNext() {
@@ -48,6 +48,16 @@ public final class CardCollection {
 	this.pointer ++;
 
 	return response;
+    }
+
+    public Card currentCard() {
+	return this.cards.get(this.pointer);
+    }
+
+    public void reset() {
+	Collections.shuffle(this.cards);
+
+	this.pointer = 0;
     }
 
 }

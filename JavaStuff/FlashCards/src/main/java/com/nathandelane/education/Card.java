@@ -19,6 +19,7 @@ public final class Card extends JPanel {
 
 	this.operands = operands;
 	this.operation = operation;
+	this.correctResult = correctResult;
 
 	initialize();
     }
