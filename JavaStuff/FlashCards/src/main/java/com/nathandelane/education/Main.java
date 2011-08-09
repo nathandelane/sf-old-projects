@@ -6,6 +6,9 @@ public class Main {
 
     private Main() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
 	MainWindow flashCards = new MainWindow();
+
+	System.out.println("Starting...");
+
 	flashCards.setVisible(true);
     }
 

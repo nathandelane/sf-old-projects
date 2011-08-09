@@ -43,6 +43,8 @@ public final class MainWindow extends JFrame {
     }
 
     private void initializeWindow() throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+	System.out.println("Building ui...");
+
 	final Dimension minimumWindowSize = new Dimension(minimumWidth, minimumHeight);
 
 	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -93,7 +95,7 @@ public final class MainWindow extends JFrame {
 
 	resultsPanelBox.add(new JLabel(stringBuilder.toString()));
 
-	double percentCorrect = (correct / totalCards) * 100;
+	double percentCorrect = (((double)correct) / ((double)totalCards)) * 100.0;
 
 	JLabel percentageLabel = new JLabel(String.format("%1$s%%", (int)percentCorrect));
 	percentageLabel.setFont(new Font("Times New Roman", Font.PLAIN, 80));

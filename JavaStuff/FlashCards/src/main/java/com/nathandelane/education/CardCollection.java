@@ -45,11 +45,17 @@ public final class CardCollection {
     }
 
     private void populateCardCollection(Range[] operandRanges) {
+	System.out.print("Loading cards");
+
 	for (int leftOperand = operandRanges[0].getMin(); leftOperand < operandRanges[0].getMax(); leftOperand++) {
 	    for (int rightOperand = operandRanges[1].getMin(); rightOperand < operandRanges[1].getMax(); rightOperand++) {
 		this.cards.add(new Card(new int[] { leftOperand, rightOperand }, Operation.ADDITION, (leftOperand + rightOperand)));
+
+		System.out.print(".");
 	    }
 	}
+
+	System.out.println("FINISHED");
     }
 
 }
