@@ -38,7 +38,7 @@ public final class MainWindow extends JFrame {
 	this.minimumWidth = 800;
 	this.minimumHeight = 600;
 
-	MainWindow.cardCollection = new CardCollection();
+	MainWindow.cardCollection = new CardCollection(new Range[] { new Range(0, 9), new Range(0, 9) });
 	MainWindow.results = new ArrayList<Result>();
 
 	initializeWindow();
@@ -67,6 +67,8 @@ public final class MainWindow extends JFrame {
     }
 
     private void showResults() {
+	int totalCards = MainWindow.cardCollection.numberOfCards();
+
 	JPanel resultsPanel = new JPanel();
 	Box resultsPanelBox = Box.createVerticalBox();
 	JLabel resultsLabel = new JLabel("Results");
@@ -75,12 +77,12 @@ public final class MainWindow extends JFrame {
 
 	StringBuilder stringBuilder = new StringBuilder();
 	stringBuilder.append("<html><table>");
-	stringBuilder.append("<tr><td>Number of Problems:</td><td>" + MainWindow.cardCollection.numberOfCards() + "</td></tr>");
+	stringBuilder.append("<tr><td>Number of Problems:</td><td>" + totalCards + "</td></tr>");
 
 	int correct = 0;
 	int incorrect = 0;
 
-	for (Result nextResult : this.results) {
+	for (Result nextResult : MainWindow.results) {
 	    if (nextResult.getPassedOrFailed() == PassedOrFailed.FAILED) {
 		incorrect++;
 	    } else {
@@ -93,6 +95,14 @@ public final class MainWindow extends JFrame {
 	stringBuilder.append("</table></html>");
 
 	resultsPanelBox.add(new JLabel(stringBuilder.toString()));
+
+	double percentCorrect = (correct / totalCards) * 100;
+
+	JLabel percentageLabel = new JLabel(String.format("%1$s%%", (int)percentCorrect));
+	percentageLabel.setFont(new Font("Times New Roman", Font.PLAIN, 80));
+
+	resultsPanelBox.add(percentageLabel);
+
 	resultsPanel.add(resultsPanelBox);
 
 	Box buttonPanel = Box.createHorizontalBox();
@@ -105,6 +115,7 @@ public final class MainWindow extends JFrame {
 		    OptionButton optionButton = (OptionButton) e.getSource();
 
 		    if (optionButton.getText().equals("Restart")) {
+			MainWindow.results.clear();
 			MainWindow.cardCollection.reset();
 			MainWindow.this.initializeUi();
 		    }
