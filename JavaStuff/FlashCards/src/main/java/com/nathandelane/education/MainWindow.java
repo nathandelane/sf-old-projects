@@ -68,9 +68,32 @@ public final class MainWindow extends JFrame {
 
     private void showResults() {
 	JPanel resultsPanel = new JPanel();
+	Box resultsPanelBox = Box.createVerticalBox();
 	JLabel resultsLabel = new JLabel("Results");
 	resultsLabel.setFont(new Font("Times New Roman", Font.PLAIN, 26));
-	resultsPanel.add(resultsLabel);
+	resultsPanelBox.add(resultsLabel);
+
+	StringBuilder stringBuilder = new StringBuilder();
+	stringBuilder.append("<html><table>");
+	stringBuilder.append("<tr><td>Number of Problems:</td><td>" + MainWindow.cardCollection.numberOfCards() + "</td></tr>");
+
+	int correct = 0;
+	int incorrect = 0;
+
+	for (Result nextResult : this.results) {
+	    if (nextResult.getPassedOrFailed() == PassedOrFailed.FAILED) {
+		incorrect++;
+	    } else {
+		correct++;
+	    }
+	}
+
+	stringBuilder.append("<tr><td>Total Correct:</td><td>" + correct + "</td></tr>");
+	stringBuilder.append("<tr><td>Total Incorrect:</td><td>" + incorrect + "</td></tr>");
+	stringBuilder.append("</table></html>");
+
+	resultsPanelBox.add(new JLabel(stringBuilder.toString()));
+	resultsPanel.add(resultsPanelBox);
 
 	Box buttonPanel = Box.createHorizontalBox();
 
@@ -106,7 +129,7 @@ public final class MainWindow extends JFrame {
 	});
 
 	buttonPanel.add(optionButton);
-	buttonPanel.add(Box.createRigidArea(new Dimension(10, 30)));
+	buttonPanel.add(Box.createRigidArea(new Dimension(60, 30)));
 	buttonPanel.add(exitButton);
 
 	this.add(resultsPanel);

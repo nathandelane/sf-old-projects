@@ -9,37 +9,19 @@ public final class CardCollection {
     private List<Card> cards;
     private int pointer;
 
-    @SuppressWarnings("serial")
-    public CardCollection() {
+    public CardCollection(Range[] operandRanges) {
 	this.pointer = 0;
-	this.cards = new ArrayList<Card>() {
-	    {
-		add(new Card(new int[] { 1, 1 }, Operation.ADDITION, 2));
-		add(new Card(new int[] { 1, 2 }, Operation.ADDITION, 3));
-		add(new Card(new int[] { 1, 3 }, Operation.ADDITION, 4));
-		add(new Card(new int[] { 1, 4 }, Operation.ADDITION, 5));
-		add(new Card(new int[] { 1, 5 }, Operation.ADDITION, 6));
-		add(new Card(new int[] { 1, 6 }, Operation.ADDITION, 7));
-		add(new Card(new int[] { 1, 7 }, Operation.ADDITION, 8));
-		add(new Card(new int[] { 1, 8 }, Operation.ADDITION, 9));
-		add(new Card(new int[] { 1, 9 }, Operation.ADDITION, 10));
-		add(new Card(new int[] { 2, 1 }, Operation.ADDITION, 3));
-		add(new Card(new int[] { 2, 2 }, Operation.ADDITION, 4));
-		add(new Card(new int[] { 2, 3 }, Operation.ADDITION, 5));
-		add(new Card(new int[] { 2, 4 }, Operation.ADDITION, 6));
-		add(new Card(new int[] { 2, 5 }, Operation.ADDITION, 7));
-		add(new Card(new int[] { 2, 6 }, Operation.ADDITION, 8));
-		add(new Card(new int[] { 2, 7 }, Operation.ADDITION, 9));
-		add(new Card(new int[] { 2, 8 }, Operation.ADDITION, 10));
-		add(new Card(new int[] { 2, 9 }, Operation.ADDITION, 11));
-	    }
-	};
+	this.cards = new ArrayList<Card>();
 
 	Collections.shuffle(this.cards);
     }
 
+    public int numberOfCards() {
+	return this.cards.size();
+    }
+
     public boolean hasNext() {
-	return this.pointer < (this.cards.size() - 1);
+	return this.pointer < this.cards.size();
     }
 
     public Card getNext() {
@@ -58,6 +40,10 @@ public final class CardCollection {
 	Collections.shuffle(this.cards);
 
 	this.pointer = 0;
+    }
+
+    private void populateCardCollection(Range[] operandRanges) {
+	// TODO: Make this use ranges to populate the deck.
     }
 
 }
