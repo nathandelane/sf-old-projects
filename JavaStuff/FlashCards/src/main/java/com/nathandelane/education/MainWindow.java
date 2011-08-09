@@ -17,12 +17,9 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import org.apache.log4j.Logger;
-
 public final class MainWindow extends JFrame {
 
     private static final long serialVersionUID = -3629780808393423526L;
-    private static final Logger logger = Logger.getLogger(MainWindow.class);
 
     private static CardCollection cardCollection;
     private static Card currentCard;
@@ -170,10 +167,10 @@ public final class MainWindow extends JFrame {
 
 			if (value.equals(MainWindow.currentCard.getCorrectResult().toString())) {
 			    MainWindow.results.add(new Result(new Date(finishTime - MainWindow.initialTime), PassedOrFailed.PASSED));
-			    MainWindow.logger.info(String.format("The correct answer was chosen: %1$s", optionButton.getText()));
+			    System.out.println(String.format("The corrent answer was chosen: %1$s", optionButton.getText()));
 			} else {
 			    MainWindow.results.add(new Result(new Date(finishTime - MainWindow.initialTime), PassedOrFailed.FAILED));
-			    MainWindow.logger.info(String.format("The INCORRECT answer was chosen: %1$s", optionButton.getText()));
+			    System.out.println(String.format("The INCORRECT answer was chosen: %1$s", optionButton.getText()));
 			}
 
 			MainWindow.this.initializeUi();
