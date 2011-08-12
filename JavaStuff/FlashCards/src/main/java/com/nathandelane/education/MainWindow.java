@@ -53,6 +53,7 @@ public final class MainWindow extends JFrame {
 	this.setMinimumSize(minimumWindowSize);
 	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	this.setLocationByPlatform(true);
+	this.setResizable(false);
     }
 
     private void initializeUi() {
@@ -80,22 +81,32 @@ public final class MainWindow extends JFrame {
 
 	int correct = 0;
 	int incorrect = 0;
+	int skipped = 0;
+	long timeInMillis = 0;
 
 	for (Result nextResult : MainWindow.results) {
 	    if (nextResult.getPassedOrFailed() == PassedOrFailed.FAILED) {
 		incorrect++;
-	    } else {
+	    } else if (nextResult.getPassedOrFailed() == PassedOrFailed.PASSED) {
 		correct++;
+	    } else {
+		skipped++;
 	    }
+
+	    timeInMillis += nextResult.getTotalTime().getTime();
 	}
+
+	long averageTime = timeInMillis / totalCards;
 
 	stringBuilder.append("<tr><td>Total Correct:</td><td>" + correct + "</td></tr>");
 	stringBuilder.append("<tr><td>Total Incorrect:</td><td>" + incorrect + "</td></tr>");
+	stringBuilder.append("<tr><td>Total Skipped:</td><td>" + skipped + "</td></tr>");
+	stringBuilder.append("<tr><td>Average Time Per Card:</td><td>" + (new Date(averageTime)).getSeconds() + " second(s)</td></tr>");
 	stringBuilder.append("</table></html>");
 
 	resultsPanelBox.add(new JLabel(stringBuilder.toString()));
 
-	double percentCorrect = (((double)correct) / ((double)totalCards)) * 100.0;
+	double percentCorrect = (((double)correct) / ((double)(totalCards - skipped))) * 100.0;
 
 	JLabel percentageLabel = new JLabel(String.format("%1$s%%", (int)percentCorrect));
 	percentageLabel.setFont(new Font("Times New Roman", Font.PLAIN, 80));
@@ -139,11 +150,11 @@ public final class MainWindow extends JFrame {
 	});
 
 	buttonPanel.add(optionButton);
-	buttonPanel.add(Box.createRigidArea(new Dimension(60, 30)));
+	buttonPanel.add(Box.createRigidArea(new Dimension(10, 30)));
 	buttonPanel.add(exitButton);
 
-	this.add(resultsPanel);
 	this.add(buttonPanel);
+	this.add(resultsPanel);
 
 	this.pack();
     }
@@ -189,6 +200,30 @@ public final class MainWindow extends JFrame {
 
 	    optionCounter++;
 	}
+
+	box.add(Box.createRigidArea(new Dimension(10, 30)));
+
+	OptionButton skipButton = new OptionButton("Skip >>");
+	skipButton.addActionListener(new ActionListener() {
+
+	    public void actionPerformed(ActionEvent e) {
+		if (e.getSource() instanceof OptionButton) {
+		    long finishTime = Calendar.getInstance().getTimeInMillis();
+		    OptionButton optionButton = (OptionButton) e.getSource();
+		    String value = optionButton.getText();
+
+		    if (value.equals("Skip >>")) {
+			MainWindow.results.add(new Result(new Date(finishTime - MainWindow.initialTime), PassedOrFailed.SKIPPED));
+			System.out.println("This card was skipped.");
+		    }
+
+		    MainWindow.this.initializeUi();
+		}
+	    }
+
+	});
+
+	box.add(skipButton);
 
 	this.getContentPane().add(box);
 	this.pack();
