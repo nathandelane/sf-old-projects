@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.swing.Box;
@@ -93,7 +92,7 @@ public final class MainWindow extends JFrame {
 		skipped++;
 	    }
 
-	    timeInMillis += nextResult.getTotalTime().getTime();
+	    timeInMillis += nextResult.getTotalTime();
 	}
 
 	long averageTime = timeInMillis / totalCards;
@@ -101,7 +100,7 @@ public final class MainWindow extends JFrame {
 	stringBuilder.append("<tr><td>Total Correct:</td><td>" + correct + "</td></tr>");
 	stringBuilder.append("<tr><td>Total Incorrect:</td><td>" + incorrect + "</td></tr>");
 	stringBuilder.append("<tr><td>Total Skipped:</td><td>" + skipped + "</td></tr>");
-	stringBuilder.append("<tr><td>Average Time Per Card:</td><td>" + (new Date(averageTime)).getSeconds() + " second(s)</td></tr>");
+	stringBuilder.append("<tr><td>Average Time Per Card:</td><td>" + (averageTime / 1000) + " second(s)</td></tr>");
 	stringBuilder.append("</table></html>");
 
 	resultsPanelBox.add(new JLabel(stringBuilder.toString()));
@@ -179,10 +178,10 @@ public final class MainWindow extends JFrame {
 			String value = optionButton.getText();
 
 			if (value.equals(MainWindow.currentCard.getCorrectResult().toString())) {
-			    MainWindow.results.add(new Result(new Date(finishTime - MainWindow.initialTime), PassedOrFailed.PASSED));
+			    MainWindow.results.add(new Result((finishTime - MainWindow.initialTime), PassedOrFailed.PASSED));
 			    System.out.println(String.format("The corrent answer was chosen: %1$s", optionButton.getText()));
 			} else {
-			    MainWindow.results.add(new Result(new Date(finishTime - MainWindow.initialTime), PassedOrFailed.FAILED));
+			    MainWindow.results.add(new Result((finishTime - MainWindow.initialTime), PassedOrFailed.FAILED));
 			    System.out.println(String.format("The INCORRECT answer was chosen: %1$s", optionButton.getText()));
 			}
 
@@ -213,7 +212,7 @@ public final class MainWindow extends JFrame {
 		    String value = optionButton.getText();
 
 		    if (value.equals("Skip >>")) {
-			MainWindow.results.add(new Result(new Date(finishTime - MainWindow.initialTime), PassedOrFailed.SKIPPED));
+			MainWindow.results.add(new Result((finishTime - MainWindow.initialTime), PassedOrFailed.SKIPPED));
 			System.out.println("This card was skipped.");
 		    }
 

@@ -1,19 +1,17 @@
 package com.nathandelane.education;
 
-import java.util.Date;
-
 public final class Result {
 
-    private Date totalTime;
-    private PassedOrFailed passedOrFailed;
+    private final long totalTimeInMilliseconds;
+    private final PassedOrFailed passedOrFailed;
 
-    public Result(Date totalTime, PassedOrFailed passedOrFailed) {
-	this.totalTime = totalTime;
+    public Result(final long totalTime, final PassedOrFailed passedOrFailed) {
+	this.totalTimeInMilliseconds = totalTime;
 	this.passedOrFailed = passedOrFailed;
     }
 
-    public Date getTotalTime() {
-	return this.totalTime;
+    public long getTotalTime() {
+	return this.totalTimeInMilliseconds;
     }
 
     public PassedOrFailed getPassedOrFailed() {
