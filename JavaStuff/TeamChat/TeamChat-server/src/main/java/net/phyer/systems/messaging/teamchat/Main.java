@@ -1,4 +1,4 @@
-package net.phyer.systems.messaging;
+package net.phyer.systems.messaging.teamchat;
 
 public final class Main {
 
