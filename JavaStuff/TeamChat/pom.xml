@@ -4,7 +4,7 @@
 	<groupId>net.phyer.server</groupId>
 	<artifactId>TeamChat</artifactId>
 	<version>0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>pom</packaging>
 	<build>
 		<plugins>
 			<plugin>
@@ -40,4 +40,7 @@
 		<!--Used by startup script. Change to the app launcher you create -->
 		<startupClass>net.phyer.server.Main</startupClass>
 	</properties>
+	<modules>
+		<module>TeamChat-server</module>
+	</modules>
 </project>
