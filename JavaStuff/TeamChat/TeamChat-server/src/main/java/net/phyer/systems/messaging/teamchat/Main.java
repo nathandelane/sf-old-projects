@@ -1,12 +1,15 @@
 package net.phyer.systems.messaging.teamchat;
 
+/**
+ * <p>
+ * Main entry point for the TeamChat server.
+ * </p>
+ * @author nathanlane
+ *
+ */
 public final class Main {
 
-  /**
-   * @param args
-   */
   public static void main(String[] args) {
-    // TODO Auto-generated method stub
 
   }
 
