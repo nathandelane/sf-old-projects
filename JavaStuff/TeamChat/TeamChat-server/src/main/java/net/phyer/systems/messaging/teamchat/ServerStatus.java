@@ -2,10 +2,11 @@ package net.phyer.systems.messaging.teamchat;
 
 public enum ServerStatus {
 
+  STARTING("Starting"),
   RUNNING("Running"),
-  STOPPED("Stopped"),
   RESTARTING("Restarting"),
-  STOPPING("Stopping");
+  STOPPING("Stopping"),
+  STOPPED("Stopped");
 
   private String status;
 
