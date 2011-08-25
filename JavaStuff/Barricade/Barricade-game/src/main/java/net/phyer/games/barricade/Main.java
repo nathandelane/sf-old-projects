@@ -18,7 +18,7 @@ public final class Main {
     final Runnable launchGame = new Runnable() {
 
       public void run() {
-        final GameWindow gameWindow = new GameWindow();
+        final GameWindow gameWindow = new GameWindow(null);
         gameWindow.setVisible(true);
       }
 

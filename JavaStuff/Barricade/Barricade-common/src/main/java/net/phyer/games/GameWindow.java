@@ -27,7 +27,7 @@ public final class GameWindow extends JFrame {
 
   @Override
   public void update(final Graphics g) {
-
+    super.update(g);
   }
 
 }
