@@ -1,5 +1,7 @@
 package net.phyer.games;
 
+import java.awt.Graphics;
+
 import javax.swing.JFrame;
 
 /**
@@ -11,25 +13,21 @@ public final class GameWindow extends JFrame {
 
   private static final long serialVersionUID = -7527056665085333128L;
 
-  private static GameWindow instance;
+  private final GameLoop gameLoop;
 
   /**
    * Creates an instance of GameWindow.
    */
-  private GameWindow() {
+  public GameWindow(final GameLoop gameLoop) {
+    this.gameLoop = gameLoop;
 
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setSize(640, 480);
   }
 
-  /**
-   * Gets a singleton instance of the {@link GameWindow}.
-   * @return
-   */
-  public static GameWindow getInstance() {
-    if (GameWindow.instance == null) {
-      GameWindow.instance = new GameWindow();
-    }
+  @Override
+  public void update(final Graphics g) {
 
-    return GameWindow.instance;
   }
 
 }
