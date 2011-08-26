@@ -26,6 +26,9 @@ public final class GameWindow extends JFrame {
     setSize(640, 480);
   }
 
+  /**
+   * Paints the window.
+   */
   @Override
   public void paint(final Graphics graphics) {
     super.paint(graphics);
