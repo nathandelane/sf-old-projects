@@ -5,9 +5,7 @@
     <groupId>net.phyer.games</groupId>
     <version>0.1-SNAPSHOT</version>
   </parent>
-  <groupId>net.phyer.games</groupId>
   <artifactId>Barricade-common</artifactId>
-  <version>0.1-SNAPSHOT</version>
   <name>Barricade-common</name>
   <description>Common components that might be factorable out of Barricade.</description>
 </project>

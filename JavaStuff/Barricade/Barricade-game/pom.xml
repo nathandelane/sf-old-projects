@@ -5,18 +5,10 @@
     <groupId>net.phyer.games</groupId>
     <version>0.1-SNAPSHOT</version>
   </parent>
-  <groupId>net.phyer.games</groupId>
   <artifactId>Barricade-game</artifactId>
-  <version>0.1-SNAPSHOT</version>
   <name>Barricade-game</name>
   <description>The actual game of Barricade.</description>
   <dependencies>
-  	<dependency>
-  		<groupId>apache-log4j</groupId>
-  		<artifactId>log4j</artifactId>
-  		<version>1.2.15</version>
-  		<scope>compile</scope>
-  	</dependency>
   	<dependency>
   		<groupId>net.phyer.games</groupId>
   		<artifactId>Barricade-common</artifactId>
