@@ -1,6 +1,7 @@
 package net.phyer.games;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
 
@@ -26,8 +27,14 @@ public final class GameWindow extends JFrame {
   }
 
   @Override
-  public void update(final Graphics g) {
-    super.update(g);
+  public void paint(final Graphics graphics) {
+    super.paint(graphics);
+
+    if (gameLoop != null) {
+      final Graphics2D graphics2D = (Graphics2D)graphics;
+
+      gameLoop.run(graphics2D);
+    }
   }
 
 }
