@@ -5,18 +5,26 @@ package net.phyer.games.graphics;
  * @author nathanlane
  *
  */
-public class Animation {
+public final class Animation implements Runnable {
 
+  private final String name;
   private final ImageMap imageMap;
-  
-  private int
 
-  public Animation(final ImageMap imageMap) {
+  public Animation(final String name, final ImageMap imageMap) {
     if (imageMap == null || imageMap.isEmpty()) {
       throw new IllegalArgumentException(AnimationMessages.IMAGE_MAP_CANNOT_BE_NULL_MESSAGE);
     }
 
+    this.name = name;
     this.imageMap = imageMap;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void run() {
+    
   }
 
   /**
