@@ -5,7 +5,7 @@ package net.phyer.games.graphics;
  * @author nathanlane
  *
  */
-public final class Animation implements Runnable {
+public class Animation implements Runnable {
 
   private final String name;
   private final ImageMap imageMap;
@@ -19,12 +19,16 @@ public final class Animation implements Runnable {
     this.imageMap = imageMap;
   }
 
+  /**
+   * Gets the name of this animation.
+   * @return
+   */
   public String getName() {
     return name;
   }
 
   public void run() {
-    
+    // TODO: Render the animation, and transform the sprite at the same time.
   }
 
   /**
