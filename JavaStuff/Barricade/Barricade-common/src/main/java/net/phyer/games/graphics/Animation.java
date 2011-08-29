@@ -24,11 +24,20 @@ public final class Animation {
     currentFrame = 0;
   }
 
+  /**
+   * Adds an {@link AnimationFrame} to the animation.
+   * @param frame
+   */
   public synchronized void addFrame(final AnimationFrame frame) {
     frames.add(frame);
     totalDuration += frame.getDuration();
   }
 
+  /**
+   * Adds an {@link AnimationFrame} to the animation.
+   * @param image
+   * @param duration
+   */
   public synchronized void addFrame(final Image image, final int duration) {
     final AnimationFrame newAnimationFrame = new AnimationFrame(image, duration);
 
@@ -36,6 +45,10 @@ public final class Animation {
     totalDuration += newAnimationFrame.getDuration();
   }
 
+  /**
+   * Gets the current image of the animation.
+   * @return
+   */
   public synchronized Image getImage() {
     Image currentImage = null;
 
@@ -46,11 +59,18 @@ public final class Animation {
     return currentImage;
   }
 
+  /**
+   * Starts the animation.
+   */
   public synchronized void start() {
     elapsedTime = 0;
     currentFrame = 0;
   }
 
+  /**
+   * Updates the animation.
+   * @param elapsedTime
+   */
   public synchronized void update(final long elapsedTime) {
     if (frames.size() > 1) {
       this.elapsedTime += elapsedTime;
@@ -82,10 +102,18 @@ public final class Animation {
       this.duration = duration;
     }
 
+    /**
+     * Gets the image for this AnimationFrame.
+     * @return
+     */
     public Image getImage() {
       return image;
     }
 
+    /**
+     * Gets the duration for this AnimationFrame.
+     * @return
+     */
     public int getDuration() {
       return duration;
     }
