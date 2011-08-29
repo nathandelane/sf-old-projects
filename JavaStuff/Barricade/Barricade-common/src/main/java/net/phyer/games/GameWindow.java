@@ -1,5 +1,6 @@
 package net.phyer.games;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -22,12 +23,12 @@ public final class GameWindow extends JFrame {
   /**
    * Creates an instance of GameWindow.
    */
-  public GameWindow(final GameLoop gameLoop) {
+  public GameWindow(final Dimension windowDimensions, final GameLoop gameLoop) {
     this.gameLoop = gameLoop;
-    spriteManager = new SpriteManager();
+    spriteManager = new SpriteManager(windowDimensions);
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setSize(640, 480);
+    setSize(windowDimensions);
   }
 
   /**
