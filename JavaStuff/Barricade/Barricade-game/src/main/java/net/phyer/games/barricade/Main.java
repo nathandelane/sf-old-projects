@@ -19,6 +19,7 @@ public final class Main {
 
       public void run() {
         final GameWindow gameWindow = new GameWindow(null);
+        gameWindow.setTitle("Phyersoft-BARRICADE Press F11 for window or fullscreen");
         gameWindow.setVisible(true);
       }
 

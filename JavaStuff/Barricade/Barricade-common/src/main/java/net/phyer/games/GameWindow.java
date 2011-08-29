@@ -27,6 +27,14 @@ public final class GameWindow extends JFrame {
   }
 
   /**
+   * Sets the title of the {@link GameWindow}.
+   * @param title
+   */
+  public void setTitle(final String title) {
+    super.setTitle(title);
+  }
+
+  /**
    * Paints the window.
    */
   @Override

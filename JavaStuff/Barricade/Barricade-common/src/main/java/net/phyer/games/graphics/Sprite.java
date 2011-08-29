@@ -1,5 +1,7 @@
 package net.phyer.games.graphics;
 
+import java.awt.Image;
+
 /**
  * Generic sprite.
  * @author nathanlane
@@ -11,23 +13,90 @@ public class Sprite {
 
   private final Animation animation;
 
-  private float horizontalLocation;
-  private float verticalLocation;
+  private SpriteLocation location;
+  private SpriteVelocity velocity;
 
   public Sprite(final Animation animation) {
     this.animation = animation;
-    horizontalLocation = 0.0f;
-    verticalLocation = 0.0f;
+    location = new SpriteLocation(0.0f, 0.0f);
   }
 
+  /**
+   * Updates the sprite.
+   * @param elapsedTime
+   */
   public void update(final long elapsedTime) {
+    if (velocity.getHorizontalVelocity() != 0 || velocity.getVerticalVelocity() !=  0) {
+      final float horizontalLocation = location.getHorizontalLocation() + (velocity.getHorizontalVelocity() * (float)elapsedTime);
+      final float verticalLocation = location.getVerticalLocation() + (velocity.getVerticalVelocity() * (float)elapsedTime);
+
+      location = new SpriteLocation(horizontalLocation, verticalLocation);
+    }
+
     animation.update(elapsedTime);
   }
 
+  /**
+   * Gets the current location.
+   * @return
+   */
   public SpriteLocation getLocation() {
-    return new SpriteLocation(horizontalLocation, verticalLocation);
+    return location;
   }
 
+  /**
+   * Sets the current location.
+   * @param location
+   */
+  public void setLocation(final SpriteLocation location) {
+    this.location = location;
+  }
+
+  /**
+   * Gets the current velocity.
+   * @return
+   */
+  public SpriteVelocity getVelocity() {
+    return velocity;
+  }
+
+  /**
+   * Sets the current velocity.
+   * @param velocity
+   */
+  public void setVelocity(final SpriteVelocity velocity) {
+    this.velocity = velocity;
+  }
+
+  /**
+   * Gets the sprite's current image.
+   * @return
+   */
+  public Image getImage() {
+    return animation.getImage();
+  }
+
+  /**
+   * Gets the current width of the sprite based on the image.
+   * @return
+   */
+  public int getWidth() {
+    return animation.getImage().getWidth(null);
+  }
+
+  /**
+   * Gets the current height of the sprite based on the image.
+   * @return
+   */
+  public int getHeight() {
+    return animation.getImage().getHeight(null);
+  }
+
+  /**
+   * Location of a {@link Sprite}.
+   * @author nathanlane
+   *
+   */
   public final class SpriteLocation {
 
     private final float horizontalLocation;
@@ -38,12 +107,53 @@ public class Sprite {
       this.verticalLocation = verticalLocation;
     }
 
+    /**
+     * Gets the x-location value.
+     * @return
+     */
     public float getHorizontalLocation() {
       return horizontalLocation;
     }
 
+    /**
+     * Gets the y-location value.
+     * @return
+     */
     public float getVerticalLocation() {
       return verticalLocation;
+    }
+
+  }
+
+  /**
+   * Velocity of a {@link Sprite}.
+   * @author nathanlane
+   *
+   */
+  public final class SpriteVelocity {
+
+    private final float horizontalVelocity;
+    private final float verticalVelocity;
+
+    public SpriteVelocity(final float horizontalLocation, final float verticalLocation) {
+      this.horizontalVelocity = horizontalLocation;
+      this.verticalVelocity = verticalLocation;
+    }
+
+    /**
+     * Gets the x-velocity value.
+     * @return
+     */
+    public float getHorizontalVelocity() {
+      return horizontalVelocity;
+    }
+
+    /**
+     * Gets the y-velocity value.
+     * @return
+     */
+    public float getVerticalVelocity() {
+      return verticalVelocity;
     }
 
   }
