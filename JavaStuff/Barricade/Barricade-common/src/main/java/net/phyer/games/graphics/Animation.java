@@ -1,44 +1,94 @@
 package net.phyer.games.graphics;
 
+import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class represents an animation.
  * @author nathanlane
  *
  */
-public class Animation implements Runnable {
+public final class Animation {
 
-  private final String name;
-  private final ImageMap imageMap;
+  private final List<AnimationFrame> frames;
 
-  public Animation(final String name, final ImageMap imageMap) {
-    if (imageMap == null || imageMap.isEmpty()) {
-      throw new IllegalArgumentException(AnimationMessages.IMAGE_MAP_CANNOT_BE_NULL_MESSAGE);
+  private long totalDuration;
+  private long elapsedTime;
+  private int currentFrame;
+
+  public Animation() {
+    frames = new ArrayList<AnimationFrame>();
+    totalDuration = 0;
+    elapsedTime = 0;
+    currentFrame = 0;
+  }
+
+  public synchronized void addFrame(final AnimationFrame frame) {
+    frames.add(frame);
+    totalDuration += frame.getDuration();
+  }
+
+  public synchronized void addFrame(final Image image, final int duration) {
+    final AnimationFrame newAnimationFrame = new AnimationFrame(image, duration);
+
+    frames.add(newAnimationFrame);
+    totalDuration += newAnimationFrame.getDuration();
+  }
+
+  public synchronized Image getImage() {
+    Image currentImage = null;
+
+    if (frames.size() > 0) {
+      currentImage = frames.get(currentFrame).getImage();
     }
 
-    this.name = name;
-    this.imageMap = imageMap;
+    return currentImage;
+  }
+
+  public synchronized void start() {
+    elapsedTime = 0;
+    currentFrame = 0;
+  }
+
+  public synchronized void update(final long elapsedTime) {
+    if (frames.size() > 1) {
+      this.elapsedTime += elapsedTime;
+
+      if (this.elapsedTime >= totalDuration) {
+        this.elapsedTime %= totalDuration;
+
+        currentFrame = 0;
+      }
+
+      while (this.elapsedTime > frames.get(currentFrame).getDuration()) {
+        currentFrame++;
+      }
+    }
   }
 
   /**
-   * Gets the name of this animation.
-   * @return
-   */
-  public String getName() {
-    return name;
-  }
-
-  public void run() {
-    // TODO: Render the animation, and transform the sprite at the same time.
-  }
-
-  /**
-   * This class contains messages for {@link ImageMap}.
+   * Represents a frame of animation including its image and duration that it is on-screen.
    * @author nathanlane
    *
    */
-  private final class AnimationMessages {
+  public class AnimationFrame {
 
-    public static final String IMAGE_MAP_CANNOT_BE_NULL_MESSAGE = "ImageMap cannot be null or empty.";
+    private final Image image;
+    private final int duration;
+
+    public AnimationFrame(final Image image, final int duration) {
+      this.image = image;
+      this.duration = duration;
+    }
+
+    public Image getImage() {
+      return image;
+    }
+
+    public int getDuration() {
+      return duration;
+    }
 
   }
 

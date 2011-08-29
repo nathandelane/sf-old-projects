@@ -1,15 +1,20 @@
 package net.phyer.games.graphics;
 
 /**
- * Represents a sprite.
+ * Generic sprite.
  * @author nathanlane
  *
  */
-public interface Sprite {
+public class Sprite {
 
-  /**
-   * Renders the Sprite.
-   */
-  void render();
+  private static final long serialVersionUID = 3327200074402945772L;
+
+  public Sprite() {
+
+  }
+
+  public void render() {
+
+  }
 
 }
