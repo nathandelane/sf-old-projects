@@ -14,7 +14,7 @@ public class Scene extends JPanel {
   private static final long serialVersionUID = 1320208818548621504L;
 
   public Scene() {
-
+    super();
   }
 
   @Override
