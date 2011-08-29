@@ -88,6 +88,37 @@ public final class Animation {
   }
 
   /**
+   * Tests whether this and another object are the same. They are the same if they
+   * contain the same {@link AnimationFrame}s.
+   */
+  @Override
+  public boolean equals(final Object other) {
+    boolean result = true;
+
+    if (other instanceof Animation) {
+      final Animation otherAnimation = (Animation)other;
+
+      if (otherAnimation.frames.size() == this.frames.size()) {
+        for (AnimationFrame nextOtherFrame : otherAnimation.frames) {
+          if (!this.frames.contains(nextOtherFrame)) {
+            result = false;
+
+            break;
+          }
+        }
+      }
+      else {
+        result = false;
+      }
+    }
+    else {
+      result = false;
+    }
+
+    return result;
+  }
+
+  /**
    * Represents a frame of animation including its image and duration that it is on-screen.
    * @author nathanlane
    *
@@ -116,6 +147,31 @@ public final class Animation {
      */
     public int getDuration() {
       return duration;
+    }
+
+    /**
+     * Tests whether this and another object are the same. Two {@link AnimationFrame} objects are the
+     * same if they contain the same image and have the same duration.
+     */
+    @Override
+    public boolean equals(final Object other) {
+      boolean result = true;
+
+      if (other instanceof AnimationFrame) {
+        final AnimationFrame otherFrame = (AnimationFrame)other;
+
+        if (!otherFrame.image.equals(this.image)) {
+          result = false;
+        }
+        else if (otherFrame.duration != this.duration) {
+          result = false;
+        }
+      }
+      else {
+        result = false;
+      }
+
+      return result;
     }
 
   }

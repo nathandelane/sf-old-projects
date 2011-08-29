@@ -11,12 +11,23 @@ public class Sprite {
 
   private static final long serialVersionUID = 3327200074402945772L;
 
+  private static Integer spriteCounter;
+
   private final Animation animation;
 
+  private int id;
   private SpriteLocation location;
   private SpriteVelocity velocity;
 
   public Sprite(final Animation animation) {
+    if (Sprite.spriteCounter == null) {
+      Sprite.spriteCounter = 0;
+    }
+    else {
+      Sprite.spriteCounter++;
+    }
+
+    id = Sprite.spriteCounter;
     this.animation = animation;
     location = new SpriteLocation(0.0f, 0.0f);
   }
@@ -34,6 +45,14 @@ public class Sprite {
     }
 
     animation.update(elapsedTime);
+  }
+
+  /**
+   * Gets this sprite's ID.
+   * @return
+   */
+  public int getId() {
+    return id;
   }
 
   /**
@@ -90,6 +109,28 @@ public class Sprite {
    */
   public int getHeight() {
     return animation.getImage().getHeight(null);
+  }
+
+  /**
+   * Tests whether this and another object are equal. They are only equal if their ID is the
+   * same.
+   */
+  @Override
+  public boolean equals(final Object other) {
+    boolean result = true;
+
+    if (other instanceof Sprite) {
+      final Sprite otherSprite = (Sprite)other;
+
+      if (otherSprite.id != this.id) {
+        result = false;
+      }
+    }
+    else {
+      result = false;
+    }
+
+    return result;
   }
 
   /**
