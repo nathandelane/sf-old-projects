@@ -17,8 +17,9 @@ public final class GameWindow extends JFrame {
 
   private static final long serialVersionUID = -7527056665085333128L;
 
-  private final GameLoop gameLoop;
   private final SpriteManager spriteManager;
+
+  private GameLoop gameLoop;
 
   /**
    * Creates an instance of GameWindow.
@@ -37,6 +38,10 @@ public final class GameWindow extends JFrame {
    */
   public void setTitle(final String title) {
     super.setTitle(title);
+  }
+
+  public void setGameLoop(final GameLoop gameLoop) {
+    this.gameLoop = gameLoop;
   }
 
   /**
