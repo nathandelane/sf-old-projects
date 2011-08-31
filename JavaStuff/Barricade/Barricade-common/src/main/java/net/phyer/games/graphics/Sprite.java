@@ -38,8 +38,8 @@ public class Sprite {
    */
   public void update(final long elapsedTime) {
     if (velocity.getHorizontalVelocity() != 0 || velocity.getVerticalVelocity() !=  0) {
-      final float horizontalLocation = location.getHorizontalLocation() + (velocity.getHorizontalVelocity() * (float)elapsedTime);
-      final float verticalLocation = location.getVerticalLocation() + (velocity.getVerticalVelocity() * (float)elapsedTime);
+      final double horizontalLocation = location.getHorizontalLocation() + (velocity.getHorizontalVelocity() * (double)elapsedTime);
+      final double verticalLocation = location.getVerticalLocation() + (velocity.getVerticalVelocity() * (double)elapsedTime);
 
       location = new SpriteLocation(horizontalLocation, verticalLocation);
     }
@@ -140,10 +140,10 @@ public class Sprite {
    */
   public final class SpriteLocation {
 
-    private final float horizontalLocation;
-    private final float verticalLocation;
+    private final double horizontalLocation;
+    private final double verticalLocation;
 
-    public SpriteLocation(final float horizontalLocation, final float verticalLocation) {
+    public SpriteLocation(final double horizontalLocation, final double verticalLocation) {
       this.horizontalLocation = horizontalLocation;
       this.verticalLocation = verticalLocation;
     }
@@ -152,7 +152,7 @@ public class Sprite {
      * Gets the x-location value.
      * @return
      */
-    public float getHorizontalLocation() {
+    public double getHorizontalLocation() {
       return horizontalLocation;
     }
 
@@ -160,7 +160,7 @@ public class Sprite {
      * Gets the y-location value.
      * @return
      */
-    public float getVerticalLocation() {
+    public double getVerticalLocation() {
       return verticalLocation;
     }
 
@@ -173,10 +173,10 @@ public class Sprite {
    */
   public final class SpriteVelocity {
 
-    private final float horizontalVelocity;
-    private final float verticalVelocity;
+    private final double horizontalVelocity;
+    private final double verticalVelocity;
 
-    public SpriteVelocity(final float horizontalLocation, final float verticalLocation) {
+    public SpriteVelocity(final double horizontalLocation, final double verticalLocation) {
       this.horizontalVelocity = horizontalLocation;
       this.verticalVelocity = verticalLocation;
     }
@@ -185,7 +185,7 @@ public class Sprite {
      * Gets the x-velocity value.
      * @return
      */
-    public float getHorizontalVelocity() {
+    public double getHorizontalVelocity() {
       return horizontalVelocity;
     }
 
@@ -193,7 +193,7 @@ public class Sprite {
      * Gets the y-velocity value.
      * @return
      */
-    public float getVerticalVelocity() {
+    public double getVerticalVelocity() {
       return verticalVelocity;
     }
 
