@@ -19,6 +19,7 @@ import net.phyer.games.graphics.SpriteManager;
 public final class Main {
 
   private static final Dimension WINDOW_DIMENSIONS = new Dimension(740, 480);
+  private static final String WINDOW_TITLE_BAR_MESSAGE = "Phyersoft-BARRICADE Press F11 for window or fullscreen";
 
   /**
    * @param args
@@ -28,7 +29,7 @@ public final class Main {
 
       public void run() {
         final GameWindow gameWindow = new GameWindow(WINDOW_DIMENSIONS, null);
-        gameWindow.setTitle("Phyersoft-BARRICADE Press F11 for window or fullscreen");
+        gameWindow.setTitle(WINDOW_TITLE_BAR_MESSAGE);
         gameWindow.setVisible(true);
 
         URL url = ClassLoader.getSystemResource("backgrounds/Barr-Hiway77Misty.png");
