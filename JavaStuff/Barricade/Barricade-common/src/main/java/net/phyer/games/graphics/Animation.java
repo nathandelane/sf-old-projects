@@ -137,7 +137,7 @@ public final class Animation {
      * Gets the image for this AnimationFrame.
      * @return
      */
-    public Image getImage() {
+    public synchronized Image getImage() {
       return image;
     }
 
@@ -145,7 +145,7 @@ public final class Animation {
      * Gets the duration for this AnimationFrame.
      * @return
      */
-    public int getDuration() {
+    public synchronized int getDuration() {
       return duration;
     }
 

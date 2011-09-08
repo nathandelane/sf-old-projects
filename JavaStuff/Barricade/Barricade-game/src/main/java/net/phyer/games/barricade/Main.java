@@ -1,7 +1,11 @@
 package net.phyer.games.barricade;
 
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
@@ -30,7 +34,9 @@ public final class Main {
       public void run() {
         final GameWindow gameWindow = new GameWindow(WINDOW_DIMENSIONS, null);
         gameWindow.setTitle(WINDOW_TITLE_BAR_MESSAGE);
+        gameWindow.setCursor(getInvisibleCursor());
         gameWindow.setVisible(true);
+        gameWindow.showDebugPanel();
 
         URL url = ClassLoader.getSystemResource("backgrounds/Barr-Hiway77Misty.png");
 
@@ -52,6 +58,17 @@ public final class Main {
     };
 
     SwingUtilities.invokeLater(launchGame);
+  }
+
+  /**
+   * Gets an invisible cursor.
+   * @return
+   */
+  private static Cursor getInvisibleCursor() {
+    final Image cursorImage = Toolkit.getDefaultToolkit().createImage(new byte[] { });
+    final Cursor cursor = Toolkit.getDefaultToolkit().createCustomCursor(cursorImage, new Point(0, 0), "Invisible Cursor");
+
+    return cursor;
   }
 
 }

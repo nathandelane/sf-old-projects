@@ -23,7 +23,7 @@ public final class SpriteManager {
    * Adds a sprite to the sprite list.
    * @param sprite
    */
-  public void addSprite(final Sprite sprite) {
+  public synchronized void addSprite(final Sprite sprite) {
     sprites.add(sprite);
   }
 
@@ -32,7 +32,7 @@ public final class SpriteManager {
    * @param sprite
    * @return
    */
-  public boolean removeSprite(final Sprite sprite) {
+  public synchronized boolean removeSprite(final Sprite sprite) {
     return sprites.remove(sprite);
   }
 
@@ -41,7 +41,7 @@ public final class SpriteManager {
    * @param spriteIndex
    * @return
    */
-  public Sprite removeSpriteAt(final int spriteIndex) {
+  public synchronized Sprite removeSpriteAt(final int spriteIndex) {
     return sprites.remove(spriteIndex);
   }
 
@@ -49,7 +49,7 @@ public final class SpriteManager {
    * Gets an array of {@link Sprite}s that are valid to be rendered.
    * @return
    */
-  public Sprite[] getSprites() {
+  public synchronized Sprite[] getSprites() {
     final List<Sprite> validSprites = new ArrayList<Sprite>();
 
     for (Sprite nextSprite : sprites) {

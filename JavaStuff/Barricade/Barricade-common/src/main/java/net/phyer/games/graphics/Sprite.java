@@ -36,7 +36,7 @@ public class Sprite {
    * Updates the sprite.
    * @param elapsedTime
    */
-  public void update(final long elapsedTime) {
+  public synchronized void update(final long elapsedTime) {
     if (velocity.getHorizontalVelocity() != 0 || velocity.getVerticalVelocity() !=  0) {
       final double horizontalLocation = location.getHorizontalLocation() + (velocity.getHorizontalVelocity() * (double)elapsedTime);
       final double verticalLocation = location.getVerticalLocation() + (velocity.getVerticalVelocity() * (double)elapsedTime);
@@ -51,7 +51,7 @@ public class Sprite {
    * Gets this sprite's ID.
    * @return
    */
-  public int getId() {
+  public synchronized int getId() {
     return id;
   }
 
@@ -59,7 +59,7 @@ public class Sprite {
    * Gets the current location.
    * @return
    */
-  public SpriteLocation getLocation() {
+  public synchronized SpriteLocation getLocation() {
     return location;
   }
 
@@ -75,7 +75,7 @@ public class Sprite {
    * Gets the current velocity.
    * @return
    */
-  public SpriteVelocity getVelocity() {
+  public synchronized SpriteVelocity getVelocity() {
     return velocity;
   }
 
@@ -83,7 +83,7 @@ public class Sprite {
    * Sets the current velocity.
    * @param velocity
    */
-  public void setVelocity(final SpriteVelocity velocity) {
+  public synchronized void setVelocity(final SpriteVelocity velocity) {
     this.velocity = velocity;
   }
 
@@ -91,7 +91,7 @@ public class Sprite {
    * Gets the sprite's current image.
    * @return
    */
-  public Image getImage() {
+  public synchronized Image getImage() {
     return animation.getImage();
   }
 
@@ -99,7 +99,7 @@ public class Sprite {
    * Gets the current width of the sprite based on the image.
    * @return
    */
-  public int getWidth() {
+  public synchronized int getWidth() {
     return animation.getImage().getWidth(null);
   }
 
@@ -107,7 +107,7 @@ public class Sprite {
    * Gets the current height of the sprite based on the image.
    * @return
    */
-  public int getHeight() {
+  public synchronized int getHeight() {
     return animation.getImage().getHeight(null);
   }
 
@@ -152,7 +152,7 @@ public class Sprite {
      * Gets the x-location value.
      * @return
      */
-    public double getHorizontalLocation() {
+    public synchronized double getHorizontalLocation() {
       return horizontalLocation;
     }
 
@@ -160,7 +160,7 @@ public class Sprite {
      * Gets the y-location value.
      * @return
      */
-    public double getVerticalLocation() {
+    public synchronized double getVerticalLocation() {
       return verticalLocation;
     }
 
@@ -185,7 +185,7 @@ public class Sprite {
      * Gets the x-velocity value.
      * @return
      */
-    public double getHorizontalVelocity() {
+    public synchronized double getHorizontalVelocity() {
       return horizontalVelocity;
     }
 
@@ -193,7 +193,7 @@ public class Sprite {
      * Gets the y-velocity value.
      * @return
      */
-    public double getVerticalVelocity() {
+    public synchronized double getVerticalVelocity() {
       return verticalVelocity;
     }
 

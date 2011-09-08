@@ -16,6 +16,7 @@ import net.phyer.games.graphics.SpriteManager;
 public final class GameWindow extends JFrame {
 
   private static final long serialVersionUID = -7527056665085333128L;
+  private static final DebugPanel debugPanel = new DebugPanel();
 
   private final SpriteManager spriteManager;
 
@@ -29,7 +30,9 @@ public final class GameWindow extends JFrame {
     spriteManager = new SpriteManager(windowDimensions);
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setResizable(false);
     setSize(windowDimensions);
+    setFocusTraversalKeysEnabled(false);
   }
 
   /**
@@ -40,8 +43,26 @@ public final class GameWindow extends JFrame {
     super.setTitle(title);
   }
 
+  /**
+   * Sets the current {@link GameLoop} object for the Game Window.
+   * @param gameLoop
+   */
   public void setGameLoop(final GameLoop gameLoop) {
     this.gameLoop = gameLoop;
+  }
+
+  /**
+   * Shows the {@link DebugPanel}.
+   */
+  public void showDebugPanel() {
+    add(debugPanel);
+  }
+
+  /**
+   * Hides the {@link DebugPanel}.
+   */
+  public void hideDebugPanel() {
+    remove(debugPanel);
   }
 
   /**

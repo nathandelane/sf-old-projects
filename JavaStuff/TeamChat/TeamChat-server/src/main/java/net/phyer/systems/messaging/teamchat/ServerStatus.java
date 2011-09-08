@@ -18,4 +18,8 @@ public enum ServerStatus {
     return this.status;
   }
 
+  public static ServerStatus fromValue(final String value) {
+    return Enum.valueOf(ServerStatus.class, value);
+  }
+
 }

@@ -24,20 +24,20 @@ public final class FullScreenManager {
     defaultDisplayMode = graphicsDevice.getDisplayMode();
   }
 
-  public boolean isFullScreenSupported() {
+  public synchronized boolean isFullScreenSupported() {
     return graphicsDevice.isFullScreenSupported();
   }
 
-  public DisplayMode[] getAvailableDisplayModes() {
+  public synchronized DisplayMode[] getAvailableDisplayModes() {
     return graphicsDevice.getDisplayModes();
   }
 
-  public void setFullScreenExclusive(final Window window, final DisplayMode displayMode) {
+  public synchronized void setFullScreenExclusive(final Window window, final DisplayMode displayMode) {
     graphicsDevice.setFullScreenWindow(window);
     graphicsDevice.setDisplayMode(displayMode);
   }
 
-  public void setDefaultDisplayMode() {
+  public synchronized void setDefaultDisplayMode() {
     graphicsDevice.setDisplayMode(defaultDisplayMode);
   }
 
