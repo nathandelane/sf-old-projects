@@ -27,12 +27,14 @@ public final class Main {
   private Main() {
     gameWindow = new GameWindow(WINDOW_DIMENSIONS, null);
 
+
+
     final Runnable launchGame = new Runnable() {
 
       public void run() {
         gameWindow.setTitle(WINDOW_TITLE_BAR_MESSAGE);
         gameWindow.setCursor(getInvisibleCursor());
-        gameWindow.setGameLoop(GameLoopFactory.generateGameLoop(GameState.Experiment));
+        gameWindow.setGameLoop(GameLoopFactory.generateGameLoop(GameState.HALLWAY_ORANGE));
         gameWindow.setVisible(true);
       }
 

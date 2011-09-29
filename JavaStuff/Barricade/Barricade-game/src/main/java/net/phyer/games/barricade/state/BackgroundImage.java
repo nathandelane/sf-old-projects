@@ -7,6 +7,7 @@ package net.phyer.games.barricade.state;
  */
 public enum BackgroundImage {
 
+  StartingScreens("backgrounds/backgroundtileset2.png"),
   HallwayOrange("backgrounds/Barr-hallwayOrange.png"),
   MistyHighway("backgrounds/Barr-Hiway77Misty.png");
 

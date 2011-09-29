@@ -1,6 +1,5 @@
 package net.phyer.games.barricade.graphics;
 
-import net.phyer.games.graphics.Animation;
 import net.phyer.games.graphics.Sprite;
 
 /**
@@ -8,7 +7,7 @@ import net.phyer.games.graphics.Sprite;
  * @author nathanlane
  *
  */
-public class BarricadeSprite extends Sprite {
+public abstract class BarricadeSprite extends Sprite {
 
   public BarricadeSprite(final String legendName) {
     super(null);

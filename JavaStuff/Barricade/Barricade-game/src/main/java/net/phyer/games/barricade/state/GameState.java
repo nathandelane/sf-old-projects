@@ -7,7 +7,8 @@ package net.phyer.games.barricade.state;
  */
 public enum GameState {
 
-  Experiment(new StateDescriptor(BackgroundImage.HallwayOrange));
+  MISTY_HIGHWAY(new StateDescriptor(BackgroundImage.MistyHighway)),
+  HALLWAY_ORANGE(new StateDescriptor(BackgroundImage.HallwayOrange));
 
   private final StateDescriptor stateDescriptor;
 
