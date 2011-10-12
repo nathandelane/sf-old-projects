@@ -1,6 +1,14 @@
-maps/AllBots.png
-0:179,232,16,29;1:198,232,16,29;2:217,231,16,30;3:238,231,18,30;4:260,231,22,30;5:285,232,23,89;6:213,231,22,30;7:339,240,24,21;8:367,240,23,21
-move-:0,1,2,3
-move+:0-vflip,1-vflip,2-vflip,3-vflip
-jump-:4,5
-jump+:4-vflip,5-vflip
+mapLocation:maps/AllBots.png
+# A frame consists of index=left,top,width,height.
+frames:0=3,21,60,95;1=83,19,71,88;2=167,20,63,95;3=249,22,59,93;4=331,20,56,95;5=413,19,64,88;6=495,20,57,95;7=577,22,56,93;8=657,34,74,81;9=739,35,74,80;10=821,33,74,82;11=903,21,64,94;12=990,33,59,82;13=1068,33,69,82;14=1156,33,59,82;15=1228,33,71,33;16=1317,34,62,82;17=1396,33,66,83;18=1478,22,73,94;19=1560,0,78,116;20=1642,0,78,116
+# Action names.
+actions:moveLeft,moveRight,idle,shoot,win,lose
+# Action definitions - there are some translations that are important here: vertical and horizontal - this are flips for the bitmaps.
+# Actions are defined by a frameset that is comma-separated, translation, and frame-times.
+# A typical action might look like actionName:[translation=(horizontal|vertical|horizontal+vertical);][frameTimes=<milliseconds>;]0[-(horizontal|vertical|horizontal+vertical)][~<frame-time-in-millis>],..,n
+moveLeft:0,1,2,3,4,5,6,7
+moveRight:translation=horizontal;0,1,2,3,4,5,6,7
+idle:8,9,10
+shoot:11
+win:13,14,15,16,17,18,19,20
+lose:12

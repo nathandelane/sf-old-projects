@@ -27,8 +27,6 @@ public final class Main {
   private Main() {
     gameWindow = new GameWindow(WINDOW_DIMENSIONS, null);
 
-
-
     final Runnable launchGame = new Runnable() {
 
       public void run() {

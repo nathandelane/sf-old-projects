@@ -10,10 +10,7 @@ import net.phyer.games.graphics.Animation;
  */
 public enum BotDecision {
 
-  CANNON,
-  HERC,
-  CHASS,
-  BIT;
+  CANNON("Cannon");
 
   private final Animation animation;
 
