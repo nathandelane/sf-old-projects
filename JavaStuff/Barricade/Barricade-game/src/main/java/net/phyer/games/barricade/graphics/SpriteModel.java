@@ -17,6 +17,11 @@ import javax.swing.ImageIcon;
  */
 public final class SpriteModel {
 
+  /**
+   * For the loading of s sprite's legend.
+   * @author nathanlane
+   *
+   */
   public class SpriteLegend {
 
     private static final String MAP_LOCATION = "mapLocation";
