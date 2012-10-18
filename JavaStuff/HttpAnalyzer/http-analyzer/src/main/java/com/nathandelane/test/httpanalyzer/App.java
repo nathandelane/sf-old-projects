@@ -55,8 +55,6 @@ public class App {
 								if (element.hasAttr(nextProp.toLowerCase())) {
 									propertyBuilder.append("\"").append(element.attr(nextProp)).append("\"");
 								} else if (nextProp.equalsIgnoreCase("text")) {
-									propertyBuilder.append("text=");
-
 									if (element.text() != null && !element.text().equals("")) {
 										propertyBuilder.append("\"").append(element.text()).append("\"");
 									}
