@@ -10,4 +10,13 @@
   	<module>PersonalCalculator-app</module>
   	<module>PersonalCalculator-app-resources</module>
   </modules>
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>com.google.guava</groupId>
+  			<artifactId>guava-collections</artifactId>
+  			<version>r03</version>
+  		</dependency>
+  	</dependencies>
+  </dependencyManagement>
 </project>

@@ -8,4 +8,10 @@
   <artifactId>PersonalCalculator-app</artifactId>
   <name>PersonalCalculator-app</name>
   <description>Application main for pc</description>
+  <dependencies>
+  	<dependency>
+  		<groupId>com.google.guava</groupId>
+  		<artifactId>guava-collections</artifactId>
+  	</dependency>
+  </dependencies>
 </project>
