@@ -4,6 +4,12 @@ import java.util.Iterator;
 
 import com.google.common.base.Predicate;
 
+/**
+ * Represents a {@link Predicate} filterable data source.
+ * @author nathanlane
+ *
+ * @param <T>
+ */
 public interface IFilterableDataSource<T> {
 
   public Iterator<T> iterator();
