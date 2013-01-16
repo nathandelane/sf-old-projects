@@ -17,8 +17,13 @@ import com.google.common.collect.Iterables;
 import com.google.inject.internal.Lists;
 import com.google.inject.internal.Maps;
 
+/**
+ * Represents a CSV data source that is filterable.
+ * @author nathanlane
+ *
+ */
 @AutoProperty
-public class CsvDataSource implements Iterable<Map<String, String>> {
+public class CsvDataSource implements IFilterableDataSource<Map<String, String>> {
 
   private static final Logger LOGGER = Logger.getLogger(CsvDataSource.class);
 
@@ -44,18 +49,22 @@ public class CsvDataSource implements Iterable<Map<String, String>> {
     return csvDataTable.iterator();
   }
 
+  @Override
   public Iterable<Map<String, String>> filter(Predicate<Map<String, String>> predicate) {
     return Iterables.filter(csvDataTable, predicate);
   }
 
+  @Override
   public int numberOfRows() {
     return csvDataTable.size();
   }
 
+  @Override
   public int numberOfColumns() {
     return header.numberOfColumns();
   }
 
+  @Override
   public int numberOfRows(Predicate<Map<String, String>> predicate) {
     int size = 0;
 
