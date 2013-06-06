@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="http://arch.overstock.com/xsd/ostk-config.xsd">
+
+  <parameter name="com.overstock.framework.mail.emailRedirection" type="text" desc="Email redirection">
+    <value env="local">@{global.com.overstock.framework.mail.emailRedirection}</value>
+    <!-- TODO: uncomment this parameter and set the correct value
+    <value env="dev test stage">TBD</value>
+    -->
+  </parameter>
+
+  <parameter name="com.overstock.log4j.properties" type="text" desc="Log4j properties file location">
+    <!--local mode uses relative path which works if the app is started from Eclipse, app project directory or app deploy directory -->
+    <value env="local">${log4j.properties.relative.path}</value>
+    <value>${log4j.properties.absolute.path}</value>
+  </parameter>
+
+  <parameter name="db.pool.b2c" type="text" desc="database hosts for the connection pool" >
+    <value env="local">devshpdb01.overstock.com</value>
+    <value>@{global.db.hosts.b2c.internalApps}</value> <!-- obtain database hosts from global.xml -->
+  </parameter>
+
+  <parameter name="db.alias.b2c" type="text" desc="db auth alias for b2c connection">
+    <value env="local">appusr/dfg0310/devshp</value>
+    <value>b2c</value> <!-- db auth alias -->
+  </parameter>
+
+  <parameter name="com.nathandelane.euler.b2c" type="database" desc="connection settings for the b2c.">
+    <value>dbpool=@{db.pool.b2c}; dbAuthAlias=@{db.alias.b2c}; maxConnections=5;statementCacheSize=5</value>
+  </parameter>
+
+</config>

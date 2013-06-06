@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="euler">
+    
+    <publishDate format="dd MMM yyyy" position="left"/>
+    
+    <version position="left"/>
+    
+    <body>
+        <links>
+            <item name="Overstock" href="http://www.overstock.com"/>
+            <item name="Maven" href="http://maven.apache.org/maven2"/>
+        </links>
+        <menu inherit="top" ref="parent"/>
+        <menu ref="modules"/>
+        <menu inherit="bottom" ref="reports"/>
+    </body>
+</project>
