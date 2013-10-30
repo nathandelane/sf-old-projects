@@ -42,7 +42,15 @@
           </archive>
         </configuration>
       </plugin>
-
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
       <plugin>
         <artifactId>maven-source-plugin</artifactId>
         <executions>
@@ -54,55 +62,15 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.2.1</version>
-        <executions>
-          <execution>
-            <id>make-assembly</id>
-            <phase>package</phase>
-            <goals>
-              <goal>attached</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <descriptors>
-            <descriptor>src/main/assembly/assembly.xml</descriptor>
-          </descriptors>
-        </configuration>
-      </plugin>
     </plugins>
     <resources>
       <resource>
         <directory>src/main/resources</directory>
         <filtering>true</filtering>
       </resource>
-      <resource>
-        <directory>src/main/scripts</directory>
-        <filtering>true</filtering>
-        <targetPath>${project.build.directory}/scripts</targetPath>
-      </resource>
-      <resource>
-        <directory>conf</directory>
-        <filtering>true</filtering>
-        <targetPath>${project.build.directory}/conf</targetPath>
-      </resource>
-      <resource>
-        <directory>conf</directory>
-        <filtering>true</filtering>
-      </resource>
     </resources>
   </build>
 
-  <properties>
-    <app.lib.dir>${app.deploy.dir}/lib</app.lib.dir>
-    <!--Used by startup script. Change to the app launcher you create-->
-    <startupClass>com.nathandelane.test.app.AppLauncher</startupClass>
-    <!-- Used by shutdown to grep for the pattern-->
-    <process.grep.pattern>java.*${startupClass}</process.grep.pattern>
-    <artifact.filename>${artifact.artifactId}-${artifact.version}.jar</artifact.filename>
-  </properties>
   <dependencies>
   	<dependency>
   		<groupId>org.pojomatic</groupId>
@@ -113,11 +81,11 @@
   		<artifactId>guava</artifactId>
   	</dependency>
   	<dependency>
-  		<groupId>com.google.code.guice</groupId>
+  		<groupId>com.google.inject</groupId>
   		<artifactId>guice</artifactId>
   	</dependency>
   	<dependency>
-  		<groupId>apache-log4j</groupId>
+  		<groupId>log4j</groupId>
   		<artifactId>log4j</artifactId>
   	</dependency>
   	<dependency>
@@ -127,10 +95,6 @@
   	<dependency>
   		<groupId>org.mockito</groupId>
   		<artifactId>mockito-core</artifactId>
-  	</dependency>
-  	<dependency>
-  		<groupId>com.unboundedprime.tapioca</groupId>
-  		<artifactId>tapioca-core</artifactId>
   	</dependency>
   </dependencies>
 </project>
