@@ -51,7 +51,43 @@ public class Query implements ICommand {
             Messenger.output(minValue);
           }
           else {
-            Messenger.error("Column name is required for max function.");
+            Messenger.error("Column name is required for min function.");
+          }
+        }
+        else if (parameters.get("0").equalsIgnoreCase("lessthan")) {
+          if (parameters.get("1") != null) {
+            final String columnName = parameters.get("1");
+
+            if (parameters.get("2") != null) {
+              final String maxValue = parameters.get("2");
+              final String lessThanString = csvFile.getRowsWhereColumnLessThan(columnName, maxValue);
+
+              Messenger.output(lessThanString);
+            }
+            else {
+              Messenger.error("A compare-to value is required for lessthan function.");
+            }
+          }
+          else {
+            Messenger.error("Column name is required for lessthan function.");
+          }
+        }
+        else if (parameters.get("0").equalsIgnoreCase("greaterthan")) {
+          if (parameters.get("1") != null) {
+            final String columnName = parameters.get("1");
+
+            if (parameters.get("2") != null) {
+              final String minValue = parameters.get("2");
+              final String greaterThanString = csvFile.getRowsWhereColumnGreaterThan(columnName, minValue);
+
+              Messenger.output(greaterThanString);
+            }
+            else {
+              Messenger.error("A compare-to value is required for greaterthan function.");
+            }
+          }
+          else {
+            Messenger.error("Column name is required for lessthan function.");
           }
         }
         else {

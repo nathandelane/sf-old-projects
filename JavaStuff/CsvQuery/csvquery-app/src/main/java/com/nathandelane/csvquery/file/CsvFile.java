@@ -47,6 +47,56 @@ public class CsvFile {
     }
   }
 
+  public String getRowsWhereColumnLessThan(String columnName, String maxValue) {
+    final StringBuilder sb = new StringBuilder("");
+    final int columnIndex = headers.indexOf(columnName);
+
+    for (List<String> nextRow : rows) {
+      if (isNumeric(maxValue)) {
+        final BigDecimal d = new BigDecimal(maxValue);
+        final BigDecimal val = new BigDecimal(nextRow.get(columnIndex));
+
+        if (val.compareTo(d) < 0) {
+          sb.append(String.format("%1$s\n", nextRow));
+        }
+      }
+      else {
+        final String val = nextRow.get(columnIndex);
+
+        if (val.compareTo(maxValue) < 0) {
+          sb.append(String.format("%1$s\n", nextRow));
+        }
+      }
+    }
+
+    return sb.toString();
+  }
+
+  public String getRowsWhereColumnGreaterThan(String columnName, String maxValue) {
+    final StringBuilder sb = new StringBuilder("");
+    final int columnIndex = headers.indexOf(columnName);
+
+    for (List<String> nextRow : rows) {
+      if (isNumeric(maxValue)) {
+        final BigDecimal d = new BigDecimal(maxValue);
+        final BigDecimal val = new BigDecimal(nextRow.get(columnIndex));
+
+        if (val.compareTo(d) > 0) {
+          sb.append(String.format("%1$s\n", nextRow));
+        }
+      }
+      else {
+        final String val = nextRow.get(columnIndex);
+
+        if (val.compareTo(maxValue) > 0) {
+          sb.append(String.format("%1$s\n", nextRow));
+        }
+      }
+    }
+
+    return sb.toString();
+  }
+
   public List<String> columns() {
     return headers;
   }
